@@ -37,7 +37,7 @@ function sendData(e){
          
         //  ReactSession.set("StudentName",res.data.name);
          /// let count = 0; 
-          //while(count == 0){
+          //while(count == 0){ hello yoooo!
 
            // setToken(res.data.);
             //console.log(token);
