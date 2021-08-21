@@ -32,7 +32,8 @@ app.use("/student",studentRouter);
 const itemRouter = require("./routes/items.js");
 app.use("/items",itemRouter);
 
-
+const TeacherRouter = require("./routes/teacher.js"); 
+app.use("/teacher",TeacherRouter);
 
 const connection = mongoose.connection;
 connection.once("open",() => {

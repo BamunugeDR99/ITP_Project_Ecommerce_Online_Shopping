@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Side_bar from './Components/Side_bar';
 import Add_items from './Components/Add_items';
 import Update_Items from './Components/Update_Items';
+import Seller_items from './Components/Seller_items';
 
 
 
@@ -22,7 +23,8 @@ function App() {
       <div>
         <Side_bar/>
         <Route path = "/addItem" exact component = {Add_items}/>
-        <Route path = "/updateItem" exact component = {Update_Items}/>
+        <Route path = "/updateItem/:id" exact component = {Update_Items}/>
+        <Route path = "/" exact component = {Seller_items}/>
         {/* <Add_items/> */}
 
 

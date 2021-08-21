@@ -8,7 +8,6 @@ export default function Update_Items(props){
 
   // const [students,setStudents] = useState([]);
   const [data,setData] = useState({
-    name : "",
     Item_name : "",
     Brand : "",
     Quantity : "",
@@ -24,12 +23,14 @@ export default function Update_Items(props){
     Images : "",
     Category : ""
   });
+
+  
 //learn  .......
   useEffect(() =>{
       function getItem(){
         // const objectId = props.match.params.id; 
         // console.log(objectId);
-        const objectId = "611f847bbb5f1c52a8d0dcd2";
+        const objectId = props.match.params.id;
 
           axios.get("http://localhost:8070/items/get/" + objectId).then((res) =>
           {
@@ -38,27 +39,95 @@ export default function Update_Items(props){
 
               console.log(res.data);
               
-              warrentyCheck();
-              Color_family();
-              categoryCheck();
+            
 
           }).catch((err) =>{
               alert(err);
           })
+
       }
-     
-      getItem();
+     //check this
+          getItem();
+          warrentyCheck();
+          Color_family();
+          categoryCheck();
+          imageForSilde();
       // displayStudentdetails();
      
   }, []);
 
+  function imageForSilde(){
+      let slideImages = [];
+      slideImages = data.Images;
+      console.log(slideImages[0]);
+  }
 
 
+  function warrentyChecks(){
+       
+    if(document.getElementById("customRadio2").checked){
+        data.Warrenty = parseInt(document.getElementById("customRadio2").value);
+    }else if(document.getElementById("customRadio1").checked){
+        data.Warrenty = parseInt(document.getElementById("customRadio1").value);
+    }
+
+ 
+  }
+// Clear all after submit
+function colors(){
+  //data.Color_family = "";
+  let newColors = [];
+    for(let i = 1;i <= 6;i++){
+        let checkBoxId = "customCheck" + i;
+        // console.log(checkBoxId);
+        if(document.getElementById(checkBoxId).checked){
+            newColors.push(document.getElementById(checkBoxId).value);
+        }
+    }
+    data.Color_family = newColors;
+
+}
+
+function addImages(){
+  let newImages = [];
+    let imagess = document.getElementById("customFile").files;
+
+    for(let i = 0; i < imagess.length; i++){
+        newImages.push(imagess[i].name);
+    }
+
+   data.Images = newImages;
+}
+
+function ItemCategorySelection(){
+    let valueof = parseInt(document.getElementById("selectCategory").value);
+    if(valueof == 1){
+        data.Category = "Mobile Phones";
+        // setData()= "MM";
+        //alert("111");
+    }else if(valueof == 2){
+       // setSelectCategory("Tablet / iPad / iPod");
+        data.Category = "Tablet / iPad / iPod";
+    }else if(valueof == 3){
+        //setSelectCategory("Gaming");
+        data.Category = "Gaming";
+    }else if(valueof == 4){
+        //setSelectCategory("Other");
+        data.Category = "Other";
+    }
+}
+
+
+
+
+
+
+// Check this again ....
   function warrentyCheck(){
       if(data.Warrenty == true){
             document.getElementById("txt1").innerHTML = "Warrenty Available For this Item";
             document.getElementById("txt1").style.color = "#A4DE02";
-      }else{
+      }else if(data.Warrenty == false){
         document.getElementById("txt1").innerHTML = "Warrenty Not Available For this Item";
         document.getElementById("txt1").style.color = "#FF0000";
       }
@@ -87,23 +156,50 @@ export default function Update_Items(props){
 
         document.getElementById("txt3").innerHTML = txt;
   }
+
+  function deletee(id){
+    const objectId = id;
+    axios.delete("http://localhost:8070/items/delete/" + objectId).then((res) =>
+    {
+      alert("Are you sure do you want to delete this item ?");
+      props.history.push("/");
+        document.getElementById("itemsTxt").innerHTML = "Item Deleted Successfully!";
+        // const afterDeleteStudent = students.filter(student=>student._id != id);
+        // setStudents(afterDeleteStudent);
+    }).catch((err) =>{
+        
+        alert(err);
+    })
+}
+
+
+
   function sendData(e){
 //  still didn't created it yet.....
     // const objectId = props.match.params.id; 
     //console.log(objectId);
-   const objectId = "611f847bbb5f1c52a8d0dcd2";
+    const objectId = props.match.params.id;
    
     e.preventDefault();
-
+    
+    addImages();
+    colors();
+    warrentyChecks();
+    ItemCategorySelection();
+    // data.Category = "apple";
+    //console.log(data.Color_family);
+   // console.log(data.Category);
     console.log(data);
-    // axios.put("http://localhost:8070/items/update/" + objectId,data).then(()=>{
+    axios.put("http://localhost:8070/items/update/" + objectId,data).then(()=>{
     //   //alert("Student Updated");
-    // //  document.getElementById("txt").innerHTML = "Student Updated Successfully!";
-      
+        document.getElementById("Submitstatus").innerHTML = "Item Updated SuccessFully!";
+        document.getElementById("Submitstatus").style.color = "#A4DE02";      
 
-    // }).catch((err) =>{
-    //   alert(err)
-    // })
+    }).catch((err) =>{
+       alert(err);
+       document.getElementById("Submitstatus").innerHTML = "Process UnsuccessFull Please try again!";
+       document.getElementById("Submitstatus").style.color = "#FF0000";
+     })
   }
 
   function handle(e){
@@ -161,13 +257,13 @@ export default function Update_Items(props){
                 <div class="row">
                   <div class="col">
                       <label for="item_name">ITEM NAME</label>
-                    <input type="text" id = "item_name" Value = {data.Item_name} class="form-control" placeholder="Name of the item"
+                    <input type="text" id = "Item_name" Value = {data.Item_name} class="form-control" placeholder="Name of the item"
                      onChange= {
                         (e)=>handle(e)}/>
                   </div>
                   <div class="col">
                     <label for="quantity">QUANTITY</label>
-                    <input type="text" id = "quantity" Value = {data.Quantity} class="form-control" placeholder="Quantity"
+                    <input type="text" id = "Quantity" Value = {data.Quantity} class="form-control" placeholder="Quantity"
                      onChange= {
                         (e)=>handle(e)}/>
                   </div>
@@ -176,13 +272,13 @@ export default function Update_Items(props){
                 <div class="row">
                     <div class="col">
                         <label for="brand">BRAND</label>
-                      <input type="text" id = "brand"  Value = {data.Brand} class="form-control" placeholder="Item brand"
+                      <input type="text" id = "Brand"  Value = {data.Brand} class="form-control" placeholder="Item brand"
                       onChange= {
                         (e)=>handle(e)}/>
                     </div>
                     <div class="col">
                       <label for="model">MODEL</label>
-                      <input type="text" id = "model" Value = {data.Model} class="form-control" placeholder="Item model"
+                      <input type="text" id = "Model" Value = {data.Model} class="form-control" placeholder="Item model"
                    onChange= {
                     (e)=>handle(e)}/>
                     </div>
@@ -191,7 +287,7 @@ export default function Update_Items(props){
                   <div class="row">
                     <div class="col">
                         <label for="price">PRICE</label>
-                      <input type="text" id = "price" Value = {data.Price} class="form-control" placeholder="Price of the item"
+                      <input type="text" id = "Price" Value = {data.Price} class="form-control" placeholder="Price of the item"
                     onChange= {
                         (e)=>handle(e)}/>
                     </div>
@@ -207,20 +303,20 @@ export default function Update_Items(props){
                 <div class="row">
                     <div class="col">
                         <label for="item_des">DESCRIPTION</label>
-                        <textarea class="form-control" id = "description" Value = {data.Description} rows="5" placeholder="Description about the item" 
+                        <textarea class="form-control" id = "Description" defaultValue = {data.Description} rows="5" placeholder="Description about the item" 
                          onChange= {
                             (e)=>handle(e)}></textarea>
                     </div>
                     <div class="col">
                         <label for="item_specification">SPECIFICATION</label>
-                        <textarea class="form-control" id = "specifications" Value = {data.Specification} rows="5" placeholder="Item specifications" 
+                        <textarea class="form-control" id = "Specification" defaultValue = {data.Specification} rows="5" placeholder="Item specifications" 
                       onChange= {
                         (e)=>handle(e)}></textarea>
                       </div> 
                   <br/>
                   <div class="col">
                     <label for="WHT">WHAT IS IN THE BOX ? </label>
-                    <textarea class="form-control" rows="5" id = "wht" Value = {data.WHT} placeholder="Tell what inside the package ?"  
+                    <textarea class="form-control" rows="5" id = "WHT" defaultValue = {data.WHT} placeholder="Tell what inside the package ?"  
                     onChange= {
                         (e)=>handle(e)}></textarea>
                   </div>
@@ -279,7 +375,7 @@ export default function Update_Items(props){
               <div class=" row">
                   <div class="col">
                     <label for="SKU">OTHER COLORS</label>
-                    <input type="text" Value = {data.Other_colors} class="form-control" placeholder="Any other colors"
+                    <input type="text" Value = {data.Other_colors} id = "Other_colors" class="form-control" placeholder="Any other colors"
                    onChange= {
                     (e)=>handle(e)}/>
                 </div>
@@ -307,7 +403,7 @@ export default function Update_Items(props){
             <br/><br/>
             <center>
                     <button type="submit" class="btn btn-primary" style = {{marginright: "10px"}}>UPDATE</button>
-                    <button type="button" class="btn btn-danger">DELETE</button>
+                    <button type="button" onClick = {()=> deletee(data._id)} class="btn btn-danger">DELETE</button>
             </center>
             <br/><br/><br/>
             </form> </div></div></div>

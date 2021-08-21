@@ -102,7 +102,7 @@ export default function Add_items(props){
             
           }).catch((err) =>{
             alert(err);
-            document.getElementById("Submitstatus").innerHTML = "Process unsuccessFull Please try again!";
+            document.getElementById("Submitstatus").innerHTML = "Process UnsuccessFull Please try again!";
             document.getElementById("Submitstatus").style.color = "#FF0000";
           })
       
@@ -265,7 +265,7 @@ export default function Add_items(props){
                   <div class=" row">
                       <div class="col">
                         <label for="SKU">OTHER COLORS</label>
-                        <input type="text" class="form-control" placeholder="Any other colors"
+                        <input type="text" class="form-control" id = " Other_colors" placeholder="Any other colors"
                         onChange= {
                             (e)=>{
                                setOtherColors(e.target.value);
