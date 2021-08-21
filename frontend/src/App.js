@@ -8,7 +8,10 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import AllStudents from './Components/AllStudents';
 import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';
-import ReactSession from 'react-client-session';
+import Side_bar from './Components/Side_bar';
+import Add_items from './Components/Add_items';
+import Update_Items from './Components/Update_Items';
+import Seller_items from './Components/Seller_items';
 
 
 
@@ -18,12 +21,22 @@ function App() {
   return (
   <Router>
       <div>
+        <Side_bar/>
+        <Route path = "/addItem" exact component = {Add_items}/>
+        <Route path = "/updateItem/:id" exact component = {Update_Items}/>
+        <Route path = "/" exact component = {Seller_items}/>
+        {/* <Add_items/> */}
 
-      <Header/>
+
+
+
+
+      {/* <Header/>
+
       <Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>
       <Route path = "/add" exact component = {AddStudent}/>
-      <Route path = "/update/:id" exact component = {UpdateStudent}/>
+      <Route path = "/update/:id" exact component = {UpdateStudent}/> */}
 
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
