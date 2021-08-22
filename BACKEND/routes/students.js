@@ -48,6 +48,7 @@ router.route("/getStudents").get((reg,res)=> {
 // update 
 router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
+
     const{name,age,gender} = req.body;
 
     const updateStudent = {
@@ -57,10 +58,11 @@ router.route("/update/:id").put(async (req,res) =>{
     }
 
     const update = await Student.findByIdAndUpdate(userID,updateStudent).then(()=>{
-        res.status(200).send({status: "User updated"})
+        //res.status(200).send({status: "User updated"})
+        res.json("Updated!");
         }).catch((err) => {
             console.log(err);
-            res.status(500).send({status: "Error with updating data", error:err.message});
+            //res.status(500).send({status: "Error with updating data", error:err.message});
         })
     });
 
