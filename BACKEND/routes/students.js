@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 let Student = require("../modules/Student");
 
-// ggg
 //Insert
 router.route("/add").post((req,res)=>{
 
