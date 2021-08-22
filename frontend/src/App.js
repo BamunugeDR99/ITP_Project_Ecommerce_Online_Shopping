@@ -12,7 +12,7 @@ import Side_bar from './Components/Side_bar';
 import Add_items from './Components/Add_items';
 import Update_Items from './Components/Update_Items';
 import Seller_items from './Components/Seller_items';
-
+import customer_wishlist from './Components/customer_wishlist';
 
 
 
@@ -21,10 +21,12 @@ function App() {
   return (
   <Router>
       <div>
-        <Side_bar/>
+      <Header/>
+      <Route path = "/" exact component = {customer_wishlist}/>
+        {/* <Side_bar/> */}
         <Route path = "/addItem" exact component = {Add_items}/>
         <Route path = "/updateItem/:id" exact component = {Update_Items}/>
-        <Route path = "/" exact component = {Seller_items}/>
+        <Route path = "/allItems" exact component = {Seller_items}/>
         {/* <Add_items/> */}
 
 
@@ -33,9 +35,10 @@ function App() {
 
       {/* <Header/>
 
+        <Route path = "/add" exact component = {AddStudent}/>
       <Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>
-      <Route path = "/add" exact component = {AddStudent}/>
+     
       <Route path = "/update/:id" exact component = {UpdateStudent}/> */}
 
 

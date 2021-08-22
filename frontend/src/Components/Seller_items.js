@@ -135,6 +135,7 @@ export default function Seller_items(props){
         }
 
 
+        
         axios.get("http://localhost:8070/items/getItems").then((res) =>
         {
             let item = res.data;
