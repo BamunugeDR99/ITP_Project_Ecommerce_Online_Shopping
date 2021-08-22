@@ -9,6 +9,7 @@ import AllStudents from './Components/AllStudents';
 import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';
 import ReactSession from 'react-client-session';
+import AddpaymentMethod from './Components/AddpaymentMethod';
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path = "/Home" exact component= {AllStudents}/>
       <Route path = "/add" exact component = {AddStudent}/>
       <Route path = "/update/:id" exact component = {UpdateStudent}/>
+      <Route path = "/addpay" exact component = {AddpaymentMethod}/>
 
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}

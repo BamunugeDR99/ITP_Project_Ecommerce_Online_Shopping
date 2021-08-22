@@ -30,6 +30,10 @@ const studentRouter = require("./routes/students.js");
 
 app.use("/student",studentRouter);
 
+const paymentdetailsRouter = require("./routes/paymentdetails.js");
+
+app.use("/paymentdetails",paymentdetailsRouter);
+
 const connection = mongoose.connection;
 connection.once("open",() => {
     console.log("DB Connection successful");
