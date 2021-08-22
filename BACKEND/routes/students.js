@@ -123,7 +123,7 @@ router.post("/login", (req, res) => {
       return res.status(400).json({ msg: "user does not exists" });
 
     if (!(age == studentsss.age)) {
-      return res.status(400).json({ msg: "invalid credentials" });
+      return res.status(400).json({ msg: "Invalid credentials" });
     }
     res.json({
       studentsss: {
