@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 function Header(){
 
     return(
+      <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
     <a className="navbar-brand" href="#">Navbar</a>
@@ -25,6 +26,7 @@ function Header(){
     </div>
   </div>
 </nav>
+</div>
     )
 }
 
