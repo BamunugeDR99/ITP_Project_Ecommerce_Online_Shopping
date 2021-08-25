@@ -9,6 +9,8 @@ import AllStudents from './Components/AllStudents';
 import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';
 import ReactSession from 'react-client-session';
+import SellerRegistration from './Components/SellerRegistration';
+import AllSellers from './Components/AllSellers';
 
 
 
@@ -24,6 +26,9 @@ function App() {
       <Route path = "/Home" exact component= {AllStudents}/>
       <Route path = "/add" exact component = {AddStudent}/>
       <Route path = "/update/:id" exact component = {UpdateStudent}/>
+      <Route path = "/sellreg" exact component = {SellerRegistration}/>
+      <Route path = "/sellreq" exact component = {AllSellers}/>
+
 
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}

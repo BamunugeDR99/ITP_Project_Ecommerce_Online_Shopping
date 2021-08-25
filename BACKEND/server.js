@@ -27,8 +27,10 @@ mongoose.connect(URL,{
 
 
 const studentRouter = require("./routes/students.js");
-
 app.use("/student",studentRouter);
+
+const sellerRouter = require("./routes/seller.js");
+app.use("/seller",sellerRouter);
 
 const connection = mongoose.connection;
 connection.once("open",() => {
