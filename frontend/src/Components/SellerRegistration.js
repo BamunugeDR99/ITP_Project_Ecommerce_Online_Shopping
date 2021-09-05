@@ -15,12 +15,12 @@ export default function SellerRegistration(props){
 	let [year,setyear] = useState("");
 	let [email,setemail] = useState("");
 	let [description,setdescription] = useState("");
-	let [logo,setlogo] = useState("");
-  
+	//let [logo,setlogo] = useState("");
+  let logo;
 	function sendData(e){
 
 	  e.preventDefault();
-  
+      logo = document.getElementById("logo").value;
 	  const newseller = {
 		ownername,
 		mobile,
@@ -34,26 +34,26 @@ export default function SellerRegistration(props){
 
 	  console.log(newseller);
 
-	  axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
+	axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
 	
-		setownername(" ");
-		setmobile(" ");
-		setcompanyname(" ");
-		setaddress(" ");
-		setyear(" ");
-		setemail(" ");
-		setdescription(" ");
-		setlogo(" ");
+	// setownername(" ");
+	// setmobile(" ");
+	// setcompanyname(" ");
+	// setaddress(" ");
+	// setyear(" ");
+	// setemail(" ");
+	// setdescription(" ");
+	// setlogo(" ");
 
 
-		alert("added");
-		props.history.push("/Home");
-		document.getElementById("txt").innerHTML = "Request added Successfully!";
+	alert("added");
+	props.history.push("/sellreq");
+	document.getElementById("txt").innerHTML = "Request added Successfully!";
 		
-	  }).catch((err) =>{
-		alert(err)
-	  })
-	}
+	}).catch((err) =>{
+	alert(err)
+	 })
+	 }
   
 return(
 
