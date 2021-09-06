@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+// import '../Css/Side_bar_styles.css';
+
 
 export default function Side_bar(props) {
   return (
-    <div>
+    <div className = "Apple">
       <header className="header" id="header">
         <div className="header_toggle">
           {" "}

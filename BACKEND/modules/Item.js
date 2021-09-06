@@ -72,7 +72,25 @@ const ItemSchema = new Schema({
         type : String,
         required :true,
         default : "Others"
+    },
+
+    DiscountStatus : {
+        type : Boolean,
+        required : true,
+        default : false
+    },
+
+    FinalPrice : {
+        type : String,
+        required : true,
+        default : "0"
+    },
+    DiscountPrecentage : {
+        type : String,
+        required : true,
+        default : "0"
     }
+
 
 })
 

@@ -17,6 +17,9 @@ router.route("/addItems").post((req, res) => {
   const Other_colors = req.body.Other_colors;
   const Images = req.body.Images;
   const Category = req.body.Category;
+  const DiscountStatus = req.body.DiscountStatus;
+  const FinalPrice = req.body.FinalPrice;
+  const DiscountPrecentage = req.body.DiscountPrecentage;
 
   const newItem = new Item({
     Item_name,
@@ -33,6 +36,9 @@ router.route("/addItems").post((req, res) => {
     Other_colors,
     Images,
     Category,
+    DiscountStatus,
+    FinalPrice,
+    DiscountPrecentage
   });
 
   newItem
@@ -55,6 +61,9 @@ router.route("/addItems").post((req, res) => {
           Other_colors: newItem.Other_colors,
           Images: newItem.Images,
           Category: newItem.Category,
+          DiscountStatus : newItem.DiscountStatus,
+          FinalPrice : newItem.FinalPrice,
+          DiscountPrecentage : newItem.DiscountPrecentage
         },
       });
     })
@@ -94,6 +103,9 @@ router.route("/update/:id").put(async (req, res) => {
     Other_colors,
     Images,
     Category,
+    DiscountStatus,
+    FinalPrice,
+    DiscountPrecentage
   } = req.body;
 
   const updateItem = {
@@ -111,6 +123,9 @@ router.route("/update/:id").put(async (req, res) => {
     Other_colors,
     Images,
     Category,
+    DiscountStatus,
+    FinalPrice,
+    DiscountPrecentage
   };
 
   const update = await Item.findByIdAndUpdate(itemID, updateItem)
