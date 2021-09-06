@@ -26,13 +26,13 @@ mongoose.connect(URL,{
 //routes to CRUD in each model
 
 
-const studentRouter = require("./routes/students.js");
+const customerRouter = require("./routes/customer.js");
 
-app.use("/student",studentRouter);
+app.use("/Customer",customerRouter);
 
 const connection = mongoose.connection;
 connection.once("open",() => {
-    console.log("DB Connection successful");
+    console.log("MongoDB Connection successful");
 });
 
 // connection.once("open",(err) =>{
