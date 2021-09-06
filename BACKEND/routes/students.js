@@ -109,45 +109,49 @@ router.route("/get/:id").get(async (req, res) => {
 //     })
 // })
 
-router.post("/login", (req, res) => {
-  const { name, age } = req.body;
-  // simple validation
-  if (!name || !age) {
-    return res.status(400).json({ msg: "please enter all the fields" });
-  }
+// router.post("/login", (req, res) => {
+//   const { name, age } = req.body;
+//   // simple validation
+//   if (!name || !age) {
+//     return res.status(400).json({ msg: "please enter all the fields" });
+//   }
 
-  // check for existing user
+//   // check for existing user
 
-  Student.findOne({ name }).then((studentsss) => {
-    if (!studentsss)
-      return res.status(400).json({ msg: "user does not exists" });
+//   Student.findOne({ name }).then((studentsss) => {
+//     if (!studentsss)
+//       return res.status(400).json({ msg: "user does not exists" });
 
-    if (!(age == studentsss.age)) {
-      return res.status(400).json({ msg: "Invalid credentials entered" });
-    }
-    res.json({
-      studentsss: {
-        name: studentsss.name,
-        age: studentsss.age,
-        gender: studentsss.gender,
-      },
+//     if (!(password == studentsss.password)) {
+//       return res.json({ msg: "Invalid credentials entered" });
+//     }
+//     res.json({
+//       studentsss: {
+//         name: studentsss.name,
+//         age: studentsss.age,
+//         gender: studentsss.gender,
+//       },
+//     });
+//   });
+
+
+    
+router.post("/getByName", (req, res) => {
+    const { name } = req.body;
+  // when there are two equals inputs in the database the first document will be retireved from the database 
+  
+    Student.findOne({ name }).then((studentsss) => {
+    
+      res.json({
+        studentsss: {
+          name: studentsss.name,
+          age: studentsss.age,
+          gender: studentsss.gender,
+        }
+      });
     });
-
-    // jwt.sign(
-
-    //     {id : studentsss.name},
-    //     config.get('jwtSecret'),
-    //     {expiresIn : 3600},
-    //     (err,token) => {
-    //         if(err) throw err;
-    //               res.json({token, studentsss:{
-    //                   name : studentsss.name,
-    //                   gender : studentsss.gender,
-    //                   age : studentsss.age
-    //               }})
-    //             }
-    // )
   });
-});
+  
+
 
 module.exports = router;

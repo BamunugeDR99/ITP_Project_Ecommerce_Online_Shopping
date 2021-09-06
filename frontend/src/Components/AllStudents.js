@@ -12,7 +12,8 @@ export default function AllStudents(props) {
         .get("http://localhost:8070/student/getStudents")
         .then((res) => {
           setStudents(res.data);
-          console.log(res.data);
+          // console.log(res);
+          
         })
         .catch((err) => {
           alert(err);
@@ -23,6 +24,8 @@ export default function AllStudents(props) {
     // displayStudentdetails();
   }, []);
 
+// console.log(students[0].name);
+
   function update(id) {
     console.log(id);
     props.history.push("/update/" + id);
@@ -30,13 +33,17 @@ export default function AllStudents(props) {
 
   function deletee(id) {
     axios
-      .delete("http://localhost:8070/student/delete/" + id)
+      .delete("http://localhost:8070/student/delete/" + id) 
       .then((res) => {
         document.getElementById("txt").innerHTML =
           "Student Deleted Successfully!";
+
+
         const afterDeleteStudent = students.filter(
           (student) => student._id != id
         );
+
+
         setStudents(afterDeleteStudent);
       })
       .catch((err) => {
@@ -116,22 +123,27 @@ export default function AllStudents(props) {
       <h1 id="txt2"></h1>
 
       <div className="row">
-        {students.map((student, index) => {
+        {/* for(let i = 0; i < student.length; i++) */}
+        {students.map((student) => {
           return (
             <div class="col-sm-6">
               <div class="card">
+
+                
                 {/* <img
                   src = {require('../images/' + imagename).default} 
                   class="card-img-top" style = {{width : "150px",paddingRight : "10px", borderRadius : "0px"}}
                   alt="..."
                 /> */}
+
+
                 {/* <img
                   src = {require('../images/' + imagename).default} 
                   class="card-img-top" style = {{width : "150px",paddingRight : "10px", borderRadius : "0px"}}
                   alt="..."
                 /> */}
                 <div class="card-body">
-                  <h5 class="card-title">{student.name}</h5>
+                  <h5 class="card-title">   {student.name} </h5>
                   <p class="card-text">{student.age}</p>
                   <p class="card-text">{student.gender}</p>
 
