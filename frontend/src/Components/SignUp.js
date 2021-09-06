@@ -20,6 +20,7 @@ function SignUp(props){
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
 	let userImage = "";
+	let flag = 0;
 
   
 	function genderSelect(){
@@ -33,16 +34,31 @@ function SignUp(props){
 		dob = document.getElementById("birthday").value;	
 
 	}
+	
+	function checkPassword(){
+		const password = document.getElelmentById("exampleInputPassword1").value;
+		const confirmPassword = document.getElelmentById("exampleInputPassword2").value;
+		
+		if(password == confirmPassword){
+			flag = 1;
+		}else{
+			alert("Password mismatch!");
+		}
+	}
+	
 	function sendData(e){
 	  // alert("d0");
 	  e.preventDefault();
 	  genderSelect();
 	  images();
 	  birthday();
+	  checkPassword();
 
 	  let image2 = document.getElementById("user_image").value;
+		
 	  let image3 = image2.substring(12);
-  
+  	if(flag == 1){
+		
 	  const newCustomer = {
 		firstName,
 		lastName,
@@ -53,7 +69,6 @@ function SignUp(props){
 		address,
 		username,
 		password,
-		confirmPassword,
 		userImage : image3
 
 	  }
@@ -80,8 +95,9 @@ function SignUp(props){
 	}).catch((err) =>{
 		alert(err)
 	  })
+		}
 	}
-
+	
 
     return(
 
@@ -194,7 +210,7 @@ function SignUp(props){
 			  
 			   <div class="form-group">
 					
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"
+					<input type="password" class="form-control" id="exampleInputPassword2" placeholder = "Confirm Password"
 					onChange= {
 						(e)=>{
 						  setConfirmPassword(e.target.value);
