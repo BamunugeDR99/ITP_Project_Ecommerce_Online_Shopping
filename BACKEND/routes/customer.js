@@ -11,7 +11,7 @@ router.route("/add").post((req,res)=>{
     const phoneNumber = req.body.phoneNumber;
     const dob = req.body.dob;
     const gender = req.body.gender;
-    const address = req.body.email;
+    const address = req.body.address;
     const username = req.body.username;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -41,6 +41,71 @@ router.route("/add").post((req,res)=>{
     })
 
 });
+
+//get one customers
+router.route("/get/:id").get(async (req,res) =>{
+    let userID = req.params.id;
+    const user = await Customer.findById(userID).then((cutomerss) =>{
+        // res.status(200).send({status:"User fetched"});
+        res.json(cutomerss);
+    }).catch((err) =>{
+        console.log(err.message);
+        res.status(500).send({status : "Error with get user", error : err.message});
+    })
+});
+
+//get all customers
+router.route("/getAll").get((req ,res)=> {
+    Customer.find().then((customer)=>{
+        res.json(customer)
+        
+    }).catch((err) =>{
+        console.log(err)
+    })
+});
+
+// update 
+router.route("/update/:id").put(async (req,res) =>{
+    let userID = req.params.id;
+    const{firstName, lastName , email, phoneNumber,dob,  gender, address, username, password,  confirmPassword,  userImage} = req.body;
+
+    const updatedCustomer = {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        dob,
+        gender,
+        address,
+        username,
+        password,
+        confirmPassword,
+        userImage
+    }
+
+    const update = await Customer.findByIdAndUpdate(userID, updatedCustomer).then(()=>{
+        res.status(200).send({status: "User updated"})
+
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send({status: "Error with updating data", error:err.message});
+        })
+    });
+
+    // delete 
+router.route("/delete/:id").delete(async (req,res) =>{
+    let userID = req.params.id;
+
+        await Customer.findByIdAndDelete(userID)
+        .then(() => {
+            res.status(200).send({status : "User Deleted"});
+        }).catch((err) => {
+
+            console.log(err.message);
+            res.status(500).send({status : "Error with delete", error : err.message});
+        })
+    });
+
 
 // retrive
 

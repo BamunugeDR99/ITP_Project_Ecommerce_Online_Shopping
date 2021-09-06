@@ -26,7 +26,7 @@ function SignUp(props){
 		gender = document.getElementById("gender").value;	
 	}
 	function images(){
-		userImage = document.getElementById("useri").value;	
+		userImage = document.getElementById("user_image").value;	
 
 	}
 	function birthday(){
@@ -39,6 +39,9 @@ function SignUp(props){
 	  genderSelect();
 	  images();
 	  birthday();
+
+	  let image2 = document.getElementById("user_image").value;
+	  let image3 = image2.substring(12);
   
 	  const newCustomer = {
 		firstName,
@@ -51,7 +54,7 @@ function SignUp(props){
 		username,
 		password,
 		confirmPassword,
-		userImage
+		userImage : image3
 
 	  }
 
@@ -69,7 +72,7 @@ function SignUp(props){
 		setPassword(" ");
 		setConfirmPassword(" ");
 		
-	alert("g");
+	alert("Customer Added Successfully!");
 	
 		props.history.push("/Home");
 		document.getElementById("txt").innerHTML = "Customer Added Successfully!";
@@ -116,7 +119,7 @@ function SignUp(props){
 					 
 				<div class="form-group">
 				
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder = "Email"
+					<input type="email" class="form-control" id="email" placeholder = "Email"
 					onChange= {
 						(e)=>{
 						  setEmail(e.target.value);
@@ -145,7 +148,7 @@ function SignUp(props){
 			  
 			  
 			  <div class="form-group">
-				<select class="form-control" value = "gender">
+				<select class="form-control" id = "gender">
 					<option value="" disabled selected>Gender</option>
 					<option value="male">Male</option>
 					<option value="femal">Female</option>
@@ -168,7 +171,7 @@ function SignUp(props){
 			  
 			  
 			  <div class="form-group">
-					<input type="password" class="form-control" id="username" placeholder = "Username"
+					<input type="text" class="form-control" id="username" placeholder = "Username"
 					onChange= {
 						(e)=>{
 						  setUsername(e.target.value);
