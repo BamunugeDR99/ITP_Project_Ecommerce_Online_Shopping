@@ -32,7 +32,7 @@ function App() {
       <div>
 
 
-     <UserProfile/>
+     {/*<UserProfile/>
       
       {/*<Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>

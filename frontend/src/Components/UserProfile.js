@@ -6,29 +6,31 @@ import React, {useState,useEffect} from "react";
 function UserProfile(){
 
   const [customer,setCustomer] = useState([]);
+  let  customers = {};
   let image;
+  let link = "";
   
   useEffect(() =>{
       function getCustomer(){
           axios.get("http://localhost:8070/Customer/get/6136169f9e12304460f71324").then((res) =>
           {
+            console.log(res.data);
               setCustomer(res.data);
-              image = res.data.userImage;
-              console.log(image);
+             // customer = res.data;
+              //image = res.data.userImage;
+              //console.log(customer.lastName);
              // console.log(customer.userImage);
+              link = "../images/" + customer.userImage; 
               
           }).catch((err) =>{
               alert(err);
           })
       }
      
-      function image(){
-        image = customer.userImage;
-        console.log(image);
-      }
+     
       getCustomer();
       // displayStudentdetails();
-     //image();
+    // image();
   }, []);
 
     return(
@@ -41,7 +43,7 @@ function UserProfile(){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={require('../images/'+ image).default} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src={link} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
                     <div className="mt-3">
                       <h1> {customer.firstName} {customer.lastName}</h1>
                       <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>

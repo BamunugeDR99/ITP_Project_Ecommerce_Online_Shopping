@@ -40,7 +40,7 @@ router.route("/add").post((req,res)=>{
         console.log(err);
     })
 
-});
+}); 
 
 //get one customers
 router.route("/get/:id").get(async (req,res) =>{
