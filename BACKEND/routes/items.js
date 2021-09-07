@@ -17,6 +17,7 @@ router.route("/addItems").post((req, res) => {
   const Other_colors = req.body.Other_colors;
   const Images = req.body.Images;
   const Category = req.body.Category;
+  const ItemAvailabilityStatus = req.body.ItemAvailabilityStatus;
   const DiscountStatus = req.body.DiscountStatus;
   const FinalPrice = req.body.FinalPrice;
   const DiscountPrecentage = req.body.DiscountPrecentage;
@@ -36,6 +37,7 @@ router.route("/addItems").post((req, res) => {
     Other_colors,
     Images,
     Category,
+    ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
     DiscountPrecentage
@@ -61,6 +63,7 @@ router.route("/addItems").post((req, res) => {
           Other_colors: newItem.Other_colors,
           Images: newItem.Images,
           Category: newItem.Category,
+          ItemAvailabilityStatus : newItem.ItemAvailabilityStatus,
           DiscountStatus : newItem.DiscountStatus,
           FinalPrice : newItem.FinalPrice,
           DiscountPrecentage : newItem.DiscountPrecentage
@@ -103,6 +106,7 @@ router.route("/update/:id").put(async (req, res) => {
     Other_colors,
     Images,
     Category,
+    ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
     DiscountPrecentage
@@ -123,6 +127,7 @@ router.route("/update/:id").put(async (req, res) => {
     Other_colors,
     Images,
     Category,
+    ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
     DiscountPrecentage

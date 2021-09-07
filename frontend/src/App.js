@@ -20,6 +20,7 @@ import MainHeader from './Components/MainHeader';
 import Side_bar_Customer from './Components/Side_Bar_Customer';
 import Footer_customer from './Components/Footer_customer';
 import Home_Customer from './Components/Home_Customer';
+import SellerProfile from './Components/SellerProfile';
 
 
 
@@ -29,8 +30,9 @@ function App() {
   <Router>
       <div>
       {/* <Route path = "/customer"  component = {Header}/> */}
-    
-        <Route path = "/side_bar" component = {Side_bar}/> 
+    <Side_bar/> 
+    <Route path = "/SellerProfile" component = {SellerProfile}/>
+       
         {/* <SideBarAdmin/> */}
         {/* <Route path = "/Home" exact component= {AllStudents}/> */}
         {/* <MainHeader/> */}

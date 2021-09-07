@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Side_bar(props) {
   return (
-    <div className = "Apple">
+    <div>
       <header className="header" id="header">
         <div className="header_toggle">
           {" "}
