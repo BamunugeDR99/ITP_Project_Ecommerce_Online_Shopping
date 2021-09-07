@@ -56,7 +56,9 @@ function SignUp(props){
 
 	  let image2 = document.getElementById("user_image").value;
 		
+	 
 	  let image3 = image2.substring(12);
+	  
   	if(flag == 1){
 		
 	  const newCustomer = {
