@@ -3,10 +3,15 @@ import axios from "axios";
 
 export default function Seller_items(props) {
   const [items, setItems] = useState([]);
+  const [ratings, setRatings] = useState([]);
+  let totalNoRatings = 0;
+  let totalstarforRatingCount = 0;
+  let starCount = 0;
+  let average = 0; 
 
   useEffect(() => {
-    function getItems() {
-      axios
+    async function getItems() {
+       axios
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           setItems(res.data);
@@ -17,9 +22,87 @@ export default function Seller_items(props) {
         });
     }
 
-    getItems();
-    // displayStudentdetails();
+     function displayRating(){
+      axios
+      .get("http://localhost:8070/review/get")
+      .then((res) => {
+        setRatings(res.data);
+        //console.log(ratings[0].itemid)
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    }
+  displayRating();
+   getItems();
+  
+
   }, []);
+
+  useEffect(() => {
+    displayStatus();
+    calculateStarRating();
+    
+  })
+
+  useEffect(() =>{
+    //displayStarRating();
+  })
+
+function calculateStarRating(){
+  let totalNoRatings = 0;
+  let totalstarforRatingCount = 0;
+  let starCount = 0;
+  let average = 0; 
+  for(let i = 0; i < items.length; i++){
+    
+    totalNoRatings = 0;
+    totalstarforRatingCount = 0;
+    starCount = 0;
+    average = 0;
+  
+    for(let j = 0; j < ratings.length; j++){
+        if(items[i]._id == ratings[j].itemid){
+          totalNoRatings++;
+        }
+
+        if(items[i]._id == ratings[j].itemid){
+          starCount += parseInt(ratings[j].noofstars);  
+        }
+
+    }
+
+    totalstarforRatingCount = totalNoRatings * 5;
+    average = parseInt((starCount / totalstarforRatingCount) * 5);
+    console.log(average);
+    displayStarRating(i,average);
+
+  }
+
+}
+
+
+function displayStarRating(id,totalAverage){
+  let txt = "";
+    if(isNaN(totalAverage)){
+      txt = "No Ratings yet!";
+      document.getElementById(id +'stars').innerHTML = txt;
+      document.getElementById(id +'stars').style.color = "#FF0000";
+    }else{
+    
+    for(let j = 0; j < totalAverage; j++){
+      txt += '<span class="fa fa-star checked"></span>';
+    }
+    for(let j = 0; j < (5 - totalAverage); j++){
+      txt += '<span class="fa fa-star"></span>';
+    }
+   
+
+    document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+   }
+}
+
 
   function filterContent(data, userSearch) {
     let result = data.filter(
@@ -153,6 +236,94 @@ export default function Seller_items(props) {
         alert(err);
       });
   }
+
+  function displayStatus(){
+    for(let i = 0; i < items.length; i++){
+
+      if(items[i].ItemAvailabilityStatus == true){
+        document.getElementById(i+'x').checked = true;
+        document.getElementById(i).innerHTML = "Item Available";
+        document.getElementById(i).style.color = "#A4DE02";
+
+      }else if(items[i].ItemAvailabilityStatus == false){
+        document.getElementById(i+'x').checked = false;
+        document.getElementById(i).innerHTML = "Item Out of Stock";
+        document.getElementById(i).style.color = "#FF0000";
+      }
+    }
+      
+  }
+
+  function statusChange(id,index){
+
+    console.log(id);
+    console.log(index);
+
+    if(document.getElementById(index+'x').checked == false){
+
+      axios
+      .get("http://localhost:8070/items/get/" + id)
+      .then((res) => {
+        
+        
+          //let data = res.data;
+          res.data.ItemAvailabilityStatus = false;
+          console.log(res.data);
+      axios
+      .put("http://localhost:8070/items/update/" + id, res.data)
+      .then(() => {
+        
+      document.getElementById(index).innerHTML = "Item Out of stock";
+      document.getElementById(index).style.color = "#FF0000";
+  
+  
+      })
+      .catch((err) => {
+        alert(err);
+       
+      });
+  
+  
+        
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    }else if(document.getElementById(index+'x').checked == true){
+
+      axios
+      .get("http://localhost:8070/items/get/" + id)
+      .then((res) => {
+        
+        
+          //let data = res.data;
+          res.data.ItemAvailabilityStatus = true;
+          console.log(res.data);
+      axios
+      .put("http://localhost:8070/items/update/" + id, res.data)
+      .then(() => {
+        
+      document.getElementById(index).innerHTML = "Item Available";
+      document.getElementById(index).style.color = "#A4DE02";
+  
+  
+      })
+      .catch((err) => {
+        alert(err);
+       
+      });
+  
+  
+        
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
+    }
+  
+  }
+  
 
   return (
     <div>
@@ -368,7 +539,13 @@ export default function Seller_items(props) {
                       <h5 class="card-title">
                         {items.Brand} {items.Item_name}
                       </h5>
-                      <p class="card-text">ratings</p>
+                      <div id = {index +'stars'} class="card-text">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span><span> </span> <span id = {index +'review'}>4.0 / 5.0</span>
+                      </div>
                       <p class="card-text">LKR {items.Price}</p>
                       <button
                         class="btn btn-primary"
@@ -383,16 +560,17 @@ export default function Seller_items(props) {
                       >
                         Delete
                       </button>
-                      <span> </span>
+                      <span> </span> <br/><br/>
                       <button class="btn btn-success">Show more</button>
                     </center>
                     <br />
                     <center>
                       <h6>Item Availability Status</h6>
                       <label class="switch">
-                        <input type="checkbox" />
+                        <input type="checkbox" id ={index + "x"}  onChange = {() => statusChange(items._id,index)}/>
                         <span class="slider round"></span>
                       </label>
+                      <h6 id ={index}></h6>
                     </center>
                   </div>
                 </div>

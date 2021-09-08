@@ -74,6 +74,12 @@ const ItemSchema = new Schema({
         default : "Others"
     },
 
+    ItemAvailabilityStatus : {
+        type : Boolean,
+        required : true,
+        default : true
+    },
+
     DiscountStatus : {
         type : Boolean,
         required : true,

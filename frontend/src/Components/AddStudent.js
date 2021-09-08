@@ -27,9 +27,7 @@ export default function AddStudent(props) {
       .post("http://localhost:8070/student/add", newStudent)
       .then(() => {
         //alert("Student Added");
-        setName(" ");
-        setAge(" ");
-        setGender(" ");
+       
         props.history.push("/Home");
         document.getElementById("txt").innerHTML =
           "Student Added Successfully!";

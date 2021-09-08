@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export default function Update_Items(props) {
@@ -19,9 +19,11 @@ export default function Update_Items(props) {
     Images: "",
     Category: "",
   });
-
+  let isFirstRender = true;
+  let slideImages = [];
+  let imageName = "";
   //learn  .......
-  useEffect(() => {
+   useEffect(() => {
     function getItem() {
       // const objectId = props.match.params.id;
       // console.log(objectId);
@@ -30,28 +32,50 @@ export default function Update_Items(props) {
       axios
         .get("http://localhost:8070/items/get/" + objectId)
         .then((res) => {
-          //setStudents(res.data);
           setData(res.data);
+    
+          //console.log(res.data);
 
-          console.log(res.data);
+   
+          
         })
         .catch((err) => {
           alert(err);
         });
     }
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false // toggle flag after first render/mounting
+      return;
+    }
+
     //check this
     getItem();
+    // getItem();
+    
+    // displayStudentdetails();
+  },data);
+
+  useEffect (() => {
     warrentyCheck();
     Color_family();
+    console.log(data.Images);
     categoryCheck();
+  })
+
+  useEffect (() => {
+    
     imageForSilde();
-    // displayStudentdetails();
-  }, []);
+  })
+
+  
 
   function imageForSilde() {
-    let slideImages = [];
+ 
+    imageName = 'require("../images/'+ data.Images[0]+'").default';
     slideImages = data.Images;
-    console.log(slideImages[0]);
+
+    console.log(imageName);
   }
 
   function warrentyChecks() {
@@ -87,6 +111,7 @@ export default function Update_Items(props) {
   }
 
   function ItemCategorySelection() {
+
     let valueof = parseInt(document.getElementById("selectCategory").value);
     if (valueof == 1) {
       data.Category = "Mobile Phones";
@@ -127,6 +152,7 @@ export default function Update_Items(props) {
   }
 
   function categoryCheck() {
+
     let txt = "Item is Category under ";
     if (data.Category == "Mobile Phones") {
       txt += "Mobile Phones";
@@ -171,8 +197,8 @@ export default function Update_Items(props) {
     warrentyChecks();
     ItemCategorySelection();
     // data.Category = "apple";
-    //console.log(data.Color_family);
-    // console.log(data.Category);
+   //console.log(data.Color_family);
+  // console.log(data.Category);
     console.log(data);
     axios
       .put("http://localhost:8070/items/update/" + objectId, data)
@@ -196,7 +222,9 @@ export default function Update_Items(props) {
     setData(newdata);
   }
 
+
   return (
+    
     <div>
       <div class="height-100 bg-light">
         <br />
@@ -210,33 +238,34 @@ export default function Update_Items(props) {
         <br />
         {/* <center>
 
-    <h4>ITEM IMAGES</h4>
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src = {require('../images/'+ data.Images[0]).default} alt="First slide"/>
-    </div>
-    <div class="carousel-item">
- 
-      <img class="d-block w-100" src = {require('../images/'+data.Images[1]).default} alt="Second slide"/>
-    </div>
-    <div class="carousel-item">
+      <h4>ITEM IMAGES</h4>
+      <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src = {require("../images/"+ data.Images[0]).default} alt="First slide"/>
+      </div>
+      <div class="carousel-item">
+  
+        <img class="d-block w-100" src = {imageName} alt="Second slide"/>
+      </div>
+      <div class="carousel-item">
 
 
-      <img class="d-block w-100" src = {require('../images/'+data.Images[2]).default} alt="Third slide"/>
+        <img class="d-block w-100" src = {imageName} alt="Third slide"/>
+      </div>
     </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
-</center> */}
+  </center>   */}
+<br/><br/>
         <div class="card">
           <div class="card-body">
             <form id="form1" onSubmit={sendData}>
@@ -508,13 +537,20 @@ export default function Update_Items(props) {
               <br />
               <br />
               <center>
-                <button
+              <button
                   type="submit"
                   class="btn btn-primary"
-                  style={{ marginright: "10px" }}
+                  style={{ marginright: "20px" }}
+                >
+                  ADD DISCOUNT
+                </button><span> </span>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style={{ marginright: "20px" }}
                 >
                   UPDATE
-                </button>
+                </button><span> </span>
                 <button
                   type="button"
                   onClick={() => deletee(data._id)}
