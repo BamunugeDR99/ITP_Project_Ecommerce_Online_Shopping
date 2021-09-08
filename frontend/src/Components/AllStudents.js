@@ -129,40 +129,8 @@ export default function AllStudents(props) {
             <div class="col-sm-6">
               <div class="card">
 
-<<<<<<< HEAD
-    let countxx = 0;
- let userID = localStorage.getItem("userID");
-let imagename = "imgur_com.jpg";
-
-    return(
-        
-
-        <div className = "container">
-            <h1>Display All Students</h1>
-            {/* <!-- Search form --> */}
-            {/* <h2 id = "txt">{imagename}</h2> */}
-            {/* <h2>{userID}</h2> */}
-            {/* <img src = {require('../images/' + imagename).default}  alt = "pic"></img> */}
-
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search" onChange = {(e) => handleSearch(e.target.value) }/>
-            <br></br>
-            <div>
-            <ClipLoader size = {90} color = 'blue' loading = {loads}></ClipLoader>
-            </div>
-            <h1 id = "txt"></h1>
-            
-            <div className = "row">
-        {students.map((student,index) =>{
-
-            return (
-             
-                <div class="col-sm-6">
-                    <div class="card">
-                    {/* <img
-=======
                 
                 {/* <img
->>>>>>> f61e14ad6031df95246b454df0eecddf8a0ecf1b
                   src = {require('../images/' + imagename).default} 
                   class="card-img-top" style = {{width : "150px",paddingRight : "10px", borderRadius : "0px"}}
                   alt="..."

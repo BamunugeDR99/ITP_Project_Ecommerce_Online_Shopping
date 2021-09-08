@@ -9,7 +9,6 @@ import AllStudents from './Components/AllStudents';
 /*import AddStudent from './Components/AddStudent';
 import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';
-<<<<<<< HEAD
 import ReactSession from 'react-client-session';*/
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import SignUp from './Components/SignUp';
@@ -23,7 +22,6 @@ import './css/style.css';
 import './css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './css/update.css';
-=======
 import Side_bar from './Components/Side_bar';
 import Add_items from './Components/Add_items';
 import Update_Items from './Components/Update_Items';
@@ -36,7 +34,6 @@ import MainHeader from './Components/MainHeader';
 import Side_bar_Customer from './Components/Side_Bar_Customer';
 import Footer_customer from './Components/Footer_customer';
 import Home_Customer from './Components/Home_Customer';
->>>>>>> f61e14ad6031df95246b454df0eecddf8a0ecf1b
 
 
 
@@ -75,21 +72,10 @@ function App() {
 
       {/* <Header/>
 
-<<<<<<< HEAD
-
-     <UserProfile/>
-      
-      {/*<Route path = "/" exact component = {Login}/>
-      <Route path = "/Home" exact component= {AllStudents}/>
-      <Route path = "/add" exact component = {AddStudent}/>
-  <Route path = "/update/:id" exact component = {UpdateStudent}/>*/}
-
-=======
         <Route path = "/add" exact component = {AddStudent}/>
       <Route path = "/" exact component = {Login}/>
      
       <Route path = "/update/:id" exact component = {UpdateStudent}/> */}
->>>>>>> f61e14ad6031df95246b454df0eecddf8a0ecf1b
 
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
