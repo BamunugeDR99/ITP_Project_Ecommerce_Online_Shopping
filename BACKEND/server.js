@@ -26,9 +26,20 @@ mongoose.connect(URL,{
 //routes to CRUD in each model
 
 
+<<<<<<< HEAD
 const customerRouter = require("./routes/customer.js");
 
 app.use("/Customer",customerRouter);
+=======
+const studentRouter = require("./routes/students.js");
+app.use("/student",studentRouter);
+>>>>>>> f61e14ad6031df95246b454df0eecddf8a0ecf1b
+
+const itemRouter = require("./routes/items.js");
+app.use("/items",itemRouter);
+
+const TeacherRouter = require("./routes/teacher.js"); 
+app.use("/teacher",TeacherRouter);
 
 const connection = mongoose.connection;
 connection.once("open",() => {
