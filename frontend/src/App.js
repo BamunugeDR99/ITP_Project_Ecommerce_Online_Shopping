@@ -43,7 +43,7 @@ function App() {
   
       <div>
       {/* <Route path = "/customer"  component = {Header}/> */}
-    
+    <Router>
         <Route path = "/side_bar" component = {Side_bar}/> 
         {/* <SideBarAdmin/> */}
         {/* <Route path = "/Home" exact component= {AllStudents}/> */}
@@ -79,7 +79,7 @@ function App() {
 
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
-{/* <AddStudent/> */}
+{/* <AddStudent/> */}</Router>
     </div>
  
   
