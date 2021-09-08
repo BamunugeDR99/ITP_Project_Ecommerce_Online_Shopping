@@ -30,10 +30,10 @@ function App() {
   <Router>
       <div>
       {/* <Route path = "/customer"  component = {Header}/> */}
-    <Side_bar/> 
+    {/* <Side_bar/>  */}
     <Route path = "/SellerProfile" component = {SellerProfile}/>
        
-        {/* <SideBarAdmin/> */}
+        <SideBarAdmin/>
         {/* <Route path = "/Home" exact component= {AllStudents}/> */}
         {/* <MainHeader/> */}
      

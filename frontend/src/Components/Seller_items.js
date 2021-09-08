@@ -4,6 +4,10 @@ import axios from "axios";
 export default function Seller_items(props) {
   const [items, setItems] = useState([]);
   const [ratings, setRatings] = useState([]);
+  let totalNoRatings = 0;
+  let totalstarforRatingCount = 0;
+  let starCount = 0;
+  let average = 0; 
 
   useEffect(() => {
     async function getItems() {
@@ -23,9 +27,8 @@ export default function Seller_items(props) {
       .get("http://localhost:8070/review/get")
       .then((res) => {
         setRatings(res.data);
-        console.log(ratings[0].itemid)
+        //console.log(ratings[0].itemid)
         console.log(res.data);
-        //displayStarRating();
       })
       .catch((err) => {
         alert(err);
@@ -39,14 +42,15 @@ export default function Seller_items(props) {
 
   useEffect(() => {
     displayStatus();
+    calculateStarRating();
     
   })
 
   useEffect(() =>{
-    displayStarRating();
+    //displayStarRating();
   })
 
-function displayStarRating(){
+function calculateStarRating(){
   let totalNoRatings = 0;
   let totalstarforRatingCount = 0;
   let starCount = 0;
@@ -59,12 +63,12 @@ function displayStarRating(){
     average = 0;
   
     for(let j = 0; j < ratings.length; j++){
-        if(items[i]._id == ratings[i].itemid){
+        if(items[i]._id == ratings[j].itemid){
           totalNoRatings++;
         }
 
-        if(items[i]._id == ratings[i].itemid){
-          starCount += ratings[i].noofstars;  
+        if(items[i]._id == ratings[j].itemid){
+          starCount += parseInt(ratings[j].noofstars);  
         }
 
     }
@@ -72,10 +76,33 @@ function displayStarRating(){
     totalstarforRatingCount = totalNoRatings * 5;
     average = parseInt((starCount / totalstarforRatingCount) * 5);
     console.log(average);
+    displayStarRating(i,average);
 
   }
 
 }
+
+
+function displayStarRating(id,totalAverage){
+  let txt = "";
+    if(isNaN(totalAverage)){
+      txt = "No Ratings yet!";
+      document.getElementById(id +'stars').innerHTML = txt;
+      document.getElementById(id +'stars').style.color = "#FF0000";
+    }else{
+    
+    for(let j = 0; j < totalAverage; j++){
+      txt += '<span class="fa fa-star checked"></span>';
+    }
+    for(let j = 0; j < (5 - totalAverage); j++){
+      txt += '<span class="fa fa-star"></span>';
+    }
+   
+
+    document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+   }
+}
+
 
   function filterContent(data, userSearch) {
     let result = data.filter(
@@ -512,7 +539,7 @@ function displayStarRating(){
                       <h5 class="card-title">
                         {items.Brand} {items.Item_name}
                       </h5>
-                      <div id = {index +'stars'}class="card-text">
+                      <div id = {index +'stars'} class="card-text">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
