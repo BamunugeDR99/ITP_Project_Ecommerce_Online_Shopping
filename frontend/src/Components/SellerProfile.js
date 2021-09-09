@@ -12,9 +12,9 @@ export default function SellerProfile(props){
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="card">
-						<div class="card-body prof-set">
+						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center"><br></br>
-								<img src="https://img.icons8.com/office/70/000000/home-page.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="175"/>
+								<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="175"/>
 								<br></br>
 							</div>
                            
@@ -42,49 +42,32 @@ export default function SellerProfile(props){
 					</div>
 				</div>
 
-
-
 				<div class="col-lg-8">
 					<div class="card">
-						<div class="card-body">
-                        <div class="row justify-content-center">
+						<div class="card-body">  
 
-                        <div class="row">
-    <div class="col">
-      <input type="text" class="form-control" placeholder="First name"/>
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name"/>
-    </div>
-  </div>
-							                          
-			                {/* <div class="col-5">
-
-                                {/* <div class="col-sm-9 text-secondary"> 
-									<input type="text" class="form-control" value="OWNER'S NAME"/>
-								
-
-							</div>
+                            <div class="row mb-3">
+                                <div class="col-sm-9 text-secondary"> 
+									<input type="text" class="form-control" value="OWNER'S NAME" readOnly/>
+                                </div> 
+							</div> 
 							 
-                            <div class="col-5">
-								{/* <div class="col-sm-9 text-secondary"> 
-									<input type="text" class="form-control" value="COMPANY NAME"/>
-								
-							</div> */}
-                            
-                            
-                            
+                            <div class="row mb-3">
+								 <div class="col-sm-9 text-secondary"> 
+									<input type="text" class="form-control" value="COMPANY NAME" readOnly/>
+							    </div> 
                             </div>
-							<div class="row mb-3">
 
+							<div class="row mb-3">
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="CONTACT NUMBER"/>
+									<input type="text" class="form-control" value="CONTACT NUMBER" readOnly/>
 								</div>
 							</div>
+
 							<div class="row mb-3">
 
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="EMAIL ADDRESS"/>
+									<input type="text" class="form-control" value="EMAIL ADDRESS" readOnly/>
 								</div>
 							</div>
 						</div>
@@ -96,7 +79,7 @@ export default function SellerProfile(props){
                                 <div class="row mb-3">
 
 								<div class="col-sm-9 text-secondary">
-									<textarea class="form-control" value="DESCRIPTION"/>
+									<textarea class="form-control" value="DESCRIPTION" readOnly/>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -108,7 +91,7 @@ export default function SellerProfile(props){
 							<div class="row mb-3">
 
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="PHYSICAL ADDRESS"/>
+									<input type="text" class="form-control" value="PHYSICAL ADDRESS" readOnly/>
 								</div>
 							</div>
 
@@ -128,7 +111,7 @@ export default function SellerProfile(props){
 
         </div> 
         </div> 				
-
+    
 
  );
 

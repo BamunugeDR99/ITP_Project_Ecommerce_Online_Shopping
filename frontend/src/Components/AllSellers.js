@@ -62,7 +62,9 @@ export default function AllRequests(props){
                         <th>{seller.companyname}</th>
                         <td>{seller.ownername}</td>
                         <td>{seller.year}</td>
-                        <td><button class="btn btn-primary"onClick = {()=> deleteSeller(seller._id)} style = {{marginRight : "10px"}}>DELETE</button></td>
+                        <td>
+                            <button class="btn btn-danger" style = {{marginRight : "10px"}}>ACCEPT</button>
+                            <button class="btn btn-primary"onClick = {()=> deleteSeller(seller._id)} style = {{marginRight : "10px"}}>DELETE</button></td>
                         </tr>
                        
                        
