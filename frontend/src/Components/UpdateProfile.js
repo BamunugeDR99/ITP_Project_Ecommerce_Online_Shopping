@@ -7,7 +7,37 @@ import img1 from "./../images/s.jpg";
 
 export default function UpdateProfile(){
 
+	const [dob, setDob] = useState("");
+	// let [firstName, setFirstName] = useState("");
+	// let [lastName,setLastName] = useState("");
+	// let [email,setEmail] = useState("");
+	// let [phoneNumber, setPhoneNumber] = useState("");
+	// let [address ,setAddress] = useState("");
+	// let [username ,setUsername] = useState("");
+	// let [password , setPassword ] = useState("");
+	// let [confirmPassword ,setConfirmPassword] = useState("");
+	// let gender = "";
+	// let userImage = "";
+
+	// function genderSelect(){
+	// 	gender = document.getElementById("gender").value;	
+	// }
+	// function images(){
+	// 	userImage = document.getElementById("user_image").value;	
+
+	// }
+	// function birthday(){
+	// 	dob = document.getElementById("birthday").value;	
+
+	// }
+
+	//  genderSelect();
+	//   images();
+	//   birthday();
+
 	const [customer,setCustomer] = useState([]);
+
+	let Dateofb;
 
 	useEffect(() =>{
 		function getCustomer(){
@@ -15,6 +45,9 @@ export default function UpdateProfile(){
 			{
 				setCustomer(res.data);
 				console.log(res.data);
+				Dateofb = res.data.dob;
+				setDob(String(Dateofb.substr(0, 10)));
+
 				
 				
 			}).catch((err) =>{
@@ -23,9 +56,46 @@ export default function UpdateProfile(){
 		}
 	   
 		getCustomer();
-		
-	   
+
+
 	}, []);
+
+	// function updateCus(id){
+
+	// 	const updateCust = {
+
+	// 	firstName,
+	// 	lastName,
+	// 	email,
+	// 	phoneNumber,
+	// 	dob,
+	// 	gender,
+	// 	address,
+	// 	username,
+		// password,
+		// confirmPassword,
+		// userImage
+		// }
+
+		// console.log(updateCus);
+
+		// axios.put("http://localhost:8070/Customer/update/6134f21cada0f635d8d1f257").then((res) =>
+
+		// 	{
+				
+		// 		alert("Customer Updted");
+				
+				
+		// 	}).catch((err) =>{
+		// 		alert(err);
+		// 	})
+		// }
+
+
+	
+	
+
+	
 	
 	function deleteCustomer(id){
 	  axios.delete("http://localhost:8070/Customer/delete/61348b761c7373397cae1587").then((res) =>
@@ -37,6 +107,8 @@ export default function UpdateProfile(){
 		  alert(err);
 	  })
   }
+
+
 
   
 
@@ -85,7 +157,7 @@ export default function UpdateProfile(){
 			  
 			  <div className="form-group">
 					<label htmlFor="exampleInputDOB">Date of Birth</label>
-					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" Value = {customer.dob}/> 
+					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {dob}/> 
 			  </div>
 			  
 			  

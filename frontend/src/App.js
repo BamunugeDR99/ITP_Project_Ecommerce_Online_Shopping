@@ -32,7 +32,7 @@ function App() {
       <div>
 
 
-     <ForgotP/>
+     <CustomerList/>
       
       {/*<Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>

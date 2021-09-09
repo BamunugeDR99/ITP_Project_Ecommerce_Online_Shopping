@@ -241,7 +241,7 @@ function SignUp(props){
 	
 	
 	
-				</form>
+		</form>
 				
 			</div>
 		</div>
