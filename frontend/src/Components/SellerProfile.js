@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "../Css/sellerprofile.css";
+import "../css/sellerprofile.css";
 
 export default function SellerProfile(props) {
   return (

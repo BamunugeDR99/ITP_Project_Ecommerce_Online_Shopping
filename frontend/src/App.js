@@ -9,6 +9,7 @@ import SellerProfile from './Components/SellerProfile';
 import SellerLogin from './Components/SellerLogin';
 import SellerAlerts from './Components/SellerAlerts';
 import SellerForget from './Components/SellerForget';
+import UpdateSeller from './Components/UpdateSeller';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path = "/selllog" exact component = {SellerLogin}/>
       <Route path = "/sellalt" exact component = {SellerAlerts}/>
       <Route path = "/sellfor" exact component = {SellerForget}/>
+      <Route path = "/update/:id" exact component = {UpdateSeller}/>
 
     </div>
   </Router>

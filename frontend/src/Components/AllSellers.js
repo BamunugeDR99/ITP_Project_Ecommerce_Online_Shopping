@@ -13,7 +13,6 @@ export default function AllRequests(props){
             {
                 setsellers(res.data);
                 console.log(res.data);
-                // hello
                 
             }).catch((err) =>{
                 alert(err);
@@ -23,6 +22,11 @@ export default function AllRequests(props){
         getsellers();
        
     }, []);
+
+    function updateSeller(id){
+        console.log(id);
+        props.history.push("/update/" + id);
+    };
 
     function deleteSeller(id){
         axios.delete("http://localhost:8070/seller/delete/" + id).then((res) =>
@@ -63,7 +67,7 @@ export default function AllRequests(props){
                         <td>{seller.ownername}</td>
                         <td>{seller.year}</td>
                         <td>
-                            <button class="btn btn-danger" style = {{marginRight : "10px"}}>ACCEPT</button>
+                            <button class="btn btn-danger" onClick = {()=>updateSeller(seller._id)} style = {{marginRight : "10px"}}>EDIT</button>
                             <button class="btn btn-primary"onClick = {()=> deleteSeller(seller._id)} style = {{marginRight : "10px"}}>DELETE</button></td>
                         </tr>
                        
