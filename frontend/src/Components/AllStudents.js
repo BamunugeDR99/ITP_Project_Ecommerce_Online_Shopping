@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
+
 import {ClipLoader} from "react-spinners";
 
 
@@ -110,7 +111,7 @@ let imagename = "imgur_com.jpg";
             <div>
             <ClipLoader size = {90} color = 'blue' loading = {loads}></ClipLoader>
             </div>
-            <h1 id = "txt2"></h1>
+            <h1 id = "txt"></h1>
             
             <div className = "row">
         {students.map((student,index) =>{

@@ -30,6 +30,26 @@ const studentRouter = require("./routes/students.js");
 
 app.use("/student",studentRouter);
 
+const reviewRouter = require("./routes/review.js");
+
+app.use("/review",reviewRouter);
+
+const contactselRouter = require("./routes/contactsel.js");
+
+app.use("/contactsel",contactselRouter);
+
+const customertestRouter = require("./routes/customertest.js");
+
+app.use("/customertest",customertestRouter);
+
+const itemtestRouter = require("./routes/itemtest.js");
+
+app.use("/itemtest",itemtestRouter);
+
+const contactRouter = require("./routes/contact.js");
+
+app.use("/contact",contactRouter);
+
 const connection = mongoose.connection;
 connection.once("open",() => {
     console.log("DB Connection successful");

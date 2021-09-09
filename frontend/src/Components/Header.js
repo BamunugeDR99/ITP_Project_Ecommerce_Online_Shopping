@@ -13,13 +13,46 @@ function Header(){
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
+        
         <li className="nav-item">
-          {/* <a className="nav-link active" aria-current="page" href="/Home" style = {{color : "blue"}}>Home</a> */}
-          <Link to = "/Home" className = "nav-link">Home</Link>
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/contactad" className = "nav-link" >| Contact Admin</Link>
         </li>
         <li className="nav-item">
           {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
-          <Link to = "/add" className = "nav-link" >Add Student</Link>
+          <Link to = "/contactsel" className = "nav-link" >| Contact Seller</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/cusrev" className = "nav-link" >| Customer Reviews</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/myrev" className = "nav-link" >| Your Reviews</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/wrev" className = "nav-link" >| Write a review</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/adrep" className = "nav-link" >| Admin report</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/msg" className = "nav-link" >| Customer Messages</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/report" className = "nav-link">| Report</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/selrev" className = "nav-link">| Seller Reviews</Link>
+        </li>
+        <li className="nav-item">
+          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
+          <Link to = "/itemview" className = "nav-link">| Item View</Link>
         </li>
       </ul>
     </div>
