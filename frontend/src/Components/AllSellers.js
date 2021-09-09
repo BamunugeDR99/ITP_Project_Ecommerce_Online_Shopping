@@ -6,6 +6,9 @@ import React, {useState,useEffect} from "react";
 export default function AllRequests(props){
     const [sellers,setsellers] = useState([]);
     const [loads,setLoad] = useState(false);
+    const [data,setData] = useState();
+    let username = "";
+    let password = "";
     
     useEffect(() =>{
         function getsellers(){
@@ -35,6 +38,82 @@ export default function AllRequests(props){
         })
     }
 
+    async function confirmRequest(id){
+        //e.preventDefault();
+        let flag = 0;
+        axios.get("http://localhost:8070/seller/get/" + id).then((res) =>
+        {
+           setData(res.data);
+           //console.log(res.data);
+
+            password = passwordGenerator(25);
+            // console.log(username);
+            console.log(password);
+// if same usename came
+            //  while(flag == 0){
+            username = usernameGenerator(data.companyname);
+            axios.get("http://localhost:8070/orgseller/getUsername/"+username).then((res) =>
+            {
+                console.log(res.data);
+
+           
+              // what if
+            }).catch((err) =>{
+              alert(err);
+            })
+
+             const newSeller = {
+                ownername : data.ownername, 
+                mobile : data.mobile,
+                companyname : data.companyname,
+                address : data.address,
+                year : data.year,
+                email : data.email,
+                description : data.description,
+                logo : data.logo,
+                username,
+                password,
+             }
+
+            console.log(newSeller);
+
+            axios.post("http://localhost:8070/orgseller/add",newSeller).then(()=>{
+                alert("Added");
+            
+                // document.getElementById("txt").innerHTML = "Student Added Successfully!";
+                
+              }).catch((err) =>{
+                alert(err)
+              })
+            
+            
+        }).catch((err) =>{
+            alert(err);
+        })
+    }
+   
+    function usernameGenerator(companyName){
+        var result           = companyName;
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 5; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * 
+     charactersLength));
+       }
+       return result;
+    }
+
+    function passwordGenerator(length){
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * 
+     charactersLength));
+       }
+       return result;
+    }
+
 
     return(
 
@@ -50,7 +129,6 @@ export default function AllRequests(props){
                         <th scope="col"> </th>
                         </tr>
                     </thead>
-            {/* <div className = "row"> */}
         {sellers.map((seller,index) =>{
 
             return (
@@ -63,7 +141,7 @@ export default function AllRequests(props){
                         <td>{seller.ownername}</td>
                         <td>{seller.year}</td>
                         <td>
-                            <button class="btn btn-danger" style = {{marginRight : "10px"}}>ACCEPT</button>
+                            <button class="btn btn-danger" style = {{marginRight : "10px"}} onClick = {()=> confirmRequest(seller._id)}>ACCEPT</button>
                             <button class="btn btn-primary"onClick = {()=> deleteSeller(seller._id)} style = {{marginRight : "10px"}}>DELETE</button></td>
                         </tr>
                        
