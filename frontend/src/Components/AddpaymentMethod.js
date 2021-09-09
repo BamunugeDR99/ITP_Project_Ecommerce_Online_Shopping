@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
-
+import "../css/AddpaymentMethod.css"; //css linked
 
 export default function AddpaymentMethod(props){
 
@@ -44,46 +44,70 @@ export default function AddpaymentMethod(props){
   
 return(
 
-<div class="form-v9"><br></br><br></br>
-<center><h1>Add New Payment Method</h1></center><br></br><br></br>
-<div class="page-content">
-	<div class="form-v9-content">
-	<form class="form-detail"  method="post" onSubmit = {sendData}>
-	
-	<div class="container-md">
+<div >
 
-<div class="col-2">
-  <div class="input-group">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+<div class="AddPaymentMethod">
+<div class="padding">
+    <div class="row">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="col-sm-8 col-md-6">
+                <div class="card" style={{width:"500px"}} >
+                    <div class="card-header">
+                        <div class="row">
+                            
+                            <div class="col-md-6 text-right" style= {{ marginTop: "-5px"   ,
+																			
+																			}}   >
 
-	<div class="p-t-10">
-	  <input type="radio" checked="checked" name="gender" />
-	  <label class="radio-container m-r-45">Master
+							<form>
+								<div class="cc-selector">
+									<span><input id="visa" type="radio" name="credit-card" value="visa" style= {{ marginRight: "0px"}} /></span>
+									<label class="drinkcard-cc visa" for="visa" style= {{ marginRight: "80px"}}></label>
+								<span><input id="mastercard" type="radio" name="credit-card" value="mastercard" style= {{ marginLeft: "0px"}} /></span>
+									<label class="drinkcard-cc mastercard"for="mastercard"></label>
+								</div>
+								</form>
 
-		<span class="checkmark"></span>
-	  </label>
-	  <input type="radio" checked="checked" name="gender" />
-	  <label class="radio-container">Visa
-
-		<span class="checkmark"></span>
-	  </label>
-	</div>
-  </div>
-</div>
-<div class="mb-3">
-<label for="formGroupExampleInput" class="form-label">card Owner</label>
-<input type="text" class="form-control" id="formGroupExampleInput" />
-</div>
-<div class="mb-3">
-<label for="formGroupExampleInput2" class="form-label">Card Number</label>
-<input type="text" class="form-control" id="formGroupExampleInput2" />
-</div>
-<div class="mb-4">
-<label for="formGroupExampleInput2" class="form-label">Expiration date</label>
-<input type="text" class="form-control" id="formGroupExampleInput3" /></div>
-<button type="cancel" class="btn btn-primary btn-lg">CANCEL</button>
-<button type="submit" class="btn btn-secondary btn-lg">SAVE</button>
-</div>
-</form>
+								</div>
+                        </div>
+                    </div>
+                    <div class="card-body" style={{height: "300px"}} >
+					<div class="form-group">
+							 <label for="numeric" class="control-label">CARD HOLDER NAME</label>
+							  <input type="text" class="input-lg form-control"/> 
+							  </div>
+						<div class="form-group"> 
+						<label for="cc-number" class="control-label">CARD NUMBER</label>
+						 <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required/>
+							  </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+									 <label for="cc-exp" class="control-label">CARD EXPIRY</label> 
+									 <input id="cc-exp" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required/>
+										  </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+									 <label for="cc-cvc" class="control-label">CARD CVC</label> 
+									 <input id="cc-cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="••••" required/>
+									  </div>
+                            </div>
+                        </div>
+                        <br/><br/>
+                       
+							 <div class="float-right">
+							 <span style= {{ marginRight: "200px"}}> <button type="reset" class="btn btn-success">Cancel</button></span> 
+						
+							 <span><button type="submit" class="btn btn-primary">Save</button></span> 
+						</div>
+                    <br/><br/>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </div> 
