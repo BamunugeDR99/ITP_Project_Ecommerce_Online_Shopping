@@ -1,30 +1,85 @@
-import React from 'react';
+import axios from "axios";
+import React, {useState} from "react";
 
 
 export default function CustomerLogin(){
 
+    let [username,setUsername] = useState("");
+    let [password,setPassword] = useState("");
+    let [errorMsg,setErrorMsg] = useState("");
+   
+
+    function loginUser(e){
+
+        e.preventDefault();
+
+        const loginCredentials = {
+            username,
+            password,
+          }
+
+          axios.post("http://localhost:8070/Customer/loginCustomer", loginCredentials).then((res)=>{
+
+           // setCustomer(res.data.customerLogin);
+          localStorage.setItem('CustomerID', res.data.customerLogin._id);
+
+             // sessionStorage.setItem('userID',"sss");
+
+            //alert("Customer loggin Successfully!");
+            console.log("logging success");
+            console.log(res.data);
+
+          }).catch((err) =>{
+
+            //alert(err);
+          console.log(err.response.data);
+          alert(err.response.data.error);
+          setErrorMsg(err.response.data.error);
+        
+
+        })
+    }
+
+
     return(
 
+        <div className = "CustomerLogin">
         <div className="container">
         <div className="myCard">
             <div className="row">
                 <div className="col-md-6">
                     <div className="myLeftCtn"> 
-                        <form className="myForm">
+                        <form className="myForm" onSubmit = {loginUser}>
                             <header>Sign In</header>
                             
 							<div className="form-group">
-							<label for="username"><b>Username</b></label><br/>
+                                <h2>{errorMsg}</h2>
+							<label htmlFor="username"><b>Username</b></label><br/>
                                 <i className="fas fa-user"></i>
-                                <input className="myInput" type="text" placeholder="Username" id="username" required/> 
+                                <input className="myInput" type="text" placeholder="Username" id="username" 
+                                
+                                onChange= {
+                                    (e)=>{
+                                      setUsername(e.target.value);
+                                    } }
+                                
+                                    required/> 
                             </div>
 
     
 
                             <div className="form-group">
-							<label for="password"><b>Password</b></label><br/>
+							<label htmlFor="password"><b>Password</b></label><br/>
                                 <i className="fas fa-lock"></i>
-                                <input className="myInput" type="password" id="password" placeholder="Password" required/> 
+                                <input className="myInput" type="password" id="password" placeholder="Password" 
+                                
+                                onChange= {
+                                    (e)=>{
+                                      setPassword(e.target.value);
+                                    } }
+                                
+                                
+                                    required /> 
                             </div>
 
                             <br/>
@@ -62,6 +117,7 @@ export default function CustomerLogin(){
                 </div>
             </div>
         </div>
+</div>
 </div>
 
     )

@@ -69,6 +69,7 @@ function SignUp(props){
 		address,
 		username,
 		password,
+		confirmPassword,
 		userImage : image3
 
 	  }
@@ -89,8 +90,7 @@ function SignUp(props){
 		
 	alert("Customer Added Successfully!");
 	
-		props.history.push("/Home");
-		document.getElementById("txt").innerHTML = "Customer Added Successfully!";
+		
 		
 	}).catch((err) =>{
 		alert(err)
@@ -101,18 +101,20 @@ function SignUp(props){
 
     return(
 
-		<div class="wrapper">
-					<div class="inner">
-						<div class="image-holder">
-					<img src={img1} alt=""/>
+		<div className = "CustomerSignup">
+
+		<div className="wrapper">
+					<div className="inner">
+						<div className="image-holder">
+					<img src={img1} alt="" id="signUpI"/>
 				</div>
 				
 				<form action=""  onSubmit = {sendData}>
-					<h3>Sign Up</h3>
+					<h3 id = "sign_up">Sign Up</h3>
 	
-					<div class="form-row">
-						<div class="col">
-						  <input type="text" class="form-control" placeholder="First name"
+					<div className="form-row">
+						<div className="col">
+						  <input type="text" className="form-control" placeholder="First name"
 						  onChange= {
 							(e)=>{
 							  setFirstName(e.target.value);
@@ -121,8 +123,8 @@ function SignUp(props){
 
 
 						</div>
-						<div class="col">
-						  <input type="text" class="form-control" placeholder="Last name"
+						<div className="col">
+						  <input type="text" className="form-control" placeholder="Last name"
 						  onChange= {
 							(e)=>{
 							  setLastName(e.target.value);
@@ -133,105 +135,105 @@ function SignUp(props){
 					 
 					<br/>
 					 
-				<div class="form-group">
+				<div className="form-group">
 				
-					<input type="email" class="form-control" id="email" placeholder = "Email"
+					<input type="email" className="form-control" id="email" placeholder = "Email"
 					onChange= {
 						(e)=>{
 						  setEmail(e.target.value);
 						}
 					  }/>
 					
-					<i class="bi bi-envelope-fill"></i>
+					<i className="bi bi-envelope-fill"></i>
 			  </div>
 			  
-			  <div class="form-group">
+			  <div className="form-group">
 					
-					<input type="text" class="form-control" id="phone" placeholder = "Phone Number"
+					<input type="text" className="form-control" id="phone" placeholder = "Phone Number"
 					onChange= {
 						(e)=>{
 						  setPhoneNumber(e.target.value);
 						}
 					  }/>
-					<i class="bi bi-telephone-fill"></i>
+					<i className="bi bi-telephone-fill"></i>
 			  </div>
 			  
 			  
-			  <div class="form-group">
-					<label for="exampleInputDOB">Date of Birth</label>
-					<input type="date" class="form-control" id="birthday" placeholder = "Date of Birth"/>
+			  <div className="form-group">
+					<label htmlFor="exampleInputDOB">Date of Birth</label>
+					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth"/>
 			  </div>
 			  
 			  
-			  <div class="form-group">
-				<select class="form-control" id = "gender">
+			  <div className="form-group">
+				<select className="form-control" id = "gender">
 					<option value="" disabled selected>Gender</option>
-					<option value="male">Male</option>
-					<option value="femal">Female</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
 				</select>
 					
 				
 			  </div>
 			  
 			  
-			  <div class="form-group">
+			  <div className="form-group">
 					
-					<input type="text" class="form-control" id="address" placeholder = "Address"
+					<input type="text" className="form-control" id="address" placeholder = "Address"
 					onChange= {
 						(e)=>{
 						  setAddress(e.target.value);
 						}
 					  }/>
-					<i class="bi bi-geo-alt-fill"></i>
+					<i className="bi bi-geo-alt-fill"></i>
 			  </div>
 			  
 			  
-			  <div class="form-group">
-					<input type="text" class="form-control" id="username" placeholder = "Username"
+			  <div className="form-group">
+					<input type="text" className="form-control" id="username" placeholder = "Username"
 					onChange= {
 						(e)=>{
 						  setUsername(e.target.value);
 						}
 					  }/>
-					<i class="bi bi-person-fill"></i>
+					<i className="bi bi-person-fill"></i>
 			  </div>
 			  
 			  
-			  <div class="form-group">
+			  <div className="form-group">
 					
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder = "Password"
+					<input type="password" className="form-control" id="exampleInputPassword1" placeholder = "Password"
 					onChange= {
 						(e)=>{
 						  setPassword(e.target.value);
 						}
 					  }/>
-					<i class="bi bi-lock-fill"></i>
+					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
-			   <div class="form-group">
+			   <div className="form-group">
 					
-					<input type="password" class="form-control" id="exampleInputPassword2" placeholder = "Confirm Password"
+					<input type="password" className="form-control" id="exampleInputPassword2" placeholder = "Confirm Password"
 					onChange= {
 						(e)=>{
 						  setConfirmPassword(e.target.value);
 						}
 					  }/>
-					<i class="bi bi-lock-fill"></i>
+					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
-			  <div class="form-group">
-				<label for="exampleFormControlFile1">User Image</label>
-				<input type="file" class="form-control-file" id="user_image"/>
+			  <div className="form-group">
+				<label htmlFor ="exampleFormControlFile1">User Image</label>
+				<input type="file" className="form-control-file" id="user_image"/>
 			  </div>
   
-			  <div class="form-group form-check">
-					<input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-					<label class="form-check-label" for="exampleCheck1">I caccept the Terms of Use & Privacy Policy.</label>
+			  <div className="form-group form-check">
+					<input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+					<label className="form-check-label" htmlFor="exampleCheck1">I caccept the Terms of Use & Privacy Policy.</label>
 			  </div>
 			  
-			  <button type="submit" class="btn">Create Account</button>
+			  <button type="submit" className="btn">Create Account</button>
 	
-			<div class = "signup">
+			<div className = "signup">
 					
 					<br/><p><b>Already have an account ?</b>         <a href="">Login</a></p>
 					
@@ -242,6 +244,8 @@ function SignUp(props){
 				</form>
 				
 			</div>
+		</div>
+
 		</div>		
 
 

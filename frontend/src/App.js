@@ -2,8 +2,6 @@ import './App.css';
 
 // import Counter from './Components/Counter';
 // import CounterFunction from './Components/CounterFunction';
-import Header from './Components/Header';
-
 
 import AllStudents from './Components/AllStudents';
 /*import AddStudent from './Components/AddStudent';
@@ -22,6 +20,8 @@ import './css/style.css';
 import './css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './css/update.css';
+import ForgotP from './Components/ForgotP';
+import './css/forgotp.css';
 
 
 
@@ -32,7 +32,7 @@ function App() {
       <div>
 
 
-     {/*<UserProfile/>
+     <ForgotP/>
       
       {/*<Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>

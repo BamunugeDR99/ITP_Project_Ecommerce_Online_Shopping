@@ -6,9 +6,8 @@ import React, {useState,useEffect} from "react";
 function UserProfile(){
 
   const [customer,setCustomer] = useState([]);
-  let  customers = {};
-  let image;
-  let link = "";
+  
+ 
   
   useEffect(() =>{
       function getCustomer(){
@@ -20,7 +19,7 @@ function UserProfile(){
               //image = res.data.userImage;
               //console.log(customer.lastName);
              // console.log(customer.userImage);
-              link = "../images/" + customer.userImage; 
+             
               
           }).catch((err) =>{
               alert(err);
@@ -35,6 +34,8 @@ function UserProfile(){
 
     return(
 
+      <div className="CustomerPro">
+
         <div className="Wraperrr">
     <div className="mainb">
     
@@ -43,9 +44,9 @@ function UserProfile(){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={link} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
                     <div className="mt-3">
-                      <h1> {customer.firstName} {customer.lastName}</h1>
+                      <h2> {customer.firstName} {customer.lastName}</h2>
                       <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>
                       <h5><p className="text-muted font-size-sm"><b> {customer.email}</b></p></h5>
                       
@@ -132,12 +133,15 @@ function UserProfile(){
 			            <div className="row1">
                     <div className="col-sm-12">
                        <button type="submit" className="btnedit">Edit</button>
+
                     </div>
+                   
                   </div>
                 </div>
               </div>
 
         </div>
+    </div>
     </div>
 
 
