@@ -21,6 +21,7 @@ import Side_bar_Customer from './Components/Side_Bar_Customer';
 import Footer_customer from './Components/Footer_customer';
 import Home_Customer from './Components/Home_Customer';
 import SellerProfile from './Components/SellerProfile';
+import EmailTest from './Components/EmailTest';
 
 
 
@@ -29,11 +30,15 @@ function App() {
   return (
   <Router>
       <div>
-      {/* <Route path = "/customer"  component = {Header}/> */}
-    {/* <Side_bar/>  */}
-    <Route path = "/SellerProfile" component = {SellerProfile}/>
-       
+
+
         <SideBarAdmin/>
+        <Route path = "/email" exact component = {EmailTest}/>
+        <Route path = "/viewAll" exact component = {AView_all_the_items}/>
+      {/* <Route path = "/customer"  component = {Header}/> */}
+    {/* <Route path = "/SellerProfile" component = {SellerProfile}/> */}
+       
+        {/* <SideBarAdmin/> */}
         {/* <Route path = "/Home" exact component= {AllStudents}/> */}
         {/* <MainHeader/> */}
      
@@ -45,29 +50,14 @@ function App() {
 
         {/* <Route path = "/" exact component = {Counts}/> */}
 
-
+      {/* <Side_bar/> */}
 
 
         <Route path = "/allTheItems" exact component = {AView_all_the_items}/>
         <Route path = "/addItem" exact component = {Add_items}/>
         <Route path = "/updateItem/:id" exact component = {Update_Items}/>
         <Route path = "/allItems" exact component = {Seller_items}/>
-        {/* <Add_items/> */}
-
-    
-      
-
-
-      {/* <Header/>
-
-        <Route path = "/add" exact component = {AddStudent}/>
-      <Route path = "/" exact component = {Login}/>
-     
-      <Route path = "/update/:id" exact component = {UpdateStudent}/> */}
-
-
-      {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
-{/* <AddStudent/> */}
+ 
     </div>
   </Router>
   

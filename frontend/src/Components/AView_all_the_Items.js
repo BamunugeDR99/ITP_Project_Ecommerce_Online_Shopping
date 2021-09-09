@@ -68,19 +68,32 @@ export default function AView_all_the_items(props) {
       });
   }
 
-  function showMore(id) {
-    if (document.getElementById(id).innerHTML == "") {
-      document.getElementById(id).innerHTML =
-        "<tr><td>   <img" +
-        'src={require("../images/' +
-        im +
-        ").default}" +
-        'style={{ width: "80px" }}' +
-        'alt="pic"' +
-        "></img></td></tr>";
-    } else {
-      document.getElementById(id).innerHTML = "";
-    }
+ 
+
+  function viewMore(id){
+
+    axios
+    .get("http://localhost:8070/items/get/" + id)
+    .then((res) => {
+    
+      //console.log(res.data);
+      if(document.getElementById(id+'div').innerHTML == ""){
+        document.getElementById(id + 'div').innerHTML = '<div class="row"><div class="col-sm"><br/>brand</div><div class="col-sm"><img src={require("../images/iphone-x-.jpg").default}style={{ width: "100px" }} alt="pic"/>'+
+        +"<img src={require('../images/iphone-x-.jpg').default} style={{ width: '100px' }} alt='pic'/>"+'<br />'+ res.data._id+'</div><div class="col-sm">'+ res.data.Description+ '<br/>'+res.data.ItemAvailabilityStatus+'</div><div class="col-sm">colors<br/></div>'+
+   '<div className = "col-sm"></div></div>';
+      }else{
+        document.getElementById(id + 'div').innerHTML = '';
+      }
+
+
+      
+    })
+    .catch((err) => {
+      document.getElementById(id+'div').innerHTML = "Error Has been Occured!";
+    });
+
+
+   
   }
 
   function filterByPrice(btnid) {
@@ -158,7 +171,7 @@ export default function AView_all_the_items(props) {
               <th scope="col">CATEGORY</th>
               <th scope="col">PRICE</th>
               <th scope="col" style={{ color: "#212529" }}>
-                pricessdfds
+                pricessdfdsdd
               </th>
             </tr>
           </thead>
@@ -177,13 +190,13 @@ export default function AView_all_the_items(props) {
                           alt="pic"
                         />
                         <br />
-                        One of three columns
+                        {item.Item_name}
                       </div>
-                      <div class="col-sm">One of three columns</div>
-                      <div class="col-sm">One of three columns</div>
-                      <div class="col-sm">One of three columns </div>
+                      <div class="col-sm">{item.Stock_keeping_unit}</div>
+                      <div class="col-sm">{item.Category}</div>
+                      <div class="col-sm">LKR {item.Price}</div>
                       <div class="col-sm">
-                        <button type="button" class="btn btn-success">
+                        <button type="button"  onClick={() => viewMore(item._id)}  class="btn btn-success">
                           More
                         </button>
                         <span> </span>
@@ -192,35 +205,8 @@ export default function AView_all_the_items(props) {
                         </button>
                       </div>
                     </div>
-                    <div>
-                      <div class="row">
-                        <div class="col-sm">
-                          <img
-                            src={require("../images/iphone-x-.jpg").default}
-                            style={{ width: "90px" }}
-                            alt="pic"
-                          />
-                          <br />
-                          One of three columns
-                        </div>
-                        <div class="col-sm">
-                          <img
-                            src={require("../images/iphone-x-.jpg").default}
-                            style={{ width: "90px" }}
-                            alt="pic"
-                          />
-                                 <img
-                            src={require("../images/iphone-x-.jpg").default}
-                            style={{ width: "90px" }}
-                            alt="pic"
-                          />
-                          <br />
-                          One of three columns
-                        </div>
-                        <div class="col-sm">One of three columns</div>
-                        <div class="col-sm">One of three columns </div>
-                        <div className = "col-sm"></div>
-                      </div>
+                    <br/>
+                    <div id = {item._id + 'div'}>
                     </div>
                   </div>
                 </div>

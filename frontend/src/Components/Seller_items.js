@@ -88,7 +88,7 @@ function displayStarRating(id,totalAverage){
     if(isNaN(totalAverage)){
       txt = "No Ratings yet!";
       document.getElementById(id +'stars').innerHTML = txt;
-      document.getElementById(id +'stars').style.color = "#FF0000";
+      //document.getElementById(id +'stars').style.color = "#FF0000";
     }else{
     
     for(let j = 0; j < totalAverage; j++){

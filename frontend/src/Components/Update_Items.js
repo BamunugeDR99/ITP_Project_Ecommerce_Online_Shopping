@@ -22,6 +22,8 @@ export default function Update_Items(props) {
   let isFirstRender = true;
   let slideImages = [];
   let imageName = "";
+
+  const [images, setImages] = useState([]);
   //learn  .......
    useEffect(() => {
     function getItem() {
@@ -33,8 +35,9 @@ export default function Update_Items(props) {
         .get("http://localhost:8070/items/get/" + objectId)
         .then((res) => {
           setData(res.data);
-    
-          //console.log(res.data);
+          setImages(res.data.Images);
+
+          console.log(images);
 
    
           
@@ -236,9 +239,11 @@ export default function Update_Items(props) {
         <h3 className="headerName" id="Submitstatus"></h3>
         <h4>ITEM INFORMATION</h4>
         <br />
-        {/* <center>
-
+{/*        
+        <center>
       <h4>ITEM IMAGES</h4>
+      {items.map((item, index) => {
+        return (
       <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -264,8 +269,12 @@ export default function Update_Items(props) {
     </a>
   </div>
 
-  </center>   */}
+ 
+  );
+})}
+ </center>    */}
 <br/><br/>
+
         <div class="card">
           <div class="card-body">
             <form id="form1" onSubmit={sendData}>
