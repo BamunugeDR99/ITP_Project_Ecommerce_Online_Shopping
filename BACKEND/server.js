@@ -32,6 +32,9 @@ app.use("/student",studentRouter);
 const sellerRouter = require("./routes/seller.js");
 app.use("/seller",sellerRouter);
 
+const orgSellerRouter = require("./routes/orgSeller.js");
+app.use("/orgseller",orgSellerRouter);
+
 const connection = mongoose.connection;
 connection.once("open",() => {
     console.log("DB Connection successful");
