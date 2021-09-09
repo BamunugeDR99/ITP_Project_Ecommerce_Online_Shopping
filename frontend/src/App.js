@@ -21,18 +21,18 @@ import './css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './css/update.css';
 import ForgotP from './Components/ForgotP';
-import './css/forgotp.css';
+// import './css/forgotp.css';
 
 
 
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
+<Router>
   
       <div>
 
-
-     <ForgotP/>
+     <Route path = "/forgot" exact component = {ForgotP}/>
       
       {/*<Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>
@@ -44,7 +44,7 @@ function App() {
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
 {/* <AddStudent/> */}
     </div>
- 
+ </Router>
   
   
   );
