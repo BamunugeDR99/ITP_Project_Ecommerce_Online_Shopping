@@ -32,7 +32,7 @@ function App() {
       <div>
 
 
-        <SideBarAdmin/>
+        {/* <SideBarAdmin/> */}
         <Route path = "/email" exact component = {EmailTest}/>
         <Route path = "/viewAll" exact component = {AView_all_the_items}/>
       {/* <Route path = "/customer"  component = {Header}/> */}
@@ -44,13 +44,13 @@ function App() {
      
       <Route path = "/header"  component = {Side_bar_Customer}/>
       <Route path = "/header"  component = {MainHeader}/>
-      {/* <Route path = "/header" component = {Home_Customer}/> */}
-     <Route path = "/header" exact component = {customer_wishlist}/>
+      <Route path = "/header" component = {Home_Customer}/>
+     {/* <Route path = "/header" exact component = {customer_wishlist}/> */}
       <Route path = "/header" component = {Footer_customer}/>
 
         {/* <Route path = "/" exact component = {Counts}/> */}
 
-      {/* <Side_bar/> */}
+      <Side_bar/>
 
 
         <Route path = "/allTheItems" exact component = {AView_all_the_items}/>

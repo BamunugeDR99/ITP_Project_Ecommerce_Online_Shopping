@@ -4,10 +4,13 @@ import axios from "axios";
 export default function Seller_items(props) {
   const [items, setItems] = useState([]);
   const [ratings, setRatings] = useState([]);
-  let totalNoRatings = 0;
-  let totalstarforRatingCount = 0;
-  let starCount = 0;
-  let average = 0; 
+  let itemID = "";
+  let averageRating = "";
+  let itemWithRatings = {
+    itemID,
+    averageRating
+  };
+  let itemsWithRatings = [];
 
   useEffect(() => {
     async function getItems() {
@@ -42,7 +45,7 @@ export default function Seller_items(props) {
 
   useEffect(() => {
     displayStatus();
-    calculateStarRating();
+    calculateStarRating(1);
     
   })
 
@@ -50,11 +53,13 @@ export default function Seller_items(props) {
     //displayStarRating();
   })
 
-function calculateStarRating(){
+function calculateStarRating(id){
   let totalNoRatings = 0;
   let totalstarforRatingCount = 0;
   let starCount = 0;
   let average = 0; 
+
+ 
   for(let i = 0; i < items.length; i++){
     
     totalNoRatings = 0;
@@ -76,7 +81,16 @@ function calculateStarRating(){
     totalstarforRatingCount = totalNoRatings * 5;
     average = parseInt((starCount / totalstarforRatingCount) * 5);
     console.log(average);
+    if(id == 1){
     displayStarRating(i,average);
+    }
+    itemWithRatings = {
+      itemID : items[i]._id,
+      averageRating :average
+    }
+    itemsWithRatings.push(itemWithRatings);
+    console.log(itemsWithRatings);
+
 
   }
 
@@ -216,7 +230,7 @@ function displayStarRating(id,totalAverage){
         let item = res.data;
         let afterFilterItems = [];
         if (btnid == 5) {
-          const afterFilterItems = item.filter(
+           afterFilterItems = item.filter(
             (item) => parseFloat(item.Price) >= price2
           );
           setItems(afterFilterItems);
@@ -323,7 +337,71 @@ function displayStarRating(id,totalAverage){
     }
   
   }
-  
+
+  function filterByRatings(btnId){
+
+   
+    
+    let filterdItemsWithRatings = []; 
+    //let itemsWithRatings = calculateStarRatingdd(0);
+    console.log(itemsWithRatings);
+      for(let i = 0; i < itemsWithRatings.length; i++){
+        if(itemsWithRatings[i].averageRating == btnId){
+            filterdItemsWithRatings.push(itemsWithRatings[i].itemID);
+        } 
+      }
+
+    console.log(filterdItemsWithRatings);
+
+
+    axios
+    .get("http://localhost:8070/items/getItems")
+    .then((res) => {
+      
+      let item = res.data;
+      // console.log(item[2]._id);
+      // console.log(filterdItemsWithRatings);
+      let afterFilterItemss = [];
+      for(let i  = 0; i < filterdItemsWithRatings.length; i++ ){
+        for(let j = 0; j < item.length; j++){
+          if(filterdItemsWithRatings[i] == item[j]._id){
+            afterFilterItemss.push(item[j]);
+          }
+        }
+      
+      }
+     
+      setItems(afterFilterItemss);
+      console.log(afterFilterItemss);
+
+      if (afterFilterItemss.length == 0) {
+        document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+      }
+    })
+    .catch((err) => {
+      alert(err);
+    });
+  }
+
+  function clearFilter(){
+    
+    axios
+      .get("http://localhost:8070/items/getItems")
+      .then((res) => {
+        
+       setItems(res.data);
+       if(res.data.length === 0){
+        document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+      }else{
+        document.getElementById("itemsTxt").innerHTML = "";
+      }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
+     
+  }
 
   return (
     <div>
@@ -331,6 +409,8 @@ function displayStarRating(id,totalAverage){
         <br />
         <br />
         <br />
+        <div class = "float-right"><button type="button" class="btn btn-danger" onClick={() => clearFilter()}>Clear Filter</button></div>
+        <br/><br/>
         <div class="input-group mb-3">
           <input
             type="text"
@@ -341,15 +421,10 @@ function displayStarRating(id,totalAverage){
             aria-describedby="basic-addon2"
           />
           <div class="input-group-append">
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-              style={{ color: "#4CAF50" }}
-            >
-              SEARCH
-            </button>
-          </div>
+          </div><br/>
+
         </div>
+        
         <br />
 
         <div class="row">
@@ -461,6 +536,7 @@ function displayStarRating(id,totalAverage){
               <button
                 type="button"
                 class="list-group-item list-group-item-action"
+                onClick={() => filterByRatings(1)}
               >
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
@@ -472,6 +548,7 @@ function displayStarRating(id,totalAverage){
               <button
                 type="button"
                 class="list-group-item list-group-item-action"
+                onClick={() => filterByRatings(2)}
               >
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -483,6 +560,7 @@ function displayStarRating(id,totalAverage){
               <button
                 type="button"
                 class="list-group-item list-group-item-action"
+                onClick={() => filterByRatings(3)}
               >
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -494,6 +572,7 @@ function displayStarRating(id,totalAverage){
               <button
                 type="button"
                 class="list-group-item list-group-item-action"
+                onClick={() => filterByRatings(4)}
               >
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -505,6 +584,7 @@ function displayStarRating(id,totalAverage){
               <button
                 type="button"
                 class="list-group-item list-group-item-action"
+                onClick={() => filterByRatings(5)}
               >
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -518,7 +598,7 @@ function displayStarRating(id,totalAverage){
         </div>
 
         <br />
-
+        
         <h1
           id="itemsTxt"
           style={{ textAlign: "center", color: "#FF0000" }}
