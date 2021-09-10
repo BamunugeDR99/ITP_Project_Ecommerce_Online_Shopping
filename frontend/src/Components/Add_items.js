@@ -44,6 +44,7 @@ export default function Add_items(props) {
     }
 
     console.log(Images);
+    //ffff
   }
 
   function ItemCategorySelection() {
