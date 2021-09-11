@@ -14,8 +14,8 @@
        -moz-appearance:none;
             appearance:none;
 }
-.visa{background-image:url(http://i.imgur.com/lXzJ1eB.png);}
-.mastercard{background-image:url(http://i.imgur.com/SJbRQF7.png);}
+.visa{background-image:url("../images/visa.png");}
+.mastercard{background-image:url("../images/master.png");}
 
 .cc-selector input:active +.drinkcard-cc{opacity: .5;}
 .cc-selector input:checked +.drinkcard-cc{
@@ -28,7 +28,7 @@
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
-    width:50px;height:35px;
+    width:100px;height:70px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;

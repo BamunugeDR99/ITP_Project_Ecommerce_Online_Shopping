@@ -6,22 +6,24 @@ let paymentdetails = require("../modules/paymentdetails");
 
 //Insert
 router.route("/add").post((req,res)=>{
-    const ctype = req.body.ctype;
-    const cowner = req.body.CardOwner;
-     const cnumber = Number(req.body.cnumber);
-    const edate = req.body.edate;
+    const cardtype = req.body.cardtype;
+    const cardowner = req.body.cardowner;
+    const cardnumber = Number(req.body.cardnumber);
+    const carddate = req.body.carddate;
+    const cardcvv = Number(req.body.cardcvv);
 
     const newpaymentdetails = new paymentdetails({
-        ctype,
-        cowner,
-        cnumber,
-        edate
+        cardtype,
+        cardowner,
+        cardnumber,
+        carddate,
+        cardcvv
     })
 
     newpaymentdetails.save().then(()=>{
        
 
-            res.json("Uour payment Added Successfully");
+            res.json("Your payment Added Successfully");
                       /*res.json({newpaymentDetail:{
                         CardType : newpaymentDetail.CardType,
                         CardOwner : newpaymentDetail.CardOwner,
@@ -52,13 +54,14 @@ router.route("/get").get((reg,res)=> {
 // update 
 router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
-    const{ctype,cowner,cnumber,edate} = req.body;
+    const{cardtype,cardowner,cardnumber,carddate,cardcvv} = req.body;
 
     const updatepaymentdetails = {
-        ctype,
-        cowner,
-        cnumber,
-        edate
+        cardtype,
+        cardowner,
+        cardnumber,
+        carddate,
+        cardcvv
 
     }
 

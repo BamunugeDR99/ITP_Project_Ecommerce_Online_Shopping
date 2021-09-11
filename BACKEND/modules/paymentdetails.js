@@ -3,25 +3,36 @@ const mongoose =require("mongoose");
 
 const paymentdetailSchema = mongoose.Schema({
 
-ctype:{
+cardtype:{
     type:String,
     requied:true,
 },
 
-cowner : {
+cardowner : {
     type: String,
     requied:true,
 },
 
-cnumber:{
+cardnumber:{
     type:Number,
     requied:true,
 },
 
-edate :{
+carddate :{
     type:String,
     requied:true,
 },
+
+carddate :{
+    type:String,
+    requied:true,
+},
+
+cardcvv :{
+    type:Number,
+    requied:true,
+}
+
 
 })
 

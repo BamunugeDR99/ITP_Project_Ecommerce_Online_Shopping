@@ -15,7 +15,8 @@ import AdminViewHistory from './Components/AdminViewHistory';
 import SelectPaymentMethod from './Components/SelectPaymentMethod';
 import ViewCardDetails from './Components/ViewCardDetails';
 import ConfirmPayment from './Components/ConfirmPayment';
-import new1 from './Components/new1';
+// import new1 from './Components/new1';
+import AddCard from './Components/AddCard';
 
 
 
@@ -37,8 +38,8 @@ function App() {
       <Route path = "/sepay" exact component = {SelectPaymentMethod}/>
       <Route path = "/view" exact component = {ViewCardDetails}/>
       <Route path = "/confpay" exact component = {ConfirmPayment}/>
-      <Route path = "/new" exact component = {new1}/>
-
+      {/* <Route path = "/new" exact component = {new1}/> */}
+      <Route path = "/card" exact component = {AddCard}/>
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
 {/* <AddStudent/> */}
