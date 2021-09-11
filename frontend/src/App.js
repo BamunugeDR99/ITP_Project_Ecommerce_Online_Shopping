@@ -10,7 +10,10 @@ import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';
 import ContactSeller from  './Components/ContactSeller';
 import CustomerMsg from './Components/CustomerMsg';
+import Sellermsg from './Components/Sellermsg';
 import YourReviews from './Components/YourReviews';
+
+import MyReviews from './Components/MyReviews';
 import ReactSession from 'react-client-session';
 import CustomerReviews from './Components/CustomerReviews';
 import Report from './Components/Report';
@@ -35,10 +38,13 @@ function App() {
       <Route path = "/contactsel" exact component = {ContactSeller}/>
       <Route path = "/cusrev" exact component = {CustomerReviews}/>
       <Route path = "/myrev" exact component = {YourReviews}/>
+      
+      <Route path = "/rev" exact component = {MyReviews}/>
       <Route path = "/wrev" exact component = {WriteReview}/>
-      <Route path = "/adrep" exact component = {AdminReport}/>
-      <Route path = "/msg" exact component = {CustomerMsg}/>
       <Route path = "/report" exact component = {Report}/>
+      <Route path = "/adrep" exact component = {AdminReport}/>
+      <Route path = "/selmsg" exact component = {Sellermsg}/>
+      <Route path = "/msg" exact component = {CustomerMsg}/>
       <Route path = "/itemview" exact component = {ItemView}/>
       <Route path = "/selrev" exact component = {SellerReview}/>
       <Route path = "/test" exact component = {test}/>

@@ -38,9 +38,13 @@ const contactselRouter = require("./routes/contactsel.js");
 
 app.use("/contactsel",contactselRouter);
 
-const customertestRouter = require("./routes/customertest.js");
+const customerRouter = require("./routes/customer.js");
+ 
+app.use("/Customer",customerRouter);
 
-app.use("/customertest",customertestRouter);
+const itemRouter = require("./routes/items.js");
+
+app.use("/items",itemRouter);
 
 const itemtestRouter = require("./routes/itemtest.js");
 

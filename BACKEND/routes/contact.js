@@ -43,7 +43,7 @@ router.route("/get").get((req,res)=>{
     })
 });
 
-router.route("/getrev/:id").get(async(req,res)=>{
+router.route("/get/:id").get(async(req,res)=>{
     let userID = req.params.id;
 
     const user = await Contact.findById(userID).then((item) => {
@@ -55,7 +55,7 @@ router.route("/getrev/:id").get(async(req,res)=>{
     })
 });
 
-router.route("/uprev/:id").put(async (req,res) =>{
+router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
     const{name,email,message,customerid} = req.body;
 
@@ -75,7 +75,7 @@ router.route("/uprev/:id").put(async (req,res) =>{
     });
 
 
-router.route("/delrev/:id").delete(async (req,res) =>{
+router.route("/delete/:id").delete(async (req,res) =>{
     let userID = req.params.id;
 
         await Contact.findByIdAndDelete(userID)

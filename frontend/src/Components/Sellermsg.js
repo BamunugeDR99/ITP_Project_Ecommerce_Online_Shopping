@@ -7,15 +7,14 @@ import g1 from "../images/avatar1.png";
 
 export default function CustomerMsg(props){
 
-	const [contact,setContact] = useState([]);
-	const [customertest,setCustomertest] = useState([]);
+	const [contactsel,setContactsel] = useState([]);
     const [loads,setLoad] = useState(false);
 
   useEffect(() =>{
-    function getContact(){
-        axios.get("http://localhost:8070/contact/get").then((res) =>
+    function getContactsel(){
+        axios.get("http://localhost:8070/contactsel/get").then((res) =>
         {
-            setContact(res.data);
+            setContactsel(res.data);
             console.log(res.data);
             
             
@@ -24,30 +23,17 @@ export default function CustomerMsg(props){
         })
     }
    
-    getContact();
+    getContactsel();
 
-	function getCustomertest(){
-        axios.get("http://localhost:8070/customertest/get").then((res) =>
-        {
-            setCustomertest(res.data);
-            console.log(res.data);
-            
-            
-        }).catch((err) =>{
-            alert(err);
-        })
-    }
-   
-    getCustomertest();
    
 }, []);
 
-function deletee(id){
-    axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
+  function deletee(id){
+    axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
     {
         // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteContact = contact.filter(contact=>contact._id != id);
-        setContact(afterDeleteContact);
+        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id != id);
+        setContactsel(afterDeleteContactsel);
     }).catch((err) =>{
         alert(err);
     })
@@ -61,7 +47,7 @@ function deletee(id){
 			<div className="table-wrapper">
 				<div className="table-title">
 					<div className="row">
-						<div className="col">
+						<div className="col-sm-4">
 							<h2><center><b>Customer Messages</b></center></h2>
 						</div>
 					</div>
@@ -70,25 +56,23 @@ function deletee(id){
 					<thead>
 						<tr>
 							<th>Customer Name</th>
-							<th>Customer Photo</th>
 							<th>Customer Email</th>
 							<th>Message</th>
 							<th>Action</th>
 						</tr>
 					</thead>
-				={contact.map((contact,index) =>{
+				={contactsel.map((contactsel,index) =>{
 
+				<h1 id = "txt"></h1>
 
 				return(
 					<tbody>
 						<tr>
-							<td>{contact.name}</td>
-							
-							<td><img src={`../images/${customertest.cusimage}`} className="img"/></td>
-							<td>{contact.email}</td>
-							<td>{contact.message}</td>
+							<td>{contactsel.name}</td>
+							<td>{contactsel.email}</td>
+							<td>{contactsel.message}</td>
 							<td>
-							<button onClick = {()=> deletee(contact._id)} className="button2" type="button">Remove</button>
+							<button onClick = {()=> deletee(contactsel._id)} className="button2" type="button">Remove</button>
 							</td>
 						</tr>
 					</tbody>

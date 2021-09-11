@@ -89,8 +89,8 @@ export default function ContactAdmin(props){
                         </div>
 
                         <div className="container-contact1-form-btn">
-                            <button type="submit" className="contact1-form-btn">
-                                <span> Send Message </span>
+                            <button id="btncontact" type="submit" className="contact1-form-btn" >
+                                <span > Send Message </span>
                             </button>
                         </div>
                     </form>

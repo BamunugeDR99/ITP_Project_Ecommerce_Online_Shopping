@@ -3,25 +3,25 @@ import axios from "axios";
 
 import "../CSS/cusreview.css";
 
-export default function CustomerReviews(props) {
+export default function MyReviews(props) {
   let [review, setReview] = useState([]);
   let re = [];
-  const [customertest, setCustomertest] = useState([]);
-  let [customer, setCustomer] = useState([]);
-  let customers = [];
-  let customerName = "";
-  let customerImage = "";
+  const [itemtest, setItemrtest] = useState([]);
+  let [Item, setItem] = useState([]);
+  let items = [];
+  let itemName = "";
+  let itemImage = "";
   let Review = "";
   let [abc, setabc] = useState([]);
-  let reviewWithCustomer = {
+  let reviewWithItem = {
 
-    customerName,
-    customerImage,
+    itemName,
+    itemImage,
     Review
   
 } 
 
-  let reviewWithCustomers = [];
+  let reviewWithItems = [];
 
 
 
@@ -32,7 +32,7 @@ export default function CustomerReviews(props) {
         .then((res) => {
           //setReview(res.data);
           const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === "611f4784c259414e3c405a34"
+            (customerrev) => customerrev.customerid === "6136208b00a06503a0eea457"
           );
          // review = setReview(filter);
           re = filter;
@@ -41,24 +41,24 @@ export default function CustomerReviews(props) {
 
           for (let i = 0; i < re.length; i++) {
             console.log("sdf");
-            let customerid = re[i].customerid;
-            // console.log(customerid);
+            let itemid = re[i].itemid;
+            // console.log(itemid);
       
             axios
-              .get("http://localhost:8070/Customer/get/" + customerid)
+              .get("http://localhost:8070/itemtest/get/" + itemid)
               .then((res) => {
                 // console.log(res.data);
       
-                reviewWithCustomer = {
-                    customerName : res.data.firstName,
-                    customerImage : res.data.userImage,
+                reviewWithItem = {
+                    itemName : res.data.name,
+                    itemImage : res.data.cusimage,
                     Review : re[i].description
                 }    
       
                 // console.log(reviewWithCustomer);
-                reviewWithCustomers.push(reviewWithCustomer);
-                //console.log(reviewWithCustomers);
-                setabc(reviewWithCustomers);
+                reviewWithItems.push(reviewWithItem);
+                //console.log(reviewWithItems);
+                setabc(reviewWithItems);
               
               })
               .catch((err) => {
@@ -90,18 +90,18 @@ export default function CustomerReviews(props) {
     <div className="container">
     <div class="shadow-lg p-3 mb-5 bg-white rounded"style={{width:'100%',alignItems:'center', borderRadius:'5px'}}>
       <br/>
-      <h1 style={{textAlign: 'center', color: 'black'}}> Customer Reviews</h1>
-      <h5 style={{textAlign: 'center', color: 'black'}}>what our customers say about us</h5>
+      <h1 id="h1"> Customer Reviews</h1>
+      <h5 id="h5">what our customers say about us</h5>
 
       {abc.map((reviewss) => {
         return (
           
           <div class="card" style={{width: "20%", margin:'50px',borderRadius:'15px',marginTop: '30px',height: '290px'}}>
             <div class="card-body">
-            <img src={`../images/${reviewss.customerImage}`} style={{width:'80%', alignItems:'center'}}/>
+            <img src={`../images/${reviewss.itemImage}`} style={{width:'80%', alignItems:'center'}}/>
               {/* <img src =  */}
-              <h5 class="card-title">{reviewss.customerName}</h5>
-              <div style={{color: "#f9d71c",textAlign:'center'}}>
+              <h5 class="card-title">{reviewss.itemName}</h5>
+              <div className="reviews">
                              <i class="fas fa-star"></i>
                              <i class="fas fa-star"></i>
                              <i class="fas fa-star"></i>
@@ -109,7 +109,7 @@ export default function CustomerReviews(props) {
                              <i class="far fa-star"></i>
                          </div>
                          <br/>
-              <p style={{textAlign:'center', fontSize:'16px'}}>
+              <p class="card-text">
              {reviewss.Review}
               </p>
               

@@ -5,10 +5,10 @@
 // import go from "../images/bg2.jpg";
 
 
-// export default function ContactUs(props){
+// export default function Report(props){
 
-//     // const [name,setName] = useState("");
-//     // const [email,setEmail] = useState("");
+//     let [description,setName] = useState("");
+//     let [customerid,setCustomerid] = useState("");
 //     const [reportreason,setReportreason] = useState("");
   
 //     function sendData(e){
@@ -16,8 +16,8 @@
 //       e.preventDefault();
   
 //       const newReview = {
-//         // name,
-//         // email,
+//         description,
+//         customerid,
 //         reportreason
 //       }
   
@@ -58,30 +58,26 @@
 
                         
 //                               <div className="wrap-input1 validate-input" data-validate = "Name is required">
-//                                 <input className="input1" type="text" name="name" placeholder=""/>
-//                                 <span className="shadow-input1"></span>
+//                                 <input className="input1" type="text" name="name" placeholder={review.description}/>
+//                                 <span className="shadow-input1">Customer Review</span>
 //                             </div>
                           
                         
 
-//                         {review.reviewcus.map((pack)=> {
-//                             return(
+                        
 //                               <div className="wrap-input1 validate-input" data-validate = "Name is required">
-//                                 <input className="input1" type="text" name="name" placeholder={pack.name}/>
-//                                 <span className="shadow-input1"></span>
+//                                 <input className="input1" type="text" name="name" placeholder={review.customerid}/>
+//                                 <span className="shadow-input1">Customer ID</span>
 //                             </div>
-//                           )
-//                       })
-//                   }
-                     
+                          
 
 //                         <div className="wrap-input1 validate-input" data-validate = "Message is required">
-//                             <textarea className="textarea1" name="message" placeholder="Message"onChange= {
+//                             <textarea className="textarea1" name="message" placeholder=" "onChange= {
 //                                 (e)=>{
 //                                 setReportreason(e.target.value);
 //                                 }
 //                             }></textarea>
-//                             <span className="shadow-input1"></span>
+//                             <span className="shadow-input1">Write your reason</span>
 //                         </div>
 
 //                         <div className="container-contact1-form-btn">

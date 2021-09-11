@@ -1,225 +1,341 @@
-// import React, {useState, useEffect } from "react";
-// import axios from "axios";
+import React, {useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
-// import "../CSS/yourreviews.css";
-// import p2 from "../images/p3.jpg";
+import "../CSS/yourreviews.css";
+import p2 from "../images/p3.jpg";
 
 
 
-// export default function MyReviews(props){
+export default function YourReviews(props){
 	
-// 	const [review,setReview] = useState([]);
-// 	let [description,setDescription] = useState([]);
-// 	let [date,setDate] = useState([]);
-// 	let [noofstars,setNoofstars] = useState([]);
-// 	let [customerid,setCustomerid] = useState([]);
-// 	let [itemid,setItemid] = useState([]);
-// 	let [reviewstatus,setReviewstatus] = useState([]);
-// 	let [reportreason,setReportreason] = useState([]);
-//     let [loads,setLoad] = useState(false);
+  let [review, setReview] = useState([]);
+  let re = [];
+  const [itemtest, setItemtest] = useState([]);
+  let [item, setItem] = useState([]);
+  let items = [];
+  let itemName = "";
+  let itemImage = "";
+  let Review = "";
+  let [abc, setabc] = useState([]);
+  let reviewWithItem = {
 
-//    useEffect(() =>{
-//     function getReview(){
+    itemName,
+    itemImage,
+    Review
+  
+} 
 
-// 		const reviewId = props.match.params.id;
-// 		console.log(reviewId);
-
-//         axios.get("http://localhost:8070/review/get" + reviewId).then((res) =>
-//         {
-// 			console.log(res.data);
-//             setDescription(res.data);
-// 			setDate(res.data);
-// 			setNoofstars(res.data);
-// 			setItemid(res.data);
-// 			setReviewstatus(res.data);
-// 			setReportreason(res.data);
-//             console.log(res.data);
-            
-            
-//         }).catch((err) =>{
-//             alert(err);
-//         })
-//     }
-   
-//     getReview();
-
-// }, []);
+  let reviewWithItems = [];
 
 
-// function deletee(id){
-//     axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
-//     {
-//         document.getElementById("txt").innerHTML = "Message Deleted!";
-//         const afterDeleteReview = review.filter(review=>review._id != id);
-//         setReview(afterDeleteReview);
-//     }).catch((err) =>{
-//         alert(err);
-//     })
-// }
 
-// // function updateReview(e){
+  useEffect(() => {
+    function getReview() {
+      axios
+        .get("http://localhost:8070/review/get")
+        .then((res) => {
+          //setReview(res.data);
+          const filter = res.data.filter(
+            (customerrev) => customerrev.customerid === "6136208b00a06503a0eea457"
+          );
+         // review = setReview(filter);
+          re = filter;
+        //   console.log(re.length);
+
+
+          for (let i = 0; i < re.length; i++) {
+            console.log("sdf");
+            let itemid = re[i].itemid;
+            // console.log(itemid);
+      
+            axios
+              .get("http://localhost:8070/itemtest/get/" + itemid)
+              .then((res) => {
+                // console.log(res.data);
+      
+                reviewWithItem = {
+                    itemName : res.data.name,
+                    itemImage : res.data.itemimage,
+                    Review : re[i].description
+                }    
+      
+                // console.log(reviewWithCustomer);
+                reviewWithItems.push(reviewWithItem);
+                //console.log(reviewWithItems);
+                setabc(reviewWithItems);
+              
+              })
+              .catch((err) => {
+                alert(err);
+              });
+      
+          }
+
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+
+
+
+    getReview();
+    // getCustomer();
+  },[]);
+
+
+function deletee(id){
+    axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
+    {
+        document.getElementById("txt").innerHTML = "Message Deleted!";
+        const afterDeleteReview = review.filter(review=>review._id != id);
+        setReview(afterDeleteReview);
+    }).catch((err) =>{
+        alert(err);
+    })
+}
+
+// function updateReview(e){
  
-// //     const ReviewId = props.match.params.id; 
-// //     console.log(ReviewId);
+//     const ReviewId = props.match.params.id; 
+//     console.log(ReviewId);
    
-// //     getsDetails();
+//     getsDetails();
 
-// // 	if(content.length == 0){
-// // 		alert("Cannot edit");
-// // 		window.location.reload(true);
-// // 	}
-// // 	else{
-// // 		const updatedReview={
-// // 			description,
-// // 			date,
-// // 			noofstars,
-// // 			reviewstatus,
-// // 			reportreason,
-// // 			customerid,
-// // 			itemid
-// // 		}
-// // 	}
-// // 	console.log(updatedReview);
+// 	if(content.length == 0){
+// 		alert("Cannot edit");
+// 		window.location.reload(true);
+// 	}
+// 	else{
+// 		const updatedReview={
+// 			description,
+// 			date,
+// 			noofstars,
+// 			reviewstatus,
+// 			reportreason,
+// 			customerid,
+// 			itemid
+// 		}
+// 	}
+// 	console.log(updatedReview);
 
-// //     axios.put("http://localhost:8070/review/update/" + ReviewId,updateReview).then(()=>{
-// //      alert("Review Updated Successfully!") ;
+//     axios.put("http://localhost:8070/review/update/" + ReviewId,updateReview).then(()=>{
+//      alert("Review Updated Successfully!") ;
 	 
-// //       props.history.push("/allReviews");
+//       props.history.push("/allReviews");
 
-// //     }).catch((err) =>{
-// //       alert(err)
-// //     })
-// //   }
+//     }).catch((err) =>{
+//       alert(err)
+//     })
+//   }
 
-//  return(
-// <div className="rev">
-// <section id="testimonials">
-// 	<div className="box">		
-// 	<form>
-// 			<div className="testimonial-heading">
-// 				<h1>Your Reviews</h1>
-// 			</div>			
+ return(
+<div className="rev">
+<section id="testimonials">
+	<div className="box">		
+	<form>
+			<div className="testimonial-heading">
+				<h1>Your Reviews</h1>
+			</div>			
 
-// 			={review.map((review,index) =>{
+			={abc.map((reviewss) =>{
 
-// 			<h1 id = "txt"></h1>
+			return(
+				<div className="testimonial-box-container">
+						<div class="testimonial-box">
+							<div class="box-top">
+								<div class="profile">
 
-// 			return(
-// 				<div className="testimonial-box-container">
-// 						<div class="testimonial-box">
-// 							<div class="box-top">
-// 								<div class="profile">
+						
+								<div class="profile-img">
+									<img src={`../images/${reviewss.itemImage}`} className="card-img-top"/>
+								</div>
+							
 
-// 						{review.reviewitem.map((pack)=> {
-//                             return(
-// 								<div class="profile-img">
-// 									<img src={`../images/${pack.itemimage}`} className="card-img-top"/>
-// 								</div>
-// 							)
-// 							})
-// 							}
-
-// 							<div class="name-user">
-// 							{review.reviewitem.map((pack)=> {
-// 								return(
-// 									<strong>{pack.name}</strong>
-// 								)
-// 								})
-// 								}
+							<div class="name-user">
+							
+									<strong>{reviewss.itemName}</strong>
+							
 	
 										
-// 										<div class="reviews">
-// 											<i class="fas fa-star"></i>
-// 											<i class="fas fa-star"></i>
-// 											<i class="fas fa-star"></i>
-// 											<i class="fas fa-star"></i>
-// 											<i class="far fa-star"></i>
-// 										</div>
-// 										<div class="client-comment">
-// 											<p>{review.description}</p>
-// 										</div>
-// 									</div>
+										<div class="reviews">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="far fa-star"></i>
+										</div>
+										<div class="client-comment">
+											<p>{reviewss.Review}</p>
+										</div>
+									</div>
 									
-// 								</div>
+								</div>
 								
-// 								<div class="name-user">
-// 									<label>{review.date}</label>
-// 								</div>
+								{/* <div class="name-user">
+									<label>{reviewss.date}</label>
+								</div> */}
 								
-// 							</div>
+							</div>
 							
 							
 							
-// 							<div class="profile">	
-// 								<div >
-// 									<a href="#editEmployeeModal" class="edit" data-toggle="modal">
-// 										<button class="button1" type="button">Edit Review</button>
-// 									</a>
-// 								</div>
-// 								<div>
-// 									<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-// 										<button onClick = {()=> deletee(review._id)} class="button2" type="button">Delete Review</button>
-// 									</a>	
-// 								</div>
-// 							</div>	
-// 						</div>
-// 						</div>	
-// 				)
-// 				})}	
+							<div class="profile">	
+								<div >
+									<a href="#editEmployeeModal" class="edit" data-toggle="modal">
+										<button class="button1" type="button">Edit Review</button>
+									</a>
+								</div>
+								<div>
+									<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+										<button onClick = {()=> deletee(review._id)} class="button2" type="button">Delete Review</button>
+									</a>	
+								</div>
+							</div>	
+						</div>
+						</div>	
+				)
+				})}	
 
 			
 			
 			
 
-// 		<div id="editEmployeeModal" class="modal fade">
-// 			<div class="modal-dialog">
-// 				<div class="modal-content">
-// 					<form>
-// 						<div class="modal-header">						
-// 							<h4 class="modal-title">Edit Review</h4>
-// 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-// 						</div>
-// 						<div class="modal-body">					
-// 							<div class="form-group">
-// 								<label>Re-write your review</label>
-// 								<input type="text" class="form-control" required/>
-// 							</div>					
-// 						</div>
-// 						<div class="modal-footer">
-// 							<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
-// 							<input type="submit" class="btn btn-info" value="Save"/>
-// 						</div>
-// 					</form>
-// 				</div>
-// 			</div>
-// 		</div>	
+                <div id="editEmployeeModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form>
+                                <div class="modal-header">						
+                                    <h4 class="modal-title">Edit Review</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">					
+                                    <div class="form-group">
+                                        <label>Re-write your review</label>
+                                        <input type="text" class="form-control" required/>
+                                    </div>					
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                                    <input type="submit" class="btn btn-info" value="Save"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>	
 			
-// 		<div id="deleteEmployeeModal" class="modal fade">
-// 			<div class="modal-dialog">
-// 				<div class="modal-content">
-// 					<form>
-// 						<div class="modal-header">						
-// 							<h4 class="modal-title">Delete Review</h4>
-// 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-// 						</div>
-// 						<div class="modal-body">					
-// 							<p>Are you sure you want to delete the review</p>
-// 							<p class="text-warning"><small>This action cannot be undone.</small></p>
-// 						</div>
-// 						<div class="modal-footer">
-// 							<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
-// 							<input type="submit" class="btn btn-danger" value="Delete"/>
-// 						</div>
-// 					</form>
-// 				</div>
-// 			</div>
-// 		</div> 
-// 		</form>
-// 	</div>	
-// </section>	
-// </div>
-//  )
+		<div id="deleteEmployeeModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form>
+						<div class="modal-header">						
+							<h4 class="modal-title">Delete Review</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">					
+							<p>Are you sure you want to delete the review</p>
+							<p class="text-warning"><small>This action cannot be undone.</small></p>
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
+							<input type="submit" class="btn btn-danger" value="Delete"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div> 
+		</form>
+	</div>	
+</section>	
+</div>
+/* <Modal
+        animation={true}
+        isOpen={modelOpen}
+        onRequestClose={modalClose}
+        // style={{
+        // display: "flex",
+        // overlay: {
+        //   backgroundColor: "black",
+        //   opacity: "0.9",
+        // },
+        // content: {
+        //   width: "800px",
+        //   height: "450px",
+        //   margin: "auto",
+        // },
+        // }}
+        style={
+          (ModelCss,
+          {
+            display: "flex",
+            overlay: {
+              backgroundColor: "black",
+              opacity: "0.9",
+              width: "1200px",
+              height: "650px",
+              margin: "auto",
+            },
+            content: {
+              width: "800px",
+              height: "450px",
+              margin: "auto",
+            },
+          })
+        }
+      >
+        <div className="row">
+          <div
+            className="model-header col-md-6"
+            style={{
+              overflowY: "initial",
+            }}
+          >
+            <FoodDetails
+              name={props.name}
+              price={props.price}
+              id={props.foodID}
+              description={props.description}
+              image={props.image}
+            />
+            <div className="row">
+              <div className="col-md-5">
+                <button
+                  onClick={toogleOrderStatusHandler}
+                  className="btn btn-primary"
+                >
+                  {isOrderd ? "Cancel order" : "Order now"}
+                </button>
+              </div>
+              <div className="col-md-2"></div>
+              <div className="col-md-5">
+                <button onClick={modalClose} className="btn btn-danger">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="model-body col-md-6">
+            <div
+              style={{
+                height: "350px",
+                overflowY: "scroll",
+              }}
+            >
+              
+                  <FoodComment
+                    userID={post.userID}
+                    foodID={post.foodID}
+                    comment={post.comment}
+                  />
+                </div>
+            </div>
 
-// }
+            <SendComment foodID={props.id} />
+          </div>
+        </div>
+      </Modal> */
+ )
+
+}
 
 
