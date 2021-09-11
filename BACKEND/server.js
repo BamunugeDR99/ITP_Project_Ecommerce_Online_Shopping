@@ -38,6 +38,10 @@ app.use("/teacher",TeacherRouter);
 const ReviewRouter = require("./routes/review.js");
 app.use("/review",ReviewRouter);
 
+const WishlistRouter = require("./routes/itemwishlists.js");
+app.use("/wishlist",WishlistRouter);
+
+
 const connection = mongoose.connection;
 connection.once("open",() => {
     console.log("DB Connection successful");

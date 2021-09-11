@@ -62,7 +62,7 @@ export default function Update_Items(props) {
   useEffect (() => {
     warrentyCheck();
     Color_family();
-    console.log(data.Images);
+    console.log(data.Images[0]);
     categoryCheck();
   })
 
@@ -239,24 +239,23 @@ export default function Update_Items(props) {
         <h3 className="headerName" id="Submitstatus"></h3>
         <h4>ITEM INFORMATION</h4>
         <br />
-{/*        
+       {/* <img src={"/images/homepic1.jpg"}/> */}
         <center>
       <h4>ITEM IMAGES</h4>
-      {items.map((item, index) => {
-        return (
+      
       <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src = {require("../images/"+ data.Images[0]).default} alt="First slide"/>
+        <img class="d-block w-100"  src={"/images/"+ data.Images[0]} alt="First slide"/>
       </div>
       <div class="carousel-item">
   
-        <img class="d-block w-100" src = {imageName} alt="Second slide"/>
+        <img class="d-block w-100"  src={"/images/"+data.Images[1]} alt="Second slide"/>
       </div>
       <div class="carousel-item">
 
 
-        <img class="d-block w-100" src = {imageName} alt="Third slide"/>
+        <img class="d-block w-100"  src={"/images/"+data.Images[2]} alt="Third slide"/>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -269,10 +268,8 @@ export default function Update_Items(props) {
     </a>
   </div>
 
- 
-  );
-})}
- </center>    */}
+
+ </center>   
 <br/><br/>
 
         <div class="card">
