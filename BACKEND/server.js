@@ -41,6 +41,12 @@ app.use("/teacher",TeacherRouter);
 const ReviewRouter = require("./routes/review.js");
 app.use("/review",ReviewRouter);
 
+const PackagesRouter = require("./routes/Packages.js");
+app.use("/Packages" , PackagesRouter);
+
+
+
+
 const connection = mongoose.connection;
 connection.once("open",() => {
     console.log("MongoDB Connection successful");

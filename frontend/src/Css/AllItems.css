@@ -1,0 +1,39 @@
+
+.OffersnPacks.innertag  {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+
+ 
+  }
+
+  .OffersnPacks .innertag #disPercentage{
+
+    background-color:#0057d1;
+    color: white;
+    border-radius: 3px !important;
+  }
+
+  .OffersnPacks.container-fluid{
+      position: relative;
+  }
+
+  .OffersnPacks .btn{
+    background-color: #0057d1;
+  }
+
+  .OffersnPacks .cardText{
+
+    text-align: left;
+  }
+
+  .OffersnPacks .cardText p{
+     margin:0 ;
+  }
+
+  .OffersnPacks .iPrice{
+
+    text-decoration: line-through;
+  }
+
+ 
