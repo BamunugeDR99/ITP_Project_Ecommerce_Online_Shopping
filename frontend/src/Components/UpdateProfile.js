@@ -1,52 +1,67 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-import img1 from "./../images/s.jpg";
+import img1 from "./../images/ij.jpg";
 
 
 
 
-export default function UpdateProfile(){
-
-	const [dob, setDob] = useState("");
-	// let [firstName, setFirstName] = useState("");
-	// let [lastName,setLastName] = useState("");
-	// let [email,setEmail] = useState("");
-	// let [phoneNumber, setPhoneNumber] = useState("");
-	// let [address ,setAddress] = useState("");
-	// let [username ,setUsername] = useState("");
-	// let [password , setPassword ] = useState("");
-	// let [confirmPassword ,setConfirmPassword] = useState("");
-	// let gender = "";
-	// let userImage = "";
-
-	// function genderSelect(){
-	// 	gender = document.getElementById("gender").value;	
-	// }
-	// function images(){
-	// 	userImage = document.getElementById("user_image").value;	
-
-	// }
-	// function birthday(){
-	// 	dob = document.getElementById("birthday").value;	
-
-	// }
-
-	//  genderSelect();
-	//   images();
-	//   birthday();
-
-	const [customer,setCustomer] = useState([]);
+export default function UpdateProfile(props){
 
 	let Dateofb;
 
+	const [birth, setBirthday] = useState("");
+	let [firstName, setFirstName] = useState("");
+	let [lastName,setLastName] = useState("");
+	let [email,setEmail] = useState("");
+	let [phoneNumber, setPhoneNumber] = useState("");
+	//let [dob ,setDob] = useState("");
+	let dob = "";
+	// let [gender, setGender] = useState("");
+	let gender = "";
+	let [address ,setAddress] = useState("");
+	let [username ,setUsername] = useState("");
+	let [password , setPassword ] = useState("");
+	let [confirmPassword ,setConfirmPassword] = useState("");
+	// let [userImage ,setUserImage] = useState("");
+	let userImage = "";
+
+	const [customer,setCustomer] = useState([]);
+
+	function genderSelect(){
+		gender = document.getElementById("gender").value;	
+	}
+	function images(){
+		userImage = document.getElementById("user_image").value;	
+
+	}
+	function birthday(){
+		dob = document.getElementById("birthday").value;	
+
+	}
+	
+
 	useEffect(() =>{
+
+		
 		function getCustomer(){
-			axios.get("http://localhost:8070/Customer/get/6134f21cada0f635d8d1f257").then((res) =>
+			
+			
+			axios.get("http://localhost:8070/Customer/get/613ba0aa025bda15880b3e32").then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
 				Dateofb = res.data.dob;
-				setDob(String(Dateofb.substr(0, 10)));
+				setBirthday(String(Dateofb.substr(0, 10)));
+				setFirstName(res.data.firstName);
+				setLastName(res.data.lastName);
+				setEmail(res.data.email);
+				setPhoneNumber(res.data.phoneNumber);
+				setAddress(res.data.address);
+				setUsername(res.data.username);
+				gender = res.data.gender;
+				userImage = res.data.userImage;
+				dob = res.data.dob;
+				
 
 				
 				
@@ -60,45 +75,54 @@ export default function UpdateProfile(){
 
 	}, []);
 
-	// function updateCus(id){
 
-	// 	const updateCust = {
+	function UpdateCusProfile(){
+		// alert("d0");
+		// e.preventDefault();
+		 genderSelect();
+		images();
+		birthday();
+  
+		let image2 = document.getElementById("user_image").value;
+		  
+		let image3 = image2.substring(12);
 
-	// 	firstName,
-	// 	lastName,
-	// 	email,
-	// 	phoneNumber,
-	// 	dob,
-	// 	gender,
-	// 	address,
-	// 	username,
-		// password,
-		// confirmPassword,
-		// userImage
-		// }
+		const updatecus={
 
-		// console.log(updateCus);
+		firstName,
+		lastName,
+		email,
+		phoneNumber,
+		dob,
+		gender,
+		address,
+		username,
+		password,
+		confirmPassword,
+		userImage : image3
+		}
 
-		// axios.put("http://localhost:8070/Customer/update/6134f21cada0f635d8d1f257").then((res) =>
+		console.log(updatecus);
 
-		// 	{
-				
-		// 		alert("Customer Updted");
-				
-				
-		// 	}).catch((err) =>{
-		// 		alert(err);
-		// 	})
-		// }
+		axios.put("http://localhost:8070/Customer/update/613ba0aa025bda15880b3e32", updatecus).then(()=>{
+		
 
+		alert("Customer Updated Successfully!");
+		
+		props.histroy.push("/userPro");
+			
+		}).catch((err) =>{
+			alert(err)
+		  })
+
+			}
+	
 
 	
-	
-
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/61348b761c7373397cae1587").then((res) =>
+	  axios.delete("http://localhost:8070/Customer/delete/613ba0aa025bda15880b3e32").then((res) =>
 	  {
 		  alert("Customer Deleted Successfully!");
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
@@ -132,10 +156,24 @@ export default function UpdateProfile(){
 	
 					<div className="form-row">
 						<div className="col">
-						  <input type="text" className="form-control" placeholder="First name" Value = {customer.firstName}/>
+						  <input type="text" className="form-control" placeholder="First name" Value = {customer.firstName}
+						  onChange= {
+							(e)=>{
+							  setFirstName(e.target.value);
+							}
+						  }/>
+						
 						</div>
 						<div className="col">
-						  <input type="text" className="form-control" placeholder="Last name" Value = {customer.lastName}/> 
+						  <input type="text" className="form-control" placeholder="Last name" Value = {customer.lastName}
+						   onChange= {
+							(e)=>{
+							  setLastName(e.target.value);
+							}
+						  }
+						  
+						  
+						  /> 
 						</div>
 					 </div>
 					 
@@ -143,26 +181,40 @@ export default function UpdateProfile(){
 					 
 				<div className="form-group">
 				
-					<input type="email" className="form-control" id="exampleInputEmail1" placeholder = "Email"  Value = {customer.email}/>
+					<input type="email" className="form-control" id="exampleInputEmail1" placeholder = "Email"  Value = {customer.email}
+					 onChange= {
+						(e)=>{
+						  setEmail(e.target.value);
+						}
+					  }
+					
+					/>
 					
 					<i className="bi bi-envelope-fill"></i>
 			  </div>
 			  
 			  <div className="form-group">
 					
-					<input type="text" className="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber} />
+					<input type="text" className="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber} 
+					onChange= {
+						(e)=>{
+						  setPhoneNumber(e.target.value);
+						}
+					  }
+					
+					/>
 					<i className="bi bi-telephone-fill"></i>
 			  </div>
 			  
 			  
 			  <div className="form-group">
 					<label htmlFor="exampleInputDOB">Date of Birth</label>
-					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {dob}/> 
+					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/> 
 			  </div>
 			  
 			  
 			  <div className="form-group">
-				<select className="form-control">
+				<select className="form-control" id = "gender">
 					<option>{customer.gender}</option>
 					<option value="Male">Male</option>
 					<option value="Female">Female</option>
@@ -174,13 +226,26 @@ export default function UpdateProfile(){
 			  
 			  <div className="form-group">
 					
-					<input type="text" className="form-control" id="address" placeholder = "Address" Value = {customer.address}/>
+					<input type="text" className="form-control" id="address" placeholder = "Address" Value = {customer.address}
+					onChange= {
+						(e)=>{
+						  setAddress(e.target.value);
+						}
+					  }
+					
+					/>
 					<i className="bi bi-geo-alt-fill"></i>
 			  </div>
 			  
 			  
 			  <div className="form-group">
-					<input type="text" className="form-control" id="username" placeholder = "Username" Value = {customer.username}/>
+					<input type="text" className="form-control" id="username" placeholder = "Username" Value = {customer.username}
+					onChange= {
+						(e)=>{
+						  setUsername(e.target.value);
+						}
+					  }
+					/>
 					<i className="bi bi-person-fill"></i>
 			  </div>
 			  
@@ -216,10 +281,10 @@ export default function UpdateProfile(){
 			  
 			  <div className="form-row">
 						<div className="col">
-						 <button type="submit" className="btn">Update</button>
+						 <button type="button" className="btn" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
 						</div>
 						<div className="col">
-						  <button type="submit" className="btn" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
+						  <button type="button" className="btn" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
 						</div>
 		 </div>
 	
@@ -232,6 +297,7 @@ export default function UpdateProfile(){
 		</div>
 		</div>		
 	
-    )
+    );
 
-}    
+}  
+

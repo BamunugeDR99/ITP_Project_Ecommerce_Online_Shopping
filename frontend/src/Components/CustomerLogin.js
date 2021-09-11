@@ -2,6 +2,9 @@ import axios from "axios";
 import React, {useState} from "react";
 
 
+
+
+
 export default function CustomerLogin(){
 
     let [username,setUsername] = useState("");
@@ -25,9 +28,11 @@ export default function CustomerLogin(){
 
              // sessionStorage.setItem('userID',"sss");
 
-            //alert("Customer loggin Successfully!");
+            alert("Customer loggin Successfully!");
             console.log("logging success");
             console.log(res.data);
+            setErrorMsg("");
+
 
           }).catch((err) =>{
 
@@ -105,7 +110,9 @@ export default function CustomerLogin(){
                     </div>
                 </div> 
                 <div className="col-md-6">
+                {/* <img src={img6} alt="" id="LoginI"/> */}
                     <div className="myRightCtn">
+                  
                             <div className="box"><header><b>Welcome to login</b></header>
                             
                             <h4 className ="acc" >Don't have an account?</h4><br/>

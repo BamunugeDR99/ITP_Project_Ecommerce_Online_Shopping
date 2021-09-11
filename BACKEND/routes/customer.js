@@ -1,9 +1,10 @@
 const router = require("express").Router();
 let Customer = require("../modules/Customer");
+const bcrypt = require('bcryptjs');
 
 
 //Customer SignUp
-router.route("/add").post((req,res)=>{
+router.route("/add").post(async(req,res)=>{
 
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -16,6 +17,22 @@ router.route("/add").post((req,res)=>{
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
     const userImage = req.body.userImage;
+
+ try{
+
+   const emailExist = await Customer.findOne({ email: email});
+
+   if(emailExist){
+
+     return res.status(422).json({ error: "Email Already Exist"});
+   }
+
+   const usernameExist = await Customer.findOne({ username: username});
+
+   if(usernameExist){
+
+    return res.status(422).json({ error: "Username Already Exist"});
+  }
 
     const newCustomer = new Customer({
         firstName,
@@ -31,14 +48,18 @@ router.route("/add").post((req,res)=>{
         userImage
     })
 
-    newCustomer.save().then(()=>{
+   
 
-        res.json("Customer Added Successfully")
 
-    }).catch((err)=>{
+    await newCustomer.save();
+
+
+        res.status(201).json({ message: "Customer Added Successfully!"});
+
+    } catch(err){
 
         console.log(err);
-    })
+    }
 
 }); 
 
@@ -121,6 +142,8 @@ router.post('/loginCustomer', async(req,res) => {
 
             //check with database username
             const customerLogin = await Customer.findOne({username: username});
+
+            const isMatch = await bcrypt.compare(password, customerLogin.password);
     
             //console.log(customerLogin);
             if(!customerLogin){
@@ -129,18 +152,19 @@ router.post('/loginCustomer', async(req,res) => {
 
             }
 
-            else if (password == customerLogin.password){
+            else if (!isMatch){
 
-                //res.json({message: "Customer Sign In Successfully"});
+               
           //console.log(res.status.error);
-                res.json({customerLogin: {
-                    _id : customerLogin._id,
-                }})
+                res.status(400).json({error: "Invalid Credientials"});
                
                 
             }else{ 
 
-                res.status(400).json({error: "Invalid Credientials"});
+               //res.json({message: "Customer Sign In Successfully"});
+                res.json({customerLogin: {
+                    _id : customerLogin._id,
+                }})
                
             }
           

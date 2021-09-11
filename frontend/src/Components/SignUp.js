@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import img1 from "./../images/s.jpg";
+import img1 from "./../images/kl.jpg";
 
 
 function SignUp(props){
@@ -20,6 +20,9 @@ function SignUp(props){
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
 	let userImage = "";
+
+
+	let [errorMsg,setErrorMsg] = useState("");
 	let flag = 0;
 
   
@@ -36,8 +39,9 @@ function SignUp(props){
 	}
 	
 	function checkPassword(){
-		const password = document.getElelmentById("exampleInputPassword1").value;
-		const confirmPassword = document.getElelmentById("exampleInputPassword2").value;
+
+		const password = document.getElementById("CusPassword").value;
+		const confirmPassword = document.getElementById("CusConfirmPsw").value;
 		
 		if(password == confirmPassword){
 			flag = 1;
@@ -57,6 +61,8 @@ function SignUp(props){
 	  let image2 = document.getElementById("user_image").value;
 		
 	  let image3 = image2.substring(12);
+
+	 
   	if(flag == 1){
 		
 	  const newCustomer = {
@@ -89,11 +95,16 @@ function SignUp(props){
 		setConfirmPassword(" ");
 		
 	alert("Customer Added Successfully!");
+	setErrorMsg("");
 	
 		
-		
 	}).catch((err) =>{
-		alert(err)
+
+		console.log(err.response.data);
+		alert(err.response.data.error);
+		setErrorMsg(err.response.data.error);
+
+		
 	  })
 		}
 	}
@@ -111,6 +122,8 @@ function SignUp(props){
 				
 				<form action=""  onSubmit = {sendData}>
 					<h3 id = "sign_up">Sign Up</h3>
+
+					<h6 id="signupError">{errorMsg}</h6>
 	
 					<div className="form-row">
 						<div className="col">
@@ -201,7 +214,7 @@ function SignUp(props){
 			  
 			  <div className="form-group">
 					
-					<input type="password" className="form-control" id="exampleInputPassword1" placeholder = "Password"
+					<input type="password" className="form-control" id="CusPassword" placeholder = "Password"
 					onChange= {
 						(e)=>{
 						  setPassword(e.target.value);
@@ -212,7 +225,7 @@ function SignUp(props){
 			  
 			   <div className="form-group">
 					
-					<input type="password" className="form-control" id="exampleInputPassword2" placeholder = "Confirm Password"
+					<input type="password" className="form-control" id="CusConfirmPsw" placeholder = "Confirm Password"
 					onChange= {
 						(e)=>{
 						  setConfirmPassword(e.target.value);

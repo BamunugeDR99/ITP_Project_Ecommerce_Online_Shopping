@@ -3,7 +3,7 @@ import React, {useState,useEffect} from "react";
 
 
 
-function UserProfile(){
+function UserProfile(props){
 
   const [customer,setCustomer] = useState([]);
   
@@ -11,7 +11,7 @@ function UserProfile(){
   
   useEffect(() =>{
       function getCustomer(){
-          axios.get("http://localhost:8070/Customer/get/6136169f9e12304460f71324").then((res) =>
+          axios.get("http://localhost:8070/Customer/get/613ba0aa025bda15880b3e32").then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
@@ -32,6 +32,13 @@ function UserProfile(){
     // image();
   }, []);
 
+  function Updatecus(id){
+
+      console.log(id);
+      props.history.push("/update/" +id)
+     
+  }
+
     return(
 
       <div className="CustomerPro">
@@ -44,7 +51,7 @@ function UserProfile(){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src={"Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
                     <div className="mt-3">
                       <h2> {customer.firstName} {customer.lastName}</h2>
                       <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>
@@ -132,7 +139,7 @@ function UserProfile(){
 			
 			            <div className="row1">
                     <div className="col-sm-12">
-                       <button type="submit" className="btnedit">Edit</button>
+                       <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}>Edit</button>
 
                     </div>
                    

@@ -20,7 +20,7 @@ import './css/style.css';
 import './css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './css/update.css';
-import ForgotP from './Components/ForgotP';
+//import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
 
 
@@ -31,15 +31,23 @@ function App() {
 <Router>
   
       <div>
+        <SignUp/>
 
 
-     <CustomerList/>
-     <Route path = "/forgot" exact component = {ForgotP}/>
-      
-      {/*<Route path = "/" exact component = {Login}/>
-      <Route path = "/Home" exact component= {AllStudents}/>
-      <Route path = "/add" exact component = {AddStudent}/>
-  <Route path = "/update/:id" exact component = {UpdateStudent}/>*/}
+     
+{/* 
+   <Route path = "/Cuslogin" exact component = {CustomerLogin}/>
+   <Route path = "/signup" exact component = {SignUp}/>
+
+   <Route path = "/UpdatePro/:id" exact component = {UpdateProfile}/>
+   <Route path = "/userPro" exact component = {UserProfile}/>
+   <Route path = "/userPro" exact component = {UserProfile}/>
+    */}
+    
+    {/*{/*<Route path = "/" exact component = {Login}/>
+    <Route path = "/Home" exact component= {AllStudents}/>
+    <Route path = "/add" exact component = {AddStudent}/>
+<Route path = "/update/:id" exact component = {UpdateStudent}/>*/} 
 
 
 

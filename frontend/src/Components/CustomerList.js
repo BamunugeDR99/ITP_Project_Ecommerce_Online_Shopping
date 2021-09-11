@@ -56,7 +56,7 @@ export default function CustomerList(){
         <br/>
         
         <div class= "card">
-        <table class="table">
+        <table class="table table-hover">
           <thead class="theadD">
             <tr>
             <th>Customer ID</th>
@@ -81,7 +81,7 @@ return (
      	  	  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
      	  	  <td data-label="Other Details">
 
-               <img src = "https://bootdey.com/img/Content/avatar/avatar7.png"  width="100px" height="100px"/>
+               <img src = {"Images/" + customer.userImage}  width="100px" height="100px"/>
               { 
                 show? <p>{customer.email}</p>:null
               }  
