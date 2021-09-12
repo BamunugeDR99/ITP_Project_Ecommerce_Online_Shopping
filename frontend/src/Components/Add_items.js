@@ -93,7 +93,7 @@ export default function Add_items(props) {
         document.getElementById("Submitstatus").innerHTML =
           "Item Added SuccessFully!";
         document.getElementById("Submitstatus").style.color = "#A4DE02";
-        // props.history.push("/Home");
+         props.history.push("/allItems");
         // document.getElementById("txt").innerHTML = "Student Added Successfully!";
       })
       .catch((err) => {
@@ -107,7 +107,7 @@ export default function Add_items(props) {
   }
   return (
     <div>
-      <div class="height-100 bg-light">
+      <div>
         <br />
         <br />
         <br />

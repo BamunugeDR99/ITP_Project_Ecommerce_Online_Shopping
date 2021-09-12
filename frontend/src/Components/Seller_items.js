@@ -405,7 +405,7 @@ function displayStarRating(id,totalAverage){
 
   return (
     <div>
-      <div class="height-100 bg-light">
+      <div >
         <br />
         <br />
         <br />
@@ -654,7 +654,9 @@ function displayStarRating(id,totalAverage){
                     </center>
                   </div>
                 </div>
+                <br/>
               </div>
+              
             );
           })}
         </div>

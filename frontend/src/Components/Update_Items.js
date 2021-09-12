@@ -229,7 +229,7 @@ export default function Update_Items(props) {
   return (
     
     <div>
-      <div class="height-100 bg-light">
+      <div>
         <br />
         <br />
         <br />
