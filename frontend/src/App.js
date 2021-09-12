@@ -26,6 +26,8 @@ import test from './Components/test';
 
 
 
+import TestFile from './Components/TestFile';
+
 
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -34,27 +36,28 @@ function App() {
       <div>
 
       <Header/>
-      <Route path = "/contactad" exact component = {ContactAdmin}/>
-      <Route path = "/contactsel" exact component = {ContactSeller}/>
+       <Route path = "/contactad" exact component = {ContactAdmin}/>
+       <Route path = "/contactsel" exact component = {ContactSeller}/> 
       <Route path = "/cusrev" exact component = {CustomerReviews}/>
       <Route path = "/myrev" exact component = {YourReviews}/>
       
-      <Route path = "/rev" exact component = {MyReviews}/>
-      <Route path = "/wrev" exact component = {WriteReview}/>
-      <Route path = "/report" exact component = {Report}/>
-      <Route path = "/adrep" exact component = {AdminReport}/>
-      <Route path = "/selmsg" exact component = {Sellermsg}/>
-      <Route path = "/msg" exact component = {CustomerMsg}/>
-      <Route path = "/itemview" exact component = {ItemView}/>
-      <Route path = "/selrev" exact component = {SellerReview}/>
-      <Route path = "/test" exact component = {test}/>
-      <Route path = "/" exact component = {Login}/>
-      <Route path = "/Home" exact component= {AllStudents}/>
-      <Route path = "/add" exact component = {AddStudent}/>
-      <Route path = "/update/:id" exact component = {UpdateStudent}/>
+       <Route path = "/rev" exact component = {MyReviews}/> 
+       <Route path = "/wrev" exact component = {WriteReview}/> 
+       <Route path = "/report" exact component = {Report}/> 
+       <Route path = "/adrep" exact component = {AdminReport}/> 
+     <Route path = "/selmsg" exact component = {Sellermsg}/> 
+       <Route path = "/msg" exact component = {CustomerMsg}/> 
+       <Route path = "/itemview" exact component = {ItemView}/> 
+       <Route path = "/selrev" exact component = {SellerReview}/> 
+       <Route path = "/test" exact component = {test}/> 
+       <Route path = "/" exact component = {Login}/> 
+     <Route path = "/Home" exact component= {AllStudents}/>
+       <Route path = "/add" exact component = {AddStudent}/> 
+       <Route path = "/update/:id" exact component = {UpdateStudent}/> 
+       <Route path = "/testing" exact component = {TestFile}/> 
 
 
-      {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
+      {/* add default to last <Route path = "/" exact component = {AddStudent}/>
 {/* <AddStudent/> */}
     </div>
   </Router>

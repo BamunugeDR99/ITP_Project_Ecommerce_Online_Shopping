@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import "../CSS/yourreviews.css";
@@ -17,6 +17,7 @@ export default function YourReviews(props){
   let itemImage = "";
   let Review = "";
   let [abc, setabc] = useState([]);
+  let [abcde, setabcde] = useState([]);
   let reviewWithItem = {
 
     itemName,
@@ -36,12 +37,12 @@ export default function YourReviews(props){
         .then((res) => {
           //setReview(res.data);
           const filter = res.data.filter(
-            (customerrev) => customerrev.customerid === "6136208b00a06503a0eea457"
+            (customerrev) => customerrev.customerid === "613b4f1a73eceb40702affe6"
           );
          // review = setReview(filter);
-          re = filter;
-        //   console.log(re.length);
-
+        re = filter;
+        console.log(re.length);
+        console.log(re);
 
           for (let i = 0; i < re.length; i++) {
             console.log("sdf");
@@ -49,21 +50,22 @@ export default function YourReviews(props){
             // console.log(itemid);
       
             axios
-              .get("http://localhost:8070/itemtest/get/" + itemid)
+              .get("http://localhost:8070/items/get/" + itemid)
               .then((res) => {
                 // console.log(res.data);
       
                 reviewWithItem = {
-                    itemName : res.data.name,
-                    itemImage : res.data.itemimage,
+                    itemName : res.data.Item_name,
+                    itemImage : res.data.Images[0],
                     Review : re[i].description
                 }    
       
-                // console.log(reviewWithCustomer);
                 reviewWithItems.push(reviewWithItem);
-                //console.log(reviewWithItems);
+                console.log(reviewWithItems);
+                // setabcde(reviewWithItems);
                 setabc(reviewWithItems);
-              
+                console.log(abc)
+            
               })
               .catch((err) => {
                 alert(err);
@@ -138,7 +140,7 @@ function deletee(id){
 				<h1>Your Reviews</h1>
 			</div>			
 
-			={abc.map((reviewss) =>{
+			{abc.map((reviewss) =>{
 
 			return(
 				<div className="testimonial-box-container">
@@ -148,7 +150,7 @@ function deletee(id){
 
 						
 								<div class="profile-img">
-									<img src={`../images/${reviewss.itemImage}`} className="card-img-top"/>
+									{/* <img src={`../images/${reviewss.itemImage}`} className="card-img-top"/> */}
 								</div>
 							
 
