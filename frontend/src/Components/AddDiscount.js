@@ -10,6 +10,7 @@ function AddDiscount(props) {
     const [FinalPrice, setFinalPrice] = useState("");
 
     const [item, setItem] = useState([]);
+   
     const [image, setImage] = useState("");
 
     useEffect(() => {
@@ -61,12 +62,31 @@ function AddDiscount(props) {
         axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
 
             alert("Added Discount to the Item");
+
+            props.history.push("/alldiscounteditems");
         }).catch((err) => {
 
             alert(err);
         })
     }
 
+
+    function CalcDiscount(e){
+
+        setDiscount(e.target.value);
+
+        let dis = document.getElementById("discountPercentage").value;
+
+        console.log(dis);
+        let finalP  = Number(item.Price) - (Number(item.Price) * (Number(dis)/100));
+
+        console.log(finalP);
+
+        document.getElementById("newPrice").value = finalP;
+
+        setFinalPrice(finalP);
+
+    }
 
 
     return (
@@ -113,20 +133,16 @@ function AddDiscount(props) {
 
                                 <div className="col-md-12"><label className="labels">Discount Percentage</label><input type="text" name="discountPercentage" id="discountPercentage" className="form-control" placeholder="" 
 
-                                    onChange={(e) => {
-                                        setDiscount(e.target.value);
-                                    }}
+                                    onChange={CalcDiscount}
 
 
                                 /> </div> <br />
 
-                                <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" 
-
-                                    onChange={(e) => {
-                                        setFinalPrice(e.target.value);
-                                    }} />
+                                <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder=""  readOnly = {true} />
 
                                 </div>
+
+                        
                                 <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Add Discount</button></div>
 
 

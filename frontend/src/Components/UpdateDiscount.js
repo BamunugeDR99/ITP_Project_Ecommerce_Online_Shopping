@@ -76,10 +76,21 @@ function UpdateDiscount(props) {
 
 
 
+    
+    function CalcDiscount(e){
 
-    function calculateDiscount(discountP){
+        setDiscount(e.target.value);
 
-        
+        let dis = document.getElementById("discountPercentage").value;
+
+        console.log(dis);
+        let finalP  = Number(item.Price) - (Number(item.Price) * (Number(dis)/100));
+
+        console.log(finalP);
+
+        document.getElementById("newPrice").value = finalP;
+
+        setFinalPrice(finalP);
 
     }
 
@@ -174,18 +185,12 @@ function UpdateDiscount(props) {
 
                                 <div className="col-md-12"><label className="labels">Discount Percentage</label><input type="text" name="discountPercentage" id="discountPercentage" className="form-control" placeholder="" Value= {item.DiscountPrecentage}
 
-                                    onChange={(e) => {
-                                        setDiscount(e.target.value);
-                                    }}
+                                     onChange={CalcDiscount}
 
 
                                 /> </div> <br />
 
-                                <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" Value={item.FinalPrice}
-
-                                    onChange={(e) => {
-                                        setFinalPrice(e.target.value);
-                                    }} />
+                                <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" Value={item.FinalPrice} readOnly = {true} />
 
                                 </div>
                                 <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit" onClick = {UpdateData}>Update Discount</button></div>

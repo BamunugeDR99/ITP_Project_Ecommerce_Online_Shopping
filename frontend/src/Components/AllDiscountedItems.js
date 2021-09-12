@@ -13,6 +13,7 @@ export default function AllDiscountedItems(props) {
 
     const [items, setItems] = useState([]); //Defines that items is an array
     let fitems = [];
+    const [ratings, setRatings] = useState([]);
     const [loads, setLoad] = useState(false);
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
     useEffect(() => {
@@ -40,8 +41,22 @@ export default function AllDiscountedItems(props) {
         }
 
 
-        console.log("Hello3");
+        function displayRating(){
+            axios
+            .get("http://localhost:8070/review/get")
+            .then((res) => {
+              setRatings(res.data);
+              //console.log(ratings[0].itemid)
+              console.log(res.data);
+            })
+            .catch((err) => {
+              alert(err);
+            });
+          }
 
+
+        
+          displayRating();
         getItems();
 
 
@@ -49,8 +64,156 @@ export default function AllDiscountedItems(props) {
     }, [])
 
 
+    useEffect(() => {
+        displayStatus();
+        calculateStarRating();
+        
+      })
 
 
+
+      function calculateStarRating(){
+        let totalNoRatings = 0;
+        let totalstarforRatingCount = 0;
+        let starCount = 0;
+        let average = 0; 
+        for(let i = 0; i < items.length; i++){
+          
+          totalNoRatings = 0;
+          totalstarforRatingCount = 0;
+          starCount = 0;
+          average = 0;
+        
+          for(let j = 0; j < ratings.length; j++){
+              if(items[i]._id == ratings[j].itemid){
+                totalNoRatings++;
+              }
+      
+              if(items[i]._id == ratings[j].itemid){
+                starCount += parseInt(ratings[j].noofstars);  
+              }
+      
+          }
+      
+          totalstarforRatingCount = totalNoRatings * 5;
+          average = parseInt((starCount / totalstarforRatingCount) * 5);
+          console.log(average);
+          displayStarRating(i,average);
+      
+        }
+      
+      }
+      
+      
+      function displayStarRating(id,totalAverage){
+        let txt = "";
+          if(isNaN(totalAverage)){
+            txt = "No Ratings yet!";
+            document.getElementById(id +'stars').innerHTML = txt;
+            document.getElementById(id +'stars').style.color = "#FF0000";
+          }else{
+          
+          for(let j = 0; j < totalAverage; j++){
+            txt += '<span class="fa fa-star checked"></span>';
+          }
+          for(let j = 0; j < (5 - totalAverage); j++){
+            txt += '<span class="fa fa-star"></span>';
+          }
+         
+      
+          document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+         }
+      }
+      
+
+      function displayStatus(){
+        for(let i = 0; i < items.length; i++){
+    
+          if(items[i].ItemAvailabilityStatus == true){
+            document.getElementById(i+'x').checked = true;
+            document.getElementById(i).innerHTML = "Item Available";
+            document.getElementById(i).style.color = "#A4DE02";
+    
+          }else if(items[i].ItemAvailabilityStatus == false){
+            document.getElementById(i+'x').checked = false;
+            document.getElementById(i).innerHTML = "Item Out of Stock";
+            document.getElementById(i).style.color = "#FF0000";
+          }
+        }
+          
+      }
+    
+
+
+      function statusChange(id,index){
+
+        console.log(id);
+        console.log(index);
+    
+        if(document.getElementById(index+'x').checked == false){
+    
+          axios
+          .get("http://localhost:8070/items/get/" + id)
+          .then((res) => {
+            
+            
+              //let data = res.data;
+              res.data.ItemAvailabilityStatus = false;
+              console.log(res.data);
+          axios
+          .put("http://localhost:8070/items/update/" + id, res.data)
+          .then(() => {
+            
+          document.getElementById(index).innerHTML = "Item Out of stock";
+          document.getElementById(index).style.color = "#FF0000";
+      
+      
+          })
+          .catch((err) => {
+            alert(err);
+           
+          });
+      
+      
+            
+          })
+          .catch((err) => {
+            alert(err);
+          });
+        }else if(document.getElementById(index+'x').checked == true){
+    
+          axios
+          .get("http://localhost:8070/items/get/" + id)
+          .then((res) => {
+            
+            
+              //let data = res.data;
+              res.data.ItemAvailabilityStatus = true;
+              console.log(res.data);
+          axios
+          .put("http://localhost:8070/items/update/" + id, res.data)
+          .then(() => {
+            
+          document.getElementById(index).innerHTML = "Item Available";
+          document.getElementById(index).style.color = "#A4DE02";
+      
+      
+          })
+          .catch((err) => {
+            alert(err);
+           
+          });
+      
+      
+            
+          })
+          .catch((err) => {
+            alert(err);
+          });
+    
+        }
+      
+      }
 
 
 
@@ -157,11 +320,40 @@ export default function AllDiscountedItems(props) {
                                         </div>
                                         <div className="card-body">
                                             <div className="cardText">
+
                                                 <p><b>{item.Item_name}</b></p>
+
+                                                <div  class="card-text">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span><span> </span> <span>4.0 / 5.0</span>
+                      </div>
+
+
+
                                                 <p><b>Rs.</b>{item.FinalPrice}.00</p>
                                                 <p className="iPrice" style={{ padding: '0px' }}> Rs.{item.Price}.00</p>
-                                                <p>Rating</p>
+                                               
                                             </div>
+
+
+                                            <center>
+                      <h6>Item Availability Status</h6>
+                      <label class="switch">
+                        <input type="checkbox"   />
+                        <span class="slider round"></span>
+                      </label>
+                      <h6 ></h6>
+                    </center>
+
+
+
+
+
+
+
                                             <a href="#" className="btn btn-primary" onClick={() => update(item._id)}>Update Discount</a>
 
                                         </div>
