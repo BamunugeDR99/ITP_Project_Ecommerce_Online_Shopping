@@ -7,9 +7,11 @@ import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
 import SellerProfile from './Components/SellerProfile';
 import SellerLogin from './Components/SellerLogin';
-import SellerAlerts from './Components/SellerAlerts';
+
 import SellerForget from './Components/SellerForget';
 import UpdateSeller from './Components/UpdateSeller';
+
+import LoginSeller from './Components/LoginSeller';
 
 
 function App() {
@@ -22,9 +24,11 @@ function App() {
       <Route path = "/sellreq" exact component = {AllSellers}/>
       <Route path = "/sellpro" exact component = {SellerProfile}/>
       <Route path = "/selllog" exact component = {SellerLogin}/>
-      <Route path = "/sellalt" exact component = {SellerAlerts}/>
+
       <Route path = "/sellfor" exact component = {SellerForget}/>
       <Route path = "/update/:id" exact component = {UpdateSeller}/>
+
+      <Route path = "/seller/login" exact component = {LoginSeller}/>
 
     </div>
   </Router>

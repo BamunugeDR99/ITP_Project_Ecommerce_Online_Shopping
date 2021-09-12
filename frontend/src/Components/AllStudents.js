@@ -25,75 +25,7 @@ export default function AllStudents(props){
        
     }, []);
 
-    function update(id){
-        console.log(id);
-        props.history.push("/update/" + id);
-    };
-
-    function deletee(id){
-        axios.delete("http://localhost:8070/student/delete/" + id).then((res) =>
-        {
-            document.getElementById("txt").innerHTML = "Student Deleted Successfully!";
-            const afterDeleteStudent = students.filter(student=>student._id != id);
-            setStudents(afterDeleteStudent);
-        }).catch((err) =>{
-            alert(err);
-        })
-    }
-//search
-    function filterContent(data,userSearch){
-        let result = data.filter((post) => 
-        post.name.toLowerCase().includes(userSearch) || post.gender.toLowerCase() === userSearch);
-        setStudents(result);
-        
-        if(result != null){
-            setLoad(false);
-            //document.getElementById("txt2").innerHTML = "";
-        }
-        
-        if(result.length == 0){
-            //alert("d");
-            setLoad(true);
-            //document.getElementById("txt2").innerHTML = "No Result Found!";
-            
-
-        }
-        
-    }
-	
-	// search
-    function handleSearch(e){
-        let userSearch = e;
-        //document.getElementsByTagName("CircleLoader").loading = '{true}';
-        
-        axios.get("http://localhost:8070/student/getStudents").then((res) =>
-        {
-            //setStudents(res.data);
-            //console.log(res.data);
-            filterContent(res.data,userSearch);
-            
-            
-        }).catch((err) =>{
-            alert(err);
-        })
-
-    }
-
-
-    function more(num){
-
-        if(document.getElementById(num).innerHTML  == ""){
-            document.getElementById(num).innerHTML= "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.";
-
-        }else{
-            document.getElementById(num).innerHTML= "";
-        }
-
-    }
-
-    let countxx = 0;
- let userID = localStorage.getItem("userID");
-let imagename = "imgur_com.jpg";
+    
 
     return(
         

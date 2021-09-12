@@ -33,15 +33,7 @@ export default function SellerRegistration(props){
 	console.log(newseller);
 
 	axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
-	
-	// setownername(" ");
-	// setmobile(" ");
-	// setcompanyname(" ");
-	// setaddress(" ");
-	// setyear(" ");
-	// setemail(" ");
-	// setdescription(" ");
-	// setlogo(" ");
+
 
 
 	alert("Request Sent");

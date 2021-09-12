@@ -43,6 +43,17 @@ return(
                     </div>
                 </div>
             </form>
+            <div class="forgot">                
+                <ol class="list-unstyled"><br/><center>
+                <label for="email-for-pass">Change Password</label> 
+                <input class="form-control" type="text" id="draft1" required /> <br/>
+                <label for="email-for-pass">New Password</label>
+                <input class="form-control" type="text" id="draft2" required /> <br/>
+                <label for="email-for-pass">Code</label>
+                <input class="form-control" type="text" id="draft3" required /> <br/>
+                </center> 
+                </ol>
+            </div>
         </div>
     </div>
 </div>
