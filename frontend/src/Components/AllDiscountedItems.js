@@ -308,7 +308,7 @@ export default function AllDiscountedItems(props) {
 
 
                     <div className="row">
-                        {items.map((item) => {
+                        {items.map((item, index) => {
                             return (
 
 
@@ -322,14 +322,14 @@ export default function AllDiscountedItems(props) {
                                             <div className="cardText">
 
                                                 <p><b>{item.Item_name}</b></p>
-
-                                                <div  class="card-text">
+                                                <div id = {index +'stars'} class="card-text">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span><span> </span> <span>4.0 / 5.0</span>
+                        <span class="fa fa-star"></span><span> </span> <span id = {index +'review'}>4.0 / 5.0</span>
                       </div>
+
 
 
 
@@ -342,13 +342,11 @@ export default function AllDiscountedItems(props) {
                                             <center>
                       <h6>Item Availability Status</h6>
                       <label class="switch">
-                        <input type="checkbox"   />
+                        <input type="checkbox" id ={index + "x"}  onChange = {() => statusChange(item._id,index)}/>
                         <span class="slider round"></span>
                       </label>
-                      <h6 ></h6>
+                      <h6 id ={index}></h6>
                     </center>
-
-
 
 
 
