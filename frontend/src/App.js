@@ -20,6 +20,8 @@ import './css/style.css';
 import './css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './css/update.css';
+import ForgotP from './Components/ForgotP';
+
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
 
@@ -31,7 +33,7 @@ function App() {
 <Router>
   
       <div>
-        <SignUp/>
+        <CustomerLogin/>
 
 
      

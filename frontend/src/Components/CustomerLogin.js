@@ -7,6 +7,31 @@ import React, {useState} from "react";
 
 export default function CustomerLogin(){
 
+    //remember me
+
+    const[rememberMe, setRememberMe] = useState(false);
+
+    const handleChange = (event) => {
+
+        const input = event.target;
+        const value = input.type === 'checkbox' ? input.checked : input.value;
+    
+       
+        setRememberMe(value);
+
+        
+      };
+    
+
+    const [passwordShown, setPasswordShown] = useState(false);
+
+	// Password toggle handler
+	const togglePassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setPasswordShown(!passwordShown);
+	  };
+
     let [username,setUsername] = useState("");
     let [password,setPassword] = useState("");
     let [errorMsg,setErrorMsg] = useState("");
@@ -21,6 +46,11 @@ export default function CustomerLogin(){
             password,
           }
 
+        
+        localStorage.setItem('rememberMe', rememberMe);
+        localStorage.setItem('username', rememberMe ? username : '');
+         
+         
           axios.post("http://localhost:8070/Customer/loginCustomer", loginCredentials).then((res)=>{
 
            // setCustomer(res.data.customerLogin);
@@ -46,6 +76,9 @@ export default function CustomerLogin(){
     }
 
 
+        
+
+
     return(
 
         <div className = "CustomerLogin">
@@ -61,11 +94,12 @@ export default function CustomerLogin(){
                                 <h2>{errorMsg}</h2>
 							<label htmlFor="username"><b>Username</b></label><br/>
                                 <i className="fas fa-user"></i>
-                                <input className="myInput" type="text" placeholder="Username" id="username" 
+                                <input className="myInput" type="text" placeholder="Username" name="username" onChange={handleChange}
                                 
                                 onChange= {
                                     (e)=>{
                                       setUsername(e.target.value);
+                                     
                                     } }
                                 
                                     required/> 
@@ -76,15 +110,18 @@ export default function CustomerLogin(){
                             <div className="form-group">
 							<label htmlFor="password"><b>Password</b></label><br/>
                                 <i className="fas fa-lock"></i>
-                                <input className="myInput" type="password" id="password" placeholder="Password" 
-                                
+                                <i className="bi bi-eye-fill" id="eyer" onClick={togglePassword}></i>
+                                <input className="myInput" type={passwordShown ? "text" : "password"} id="Logipassword" placeholder="Password"  
+                               
                                 onChange= {
                                     (e)=>{
                                       setPassword(e.target.value);
+                                     
                                     } }
                                 
                                 
                                     required /> 
+                                    
                             </div>
 
                             <br/>
@@ -95,7 +132,7 @@ export default function CustomerLogin(){
 							
 							<div className="form-row">
 								<div className="col">
-                                <input type="checkbox" id="che_remember" value="Remember me"/>
+                                <input type="checkbox" name="rememberMe" checked={rememberMe} onChange={handleChange}/>
 								<label className="remember"> Remember me </label>
 								</div>
 						

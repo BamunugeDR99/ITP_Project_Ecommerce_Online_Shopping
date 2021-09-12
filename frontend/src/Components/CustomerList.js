@@ -23,6 +23,8 @@ export default function CustomerList(){
         
        
     }, []);
+
+ 
     
     function deleteCus(id){
       axios.delete("http://localhost:8070/Customer/delete/" + id).then((res) =>
@@ -55,8 +57,8 @@ export default function CustomerList(){
 
         <br/>
         
-        <div class= "card">
-        <table class="table table-hover">
+        <div class= "CusListcard">
+        <table class="tablex">
           <thead class="theadD">
             <tr>
             <th>Customer ID</th>

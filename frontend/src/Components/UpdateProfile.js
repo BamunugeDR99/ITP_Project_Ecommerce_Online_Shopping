@@ -7,6 +7,15 @@ import img1 from "./../images/ij.jpg";
 
 export default function UpdateProfile(props){
 
+	const [passwordShown, setPasswordShown] = useState(false);
+
+	// Password toggle handler
+	const togglePassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setPasswordShown(!passwordShown);
+	  };
+
 	let Dateofb;
 
 	const [birth, setBirthday] = useState("");
@@ -23,6 +32,7 @@ export default function UpdateProfile(props){
 	let [password , setPassword ] = useState("");
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
+	
 	let userImage = "";
 
 	const [customer,setCustomer] = useState([]);
@@ -257,19 +267,22 @@ export default function UpdateProfile(props){
 			   
 			   <div className="form-group">
 					
-					<input type="password" className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			  <div className="form-group">
 					
-					<input type="password" className="form-control" id="exampleInputPassword1" placeholder = "Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Password"/>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			   <div className="form-group">
 					
-					<input type="password" className="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"/>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  

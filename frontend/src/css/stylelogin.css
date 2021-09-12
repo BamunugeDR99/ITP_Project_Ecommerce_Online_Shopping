@@ -28,7 +28,7 @@
 .CustomerLogin  .myRightCtn {
     position: relative;
    
-    background-image: url("./../images/lm.jpg");
+    background-image: url("./../images/abc.jpg");
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; 
@@ -176,3 +176,8 @@
     padding-left:10px;
 }
   
+.CustomerLogin  .form-group #eyer {
+  position: absolute;
+  margin-top: 14px;
+  right: 40px;
+  cursor: pointer ; }

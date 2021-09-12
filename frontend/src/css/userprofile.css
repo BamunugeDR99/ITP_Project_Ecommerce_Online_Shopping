@@ -93,3 +93,14 @@
 .CustomerPro .row1{
    display: flex;
     }
+
+.CustomerPro .col-sm-9{
+
+    color:rgb(92, 92, 92) !important;
+
+}
+
+.CustomerPro .text-secondary{
+
+    color:rgb(92, 92, 92) !important;
+}

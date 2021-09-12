@@ -6,6 +6,17 @@ import img1 from "./../images/kl.jpg";
 
 function SignUp(props){
 
+	const [passwordShown, setPasswordShown] = useState(false);
+
+	// Password toggle handler
+	const togglePassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setPasswordShown(!passwordShown);
+	  };
+	
+
+	
 	let [firstName, setFirstName] = useState("");
 	let [lastName,setLastName] = useState("");
 	let [email,setEmail] = useState("");
@@ -37,7 +48,9 @@ function SignUp(props){
 		dob = document.getElementById("birthday").value;	
 
 	}
+
 	
+
 	function checkPassword(){
 
 		const password = document.getElementById("CusPassword").value;
@@ -109,8 +122,8 @@ function SignUp(props){
 		}
 	}
 	
-
     return(
+
 
 		<div className = "CustomerSignup">
 
@@ -214,23 +227,26 @@ function SignUp(props){
 			  
 			  <div className="form-group">
 					
-					<input type="password" className="form-control" id="CusPassword" placeholder = "Password"
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="CusPassword" placeholder = "Password"
 					onChange= {
 						(e)=>{
 						  setPassword(e.target.value);
 						}
 					  }/>
+
+					<i className="bi bi-eye-fill" id="eye" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			   <div className="form-group">
 					
-					<input type="password" className="form-control" id="CusConfirmPsw" placeholder = "Confirm Password"
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="CusConfirmPsw" placeholder = "Confirm Password"
 					onChange= {
 						(e)=>{
 						  setConfirmPassword(e.target.value);
 						}
 					  }/>
+					 <i className="bi bi-eye-fill" id="eye" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  

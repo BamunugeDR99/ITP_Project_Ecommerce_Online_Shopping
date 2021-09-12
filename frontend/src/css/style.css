@@ -69,8 +69,14 @@
 
 .CustomerSignup  .form-group i {
     position: absolute;
-    bottom: 10px;
+    bottom: 4px;
     right: 15px; }
+
+.CustomerSignup  .form-group #eye {
+    position: absolute;
+    bottom: 2px;
+    right: 40px;
+    cursor: pointer ; }    
 
  .CustomerSignup #signupError{
 	
