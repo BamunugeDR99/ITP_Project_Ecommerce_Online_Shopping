@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 
 import "../CSS/cusreview.css";
 
 export default function CustomerReviews(props) {
-  let [review, setReview] = useState([]);
-  let re = [];
-  const [customertest, setCustomertest] = useState([]);
-  let [customer, setCustomer] = useState([]);
+  let reviews = [];
   let customers = [];
   let customerName = "";
   let customerImage = "";
@@ -28,48 +25,46 @@ export default function CustomerReviews(props) {
         .then((res) => {
           //setReview(res.data);
           const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === "611f4784c259414e3c405a34"
+            (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
           );
-          // review = setReview(filter);
-          re = filter;
-          console.log(re);
-          //   console.log(re.length);
+          reviews = filter;
 
-          for (let i = 0; i < re.length; i++) {
-            console.log("sdf");
-            let customerid = re[i].customerid;
-            // console.log(customerid);
-
-            axios
-              .get("http://localhost:8070/Customer/get/" + customerid)
-              .then((res) => {
-                // console.log(res.data);
-
-                reviewWithCustomer = {
-                  customerName: res.data.firstName,
-                  customerImage: res.data.userImage,
-                  Review: re[i].description,
-                };
-
-                console.log(reviewWithCustomer);
-                reviewWithCustomers.push(reviewWithCustomer);
-                //console.log(reviewWithCustomers);
-                setabc(reviewWithCustomers);
-                // abc = reviewWithCustomers
-                console.log(abc);
-              })
-              .catch((err) => {
-                alert(err);
-              });
-          }
+          axios
+            .get("http://localhost:8070/Customer/getAll")
+            .then((res) => {
+              customers = res.data;
+              createReview(reviews, customers);
+            })
+            .catch((err) => {
+              alert(err);
+            });
         })
         .catch((err) => {
           alert(err);
         });
     }
 
+    function createReview(reviews, customers) {
+      let j = 0;
+      for (let i = 0; i < reviews.length; i++) {
+        j = 0;
+        for (j = 0; j < customers.length; j++) {
+          if (reviews[i].customerid == customers[j]._id) {
+            reviewWithCustomer = {
+              customerName: customers[j].firstName,
+              customerImage: customers[j].userImage,
+              Review: reviews[i].description,
+            };
+
+            reviewWithCustomers.push(reviewWithCustomer);
+          }
+        }
+      }
+
+      setabc(reviewWithCustomers);
+    }
+
     getReview();
-    // getCustomer();
   }, []);
 
   return (
@@ -89,101 +84,45 @@ export default function CustomerReviews(props) {
               what our customers say about us
             </h5>
 
-            {abc.map((reviewss, index) => {
-              return (
-                <div
-                  class="card"
-                  style={{
-                    width: "20%",
-                    margin: "50px",
-                    borderRadius: "15px",
-                    marginTop: "30px",
-                    height: "290px",
-                  }}
-                >
-                  <div class="card-body">
-                    <img
+            <div>
+              {abc.map((reviewss) => {
+                return (
+                  <div
+                    class="card"
+                    style={{
+                      width: "20%",
+                      margin: "50px",
+                      borderRadius: "15px",
+                      marginTop: "30px",
+                      height: "290px",
+                    }}
+                  >
+                    <div class="card-body">
+                      {/* <img
                       src={`../images/${reviewss.customerImage}`}
                       style={{ width: "80%", alignItems: "center" }}
-                    />
-                    {/* <img src =  */}
-                    <h5 class="card-title">{reviewss.customerName}</h5>
-                    <div style={{ color: "#f9d71c", textAlign: "center" }}>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
+                    /> */}
+                      {/* <img src =  */}
+                      <h5 class="card-title">{reviewss.customerName}</h5>
+                      <div style={{ color: "#f9d71c", textAlign: "center" }}>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                      <br />
+                      <p style={{ textAlign: "center", fontSize: "16px" }}>
+                        {reviewss.Review}
+                      </p>
                     </div>
-                    <br />
-                    <p style={{ textAlign: "center", fontSize: "16px" }}>
-                      {reviewss.Review}
-                    </p>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-//  return(
-
-//  <div class="rev">
-//     <h1 id="h1"> Customer Reviews</h1>
-//     <h5 id="h5">what our customers say about us</h5>
-
-//     <div className="row" style={{ padding: '80px' }}>
-
-// 	{review.map((review,index) =>{
-
-//     <h1 id = "txt"></h1>
-//         return(
-
-//         <div className="col-sm-3" >
-//             <div  className="card" style={{width: '18rem'}}>
-//                 <div>
-
-//                 {customers.map((pack)=> {
-//                     return(
-//                         <div>
-//                         <div>
-//                             <img src={`../images/${pack.cusimage}`} className="card-img-top"/>
-//                         </div>
-//                         <div>
-
-//                         <h5>dfb{pack.name}</h5>
-
-//                     </div>
-//                     </div>
-//                     )
-//                     })
-//                     }
-
-//                     <br/>
-//                     <div className="reviews">
-//                             <i class="fas fa-star"></i>
-//                             <i class="fas fa-star"></i>
-//                             <i class="fas fa-star"></i>
-//                             <i class="fas fa-star"></i>
-//                             <i class="far fa-star"></i>
-//                         </div>
-//                 </div>
-//                 <div className="card-body">
-//                     <p className="card-text">{review.description}</p>
-//                 </div>
-//             </div>
-//         </div>
-
-//         )
-//         })}
-
-//     </div>
-// </div>
-
-//  )
-
-// }

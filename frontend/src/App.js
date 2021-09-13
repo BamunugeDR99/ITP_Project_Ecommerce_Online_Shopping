@@ -27,6 +27,7 @@ import test from './Components/test';
 
 
 import TestFile from './Components/TestFile';
+import Forloop from './Components/Forloop';
 
 
 function App() {
@@ -50,12 +51,12 @@ function App() {
        <Route path = "/itemview" exact component = {ItemView}/> 
        <Route path = "/selrev" exact component = {SellerReview}/> 
        <Route path = "/test" exact component = {test}/> 
-       <Route path = "/" exact component = {Login}/> 
+       <Route path = "/f" exact component = {Login}/> 
      <Route path = "/Home" exact component= {AllStudents}/>
        <Route path = "/add" exact component = {AddStudent}/> 
        <Route path = "/update/:id" exact component = {UpdateStudent}/> 
        <Route path = "/testing" exact component = {TestFile}/> 
-
+        <Route path = "/" exact component = {Forloop}/>
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>
 {/* <AddStudent/> */}
