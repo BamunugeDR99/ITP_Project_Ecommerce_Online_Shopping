@@ -41,9 +41,9 @@ function App() {
        
         {/* <SideBarAdmin/> */}
         {/* <Route path = "/Home" exact component= {AllStudents}/> */}
-        {/* <MainHeader/> */}
+        {/* <MainHeader/> 
      
-      {/* <Route path = "/header"  component = {Side_bar_Customer}/>
+       <Route path = "/header"  component = {Side_bar_Customer}/>
       <Route path = "/header"  component = {MainHeader}/>
       <Route path = "/header2" component = {Home_Customer}/>
       <Route path = "/header" component = {All_the_items_customer}/> */}
@@ -56,12 +56,12 @@ function App() {
       <Side_bar/>
 
 
-        {/* <Route path = "/allTheItems" exact component = {AView_all_the_items}/>*/}
+         {/* <Route path = "/" exact component = {AView_all_the_items}/> */}
         <Route path = "/addItem" exact component = {Add_items}/>
         <Route path = "/updateItem/:id" exact component = {Update_Items}/> 
 
-        <Route path = "/allItems" exact component = {Seller_items}/>
-      <Footer_customer/>
+        <Route path = "/" exact component = {Seller_items}/>
+      <Footer_customer/> 
  
     </div>
   </Router>

@@ -103,14 +103,23 @@ export default function Update_Items(props) {
   }
 
   function addImages() {
+
     let newImages = [];
     let imagess = document.getElementById("customFile").files;
+    console.log(imagess)
+    if(imagess.length != 0){
+      for (let i = 0; i < imagess.length; i++) {
+        newImages.push(imagess[i].name);
+      }
+  
+      data.Images = newImages;
+      console.log(data.Images)
+    }else{
+      data.Images = images;
+      console.log(data.Images);
 
-    for (let i = 0; i < imagess.length; i++) {
-      newImages.push(imagess[i].name);
     }
-
-    data.Images = newImages;
+    
   }
 
   function ItemCategorySelection() {
@@ -176,7 +185,7 @@ export default function Update_Items(props) {
       .delete("http://localhost:8070/items/delete/" + objectId)
       .then((res) => {
         alert("Are you sure do you want to delete this item ?");
-        props.history.push("/");
+        props.history.push("/allItems");
         document.getElementById("itemsTxt").innerHTML =
           "Item Deleted Successfully!";
         // const afterDeleteStudent = students.filter(student=>student._id != id);
