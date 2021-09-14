@@ -12,7 +12,7 @@ export default function SelectPaymentMethod(props){
 <div>
 
 <div class="container mt-5 mb-5 d-flex justify-content-center">
-    <div class="card p-5">
+    <div class="card p-5" style={{width: "500px"}}>
         <div>
             <h4 class="heading">Confirm Payment</h4>
             <p class="text">Please Select the payment Method to Continue with the payment</p>

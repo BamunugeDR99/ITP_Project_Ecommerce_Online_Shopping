@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../JS/Addpayment";
 
 
 // import "../css/AddpaymentMethod.css"; //css linked

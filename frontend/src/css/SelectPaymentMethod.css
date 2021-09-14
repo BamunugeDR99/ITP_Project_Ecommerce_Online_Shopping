@@ -1,11 +1,11 @@
 body {
-    background-color: #e6ebf4
+    background-color: #526891
 }
 
 .card {
     border: none;
     border-radius: 8px;
-    box-shadow: 5px 6px 6px 2px #e9ecef
+    box-shadow: 5px 6px 6px 2px #2f5377
 }
 
 .heading {
@@ -21,7 +21,7 @@ body {
 
 .pricing {
     border: 2px solid #304FFE;
-    background-color: #f2f5ff
+    background-color: #1e2f66
 }
 
 .business {
