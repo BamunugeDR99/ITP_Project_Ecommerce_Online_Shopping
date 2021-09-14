@@ -42,6 +42,8 @@ export default function CreatePackage2(props) {
         // console.log(userImage);
         // console.log(content);
 
+        let packageAvailability = true;
+
         const newPackage = {
 
             packageName,
@@ -51,7 +53,8 @@ export default function CreatePackage2(props) {
             startDate,
             endDate,
             image,
-            content
+            content,
+            packageAvailability
 
         }
 
@@ -145,7 +148,7 @@ export default function CreatePackage2(props) {
 
                                 </div>
 
-                                <div class="row mt-2"><label class="labels">Special Price</label><input type="text" class="form-control" placeholder=""
+                                <div class="row mt-2"><label class="labels">Special Price</label><input type="text" class="form-control" placeholder=""    required
 
                                     onChange={(e) => {
                                         setPrice(e.target.value);
@@ -159,15 +162,15 @@ export default function CreatePackage2(props) {
                         <div class="col-md-6">
                             <div class="p-3 py-5">
                                 <br /><br />
-                                <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" aria-label="With textarea" id="des"></textarea></div> <br />
+                                <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" aria-label="With textarea" id="des"    required></textarea></div> <br />
                                 <div class="row mt-2 ml-3"><label class="labels">Duration</label></div>
                                 <div class="row mt-2 ml-3">
                                     <div class="col-md-6"><label class="labels">Start Date</label>
-                                        <input type="date" class="form-control" placeholder="" id="sDate" /></div>
+                                        <input type="date" class="form-control" placeholder="" id="sDate"    required/></div>
                                     <div class="col-md-6"><label class="labels">End Date</label>
-                                        <input type="date" class="form-control" placeholder="" id="eDate" /></div><br />
+                                        <input type="date" class="form-control" placeholder="" id="eDate"    required /></div><br />
                                 </div>
-                                <div class="row mt-2 ml-3"><label class="labels">Images</label><input type="file" class="form-control" placeholder="" id="img" /></div>
+                                <div class="row mt-2 ml-3"><label class="labels">Images</label><input type="file" class="form-control" placeholder="" id="img"    required  /></div>
                                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onClick={submitData}>Create Package</button></div>
                             </div>
                         </div>

@@ -12,12 +12,13 @@ import go from "./../images/go.jfif";
 
 export default function AllPackages(props) {
 
+    const [items, setItems] = useState([]); //Defines that items is an array
 
     const [packages, setPackages] = useState([]); //Defines that items is an array
     let fitems = [];
     const [loads, setLoad] = useState(false);
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
-   
+
     useEffect(() => {
 
 
@@ -43,13 +44,114 @@ export default function AllPackages(props) {
         }
 
 
-     
+
 
         getPackages();
 
 
 
     }, [])
+
+
+
+    useEffect(() => {
+        displayStatus();
+       
+        
+      })
+
+
+
+      function displayStatus(){
+        for(let i = 0; i < packages.length; i++){
+    
+          if(packages[i].packageAvailability == true){
+            document.getElementById(i+'x').checked = true;
+            document.getElementById(i).innerHTML = "Item Available";
+            document.getElementById(i).style.color = "#A4DE02";
+    
+          }else if(packages[i].packageAvailability == false){
+            document.getElementById(i+'x').checked = false;
+            document.getElementById(i).innerHTML = "Item Out of Stock";
+            document.getElementById(i).style.color = "#FF0000";
+          }
+        }
+          
+      }
+    
+
+
+      function statusChange(id,index){
+
+        console.log(id);
+        console.log(index);
+    
+        if(document.getElementById(index+'x').checked == false){
+    
+          axios
+          .get("http://localhost:8070/Packages/getPackage/" + id)
+          .then((res) => {
+            
+            
+              //let data = res.data;
+              res.data.packageAvailability = false;
+              console.log(res.data);
+          axios
+          .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
+          .then(() => {
+            
+          document.getElementById(index).innerHTML = "Item Out of stock";
+          document.getElementById(index).style.color = "#FF0000";
+      
+      
+          })
+          .catch((err) => {
+            alert(err);
+           
+          });
+      
+      
+            
+          })
+          .catch((err) => {
+            alert(err);
+          });
+        }else if(document.getElementById(index+'x').checked == true){
+    
+          axios
+          .get("http://localhost:8070/Packages/getPackage/" + id)
+          .then((res) => {
+            
+            
+              //let data = res.data;
+              res.data.ItemAvailabilityStatus = true;
+              console.log(res.data);
+          axios
+          .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
+          .then(() => {
+            
+          document.getElementById(index).innerHTML = "Item Available";
+          document.getElementById(index).style.color = "#A4DE02";
+      
+      
+          })
+          .catch((err) => {
+            alert(err);
+           
+          });
+      
+      
+            
+          })
+          .catch((err) => {
+            alert(err);
+          });
+    
+        }
+      
+      }
+
+
 
 
 
@@ -77,7 +179,7 @@ export default function AllPackages(props) {
 
         );
 
-     
+
 
         setPackages(result);
 
@@ -104,7 +206,7 @@ export default function AllPackages(props) {
             .then((res) => {
 
                 filterContent(res.data, userSearch);
-               
+
             })
             .catch((err) => {
                 alert(err);
@@ -117,17 +219,17 @@ export default function AllPackages(props) {
 
 
 
-    function goToPackages(){
+    function goToPackages() {
 
         props.history.push("/allpackages")
-      }
-  
-      
-      function goToDisItems(){
-  
+    }
+
+
+    function goToDisItems() {
+
         props.history.push("/alldiscounteditems")
-      }
-  
+    }
+
 
 
 
@@ -140,12 +242,12 @@ export default function AllPackages(props) {
 
 
     return (
-        <div className = "OffersnPacks">
+        <div className="OffersnPacks">
 
-        <br/><br/><br/>
-          <button type="button" class="btn btn-primary " style={{float:'right'} } id="GPackageBtn2" onClick={goToPackages}>Promo Packages</button>
-          <button type="button" class="btn btn-primary " style={{float:'right'}}id="GDisItemsBtn2" onClick={goToDisItems}>Discounted Items</button>
-         
+            <br /><br /><br />
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Promo Packages</button>
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Discounted Items</button>
+
             <div className="container">
                 <div>
 
@@ -162,7 +264,7 @@ export default function AllPackages(props) {
 
 
                     <div className="row">
-                        {packages.map((item) => {
+                        {packages.map((item ,index) => {
                             return (
 
 
@@ -188,7 +290,16 @@ export default function AllPackages(props) {
                                                 }
                                                 <p><b>Rs.</b>{item.price}.00</p>
 
-                                                
+                                                <center>
+                                                    <h6>Package Availability Status</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox" id={index + "x"} onChange={() => statusChange(item._id, index)} />
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                    <h6 id={index}></h6>
+                                                </center>
+
+
                                             </div>
                                             <a href="#" className="btn btn-primary" onClick={() => goToupdate(item._id)}>Edit Package</a>
 
@@ -222,5 +333,5 @@ export default function AllPackages(props) {
             </div>
 
         </div>
-            )
+    )
 }

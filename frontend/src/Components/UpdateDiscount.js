@@ -100,7 +100,7 @@ function UpdateDiscount(props) {
     function RevokeDiscount(e) {
 
         e.preventDefault();
-        alert("Revoke");
+      
 
         
         const itemID = props.match.params.id;

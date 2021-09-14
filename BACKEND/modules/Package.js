@@ -97,7 +97,14 @@ const PackageSchema = new Schema({
 
         DiscountPrecentage : String,
 
-        }]
+        }],
+
+        packageAvailability : {
+
+            type:Boolean
+        }
+
+
 
 })
 

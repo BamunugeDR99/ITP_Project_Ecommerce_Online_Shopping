@@ -9,29 +9,31 @@ function AddDiscount(props) {
     const [DiscountPrecentage, setDiscount] = useState("");
     const [FinalPrice, setFinalPrice] = useState("");
 
+    const [disalert, setAlert] = useState("");
+
     const [item, setItem] = useState([]);
-   
+
     const [image, setImage] = useState("");
 
     useEffect(() => {
 
         async function getOne() {
-            try{
+            try {
                 const ItemId = props.match.params.id;
                 const result = await (await (axios.get("http://localhost:8070/items/get/" + ItemId))).data;
                 console.log(result);
                 console.log(result.image);
-               
+
                 setItem(result);
                 console.log(item);
-            
-            }catch(err){
+
+            } catch (err) {
                 console.error(err)
             }
         }
 
         getOne();
-    },[])
+    }, [])
 
 
     // const img = require("../Images/" + item.image);
@@ -41,44 +43,53 @@ function AddDiscount(props) {
     function sendData(e) {
 
         e.preventDefault();
-        
 
-        let DiscountStatus = true;
+        if (DiscountPrecentage <= 0 || DiscountPrecentage >= 80  ) {
 
-        const itemID = props.match.params.id;
-        //Creating a js object
-        const newDiscountedItem = {
-
-            DiscountStatus,
-            FinalPrice,
-            DiscountPrecentage
             
+            setAlert("Discount should be with in a range of minimum 1% & maximum 80%") ;
+
         }
+        else {
 
-        console.log(newDiscountedItem);
-        console.log(itemID);
+            let DiscountStatus = true;
 
-        //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-        axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+            const itemID = props.match.params.id;
+            //Creating a js object
+            const newDiscountedItem = {
 
-            alert("Added Discount to the Item");
+                DiscountStatus,
+                FinalPrice,
+                DiscountPrecentage
 
-            props.history.push("/alldiscounteditems");
-        }).catch((err) => {
+            }
 
-            alert(err);
-        })
+            console.log(newDiscountedItem);
+            console.log(itemID);
+
+            //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
+            axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+
+                alert("! Added Discount to the Item");
+
+                props.history.push("/alldiscounteditems");
+            }).catch((err) => {
+
+                alert(err);
+            })
+
+        }
     }
 
 
-    function CalcDiscount(e){
+    function CalcDiscount(e) {
 
         setDiscount(e.target.value);
 
         let dis = document.getElementById("discountPercentage").value;
 
         console.log(dis);
-        let finalP  = Number(item.Price) - (Number(item.Price) * (Number(dis)/100));
+        let finalP = Number(item.Price) - (Number(item.Price) * (Number(dis) / 100));
 
         console.log(finalP);
 
@@ -91,7 +102,7 @@ function AddDiscount(props) {
 
     return (
 
-        <div className = "OffersnPacks2">
+        <div className="OffersnPacks2">
 
 
             <h1>Add Discount Form</h1>
@@ -131,18 +142,21 @@ function AddDiscount(props) {
                                 <div className="d-flex flex-row  align-items-left experience  mt-3"><span className="label1">Add Discount</span></div><br />
                                 <div className=" col-md-12"><label className="labels">Current Price</label><p>Rs.{item.Price}.00</p></div>
 
-                                <div className="col-md-12"><label className="labels">Discount Percentage</label><input type="text" name="discountPercentage" id="discountPercentage" className="form-control" placeholder="" 
+                                <div className="col-md-12"><label className="labels">Discount Percentage</label><input type="number" name="discountPercentage" id="discountPercentage" className="form-control" placeholder=""
 
                                     onChange={CalcDiscount}
 
 
-                                /> </div> <br />
+                                required ={true}/> </div> 
+                                
+                                <p id ="discountValidation" style={{color:'red'}}>{disalert}</p>
+                                <br />
 
-                                <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder=""  readOnly = {true} />
+                                <div className="col-md-12"><label className="labels" style={{ textAlign: 'left' }}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" readOnly={true} />
 
                                 </div>
 
-                        
+
                                 <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Add Discount</button></div>
 
 

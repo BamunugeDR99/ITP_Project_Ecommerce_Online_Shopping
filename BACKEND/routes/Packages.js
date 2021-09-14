@@ -20,6 +20,7 @@ router.route("/addPackage").post((req, res) => {
     const image = req.body.image;
     const content = req.body.content;
     const seller = req.body.seller; 
+    const packageAvailability = req.body.packageAvailability;
   
     //Create a object of the DiscountedItem model
     const newPackage= new Package({
@@ -31,12 +32,12 @@ router.route("/addPackage").post((req, res) => {
         endDate,
         image,
         seller,
-        content
+        content,
+        packageAvailability
 
 
     })
 
-    console.log(newPackage);
 
     //Insert the created object to the DB //.save()->pass the obeject to the mongo DB through the schema in the model
     newPackage.save().then(() => {
@@ -79,6 +80,7 @@ router.route("/updatePackages/:id").put(async (req, res) => {
     const image = req.body.image;
     const content = req.body.content;
     const seller = req.body.seller; 
+    const packageAvailability = req.body.packageAvailability;
     const _id = packageID;
 
 
@@ -92,11 +94,12 @@ router.route("/updatePackages/:id").put(async (req, res) => {
         image,
         content,
         seller,
+        packageAvailability,
         _id
 
     })
 
-    console.log(updatedPackage);
+    
 
     const update = await Package.findByIdAndUpdate(packageID, updatedPackage).then(() => {
 

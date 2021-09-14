@@ -369,7 +369,7 @@ export default function AllDiscountedItems(props) {
 
 
 
-                                            <a href="#" className="btn btn-primary" onClick={() => update(item._id)}>Update Discount</a>
+                                            <a href="#" className="btn btn-primary" onClick={() => update(item._id)}>Edit Discount</a>
 
                                         </div>
                                     </div>
