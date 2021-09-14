@@ -60,6 +60,7 @@ import SellerForget from './Components/SellerForget';
 import UpdateSeller from './Components/UpdateSeller';
 
 import SellerLogin from './Components/SellerLogin';
+import InitialPage from './Components/InitialPage';
 
 
 
@@ -68,8 +69,13 @@ function App() {
   return (
   <Router>
     <div>
-      <Side_bar/>
-      <SellerProfile/>
+    <Route path = "/" exact component = {InitialPage}/>
+
+      {/* Customer Route */}
+
+      <Route path = "/CustomerLogin" exact component = {CustomerLogin}/>
+      <Route path = "/CustomerRegistration" exact component = {SignUp}/>
+      
     </div>
   </Router>
   
