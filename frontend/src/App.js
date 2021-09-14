@@ -33,15 +33,15 @@ function App() {
 <Router>
   
       <div>
-        <CustomerLogin/>
+        <UpdateProfile/>
 
 
      
 {/* 
    <Route path = "/Cuslogin" exact component = {CustomerLogin}/>
    <Route path = "/signup" exact component = {SignUp}/>
+        <Route path = "/UpdatePro/:id" exact component = {UpdateProfile}/>
 
-   <Route path = "/UpdatePro/:id" exact component = {UpdateProfile}/>
    <Route path = "/userPro" exact component = {UserProfile}/>
    <Route path = "/userPro" exact component = {UserProfile}/>
     */}

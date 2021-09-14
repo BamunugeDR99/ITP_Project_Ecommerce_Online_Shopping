@@ -35,7 +35,9 @@
       font-size: 45px;
       font-family: "Poppins-SemiBold";
       text-align: left;
-      margin-bottom: 28px; }
+      margin-bottom: 28px; 
+      color: black;
+    }
       
       
 .CusUpdatePro #updateImg {
@@ -57,9 +59,10 @@
     background: #0057d1;
     font-size: 15px;
     color: #fff;
+   
   }
   
-  
+ 
     
 .CusUpdatePro  .form-control{
       
@@ -82,8 +85,25 @@
       position: absolute;
       bottom: 2px;
       right: 40px;
-      cursor: pointer ; }      
+      cursor: pointer ; }  
       
+.CusUpdatePro  .CusChangeP{
+
+    color: black;
+}
+
+.CusUpdatePro  #CusDOB{
+
+  color: black;
+  font-weight: bold;
+}
+
+.CusUpdatePro  #CusI{
+
+  color: black;
+  font-weight: bold;
+}
+
 
   /* //responsive */
 

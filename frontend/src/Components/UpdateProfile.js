@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-import img1 from "./../images/ij.jpg";
+import img1 from "./../images/lk.jpg";
 
 
 
@@ -8,6 +8,7 @@ import img1 from "./../images/ij.jpg";
 export default function UpdateProfile(props){
 
 	const [passwordShown, setPasswordShown] = useState(false);
+	
 
 	// Password toggle handler
 	const togglePassword = () => {
@@ -56,7 +57,7 @@ export default function UpdateProfile(props){
 		function getCustomer(){
 			
 			
-			axios.get("http://localhost:8070/Customer/get/613ba0aa025bda15880b3e32").then((res) =>
+			axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -114,7 +115,7 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
-		axios.put("http://localhost:8070/Customer/update/613ba0aa025bda15880b3e32", updatecus).then(()=>{
+		axios.put("http://localhost:8070/Customer/update/613b4f1a73eceb40702affe6", updatecus).then(()=>{
 		
 
 		alert("Customer Updated Successfully!");
@@ -132,7 +133,7 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/613ba0aa025bda15880b3e32").then((res) =>
+	  axios.delete("http://localhost:8070/Customer/delete/613b4f1a73eceb40702affe6").then((res) =>
 	  {
 		  alert("Customer Deleted Successfully!");
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
@@ -159,7 +160,7 @@ export default function UpdateProfile(props){
 					<h3 id ="updateEd">Edit Profile</h3>
 					
 					<div className="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User"  className="rounded-circle" width="230px" height="230px"/>
+                    <img src={"Images/" + customer.userImage} alt="UserImage"  className="rounded-circle" width="230px" height="230px"/>
                     </div>
 					
 					<br/>
@@ -218,7 +219,7 @@ export default function UpdateProfile(props){
 			  
 			  
 			  <div className="form-group">
-					<label htmlFor="exampleInputDOB">Date of Birth</label>
+					<label id="CusDOB" htmlFor="exampleInputDOB">Date of Birth</label>
 					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/> 
 			  </div>
 			  
@@ -258,23 +259,33 @@ export default function UpdateProfile(props){
 					/>
 					<i className="bi bi-person-fill"></i>
 			  </div>
+
+			  <div className="form-group">
+				<label id="CusI" htmlFor="exampleFormControlFile1">User Image</label>
+				<input type="file" className="form-control-file" id="user_image" />
+			  </div>
 			  
 			  <br/>
 			  
-			  <h5><b>Change Password</b></h5>
+			  <h5 className ="CusChangeP"><b>Change Password</b></h5>
+			  
 			  
 			   <br/>
 			   
 			   <div className="form-group">
-					
+				
 					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+				
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
-					<i className="bi bi-lock-fill"></i>
+				
+					<i className="bi bi-lock-fill"></i> 
+		
+					
 			  </div>
 			  
 			  <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "New Password"/>
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
@@ -285,11 +296,7 @@ export default function UpdateProfile(props){
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
-			  
-			  <div className="form-group">
-				<label htmlFor="exampleFormControlFile1">User Image</label>
-				<input type="file" className="form-control-file" id="user_image" img src = {require('../images/s.jpg').default} />
-			  </div>
+			
 			 
 			  
 			  <div className="form-row">

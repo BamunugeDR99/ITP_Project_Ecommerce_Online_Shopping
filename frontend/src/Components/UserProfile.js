@@ -6,15 +6,19 @@ import React, {useState,useEffect} from "react";
 function UserProfile(props){
 
   const [customer,setCustomer] = useState([]);
+  let Dateofb;
+  const [birth, setBirthday] = useState("");
   
  
   
   useEffect(() =>{
       function getCustomer(){
-          axios.get("http://localhost:8070/Customer/get/613ba0aa025bda15880b3e32").then((res) =>
+          axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
+              Dateofb = res.data.dob;
+              setBirthday(String(Dateofb.substr(0, 10)));
              // customer = res.data;
               //image = res.data.userImage;
               //console.log(customer.lastName);
@@ -94,7 +98,7 @@ function UserProfile(props){
                       <h6 className="mb-0"><b>Dateof Birth</b></h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {customer.dob}
+                     {birth}
                     </div>
                   </div>
                   <hr/>
@@ -139,7 +143,7 @@ function UserProfile(props){
 			
 			            <div className="row1">
                     <div className="col-sm-12">
-                       <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}>Edit</button>
+                       <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}><b>Edit</b></button>
 
                     </div>
                    

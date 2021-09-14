@@ -37,7 +37,9 @@ export default function CustomerList(){
       })
   }
 
- 
+ function showMore(id){
+
+ }
 
    return(
       <div class="CustomerList">    
@@ -105,14 +107,14 @@ return (
               
 			  </div>
 
-         <div>    
+         <div id = {customer._id}>    
               {     
                 show? <button class="btnshowless" onClick = {() => setShow(false)}>Show Less</button>:null
               }
 			  </div>
 			  
 			  </td>
-        <p id = {customer._id}></p>
+        {/* <p id = {customer._id}></p> */}
      	  	  
      	  </tr>
 

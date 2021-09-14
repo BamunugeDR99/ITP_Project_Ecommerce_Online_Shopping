@@ -7,12 +7,19 @@ import img1 from "./../images/kl.jpg";
 function SignUp(props){
 
 	const [passwordShown, setPasswordShown] = useState(false);
+	const [CpasswordShown, setCPasswordShown] = useState(false);
 
 	// Password toggle handler
 	const togglePassword = () => {
 		// When the handler is invoked
 		// inverse the boolean state of passwordShown
 		setPasswordShown(!passwordShown);
+	  };
+
+	  const toggleCPassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setCPasswordShown(!CpasswordShown);
 	  };
 	
 
@@ -34,7 +41,9 @@ function SignUp(props){
 
 
 	let [errorMsg,setErrorMsg] = useState("");
-	let flag = 0;
+	let flag1 = 0;
+	let flag2 = 0;
+	
 
   
 	function genderSelect(){
@@ -56,11 +65,64 @@ function SignUp(props){
 		const password = document.getElementById("CusPassword").value;
 		const confirmPassword = document.getElementById("CusConfirmPsw").value;
 		
-		if(password == confirmPassword){
-			flag = 1;
-		}else{
+		if(password.length < 5){
+			
+			flag1 = 0;
+			alert("Password length must be greater than 5 characters");
+			
+		
+		}else if(password.length > 20){
+			
+			flag1 = 0;
+			alert("Password length must be smaller than 20 characters");
+			
+		
+		}else if(password != confirmPassword){
+
+			flag1 = 0;
 			alert("Password mismatch!");
+			
+
+		}else{
+
+			flag1 = 1;
 		}
+	}
+
+
+	function validPhoneNumber(){
+
+		const phoneNumber = document.getElementById("phone").value;
+
+		if(isNaN(phoneNumber)){
+
+			flag2 = 0;
+			alert("Enter only numeric value to phone number!");
+			
+			
+		}else if(phoneNumber.length<10){
+
+			flag2 = 0;
+			alert("Phone number must be 10 digit!");
+			
+
+		}else if(phoneNumber.length>10){
+
+			flag2 = 0;
+			alert("Phone number must be 10 digit!");
+			
+		
+		}else if((phoneNumber.charAt(0) != 0)){
+
+			flag2 = 0;
+			alert("Phone number must start with 0!");
+			
+		
+		}else{
+			flag2 = 1;
+		}
+
+
 	}
 	
 	function sendData(e){
@@ -70,13 +132,15 @@ function SignUp(props){
 	  images();
 	  birthday();
 	  checkPassword();
+	  validPhoneNumber();
+	 
 
 	  let image2 = document.getElementById("user_image").value;
 		
 	  let image3 = image2.substring(12);
 
 	 
-  	if(flag == 1){
+  	if(flag1 == 1 && flag2 == 1){
 		
 	  const newCustomer = {
 		firstName,
@@ -163,7 +227,7 @@ function SignUp(props){
 					 
 				<div className="form-group">
 				
-					<input type="email" className="form-control" id="email" placeholder = "Email"
+					<input type="email" className="form-control" id="email" placeholder = "Email" 
 					onChange= {
 						(e)=>{
 						  setEmail(e.target.value);
@@ -197,7 +261,7 @@ function SignUp(props){
 					<option value="Male">Male</option>
 					<option value="Female">Female</option>
 				</select>
-					
+				<i class="bi bi-caret-down-fill"></i>
 				
 			  </div>
 			  
@@ -240,13 +304,13 @@ function SignUp(props){
 			  
 			   <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="CusConfirmPsw" placeholder = "Confirm Password"
+					<input type={CpasswordShown ? "text" : "password"} className="form-control" id="CusConfirmPsw" placeholder = "Confirm Password"
 					onChange= {
 						(e)=>{
 						  setConfirmPassword(e.target.value);
 						}
 					  }/>
-					 <i className="bi bi-eye-fill" id="eye" onClick={togglePassword}></i>
+					 <i className="bi bi-eye-fill" id="eye" onClick={toggleCPassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
