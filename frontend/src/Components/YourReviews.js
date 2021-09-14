@@ -137,11 +137,11 @@ function deletee(id){
 			<div className="testimonial-heading">
 				<h1>Your Reviews</h1>
 			</div>			
-
+  
+      <div className="testimonial-box-container">
 			={abc.map((reviewss) =>{
 
 			return(
-				<div className="testimonial-box-container">
 						<div class="testimonial-box">
 							<div class="box-top">
 								<div class="profile">
@@ -192,12 +192,12 @@ function deletee(id){
 									</a>	
 								</div>
 							</div>	
-						</div>
 						</div>	
 				)
 				})}	
 
 			
+</div>
 			
 			
 

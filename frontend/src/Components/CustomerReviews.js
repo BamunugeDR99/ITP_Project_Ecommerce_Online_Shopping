@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-import "../CSS/cusreview.css";
 
 export default function CustomerReviews(props) {
   let [review, setReview] = useState([]);

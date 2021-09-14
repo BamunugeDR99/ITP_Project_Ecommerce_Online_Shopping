@@ -98,9 +98,11 @@ export default function SellerReviews(props){
         <div className="col">
         
             <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong',padding:'20px'}}>Product Reviews</span>
-            
             <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+
+        <div style={{height:'550px',overflowY: 'scroll', paddingBottom:'20px'}}>
+            
+                <div className="row" style={{width:'90%', padding:'10px 0px 5px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
                     <div className="row">
                         <div className="col-2">
                                 <img style={{width:'100%'}} src={p2}/>
@@ -120,9 +122,9 @@ export default function SellerReviews(props){
                     </div>    
                     <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
                         <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', }}>
-                                review
-                            </span>
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px', lineHeight:'0.5'}}>
+                                review 
+                            </span> 
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
@@ -134,74 +136,177 @@ export default function SellerReviews(props){
                     </div>
                 </div>  
                 <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div>  
-                <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div>  
                 
+                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+                    <div className="row">
+                        <div className="col-2">
+                                <img style={{width:'100%'}} src={p2}/>
+                        </div>
+
+                        <div className="col">
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <div style={{color: "#f9d71c"}}>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                    </div>    
+                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                        <div className="col">
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
+                                review
+                            </span>
+                        </div>
+                        <div className="col-3" style={{backgroundColor:'white'}}>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                <Link to = "/adrep" className = "nav-link" >
+                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                </Link>
+                            </a>
+                        </div>
+                    </div>
+                </div>  
+                <hr style={{width:'90%'}}/>
+                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+                    <div className="row">
+                        <div className="col-2">
+                                <img style={{width:'100%'}} src={p2}/>
+                        </div>
+
+                        <div className="col">
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <div style={{color: "#f9d71c"}}>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                    </div>    
+                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                        <div className="col">
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
+                                review
+                            </span>
+                        </div>
+                        <div className="col-3" style={{backgroundColor:'white'}}>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                <Link to = "/adrep" className = "nav-link" >
+                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                </Link>
+                            </a>
+                        </div>
+                    </div>
+                </div>  
+                <hr style={{width:'90%'}}/>
+                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+                    <div className="row">
+                        <div className="col-2">
+                                <img style={{width:'100%'}} src={p2}/>
+                        </div>
+
+                        <div className="col">
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <div style={{color: "#f9d71c"}}>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                    </div>    
+                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                        <div className="col">
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
+                                review
+                            </span>
+                        </div>
+                        <div className="col-3" style={{backgroundColor:'white'}}>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                <Link to = "/adrep" className = "nav-link" >
+                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                </Link>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <hr style={{width:'90%'}}/>
+                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+                    <div className="row">
+                        <div className="col-2">
+                                <img style={{width:'100%'}} src={p2}/>
+                        </div>
+
+                        <div className="col">
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <div style={{color: "#f9d71c"}}>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                    </div>    
+                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                        <div className="col">
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
+                                review
+                            </span>
+                        </div>
+                        <div className="col-3" style={{backgroundColor:'white'}}>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                <Link to = "/adrep" className = "nav-link" >
+                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                </Link>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <hr style={{width:'90%'}}/>
+                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+                    <div className="row">
+                        <div className="col-2">
+                                <img style={{width:'100%'}} src={p2}/>
+                        </div>
+
+                        <div className="col">
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <div style={{color: "#f9d71c"}}>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        
+                    </div>    
+                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                        <div className="col">
+                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
+                                review
+                            </span>
+                        </div>
+                        <div className="col-3" style={{backgroundColor:'white'}}>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                <Link to = "/adrep" className = "nav-link" >
+                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                </Link>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+        </div>        
            
             {/* <div>
                 <img src={p2} style={{width:'10%'}}/>

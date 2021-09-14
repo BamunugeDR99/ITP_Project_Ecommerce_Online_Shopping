@@ -8,7 +8,7 @@ import g1 from "../images/avatar1.png";
 export default function CustomerMsg(props){
 
 	const [contact,setContact] = useState([]);
-	const [customertest,setCustomertest] = useState([]);
+	const [customer,setCustomer] = useState([]);
     const [loads,setLoad] = useState(false);
 
   useEffect(() =>{
@@ -26,10 +26,10 @@ export default function CustomerMsg(props){
    
     getContact();
 
-	function getCustomertest(){
-        axios.get("http://localhost:8070/customertest/get").then((res) =>
+	function getCustomer(){
+        axios.get("http://localhost:8070/Customer/get").then((res) =>
         {
-            setCustomertest(res.data);
+            setCustomer(res.data);
             console.log(res.data);
             
             
@@ -38,7 +38,7 @@ export default function CustomerMsg(props){
         })
     }
    
-    getCustomertest();
+    getCustomer();
    
 }, []);
 
@@ -60,11 +60,7 @@ function deletee(id){
 		<div className="table-responsive">
 			<div className="table-wrapper">
 				<div className="table-title">
-					<div className="row">
-						<div className="col">
 							<h2><center><b>Customer Messages</b></center></h2>
-						</div>
-					</div>
 				</div>
 				<table className="table table-striped table-hover">
 					<thead>
@@ -76,7 +72,7 @@ function deletee(id){
 							<th>Action</th>
 						</tr>
 					</thead>
-				={contact.map((contact,index) =>{
+				{contact.map((contact,index) =>{
 
 
 				return(
@@ -84,7 +80,13 @@ function deletee(id){
 						<tr>
 							<td>{contact.name}</td>
 							
-							<td><img src={`../images/${customertest.cusimage}`} className="img"/></td>
+							<td>
+							{customer.map((customer,index) =>{
+							return(
+								<img src={`../images/${customer.cusimage}`} className="img"/>
+								)
+							})}
+								</td>
 							<td>{contact.email}</td>
 							<td>{contact.message}</td>
 							<td>

@@ -3,7 +3,6 @@ import axios from "axios";
 
 import {Link} from 'react-router-dom';
 
-import "../CSS/selrev.css";
 
 import p2 from "../images/p3.jpg";
 import visa from "../images/visa1.png";
@@ -110,7 +109,7 @@ return(
     <br/><br/>
     <div className="row" style={{padding:'10px 40px 10px 40px'}}>
         
-        <span class="border border-info" style={{width:'89%',height:'100%', borderRadius:'15px'}}>
+        <span class="border border-info" style={{width:'45%',height:'100%', borderRadius:'15px'}}>
         <br/>
             <span style={{ borderRadius:'15px',fontSize:'18px', padding:'20px'}}>Item Description</span><hr style={{color:'#4169E1'}}/>
             <p style={{width:'100%',height:'100%', borderRadius:'15px'}}>Description</p>

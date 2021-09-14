@@ -47,7 +47,7 @@ export default function CustomerMsg(props){
 			<div className="table-wrapper">
 				<div className="table-title">
 					<div className="row">
-						<div className="col-sm-4">
+						<div className="col">
 							<h2><center><b>Customer Messages</b></center></h2>
 						</div>
 					</div>
