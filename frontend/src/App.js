@@ -38,7 +38,7 @@ import UserProfile from './Components/UserProfile';
 import CustomerList from './Components/CustomerList';
 import './Css/customerList.css'
 import './Css/userprofile.css';
-import './Css/style.css';
+// import './Css/style.css';
 import './Css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
@@ -54,7 +54,7 @@ import ReactSession from 'react-client-session';
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
 import SellerProfile from './Components/SellerProfile';
-
+import './Css/sellerregistration.css'
 
 import SellerForget from './Components/SellerForget';
 import UpdateSeller from './Components/UpdateSeller';
