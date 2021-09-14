@@ -53,11 +53,11 @@ function App() {
 
         {/* <Route path = "/" exact component = {Counts}/> */}
 
-      <Side_bar/>
+      <Route path = "/seller" component = {Side_bar}/>
 
 
          {/* <Route path = "/" exact component = {AView_all_the_items}/> */}
-        <Route path = "/addItem" exact component = {Add_items}/>
+        <Route path = "/seller/add"  component = {Add_items}/>
         <Route path = "/updateItem/:id" exact component = {Update_Items}/> 
 
         <Route path = "/" exact component = {Seller_items}/>
