@@ -36,4 +36,45 @@
     text-decoration: line-through;
   }
 
+  #GPackageBtn{
+
+    border-radius: 0px 5px 5px 0px;
+    margin-left: 2px;
+    font-size: 16px;
+    color:#0057d1 ;
+    background-color: white;
+    border: 1px  solid#0057d1 ;
+
+  }
+
+
+  #GDisItemsBtn{
+
+    border-radius: 5px 0px 0px 5px;
+    font-size: 16px;
+    border: 1px  solid#0057d1 ;
+    
+
+
+  }
+
+
+  #GPackageBtn2{
+
+    
+    border-radius: 0px 5px 5px 0px;
+    font-size: 16px;
+    border: 1px  solid#0057d1 ;
+    margin-left: 2px;
+
+  }
  
+  #GDisItemsBtn2{
+
+    border-radius: 5px 0px 0px 5px;
+    margin-left: 2px;
+    font-size: 16px;
+    color:#0057d1 ;
+    background-color: white;
+    border: 1px  solid#0057d1 ;
+  }

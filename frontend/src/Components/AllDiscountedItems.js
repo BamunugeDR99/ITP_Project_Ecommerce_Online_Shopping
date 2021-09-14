@@ -274,6 +274,16 @@ export default function AllDiscountedItems(props) {
 
 
 
+    function goToPackages(){
+
+      props.history.push("/allpackages")
+    }
+
+    
+    function goToDisItems(){
+
+      props.history.push("/alldiscounteditems")
+    }
 
 
 
@@ -292,10 +302,15 @@ export default function AllDiscountedItems(props) {
     return (
 
         <div className="OffersnPacks">
+          <br/><br/><br/>
+          <button type="button" class="btn btn-primary " style={{float:'right'} } id="GPackageBtn" onClick={goToPackages}>Promo Packages</button>
+          <button type="button" class="btn btn-primary " style={{float:'right'}}id="GDisItemsBtn" onClick={goToDisItems}>Discounted Items</button>
+         
+           <h1 style={{color:'black'}}>All Discounted Items</h1> <br />
             <div className="container">
                 <div>
 
-                    <h1>All Discounted Items</h1> <br />
+               
 
                     <input
                         class="form-control"
@@ -306,6 +321,7 @@ export default function AllDiscountedItems(props) {
                     />
                     <br></br>
 
+                   
 
                     <div className="row">
                         {items.map((item, index) => {

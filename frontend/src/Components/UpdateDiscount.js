@@ -92,6 +92,8 @@ function UpdateDiscount(props) {
 
         setFinalPrice(finalP);
 
+        
+
     }
 
 

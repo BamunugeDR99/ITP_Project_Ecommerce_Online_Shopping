@@ -17,6 +17,7 @@ export default function AllPackages(props) {
     let fitems = [];
     const [loads, setLoad] = useState(false);
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
+   
     useEffect(() => {
 
 
@@ -42,7 +43,7 @@ export default function AllPackages(props) {
         }
 
 
-        console.log("Hello3");
+     
 
         getPackages();
 
@@ -116,7 +117,17 @@ export default function AllPackages(props) {
 
 
 
+    function goToPackages(){
 
+        props.history.push("/allpackages")
+      }
+  
+      
+      function goToDisItems(){
+  
+        props.history.push("/alldiscounteditems")
+      }
+  
 
 
 
@@ -130,6 +141,11 @@ export default function AllPackages(props) {
 
     return (
         <div className = "OffersnPacks">
+
+        <br/><br/><br/>
+          <button type="button" class="btn btn-primary " style={{float:'right'} } id="GPackageBtn2" onClick={goToPackages}>Promo Packages</button>
+          <button type="button" class="btn btn-primary " style={{float:'right'}}id="GDisItemsBtn2" onClick={goToDisItems}>Discounted Items</button>
+         
             <div className="container">
                 <div>
 
