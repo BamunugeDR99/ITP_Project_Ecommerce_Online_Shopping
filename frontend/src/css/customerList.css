@@ -7,10 +7,12 @@
 }
 
 
-.CustomerList .line{
+.CustomerList #li{
 	
 	
-	border: 1px solid #050A30;
+	border:#000000;
+	border-style: inset;
+	border-width: 1px;
 }
 
 .CustomerList #CusSerch{
@@ -31,6 +33,19 @@
 	box-sizing: border-box;
 	
 }
+
+.CustomerList ::placeholder {
+	color: rgb(13, 16, 148);
+	font-style: italic;
+	
+  }
+
+  .CustomerList #iconS {
+     position: absolute;;
+    color: #000000;
+	bottom: 5px;
+    right: 20px;
+  }   
 
 
 .CustomerList .tablex{

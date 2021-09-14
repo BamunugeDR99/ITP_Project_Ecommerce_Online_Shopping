@@ -28,33 +28,14 @@ import ForgotP from './Components/ForgotP';
 
 
 function App() {
-  // ReactSession.setStoreType("localStorage");
+  
   return (
 <Router>
   
       <div>
-        <UpdateProfile/>
 
-
-     
-{/* 
-   <Route path = "/Cuslogin" exact component = {CustomerLogin}/>
-   <Route path = "/signup" exact component = {SignUp}/>
-        <Route path = "/UpdatePro/:id" exact component = {UpdateProfile}/>
-
-   <Route path = "/userPro" exact component = {UserProfile}/>
-   <Route path = "/userPro" exact component = {UserProfile}/>
-    */}
-    
-    {/*{/*<Route path = "/" exact component = {Login}/>
-    <Route path = "/Home" exact component= {AllStudents}/>
-    <Route path = "/add" exact component = {AddStudent}/>
-<Route path = "/update/:id" exact component = {UpdateStudent}/>*/} 
-
-
-
-      {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
-{/* <AddStudent/> */}
+        <SignUp/>
+      
     </div>
  </Router>
   
