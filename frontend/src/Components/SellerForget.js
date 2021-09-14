@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "../css/sellerforget.css"; 
+import "../Css/sellerforget.css"; 
 
 
 export default function SellerForget (props){ 

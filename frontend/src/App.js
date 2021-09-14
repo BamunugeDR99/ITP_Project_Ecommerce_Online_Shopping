@@ -6,7 +6,6 @@ import './Js/sidebar_script.js'
 // import CounterFunction from './Components/CounterFunction';
 // import Header from './Components/Header';
 // import AddStudent from './Components/AddStudent';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 // import AllStudents from './Components/AllStudents';
 // import UpdateStudent from './Components/UpdateStudent';
 // import Login from './Components/Login';
@@ -37,19 +36,19 @@ import CustomerLogin from './Components/CustomerLogin';
 import AllCustomers from './Components/AllCustomers';
 import UserProfile from './Components/UserProfile';
 import CustomerList from './Components/CustomerList';
-import './css/customerList.css'
-import './css/userprofile.css';
-import './css/style.css';
-import './css/stylelogin.css';
+import './Css/customerList.css'
+import './Css/userprofile.css';
+import './Css/style.css';
+import './Css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
-import './css/update.css';
+import './Css/update.css';
 import ForgotP from './Components/ForgotP';
 
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
 
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+
 import ReactSession from 'react-client-session';
 
 import SellerRegistration from './Components/SellerRegistration';
@@ -65,7 +64,8 @@ function App() {
   return (
   <Router>
     <div>
-
+      <Side_bar/>
+      <SellerProfile/>
     </div>
   </Router>
   

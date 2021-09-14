@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "../css/sellerLogin.css";
+import "../Css/sellerLogin.css";
 
 
 export default function SellerLogin (props){ 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
-import "../css/style1.css";
+import "../Css/style1.css";
 import { NavLink } from "react-router-dom";
 
 export default function SellerRegistration(props){
