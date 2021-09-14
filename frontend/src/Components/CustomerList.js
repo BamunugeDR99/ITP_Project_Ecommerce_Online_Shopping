@@ -5,6 +5,7 @@ export default function CustomerList(){
 
     const [customer,setCustomers] = useState([]);
     const [show, setShow] = useState(false);
+    const [load, setLoad] = useState(false);
   
     useEffect(() =>{
         function getCustomers(){
@@ -36,10 +37,53 @@ export default function CustomerList(){
           alert(err);
       })
   }
+  //search
+  function handleSearch(e){
 
- function showMore(id){
+    let customerSearch = e;
+    console.log(customerSearch);
 
- }
+    axios
+        .get("http://localhost:8070/Customer/getAll")
+        .then((res) =>{
+
+          filterCustomer(res.data, customerSearch);
+          console.log(res.data);
+        })
+        .catch((err)=> {
+
+            alert(err);
+        });
+    
+  }
+
+  //Search
+
+  function filterCustomer(data, customerSearch){
+
+      let result = data.filter((post) =>
+
+        post.firstName.toLowerCase().includes(customerSearch.toLowerCase()) || post.lastName.toLowerCase().includes(customerSearch.toLowerCase())
+        
+
+      );
+
+      console.log(result);
+      setCustomers(result);
+
+      if(result != null){
+
+        setLoad(false);
+      }
+
+      if(result.length == 0){
+
+        setLoad(true);
+      }
+
+      
+  }
+
 
    return(
       <div class="CustomerList">    
@@ -49,13 +93,15 @@ export default function CustomerList(){
         
         </div>
         
-        <hr class = "line" />
+        <hr id= "li" />
 
         <div class="input-group" id = "CusSerch">
-        <input type="search"  class="form-control rounded" placeholder="Search" aria-label="Search"
-          aria-describedby="search-addon" />
-        <button type="button" class="btn btn-outline-primary">search</button>
+        
+        <input type="search"  class="form-control rounded" placeholder="Search by first name or last name...." aria-label="Search"
+          aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
+        <i class="bi bi-search" id="iconS"></i>
         </div>
+        
 
         <br/>
         

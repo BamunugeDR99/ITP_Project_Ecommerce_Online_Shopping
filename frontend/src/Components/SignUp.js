@@ -43,6 +43,7 @@ function SignUp(props){
 	let [errorMsg,setErrorMsg] = useState("");
 	let flag1 = 0;
 	let flag2 = 0;
+	let flag3 = 0;
 	
 
   
@@ -124,6 +125,30 @@ function SignUp(props){
 
 
 	}
+
+	
+	function validEmail(){
+
+		const email = document.getElementById("email").value;
+
+		const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+		 if(email.match(EmailAdd)){
+
+			flag3 = 1;
+
+		 }else{
+			
+			flag3 = 0;
+			alert("You have entered an invalid email address!");
+
+		 }
+		
+	}
+
+	
+	
+
 	
 	function sendData(e){
 	  // alert("d0");
@@ -133,6 +158,8 @@ function SignUp(props){
 	  birthday();
 	  checkPassword();
 	  validPhoneNumber();
+	  validEmail();
+	 
 	 
 
 	  let image2 = document.getElementById("user_image").value;
@@ -141,7 +168,7 @@ function SignUp(props){
 	  let image3 = image2.substring(12);
 
 	 
-  	if(flag1 == 1 && flag2 == 1){
+  	if(flag1 == 1 && flag2 == 1 && flag3){
 		
 	  const newCustomer = {
 		firstName,
@@ -324,11 +351,11 @@ function SignUp(props){
 			  </div>
   
 			  <div className="form-group form-check">
-					<input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+					<input type="checkbox" className="form-check-input" id="TermsC"/>
 					<label className="form-check-label" htmlFor="exampleCheck1">I caccept the Terms of Use & Privacy Policy.</label>
 			  </div>
 			  
-			  <button type="submit" className="btn">Create Account</button>
+			  <button type="submit" className="CusCreateBtn" id="CusCreateBtn">Create Account</button>
 	
 			<div className = "signup">
 					
