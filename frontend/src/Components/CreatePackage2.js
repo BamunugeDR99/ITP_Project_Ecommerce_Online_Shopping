@@ -60,12 +60,16 @@ export default function CreatePackage2(props) {
         axios.post("http://localhost:8070/Packages/addPackage", newPackage).then(() => {
 
             alert("Package Added");
+
+            sessionStorage.clear();
+
+            props.history.push("/allpackages")
         }).catch((err) => {
 
             alert(err);
         })
 
-        sessionStorage.clear();
+       
     }
 
 

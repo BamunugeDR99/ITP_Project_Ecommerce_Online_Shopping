@@ -15,9 +15,7 @@ export default function CreatePackage1(props) {
     const [items, setItems] = useState([]); //Defines that items is an array
     const [packageName, setPname] = useState("");
     const [ContentN, setContentN] = useState([]);
-    const [ButtonCheck, setBtnCheck] = useState(false);
-    const [ButtonCheck2, setBtnCheck2] = useState(false);
-
+    
 
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
     useEffect(() => {
@@ -67,18 +65,26 @@ export default function CreatePackage1(props) {
     function sendData(e) {
 
         e.preventDefault();
-        alert("Insert");
+
 
         console.log(packageName);
         console.log(ContentN);
-        setBtnCheck(true);
-        setBtnCheck2(true);
+        
+        if(ContentN.length == 0){
+
+            alert("Cannot Create a package Without Items");
+            window.location.reload(true);
+
+        }
+
+        else{
         sessionStorage.setItem("packageName", packageName);
         sessionStorage.setItem("Content", ContentN);
 
 
         props.history.push( {pathname: "/createPackage2",
         state: ContentN });
+        }
 
 
 

@@ -7,6 +7,8 @@ import AllPackages from './Components/AllPackages';
 import React from 'react';
 import UpdatePackages from './Components/UpdatePackage';
 import Side_bar from './Components/Side_bar';
+import All_DiscountedItems_Customer from './Components/All_DiscountedItems_Customer';
+import AllPackages_CustomerView from './Components/AllPackages_CustomerView';
 
 // import Counter from './Components/Counter';
 // import CounterFunction from './Components/CounterFunction';
@@ -59,7 +61,7 @@ function App() {
 
       {/* <Header/> */}
     
-      
+      <Header/>
     <Side_bar/>
       <Route path= "/createpackage1" exact component = {CreatePackage1}/>
       <Route path= "/createpackage2" exact component = {CreatePackage2}/>
@@ -68,10 +70,13 @@ function App() {
       <Route path= "/selleritems" exact component = {Seller_items}/>
       <Route path= "/updateItem/:id" exact component = {Update_Items}/>
       <Route path= "/addDiscount/:id" exact component = {AddDiscount}/>
-      {/* <Route path= "/addDiscount/:id" exact component = {AddDiscount}/> */}
+     
       <Route path= "/alldiscounteditems" exact component = {AllDiscountedItems}/>
       <Route path= "/updateDiscount/:id" exact component = {UpdateDiscount}/>
    
+      <Route path= "/alldiscounteditems_customerView" exact component = {All_DiscountedItems_Customer}/>
+      <Route path= "/allpackage_customerView" exact component = {AllPackages_CustomerView}/>
+
 
     </div>
   </Router>

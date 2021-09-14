@@ -30,7 +30,7 @@ export default function AllDiscountedItems(props) {
                 console.log(fitems);
 
 
-
+            
 
 
 
@@ -65,7 +65,7 @@ export default function AllDiscountedItems(props) {
 
 
     useEffect(() => {
-        displayStatus();
+        
         calculateStarRating();
         
       })
@@ -126,94 +126,11 @@ export default function AllDiscountedItems(props) {
       }
       
 
-      function displayStatus(){
-        for(let i = 0; i < items.length; i++){
-    
-          if(items[i].ItemAvailabilityStatus == true){
-            document.getElementById(i+'x').checked = true;
-            document.getElementById(i).innerHTML = "Item Available";
-            document.getElementById(i).style.color = "#A4DE02";
-    
-          }else if(items[i].ItemAvailabilityStatus == false){
-            document.getElementById(i+'x').checked = false;
-            document.getElementById(i).innerHTML = "Item Out of Stock";
-            document.getElementById(i).style.color = "#FF0000";
-          }
-        }
-          
-      }
+     
     
 
 
-      function statusChange(id,index){
-
-        console.log(id);
-        console.log(index);
-    
-        if(document.getElementById(index+'x').checked == false){
-    
-          axios
-          .get("http://localhost:8070/items/get/" + id)
-          .then((res) => {
-            
-            
-              //let data = res.data;
-              res.data.ItemAvailabilityStatus = false;
-              console.log(res.data);
-          axios
-          .put("http://localhost:8070/items/update/" + id, res.data)
-          .then(() => {
-            
-          document.getElementById(index).innerHTML = "Item Out of stock";
-          document.getElementById(index).style.color = "#FF0000";
       
-      
-          })
-          .catch((err) => {
-            alert(err);
-           
-          });
-      
-      
-            
-          })
-          .catch((err) => {
-            alert(err);
-          });
-        }else if(document.getElementById(index+'x').checked == true){
-    
-          axios
-          .get("http://localhost:8070/items/get/" + id)
-          .then((res) => {
-            
-            
-              //let data = res.data;
-              res.data.ItemAvailabilityStatus = true;
-              console.log(res.data);
-          axios
-          .put("http://localhost:8070/items/update/" + id, res.data)
-          .then(() => {
-            
-          document.getElementById(index).innerHTML = "Item Available";
-          document.getElementById(index).style.color = "#A4DE02";
-      
-      
-          })
-          .catch((err) => {
-            alert(err);
-           
-          });
-      
-      
-            
-          })
-          .catch((err) => {
-            alert(err);
-          });
-    
-        }
-      
-      }
 
 
 
@@ -221,11 +138,6 @@ export default function AllDiscountedItems(props) {
 
 
 
-
-    function update(id) {
-        console.log(id);
-        props.history.push("/updateDiscount/" + id);
-    };
 
 
 
@@ -276,13 +188,13 @@ export default function AllDiscountedItems(props) {
 
     function goToPackages(){
 
-      props.history.push("/allpackages")
+      props.history.push("/allpackage_customerView")
     }
 
     
     function goToDisItems(){
 
-      props.history.push("/alldiscounteditems")
+      props.history.push("/alldiscounteditems_customerView")
     }
 
 
@@ -305,9 +217,8 @@ export default function AllDiscountedItems(props) {
           <br/><br/><br/>
           <button type="button" class="btn btn-primary " style={{float:'right'} } id="GPackageBtn" onClick={goToPackages}>Promo Packages</button>
           <button type="button" class="btn btn-primary " style={{float:'right'}}id="GDisItemsBtn" onClick={goToDisItems}>Discounted Items</button>
-            <center>
-           <h1 style={{color:'black', justifyContent:'center', marginLeft:'18rem'}}>All Discounted Items</h1> <br />
-           </center>
+         
+           <h1 style={{color:'black', marginLeft:'18rem'}}>All Discounted Items</h1> <br />
             <div className="container">
                 <div>
 
@@ -356,20 +267,13 @@ export default function AllDiscountedItems(props) {
                                             </div>
 
 
-                                            <center>
-                      <h6>Item Availability Status</h6>
-                      <label class="switch">
-                        <input type="checkbox" id ={index + "x"}  onChange = {() => statusChange(item._id,index)}/>
-                        <span class="slider round"></span>
-                      </label>
-                      <h6 id ={index}></h6>
-                    </center>
+                                            
+                      
 
 
 
 
-
-                                            <a href="#" className="btn btn-primary" onClick={() => update(item._id)}>Update Discount</a>
+                                            <a href="#" className="btn btn-primary" >Add to Cart</a>
 
                                         </div>
                                     </div>
