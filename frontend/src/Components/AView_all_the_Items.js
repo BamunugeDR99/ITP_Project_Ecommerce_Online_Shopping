@@ -36,7 +36,7 @@ export default function AView_all_the_items(props) {
       // document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
   }
-let im = "ippp.jpeg";
+  let im = "ippp.jpeg";
   // search
   function handleSearch(e) {
     let userSearch = e;
@@ -70,11 +70,14 @@ let im = "ippp.jpeg";
 
   function showMore(id) {
     if (document.getElementById(id).innerHTML == "") {
-      document.getElementById(id).innerHTML = '<tr><td>   <img'
-      +'src={require("../images/' + im + ').default}'
-      +'style={{ width: "80px" }}'
-      +'alt="pic"'
-    +'></img></td></tr>';
+      document.getElementById(id).innerHTML =
+        "<tr><td>   <img" +
+        'src={require("../images/' +
+        im +
+        ").default}" +
+        'style={{ width: "80px" }}' +
+        'alt="pic"' +
+        "></img></td></tr>";
     } else {
       document.getElementById(id).innerHTML = "";
     }
@@ -154,62 +157,77 @@ let im = "ippp.jpeg";
               <th scope="col">ITEM NO</th>
               <th scope="col">CATEGORY</th>
               <th scope="col">PRICE</th>
+              <th scope="col" style={{ color: "#212529" }}>
+                pricessdfds
+              </th>
             </tr>
           </thead>
-          <tbody>
-            {items.map((item, index) => {
-              return (
-                <>
-                  <>
-                    <tr>
-                      <td>
-                        <div class="col">
-                          <h6>
-                            {item.Brand} {item.Item_name}
-                          </h6>
-                          <img
-                            src={require("../images/" + item.Images[0]).default}
-                            style={{ width: "80px" }}
-                            alt="pic"
-                          ></img>
-                        </div>
-                      </td>
-                      <td>{item.Stock_keeping_unit}</td>
-                      <td>{item.Category}</td>
-                      <td>LKR {item.Price}</td>
-
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-success"
-                          style={{ marginRight: "-30px" }}
-                          onClick={() => showMore(item._id)}
-                        >
-                          Show more
+        </table>
+        {items.map((item, index) => {
+          return (
+            <div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <img
+                          src={require("../images/iphone-x-.jpg").default}
+                          style={{ width: "90px" }}
+                          alt="pic"
+                        />
+                        <br />
+                        One of three columns
+                      </div>
+                      <div class="col-sm">One of three columns</div>
+                      <div class="col-sm">One of three columns</div>
+                      <div class="col-sm">One of three columns </div>
+                      <div class="col-sm">
+                        <button type="button" class="btn btn-success">
+                          More
                         </button>
-                      </td>
-                      <td>
-                        {" "}
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          style={{ marginRight: "-20px" }}
-                          onClick={() => deletee(item._id)}
-                        >
+                        <span> </span>
+                        <button type="button" class="btn btn-danger">
                           Remove
                         </button>
-                      </td>
-                    </tr>
-
-                  </>
-                  <table id = {item._id}>
-                    
-                  </table>
-                </>
-              );
-            })}
-          </tbody>
-        </table>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="row">
+                        <div class="col-sm">
+                          <img
+                            src={require("../images/iphone-x-.jpg").default}
+                            style={{ width: "90px" }}
+                            alt="pic"
+                          />
+                          <br />
+                          One of three columns
+                        </div>
+                        <div class="col-sm">
+                          <img
+                            src={require("../images/iphone-x-.jpg").default}
+                            style={{ width: "90px" }}
+                            alt="pic"
+                          />
+                                 <img
+                            src={require("../images/iphone-x-.jpg").default}
+                            style={{ width: "90px" }}
+                            alt="pic"
+                          />
+                          <br />
+                          One of three columns
+                        </div>
+                        <div class="col-sm">One of three columns</div>
+                        <div class="col-sm">One of three columns </div>
+                        <div className = "col-sm"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
