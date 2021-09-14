@@ -3,24 +3,27 @@ import React, {useState,useEffect} from "react";
 
 
 
-function UserProfile(){
+function UserProfile(props){
 
   const [customer,setCustomer] = useState([]);
-  let  customers = {};
-  let image;
-  let link = "";
+  let Dateofb;
+  const [birth, setBirthday] = useState("");
+  
+ 
   
   useEffect(() =>{
       function getCustomer(){
-          axios.get("http://localhost:8070/Customer/get/6136169f9e12304460f71324").then((res) =>
+          axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
+              Dateofb = res.data.dob;
+              setBirthday(String(Dateofb.substr(0, 10)));
              // customer = res.data;
               //image = res.data.userImage;
               //console.log(customer.lastName);
              // console.log(customer.userImage);
-              link = "../images/" + customer.userImage; 
+             
               
           }).catch((err) =>{
               alert(err);
@@ -33,7 +36,16 @@ function UserProfile(){
     // image();
   }, []);
 
+  function Updatecus(id){
+
+      console.log(id);
+      props.history.push("/update/" +id)
+     
+  }
+
     return(
+
+      <div className="CustomerPro">
 
         <div className="Wraperrr">
     <div className="mainb">
@@ -43,9 +55,9 @@ function UserProfile(){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={link} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src={"Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
                     <div className="mt-3">
-                      <h1> {customer.firstName} {customer.lastName}</h1>
+                      <h2> {customer.firstName} {customer.lastName}</h2>
                       <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>
                       <h5><p className="text-muted font-size-sm"><b> {customer.email}</b></p></h5>
                       
@@ -86,7 +98,7 @@ function UserProfile(){
                       <h6 className="mb-0"><b>Dateof Birth</b></h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                    {customer.dob}
+                     {birth}
                     </div>
                   </div>
                   <hr/>
@@ -131,13 +143,16 @@ function UserProfile(){
 			
 			            <div className="row1">
                     <div className="col-sm-12">
-                       <button type="submit" className="btnedit">Edit</button>
+                       <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}><b>Edit</b></button>
+
                     </div>
+                   
                   </div>
                 </div>
               </div>
 
         </div>
+    </div>
     </div>
 
 

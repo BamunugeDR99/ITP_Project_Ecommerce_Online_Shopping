@@ -1,4 +1,4 @@
-.wrapperr {
+.CusUpdatePro .wrapperr {
    
     height:1300px !important;
     background-size: cover;
@@ -7,7 +7,8 @@
     
     }
   
-  .innerr {
+.CusUpdatePro  .innerr {
+
     padding: 20px;
     background: #fff;
     width: 1280px;
@@ -16,28 +17,33 @@
     display: flex;
     margin-top: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-    .innerr .image-holder {
-      display: flex;
-      width: 50%; }
-    .innerr form {
+
+.CusUpdatePro .innerr .image-holder {
+      display: flex !important;
+      width: 50% !important;
+    }
+
+.CusUpdatePro .innerr form {
       width: 50%;
       padding-top: 36px;
       padding-left: 45px;
       padding-right: 45px; }
-    .innerr h3 {
+     
+.CusUpdatePro .innerr #updateEd {
       
       text-transform: capitalize;
-      font-size: 30px;
+      font-size: 45px;
       font-family: "Poppins-SemiBold";
       text-align: left;
-      margin-bottom: 28px; }
+      margin-bottom: 28px; 
+      color: black;
+    }
       
-  
-  img {
-    max-width: 100%; }	
+      
+.CusUpdatePro #updateImg {
+  max-width: 100% !important ;}	      
     
-    
-  .btn{
+.CusUpdatePro .btn{
       
     border: 1px; 
     width: 170px;
@@ -53,11 +59,12 @@
     background: #0057d1;
     font-size: 15px;
     color: #fff;
+   
   }
   
-  
+ 
     
-  .form-control{
+.CusUpdatePro  .form-control{
       
       border-radius:5px; 
       border: 1px solid black;
@@ -66,12 +73,37 @@
   }
   
   
-  .form-group {
+.CusUpdatePro  .form-group {
     position: relative; }
-    .form-group i {
+    
+.CusUpdatePro .form-group i {
       position: absolute;
-      bottom: 10px;
+      bottom: 4px;
       right: 15px; }
-      
 
-  
+.CusUpdatePro  .form-group #eyerx {
+      position: absolute;
+      bottom: 2px;
+      right: 40px;
+      cursor: pointer ; }  
+      
+.CusUpdatePro  .CusChangeP{
+
+    color: black;
+}
+
+.CusUpdatePro  #CusDOB{
+
+  color: black;
+  font-weight: bold;
+}
+
+.CusUpdatePro  #CusI{
+
+  color: black;
+  font-weight: bold;
+}
+
+
+  /* //responsive */
+
