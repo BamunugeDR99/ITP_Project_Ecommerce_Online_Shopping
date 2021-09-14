@@ -130,4 +130,48 @@ router.route("/get/:id").get(async (req,res) =>{
     })
 })    
 
+router.post('/loginCustomer', async(req,res) => {
+
+    try{
+            const {username, password} = req.body;
+
+            if(!username || !password){
+
+                return res.status(400).json({error: "Please filled the all data"})
+            }
+
+            //check with database username
+            const customerLogin = await Customer.findOne({username: username});
+    
+            //console.log(customerLogin);
+            if(!customerLogin){
+
+                res.status(400).json({error: "Customer does not exists"});
+
+            }
+
+            else if (password == customerLogin.password){
+
+                //res.json({message: "Customer Sign In Successfully"});
+          //console.log(res.status.error);
+                res.json({customerLogin: {
+                    _id : customerLogin._id,
+                }})
+               
+                
+            }else{ 
+
+                res.status(400).json({error: "Invalid Credientials"});
+               
+            }
+          
+
+    }catch(err){
+
+        console.log(err);
+    }
+
+
+});
+
 module.exports = router;

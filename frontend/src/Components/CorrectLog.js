@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, {useState} from "react";
 
-import "../Css/sellerLogin.css";
 
-export default function SellerLogin(){
+export default function LoginSeller(){
 
     let [username,setusername] = useState("");
     let [password,setpassword] = useState("");
@@ -44,23 +43,20 @@ export default function SellerLogin(){
 
     return(
 
-            <div class="sellerlogin">
-            <div class="container-fluid">
-            <div class="row no-gutter">
-            
-            <div class="col-md-6 bg-light">
-            <div class="login d-flex align-items-center py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7 col-xl-6 mx-auto">
-                            <h2 class="display-7">Sign in to your Account</h2> <br/>
+        <div className = "SellerLogin">
+        <div className="container">
+        <div className="myCard">
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="myLeftCtn"> 
                         <form className="myForm" onSubmit = {loginUser}>
-                             
-							<div class="form-group mb-3">
+                            <header>Sign In</header>
+                            
+							<div className="form-group">
                                 <h2>{errormsg}</h2>
-							{/* <label htmlFor="username"><b>Username</b></label><br/>
-                                <i className="fas fa-user"></i> */}
-                                <input class="form-control" type="text" placeholder="Username" id="username" 
+							<label htmlFor="username"><b>Username</b></label><br/>
+                                <i className="fas fa-user"></i>
+                                <input className="myInput" type="text" placeholder="Username" id="username" 
                                 
                                 onChange= {
                                     (e)=>{
@@ -69,35 +65,48 @@ export default function SellerLogin(){
                                 
                                     required/> 
                             </div>
-                            <div class="form-group mb-3">
-							{/* <label htmlFor="password"><b>Password</b></label><br/>
-                                <i className="fas fa-lock"></i> */}
-                                <input className="form-control" type="password" id="password" placeholder="Password" 
+
+    
+
+                            <div className="form-group">
+							<label htmlFor="password"><b>Password</b></label><br/>
+                                <i className="fas fa-lock"></i>
+                                <input className="myInput" type="password" id="password" placeholder="Password" 
                                 
                                 onChange= {
                                     (e)=>{
                                       setpassword(e.target.value);
-                                    } }                              
+                                    } }
+                                
+                                
                                     required /> 
                             </div>
+
                             <br/>
-                            <div className="col">
+
+                            <input type="submit" className="butt" value="Sign In"/>
+							
+							<br/><br/>
+							
+							<div className="form-row">
+								<div className="col">
+                                <input type="checkbox" id="che_remember" value="Remember me"/>
+								<label className="remember"> Remember me </label>
+								</div>
+						
+								<div className="col">
 									<p className ="fp"> <a href="">Forgot Password?</a></p>
 								</div>
-							<br/>
-                            <button type="submit" class="btn btn-danger">Sign in</button> <br/><br/>
-                                <div class="text-center d-flex justify-content-between mt-10"> 
-                                    <p> Don't have an account? 
-                                        <a href=" " class="font-italic text-muted"> <u>Sign up!</u></a></p>
-                                </div>
+							</div>
+							
+							
+                            
                         </form>
-                        </div>
                     </div>
-                </div>
+                </div> 
+
             </div>
         </div>
-        <div class="col-md-6 d-none d-md-flex bg-image"></div>
-    </div>
 </div>
 </div>
 

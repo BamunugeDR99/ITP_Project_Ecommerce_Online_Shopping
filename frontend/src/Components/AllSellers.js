@@ -69,6 +69,8 @@ export default function AllRequests(props) {
           .then((res) => {
             console.log(res.data);
 
+            document.getElementById("txt").innerHTML =
+                "Seller Accepted Successfully!";
             // what if
           })
           .catch((err) => {
@@ -104,7 +106,7 @@ export default function AllRequests(props) {
                 "service_ac9xbqd", //your service id
                 "template_pcwlvj6", // template id
                 emailContent,
-                "user_TGhnW7M8Z4dNu0PzvbuZ9" //
+                "user_TGhnW7M8Z4dNu0PzvbuZ9" // user access
               )
               .then(
                 (result) => {
@@ -185,7 +187,7 @@ export default function AllRequests(props) {
                     onClick={() => deleteSeller(seller._id)}
                     style={{ marginRight: "10px" }}
                   >
-                    DELETE
+                    DECLINE
                   </button>
                 </td>
               </tr>

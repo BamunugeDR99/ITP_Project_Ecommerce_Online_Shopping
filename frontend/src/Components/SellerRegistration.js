@@ -33,15 +33,7 @@ export default function SellerRegistration(props){
 	console.log(newseller);
 
 	axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
-	
-	// setownername(" ");
-	// setmobile(" ");
-	// setcompanyname(" ");
-	// setaddress(" ");
-	// setyear(" ");
-	// setemail(" ");
-	// setdescription(" ");
-	// setlogo(" ");
+
 
 
 	alert("Request Sent");
@@ -54,6 +46,7 @@ export default function SellerRegistration(props){
 	 }
   
 return(
+<div class="sellerregistration">
 <div>
 {/* <img src = {require('../images/sellerheader22.jpg').default} class="img-fluid" alt="Responsive image"/> */}
 
@@ -177,6 +170,7 @@ return(
 <br/><br/>
 Already have an account ? <a href = "/selllog">Sign in!</a>
 </form>
+</div>
 </div>
  );
 
