@@ -123,25 +123,14 @@ export default function AllStudents(props) {
       <h1 id="txt2"></h1>
 
       <div className="row">
-        {/* for(let i = 0; i < student.length; i++) */}
+
+        
         {students.map((student) => {
           return (
             <div class="col-sm-6">
               <div class="card">
 
-                
-                {/* <img
-                  src = {require('../images/' + imagename).default} 
-                  class="card-img-top" style = {{width : "150px",paddingRight : "10px", borderRadius : "0px"}}
-                  alt="..."
-                /> */}
-
-
-                {/* <img
-                  src = {require('../images/' + imagename).default} 
-                  class="card-img-top" style = {{width : "150px",paddingRight : "10px", borderRadius : "0px"}}
-                  alt="..."
-                /> */}
+  
                 <div class="card-body">
                   <h5 class="card-title">   {student.name} </h5>
                   <p class="card-text">{student.age}</p>

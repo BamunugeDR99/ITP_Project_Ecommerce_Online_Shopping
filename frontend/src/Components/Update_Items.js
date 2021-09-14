@@ -22,6 +22,8 @@ export default function Update_Items(props) {
   let isFirstRender = true;
   let slideImages = [];
   let imageName = "";
+
+  const [images, setImages] = useState([]);
   //learn  .......
    useEffect(() => {
     function getItem() {
@@ -33,8 +35,9 @@ export default function Update_Items(props) {
         .get("http://localhost:8070/items/get/" + objectId)
         .then((res) => {
           setData(res.data);
-    
-          //console.log(res.data);
+          setImages(res.data.Images);
+
+          console.log(images);
 
    
           
@@ -59,7 +62,7 @@ export default function Update_Items(props) {
   useEffect (() => {
     warrentyCheck();
     Color_family();
-    console.log(data.Images);
+    console.log(data.Images[0]);
     categoryCheck();
   })
 
@@ -100,14 +103,23 @@ export default function Update_Items(props) {
   }
 
   function addImages() {
+
     let newImages = [];
     let imagess = document.getElementById("customFile").files;
+    console.log(imagess)
+    if(imagess.length != 0){
+      for (let i = 0; i < imagess.length; i++) {
+        newImages.push(imagess[i].name);
+      }
+  
+      data.Images = newImages;
+      console.log(data.Images)
+    }else{
+      data.Images = images;
+      console.log(data.Images);
 
-    for (let i = 0; i < imagess.length; i++) {
-      newImages.push(imagess[i].name);
     }
-
-    data.Images = newImages;
+    
   }
 
   function ItemCategorySelection() {
@@ -173,7 +185,7 @@ export default function Update_Items(props) {
       .delete("http://localhost:8070/items/delete/" + objectId)
       .then((res) => {
         alert("Are you sure do you want to delete this item ?");
-        props.history.push("/");
+        props.history.push("/allItems");
         document.getElementById("itemsTxt").innerHTML =
           "Item Deleted Successfully!";
         // const afterDeleteStudent = students.filter(student=>student._id != id);
@@ -226,7 +238,7 @@ export default function Update_Items(props) {
   return (
     
     <div>
-      <div class="height-100 bg-light">
+      <div>
         <br />
         <br />
         <br />
@@ -236,22 +248,23 @@ export default function Update_Items(props) {
         <h3 className="headerName" id="Submitstatus"></h3>
         <h4>ITEM INFORMATION</h4>
         <br />
-        {/* <center>
-
+       {/* <img src={"/images/homepic1.jpg"}/> */}
+        <center>
       <h4>ITEM IMAGES</h4>
+      
       <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src = {require("../images/"+ data.Images[0]).default} alt="First slide"/>
+        <img class="d-block w-100"  src={"/images/"+ data.Images[0]} alt="First slide"/>
       </div>
       <div class="carousel-item">
   
-        <img class="d-block w-100" src = {imageName} alt="Second slide"/>
+        <img class="d-block w-100"  src={"/images/"+data.Images[1]} alt="Second slide"/>
       </div>
       <div class="carousel-item">
 
 
-        <img class="d-block w-100" src = {imageName} alt="Third slide"/>
+        <img class="d-block w-100"  src={"/images/"+data.Images[2]} alt="Third slide"/>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -264,8 +277,10 @@ export default function Update_Items(props) {
     </a>
   </div>
 
-  </center>   */}
+
+ </center>   
 <br/><br/>
+
         <div class="card">
           <div class="card-body">
             <form id="form1" onSubmit={sendData}>
