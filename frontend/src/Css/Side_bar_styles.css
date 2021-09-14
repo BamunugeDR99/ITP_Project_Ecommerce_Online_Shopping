@@ -20,7 +20,7 @@
 box-sizing: border-box  
 }
 
- body {
+.HeadSideBar body {
     position: relative;
     margin: var(--header-height) 0 0 0;
     padding: 0 1rem;
@@ -29,7 +29,7 @@ box-sizing: border-box
     transition: .5s
     }
 
- a {
+.HeadSideBar a {
 text-decoration: none;
 }
 

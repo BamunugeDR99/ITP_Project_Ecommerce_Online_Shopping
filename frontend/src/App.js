@@ -38,7 +38,7 @@ import UserProfile from './Components/UserProfile';
 import CustomerList from './Components/CustomerList';
 import './Css/customerList.css'
 import './Css/userprofile.css';
-// import './Css/style.css';
+import './Css/style.css';
 import './Css/stylelogin.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
@@ -61,6 +61,8 @@ import UpdateSeller from './Components/UpdateSeller';
 
 import SellerLogin from './Components/SellerLogin';
 import InitialPage from './Components/InitialPage';
+import Home_Customer from './Components/Home_Customer';
+import MainHeader from './Components/MainHeader';
 
 
 
@@ -69,13 +71,16 @@ function App() {
   return (
   <Router>
     <div>
-    <Route path = "/" exact component = {InitialPage}/>
+    {/* <Route path = "/" exact component = {InitialPage}/> */}
 
       {/* Customer Route */}
 
       <Route path = "/CustomerLogin" exact component = {CustomerLogin}/>
       <Route path = "/CustomerRegistration" exact component = {SignUp}/>
-      
+      <Route path = "/Customer" component = {MainHeader}/>
+      <Route path = "/Customer/Home" exact component = {Home_Customer}/>
+      {/* <Side_bar/>
+      <Add_items/> */}
     </div>
   </Router>
   

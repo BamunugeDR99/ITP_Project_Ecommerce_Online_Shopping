@@ -10,7 +10,7 @@
     background: #fbf3ff;
   } 
 
-.CustomerLogin  .container {
+.CustomerLogin .container {
     position: absolute;
     max-width: 950px;
     height: 550px;
@@ -25,7 +25,7 @@
     
   } */
 
-.CustomerLogin  .myRightCtn {
+.CustomerLogin .myRightCtn {
     position: relative;
    
     background-image: url("./../images/abc.jpg");
@@ -42,7 +42,7 @@
     align-items: center;
   }
   
-.CustomerLogin  .myLeftCtn {
+.CustomerLogin .myLeftCtn {
     position: relative;
     background: #fff;
     border-radius: 25px;
@@ -52,7 +52,7 @@
   }
   
 
-.CustomerLogin  .myLeftCtn header {
+.CustomerLogin .myLeftCtn header {
     color: #0057d1;
     font-size: 36px;
     font-weight: bold;
@@ -60,11 +60,11 @@
     
   }
 
-.CustomerLogin  .row{
+.CustomerLogin .row{
   height: 100%;
   } 
  
-.CustomerLogin  .myCard {
+.CustomerLogin .myCard {
     position: relative;
     background: #fff;
     height: 100%;
@@ -75,18 +75,18 @@
   } 
 
 
-.CustomerLogin  .myRightCtn header {
+.CustomerLogin .myRightCtn header {
     color: #fff;
     font-size: 42px;
   }
 
-.CustomerLogin  .box {
+.CustomerLogin .box {
     position: relative;
     margin: 20px;
     margin-bottom: 20px;
   } 
   
-.CustomerLogin  .acc{
+.CustomerLogin .acc{
       
       margin-left:50px;
       
@@ -109,16 +109,16 @@
   }
 
 
-.CustomerLogin  .myLeftCtn .myInput:focus {
+.CustomerLogin .myLeftCtn .myInput:focus {
     outline: none;
   } 
 
-.CustomerLogin  .myForm {
+.CustomerLogin .myForm {
     position: relative;
     margin-top: 50px;
   } 
 
-.CustomerLogin  .myLeftCtn .butt {
+.CustomerLogin .myLeftCtn .butt {
     background: linear-gradient(45deg, #0057d1, #000000);
     color: #fff;
     width: 330px;
@@ -131,22 +131,22 @@
     box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
   } 
 
-.CustomerLogin  .myLeftCtn .butt:hover {
+.CustomerLogin .myLeftCtn .butt:hover {
     background: #0057d1;
   }
 
-.CustomerLogin  .myLeftCtn .butt:focus {
+.CustomerLogin .myLeftCtn .butt:focus {
     outline: none;
   }
 
-.CustomerLogin  .myLeftCtn .fas {
+.CustomerLogin .myLeftCtn .fas {
     position: relative;
     color: #0057d1;
     top: 0px;
     left: 36px;
   } 
 
-.CustomerLogin  .butt_out {
+.CustomerLogin .butt_out {
     background: transparent;
     font-weight: bold;
     font-size: 15px;
@@ -161,13 +161,13 @@
     box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
   } 
 
-.CustomerLogin  .butt_out:hover {
+.CustomerLogin .butt_out:hover {
       
     background: #072c61;
     border: 2px solid#eecbff;
   } 
 
-.CustomerLogin  .butt_out:focus {
+.CustomerLogin .butt_out:focus {
     outline: none;
   }
 
@@ -176,7 +176,7 @@
     padding-left:10px;
 }
   
-.CustomerLogin  .form-group #eyer {
+.CustomerLogin .form-group #eyer {
   position: absolute;
   margin-top: 14px;
   right: 40px;
