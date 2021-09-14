@@ -1,5 +1,7 @@
 import './App.css';
 import './Css/slide.css';
+import './Css/Side_bar_styles.css'
+import './Js/sidebar_script.js'
 // import Counter from './Components/Counter';
 // import CounterFunction from './Components/CounterFunction';
 // import Header from './Components/Header';
@@ -32,37 +34,7 @@ function App() {
   <Router>
       <div>
 
-
-        {/* <SideBarAdmin/> */}
-        {/* <Route path = "/email" exact component = {EmailTest}/> */}
-        {/* <Route path = "/viewAll" exact component = {AView_all_the_items}/> */}
-      {/* <Route path = "/customer"  component = {Header}/> */}
-    {/* <Route path = "/SellerProfile" component = {SellerProfile}/> */}
-       
-        {/* <SideBarAdmin/> */}
-        {/* <Route path = "/Home" exact component= {AllStudents}/> */}
-        {/* <MainHeader/> 
-     
-       <Route path = "/header"  component = {Side_bar_Customer}/>
-      <Route path = "/header"  component = {MainHeader}/>
-      <Route path = "/header2" component = {Home_Customer}/>
-      <Route path = "/header" component = {All_the_items_customer}/> */}
-
-     {/* <Route path = "/header" exact component = {customer_wishlist}/> */}
-      {/* <Route path = "/header" component = {Footer_customer}/> */}
-
-        {/* <Route path = "/" exact component = {Counts}/> */}
-
-      <Route path = "/seller" component = {Side_bar}/>
-
-
-         {/* <Route path = "/" exact component = {AView_all_the_items}/> */}
-        <Route path = "/seller/add"  component = {Add_items}/>
-        <Route path = "/updateItem/:id" exact component = {Update_Items}/> 
-
-        <Route path = "/" exact component = {Seller_items}/>
-      <Footer_customer/> 
- 
+  
     </div>
   </Router>
   
