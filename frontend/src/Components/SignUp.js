@@ -191,8 +191,11 @@ function SignUp(props){
 
 
 		<div className = "CustomerSignup">
+		
 
 		<div className="wrapper">
+		<br/><br/>
+			<br/><br/>
 					<div className="inner">
 						<div className="image-holder">
 					<img src={img1} alt="" id="signUpI"/>
