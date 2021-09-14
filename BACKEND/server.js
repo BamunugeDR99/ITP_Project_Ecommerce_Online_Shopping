@@ -29,8 +29,7 @@ mongoose.connect(URL,{
 const customerRouter = require("./routes/customer.js");
 
 app.use("/Customer",customerRouter);
-const studentRouter = require("./routes/students.js");
-app.use("/student",studentRouter);
+
 
 const itemRouter = require("./routes/items.js");
 app.use("/items",itemRouter);
