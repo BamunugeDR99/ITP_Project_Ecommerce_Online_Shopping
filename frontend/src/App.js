@@ -6,12 +6,13 @@ import ReactSession from 'react-client-session';
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
 import SellerProfile from './Components/SellerProfile';
-import SellerLogin from './Components/SellerLogin';
+
 
 import SellerForget from './Components/SellerForget';
 import UpdateSeller from './Components/UpdateSeller';
 
-import LoginSeller from './Components/LoginSeller';
+import SellerLogin from './Components/SellerLogin';
+
 
 
 function App() {
@@ -23,12 +24,13 @@ function App() {
       <Route path = "/sellreg" exact component = {SellerRegistration}/>
       <Route path = "/sellreq" exact component = {AllSellers}/>
       <Route path = "/sellpro" exact component = {SellerProfile}/>
-      <Route path = "/selllog" exact component = {SellerLogin}/>
-
+      
       <Route path = "/sellfor" exact component = {SellerForget}/>
       <Route path = "/update/:id" exact component = {UpdateSeller}/>
 
-      <Route path = "/seller/login" exact component = {LoginSeller}/>
+      <Route path = "/seller/login" exact component = {SellerLogin}/>
+
+      
 
     </div>
   </Router>

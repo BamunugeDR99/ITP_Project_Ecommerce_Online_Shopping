@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
-import "../css/style1.css";
+import "../css/sellerregistration.css";
 import { NavLink } from "react-router-dom";
 
 export default function SellerRegistration(props){
@@ -46,6 +46,7 @@ export default function SellerRegistration(props){
 	 }
   
 return(
+<div class="sellerregistration">
 <div>
 {/* <img src = {require('../images/sellerheader22.jpg').default} class="img-fluid" alt="Responsive image"/> */}
 
@@ -169,6 +170,7 @@ return(
 <br/><br/>
 Already have an account ? <a href = "/selllog">Sign in!</a>
 </form>
+</div>
 </div>
  );
 

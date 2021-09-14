@@ -1,4 +1,4 @@
-body {
+.sellerforget .body {
     background-position: center;
     background-color: #eee;
     background-repeat: no-repeat;
@@ -11,25 +11,25 @@ body {
     text-transform: none
 }
 
-.forgot {
+.sellerforget .forgot {
     background-color: #fff;
     padding: 12px;
     border: 1px solid #dfdfdf
 }
 
-.padding-bottom-3x {
+.sellerforget .padding-bottom-3x {
     padding-bottom: 72px !important
 }
 
-.card-footer {
+.sellerforget .card-footer {
     background-color: #fff
 }
 
-.btn {
+.sellerforget .btn {
     font-size: 13px
 }
 
-.form-control:focus {
+.sellerforget .form-control:focus {
     color: #495057;
     background-color: #fff;
     border-color: #76b7e9;

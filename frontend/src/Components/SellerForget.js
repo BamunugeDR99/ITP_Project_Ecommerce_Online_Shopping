@@ -10,7 +10,7 @@ export default function SellerForget (props){
     }
 
 return(
-
+<div class=" sellerforget">
 <div class="container padding-bottom-3x mb-2 mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
@@ -57,7 +57,7 @@ return(
         </div>
     </div>
 </div>
-				
+</div>				
     
 
     );

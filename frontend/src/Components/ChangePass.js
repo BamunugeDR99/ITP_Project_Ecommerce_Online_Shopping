@@ -1,39 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import "../css/sellerprofile.css";
 
 export default function SellerProfile(props) {
-
-  const [orgSeller,setorgSellers] = useState([]);
-  // const [loads,setLoad] = useState(false);
-  // const [data,setData] = useState();
-  
-  useEffect(() =>{
-      function getorgSellers(){
-        const orgSellerid = "613a2af6b31f783accd94445";
-          axios.get("http://localhost:8070/orgSeller/get/613a2af6b31f783accd94445").then((res) =>
-          {
-              setorgSellers(res.data);
-              console.log(res.data);
-              
-              
-          }).catch((err) =>{
-              alert(err);
-          })
-      }
-     
-      getorgSellers();
-
-    }, );
-
   return (
-
     <div className="sellerprofile">
     <div className="height-100 bg-light">
       <br />
       <br />
-
       <div class="container">
         <div class="main-body">
           <div class="row">
@@ -56,17 +31,17 @@ export default function SellerProfile(props) {
 					  <div className = "card-body">
                   <ul class="list-group list-group-flush">
                     <div class="shop">
-                      <h4 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.companyname}</h4>
+                      <h4 class="mb-0" style = {{textAlign : "center"}}>AMAR ELECTRONICS</h4>
                     </div>
                     <br></br>
 
                     <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}} >{orgSeller.mobile}</h6>
+                      <h6 class="mb-0" style = {{textAlign : "center"}} >0772156489</h6>
                     </div>
                     <br></br>
 
                     <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.email}</h6>
+                      <h6 class="mb-0" style = {{textAlign : "center"}}>amarele89@gmail.com</h6>
                     </div>
                     <br></br>
 
@@ -91,14 +66,14 @@ export default function SellerProfile(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.ownername} readOnly
+                        placeholder="First name"
                       />
                     </div>
                     <div class="col">
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.companyname} readOnly
+                        placeholder="Last name"
                       />
                     </div>
                   </div>
@@ -109,14 +84,14 @@ export default function SellerProfile(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.mobile} readOnly
+                        placeholder="First name"
                       />
                     </div>
                     <div class="col">
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.email} readOnly
+                        placeholder="Last name"
                       />
                     </div>
                   </div>
@@ -133,7 +108,7 @@ export default function SellerProfile(props) {
                               class="form-control"
                               id="exampleFormControlTextarea1"
                               rows="7"
-                              placeholder={orgSeller.description} readOnly
+                              placeholder="Description"
                             ></textarea>
                           </div>
                         </div>
@@ -141,7 +116,7 @@ export default function SellerProfile(props) {
                           <input
                             type="text"
                             class="form-control"
-                            placeholder={orgSeller.year} readOnly
+                            placeholder="Last name"
                           />
                           <br />
                           <div className="row">
@@ -150,7 +125,7 @@ export default function SellerProfile(props) {
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
                                 rows="4"
-                                placeholder={orgSeller.address} readOnly
+                                placeholder="physical address"
                               ></textarea>
                             </div>
                           </div>
@@ -170,7 +145,6 @@ export default function SellerProfile(props) {
           </div>
         </div>
       </div>
- 
     </div>
     </div>
   );
