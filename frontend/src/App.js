@@ -49,6 +49,16 @@ import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
 
 
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import ReactSession from 'react-client-session';
+
+import SellerRegistration from './Components/SellerRegistration';
+import AllSellers from './Components/AllSellers';
+import SellerProfile from './Components/SellerProfile';
+import SellerLogin from './Components/SellerLogin';
+import SellerAlerts from './Components/SellerAlerts';
+import SellerForget from './Components/SellerForget';
+
 
 function App() {
   // ReactSession.setStoreType("localStorage");

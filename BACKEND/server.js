@@ -44,6 +44,14 @@ app.use("/review",ReviewRouter);
 const WishlistRouter = require("./routes/itemwishlists.js");
 app.use("/wishlist",WishlistRouter);
 
+const studentRouter = require("./routes/students.js");
+app.use("/student",studentRouter);
+
+const sellerRouter = require("./routes/seller.js");
+app.use("/seller",sellerRouter);
+
+const orgSellerRouter = require("./routes/orgSeller.js");
+app.use("/orgseller",orgSellerRouter);
 
 const connection = mongoose.connection;
 connection.once("open",() => {
