@@ -568,7 +568,7 @@ export default function All_the_items_customer(props) {
               <div class="col-sm">
                 <div class="card" style={{ width: "20rem" }}>
                   <img
-                    src={require("../images/" + items.Images[0]).default}
+                    src={"/Images/" + items.Images[0]}
                     class="card-img-top"
                     alt="..."
                   />

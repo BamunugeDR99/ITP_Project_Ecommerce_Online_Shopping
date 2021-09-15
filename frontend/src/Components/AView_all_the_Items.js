@@ -78,8 +78,8 @@ export default function AView_all_the_items(props) {
     
       //console.log(res.data);
       if(document.getElementById(id+'div').innerHTML == ""){
-        document.getElementById(id + 'div').innerHTML = '<div class="row"><div class="col-sm"><br/>brand</div><div class="col-sm"><img src={require("../images/iphone-x-.jpg").default}style={{ width: "100px" }} alt="pic"/>'+
-        +"<img src={require('../images/iphone-x-.jpg').default} style={{ width: '100px' }} alt='pic'/>"+'<br />'+ res.data._id+'</div><div class="col-sm">'+ res.data.Description+ '<br/>'+res.data.ItemAvailabilityStatus+'</div><div class="col-sm">colors<br/></div>'+
+        document.getElementById(id + 'div').innerHTML = '<div class="row"><div class="col-sm"><br/>brand</div><div class="col-sm"><img src={"/Images/iphone-x-.jpg"}style={{ width: "100px" }} alt="pic"/>'+
+        +"<img src={'/Images/iphone-x-.jpg'} style={{ width: '100px' }} alt='pic'/>"+'<br />'+ res.data._id+'</div><div class="col-sm">'+ res.data.Description+ '<br/>'+res.data.ItemAvailabilityStatus+'</div><div class="col-sm">colors<br/></div>'+
    '<div className = "col-sm"></div></div>';
       }else{
         document.getElementById(id + 'div').innerHTML = '';
@@ -185,7 +185,7 @@ export default function AView_all_the_items(props) {
                     <div class="row">
                       <div class="col-sm">
                         <img
-                          src={require("../images/iphone-x-.jpg").default}
+                          src={"/Images/iphone-x-.jpg"}
                           style={{ width: "90px" }}
                           alt="pic"
                         />
