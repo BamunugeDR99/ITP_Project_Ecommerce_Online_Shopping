@@ -610,7 +610,7 @@ function displayStarRating(id,totalAverage){
               <div class="col-sm">
                 <div class="card" style={{ width: "20rem" }}>
                   <img
-                    src={"/images/" + items.Images[0]}
+                    src={"/Images/" + items.Images[0]}
                     class="card-img-top"
                     alt="..."
                   />

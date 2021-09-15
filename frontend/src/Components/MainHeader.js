@@ -8,7 +8,7 @@ export default function MainHeader(props) {
   return (
     <div style = {{marginTop : "65px"}}>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img className="card-img-top" src = {require('../images/Logo.png').default} style = {{width: "55px"}}alt="Card image cap"/>
+    <img className="card-img-top" src = {'../Images/Logo.png'} style = {{width: "55px"}}alt="Card image cap"/>
 
   <a class="navbar-brand" href="#">Tech Scope</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +34,9 @@ export default function MainHeader(props) {
     </ul>
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}
-     <img className="card-img-top" src = {require('../images/shopping-cart.png').default} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/>
+     <img className="card-img-top" src = {'/Images/shopping-cart.png'} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/>
      <b>Mia Ride </b>
-      <img className="card-img-top" src = {require('../images/propic.jpg').default} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/>
+      <img className="card-img-top" src = {'/Images/propic.jpg'} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/>
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
     
     </form>
