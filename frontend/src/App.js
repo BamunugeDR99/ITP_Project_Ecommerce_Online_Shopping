@@ -18,7 +18,7 @@ import Seller_items from './Components/Seller_items';
 // import AView_all_the_items from './Components/AView_all_the_Items';
 // import Counts from './Components/count';
 // import MainHeader from './Components/MainHeader';
-// import Side_bar_Customer from './Components/Side_Bar_Customer';
+import Side_bar_Customer from './Components/Side_Bar_Customer';
 import Footer_customer from './Components/Footer_customer';
 import All_the_items_customer from './Components/All_the_items_customer';
 import AView_all_the_items from './Components/AView_all_the_Items';
@@ -66,8 +66,7 @@ import UpdateSeller from './Components/UpdateSeller';
 
 import SellerLogin from './Components/SellerLogin';
 import InitialPage from './Components/InitialPage';
-import Home_Customer from './Components/Home_Customer';
-import MainHeader from './Components/MainHeader';
+
 
 
 
@@ -76,16 +75,32 @@ function App() {
   return (
   <Router>
     <div>
-    {/* <Route path = "/" exact component = {InitialPage}/> */}
+    <Route path = "/" exact component = {InitialPage}/>
+    <Route path = "/CustomerLogin" exact component = {CustomerLogin}/>
+    <Route path = "/CustomerRegistration" exact component = {SignUp}/>
+    <Route path = "/CustomerForgotPassword" exact component = {ForgotP}/>
+    <Route path = "/SellerLogin" exact component = {SellerLogin}/>
+    <Route path = "/SellerRegistration" exact component = {SellerRegistration}/>
+    <Route path = "/SellerForgotPassword" exact component = {SellerForget}/>
 
+    
       {/* Customer Route */}
-
-      <Route path = "/CustomerLogin" exact component = {CustomerLogin}/>
-      <Route path = "/CustomerRegistration" exact component = {SignUp}/>
       <Route path = "/Customer" component = {MainHeader}/>
+      <Route path = "/Customer"  component = {Side_bar_Customer}/>
       <Route path = "/Customer/Home" exact component = {Home_Customer}/>
-      {/* <Side_bar/>
-      <Add_items/> */}
+      <Route path = "/Customer/AllItmes" exact component = {All_the_items_customer}/>
+      <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
+      {/* <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/> */}
+      <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
+      <Route path = "/Customer" component = {Footer_customer}/>
+
+
+
+      {/* Seller Route */}
+      {/* header */}
+      <Route path = "/Seller"  component = {Side_bar}/>
+      <Route path = "/Seller/Home"  component = {Seller_items}/>
+
     </div>
   </Router>
   

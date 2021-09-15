@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 
 
 
 
-export default function CustomerLogin(){
+export default function CustomerLogin(props){
 
     //remember me
 
@@ -58,17 +59,18 @@ export default function CustomerLogin(){
 
              // sessionStorage.setItem('userID',"sss");
 
-            alert("Customer loggin Successfully!");
-            console.log("logging success");
+           // alert("Customer loggin Successfully!");
+            //console.log("logging success");
             console.log(res.data);
             setErrorMsg("");
+            props.history.push("/Customer/Home");
 
 
           }).catch((err) =>{
 
             //alert(err);
           console.log(err.response.data);
-          alert(err.response.data.error);
+         // alert(err.response.data.error);
           setErrorMsg(err.response.data.error);
         
 
@@ -76,11 +78,13 @@ export default function CustomerLogin(){
     }
 
 // SVGDefsElement
-        
+        function SignUp(){
+            props.history.push("/CustomerRegistration")
+        }
 
 
     return(
-
+<div>
         <div className = "CustomerLogin">
         <div className="container">
         <div className="myCard">
@@ -137,7 +141,7 @@ export default function CustomerLogin(){
 								</div>
 						
 								<div className="col">
-									<p className ="fp"> <a href="">Forgot Password?</a></p>
+									<p className ="fp"> <Link to="/CustomerForgotPassword">Forgot Password?</Link></p>
 								</div>
 							</div>
 							
@@ -154,7 +158,7 @@ export default function CustomerLogin(){
                             
                             <h4 className ="acc" >Don't have an account?</h4><br/>
 							
-                                <input type="button" className="butt_out" value="Sign Up"/>
+                                <input type="button"   onClick={() => SignUp()} className="butt_out" value="Sign Up"/>
                             </div>
                                 
                     </div>
@@ -162,7 +166,7 @@ export default function CustomerLogin(){
             </div>
         </div>
 </div>
-</div>
+</div></div>
 
     )
 

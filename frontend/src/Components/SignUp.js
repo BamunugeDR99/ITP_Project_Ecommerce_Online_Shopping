@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import img1 from "./../images/kl.jpg";
+import { Link } from "react-router-dom";
 
 
 function SignUp(props){
@@ -199,7 +200,8 @@ function SignUp(props){
 		setPassword(" ");
 		setConfirmPassword(" ");
 		
-	alert("Customer Added Successfully!");
+	//alert("Customer Added Successfully!");
+	props.history.push("/CustomerLogin");
 	setErrorMsg("");
 	
 		
@@ -358,7 +360,7 @@ function SignUp(props){
 	
 			<div className = "signup">
 					
-					<br/><p><b>Already have an account ?</b>         <a href="">Login</a></p>
+					<br/><p><b>Already have an account ?</b>         <Link to="/CustomerLogin">Login</Link></p>
 					
 			</div>
 	

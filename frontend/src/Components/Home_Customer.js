@@ -34,7 +34,7 @@ export default function Home_Customer(props) {
     <h2>Explore Popular Brands</h2><br/><br/>
     <div className = "row">
     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style = {{width : "220px", marginRight : "25px"}}>
-    <img src = {'Images/AppleLogo.png'}   class="card-img-top" alt="..."/><br/>
+    <img src = {'/Images/AppleLogo.png'}   class="card-img-top" alt="..."/><br/>
     <Link><h4 style = {{textAlign : "center"}}>Apple</h4></Link>
     </div>
     <div class="card shadow-lg p-3 mb-5 bg-white rounded" style = {{width : "220px", marginRight : "25px"}}>

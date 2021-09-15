@@ -33,7 +33,7 @@ export default function UpdateProfile(props){
 	let [password , setPassword ] = useState("");
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
-	
+	let objectID = "";
 	let userImage = "";
 
 	const [customer,setCustomer] = useState([]);
@@ -55,9 +55,9 @@ export default function UpdateProfile(props){
 
 		
 		function getCustomer(){
-			
-			
-			axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
+
+			objectID = props.match.params.id;
+			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -115,12 +115,12 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
-		axios.put("http://localhost:8070/Customer/update/613b4f1a73eceb40702affe6", updatecus).then(()=>{
+		axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
 		
 
-		alert("Customer Updated Successfully!");
+		//alert("Customer Updated Successfully!");
 		
-		props.histroy.push("/userPro");
+		props.histroy.push("/Customer/MyProfile");
 			
 		}).catch((err) =>{
 			alert(err)
@@ -133,9 +133,10 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/613b4f1a73eceb40702affe6").then((res) =>
+	  axios.delete("http://localhost:8070/Customer/delete/"+objectID).then((res) =>
 	  {
 		  alert("Customer Deleted Successfully!");
+		  props.histroy.push("/CustomerRegistration");
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
 		  //setCustomer(afterDeleteCustomer);
 	  }).catch((err) =>{
@@ -160,7 +161,7 @@ export default function UpdateProfile(props){
 					<h3 id ="updateEd">Edit Profile</h3>
 					
 					<div className="d-flex flex-column align-items-center text-center">
-                    <img src={"Images/" + customer.userImage} alt="UserImage"  className="rounded-circle" width="230px" height="230px"/>
+                    <img src={"/Images/" + customer.userImage} alt="UserImage"  className="rounded-circle" width="230px" height="230px"/>
                     </div>
 					
 					<br/>

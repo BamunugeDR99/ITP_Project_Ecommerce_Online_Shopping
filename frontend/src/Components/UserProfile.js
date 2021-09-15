@@ -13,7 +13,8 @@ function UserProfile(props){
   
   useEffect(() =>{
       function getCustomer(){
-          axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
+        const objectID = localStorage.getItem("CustomerID") 
+          axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
@@ -39,7 +40,7 @@ function UserProfile(props){
   function Updatecus(id){
 
       console.log(id);
-      props.history.push("/update/" +id)
+      props.history.push("/Customer/update/" +id)
      
   }
 
@@ -55,7 +56,7 @@ function UserProfile(props){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={"Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src={"/Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="260px" height="260px"/>
                     <div className="mt-3">
                       <h2> {customer.firstName} {customer.lastName}</h2>
                       <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>
@@ -71,7 +72,7 @@ function UserProfile(props){
               <div className="cardx mb-3">
                 <div className="cardb">
 				
-				<p className = "details">Personal Details</p>
+				<p className = "details">MY PROFILE</p>
 				
                   <div className="row1">
                     <div className="col-sm-3">
@@ -142,7 +143,8 @@ function UserProfile(props){
 		  <br/>
 			
 			            <div className="row1">
-                    <div className="col-sm-12">
+                  
+                    <div className="col-6">
                        <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}><b>Edit</b></button>
 
                     </div>
@@ -152,7 +154,7 @@ function UserProfile(props){
               </div>
 
         </div>
-    </div>
+    </div><br/>
     </div>
 
 

@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 import "../Css/sellerLogin.css";
 
-export default function SellerLogin(){
+export default function SellerLogin(props){
 
     let [username,setusername] = useState("");
     let [password,setpassword] = useState("");
@@ -26,9 +27,11 @@ export default function SellerLogin(){
 
              // sessionStorage.setItem('userID',"sss");
 
-            alert("Customer loggin Successfully!");
-            console.log("logging success");
-            console.log(res.data);
+            //alert("Customer loggin Successfully!");
+            //console.log("logging success");
+            console.log(res.data.sellerLogin._id);
+           localStorage.setItem("SellerID",res.data.sellerLogin._id);
+           props.history.push("/Seller/Home");
 
           }).catch((err) =>{
 
@@ -82,13 +85,13 @@ export default function SellerLogin(){
                             </div>
                             <br/>
                             <div className="col">
-									<p className ="fp"> <a href="">Forgot Password?</a></p>
+									<p className ="fp"> <Link to="/SellerForgotPassword">Forgot Password?</Link></p>
 								</div>
 							<br/>
                             <button type="submit" class="btn btn-danger">Sign in</button> <br/><br/>
                                 <div class="text-center d-flex justify-content-between mt-10"> 
                                     <p> Don't have an account? 
-                                        <a href=" " class="font-italic text-muted"> <u>Sign up!</u></a></p>
+                                        <Link to="/SellerRegistration" class="font-italic text-muted"> <u>Sign up!</u></Link></p>
                                 </div>
                         </form>
                         </div>

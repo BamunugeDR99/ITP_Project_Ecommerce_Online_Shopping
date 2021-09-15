@@ -6,6 +6,15 @@ import { Link } from "react-router-dom";
 
 
 export default function Side_bar(props) {
+const [render,setrender] = useState(false);
+  useEffect(() => {
+    function reRender() {
+      setrender(true);
+    }
+
+    reRender();
+    // displayStudentdetails();
+  }, );
   return (
     <div className = "HeadSideBar">
       <header className="header" id="header">

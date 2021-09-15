@@ -168,7 +168,7 @@ return(
 </div>
 
 <br/><br/>
-Already have an account ? <a href = "/selllog">Sign in!</a>
+Already have an account ? <Link to = "/SellerLogin">Sign in!</Link>
 </form>
 </div>
 </div>

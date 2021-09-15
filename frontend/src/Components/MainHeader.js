@@ -1,8 +1,40 @@
-import react, { useState } from "react";
+import react, { useState,useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function MainHeader(props) {
 
+const [username, setUsername] = useState("");
+const [userImage,setUserImage] = useState("");
+  useEffect(() =>{
+
+		let objectID = "";
+		function getCustomer(){
+
+			objectID = localStorage.getItem("CustomerID");
+			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+			{
+				
+        setUsername(res.data.username);
+        setUserImage(res.data.userImage);
+				
+
+				
+				
+			}).catch((err) =>{
+				alert(err);
+			})
+		}
+	   
+		getCustomer();
+
+
+	}, []);
+
+  function Logout(){
+    localStorage.removeItem("CustomerID");
+    props.history.push("/CustomerLogin");
+  }
 
 
   return (
@@ -18,10 +50,10 @@ export default function MainHeader(props) {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <Link class="nav-link" to="/Customer/Home">Home<span class="sr-only">(current)</span></Link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Discover Items</a>
+        <Link class="nav-link" to="/Customer/AllItmes">Discover Items</Link>
       </li>
 
       <li class="nav-item">
@@ -35,9 +67,9 @@ export default function MainHeader(props) {
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}
      <img className="card-img-top" src = {'/Images/shopping-cart.png'} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/>
-     <b>Mia Ride </b>
-      <img className="card-img-top" src = {'/Images/propic.jpg'} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/>
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+     <b>{username}</b>
+      <img className="card-img-top" src = {'/Images/'+userImage} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/>
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"   onClick={() => Logout()} >Logout</button>
     
     </form>
   </div>
