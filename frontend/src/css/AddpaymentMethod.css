@@ -1,29 +1,29 @@
-.padding {
+.AddPaymentMethod .padding {
     padding: 10rem !important
 }
 
-.form-control:focus {
+.AddPaymentMethod .form-control:focus {
     box-shadow: 10px 0px 0px 0px #ffffff !important;
     border-color: #4ca746
     
 }
 
-.cc-selector input{
+.AddPaymentMethod .cc-selector input{
     margin:0;padding:0;
     -webkit-appearance:none;
        -moz-appearance:none;
             appearance:none;
 }
-.visa{background-image:url("../images/visa.png");}
-.mastercard{background-image:url("../images/master.png");}
+.AddPaymentMethod .visa{background-image:url("../images/visa.png");}
+.AddPaymentMethod .mastercard{background-image:url("../images/master.png");}
 
-.cc-selector input:active +.drinkcard-cc{opacity: .5;}
-.cc-selector input:checked +.drinkcard-cc{
+.AddPaymentMethod .cc-selector input:active +.drinkcard-cc{opacity: .5;}
+.AddPaymentMethod .cc-selector input:checked +.drinkcard-cc{
     -webkit-filter: none;
        -moz-filter: none;
             filter: none;
 }
-.drinkcard-cc{
+.AddPaymentMethod .drinkcard-cc{
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
@@ -36,13 +36,13 @@
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
 }
-.drinkcard-cc:hover{
+.AddPaymentMethod .drinkcard-cc:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
 /* Extras */
-a:visited{color:#888}
-a{color:#999;text-decoration:none;}
-p{margin-bottom:.3em;}
+.AddPaymentMethod a:visited{color:#888}
+.AddPaymentMethod a{color:#999;text-decoration:none;}
+.AddPaymentMethod p{margin-bottom:.3em;}

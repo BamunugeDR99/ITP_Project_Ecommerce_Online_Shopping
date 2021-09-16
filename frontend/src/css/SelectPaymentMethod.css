@@ -1,81 +1,81 @@
-body {
+.Selectpay body {
     background-color: #526891
 }
 
-.card {
+.Selectpay .card {
     border: none;
     border-radius: 8px;
     box-shadow: 5px 6px 6px 2px #2f5377
 }
 
-.heading {
+.Selectpay .heading {
     font-size: 23px;
     font-weight: 00
 }
 
-.text {
+.Selectpay .text {
     font-size: 16px;
     font-weight: 500;
     color: #b1b6bd
 }
 
-.pricing {
+.Selectpay .pricing {
     border: 2px solid #304FFE;
     background-color: #1e2f66
 }
 
-.business {
+.Selectpay .business {
     font-size: 20px;
     font-weight: 500
 }
 
-.plan {
+.Selectpay .plan {
     color: #aba4a4
 }
 
-.dollar {
+.Selectpay .dollar {
     font-size: 16px;
     color: #6b6b6f
 }
 
-.amount {
+.Selectpay .amount {
     font-size: 50px;
     font-weight: 500
 }
 
-.year {
+.Selectpay .year {
     font-size: 20px;
     color: #6b6b6f;
     margin-top: 19px
 }
 
-.detail {
+.Selectpay .detail {
     font-size: 22px;
     font-weight: 500
 }
 
-.cvv {
+.Selectpay .cvv {
     height: 44px;
     width: 73px;
     border: 2px solid #eee
 }
 
-.cvv:focus {
+.Selectpay .cvv:focus {
     box-shadow: none;
     border: 2px solid #304FFE
 }
 
-.email-text {
+.Selectpay .email-text {
     height: 55px;
     border: 2px solid #eee
 }
 
-.email-text:focus {
+.Selectpay .email-text:focus {
     box-shadow: none;
     border: 2px solid #304FFE
 }
 
-.payment-button {
+.Selectpay .payment-button {
     height: 70px;
     font-size: 20px
 }

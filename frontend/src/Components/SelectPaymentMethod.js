@@ -9,7 +9,7 @@ export default function SelectPaymentMethod(props){
 	
 
     return(
-<div>
+<div Class="Selectpay">
 
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="card p-5" style={{width: "500px"}}>

@@ -64,7 +64,7 @@ export default function ViewCardDetails(props){
 
     return(
        
-
+<div Class="ViewCard">
 <div class="container-fluid p-3 my-3">
     <div className ="row">
 {paymentdetails.map((paymentdetails,index) =>{
@@ -103,6 +103,7 @@ export default function ViewCardDetails(props){
 
 
 </div>
+        </div>
         </div>
     )
 }

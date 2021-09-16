@@ -98,7 +98,7 @@ return(
 							  </div>
 						<div class="form-group"> 
 						<label for="cc-number" class="control-label">CARD NUMBER</label>
-						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="•••• •••• •••• ••••" required
+						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="•••• •••• •••• ••••" required pattern ="[0-9]{12}"
 									onChange= {
 										(e)=>{
 											setcardnumber(e.target.value);

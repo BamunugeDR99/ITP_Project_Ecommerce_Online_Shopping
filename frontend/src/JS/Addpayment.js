@@ -1,23 +1,23 @@
-function AddPaymet(Addpayment) {
-    Addpayment('[data-numeric]').payment('restrictNumeric');
-    Addpayment('.cc-number').payment('formatCardNumber');
-    Addpayment('.cc-exp').payment('formatCardExpiry');
-    Addpayment('.cc-cvc').payment('formatCardCVC');
-    Addpayment.fn.toggleInputError = function(erred) {
-    this.parent('.form-group').toggleClass('has-error', erred);
-    return this;
-    };
-    Addpayment('form').submit(function(e) {
-    e.preventDefault();
-    var cardType = Addpayment.payment.cardType(Addpayment('.cc-number').val());
-    Addpayment('.cc-number').toggleInputError(!Addpayment.payment.validateCardNumber(Addpayment('.cc-number').val()));
-    Addpayment('.cc-exp').toggleInputError(!Addpayment.payment.validateCardExpiry(Addpayment('.cc-exp').payment('cardExpiryVal')));
-    Addpayment('.cc-cvc').toggleInputError(!Addpayment.payment.validateCardCVC(Addpayment('.cc-cvc').val(), cardType));
-    Addpayment('.cc-brand').text(cardType);
-    Addpayment('.validation').removeClass('text-danger text-success');
-    Addpayment('.validation').addClass(Addpayment('.has-error').length ? 'text-danger' : 'text-success');
-    });
-    };
+// function AddPaymet(Addpayment) {
+//     Addpayment('[data-numeric]').payment('restrictNumeric');
+//     Addpayment('.cc-number').payment('formatCardNumber');
+//     Addpayment('.cc-exp').payment('formatCardExpiry');
+//     Addpayment('.cc-cvc').payment('formatCardCVC');
+//     Addpayment.fn.toggleInputError = function(erred) {
+//     this.parent('.form-group').toggleClass('has-error', erred);
+//     return this;
+//     };
+//     Addpayment('form').submit(function(e) {
+//     e.preventDefault();
+//     var cardType = Addpayment.payment.cardType(Addpayment('.cc-number').val());
+//     Addpayment('.cc-number').toggleInputError(!Addpayment.payment.validateCardNumber(Addpayment('.cc-number').val()));
+//     Addpayment('.cc-exp').toggleInputError(!Addpayment.payment.validateCardExpiry(Addpayment('.cc-exp').payment('cardExpiryVal')));
+//     Addpayment('.cc-cvc').toggleInputError(!Addpayment.payment.validateCardCVC(Addpayment('.cc-cvc').val(), cardType));
+//     Addpayment('.cc-brand').text(cardType);
+//     Addpayment('.validation').removeClass('text-danger text-success');
+//     Addpayment('.validation').addClass(Addpayment('.has-error').length ? 'text-danger' : 'text-success');
+//     });
+//     };
 
 
 
