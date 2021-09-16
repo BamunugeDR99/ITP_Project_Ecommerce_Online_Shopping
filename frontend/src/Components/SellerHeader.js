@@ -32,8 +32,8 @@ const [logo,setLogo] = useState("");
 	}, []);
 
   function Logout(){
-    localStorage.removeItem("CustomerID");
-    props.history.push("/CustomerLogin");
+    localStorage.removeItem("SellerID");
+    props.history.push("/SellerLogin");
   }
 
 
