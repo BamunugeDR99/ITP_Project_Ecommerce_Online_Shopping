@@ -51,6 +51,11 @@ app.use("/seller",sellerRouter);
 
 const orgSellerRouter = require("./routes/orgSeller.js");
 app.use("/orgseller",orgSellerRouter);
+const PackagesRouter = require("./routes/Packages.js");
+app.use("/Packages" , PackagesRouter);
+
+
+
 
 const connection = mongoose.connection;
 connection.once("open",() => {

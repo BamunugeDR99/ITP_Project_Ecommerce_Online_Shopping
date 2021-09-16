@@ -234,6 +234,11 @@ export default function Update_Items(props) {
     setData(newdata);
   }
 
+  function gotoAddDiscount(id){
+
+    props.history.push("/addDiscount/" + id);
+  }
+
 
   return (
     
@@ -553,14 +558,15 @@ export default function Update_Items(props) {
               <br />
               <center>
               <button
-                  type="submit"
+                  type = "button"
                   class="btn btn-primary"
                   style={{ marginright: "20px" }}
+                  onClick={() => gotoAddDiscount(data._id)}
                 >
                   ADD DISCOUNT
                 </button><span> </span>
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-success"
                   style={{ marginright: "20px" }}
                 >
