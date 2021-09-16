@@ -276,13 +276,13 @@ export default function AllDiscountedItems(props) {
 
     function goToPackages(){
 
-      props.history.push("/allpackages")
+      props.history.push("/Seller/MyPackages")
     }
 
     
     function goToDisItems(){
 
-      props.history.push("/alldiscounteditems")
+      props.history.push("/Seller/MyDiscountedItems")
     }
 
 

@@ -96,7 +96,7 @@ function UserProfile(props){
 				  
                   <div className="row1">
                     <div className="col-sm-3">
-                      <h6 className="mb-0"><b>Dateof Birth</b></h6>
+                      <h6 className="mb-0"><b>Date of Birth</b></h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
                      {birth}

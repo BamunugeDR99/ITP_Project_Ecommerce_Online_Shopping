@@ -57,10 +57,10 @@ const [userImage,setUserImage] = useState("");
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Discover Discounted Items</a>
+        <Link class="nav-link" to="/Customer/DiscountedItems">Discover Discounted Items</Link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Promotional Packages</a>
+        <Link class="nav-link" to="/Customer/Packages">Promotional Packages</Link>
       </li>
  
     </ul>

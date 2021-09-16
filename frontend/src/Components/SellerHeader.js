@@ -42,7 +42,7 @@ const [logo,setLogo] = useState("");
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <img className="card-img-top" src = {'../Images/Logo.png'} style = {{width: "55px"}}alt="Card image cap"/>
 
-  <a class="navbar-brand" href="#">Tech Scope</a>
+  <a class="navbar-brand" href="#" >Tech Scope</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -50,17 +50,17 @@ const [logo,setLogo] = useState("");
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <Link class="nav-link" to="/Customer/Home">Home<span class="sr-only">(current)</span></Link>
+        <Link class="nav-link" to="/Seller/Home">Home<span class="sr-only">(current)</span></Link>
       </li>
-      <li class="nav-item">
-        <Link class="nav-link" to="/Customer/AllItmes">My Items</Link>
-      </li>
+      {/* <li class="nav-item">
+        <Link class="nav-link" to="/Seller/Home">My Items</Link>
+      </li> */}
 
       <li class="nav-item">
-        <a class="nav-link" href="#">My Discounted Items</a>
+        <Link class="nav-link" to ="/Seller/MyDiscountedItems">My Discounted Items</Link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">My Promotional Packages</a>
+        <Link class="nav-link" to ="/Seller/MyPackages">My Promotional Packages</Link>
       </li>
  
     </ul>
