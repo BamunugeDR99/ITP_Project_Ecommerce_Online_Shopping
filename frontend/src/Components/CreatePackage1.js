@@ -23,6 +23,8 @@ export default function CreatePackage1(props) {
         //function to getItems
         function getItems() {
             //call a backend URL using axios
+            sessionStorage.clear();
+
             axios.get("http://localhost:8070/items/getItems").then((res) => {
 
                 setItems(res.data);

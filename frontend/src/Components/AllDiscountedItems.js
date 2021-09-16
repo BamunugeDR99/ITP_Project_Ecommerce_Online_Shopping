@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 import axios from "axios"; //To get the data from the DB
 import '../Css/AllItems.css';
 import go from "./../images/go.jfif";
+
 ;
 
 
