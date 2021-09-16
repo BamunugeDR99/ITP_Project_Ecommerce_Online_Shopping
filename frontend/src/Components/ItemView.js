@@ -17,6 +17,8 @@ export default function ItemView(props){
     let [allitems,setAllitems] = useState([]);
     let [filtereditems,setFiltereditems] = useState([]);
 
+    let category= "";
+
     let reviews = [];
     // let items = [];
     let itemName = "";
@@ -68,8 +70,11 @@ export default function ItemView(props){
             axios
               .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
               .then((res) => {
+                  category=res.data.Category
+                  console.log(category)
               setItems(res.data);
-              console.log(items);
+              console.log(res.data);
+            //   console.log(items);
               createReview(reviews, items);
               })
               .catch((err) => {
@@ -85,8 +90,10 @@ export default function ItemView(props){
             axios
             .get("http://localhost:8070/items/getItems")
             .then((res)=>{
-           
-                filter(res.data, items.Category);
+            console.log(category)
+                console.log(res.data);
+                // console.log(items.Category);
+                filter(res.data, category);
 
             
             })
@@ -94,25 +101,25 @@ export default function ItemView(props){
                 alert(err);
               });
 
-
-             
-              
       }
 
 
-      function filter(data, category) {
+      function filter(data, Caategory) {
+
+            console.log("Filter");
+            console.log(data);
+            console.log(Caategory);
+
+        let result = data.filter((post) =>
 
 
-        //let result = data.filter((post) =>
-
-
-            //post.Category.toLowerCase().includes(category.toLowerCase())
+            post.Category.toLowerCase().includes(category.toLowerCase())
 
 
 
-      //  );
-    //     console.log(result);
-    // setFiltereditems(result);
+       );
+        console.log(result);
+    setFiltereditems(result);
       }
 
     
@@ -151,7 +158,7 @@ export default function ItemView(props){
       }
   
       getReview();
-     // filtercatogory();
+      filtercatogory();
     }, []);
 
 
@@ -166,41 +173,16 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            {/* <img style={{height:'90%',width:'100%',  paddingRight:'20px'}} src={`../images/${items.Item_name}`}/> */}
+            <img style={{height:'100%',width:'100%',  paddingRight:'20px'}} src={`../images/${items.Item_name}`}/>
         </div>
 
         <div className="col">
             <span style={{fontSize:'22px'}}><b>{items.Item_name}</b></span><br/><br/>
-            
-            <div className="row">
-                <div className="col">
-                    <span style={{fontSize:'18px', fontStyle:'strong'}}>{items.Review}</span><br/>
-                    <span>
-                        <div style={{color: "#f9d71c"}}>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        
-                    </span>
-                    </div>
-                    <div className="col-9">
-                        <div >
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'16px'}} class="btn btn-link">View Reviews</button>
-                                </Link>
-                            </a>
-                            
-                        </div>
-                    </div>
-                </div>
+        
              
              <br/>
-             <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span>&nbsp;&nbsp;&nbsp;&nbsp;
-             <span style={{fontSize:'18px'}}>{items.DiscountPrecentage}%</span><br/>
+             <span style={{fontSize:'18px'}}><del>Rs. {items.Price}.00/=</del></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/>
              <span style={{fontSize:'18px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
             <br/>
             <div >
@@ -239,31 +221,83 @@ return(
         
     </div>  
             <br/><br/>
-            <div className="row" style={{padding:'10px 40px 10px 40px'}}>
+        <div className="row" style={{padding:'10px 40px 10px 10px'}}>
+                <div className="col"> 
+                    {/* <div className="container" style={{backgroundColor:'#dcdcdc', borderRadius:'15px',padding:'10px 0px 20px 30px', width:'80%'}}> */}
+                            <div className="row" style={{backgroundColor:'white', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'85%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
+                                <div className="col">
+                                    <span style={{alignItems:"center", fontSize:'20px'}}>Item Description</span>   
+                                    <hr style={{color:'#4169E1'}}/>    
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px' ,padding:'0px 0px 0px 10px'}}>Brand : {items.Brand}</span><br/>
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Model : {items.Model}</span><br/>
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Category : {items.Category}</span><br/>
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Item Availability : {items.ItemAvailabilityStatus}</span><br/>
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Specification : {items.Specification}</span><br/>
+                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Warrenty : {items.Warrenty}</span>
+                                </div> 
+                                
+                            </div> 
+                </div>
+                <div className="col-5"> 
+                    {/* <div className="container" style={{backgroundColor:'grey'}}> */}
+                        <div className="row">
+                            <div className="col">
+                                <span style={{alignItems:"center", fontSize:'20px'}}><b>Ratings And Reviews</b></span>      <br/><br/>
+                                <div className="row">
+                                    <div className="col">
+                                        <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>{items.Review}/5</span><br/>
+                                        <span>
+                                            <div style={{color: "#f9d71c" ,fontSize:'24px'}}>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            
+                                        </span>
+                                    </div>
+                                    <div className="col-7">
+                                        <div >
+                                            <br/>
+                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                                <Link to = "/adrep" className = "nav-link" >
+                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
+                                                </Link>
+                                            </a>
+                                            
+                                        </div>
+                                        <div >
+                                            <br/>
+                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                                <Link to = "/adrep" className = "nav-link" >
+                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
+                                                </Link>
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div> 
+                    {/* </div> */}
+                </div>
+        </div>    
+            {/* <div className="col">
                 
-                <span class="border border-info" style={{width:'45%',height:'100%', borderRadius:'15px'}}>
-                <br/>
-                    <span style={{ borderRadius:'15px',fontSize:'18px', padding:'20px'}}>Item Description</span><hr style={{color:'#4169E1'}}/>
-                    <p style={{width:'100%',height:'100%', borderRadius:'15px'}}>{items.Description}</p><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Brand : {items.Brand}</span><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Model : {items.Model}</span><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Category : {items.Category}</span><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Item Availability : {items.ItemAvailabilityStatus}</span><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Specification : {items.Specification}</span><br/>
-                    <span style={{width:'100%',height:'100%', borderRadius:'15px'}}>Warrenty : {items.Warrenty}</span>
-                </span>    
-            </div> 
+            </div>   */}
+            {/* </div>  */}
                 <br/><br/>
-            {/* <div class="row" style={{padding:'10px 10% 10px 30px'}}>
+            <div class="row" style={{padding:'10px 10% 10px 30px'}}>
                 <span style={{fontSize:'18px'}}>Similar Items</span><br/><br/>
                 <div class="col-sm-2" style={{ paddingBottom:'30px'}}>
                     <div class="card" style={{width: '80%', height: '90%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', paddingBottom:'20px',boxShadow:'4px 4px 4px 4px #DCDCDC'}}>
                         <div class="card-body">
-                            <img src={p2} style={{width:'80%',paddingBottom:'10px'}}/><br/>
+                            {/* <img src={p2} style={{width:'80%',paddingBottom:'10px'}}/><br/>
                             <span style={{fontSize:'14px'}}>{reviewss.itemName}</span><br/>
                             <span style={{fontSize:'13px'}}>{reviewss.itemImage}</span><br/>
                             <span style={{fontSize:'13px'}}>{reviewss.DiscountStatus}</span><br/>
-                            <span style={{fontSize:'13px'}}>{reviewss.itemPrice}</span>
+                            <span style={{fontSize:'13px'}}>{reviewss.itemPrice}</span> */}
                             <div style={{color: "#f9d71c"}}>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -276,8 +310,8 @@ return(
                     </div>
                 </div>
                 
-            </div> */}
-        </div>   
+            </div>
+    </div>   
         {/* ); */}
     {/* })} */}
 

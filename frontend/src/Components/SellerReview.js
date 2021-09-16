@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// import { FaStar } from "react-icons/fa";
+
 import {Link} from 'react-router-dom';
 
 
@@ -15,11 +17,13 @@ export default function SellerReviews(props){
     let customerName = "";
     let customerImage = "";
     let Review = "";
+    let Stars = "";
     let [abc, setabc] = useState([]);
     let reviewWithCustomer = {
       customerName,
       customerImage,
       Review,
+      Stars,
     };
     let content;
   
@@ -35,8 +39,8 @@ export default function SellerReviews(props){
                 setItem(res.data);
                 console.log(res.data);
                 console.log(item);
-        console.log('abc');
-        // content=
+                console.log('abc');
+        
                 
             }).catch((err) =>{
                 alert(err);
@@ -86,6 +90,7 @@ export default function SellerReviews(props){
                 customerName: customers[j].firstName,
                 customerImage: customers[j].userImage,
                 Review: reviews[i].description,
+                Stars: reviews[i].noofstars,
               };
   
               reviewWithCustomers.push(reviewWithCustomer);
@@ -104,6 +109,14 @@ export default function SellerReviews(props){
 
 }, []);
 
+//  onTaskClicked(){
+//   console.log("clicked");
+// }
+// function setReport(){
+
+// }
+
+
  return(    
  <div style={{padding:'20px 15px 10px 50px'}}>    
     <div className="row" >
@@ -117,7 +130,7 @@ export default function SellerReviews(props){
                  return (   */}
 
                     <div className="col">
-                    {/* <img style={{height:'90%',width:'80%',  paddingRight:'20px'}} src={`../images/${post.Images}`}/> */}
+                      {/* <img style={{height:'90%',width:'80%',  paddingRight:'20px'}} src={"/Images/" + item.userImage[0]}/> */}
                     </div>
                 
                     <div className="col">
@@ -126,42 +139,93 @@ export default function SellerReviews(props){
                     <br/><br/>
                     <p style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{item.Description}</p>
                     <br/>
-                    <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{item.Price}</span>
+                    <span style={{fontSize: '18px',textalign: 'left',fontstyle: 'strong'}}>Rs. {item.Price}.00/=</span>
                 </div>
+                
                 	
             </div>
-            <div className="row" style={{fontsize: '18px',textalign: 'left',fontstyle: 'strong',padding:'0px 0px 0px 30px'}}>
-                <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Analytics</span>
-                
-                <br/><br/>
-                <div className="col">
-                    <span>No of customers</span><br/>
-                    <span>Reviews</span><br/>
-                    <span>Ratings</span><br/>
+            <br/>
+            <div className="row" style={{padding:'50px 40px 10px 10px'}}>
+                <div className="col"> 
+                    
+                  <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Analytics</span>
+                  
+                  <br/><br/>
+                  <div className="row">
+                      <div className="col">
+                          <span>No of customers </span><br/>
+                          <span>Reviews</span><br/>
+                          <span>Ratings</span><br/>
+                      </div>
+                      <div className="col" >
+                          <span>10</span><br/>
+                          <span>8</span><br/>
+                          <span>4</span>
+                      </div> 
+                    </div>     
                 </div>
-                <div className="col-8" >
-                    <span>10</span><br/>
-                    <span>8</span><br/>
-                    <span>4</span>
+                <div className="col"> 
+                    
+                  <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Item Description</span>
+                  
+                  <br/><br/>
+                  <div className="row">
+                      <div className="col">
+                          <span>Brand</span><br/>
+                          <span>Model</span><br/>
+                          <span>Category</span><br/>
+                          <span>Specification</span><br/>
+                          <span>Warrenty</span><br/>
+                      </div>
+                      <div className="col" >
+                          <span>: &emsp;{item.Brand}</span><br/>
+                          <span>: &emsp;{item.Model}</span><br/>
+                          <span>: &emsp;{item.Category}</span><br/>
+                          <span>: &emsp;{item.Specification}</span><br/>
+                          <span>: &emsp;{item.Warrenty}</span>
+                      </div> 
+                    </div>     
                 </div>
-            </div>
+                {/* <div className="col"> 
+                    
+                   <div className="row" style={{backgroundColor:'white', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'100%'}}>
+                      <div className="col">
+                        <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Item Description</span><br/>   
+
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px' ,padding:'0px 0px 0px 10px'}}>Brand : {item.Brand}</span><br/>
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Model : {item.Model}</span><br/>
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Category : {item.Category}</span><br/>
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Item Availability : {item.ItemAvailabilityStatus}</span><br/>
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Specification : {item.Specification}</span><br/>
+                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Warrenty : {item.Warrenty}</span>
+                                </div> 
+                                
+                            </div>
+                   
+                </div> */}
+        </div> 
+            
+            {abc.map((reviewss) => {
+              return (
             <div className="row">
                 <span style={{fontSize:'20px', fontstyle:'strong',padding:'30px 0px 20px 30px'}}>Ratings and reviews of item name</span>
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>4.5/5</span><br/>
+                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>{reviewss.Stars}/5</span><br/>
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
                     <div style={{color: "#f9d71c"}}>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="far fa-star"></i>
-					</div>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
                 </span>
             </div>
+              )
+            })}
         </div>
         <div className="col">
         
-            <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong',padding:'20px'}}>Product Reviews</span>
+            <span style={{fontSize: '21px',textalign: 'left',fontstyle: 'strong',padding:'20px'}}>Product Reviews</span>
             <hr style={{width:'90%'}}/>
 
         <div style={{height:'550px',overflowY: 'scroll', paddingBottom:'20px'}}>
@@ -176,7 +240,7 @@ export default function SellerReviews(props){
                     <div className="row">
                         <div className="col-2">
                             
-                                <img style={{width:'100%'}} src={`../images/${reviewss.customerImage}`}/>
+                                <img style={{width:'100%'}} src={"/Images/" + reviewss.customerImage[0]}/>
                         </div>
 
                         <div className="col">
@@ -198,10 +262,8 @@ export default function SellerReviews(props){
                             </span> 
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">  
+                                <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
                             </a>
                         </div>
                     </div>
@@ -212,6 +274,47 @@ export default function SellerReviews(props){
             
          
         </div>    
+        <div id="editEmployeeModal" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form>
+                    <div class="modal-header">
+                      <h4 class="modal-title">Report Review</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label>Customer Name</label>
+                        <span>{props.name}</span><br/>
+
+                        <label>Customer Review</label>
+                        <span>{props.review}</span><br/>
+
+                        <label>write your report</label>
+                        <input type="text" class="form-control" 
+                        // required  onChange= {
+                        //         (e)=>{
+                        //         setReport(e.target.value);
+                        //         }
+                        //       }
+                              />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <input
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        value="Cancel"
+                      />
+                      {/* <button onClick = {()=> updatee(review.review_id)} type="submit" class="btn btn-info" value="Submit" >Update</button> */}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
 
            
            

@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import axios from "axios";
 
 import "../CSS/contact.css";
-import go from "../images/bg6.jpg";
+import go from "../images/bg13.jpg";
 
 
 export default function ContactSeller(props){
@@ -36,6 +36,8 @@ export default function ContactSeller(props){
         alert(err)
       })
     }
+
+
 
 
  return(

@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import axios from "axios";
 
 import "../CSS/contact.css";
-import go from "../images/bg4.jpg";
+import go from "../images/bg14.jpg";
 
 
 export default function ContactAdmin(props){
