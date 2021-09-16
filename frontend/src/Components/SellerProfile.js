@@ -6,13 +6,11 @@ import "../Css/sellerprofile.css";
 export default function SellerProfile(props) {
 
   const [orgSeller,setorgSellers] = useState([]);
-  // const [loads,setLoad] = useState(false);
-  // const [data,setData] = useState();
-  
+  let objectID = "";
   useEffect(() =>{
       function getorgSellers(){
-        const orgSellerid = "613a2af6b31f783accd94445";
-          axios.get("http://localhost:8070/orgSeller/get/613a2af6b31f783accd94445").then((res) =>
+        objectID = localStorage.getItem("SellerID");
+          axios.get("http://localhost:8070/orgSeller/get/"+objectID).then((res) =>
           {
               setorgSellers(res.data);
               console.log(res.data);
@@ -43,7 +41,7 @@ export default function SellerProfile(props) {
                   <div class="d-flex flex-column align-items-center text-center">
                     <br></br>
                     <img
-                       src = {require('../images/flight-logo.png').default} 
+                       src = {'/Images/'+orgSeller.logo}
                       alt="Admin"
                       class="rounded-circle p-1 bg-black"
                       width="175"

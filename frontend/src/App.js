@@ -1,7 +1,8 @@
 import './App.css';
 import './Css/slide.css';
-import './Css/Side_bar_styles.css'
-import './Js/sidebar_script.js'
+import './Css/Side_bar_styles.css';
+import './Js/sidebar_script.js';
+import './Css/toogle.css';
 // import Counter from './Components/Counter';
 // import CounterFunction from './Components/CounterFunction';
 // import Header from './Components/Header';
@@ -66,6 +67,7 @@ import UpdateSeller from './Components/UpdateSeller';
 
 import SellerLogin from './Components/SellerLogin';
 import InitialPage from './Components/InitialPage';
+import SellerHeader from './Components/SellerHeader';
 
 
 
@@ -98,9 +100,14 @@ function App() {
 
       {/* Seller Route */}
       {/* header */}
+      <Route path = "/Seller"  component = {SellerHeader}/>
       <Route path = "/Seller"  component = {Side_bar}/>
-      <Route path = "/Seller/Home"  component = {Seller_items}/>
-
+      <Route path = "/Seller/Home"  exact component = {Seller_items}/>
+      <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
+      <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
+      <Route path = "/Seller/AddItem" exact component = {Add_items}/>
+      <Route path = "/Seller" component = {Footer_customer}/>
+    
     </div>
   </Router>
   
