@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
 import go from "./../images/go.jfif";
-
+import swal from "sweetalert2";
 
 export default function UpdatePackages(props) {
 
@@ -110,6 +110,8 @@ export default function UpdatePackages(props) {
         getsDetails();
 
         if (content.length === 0) {
+
+            //swal.fire("Alert", "Cannot Delete All Items From a Package", "error");
             alert("Cannot Delete All Items From a Package");
             window.location.reload(true);
         }

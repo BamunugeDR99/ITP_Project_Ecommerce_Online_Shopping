@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";  //useEffect is used to get the array which is returned by the backend to the component
 //Decide what content should be displayed when the component is rendered
-
+import swal from "sweetalert2";
 import axios from "axios"; //To get the data from the DB
 import '../Css/AllItems.css';
 import go from "./../images/go.jfif";
@@ -72,8 +72,9 @@ export default function CreatePackage1(props) {
         
         if(ContentN.length == 0){
 
-            alert("Cannot Create a package Without Items");
-            window.location.reload(true);
+            swal.fire("Alert", "Cannot Create a Package Without Items", "warning");
+            //alert("Cannot Create a package Without Items");
+            //window.location.reload(true);
 
         }
 
