@@ -3,7 +3,7 @@ import React, {useState,useEffect} from "react";
 import axios from "axios";
 
 
-import "../css/ViewCardDetails.css"; //css linked
+import "../Css/ViewCardDetails.css"; //css linked
 
 export default function ViewCardDetails(props){
     const [paymentdetails,setpaymentdetails] = useState([]);
@@ -31,7 +31,7 @@ export default function ViewCardDetails(props){
 
     function deletePackage(ID) {
 
-        alert("gg");
+        
 
          const CardId = ID;
 

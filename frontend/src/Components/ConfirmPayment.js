@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
-import "../css/ConfirmPayment.css"; //css linked
+import "../Css/ConfirmPayment.css"; //css linked
 
 export default function ConfirmPayment(props){
 
