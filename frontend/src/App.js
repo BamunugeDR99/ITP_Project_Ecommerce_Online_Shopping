@@ -6,7 +6,7 @@ import CreatePackage2 from './Components/CreatePackage2';
 import AllPackages from './Components/AllPackages';
 import React from 'react';
 import UpdatePackages from './Components/UpdatePackage';
-import Side_bar from './Components/Side_bar';
+//import Side_bar from './Components/Side_bar';
 import All_DiscountedItems_Customer from './Components/All_DiscountedItems_Customer';
 import AllPackages_CustomerView from './Components/AllPackages_CustomerView';
 
@@ -39,6 +39,7 @@ import Seller_items from './Components/Seller_items';
 import AddDiscount from './Components/AddDiscount';
 import AllDiscountedItems from './Components/AllDiscountedItems';
 import UpdateDiscount from './Components/UpdateDiscount';
+import InitialPage from './Components/InitialPage';
 // import Seller_items from './Components/Seller_items';
 // import customer_wishlist from './Components/customer_wishlist';
 // import SideBarAdmin from './Components/SideBarAdmin';
@@ -61,8 +62,10 @@ function App() {
 
       {/* <Header/> */}
     
-      <Header/>
-    <Side_bar/>
+      <Route path= "/initialPage" exact component = {InitialPage}/>
+
+      {/* <Header/>
+    <Side_bar/> */}
       <Route path= "/createpackage1" exact component = {CreatePackage1}/>
       <Route path= "/createpackage2" exact component = {CreatePackage2}/>
       <Route path= "/allpackages" exact component = {AllPackages}/>
