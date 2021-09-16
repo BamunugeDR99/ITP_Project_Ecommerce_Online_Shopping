@@ -33,6 +33,10 @@ const ReviewSchema = new Schema({
         type : String,
         required : true
     },
+    sellerid : {
+        type : String,
+        required : true
+    },
 
     // reviewcus : [{
 

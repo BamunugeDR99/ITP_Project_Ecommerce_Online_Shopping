@@ -70,10 +70,7 @@ export default function CustomerReviews(props) {
     <div style={{ padding: "20px 15px 10px 50px" }}>
       <div class="rev">
         <div className="container">
-          <div
-            class="shadow-lg p-3 mb-5 bg-white rounded"
-            style={{ width: "100%", alignItems: "center", borderRadius: "5px" }}
-          >
+          <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "5px" }} >
             <br />
             <h1 style={{ textAlign: "center", color: "black" }}>
               {" "}
@@ -86,22 +83,10 @@ export default function CustomerReviews(props) {
             <div>
               {abc.map((reviewss) => {
                 return (
-                  <div
-                    class="card"
-                    style={{
-                      width: "20%",
-                      margin: "50px",
-                      borderRadius: "15px",
-                      marginTop: "30px",
-                      height: "290px",
-                    }}
-                  >
+                  <div class="card" style={{width: "20%",margin: "50px",borderRadius: "15px",marginTop: "30px",height: "290px",}}>
                     <div class="card-body">
-                      <img
-                      src={`../images/${reviewss.customerImage}`}
-                      style={{ width: "80%", alignItems: "center" }}
-                    />
-                      {/* <img src =  */}
+                      <img src={`../images/${reviewss.customerImage}`}style={{ width: "80%", alignItems: "center" }}/>
+                     
                       <h5 class="card-title">{reviewss.customerName}</h5>
                       <div style={{ color: "#f9d71c", textAlign: "center" }}>
                         <i class="fas fa-star"></i>

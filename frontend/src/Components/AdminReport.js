@@ -1,90 +1,130 @@
-import React, {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-
 import "../CSS/msg.css";
-
-export default function CustomerReviews(props){
-    const [review,setReview] = useState([]);
-    const [item,setItem] = useState([]);
-    const [seller,setSeller] = useState([]);
-    const [loads,setLoad] = useState(false);
-
-    useEffect(() =>{
-      function getReview(){
-          axios.get("http://localhost:8070/review/getrev").then((res) =>
-          {
-              setReview(res.data);
-              console.log(res.data);
-              
-              
-          }).catch((err) =>{
-              alert(err);
-          })
-      }
-     
-      getReview();
-
-     
-  }, []);
-
-  function deletee(id){
-    axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
-    {
-        document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteReview = review.filter(review=>review._id != id);
-        setReview(afterDeleteReview);
-    }).catch((err) =>{
-        alert(err);
-    })
-}
-
-return(
+// import g1 from "../images/avatar1.png";
 
 
+export default function AdminReport(props){
 
-  <section className="rev">
+	const [review,setReview] = useState([]);
+
+	let reviews = [];
+	// let emails = [];
+	let sellers = [];
+	let sellerName = "";
+	let sellerImage = "";
+	let Review = "";
+	let Report = "";
+	let [abc, setabc] = useState([]);
+	let reviewWithSeller = {
+	  sellerName,
+	  sellerImage,
+	  Review,
+	  Report,
+	};
+  
+	let reviewWithSellers = [];
+  
+	useEffect(() => {
+	  function getReview() {
+		axios
+		  .get("http://localhost:8070/review/get")
+		  .then((res) => {
+			reviews=(res.data);
+			// const filter = res.data.filter(
+			//   (selmsg) => selmsg.sellerid === "613b33772b517a0f50634c8e"
+			// );
+			// reviews = filter;
+			console.log(reviews);
+			axios
+			  .get("http://localhost:8070/seller/get")
+			  .then((res) => {
+				sellers = res.data;
+				createReview(reviews, sellers);
+				console.log(sellers);
+			  })
+			  .catch((err) => {
+				alert(err);
+			  });
+		  })
+		  .catch((err) => {
+			alert(err);
+		  });
+	  }
+  
+	  function createReview(reviews, sellers) {
+		let j = 0;
+		for (let i = 0; i < reviews.length; i++) {
+		  j = 0;
+		  for (j = 0; j < sellers.length; j++) {
+			if (reviews[i].sellerid == sellers[j]._id) {
+			  reviewWithSeller = {
+				sellerName: sellers[j].ownername,
+				sellerImage: sellers[j].logo,
+				Review: reviews[i].description,
+				Report: reviews[i].reportreason,
+			  };
+  
+			  reviewWithSellers.push(reviewWithSeller);
+			}
+		  }
+		}
+  
+		setabc(reviewWithSellers);
+	  }
+  
+	  getReview();
+	}, []);
+
+// 	function deletee(id){
+//     axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
+//     {
+//         // document.getElementById("txt").innerHTML = "Message Deleted!";
+//         const afterDeleteReview = review.filter(review=>review._id != id);
+//         setReview(afterDeleteReview);
+//     }).catch((err) =>{
+//         alert(err);
+//     })
+// }
+
+ return(
+
+<section className="rev">
 	<div className="container-xl">
 		<div className="table-responsive">
 			<div className="table-wrapper">
 				<div className="table-title">
-					<div className="row">
-						<div className="col">
-							<h2><center><b>Seller Reports</b></center></h2>
-						</div>
-					</div>
+							<h2><center><b>Seller ////////// Messages</b></center></h2>
 				</div>
 				<table className="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>Company Name</th>
-							<th>Comapany Logo</th>
-							<th>Company Email</th>
+							<th>Owner Name</th>
+							<th>Company Logo</th>
+							<th>Customer Review</th>
 							<th>Company Report</th>
-                            <th>Customer Review</th>
 							<th>Action</th>
 						</tr>
 					</thead>
-				={review.map((review,index) =>{
+					{abc.map((reviewss) => {
+						return(
 
-				<h1 id = "txt"></h1>
-
-				return(
 					<tbody>
 						<tr>
-            
-							<td>{seller.name}</td>
-							<td><img src={`../images/${seller.selImage}`} className="img"/></td>
-							<td>{seller.email}</td>
-							<td>{review.reportreason}</td>
-                            <td>{review.description}</td>
+							<td>{reviewss.sellerName}</td>
+							{/* <td>
+								<img src={"/Images/" +reviewss.sellerImage.Images[0]} className="img"/>
+							</td> */}
+							<td>{reviewss.Review}</td>
+							<td>{reviewss.Report}</td>
 							<td>
-							<button onClick = {()=> deletee(review._id)} className="button2" type="button">Remove</button>
+							<button className="button2" type="button">Remove</button>
 							</td>
 						</tr>
 					</tbody>
 
-					)
+					 )
 					})}	
 
 				</table>
@@ -92,43 +132,58 @@ return(
 		</div>        
 	</div>
 </section>
-/* <div className="rev">
-<table className="table table-striped">
-  <thead>
-    <tr>
-      
-      <th scope="col">Item Name</th>
-      <th scope="col">Item Image</th>
-      <th scope="col">Seller name</th>
-      <th scope="col">Seller report</th>
-      <th scope="col">Customer review</th>
-    </tr>
-  </thead>
 
-  {review.map((review,index) =>{
 
-  <h1 id = "txt"></h1>
-
- return(
-  <tbody>
-    <tr>
-      <td>{item.name}</td>
-      {/* <td><img class="img " src={require('../images/'+item.image).default}/></td> */
-//       <td>{seller.name}</td>
-//       <td>{review.reportreason}</td>
-//       <th>{review.description}</th>
-//       <div>
-// 		    <button onClick = {()=> deletee(review._id)} className="button2" type="button">Remove</button>
-// 	   </div>
-//     </tr>
-//   </tbody>
-
-// )
-//         })}
-//  </table>
-// </div> */}
  )
+
 }
 
 
 
+
+
+// 	const [contact,setContact] = useState([]);
+// 	const [customer,setCustomer] = useState([]);
+//     const [loads,setLoad] = useState(false);
+
+//   useEffect(() =>{
+//     function getContact(){
+//         axios.get("http://localhost:8070/contact/get").then((res) =>
+//         {
+//             setContact(res.data);
+//             console.log(res.data);
+            
+            
+//         }).catch((err) =>{
+//             alert(err);
+//         })
+//     }
+   
+//     getContact();
+
+// 	function getCustomer(){
+//         axios.get("http://localhost:8070/Customer/get").then((res) =>
+//         {
+//             setCustomer(res.data);
+//             console.log(res.data);
+            
+            
+//         }).catch((err) =>{
+//             alert(err);
+//         })
+//     }
+   
+//     getCustomer();
+   
+// }, []);
+
+// function deletee(id){
+//     axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
+//     {
+//         // document.getElementById("txt").innerHTML = "Message Deleted!";
+//         const afterDeleteContact = contact.filter(contact=>contact._id != id);
+//         setContact(afterDeleteContact);
+//     }).catch((err) =>{
+//         alert(err);
+//     })
+// }

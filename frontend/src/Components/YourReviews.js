@@ -5,13 +5,19 @@ import "../CSS/yourreviews.css";
 import p2 from "../images/p3.jpg";
 
 export default function YourReviews(props) {
+
+  const [review,setReview] = useState([]);
+  const [description,setDescription] = useState("");
+
   let reviews = [];
+  let review_id = "";
   let items = [];
   let itemName = "";
   let itemImage = "";
   let Review = "";
   let [abc, setabc] = useState([]);
   let reviewWithItem = {
+    review_id,
     itemName,
     itemImage,
     Review,
@@ -51,6 +57,7 @@ export default function YourReviews(props) {
         for (j = 0; j < items.length; j++) {
           if (reviews[i].itemid == items[j]._id) {
             reviewWithItem = {
+            review_id  : reviews[i]._id,
               itemName: items[j].Item_name,
               itemImage: items[j].Images[0],
               Review: reviews[i].description,
@@ -68,41 +75,36 @@ export default function YourReviews(props) {
     // getCustomer();
   }, []);
 
-  function deletee(id) {
-    //   axios
-    //     .delete("http://localhost:8070/review/delete/" + id)
-    //     .then((res) => {
-    //       document.getElementById("txt").innerHTML = "Message Deleted!";
-    //       const afterDeleteReview = review.filter((review) => review._id != id);
-    //       setReview(afterDeleteReview);
-    //     })
-    //     .catch((err) => {
-    //       alert(err);
-    //     });
-  }
+  // function deletee(id) {
+  //     axios
+  //       .delete("http://localhost:8070/review/delete/" + id)
+  //       .then((res) => {
+  //         document.getElementById("txt").innerHTML = "Message Deleted!";
+  //         const afterDeleteReview = review.filter((review) => review._id != id);
+  //         setReview(afterDeleteReview);
+  //       })
+  //       .catch((err) => {
+  //         alert(err);
+  //       });
+  // }
+  function deletee(id){
+    axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
+    {
+        // document.getElementById("txt").innerHTML = "Message Deleted!";
+        const afterDeleteReview = review.filter(review=>review._id != id);
+        setReview(afterDeleteReview);
+    }).catch((err) =>{
+        alert(err);
+    })
+}
 
-  // function updateReview(e){
+  // function updatee(e){
 
   //     const ReviewId = props.match.params.id;
   //     console.log(ReviewId);
 
-  //     getsDetails();
+  //     getDetails();
 
-  // 	if(content.length == 0){
-  // 		alert("Cannot edit");
-  // 		window.location.reload(true);
-  // 	}
-  // 	else{
-  // 		const updatedReview={
-  // 			description,
-  // 			date,
-  // 			noofstars,
-  // 			reviewstatus,
-  // 			reportreason,
-  // 			customerid,
-  // 			itemid
-  // 		}
-  // 	}
   // 	console.log(updatedReview);
 
   //     axios.put("http://localhost:8070/review/update/" + ReviewId,updateReview).then(()=>{
@@ -114,12 +116,37 @@ export default function YourReviews(props) {
   //       alert(err)
   //     })
   //   }
-{/* <div></div> */}
+    function updatee(id){
+
+      // e.preventDefault();
+      const ReviewId = id;
+      console.log(ReviewId);
+
+      const newReview = {
+        
+        description,
+        date : Date()
+      }
+
+      console.log(newReview);
+
+      axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
+
+        setReview(" ");
+        props.history.push("/Home");
+        document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        
+      }).catch((err) =>{
+        alert(err)
+      })
+    }
+
+
   return (
     <div className="rev">
       <section id="testimonials">
         <div className="box">
-          <form>
+          
             <div className="testimonial-heading">
               <h1>Your Reviews</h1>
             </div>
@@ -157,37 +184,23 @@ export default function YourReviews(props) {
 
                     <div class="profile">
                       <div>
-                        <a
-                          href="#editEmployeeModal"
-                          class="edit"
-                          data-toggle="modal"
-                        >
+                        <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                           <button class="button1" type="button">
                             Edit Review
                           </button>
                         </a>
                       </div>
                       <div>
-                        <a
-                          href="#deleteEmployeeModal"
-                          class="delete"
-                          data-toggle="modal"
-                        >
-                          <button
-                            onClick={() => deletee(reviewss._id)}
-                            class="button2"
-                            type="button"
-                          >
+                          <button onClick = {()=> deletee(review._id)} class="button2" type="button">
                             Delete Review
                           </button>
-                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
               );
             })}
-
+    
             <div id="editEmployeeModal" class="modal fade">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -206,7 +219,11 @@ export default function YourReviews(props) {
                     <div class="modal-body">
                       <div class="form-group">
                         <label>Re-write your review</label>
-                        <input type="text" class="form-control" required />
+                        <input type="text" class="form-control" required onChange= {
+                                (e)=>{
+                                setDescription(e.target.value);
+                                }
+                              }/>
                       </div>
                     </div>
                     <div class="modal-footer">
@@ -216,52 +233,14 @@ export default function YourReviews(props) {
                         data-dismiss="modal"
                         value="Cancel"
                       />
-                      <input type="submit" class="btn btn-info" value="Save" />
+                      <button onClick = {()=> updatee(review.review_id)} type="submit" class="btn btn-info" value="Submit" >Update</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
 
-            <div id="deleteEmployeeModal" class="modal fade">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <form>
-                    <div class="modal-header">
-                      <h4 class="modal-title">Delete Review</h4>
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-hidden="true"
-                      >
-                        &times;
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Are you sure you want to delete the review</p>
-                      <p class="text-warning">
-                        <small>This action cannot be undone.</small>
-                      </p>
-                    </div>
-                    <div class="modal-footer">
-                      <input
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                        value="Cancel"
-                      />
-                      <input
-                        type="submit"
-                        class="btn btn-danger"
-                        value="Delete"
-                      />
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </form>
+           
         </div>
       </section>
     </div>

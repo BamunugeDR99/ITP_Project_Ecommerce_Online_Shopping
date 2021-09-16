@@ -27,31 +27,27 @@ mongoose.connect(URL,{
 
 
 const studentRouter = require("./routes/students.js");
-
 app.use("/student",studentRouter);
 
 const reviewRouter = require("./routes/review.js");
-
 app.use("/review",reviewRouter);
 
 const contactselRouter = require("./routes/contactsel.js");
-
 app.use("/contactsel",contactselRouter);
 
 const customerRouter = require("./routes/customer.js");
- 
 app.use("/Customer",customerRouter);
 
-const itemRouter = require("./routes/items.js");
+const sellerRouter = require("./routes/seller.js");
+app.use("/seller",sellerRouter);
 
+const itemRouter = require("./routes/items.js");
 app.use("/items",itemRouter);
 
 const itemtestRouter = require("./routes/itemtest.js");
-
 app.use("/itemtest",itemtestRouter);
 
 const contactRouter = require("./routes/contact.js");
-
 app.use("/contact",contactRouter);
 
 const connection = mongoose.connection;
