@@ -131,7 +131,7 @@ export default function YourReviews(props) {
                     <div class="box-top">
                       <div class="profile">
                         <div class="profile-img">
-                          {/* <img src={`../images/${reviewss.itemImage}`} className="card-img-top"/> */}
+                          <img src={`../images/${reviewss.itemImage}`} className="card-img-top"/>
                         </div>
 
                         <div class="name-user">

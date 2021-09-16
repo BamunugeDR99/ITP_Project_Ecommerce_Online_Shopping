@@ -97,10 +97,10 @@ export default function CustomerReviews(props) {
                     }}
                   >
                     <div class="card-body">
-                      {/* <img
+                      <img
                       src={`../images/${reviewss.customerImage}`}
                       style={{ width: "80%", alignItems: "center" }}
-                    /> */}
+                    />
                       {/* <img src =  */}
                       <h5 class="card-title">{reviewss.customerName}</h5>
                       <div style={{ color: "#f9d71c", textAlign: "center" }}>

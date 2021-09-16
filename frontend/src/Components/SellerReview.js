@@ -8,63 +8,127 @@ import p2 from "../images/p3.jpg";
 
 export default function SellerReviews(props){
 
-//     const [review,setReview] = useState([]);
-// 	const [customertest,setCustomertest] = useState([]);
-//     const [loads,setLoad] = useState(false);
+    const [item,setItem] = useState([]);
 
-//   useEffect(() =>{
-//     function getReview(){
-//         axios.get("http://localhost:8070/review/get").then((res) =>
-//         {
-//             setReview(res.data);
-//             console.log(res.data);
-            
-            
-//         }).catch((err) =>{
-//             alert(err);
-//         })
-//     }
-   
-//     getReview();
+    let reviews = [];
+    let customers = [];
+    let customerName = "";
+    let customerImage = "";
+    let Review = "";
+    let [abc, setabc] = useState([]);
+    let reviewWithCustomer = {
+      customerName,
+      customerImage,
+      Review,
+    };
+    let content;
+  
+    let reviewWithCustomers = [];
+  
+    useEffect(() => {
 
+        function getItem(){
+            axios
+            .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+            .then((res) =>
+            {
+                setItem(res.data);
+                console.log(res.data);
+                console.log(item);
+        console.log('abc');
+        // content=
+                
+            }).catch((err) =>{
+                alert(err);
+            })
+            
+        }
+       
+        getItem();
+
+        
+
+
+      function getReview() {
+        axios
+          .get("http://localhost:8070/review/get")
+          .then((res) => {
+            //setReview(res.data);
+            const filter = res.data.filter(
+              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+            );
+            reviews = filter;
+  
+            axios
+              .get("http://localhost:8070/Customer/getAll")
+              .then((res) => {
+                customers = res.data;
+                createReview(reviews, customers);
+              })
+              .catch((err) => {
+                alert(err);
+              });
+          })
+          .catch((err) => {
+            alert(err);
+          });
+
+          
+      }
+  
+      function createReview(reviews, customers) {
+        let j = 0;
+        for (let i = 0; i < reviews.length; i++) {
+          j = 0;
+          for (j = 0; j < customers.length; j++) {
+            if (reviews[i].customerid == customers[j]._id) {
+              reviewWithCustomer = {
+                customerName: customers[j].firstName,
+                customerImage: customers[j].userImage,
+                Review: reviews[i].description,
+              };
+  
+              reviewWithCustomers.push(reviewWithCustomer);
+            }
+          }
+        }
+  
+        setabc(reviewWithCustomers);
+      }
+  
+      getReview();
     
+
    
-// }, []);
-
-// function getCustomertest(){
-//     axios.get("http://localhost:8070/customertest/get").then((res) =>
-//     {
-//         setCustomertest(res.data);
-//         console.log(res.data);
-        
-        
-//     }).catch((err) =>{
-//         alert(err);
-//     })
-// }
-
-// getCustomertest();
 
 
+}, []);
 
  return(    
  <div style={{padding:'20px 15px 10px 50px'}}>    
     <div className="row" >
         <div className="col-6" style={{alignItems:'center'}}>
+        
+       {/* { alert(item)} */}
+       
             <div className="row">
-
-                <div className="col">
-                    <img style={{height:'90%',width:'80%',  paddingRight:'20px'}} src={p2}/>
-                    </div>
+                
+                {/* {/* {item.Images.map((post) => {
+                 return (   */}
 
                     <div className="col">
-                    <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong'}}><b>Item Name</b></span>
+                    {/* <img style={{height:'90%',width:'80%',  paddingRight:'20px'}} src={`../images/${post.Images}`}/> */}
+                    </div>
+                
+                    <div className="col">
+                       
+                    <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong'}}><b>{item.Item_name}</b></span>
                     <br/><br/>
-                    <p style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Item Description</p>
+                    <p style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{item.Description}</p>
                     <br/>
-                    <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Item Price</span>
+                    <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{item.Price}</span>
                 </div>
-
+                	
             </div>
             <div className="row" style={{fontsize: '18px',textalign: 'left',fontstyle: 'strong',padding:'0px 0px 0px 30px'}}>
                 <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Analytics</span>
@@ -102,14 +166,21 @@ export default function SellerReviews(props){
 
         <div style={{height:'550px',overflowY: 'scroll', paddingBottom:'20px'}}>
             
-                <div className="row" style={{width:'90%', padding:'10px 0px 5px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
+
+        {abc.map((reviewss) => {
+              return (
+
+
+              
+                <div className="row" style={{width:'90%', padding:'10px 0px 10px 20px',margin:'0px 0px 20px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px',border:'red'}}>
                     <div className="row">
                         <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
+                            
+                                <img style={{width:'100%'}} src={`../images/${reviewss.customerImage}`}/>
                         </div>
 
                         <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
+                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{reviewss.customerName}</span>
                             <div style={{color: "#f9d71c"}}>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -123,7 +194,7 @@ export default function SellerReviews(props){
                     <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
                         <div className="col">
                             <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px', lineHeight:'0.5'}}>
-                                review 
+                                {reviewss.Review}
                             </span> 
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
@@ -135,235 +206,15 @@ export default function SellerReviews(props){
                         </div>
                     </div>
                 </div>  
-                <hr style={{width:'90%'}}/>
-                
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div>  
-                <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div>  
-                <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
-                <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
-                <hr style={{width:'90%'}}/>
-                <div className="row" style={{width:'90%', padding:'10px 0px 1px 20px',margin:'0px 0px 0px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px'}}>
-                    <div className="row">
-                        <div className="col-2">
-                                <img style={{width:'100%'}} src={p2}/>
-                        </div>
-
-                        <div className="col">
-                            <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>Customer Name</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        
-                    </div>    
-                    <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
-                        <div className="col">
-                            <span style={{width:'50%', padding:'10px 0px 0px 10px', fontSize:'13.5px' }}>
-                                review
-                            </span>
-                        </div>
-                        <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                <Link to = "/adrep" className = "nav-link" >
-                                    <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
-                                </Link>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
-        </div>        
-           
-            {/* <div>
-                <img src={p2} style={{width:'10%'}}/>
-                <span style={{fontSize:'16px'}}>Sonal Jayawardana</span>
-                <div class="reviews">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="far fa-star"></i>
-					</div>
-            </div>     */}
-
-        {/* <section id="testimonials">
+               
+                );
+            })}
             
-        
-        <span class="title3">Product Reviews</span>
-            <div className="testimonial-box-container">
-				<div class="testimonial-box">
-					<div class="box-top">
-						<div class="profile">
-							<div class="profile-img">
-								<img src={p2}/>
-							</div>
-									
-							<div class="name-user">
-								<strong>Customer Name</strong>
-                                <div class="reviews">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="client-comment">
-                                    <p>Awsome</p>
-                                
-                                	
-                                    
-                               
-                                </div>
-                                <div >
-                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                        <Link to = "/adrep" className = "nav-link" >
-                                            <button class="button3" type="button">Report</button>
-                                            </Link>
-                                        </a>
-                                    </div>
-                            </div>
-                            
-                    </div>
-                    </div>
-                    </div>
-                    </div>
+         
+        </div>    
 
-                   
-                    </section> */}
+           
+           
          </div>
     </div>
 </div>   
