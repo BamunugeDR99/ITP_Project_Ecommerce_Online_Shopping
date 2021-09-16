@@ -87,15 +87,18 @@ export default function ViewCardDetails(props){
 
             </div>
             <br/><br/>
-                       
+
+            <div class="float-right">
 							 
-        </div>
-        <div class="float-right">
-							 
-							 <span style= {{ marginRight: "50px" , marginLeft:"120px"}}> <button type="reset" class="btn btn-primary">Edit</button></span>  
+							 <span style= {{ marginRight: "150px" , marginLeft:"80px"}}> <button id="" type="reset" class="btn btn-primary">Edit</button></span>  
 						
 							 <span><button  class="btn btn-danger " onClick ={()=>deletePackage(paymentdetails._id)}>Remove</button></span> 
 						</div>
+
+							 
+        </div>
+        <br/>
+        
         
     </div>
 )})}

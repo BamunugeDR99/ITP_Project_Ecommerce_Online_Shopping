@@ -13,6 +13,7 @@ export default function SelectPaymentMethod(props){
 
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="card p-5" style={{width: "500px"}}>
+        
         <div>
             <h4 class="heading">Confirm Payment</h4>
             <p class="text">Please Select the payment Method to Continue with the payment</p>
@@ -38,15 +39,7 @@ export default function SelectPaymentMethod(props){
             <div> <input type="text" class="form-control cvv" placeholder="CVC"/> 
             </div>
         </div>
-        <div class="credit rounded mt-2 d-flex justify-content-between align-items-center">
-            <div class="d-flex flex-row align-items-center">
-               <img src="https://i.imgur.com/qHX7vY1.png" class="rounded" width="70"/>
-                <div class="d-flex flex-column ml-3">
-                   <span class="business">Credit Card</span> <span class="plan">2344 XXXX XXXX 8880</span>
-                    </div>
-            </div>
-            <div> <input type="text" class="form-control cvv" placeholder="CVC"/> </div>
-        </div>
+        
         <h6 class="mt-4 text-primary">ADD PAYMENT METHOD</h6>
         <div class="email mt-2">
            <input type="text" class="form-control email-text" placeholder="Email Address"/> </div>
