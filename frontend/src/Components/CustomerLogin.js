@@ -91,7 +91,7 @@ export default function CustomerLogin(){
                             <header>Sign In</header>
                             
 							<div className="form-group">
-                                <h2>{errorMsg}</h2>
+                                <h6 id ="CusLoginError">{errorMsg}</h6>
 							<label htmlFor="username"><b>Username</b></label><br/>
                                 <i className="fas fa-user"></i>
                                 <input className="myInput" type="text" placeholder="Username" name="username" onChange={handleChange}
@@ -150,12 +150,26 @@ export default function CustomerLogin(){
                 {/* <img src={img6} alt="" id="LoginI"/> */}
                     <div className="myRightCtn">
                   
-                            <div className="box"><header><b>Welcome to login</b></header>
+                            <div className="DontAcc"><header><b>Welcome to login</b></header>
                             
                             <h4 className ="acc" >Don't have an account?</h4><br/>
 							
                                 <input type="button" className="butt_out" value="Sign Up"/>
+
+                                <div className="changeSLogin">
+
+                                <p> If You Are A Seller Use  This Link To Login! <a href="">LogIn</a></p>
+                                </div>
+
+                                
                             </div>
+
+                           
+                            
+                               
+                            
+
+
                                 
                     </div>
                 </div>

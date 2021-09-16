@@ -126,6 +126,8 @@ function SignUp(props){
 
 	}
 
+
+
 	
 	function validEmail(){
 

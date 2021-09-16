@@ -13,7 +13,7 @@
   height: 930px;
   margin: auto;
   margin-top: 50px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: rgba(5, 5, 131, 0.25) 0px 30px 60px -12px, rgba(23, 6, 172, 0.459) 0px 18px 36px -18px;
   display: flex;
   
  }
