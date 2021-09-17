@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import axios from "axios";
 
 import "../CSS/contact.css";
-import go from "../images/bg14.jpg";
+import go from "../images/bg2.jpg";
 
 
 export default function ContactAdmin(props){
@@ -11,9 +11,38 @@ export default function ContactAdmin(props){
     const [email,setEmail] = useState("");
     const [message,setMessage] = useState("");
   
+
+    let [errorMsg,setErrorMsg] = useState("");
+	let flag = 0;
+
+    function validEmail(){
+
+		const email = document.getElementById("email").value;
+
+		const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+		 if(email.match(EmailAdd)){
+
+			flag = 1;
+
+		 }else{
+			
+			flag = 0;
+			alert("You have entered an invalid email address!");
+
+		 }
+		
+	}
+
+
     function sendData(e){
 
       e.preventDefault();
+      validEmail();
+  
+
+      if(flag == 1){
+          
   
       const newContact = {
         name,
@@ -30,13 +59,16 @@ export default function ContactAdmin(props){
         setEmail(" ");
         setMessage(" ");
         props.history.push("/Home");
+        setErrorMsg("");
         document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         
       }).catch((err) =>{
         alert(err)
+        
+		setErrorMsg(err.response.data.error);
       })
     }
-
+    }
 
  return(
 <div className="rev">  
@@ -70,7 +102,7 @@ export default function ContactAdmin(props){
                         </div>
 
                         <div className="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input className="input1" type="text" name="email" placeholder="Email"
+                            <input className="input1" type="text" id="email" name="email" placeholder="Email"
                             onChange= {
                                 (e)=>{
                                 setEmail(e.target.value);

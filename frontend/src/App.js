@@ -13,7 +13,7 @@ import CustomerMsg from './Components/CustomerMsg';
 import Sellermsg from './Components/Sellermsg';
 import YourReviews from './Components/YourReviews';
 
-import MyReviews from './Components/MyReviews';
+// import MyReviews from './Components/MyReviews';
 import ReactSession from 'react-client-session';
 import CustomerReviews from './Components/CustomerReviews';
 import Report from './Components/Report';
@@ -22,11 +22,11 @@ import ContactAdmin from './Components/ContactAdmin';
 import SellerReview from './Components/SellerReview';
 import AdminReport from './Components/AdminReport';
 import ItemView from './Components/ItemView';
-import test from './Components/test';
+// import test from './Components/test';
 
 
 
-import TestFile from './Components/TestFile';
+// import TestFile from './Components/TestFile';
 import Forloop from './Components/Forloop';
 
 
@@ -42,7 +42,7 @@ function App() {
       <Route path = "/cusrev" exact component = {CustomerReviews}/>
       <Route path = "/myrev" exact component = {YourReviews}/>
       
-       <Route path = "/rev" exact component = {MyReviews}/> 
+       {/* <Route path = "/rev" exact component = {MyReviews}/>  */}
        <Route path = "/wrev" exact component = {WriteReview}/> 
        <Route path = "/report" exact component = {Report}/> 
        <Route path = "/adrep" exact component = {AdminReport}/> 
@@ -50,12 +50,12 @@ function App() {
        <Route path = "/msg" exact component = {CustomerMsg}/> 
        <Route path = "/itemview" exact component = {ItemView}/> 
        <Route path = "/selrev" exact component = {SellerReview}/> 
-       <Route path = "/test" exact component = {test}/> 
+       {/* <Route path = "/test" exact component = {test}/>  */}
        <Route path = "/f" exact component = {Login}/> 
      <Route path = "/Home" exact component= {AllStudents}/>
        <Route path = "/add" exact component = {AddStudent}/> 
        <Route path = "/update/:id" exact component = {UpdateStudent}/> 
-       <Route path = "/testing" exact component = {TestFile}/> 
+       {/* <Route path = "/testing" exact component = {TestFile}/>  */}
         <Route path = "/" exact component = {Forloop}/>
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>

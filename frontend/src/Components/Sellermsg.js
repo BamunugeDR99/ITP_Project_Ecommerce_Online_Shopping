@@ -95,7 +95,7 @@ export default function SellermMsg(props){
 		<div className="table-responsive">
 			<div className="table-wrapper">
 				<div className="table-title">
-							<h2><center><b>Customer ////////// Messages</b></center></h2>
+							<h2><center><b>Customer Messages</b></center></h2>
 				</div>
 				<table className="table table-striped table-hover">
 					<thead>

@@ -3,6 +3,9 @@ import axios from "axios";
 
 
 export default function CustomerReviews(props) {
+
+  
+
   let reviews = [];
   let customers = [];
   let customerName = "";
@@ -69,9 +72,12 @@ export default function CustomerReviews(props) {
     getReview();
   }, []);
 
+
+
+ 
+
   return (
     <div style={{ padding: "20px 15px 10px 50px" }}>
-      <div class="rev">
         <div className="container">
           <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
             <br />
@@ -84,13 +90,12 @@ export default function CustomerReviews(props) {
             </h5>
 
             <div>
+            
               {abc.map((reviewss) => {
                 return (
-                  <div className="row">
-                    <div class="col" style={{ paddingBottom:'30px'}}>
-                      <div class="card" 
-                      style={{width: "20%",margin: "50px",borderRadius: "15px",marginTop: "30px",height: "290px",}}
-                      >
+                  <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+                    <div class="col-3" style={{ paddingBottom:'30px'}}>
+                      <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
                         <div class="card-body">
                           <img src={"/Images/"+reviewss.customerImage[0]} style={{ width: "80%", alignItems: "center" }}/>
                         
@@ -112,36 +117,17 @@ export default function CustomerReviews(props) {
                         </div>
                       </div>
                     </div>
-                  
 
-
-                  {/* <div class="col-sm-2" style={{ paddingBottom:'30px'}}>
-                    <div class="card" style={{width: '80%', height: '90%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', paddingBottom:'20px',boxShadow:'4px 4px 4px 4px #DCDCDC'}}>
-                        <div class="card-body">
-                            <img src={p2} style={{width:'80%',paddingBottom:'10px'}}/><br/>
-                            <span style={{fontSize:'14px'}}>{reviewss.itemName}</span><br/>
-                            <span style={{fontSize:'13px'}}>{reviewss.itemImage}</span><br/>
-                            <span style={{fontSize:'13px'}}>{reviewss.DiscountStatus}</span><br/>
-                            <span style={{fontSize:'13px'}}>{reviewss.itemPrice}</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                      </div>
-                    </div> */}
-
-              </div>
+                  </div>
               
                 );
               })}
+              
             </div>
+            
           </div>
         </div>
       </div>
-    </div>
   );
 }
+

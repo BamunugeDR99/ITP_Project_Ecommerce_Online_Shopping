@@ -10,7 +10,8 @@ import p2 from "../images/p3.jpg";
 
 export default function SellerReviews(props){
 
-    const [item,setItem] = useState([]);
+    const [items,setItems] = useState([]);
+    const [ratings, setRatings] = useState([]);
 
     let reviews = [];
     let customers = [];
@@ -36,9 +37,9 @@ export default function SellerReviews(props){
             .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
             .then((res) =>
             {
-                setItem(res.data);
+                setItems(res.data);
                 console.log(res.data);
-                console.log(item);
+                console.log(items);
                 console.log('abc');
         
                 
@@ -59,10 +60,10 @@ export default function SellerReviews(props){
           .then((res) => {
             //setReview(res.data);
             const filter = res.data.filter(
-              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+              (itemrev) => itemrev.itemid === "6136f4a5003aa10c6324ac53"
             );
             reviews = filter;
-  
+            // 6120b61011f8374ae1fa904f
             axios
               .get("http://localhost:8070/Customer/getAll")
               .then((res) => {
@@ -104,10 +105,66 @@ export default function SellerReviews(props){
       getReview();
     
 
+}, []);
+
+
+// useEffect(() => {
+//   calculateStarRating();
+  
+// })
+
+// function calculateStarRating(){
+//   let totalNoRatings = 0;
+//   let totalstarforRatingCount = 0;
+//   let starCount = 0;
+//   let average = 0; 
+//   for(let i = 0; i < items.length; i++){
+    
+//     totalNoRatings = 0;
+//     totalstarforRatingCount = 0;
+//     starCount = 0;
+//     average = 0;
+  
+//     for(let j = 0; j < ratings.length; j++){
+//         if(items[i]._id == ratings[j].itemid){
+//           totalNoRatings++;
+//         }
+
+//         if(items[i]._id == ratings[j].itemid){
+//           starCount += parseInt(ratings[j].noofstars);  
+//         }
+
+//     }
+
+//     totalstarforRatingCount = totalNoRatings * 5;
+//     average = parseInt((starCount / totalstarforRatingCount) * 5);
+//     console.log(average);
+//     displayStarRating(i,average);
+
+//   }
+
+// }
+
+
+// function displayStarRating(id,totalAverage){
+//   let txt = "";
+//     if(isNaN(totalAverage)){
+//       txt = "No Ratings yet!";
+//       document.getElementById(id +'stars').innerHTML = txt;
+//       document.getElementById(id +'stars').style.color = "#FF0000";
+//     }else{
+    
+//     for(let j = 0; j < totalAverage; j++){
+//       txt += '<span class="fa fa-star checked"></span>';
+//     }
+//     for(let j = 0; j < (5 - totalAverage); j++){
+//       txt += '<span class="fa fa-star"></span>';
+//     }
    
 
-
-}, []);
+//     document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+//    }
+// }
 
 //  onTaskClicked(){
 //   console.log("clicked");
@@ -115,6 +172,45 @@ export default function SellerReviews(props){
 // function setReport(){
 
 // }
+
+// function sendData(e){
+
+//   e.preventDefault();
+
+//   const newContact = {
+//     name,
+//     email,
+//     message
+//   }
+
+ 
+//   console.log(newContact);
+
+//   axios.post("http://localhost:8070/contact/add",newContact).then(()=>{
+
+//     setName(" ");
+//     setEmail(" ");
+//     setMessage(" ");
+//     props.history.push("/Home");
+//     document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+    
+//   }).catch((err) =>{
+//     alert(err)
+//   })
+// }
+
+  // function toogleHandler() {
+  //   if (isOrderd) {
+  //     orderedCtx.removeOrder(props.id);
+  //   } else {
+  //     orderedCtx.addOrder({
+  //       id: props.id,
+  //       name: props.name,
+  //       review: props.review,
+  //       status: 1,
+  //     });
+  //   }
+  // }
 
 
  return(    
@@ -129,87 +225,88 @@ export default function SellerReviews(props){
                 {/* {/* {item.Images.map((post) => {
                  return (   */}
 
-                    <div className="col">
-                      {/* <img style={{height:'90%',width:'80%',  paddingRight:'20px'}} src={"/Images/" + item.userImage[0]}/> */}
+                    <div className="col-4">
+                      <img style={{width:'70%'}}
+                       src=
+                       {p2}
+                      //  {"/Images/" + items.userImage[0]}
+                       />
                     </div>
                 
                     <div className="col">
                        
-                    <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong'}}><b>{item.Item_name}</b></span>
+                    <span style={{fontSize: '22px',textalign: 'left',fontstyle: 'strong'}}><b>{items.Item_name}</b></span>
                     <br/><br/>
-                    <p style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{item.Description}</p>
+                    <p style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{items.Description}</p>
                     <br/>
-                    <span style={{fontSize: '18px',textalign: 'left',fontstyle: 'strong'}}>Rs. {item.Price}.00/=</span>
+                    <span style={{fontSize: '18px',textalign: 'left',fontstyle: 'strong'}}>Rs. {items.Price}.00/=</span>
                 </div>
                 
                 	
             </div>
             <br/>
-            <div className="row" style={{padding:'50px 40px 10px 10px'}}>
-                <div className="col"> 
-                    
-                  <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Analytics</span>
-                  
-                  <br/><br/>
-                  <div className="row">
-                      <div className="col">
-                          <span>No of customers </span><br/>
-                          <span>Reviews</span><br/>
-                          <span>Ratings</span><br/>
-                      </div>
-                      <div className="col" >
-                          <span>10</span><br/>
-                          <span>8</span><br/>
-                          <span>4</span>
-                      </div> 
-                    </div>     
-                </div>
-                <div className="col"> 
-                    
-                  <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Item Description</span>
-                  
-                  <br/><br/>
-                  <div className="row">
-                      <div className="col">
-                          <span>Brand</span><br/>
-                          <span>Model</span><br/>
-                          <span>Category</span><br/>
-                          <span>Specification</span><br/>
-                          <span>Warrenty</span><br/>
-                      </div>
-                      <div className="col" >
-                          <span>: &emsp;{item.Brand}</span><br/>
-                          <span>: &emsp;{item.Model}</span><br/>
-                          <span>: &emsp;{item.Category}</span><br/>
-                          <span>: &emsp;{item.Specification}</span><br/>
-                          <span>: &emsp;{item.Warrenty}</span>
-                      </div> 
-                    </div>     
-                </div>
-                {/* <div className="col"> 
-                    
-                   <div className="row" style={{backgroundColor:'white', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'100%'}}>
-                      <div className="col">
-                        <span style={{fontSize: '20px',textalign: 'left',fontstyle: 'strong',padding: '20px 0px 10px 0px'}}>Item Description</span><br/>   
-
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px' ,padding:'0px 0px 0px 10px'}}>Brand : {item.Brand}</span><br/>
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Model : {item.Model}</span><br/>
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Category : {item.Category}</span><br/>
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Item Availability : {item.ItemAvailabilityStatus}</span><br/>
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Specification : {item.Specification}</span><br/>
-                          <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Warrenty : {item.Warrenty}</span>
+            <div className="row" style={{padding:'10px 20px 0px 10px'}}>
+                <div className="row" style={{lineHeight:'32px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
+                            <span style={{alignItems:"center", fontSize:'20px', padding:'10px 10px 20px 10px'}}><b>Item Description</b></span>   
+                               
+                                <div className="col-2">
+                                    
+                                    <span>Brand</span><br/>
+                                    <span>Model</span><br/>
+                                    <span>Availability</span><br/>
+                                    <span>Specification</span><br/>
+                                    <span>Warrenty</span>
                                 </div> 
+                                <div className="col-1">
+                                    
+                                    <span> : </span><br/>
+                                    <span> :</span><br/>
+                                    <span> :  </span><br/>
+                                    <span> : </span><br/>
+                                    <span> :  </span>
+                                </div> 
+                                <div className="col">    
+                                    <span>{items.Brand} </span><br/>
+                                    <span>{items.Model} </span><br/>
+                                    <span>{items.ItemAvailabilityStatus} </span><br/>
+                                    <span>{items.Specification} </span><br/>
+                                    <span>{items.Warrenty} </span>
+                                </div>
+                                <div className="col-2">
+                                    
+                                    <span> Quantity</span><br/>
+                                    <span> WHT </span><br/>
+                                    <span> Category</span><br/>
+                                    <span> Stock unit</span><br/>
+                                    <span> Other_colors</span><br/>
+                                </div> 
+                                <div className="col-1">
+                                    
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                </div> 
+                                <div className="col-3">    
+                                    <span>{items.Quantity}</span><br/>
+                                    <span>{items.WHT}</span><br/>
+                                    <span>{items.Category}</span><br/>
+                                    <span>{items.Unit}</span><br/>
+                                    <span>{items.Colors}</span><br/>
+                                </div>
                                 
-                            </div>
-                   
-                </div> */}
+                            </div> 
+                
         </div> 
             
-            {abc.map((reviewss) => {
-              return (
+            {/* {abc.map((reviewss) => {
+              return ( */}
             <div className="row">
-                <span style={{fontSize:'20px', fontstyle:'strong',padding:'30px 0px 20px 30px'}}>Ratings and reviews of item name</span>
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>{reviewss.Stars}/5</span><br/>
+                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
+                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>4/5
+                  {/* { +'stars'} */}
+                  </span><br/> 
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
                     <div style={{color: "#f9d71c"}}>
                       <i class="fas fa-star"></i>
@@ -220,8 +317,8 @@ export default function SellerReviews(props){
                     </div>
                 </span>
             </div>
-              )
-            })}
+              {/* )
+            })} */}
         </div>
         <div className="col">
         
@@ -232,6 +329,7 @@ export default function SellerReviews(props){
             
 
         {abc.map((reviewss) => {
+      
               return (
 
 
@@ -270,10 +368,17 @@ export default function SellerReviews(props){
                 </div>  
                
                 );
+              
             })}
             
          
-        </div>    
+        </div> 
+
+
+        <form 
+        // onSubmit = {sendData}
+        >
+
         <div id="editEmployeeModal" class="modal fade">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -315,7 +420,7 @@ export default function SellerReviews(props){
                 </div>
               </div>
             </div>
-
+          </form>    
            
            
          </div>
@@ -326,3 +431,171 @@ export default function SellerReviews(props){
 }
 
 
+// function CalcDiscount(e) {
+
+//   setDiscount(e.target.value);
+
+//   let dis = document.getElementById("discountPercentage").value;
+
+//   console.log(dis);
+//   let finalP = Number(item.Price) - (Number(item.Price) * (Number(dis) / 100));
+
+//   console.log(finalP);
+
+//   document.getElementById("newPrice").value = finalP;
+
+//   setFinalPrice(finalP);
+
+// }
+
+
+
+// export default function FoodItem(props) {
+//   //getting access to the ordered context object in orderontext.js page
+//   const orderedCtx = useContext(OrderContext);
+//   const isOrderd = orderedCtx.isOrdered(props.id);
+//   const favouriteCtx = useContext(FavouriteContext);
+//   const isFavourite = favouriteCtx.isFavourite(props.id);
+//   let [user, setUser] = useState("");
+
+//   const [modelOpen, setmodelOpen] = useState(false);
+//   const [comment, setComment] = useState([]);
+
+//   useEffect(() => {
+//     axios
+//       .get("http://localhost:8000/orderDetails/getUserbyid/111")
+//       .then((res) => {
+//         setUser(res.data);
+//       })
+//       .catch((err) => {
+//         alert(err.message);
+//       });
+//   }, []);
+
+//   function toogleOrderStatusHandler() {
+//     if (isOrderd) {
+//       orderedCtx.removeOrder(props.id);
+//     } else {
+//       orderedCtx.addOrder({
+//         id: props.id,
+//         price: props.price,
+//         name: props.name,
+//         image: props.image,
+//         status: 1,
+//         description: props.description,
+//       });
+//     }
+//   }
+
+
+//   return (
+//   
+//       <div class="blog grid-blog">
+//         <div class="blog-image">
+//           <a>
+//             <img
+//               class="img-fluid"
+//               src={`img/${props.image}`}
+//               alt="Food image"
+//               onClick={modalOpen}
+//               style={{
+//                 width: "250px",
+//                 height: "200px",
+//               }}
+//             />
+//           </a>
+//         </div>
+//         <div class="blog-content">
+//           <div className="row">
+//             <div className="col-md-3">
+//               <a onClick={toogleFavouriteStatusHandler}>
+//                 {isFavourite ? (
+//                   <FeatherIcon
+//                     icon="heart"
+//                     fill="red"
+//                     color="white"
+//                     style={{ stroke: "red" }}
+//                   />
+//                 ) : (
+//                   <FeatherIcon
+//                     icon="heart"
+//                     borderColor="white"
+//                     style={{ stroke: "black" }}
+//                   />
+//                 )}
+//               </a>
+//             </div>
+//             <div className="col-md-6"></div>
+//             <div className="col-md-3">
+//               <a onClick={toogleFavouriteStatusHandler}>
+//                 <FeatherIcon icon="more-vertical" style={{ stroke: "black" }} />
+//               </a>
+//             </div>
+//             <div className="col-md-2"></div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Modal
+//         animation={true}
+//         isOpen={modelOpen}
+//         onRequestClose={modalClose} >
+//         <div className="row">
+//           <div
+//             className="card col-md-6"
+//             style={{
+//               overflowY: "initial",
+//             }}
+//           >
+//             <FoodDetails
+//               name={props.name}
+//               price={props.price}
+//               id={props.foodID}
+//               description={props.description}
+//               image={props.image}
+//               type={props.type}
+//             />
+//             <div className="row">
+//               <div className="col-md-5">
+//                 <button
+//                   onClick={toogleOrderStatusHandler}
+//                   className="btn btn-primary"
+//                 >
+//                   {isOrderd ? "Cancel order" : "Order now"}
+//                 </button>
+//               </div>
+//               <div className="col-md-2"></div>
+//               <div className="col-md-5">
+//                 <button onClick={modalClose} className="btn btn-danger">
+//                   Close
+//                 </button>
+//               </div>
+//             </div>
+//             <br />
+//           </div>
+
+//           <div className="model-body col-md-6">
+//             <div
+//               style={{
+//                 height: "350px",
+//                 overflowY: "scroll",
+//               }}
+//             >
+//               {comment.map((post) => (
+//                 <div key={post._id}>
+//                   <FoodComment
+//                     userID={post.userID}
+//                     foodID={post.foodID}
+//                     comment={post.comment}
+//                   />
+//                 </div>
+//               ))}
+//             </div>
+
+//             <SendComment func={modalOpen} foodID={props.id} />
+//           </div>
+//         </div>
+//       </Modal>
+//     </div>
+//   );
+// }

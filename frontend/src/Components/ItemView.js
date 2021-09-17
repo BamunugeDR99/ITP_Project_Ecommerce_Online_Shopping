@@ -17,17 +17,21 @@ export default function ItemView(props){
     let [allitems,setAllitems] = useState([]);
     let [filtereditems,setFiltereditems] = useState([]);
 
-    let category= "";
+    let [ICategory, setICategory]= useState("");
 
     let reviews = [];
     // let items = [];
     let itemName = "";
     let itemBrand="";
+    let itemQuantity="";
     let itemModel="";
     let itemPrice="";
+    let itemUnit="";
     let itemDescription="";   
     let itemSpecification="";
+    let itemWHT="";
     let itemWarrenty="";
+    let itemColors="";
     let itemImage = "";
     let itemCategory="";
     let itemAvailability="";
@@ -40,11 +44,15 @@ export default function ItemView(props){
     let reviewWithItem = {
       itemName,
       itemBrand,
+      itemQuantity,
       itemModel,
       itemPrice,
+      itemUnit,
       itemDescription ,  
       itemSpecification,
+      itemWHT,
       itemWarrenty,
+      itemColors,
       itemImage,
       itemCategory,
       itemAvailability,
@@ -70,8 +78,8 @@ export default function ItemView(props){
             axios
               .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
               .then((res) => {
-                  category=res.data.Category
-                  console.log(category)
+                  ICategory= res.data.Category;
+                  console.log(ICategory);
               setItems(res.data);
               console.log(res.data);
             //   console.log(items);
@@ -90,10 +98,10 @@ export default function ItemView(props){
             axios
             .get("http://localhost:8070/items/getItems")
             .then((res)=>{
-            console.log(category)
+            console.log(ICategory)
                 console.log(res.data);
                 // console.log(items.Category);
-                filter(res.data, category);
+                filter(res.data, ICategory);
 
             
             })
@@ -102,8 +110,6 @@ export default function ItemView(props){
               });
 
       }
-
-
       function filter(data, Caategory) {
 
             console.log("Filter");
@@ -113,7 +119,7 @@ export default function ItemView(props){
         let result = data.filter((post) =>
 
 
-            post.Category.toLowerCase().includes(category.toLowerCase())
+            post.Category.toLowerCase().includes(Caategory.toLowerCase())
 
 
 
@@ -134,11 +140,15 @@ export default function ItemView(props){
               reviewWithItem = {
                 itemName: items[j].Item_name,
                 itemBrand: items[j].Brand,
+                itemQuantity: items[j].Quantity,
                 itemModel: items[j].Model,
                 itemPrice: items[j].Price,
+                itemUnit: items[j].Stock_keeping_unit,
                 itemDescription : items[j].Description,  
                 itemSpecification: items[j].Specification,
+                itemWHT: items[j].WHT,
                 itemWarrenty: items[j].Warrenty,
+                itemColors: items[j].Other_colors,
                 itemImage: items[j].Images[0],
                 itemCategory: items[j].Category,
                 itemAvailability: items[j].ItemAvailabilityStatus,
@@ -167,8 +177,7 @@ export default function ItemView(props){
 return(
 <div style={{padding:'20px 15px 10px 50px'}}>  
 
-{/* {abc.map((reviewss) => { */}
-        {/* return (  */}
+
 <div>
 
     <div className="row" >
@@ -177,12 +186,14 @@ return(
         </div>
 
         <div className="col">
-            <span style={{fontSize:'22px'}}><b>{items.Item_name}</b></span><br/><br/>
+            <span style={{fontSize:'22px'}}><b>{items.Item_name}</b></span><br/>
+            <span style={{fontSize:'20px'}}>{items.itemDescription}</span><br/>
         
              
              <br/>
-             <span style={{fontSize:'18px'}}><del>Rs. {items.Price}.00/=</del></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/>
+             <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/>
+             &nbsp;
+             <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/>
              <span style={{fontSize:'18px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
             <br/>
             <div >
@@ -223,29 +234,65 @@ return(
             <br/><br/>
         <div className="row" style={{padding:'10px 40px 10px 10px'}}>
                 <div className="col"> 
-                    {/* <div className="container" style={{backgroundColor:'#dcdcdc', borderRadius:'15px',padding:'10px 0px 20px 30px', width:'80%'}}> */}
-                            <div className="row" style={{backgroundColor:'white', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'85%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
-                                <div className="col">
-                                    <span style={{alignItems:"center", fontSize:'20px'}}>Item Description</span>   
-                                    <hr style={{color:'#4169E1'}}/>    
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px' ,padding:'0px 0px 0px 10px'}}>Brand : {items.Brand}</span><br/>
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Model : {items.Model}</span><br/>
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Category : {items.Category}</span><br/>
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Item Availability : {items.ItemAvailabilityStatus}</span><br/>
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Specification : {items.Specification}</span><br/>
-                                    <span style={{width:'100%',height:'100%', borderRadius:'15px', padding:'0px 0px 0px 10px'}}>Warrenty : {items.Warrenty}</span>
+                     <div className="row" style={{backgroundColor:'white',lineHeight:'32px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
+                            <span style={{alignItems:"center", fontSize:'20px', padding:'10px 10px 20px 10px'}}><b>Item Description</b></span>   
+                               
+                                <div className="col-2">
+                                    
+                                    <span>Brand</span><br/>
+                                    <span>Model</span><br/>
+                                    <span>Availability</span><br/>
+                                    <span>Specification</span><br/>
+                                    <span>Warrenty</span>
                                 </div> 
+                                <div className="col-1">
+                                    
+                                    <span> : </span><br/>
+                                    <span> :</span><br/>
+                                    <span> :  </span><br/>
+                                    <span> : </span><br/>
+                                    <span> :  </span>
+                                </div> 
+                                <div className="col">    
+                                    <span>{items.Brand} </span><br/>
+                                    <span>{items.Model} </span><br/>
+                                    <span>{items.ItemAvailabilityStatus} </span><br/>
+                                    <span>{items.Specification} </span><br/>
+                                    <span>{items.Warrenty} </span>
+                                </div>
+                                <div className="col-2">
+                                    
+                                    <span> Quantity</span><br/>
+                                    <span> WHT </span><br/>
+                                    <span> Category</span><br/>
+                                    <span> Stock unit</span><br/>
+                                    <span> Other_colors</span><br/>
+                                </div> 
+                                <div className="col-1">
+                                    
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                    <span> : </span><br/>
+                                </div> 
+                                <div className="col-3">    
+                                    <span>{items.Quantity}</span><br/>
+                                    <span>{items.WHT}</span><br/>
+                                    <span>{items.Category}</span><br/>
+                                    <span>{items.Unit}</span><br/>
+                                    <span>{items.Colors}</span><br/>
+                                </div>
                                 
                             </div> 
                 </div>
                 <div className="col-5"> 
-                    {/* <div className="container" style={{backgroundColor:'grey'}}> */}
                         <div className="row">
                             <div className="col">
                                 <span style={{alignItems:"center", fontSize:'20px'}}><b>Ratings And Reviews</b></span>      <br/><br/>
                                 <div className="row">
                                     <div className="col">
-                                        <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>{items.Review}/5</span><br/>
+                                        <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>&emsp;&emsp;{items.Review}/5</span><br/>
                                         <span>
                                             <div style={{color: "#f9d71c" ,fontSize:'24px'}}>
                                                 <i class="fas fa-star"></i>
@@ -280,24 +327,20 @@ return(
                                 </div> 
                             </div> 
                         </div> 
-                    {/* </div> */}
                 </div>
         </div>    
-            {/* <div className="col">
-                
-            </div>   */}
-            {/* </div>  */}
-                <br/><br/>
+           
+                {/* <br/><br/>
             <div class="row" style={{padding:'10px 10% 10px 30px'}}>
                 <span style={{fontSize:'18px'}}>Similar Items</span><br/><br/>
                 <div class="col-sm-2" style={{ paddingBottom:'30px'}}>
                     <div class="card" style={{width: '80%', height: '90%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', paddingBottom:'20px',boxShadow:'4px 4px 4px 4px #DCDCDC'}}>
                         <div class="card-body">
-                            {/* <img src={p2} style={{width:'80%',paddingBottom:'10px'}}/><br/>
+                            <img src={p2} style={{width:'80%',paddingBottom:'10px'}}/><br/>
                             <span style={{fontSize:'14px'}}>{reviewss.itemName}</span><br/>
                             <span style={{fontSize:'13px'}}>{reviewss.itemImage}</span><br/>
                             <span style={{fontSize:'13px'}}>{reviewss.DiscountStatus}</span><br/>
-                            <span style={{fontSize:'13px'}}>{reviewss.itemPrice}</span> */}
+                            <span style={{fontSize:'13px'}}>{reviewss.itemPrice}</span>
                             <div style={{color: "#f9d71c"}}>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -310,78 +353,9 @@ return(
                     </div>
                 </div>
                 
-            </div>
+            </div> */}
     </div>   
-        {/* ); */}
-    {/* })} */}
-
-
-
-
-
-    {/* <div className='container' style={{background:'#dcdcdc',width: '70%', fontSize:'18px'}}>
-            <div className="row" style={{padding:'0px 0px 10px 0px'}}>
-                <div className="col">
-                    <div style={{width: '100%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', padding:'20px 20px 20px 20px', margin:'10px 0px 0px 0px'}}>
-                        <div className="row">
-                            <div className="col-5">
-                                <i class="fa fa-pencil" aria-hidden="true" style={{color:'green', fontSize:'30px'}}></i>
-                            </div> 
-                            <div className="col">
-                                <span>278</span><br/>
-                                <span>New Pencil</span>
-                            </div> 
-                        </div> 
-                    </div>   
-                    
-                </div>   
-                <div className="col">
-                    <div style={{width: '100%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', padding:'20px 20px 20px 20px', margin:'10px 0px 0px 0px'}}>
-                        <div className="row">
-                            <div className="col-5">
-                                <i class="fa fa-comments-o" aria-hidden="true" style={{color:'orange', fontSize:'30px'}}></i>
-                            </div> 
-                            <div className="col">
-                                <span>278</span><br/>
-                                <span>New Pencil</span>
-                            </div> 
-                        </div> 
-                    </div>   
-                    
-                </div>  
-                <div className="col">
-                    <div style={{width: '100%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', padding:'20px 20px 20px 20px', margin:'10px 0px 0px 0px'}}>
-                        <div className="row">
-                            <div className="col-5">
-                                <i class="fa fa-bolt" aria-hidden="true" style={{color:'blue', fontSize:'30px'}}></i>
-                            </div> 
-                            <div className="col">
-                                <span>278</span><br/>
-                                <span>New Pencil</span>
-                            </div> 
-                        </div> 
-                    </div>   
-                    
-                </div> 
-                
-                <div className="col">
-                    <div style={{width: '100%', backgroundColor:'white', borderRadius:'10px', borderColor:'#00408C', padding:'20px 20px 20px 20px', margin:'10px 0px 0px 0px'}}>
-                        <div className="row">
-                            <div className="col-5">
-                                <i class="fa fa-map-marker" aria-hidden="true" style={{color:'red', fontSize:'30px'}}></i>
-                            </div> 
-                            <div className="col">
-                                <span>278</span><br/>
-                                <span>New Pencil</span>
-                            </div> 
-                        </div> 
-                    </div>   
-                    
-                </div>
-                 
-            </div>
-            
-        </div>  */}
+    
 
 </div>
 )

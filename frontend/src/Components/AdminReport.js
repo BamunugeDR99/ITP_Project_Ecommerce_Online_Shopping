@@ -7,7 +7,7 @@ import "../CSS/msg.css";
 
 export default function AdminReport(props){
 
-	const [review,setReview] = useState([]);
+	// const [review,setReview] = useState([]);
 
 	let reviews = [];
 	// let emails = [];
@@ -87,7 +87,7 @@ export default function AdminReport(props){
 //         alert(err);
 //     })
 // }
-
+// console.log(sellers)
  return(
 
 <section className="rev">
@@ -95,7 +95,7 @@ export default function AdminReport(props){
 		<div className="table-responsive">
 			<div className="table-wrapper">
 				<div className="table-title">
-							<h2><center><b>Seller ////////// Messages</b></center></h2>
+							<h2><center><b>Seller Messages</b></center></h2>
 				</div>
 				<table className="table table-striped table-hover">
 					<thead>
