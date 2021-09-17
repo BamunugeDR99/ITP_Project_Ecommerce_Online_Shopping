@@ -11,7 +11,8 @@
     
 }
 .CustomerPro .cardx {
-    box-shadow: 0 10px 25px 0 rgba(0,0,0,.1), 0 8px 20px 0 rgba(0,0,0,.06);
+
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .CustomerPro .cardx {
@@ -61,26 +62,33 @@
     box-shadow: none!important;
 }
 
-.CustomerPro .btnedit{
-	
-  border: 1px; 
-  width: 160px;
-  height: 50px;
-  margin: auto;
-  border: 2px solid#0057d1;
-  border-radius:10px;
-  margin-top: 3px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background: #ffffff;
-  font-size: 15px;
-  color: #0057d1;
-  margin-left:280px;
-  font-size: 16px;
-  
-}
+.CustomerPro .btnedit {background-image: linear-gradient(to right, #00c6ff 0%, #0072ff  51%, #00c6ff  100%)}
+.CustomerPro .btnedit {
+   
+
+    margin-top: 3px;
+   margin-left: 260px;
+   padding: 0;
+   width: 160px;
+   height: 50px;
+   font-size: 22px;
+   text-align: center;
+   cursor: pointer;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   border: none;
+   display: block;
+ }
+
+ .CustomerPro .btnedit:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
 
 
 .CustomerPro .details{
@@ -100,13 +108,27 @@
    display: flex;
     }
 
-.CustomerPro .col-sm-9{
 
-    color:rgb(92, 92, 92) !important;
+.CustomerPro #CusfullN{
+
+    color:rgb(0, 0, 0) !important;
 
 }
 
-.CustomerPro .text-secondary{
+.CustomerPro #CususerN{
 
-    color:rgb(92, 92, 92) !important;
+    color:rgb(0, 0, 0) !important;
+
+}
+
+.CustomerPro #CusE{
+
+    color:rgb(0, 0, 0) !important;
+
+}
+
+.CustomerPro  #custextS{
+
+    color:rgb(87, 87, 87) !important;
+    font-size: 17px;
 }

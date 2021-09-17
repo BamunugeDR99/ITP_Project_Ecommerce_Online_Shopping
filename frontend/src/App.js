@@ -34,7 +34,7 @@ function App() {
   
       <div>
 
-        <SignUp/>
+        <UpdateProfile/>
       
     </div>
  </Router>

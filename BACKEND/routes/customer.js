@@ -135,39 +135,38 @@ router.post('/loginCustomer', async(req,res) => {
     try{
             const {username, password} = req.body;
 
-            if(!username || !password){
+            // if(!username || !password){
 
-                return res.status(400).json({error: "Please filled the all data"})
-            }
+            //     return res.status(400).json({error: "Please filled the all data"})
+            // }
 
             //check with database username
-            const customerLogin = await Customer.findOne({username: username});
 
-            const isMatch = await bcrypt.compare(password, customerLogin.password);
-    
-            //console.log(customerLogin);
-            if(!customerLogin){
+            const customerLogin = await Customer.findOne({ username: username });
 
-                res.status(400).json({error: "Customer does not exists"});
+            if(customerLogin){
 
-            }
-
-            else if (!isMatch){
-
-               
-          //console.log(res.status.error);
-                res.status(400).json({error: "Invalid Credientials"});
-               
+                const isMatch = await bcrypt.compare(password, customerLogin.password);
+            
+            if(!isMatch){   
                 
-            }else{ 
+                res.status(400).json({error: "Invalid Credientials"});
 
-               //res.json({message: "Customer Sign In Successfully"});
+            }else{
+
+                //res.json({message: "Customer Sign In Successfully"});
                 res.json({customerLogin: {
                     _id : customerLogin._id,
-                }})
-               
+                }});
+
             }
-          
+        }else{
+
+            res.status(400).json({error: "Customer does not exists"});
+        }
+           
+            
+    
 
     }catch(err){
 

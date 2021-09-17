@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import swal from 'sweetalert2';
 
 import img1 from "./../images/kl.jpg";
 
@@ -44,7 +45,7 @@ function SignUp(props){
 	let flag1 = 0;
 	let flag2 = 0;
 	let flag3 = 0;
-	
+	let flag4 = 0;
 
   
 	function genderSelect(){
@@ -60,24 +61,35 @@ function SignUp(props){
 	}
 
 	
+	//check password
 
 	function checkPassword(){
 
 		const password = document.getElementById("CusPassword").value;
 		const confirmPassword = document.getElementById("CusConfirmPsw").value;
+
+		const psw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+// To check a password  which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+
+		if(password == "") { 
+
+			flag1 = 0; 
+			alert("Password shouldn't be null!");
+			
+		 }  
 		
-		if(password.length < 5){
+		else if(password.length < 8){
 			
 			flag1 = 0;
-			alert("Password length must be greater than 5 characters");
+			alert("Password must be contain minimum 8 charcters!");
+			
 			
 		
-		}else if(password.length > 20){
-			
+		}else if(!password.match(psw)){
+
 			flag1 = 0;
-			alert("Password length must be smaller than 20 characters");
+			alert("Password must contain at least one lowercase letter, one uppercase letter, one numeric digit");
 			
-		
 		}else if(password != confirmPassword){
 
 			flag1 = 0;
@@ -90,6 +102,7 @@ function SignUp(props){
 		}
 	}
 
+//check phone number
 
 	function validPhoneNumber(){
 
@@ -126,7 +139,10 @@ function SignUp(props){
 
 	}
 
-	
+
+
+//check email
+
 	function validEmail(){
 
 		const email = document.getElementById("email").value;
@@ -146,6 +162,40 @@ function SignUp(props){
 		
 	}
 
+	// check ckeckbox
+
+	function checkCheckbox() { 
+
+		const checkbox = document.getElementById("TermsC");
+
+		if (!checkbox.checked){  
+			
+			flag4 = 0;
+			alert("You Should Agree To Our Terms & Conditions!");
+		
+	 }else{
+
+			flag4=1;
+	 }
+
+	}
+
+	//send a avatar
+	
+	function avatar(){
+
+		let useri = "./../Images/avatar.png";
+
+		const uimage = document.getElementById("user_image").value;
+
+		if(uimage.length === 0){
+
+			
+			uimage = useri;
+
+	
+		}
+	}
 	
 	
 
@@ -159,15 +209,16 @@ function SignUp(props){
 	  checkPassword();
 	  validPhoneNumber();
 	  validEmail();
-	 
-	 
+	  checkCheckbox();
+	  avatar();
 
+	 
 	  let image2 = document.getElementById("user_image").value;
 		
 	  let image3 = image2.substring(12);
 
 	 
-  	if(flag1 == 1 && flag2 == 1 && flag3){
+  	if(flag1 == 1 && flag2 == 1 && flag3 == 1 && flag4 ==1 ){
 		
 	  const newCustomer = {
 		firstName,
@@ -277,7 +328,7 @@ function SignUp(props){
 			  
 			  
 			  <div className="form-group">
-					<label htmlFor="exampleInputDOB">Date of Birth</label>
+					<label htmlFor="exampleInputDOB" style={{color:"black"}}>Date of Birth</label>
 					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth"/>
 			  </div>
 			  
@@ -327,6 +378,7 @@ function SignUp(props){
 
 					<i className="bi bi-eye-fill" id="eye" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
+					<span id = "message" style={{color:"red"}}> </span> 
 			  </div>
 			  
 			   <div className="form-group">
@@ -342,13 +394,13 @@ function SignUp(props){
 			  </div>
 			  
 			  <div className="form-group">
-				<label htmlFor ="exampleFormControlFile1">User Image</label>
+				<label htmlFor ="exampleFormControlFile1" style={{color:"black"}}>User Image</label>
 				<input type="file" className="form-control-file" id="user_image"/>
 			  </div>
   
 			  <div className="form-group form-check">
 					<input type="checkbox" className="form-check-input" id="TermsC"/>
-					<label className="form-check-label" htmlFor="exampleCheck1">I caccept the Terms of Use & Privacy Policy.</label>
+					<label className="form-check-label" htmlFor="exampleCheck1">I Accept the Terms of Use & Privacy Policy.</label>
 			  </div>
 			  
 			  <button type="submit" className="CusCreateBtn" id="CusCreateBtn">Create Account</button>

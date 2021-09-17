@@ -1,66 +1,122 @@
-.CusUpdatePro .wrapperr {
-   
-    height:1300px !important;
-    background-size: cover;
-    background-repeat: no-repeat;
+.CusUpdatePro {
+	
+	background:rgb(255, 255, 255);
   
-    
-    }
+	
+}
+
+.CusUpdatePro  .profile-area{
+	
+	
+	margin-left:130px;
+	padding-right:80px;
+	padding-top:80px;
+	padding-bottom:80px;
+
+}
+
+.CusUpdatePro .cardUpdatePro{
+	
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+	overflow:hidden;
+	width:1100px;
+}
+
+.CusUpdatePro .CusEditI #cuseditI{
+	
+
+  height:500px;
+	width:100%;
+	
+	
+}
+
+.CusUpdatePro .UserProImage #userproI{
+	
+	position: relative;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	z-index: 1;
+	width:300px;
+	height:300px;
+	border-radius:50%;
+	border: 7px solid #fff;
+	margin-top:20px;
   
-.CusUpdatePro  .innerr {
+	
+	
+	
+}
 
-    padding: 20px;
-    background: #fff;
-    width: 1280px;
-    height:1250px !important;
-    margin: auto;
-    display: flex;
-    margin-top: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+.CusUpdatePro .cardUpdatePro:hover .UserProImage #userproI{
+	
+	border-color: rgba(0, 0, 0, 0.863);
+	transition: .7s;
+}
 
-.CusUpdatePro .innerr .image-holder {
-      display: flex !important;
-      width: 50% !important;
-    }
+.CusUpdatePro .main-text{
+	
+	padding-left:80px;
+	padding-right:80px;
+	padding-bottom:50px;
+	padding-top:50px;
+	text-align:left;
+}
 
-.CusUpdatePro .innerr form {
-      width: 50%;
-      padding-top: 36px;
-      padding-left: 45px;
-      padding-right: 45px; }
-     
-.CusUpdatePro .innerr #updateEd {
-      
-      text-transform: capitalize;
-      font-size: 45px;
-      font-family: "Poppins-SemiBold";
-      text-align: left;
-      margin-bottom: 28px; 
-      color: black;
-    }
-      
-      
-.CusUpdatePro #updateImg {
-  max-width: 100% !important ;}	      
-    
-.CusUpdatePro .btn{
-      
-    border: 1px; 
-    width: 170px;
-    height: 45px;
-    margin: auto;
-    border-radius:10px;
-    margin-top: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: #0057d1;
-    font-size: 15px;
-    color: #fff;
+
+
+.CusUpdatePro .btnUpdate {
    
-  }
+     width: 170px;
+     height: 45px;
+     margin-top: 40px;
+     text-align: center;
+     margin-left: 180px;
+     background-color: rgb(11, 7, 245);
+     cursor: pointer;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;            
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     font-size: 22px;
+     border:none;
+}
+
+.CusUpdatePro .btnUpdate:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+ 
+  .CusUpdatePro .btnDelete {background-image: linear-gradient(to right, #870000 0%, #190A05  51%, #870000  100%)}
+  .CusUpdatePro  .btnDelete {
+    
+     width: 170px;
+     height: 45px;
+     margin-top: 40px;
+     text-align: center;
+     cursor: pointer;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;            
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     display: block;
+     font-size: 22px;
+     border:none;
+     margin-left: 100px;
+   }
+
+   .CusUpdatePro .btnDelete:hover {
+     background-position: right center; /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+   }
+  
+
+  
   
  
     
@@ -103,6 +159,24 @@
   color: black;
   font-weight: bold;
 }
+
+.CusUpdatePro .CusAccountD{
+
+  color: black;
+  font-weight: bold;
+}
+
+.CusUpdatePro .top-leftI {
+  position: absolute;
+  top: 30px;
+  left:50px;
+  color: #fff;
+  font-size: 60px;
+  font-weight: bold;
+ 
+}
+
+
 
 
   /* //responsive */
