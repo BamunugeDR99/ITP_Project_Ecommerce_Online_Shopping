@@ -166,7 +166,12 @@ export default function ForgotP(props) {
   <button type="submit" class="btn btn-success">Change Password</button>
     </form>
   </div>
+  <br/>
+  
+  <button type="submit" class="btn btn-success" style={{backgroundColor:"blue", width:"300px",marginLeft:"420px"}}>Back to Login</button>
+  <br/>  <br/>
 </div>
+
   </div></div>
   );
 }

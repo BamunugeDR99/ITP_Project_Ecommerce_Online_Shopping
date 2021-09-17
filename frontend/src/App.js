@@ -34,7 +34,7 @@ function App() {
   
       <div>
 
-        <CustomerLogin/>
+        <UpdateProfile/>
       
     </div>
  </Router>

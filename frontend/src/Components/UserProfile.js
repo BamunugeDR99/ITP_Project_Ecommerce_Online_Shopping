@@ -13,7 +13,7 @@ function UserProfile(props){
   
   useEffect(() =>{
       function getCustomer(){
-          axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
+          axios.get("http://localhost:8070/Customer/get/6144a68888cbe1257c8a8888").then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
@@ -36,12 +36,12 @@ function UserProfile(props){
     // image();
   }, []);
 
-  function Updatecus(id){
+  // function Updatecus(id){
 
-      console.log(id);
-      props.history.push("/update/" +id)
+  //     console.log(id);
+  //     props.history.push("/update/" +id)
      
-  }
+  // }
 
     return(
 
@@ -55,11 +55,11 @@ function UserProfile(props){
               <div className="cardx">
                 <div className="cardb">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={"Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="310px" height="310px"/>
+                    <img src={"Images/" + customer.userImage} alt="User_Image" className="rounded-circle" width="310px" height="310px" style={{position: "relative"}}/>
                     <div className="mt-3">
-                      <h2> {customer.firstName} {customer.lastName}</h2>
-                      <h5><p className="text-secondary mb-1"><b> {customer.username}</b></p></h5>
-                      <h5><p className="text-muted font-size-sm"><b> {customer.email}</b></p></h5>
+                      <h2 id="CusfullN"> {customer.firstName} {customer.lastName}</h2>
+                      <h5><p className="text-secondary mb-1" id="CususerN"><b> {customer.username}</b></p></h5>
+                      <h5><p className="text-muted font-size-sm"  id="CusE"><b> {customer.email}</b></p></h5>
                       
                     </div>
                   </div>
@@ -77,7 +77,7 @@ function UserProfile(props){
                     <div className="col-sm-3">
                       <h6 className="mb-0"><b>First Name</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                     {customer.firstName}
                     </div>
                   </div>
@@ -87,7 +87,7 @@ function UserProfile(props){
                     <div className="col-sm-3">
                       <h6 className="mb-0"><b>Last Name</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                     {customer.lastName}
                     </div>
                   </div>
@@ -95,9 +95,9 @@ function UserProfile(props){
 				  
                   <div className="row1">
                     <div className="col-sm-3">
-                      <h6 className="mb-0"><b>Dateof Birth</b></h6>
+                      <h6 className="mb-0"><b>Date of Birth</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                      {birth}
                     </div>
                   </div>
@@ -107,7 +107,7 @@ function UserProfile(props){
                     <div className="col-sm-3">
                       <h6 className="mb-0"><b>Gender</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                     {customer.gender}
                     </div>
                   </div>
@@ -117,7 +117,7 @@ function UserProfile(props){
                     <div className="col-sm-3">
                       <h6 className="mb-0"><b>Phone Number</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                     {customer.phoneNumber}
                     </div>
                   </div>
@@ -127,7 +127,7 @@ function UserProfile(props){
                     <div className="col-sm-3">
                       <h6 className="mb-0"><b>Address</b></h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-9 text-secondary" id="custextS">
                     {customer.address}
                     </div>
                   </div>
@@ -143,7 +143,7 @@ function UserProfile(props){
 			
 			            <div className="row1">
                     <div className="col-sm-12">
-                       <button type="submit" className="btnedit" onClick ={()=>Updatecus(customer._id)}><b>Edit</b></button>
+                       <button type="submit" className="btnedit"><b>Edit</b></button>
 
                     </div>
                    

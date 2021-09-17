@@ -7,6 +7,9 @@ import React, {useState} from "react";
 
 export default function CustomerLogin(){
 
+
+    
+
     //remember me
 
     const[rememberMe, setRememberMe] = useState(false);
@@ -21,8 +24,14 @@ export default function CustomerLogin(){
 
         
       };
-    
 
+  
+    
+        
+     
+     
+ 
+      
     const [passwordShown, setPasswordShown] = useState(false);
 
 	// Password toggle handler
@@ -48,7 +57,8 @@ export default function CustomerLogin(){
 
         
         localStorage.setItem('rememberMe', rememberMe);
-        localStorage.setItem('username', rememberMe ? username : '');
+        localStorage.setItem('username', rememberMe ? username : '');         
+
          
          
           axios.post("http://localhost:8070/Customer/loginCustomer", loginCredentials).then((res)=>{
@@ -126,7 +136,10 @@ export default function CustomerLogin(){
 
                             <br/>
 
+
                             <input type="submit" className="butt" value="Sign In"/>
+
+                                      
 							
 							<br/><br/>
 							

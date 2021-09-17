@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-import img1 from "./../images/lk.jpg";
-
-
-
+import updateI from "./../images/updt.jpg"
 
 export default function UpdateProfile(props){
 
@@ -49,6 +46,9 @@ export default function UpdateProfile(props){
 		dob = document.getElementById("birthday").value;	
 
 	}
+
+
+
 	
 
 	useEffect(() =>{
@@ -57,7 +57,7 @@ export default function UpdateProfile(props){
 		function getCustomer(){
 			
 			
-			axios.get("http://localhost:8070/Customer/get/613b4f1a73eceb40702affe6").then((res) =>
+			axios.get("http://localhost:8070/Customer/get/6144a68888cbe1257c8a8888").then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -115,7 +115,7 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
-		axios.put("http://localhost:8070/Customer/update/613b4f1a73eceb40702affe6", updatecus).then(()=>{
+		axios.put("http://localhost:8070/Customer/update/6144a68888cbe1257c8a8888", updatecus).then(()=>{
 		
 
 		alert("Customer Updated Successfully!");
@@ -133,7 +133,7 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/613b4f1a73eceb40702affe6").then((res) =>
+	  axios.delete("http://localhost:8070/Customer/delete/6144a68888cbe1257c8a8888").then((res) =>
 	  {
 		  alert("Customer Deleted Successfully!");
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
@@ -149,56 +149,63 @@ export default function UpdateProfile(props){
 
     return(
 
-		<div className="CusUpdatePro">
-        <div className="wrapperr">
-					<div className="innerr">
-						<div className="image-holder">
-					<img src={img1} id="updateImg" alt=""/>
-				</div>
-				
-				<form action="">
-					<h3 id ="updateEd">Edit Profile</h3>
-					
-					<div className="d-flex flex-column align-items-center text-center">
-                    <img src={"Images/" + customer.userImage} alt="UserImage"  className="rounded-circle" width="230px" height="230px"/>
-                    </div>
-					
-					<br/>
-	
-					<div className="form-row">
+		<div  className="CusUpdatePro">
+
+
+			<div className="profile-area">
+			
+			<div className="containerrrrr">
+			<div className="row">
+			
+			<div className="col-md-4">
+			
+			<div className="cardUpdatePro">
+			
+			<div className="top-leftI">Edit Profile</div>
+			
+			
+			<div className="UserProImage">
+			
+			<img src={"Images/" + customer.userImage} id="userproI" alt="UserImage"/>
+			
+			</div>
+			
+			<div className="main-text">
+			
+			<h4 className="CusAccountD">Account Details</h4>
+			
+			<br/>
+			<div className="form-row">
+
 						<div className="col">
 						  <input type="text" className="form-control" placeholder="First name" Value = {customer.firstName}
 						  onChange= {
 							(e)=>{
 							  setFirstName(e.target.value);
 							}
-						  }/>
-						
+						  }
+						  />
 						</div>
+
 						<div className="col">
 						  <input type="text" className="form-control" placeholder="Last name" Value = {customer.lastName}
-						   onChange= {
+						  onChange= {
 							(e)=>{
 							  setLastName(e.target.value);
 							}
-						  }
-						  
-						  
-						  /> 
+						  }/>
 						</div>
-					 </div>
-					 
-					<br/>
-					 
-				<div className="form-group">
+						</div>
+						<br/>
+			
+			<div className="form-group">
 				
-					<input type="email" className="form-control" id="exampleInputEmail1" placeholder = "Email"  Value = {customer.email}
-					 onChange= {
+					<input type="email" className="form-control" id="exampleInputEmail1" placeholder = "Email" Value = {customer.email}
+					onChange= {
 						(e)=>{
 						  setEmail(e.target.value);
 						}
 					  }
-					
 					/>
 					
 					<i className="bi bi-envelope-fill"></i>
@@ -206,21 +213,21 @@ export default function UpdateProfile(props){
 			  
 			  <div className="form-group">
 					
-					<input type="text" className="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber} 
+					<input type="text" className="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber}
 					onChange= {
 						(e)=>{
 						  setPhoneNumber(e.target.value);
 						}
 					  }
-					
+				
 					/>
 					<i className="bi bi-telephone-fill"></i>
 			  </div>
 			  
 			  
 			  <div className="form-group">
-					<label id="CusDOB" htmlFor="exampleInputDOB">Date of Birth</label>
-					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/> 
+					<label for="DOB" id="CusDOB">Date of Birth</label>
+					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/>
 			  </div>
 			  
 			  
@@ -230,7 +237,7 @@ export default function UpdateProfile(props){
 					<option value="Male">Male</option>
 					<option value="Female">Female</option>
 				</select>
-					
+				<i className="bi bi-caret-down-fill"></i>
 				
 			  </div>
 			  
@@ -243,49 +250,45 @@ export default function UpdateProfile(props){
 						  setAddress(e.target.value);
 						}
 					  }
-					
 					/>
 					<i className="bi bi-geo-alt-fill"></i>
 			  </div>
 			  
 			  
 			  <div className="form-group">
-					<input type="text" className="form-control" id="username" placeholder = "Username" Value = {customer.username}
+					<input type="text" className="form-control" id="username" placeholder = "Username" Value = {customer.username} 
 					onChange= {
 						(e)=>{
 						  setUsername(e.target.value);
 						}
 					  }
-					/>
+					readOnly/>
 					<i className="bi bi-person-fill"></i>
 			  </div>
 
 			  <div className="form-group">
-				<label id="CusI" htmlFor="exampleFormControlFile1">User Image</label>
-				<input type="file" className="form-control-file" id="user_image" />
+				<label for="UserI" id="CusI">User Image</label>
+				<input type="file" className="form-control-file" id="user_image"/>
 			  </div>
 			  
 			  <br/>
 			  
-			  <h5 className ="CusChangeP"><b>Change Password</b></h5>
-			  
+			  <h4 className="CusChangeP"><b>Change Password</b></h4>
 			  
 			   <br/>
 			   
 			   <div className="form-group">
-				
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
-				
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
-				
-					<i className="bi bi-lock-fill"></i> 
-		
 					
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+					
+					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
+					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			  <div className="form-group">
 					
 					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "New Password"/>
+					
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
@@ -293,29 +296,32 @@ export default function UpdateProfile(props){
 			   <div className="form-group">
 					
 					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"/>
+					
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
-			
+			  
+			  
 			 
 			  
 			  <div className="form-row">
 						<div className="col">
-						 <button type="button" className="btn" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
+						 <button type="submit" className="btnUpdate" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
 						</div>
 						<div className="col">
-						  <button type="button" className="btn" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
+						  <button type="submit" className="btnDelete" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
 						</div>
-		 </div>
-	
-	
-	
-	
-				</form>
-				
+		 	  </div>
+			
+			
+			
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		</div>		
+	</div>
+</div>
 	
     );
 
