@@ -44,14 +44,26 @@ export default function SellerRegistration(props){
 	alert(err)
 	 })
 	 }
+
+	//Enabling submit button when seller click terms
+	function submitButton(){
+		const box = document.getElementById ("policy").value;
+
+		if (box.value = true){
+			document.getElementById("btn1").disabled=false;		
+		}
+		else{
+			document.getElementById("btn1").disabled=true;
+		}
+	} 
   
 return(
 <div class="sellerregistration">
 <div>
 {/* <img src = {require('../images/sellerheader22.jpg').default} class="img-fluid" alt="Responsive image"/> */}
 
-<div>
-<center><h1>Start Your Business</h1></center>
+<div> <br/>
+<center><h1>Start Your Business</h1></center> <br/>
 </div>
 <form class="form-detail" align="center" method="post" onSubmit = {sendData}>
 <div class="card container shadow-lg p-3 mb-5 bg-white rounded">
@@ -133,11 +145,11 @@ return(
   </div>
     </div>
     <div class="col">	
-      <div className = "card">
+      <div className = "card container-size">
 		  <br/>
-		  <div className = "container">
+		  <div className = "card-container">
 			  <label>Company logo</label><br/>
-			  <div className = "container">
+			  <div className = "card-container">
 			  <input type="file" name="logo" id="logo" class="form-control-file" placeholder="Allowed types: png/jpg/jpeg" accept="image/*" required />
 		  </div>
 
@@ -154,7 +166,8 @@ return(
 	
 	<div class="float-right">
 	<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+  <input class="form-check-input" type="checkbox" id="policy" name="policy" value="true" onclick= {()=> submitButton() }required />
+ 
   <label class="form-check-label" for="defaultCheck1">
     I agree to the Terms of service
   </label>
@@ -162,13 +175,13 @@ return(
 	
 	<button type="reset" class="btn btn-success">Reset</button>
 	<span> </span>
-	<button type="submit" class="btn btn-primary">Request</button>
+	<button type="submit" class="btn btn-primary" id="btn1" name="btn1" value="submit" disabled>Request</button>
 	<br/><br/>
 	</div>
 </div>
 
 <br/><br/>
-Already have an account ? <a href = "/selllog">Sign in!</a>
+Already have an account ? <a href = "/seller/login">Sign in!</a>
 </form>
 </div>
 </div>

@@ -82,13 +82,18 @@ export default function SellerLogin(){
                             </div>
                             <br/>
                             <div className="col">
-									<p className ="fp"> <a href="">Forgot Password?</a></p>
+									<p className ="fp"> <a href="/sellfor">Forgot Password?</a></p>
 								</div>
 							<br/>
-                            <button type="submit" class="btn btn-danger">Sign in</button> <br/><br/>
+                            <button type="submit" class="btn btn-primary">Sign in</button> <br/><br/>
                                 <div class="text-center d-flex justify-content-between mt-10"> 
                                     <p> Don't have an account? 
-                                        <a href=" " class="font-italic text-muted"> <u>Sign up!</u></a></p>
+                                        <a href="/sellreg" class="font-italic text-muted"> <u>Sign up!</u></a></p>
+                                </div>
+                                
+                                <div class="text-center d-flex justify-content-between mt-10"> 
+                                    <p> Are you a customer? 
+                                        <a href="" class="font-italic text-muted"> <u>Go to Customer Sign in!</u></a></p>
                                 </div>
                         </form>
                         </div>
