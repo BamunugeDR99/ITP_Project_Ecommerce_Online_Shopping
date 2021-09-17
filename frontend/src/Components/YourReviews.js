@@ -8,7 +8,7 @@ export default function YourReviews(props) {
 
   const [review,setReview] = useState([]);
   const [description,setDescription] = useState("");
-
+  const [updateReviewId,setupdateReviewId] = useState("");
   let reviews = [];
   let review_id = "";
   let items = [];
@@ -57,70 +57,52 @@ export default function YourReviews(props) {
         for (j = 0; j < items.length; j++) {
           if (reviews[i].itemid == items[j]._id) {
             reviewWithItem = {
-            review_id  : reviews[i]._id,
+              review_id  : reviews[i]._id,
               itemName: items[j].Item_name,
               itemImage: items[j].Images[0],
               Review: reviews[i].description,
             };
 
             reviewWithItems.push(reviewWithItem);
+            //console.log(reviewWithItem.review_id)
           }
         }
       }
       console.log(reviewWithItems)
       setabc(reviewWithItems);
+
+      
     }
 
     getReview();
     // getCustomer();
   }, []);
 
-  // function deletee(id) {
-  //     axios
-  //       .delete("http://localhost:8070/review/delete/" + id)
-  //       .then((res) => {
-  //         document.getElementById("txt").innerHTML = "Message Deleted!";
-  //         const afterDeleteReview = review.filter((review) => review._id != id);
-  //         setReview(afterDeleteReview);
-  //       })
-  //       .catch((err) => {
-  //         alert(err);
-  //       });
-  // }
-  function deletee(id){
-    axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
-    {
-        // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteReview = review.filter(review=>review._id != id);
-        setReview(afterDeleteReview);
-    }).catch((err) =>{
-        alert(err);
-    })
-}
+  function deletee(id,index) {
+ 
+    //let afterDelete = [];
 
-  // function updatee(e){
+      axios
+        .delete("http://localhost:8070/review/delete/" + id)
+        .then((res) => {
+    
+          let afterDelete = abc.splice(index,1);
+          setabc(afterDelete);
+        
+        })
+        .catch((err) => {
+          alert(err);
+        });
+  }
+  
 
-  //     const ReviewId = props.match.params.id;
-  //     console.log(ReviewId);
 
-  //     getDetails();
+    function updatee(e){
 
-  // 	console.log(updatedReview);
+      e.preventDefault();
 
-  //     axios.put("http://localhost:8070/review/update/" + ReviewId,updateReview).then(()=>{
-  //      alert("Review Updated Successfully!") ;
-
-  //       props.history.push("/allReviews");
-
-  //     }).catch((err) =>{
-  //       alert(err)
-  //     })
-  //   }
-    function updatee(id){
-
-      // e.preventDefault();
-      const ReviewId = id;
-      console.log(ReviewId);
+      const ReviewId = updateReviewId;
+      //console.log(ReviewId);
 
       const newReview = {
         
@@ -133,8 +115,10 @@ export default function YourReviews(props) {
       axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
 
         setReview(" ");
-        props.history.push("/Home");
-        document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        //props.history.push("/Home");
+        //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        alert("Updated!");
+        
         
       }).catch((err) =>{
         alert(err)
@@ -151,18 +135,18 @@ export default function YourReviews(props) {
               <h1>Your Reviews</h1>
             </div>
 
-            {abc.map((reviewss) => {
+            {abc.map((re,index) => {
               return (
                 <div className="testimonial-box-container">
                   <div class="testimonial-box">
                     <div class="box-top">
                       <div class="profile">
                         <div class="profile-img">
-                          <img src={`../images/${reviewss.itemImage}`} className="card-img-top"/>
+                          {/* <img src={`../images/{re.itemImage}`} className="card-img-top"/> */}
                         </div>
 
                         <div class="name-user">
-                          <strong>{reviewss.itemName}</strong>
+                          <strong>{re.itemName}</strong>
                           
                           <div class="reviews">
                             <i class="fas fa-star"></i>
@@ -172,28 +156,27 @@ export default function YourReviews(props) {
                             <i class="far fa-star"></i>
                           </div>
                           <div class="client-comment">
-                            <p>{reviewss.Review}</p>
+                            <p>{re.Review}</p>
                           </div>
                         </div>
                       </div>
 
-                      {/* <div class="name-user">
-									<label>{reviewss.date}</label>
-								</div> */}
+               
                     </div>
 
                     <div class="profile">
                       <div>
                         <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                          <button class="button1" type="button">
+                          <button class="button1" onClick = {()=>setupdateReviewId(re.review_id)} type="button">
                             Edit Review
                           </button>
                         </a>
                       </div>
                       <div>
-                          <button onClick = {()=> deletee(review._id)} class="button2" type="button">
+                          <button  onClick = {()=>deletee(re.review_id,index)} class="button2" type="button">
                             Delete Review
                           </button>
+                         
                       </div>
                     </div>
                   </div>
@@ -212,6 +195,7 @@ export default function YourReviews(props) {
                         class="close"
                         data-dismiss="modal"
                         aria-hidden="true"
+                        
                       >
                         &times;
                       </button>
@@ -233,7 +217,7 @@ export default function YourReviews(props) {
                         data-dismiss="modal"
                         value="Cancel"
                       />
-                      <button onClick = {()=> updatee(review.review_id)} type="submit" class="btn btn-info" value="Submit" >Update</button>
+                      <button  onClick = {(e)=>updatee(e)}  class="btn btn-info"  >Update</button>
                     </div>
                   </form>
                 </div>
