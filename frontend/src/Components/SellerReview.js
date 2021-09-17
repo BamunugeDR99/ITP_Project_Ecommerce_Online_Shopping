@@ -11,6 +11,7 @@ import p2 from "../images/p3.jpg";
 export default function SellerReviews(props){
 
     const [items,setItems] = useState([]);
+    let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
 
     let reviews = [];
@@ -38,8 +39,11 @@ export default function SellerReviews(props){
             .then((res) =>
             {
                 setItems(res.data);
+                itemss.push(items);
+                setItemss(items);
                 console.log(res.data);
                 console.log(items);
+                console.log(itemss);
                 console.log('abc');
         
                 
@@ -60,7 +64,7 @@ export default function SellerReviews(props){
           .then((res) => {
             //setReview(res.data);
             const filter = res.data.filter(
-              (itemrev) => itemrev.itemid === "6136f4a5003aa10c6324ac53"
+              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
             );
             reviews = filter;
             // 6120b61011f8374ae1fa904f
@@ -101,6 +105,32 @@ export default function SellerReviews(props){
   
         setabc(reviewWithCustomers);
       }
+
+
+      //Rating
+      function displayRating(){
+        axios
+        .get("http://localhost:8070/review/get")
+        .then((res) => {
+          setRatings(res.data);
+          //console.log(ratings[0].itemid)
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
+
+
+    
+      displayRating();
+
+
+
+
+
+
+
   
       getReview();
     
@@ -108,63 +138,60 @@ export default function SellerReviews(props){
 }, []);
 
 
-// useEffect(() => {
-//   calculateStarRating();
+useEffect(() => {
+  calculateStarRating();
   
-// })
+})
 
-// function calculateStarRating(){
-//   let totalNoRatings = 0;
-//   let totalstarforRatingCount = 0;
-//   let starCount = 0;
-//   let average = 0; 
-//   for(let i = 0; i < items.length; i++){
+function calculateStarRating(){
+  let totalNoRatings = 0;
+  let totalstarforRatingCount = 0;
+  let starCount = 0;
+  let average = 0; 
+  // for(let i = 0; i < items.length; i++){
     
-//     totalNoRatings = 0;
-//     totalstarforRatingCount = 0;
-//     starCount = 0;
-//     average = 0;
+    // totalNoRatings = 0;
+    // totalstarforRatingCount = 0;
+    // starCount = 0;
+    // average = 0;
   
-//     for(let j = 0; j < ratings.length; j++){
-//         if(items[i]._id == ratings[j].itemid){
-//           totalNoRatings++;
-//         }
+    for(let j = 0; j < ratings.length; j++){
+        if(items._id == ratings[j].itemid){
+          totalNoRatings++;
+          starCount += parseInt(ratings[j].noofstars);  
+        }
 
-//         if(items[i]._id == ratings[j].itemid){
-//           starCount += parseInt(ratings[j].noofstars);  
-//         }
+       
+    }
 
-//     }
-
-//     totalstarforRatingCount = totalNoRatings * 5;
-//     average = parseInt((starCount / totalstarforRatingCount) * 5);
-//     console.log(average);
-//     displayStarRating(i,average);
-
-//   }
-
-// }
+    totalstarforRatingCount = totalNoRatings * 5;
+    average = parseInt((starCount / totalstarforRatingCount) * 5);
+    console.log(average);
+    displayStarRating(average);
 
 
-// function displayStarRating(id,totalAverage){
-//   let txt = "";
-//     if(isNaN(totalAverage)){
-//       txt = "No Ratings yet!";
-//       document.getElementById(id +'stars').innerHTML = txt;
-//       document.getElementById(id +'stars').style.color = "#FF0000";
-//     }else{
+}
+
+
+function displayStarRating(totalAverage){
+  let txt = "";
+    if(isNaN(totalAverage)){
+      txt = "No Ratings yet!";
+      document.getElementById('stars').innerHTML = txt;
+      // document.getElementById('stars').style.color = "#FF0000";
+    }else{
     
-//     for(let j = 0; j < totalAverage; j++){
-//       txt += '<span class="fa fa-star checked"></span>';
-//     }
-//     for(let j = 0; j < (5 - totalAverage); j++){
-//       txt += '<span class="fa fa-star"></span>';
-//     }
+    for(let j = 0; j < totalAverage; j++){
+      txt += '<span class="fa fa-star checked"></span>';
+    }
+    for(let j = 0; j < (5 - totalAverage); j++){
+      txt += '<span class="fa fa-star"></span>';
+    }
    
 
-//     document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
-//    }
-// }
+    document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+   }
+}
 
 //  onTaskClicked(){
 //   console.log("clicked");
@@ -304,17 +331,29 @@ export default function SellerReviews(props){
               return ( */}
             <div className="row">
                 <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>4/5
-                  {/* { +'stars'} */}
+                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>
+                  {/* {index +'stars'} */}
                   </span><br/> 
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
-                    <div style={{color: "#f9d71c"}}>
+                    {/* <div style={{color: "#f9d71c"}}>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="far fa-star"></i>
-                    </div>
+                    </div> */}
+            
+ 
+              <div id = 'stars'class="card-text">
+              <span id ='review'>4.0 / 5.0</span><br/>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span><span> </span> 
+            </div>
+
+
                 </span>
             </div>
               {/* )
@@ -385,18 +424,14 @@ export default function SellerReviews(props){
                   <form>
                     <div class="modal-header">
                       <h4 class="modal-title">Report Review</h4>
+                      
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                       </button>
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
-                        <label>Customer Name</label>
-                        <span>{props.name}</span><br/>
-
-                        <label>Customer Review</label>
-                        <span>{props.review}</span><br/>
-
+                        
                         <label>write your report</label>
                         <input type="text" class="form-control" 
                         // required  onChange= {

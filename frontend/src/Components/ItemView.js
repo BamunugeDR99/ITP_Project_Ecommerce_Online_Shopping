@@ -95,19 +95,45 @@ export default function ItemView(props){
       }
 
       function filtercatogory(){
+
+
+        let cat = "";
+
+        axios
+        .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+        .then((res) => {
+            cat= res.data.Category;
+            console.log(cat);
+    
+        })
+        .catch((err) => {
+          alert(err);
+        });
+
+
+
+
             axios
             .get("http://localhost:8070/items/getItems")
             .then((res)=>{
-            console.log(ICategory)
+        
+                console.log(cat);
+                console.log(ICategory);
                 console.log(res.data);
+                setAllitems(res.data);
                 // console.log(items.Category);
-                filter(res.data, ICategory);
+                
 
             
             })
             .catch((err) => {
                 alert(err);
               });
+
+
+              console.log(allitems);
+              console.log(cat);
+              filter(allitems, cat);
 
       }
       function filter(data, Caategory) {
@@ -170,6 +196,10 @@ export default function ItemView(props){
       getReview();
       filtercatogory();
     }, []);
+
+
+
+    
 
 
 

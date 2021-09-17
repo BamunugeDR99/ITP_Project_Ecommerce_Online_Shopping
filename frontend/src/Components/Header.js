@@ -38,11 +38,7 @@ function Header(){
           {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
           <Link to = "/wrev" className = "nav-link" >| Write a Review</Link>
         </li>
-        <li className="nav-item" style={{fontSize:'14px'}}>
-          {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}
-          <Link to = "/report" className = "nav-link">| Write a Report</Link>
-        </li>
-
+        
         
         <li className="nav-item" style={{fontSize:'14px'}}>
           {/* <a className="nav-link" href="/add" style= {{color : "blue"}}>Add Student</a> */}

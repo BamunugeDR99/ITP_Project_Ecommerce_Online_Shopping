@@ -16,7 +16,7 @@ import YourReviews from './Components/YourReviews';
 // import MyReviews from './Components/MyReviews';
 import ReactSession from 'react-client-session';
 import CustomerReviews from './Components/CustomerReviews';
-import Report from './Components/Report';
+// import Report from './Components/Report';
 import WriteReview from './Components/WriteReview';
 import ContactAdmin from './Components/ContactAdmin';
 import SellerReview from './Components/SellerReview';
@@ -44,7 +44,7 @@ function App() {
       
        {/* <Route path = "/rev" exact component = {MyReviews}/>  */}
        <Route path = "/wrev" exact component = {WriteReview}/> 
-       <Route path = "/report" exact component = {Report}/> 
+       {/* <Route path = "/report" exact component = {Report}/>  */}
        <Route path = "/adrep" exact component = {AdminReport}/> 
      <Route path = "/selmsg" exact component = {Sellermsg}/> 
        <Route path = "/msg" exact component = {CustomerMsg}/> 
