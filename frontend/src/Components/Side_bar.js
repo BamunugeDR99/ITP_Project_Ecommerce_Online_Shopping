@@ -55,7 +55,7 @@ export default function Side_bar(props) {
                 <i className="bx bx-plus nav_icon"></i>{" "}
                 <span className="nav_name">ADD ITEM</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Seller/CreatePackage" className="nav_link">
                 {" "}
                 <i className="bx bx-package nav_icon"></i>{" "}
                 <span className="nav_name">CREATE PACKAGE</span>{" "}

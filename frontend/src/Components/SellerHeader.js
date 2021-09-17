@@ -66,7 +66,7 @@ const [logo,setLogo] = useState("");
     </ul>
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}
-     <img className="card-img-top" src = {'/Images/shopping-cart.png'} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/>
+     {/* <img className="card-img-top" src = {'/Images/shopping-cart.png'} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/> */}
      <b>{companyname}</b>
       <img className="card-img-top" src = {'/Images/'+logo} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/>
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"   onClick={() => Logout()} >Logout</button>

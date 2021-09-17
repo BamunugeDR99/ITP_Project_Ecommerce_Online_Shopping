@@ -3,6 +3,7 @@ import './Css/slide.css';
 import './Css/Side_bar_styles.css';
 import './Js/sidebar_script.js';
 import './Css/toogle.css';
+// import './Css/InitialPage.css';
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import CreatePackage1 from './Components/CreatePackage1';
@@ -82,13 +83,13 @@ import SellerHeader from './Components/SellerHeader';
 
 import Seller_items from './Components/Seller_items';
 // import './css/update.css';
-// import Side_bar from './Components/Side_bar';
+import Side_bar from './Components/Side_bar';
 // import Add_items from './Components/Add_items';
  import Update_Items from './Components/Update_Items';
 import AddDiscount from './Components/AddDiscount';
 import AllDiscountedItems from './Components/AllDiscountedItems';
 import UpdateDiscount from './Components/UpdateDiscount';
-import InitialPage from './Components/InitialPage';
+// import InitialPage from './Components/InitialPage';
 // import Seller_items from './Components/Seller_items';
 // import customer_wishlist from './Components/customer_wishlist';
 // import SideBarAdmin from './Components/SideBarAdmin';
@@ -138,6 +139,9 @@ function App() {
       <Route path = "/Seller/MyDiscountedItems"  exact component = {AllDiscountedItems}/>
       <Route path = "/Seller/MyPackages"  exact component = {AllPackages}/>
       <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
+      <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
+      <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
+      
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller" component = {Footer_customer}/>
