@@ -104,6 +104,12 @@ router.route("/update/:id").put(async (req,res) =>{
         userImage
     }
 
+   
+    if(emailExist && username){
+ 
+      return res.status(422).json({ error: "Email Already Exist"});
+    }
+
     const update = await Customer.findByIdAndUpdate(userID, updatedCustomer).then(()=>{
         res.status(200).send({status: "User updated"})
 
