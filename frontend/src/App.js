@@ -44,7 +44,7 @@ import Home_Customer from './Components/Home_Customer';
 // import EmailTest from './Components/EmailTest';
 // import All_the_items_customer from './Components/All_the_items_customer';
 
-import AllStudents from './Components/AllStudents';
+import AllStudents from "./Components/AllStudents";
 /*import AddStudent from './Components/AddStudent';
 import UpdateStudent from './Components/UpdateStudent';
 import Login from './Components/Login';

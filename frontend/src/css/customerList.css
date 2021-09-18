@@ -69,51 +69,74 @@
 	background-color: #f5f5f5;
 }
 
-.CustomerList .btnshowmr{
-	
+
+
+.CustomerList .btnshowmr {background-image: linear-gradient(to right, #0575E6 0%, #021B79  51%, #0575E6  100%)}
+.CustomerList .btnshowmr {
 	border:none;
 	width:130px;
 	height:40px;
-	color:white;
-	background-color:#233ae9;
-	border-radius:8px;
-	margin-left:20px;	
-}
+	 text-align: center;
+	 transition: 0.5s;
+	 color: white;  
+	 background-size: 200% auto;          
+	 box-shadow: 0 0 20px #eee;
+	 border-radius: 10px;
+	 margin-left:20px;
+	}
 
 .CustomerList .btnshowmr:hover {
-  background:#0057d1;
-}
-.CustomerList .btnremove{
-	
+	  background-position: right center; /* change the direction of the change here */
+	  color: #fff;
+	  text-decoration: none;
+	}
+   
+
+
+   .CustomerList .btnremove {background-image: linear-gradient(to right, #870000 0%, #190A05  51%, #870000  100%)}
+   .CustomerList .btnremove {
 	margin-left:10px ;
 	border:none;
 	width:130px;
 	height:40px;
-	color:white;
-	background-color:red;
-	border-radius:8px;
+	  text-align: center;
+	  transition: 0.5s;
+	  background-size: 200% auto;
+	  color: white;            
+	  box-shadow: 0 0 20px #eee;
+	  border-radius: 10px;
+	}
+
+	.CustomerList .btnremove:hover {
+	  background-position: right center; /* change the direction of the change here */
+	  color: #fff;
+	  text-decoration: none;
+	}
+	  
+
+.CustomerList .btnshowless {background-image: linear-gradient(to right, #000000 0%, #0f9b0f  51%, #000000  100%)}
+.CustomerList .btnshowless {
+		
+		border:none;
+		width:130px;
+		height:40px;
+	   text-align: center;
+	   margin-left:10px;
+	   margin-top: 130px;
+	   transition: 0.5s;
+	   background-size: 200% auto;
+	   color: white;            
+	   box-shadow: 0 0 20px #eee;
+	   border-radius: 10px;
+	  
+	 }
+
+.CustomerList .btnshowless {
+	   background-position: right center; /* change the direction of the change here */
+	   color: #fff;
+	   text-decoration: none;
+	 }
 	
-}
-
-.CustomerList .btnremove:hover {
-  background:#760000;
-}
-
-.CustomerList .btnshowless{
-	
-	border:none;
-	width:130px;
-	height:40px;
-	color:white;
-	background-color:#28a52f;
-	border-radius:8px;
-	margin-left:10px;
-	margin-top: 130px;
-}
-
-.CustomerList .btnshowless:hover {
-  background:#417e0f;
-}
 
 
 /*responsive*/
