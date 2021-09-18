@@ -143,7 +143,6 @@ function App() {
       <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
-      
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller" component = {Footer_customer}/>
