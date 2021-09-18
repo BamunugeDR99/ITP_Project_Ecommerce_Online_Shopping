@@ -62,6 +62,7 @@ export default function ContactAdmin(props){
         //props.history.push("/Home");
         //setErrorMsg("");
         //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        alert("Message Sended Successfully!");
         
       }).catch((err) =>{
         alert(err)

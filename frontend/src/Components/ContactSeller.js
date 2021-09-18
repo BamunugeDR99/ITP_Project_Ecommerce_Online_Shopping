@@ -61,9 +61,10 @@ export default function ContactSeller(props){
         setEmail(" ");
         setMessage(" ");
         // validate:validCustomer;
-        props.history.push("/Home");
+        // props.history.push("/Home");
         setErrorMsg("");
         document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        alert("Message Sended Successfully!");
         
       }).catch((err) =>{
         alert(err)
