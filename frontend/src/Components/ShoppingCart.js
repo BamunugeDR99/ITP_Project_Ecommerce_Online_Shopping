@@ -216,11 +216,11 @@ export default function ShoppingCart(props) {
     let quantity = document.getElementById( index + "quantity" ).value;
     quantity++;
 
-    console.log(quantity);
+    console.log(Number(quantity));
 
 
     let itemPrice = document.getElementById(index + "summary").value;
-    console.log(itemPrice);
+    console.log(Number(itemPrice));
     let  newItemPrice = (Number(itemPrice) * Number(quantity));
 
     console.log(newItemPrice);
@@ -324,7 +324,7 @@ export default function ShoppingCart(props) {
                           <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
                         </div>
-                        <p class="mb-0"><span><strong  ><h3>LKR <span id = {index +'summary'}>{item.fPrice}</span></h3></strong></span></p>
+                        <p class="mb-0"><span><strong  ><h3>LKR  <h3 id = {index +'summary'}>{item.fPrice}</h3></h3></strong></span></p>
                       </div>
                     </div>
                   </div>
@@ -385,7 +385,7 @@ return (
         <div class="def-number-input number-input safari_only mb-0 w-100">
           <button type="button" id="plus" class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
           <input class="quantity" min="0" defaultValue="1" name="quantity" id="number1" type="text" style={{ width: "45px" }} readOnly /><span> </span>
-          <button type="button" id="minus1" onClick={() => decrement(1)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
+          <button type="button" id="minus1" onClick={() => decrement(index)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
         </div>
         <small id="passwordHelpBlock" class="form-text text-muted text-center">
           (Note, 1 piece)
@@ -397,7 +397,7 @@ return (
         <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
           class="fas fa-trash-alt mr-1"></i> Remove item </a>
       </div>
-      <p class="mb-0"><span><strong id="summary"><h3>LKR {item.price}</h3></strong></span></p>
+      <p class="mb-0"><span><strong ><h3>LKR <span id = "summary">{item.price}</span> </h3></strong></span></p>
     </div>
   </div>
 </div>
