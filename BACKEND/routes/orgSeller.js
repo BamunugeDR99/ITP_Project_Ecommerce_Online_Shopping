@@ -160,11 +160,11 @@ router.post('/loginSeller', async(req,res) => {
 
             else if (password == sellerLogin.password){
 
-                res.json({message: "Seller Sign In Successfully"});
+                // res.json({message: "Seller Sign In Successfully"});
           //console.log(res.status.error);
-                // res.json({sellerLogin: {
-                //     _id : sellerLogin._id,
-                // }})
+                res.json({sellerLogin: {
+                    _id : sellerLogin._id,
+                }})
                
                 
             }else{ 

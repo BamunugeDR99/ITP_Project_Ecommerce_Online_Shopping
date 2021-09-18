@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
-import "../css/sellerregistration.css";
+import "../Css/sellerregistration.css";
 import { NavLink } from "react-router-dom";
 
 export default function SellerRegistration(props){
@@ -192,7 +192,7 @@ return(
 </div>
 
 <br/><br/>
-<b>Already have an account ? </b><a href = "/seller/login">Sign in!</a>
+Already have an account ? <Link to = "/SellerLogin">Sign in!</Link>
 </form>
 </div>
 </div>
