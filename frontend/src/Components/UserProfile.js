@@ -143,7 +143,7 @@ function UserProfile(props){
 			
 			            <div className="row1">
                     <div className="col-sm-12">
-                       <button type="submit" className="btnedit"><b>Edit</b></button>
+                       <button className="btnedit"><b>Edit</b></button>
 
                     </div>
                    

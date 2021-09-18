@@ -157,7 +157,7 @@ function SignUp(props) {
       validPhoneNumber();
       validEmail();
       checkCheckbox();
-    avatar();
+      avatar();
 
     if(flag1 == 1 && flag2 == 1 && flag3 == 1 && flag4 ==1 ){
 

@@ -33,7 +33,7 @@ function App() {
          */}
          {/* <SignUp/> */}
         {/* <CustomerLogin/> */}
-        <UpdateProfile/>
+        <UserProfile/>
       </div>
     </Router>
   );

@@ -174,7 +174,7 @@ export default function UpdateProfile(props){
 			
 			<div className="cardUpdatePro">
 			
-			<div className="top-leftI">Edit Profile</div>
+			<h1 className="top-leftI">Edit Profile</h1>
 			
 			
 			<div className="UserProImage">
@@ -322,7 +322,7 @@ export default function UpdateProfile(props){
 						 <button type="submit" className="btnUpdate" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
 						</div>
 						<div className="col">
-						  <button type="submit" className="btnDelete" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
+						  <button type="submit" className="btnDelete" onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
 						</div>
 		 	  </div>
 			
