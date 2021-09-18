@@ -77,6 +77,7 @@ export default function ViewCardDetails(props){
 
             </div>
             {/* gg */}
+            {/* ggg */}
             {/* <div class="px-2 number mt-3 d-flex justify-content-between align-items-center">  */}
             {/* real card */}
             {/* <center> */}
