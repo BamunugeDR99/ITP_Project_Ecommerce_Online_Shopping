@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 export default function Add_items(props) {
@@ -16,6 +16,8 @@ export default function Add_items(props) {
   let [Other_colors, setOtherColors] = useState("");
   let Images = [];
   let [Category, setSelectCategory] = useState("Mobile Phones");
+  const [erorMsg,setErrorMsg] = useState("");
+  const [button,setButton] = useState(false)
 
   //check this again
   function warrentyCheck() {
@@ -51,7 +53,7 @@ export default function Add_items(props) {
     let valueof = parseInt(document.getElementById("selectCategory").value);
     if (valueof == 1) {
       Category = "Mobile Phones";
-      alert("111");
+      //alert("111");
     } else if (valueof == 2) {
       // setSelectCategory("Tablet / iPad / iPod");
       Category = "Tablet / iPad / iPod";
@@ -94,7 +96,7 @@ export default function Add_items(props) {
         document.getElementById("Submitstatus").innerHTML =
           "Item Added SuccessFully!";
         document.getElementById("Submitstatus").style.color = "#A4DE02";
-        // props.history.push("/Home");
+         props.history.push("/Seller/Home");
         // document.getElementById("txt").innerHTML = "Student Added Successfully!";
       })
       .catch((err) => {
@@ -108,7 +110,7 @@ export default function Add_items(props) {
   }
   return (
     <div>
-      <div class="height-100 bg-light">
+      <div>
         <br />
         <br />
         <br />
@@ -120,6 +122,7 @@ export default function Add_items(props) {
         <br />
         <div class="card">
           <div class="card-body">
+            <h2  style={{ textAlign: "center", color: "#FF0000" }}>{erorMsg}</h2>
             <form onSubmit={sendData}>
               <div class="row">
                 <div class="col">
@@ -128,7 +131,7 @@ export default function Add_items(props) {
                     type="text"
                     id="item_name"
                     class="form-control"
-                    placeholder="Name of the item"
+                    placeholder="Name of the item" required
                     onChange={(e) => {
                       setItemName(e.target.value);
                     }}
@@ -137,12 +140,20 @@ export default function Add_items(props) {
                 <div class="col">
                   <label for="quantity">QUANTITY</label>
                   <input
-                    type="text"
+                    type="number"
                     id="quantity"
                     class="form-control"
-                    placeholder="Quantity"
+                    pattern="[0-9]"
+                    placeholder="Quantity" required
                     onChange={(e) => {
                       setQuantity(e.target.value);
+                      if(e.target.value > 100){
+                        setErrorMsg("Quantity cannot be more than 100")
+                      }else if(e.target.value <= 0){
+                        setErrorMsg("Quantity cannot be Zero or less")
+                      }else{
+                        setErrorMsg("")
+                      }
                     }}
                   />
                 </div>
@@ -155,7 +166,7 @@ export default function Add_items(props) {
                     type="text"
                     id="brand"
                     class="form-control"
-                    placeholder="Item brand"
+                    placeholder="Item brand" required
                     onChange={(e) => {
                       setBrand(e.target.value);
                     }}
@@ -167,7 +178,7 @@ export default function Add_items(props) {
                     type="text"
                     id="model"
                     class="form-control"
-                    placeholder="Item model"
+                    placeholder="Item model" required
                     onChange={(e) => {
                       setModel(e.target.value);
                     }}
@@ -179,10 +190,11 @@ export default function Add_items(props) {
                 <div class="col">
                   <label for="price">PRICE</label>
                   <input
-                    type="text"
+                    type="number"
                     id="price"
                     class="form-control"
-                    placeholder="Price of the item"
+                    pattern="[0-9]+(\\.[0-9][0-9]?)?"
+                    placeholder="Price of the item" required
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
@@ -193,7 +205,7 @@ export default function Add_items(props) {
                   <input
                     type="text"
                     id="SKU"
-                    class="form-control"
+                    class="form-control" required
                     placeholder="SKU"
                     onChange={(e) => {
                       setSKU(e.target.value);
@@ -210,7 +222,7 @@ export default function Add_items(props) {
                     class="form-control"
                     id="description"
                     rows="5"
-                    placeholder="Description about the item"
+                    placeholder="Description about the item" required
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
@@ -222,7 +234,7 @@ export default function Add_items(props) {
                     class="form-control"
                     id="specifications"
                     rows="5"
-                    placeholder="Item specifications"
+                    placeholder="Item specifications" required
                     onChange={(e) => {
                       setSpecification(e.target.value);
                     }}
@@ -380,7 +392,7 @@ export default function Add_items(props) {
 
                 <div class="col">
                   <label for="SKU">CATEGORY</label>
-                  <select class="custom-select" id="selectCategory">
+                  <select class="custom-select" id="selectCategory" required>
                     <option value="1" selected>
                       Mobile phones
                     </option>

@@ -114,13 +114,13 @@ export default function AllPackages(props) {
 
     function goToPackages(){
 
-        props.history.push("/allpackage_customerView")
+        props.history.push("/Customer/Packages")
       }
   
       
       function goToDisItems(){
   
-        props.history.push("/alldiscounteditems_customerView")
+        props.history.push("/Customer/DiscountedItems")
       }
   
 
@@ -164,7 +164,7 @@ export default function AllPackages(props) {
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1 rounded-top" src={"Images/" + item.image} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1 rounded-top" src={"/Images/" + item.image} width="286px" height="250px" />
 
                                         </div>
                                         <div className="card-body">

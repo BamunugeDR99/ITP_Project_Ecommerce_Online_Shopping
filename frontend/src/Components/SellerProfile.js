@@ -1,15 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 
 import "../Css/sellerprofile.css";
 
 export default function SellerProfile(props) {
 
+  const [orgSeller,setorgSellers] = useState([]);
+  let objectID = "";
+  useEffect(() =>{
+      function getorgSellers(){
+        objectID = localStorage.getItem("SellerID");
+          axios.get("http://localhost:8070/orgSeller/get/"+objectID).then((res) =>
+          {
+              setorgSellers(res.data);
+              console.log(res.data);
+              
+              
+          }).catch((err) =>{
+              alert(err);
+          })
+      }
+     
+      getorgSellers();
+
+    }, );
+
+    function update(id){
+      console.log(id);
+      props.history.push("/update/" + id);
+  };
 
   return (
+
+    <div className="sellerprofile">
     <div className="height-100 bg-light">
       <br />
       <br />
+
       <div class="container">
         <div class="main-body">
           <div class="row">
@@ -19,7 +46,7 @@ export default function SellerProfile(props) {
                   <div class="d-flex flex-column align-items-center text-center">
                     <br></br>
                     <img
-                       src = {require('../images/flight-logo.png').default} 
+                       src = {'/Images/'+orgSeller.logo}
                       alt="Admin"
                       class="rounded-circle p-1 bg-black"
                       width="175"
@@ -32,17 +59,17 @@ export default function SellerProfile(props) {
 					  <div className = "card-body">
                   <ul class="list-group list-group-flush">
                     <div class="shop">
-                      <h4 class="mb-0" style = {{textAlign : "center"}}>AMAR ELECTRONICS</h4>
+                      <h4 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.companyname}</h4>
                     </div>
                     <br></br>
 
                     <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}} >0772156489</h6>
+                      <h6 class="mb-0" style = {{textAlign : "center"}} >{orgSeller.mobile}</h6>
                     </div>
                     <br></br>
 
                     <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}}>amarele89@gmail.com</h6>
+                      <h6 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.email}</h6>
                     </div>
                     <br></br>
 
@@ -67,14 +94,14 @@ export default function SellerProfile(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="First name"
+                        placeholder={orgSeller.ownername} readOnly
                       />
                     </div>
                     <div class="col">
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Last name"
+                        placeholder={orgSeller.companyname} readOnly
                       />
                     </div>
                   </div>
@@ -85,14 +112,14 @@ export default function SellerProfile(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="First name"
+                        placeholder={orgSeller.mobile} readOnly
                       />
                     </div>
                     <div class="col">
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Last name"
+                        placeholder={orgSeller.email} readOnly
                       />
                     </div>
                   </div>
@@ -109,7 +136,7 @@ export default function SellerProfile(props) {
                               class="form-control"
                               id="exampleFormControlTextarea1"
                               rows="7"
-                              placeholder="Description"
+                              placeholder={orgSeller.description} readOnly
                             ></textarea>
                           </div>
                         </div>
@@ -117,7 +144,7 @@ export default function SellerProfile(props) {
                           <input
                             type="text"
                             class="form-control"
-                            placeholder="Last name"
+                            placeholder={orgSeller.year} readOnly
                           />
                           <br />
                           <div className="row">
@@ -126,16 +153,20 @@ export default function SellerProfile(props) {
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
                                 rows="4"
-                                placeholder="physical address"
+                                placeholder={orgSeller.address} readOnly
                               ></textarea>
                             </div>
                           </div>
                         </div>
 						<div className = "container">
 						<div class="float-right">
-						<button type="button" class="btn btn-primary">EDIT</button>
+            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button><span> </span>
+						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
 							<span> </span>
 							</div>
+              <p id = {orgSeller._id} class="card-text">
+                                
+                            </p>
 						</div>
                       </div>
                     </div>
@@ -146,6 +177,8 @@ export default function SellerProfile(props) {
           </div>
         </div>
       </div>
+ 
+    </div>
     </div>
   );
 }

@@ -1,92 +1,173 @@
-.table{
-	
-	margin-top:50px;
-	width:1300px;
-	margin-left:33px;
-}
-
-
-.cus{
+.CustomerList .cus{
 	
 	font-size:45px;
 	font-weight:bold;
-	margin-left:33px;
-	margin-top:30px;
-	color: #0057d1;
+	
+	
 }
 
-.line{
+
+.CustomerList #li{
 	
-	width:1300px;
-	border: 3px solid #050A30;
+	
+	border:#000000;
+	border-style: inset;
+	border-width: 1px;
 }
 
-.theadD{
+.CustomerList #CusSerch{
+
+	width: 800px;
+}
+.CustomerList .CusListcard{
 	
-	background-color:#050A30;
-	color:white;
+	border:none;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.search{
-	
-	
-	margin-left:14px;
+.CustomerList{
+	margin:0;
+	padding:20px;
+	font-family: sans-serif;
+	box-sizing: border-box;
 	
 }
-.fa {
-  position: relative;
-  color: #0057d1;
-  left: 36px;
-} 
 
-.searchIn{
+.CustomerList ::placeholder {
+	color: rgb(13, 16, 148);
+	font-style: italic;
 	
-	width:600px;
-	height:40px;
-	padding-left: 40px;
-	border:2px solid #050A30;
-	border-radius:8px;
-	font-style:italic;
+  }
+
+  .CustomerList #iconS {
+     position: absolute;;
+    color: #000000;
+	bottom: 5px;
+    right: 20px;
+  }   
+
+
+.CustomerList .tablex{
+	width: 100% !important;
+	border-collapse: collapse;
 }
 
-.btnsrch{
-	
-	width:100px;
-	height:40px;
-	color:white;
-	background-color:#050A30;
-	border-radius:8px;
+.CustomerList .tablex td,.tablex th{
+  padding:12px 15px;
+  border:1px solid #ddd;
+  text-align: center;
+  font-size:16px;
 }
 
-.btnsrch:hover {
-  background: #0057d1;
+.CustomerList .tablex th{
+	background-color: rgb(58, 58, 58);
+	color:#ffffff;
 }
 
-.btnshowmr{
-	
+.CustomerList .tablex tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+
+
+.CustomerList .btnshowmr {background-image: linear-gradient(to right, #0575E6 0%, #021B79  51%, #0575E6  100%)}
+.CustomerList .btnshowmr {
 	border:none;
 	width:130px;
 	height:40px;
-	color:white;
-	background-color:#050A30;
-	border-radius:8px;
-	margin-left:50px;	
-}
+	 text-align: center;
+	 transition: 0.5s;
+	 color: white;  
+	 background-size: 200% auto;          
+	 box-shadow: 0 0 20px #eee;
+	 border-radius: 10px;
+	 margin-left:20px;
+	}
 
-.btnshowmr:hover {
-  background:#0057d1;
-}
-.btnremove{
-	
+.CustomerList .btnshowmr:hover {
+	  background-position: right center; /* change the direction of the change here */
+	  color: #fff;
+	  text-decoration: none;
+	}
+   
+
+
+   .CustomerList .btnremove {background-image: linear-gradient(to right, #870000 0%, #190A05  51%, #870000  100%)}
+   .CustomerList .btnremove {
+	margin-left:10px ;
 	border:none;
-	width:90px;
+	width:130px;
 	height:40px;
-	color:white;
-	background-color:red;
-	border-radius:8px;
+	  text-align: center;
+	  transition: 0.5s;
+	  background-size: 200% auto;
+	  color: white;            
+	  box-shadow: 0 0 20px #eee;
+	  border-radius: 10px;
+	}
+
+	.CustomerList .btnremove:hover {
+	  background-position: right center; /* change the direction of the change here */
+	  color: #fff;
+	  text-decoration: none;
+	}
+	  
+
+.CustomerList .btnshowless {background-image: linear-gradient(to right, #000000 0%, #0f9b0f  51%, #000000  100%)}
+.CustomerList .btnshowless {
+		
+		border:none;
+		width:130px;
+		height:40px;
+	   text-align: center;
+	   margin-left:10px;
+	   margin-top: 130px;
+	   transition: 0.5s;
+	   background-size: 200% auto;
+	   color: white;            
+	   box-shadow: 0 0 20px #eee;
+	   border-radius: 10px;
+	  
+	 }
+
+.CustomerList .btnshowless {
+	   background-position: right center; /* change the direction of the change here */
+	   color: #fff;
+	   text-decoration: none;
+	 }
 	
+
+
+/*responsive*/
+
+ @media(max-width: 500px){
+	.CustomerList	.tablex thead{
+		display: none;
+	}
+
+	.CustomerList	.tablex, .tablex tbody, .tablex tr, .tablex td{
+		display: block;
+		width: 100%;
+	}
+	.CustomerList	.tablex tr{
+		margin-bottom:15px;
+	}
+	.CustomerList	.tablex td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.CustomerList	.tablex td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
 }
 
-.btnremove:hover {
-  background:#760000;
-}

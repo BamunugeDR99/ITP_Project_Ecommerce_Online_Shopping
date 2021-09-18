@@ -168,7 +168,7 @@ export default function CreatePackage1(props) {
         sessionStorage.setItem("Content", ContentN);
 
 
-        props.history.push( {pathname: "/createPackage2",
+        props.history.push( {pathname: "/Seller/CreatePackageForm",
         state: ContentN });
         }
 
@@ -180,6 +180,7 @@ export default function CreatePackage1(props) {
 
     return (
         <div className= "OffersnPacks">
+            <br/>
             <div className="container">
 
                 <div>

@@ -4,7 +4,8 @@ import React, {useState,useEffect} from "react";
 export default function CustomerList(){
 
     const [customer,setCustomers] = useState([]);
-  
+    const [show, setShow] = useState(false);
+    const [load, setLoad] = useState(false);
   
     useEffect(() =>{
         function getCustomers(){
@@ -23,6 +24,8 @@ export default function CustomerList(){
         
        
     }, []);
+
+ 
     
     function deleteCus(id){
       axios.delete("http://localhost:8070/Customer/delete/" + id).then((res) =>
@@ -34,69 +37,147 @@ export default function CustomerList(){
           alert(err);
       })
   }
+  //search
+  function handleSearch(e){
 
-return(
-<div>    
-<div class = "cus">
-	
-	<p>Customers</p>
-	
-	</div>
-	
-	<hr class = "line" />
-	
-	<form class="CusSearch">
-	
-	<div class="search">
-		 
-		  <i class="fa fa-search"></i>
-		  <input type="search" placeholder="Search By Keyword..." class= "searchIn"/>
-		  
-		  <button type="submit" class="btnsrch">Search</button>
-	</div>	  
-	</form>
+    let customerSearch = e;
+    console.log(customerSearch);
 
-			
-			<table class="table table-bordered table-hover ">
-		  <thead class="theadD">
-			
-			<tr>
-			  <th scope="col">Customer ID</th>
-			  <th scope="col">Customer Name</th>
-			  <th scope="col">Other Details</th>
-			  <th scope="col">Action</th>
-			</tr>
-		  </thead>
+    axios
+        .get("http://localhost:8070/Customer/getAll")
+        .then((res) =>{
 
-          {customer.map((customer,index) =>{
+          filterCustomer(res.data, customerSearch);
+          console.log(res.data);
+        })
+        .catch((err)=> {
 
-        return (
-		 
-		 <tbody>
-			
-			<tr>
-			  <td>{customer.username}</td>
-			  <td>{customer.firstName}{customer.lastName}</td>
-			  <td><img src={require('../images/' + customer.userImage).default}></img></td>
-              <td>
-                    <div>
-						  <button type="submit" class="btnshowmr">Show More</button>
-						  <button type="submit" class="btnremove" onClick = {()=> deleteCus(customer._id)}>Remove</button>
-			        </div>
-              </td>
-              <p id = {customer._id}></p>
-			</tr>
-			
-			
-  </tbody>
+            alert(err);
+        });
+    
+  }
+
+  //Search
+
+  function filterCustomer(data, customerSearch){
+
+      let result = data.filter((post) =>
+
+        post.firstName.toLowerCase().includes(customerSearch.toLowerCase()) || post.lastName.toLowerCase().includes(customerSearch.toLowerCase())
+        
+
+      );
+
+      console.log(result);
+      setCustomers(result);
+
+      if(result != null){
+
+        setLoad(false);
+      }
+
+      if(result.length == 0){
+
+        setLoad(true);
+      }
+
+      
+  }
+
+
+   return(
+      <div class="CustomerList">    
+      <div class = "cus">
+        
+        <p>Customers</p>
+        
+        </div>
+        
+        <hr id= "li" />
+
+        <div class="input-group" id = "CusSerch">
+        
+        <input type="search"  class="form-control rounded" placeholder="Search by first name or last name...." aria-label="Search"
+          aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
+        <i class="bi bi-search" id="iconS"></i>
+        </div>
+        
+
+        <br/>
+        
+        <div class= "CusListcard">
+        <table class="tablex">
+          <thead class="theadD">
+            <tr>
+            <th>Customer ID</th>
+            <th>Cutomer Name</th>
+            <th>Other Details</th>
+            <th>Action</th>
+            </tr>
+          </thead>
+
+
+     {customer.map((customer,index) =>{
+
+return (
+
+     
+     
+     
+     <tbody>
+
+     	  <tr>
+     	  	  <td data-label="Customer ID">{customer._id}</td>
+     	  	  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
+     	  	  <td data-label="Other Details">
+
+               <img src = {"Images/" + customer.userImage}  width="100px" height="100px"/>
+              { 
+                show? <p>{customer.email}</p>:null
+              }  
+              {
+                show? <p>{customer.address}</p>:null
+              } 
+              {     
+                show? <p>{customer. phoneNumber}</p>:null
+              }
+              
+
+            </td>
+     	  	  <td data-label="Action">
+			  
+			  <div>
+						  <button class="btnshowmr" onClick = {() => setShow(true)}>Show More</button>
+
+						  <button class="btnremove"  onClick = {()=> deleteCus(customer._id)}>Remove</button>
+              
+			  </div>
+
+         <div id = {customer._id}>    
+              {     
+                show? <button class="btnshowless" onClick = {() => setShow(false)}>Show Less</button>:null
+              }
+			  </div>
+			  
+			  </td>
+        {/* <p id = {customer._id}></p> */}
+     	  	  
+     	  </tr>
+
+     	  
+		 </tbody> 
+     
 
 )
-       
+     
 
-})}
 
-</table>
+    })}
 
+
+  </table>
+ 
+</div>
 </div>	
 
 );

@@ -4,10 +4,25 @@ import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 // import '../Css/Side_bar_styles.css';
 
-
 export default function Side_bar(props) {
+  const [render, setrender] = useState(false);
+  useEffect(() => {
+    function reRender() {
+      setrender(true);
+    }
+
+    reRender();
+    // displayStudentdetails();
+  });
+
+
+  function Logout(){
+    localStorage.removeItem("SellerID");
+    props.history.push("/SellerLogin");
+  }
+  
   return (
-    <div>
+    <div className="HeadSideBar">
       <header className="header" id="header">
         <div className="header_toggle">
           {" "}
@@ -18,48 +33,54 @@ export default function Side_bar(props) {
       <div className="l-navbar" id="nav-bar">
         <nav className="nav">
           <div>
-            {" "}
-            <Link to="#" className="nav_logo">
-              <i className="bx bx-layer nav_logo-icon"></i>
-              <span className="nav_logo-name">BBBootstrap</span>{" "}
-            </Link>
+       
             <div className="nav_list">
-              {" "}
-              <Link to="/allItems" className="nav_link active">
-                <i className="bx bx-grid-alt nav_icon"></i>{" "}
+            {" "}
+              <Link to="/Seller/Home" className="nav_link">
+                <i className="bx bx-box nav_icon"></i>{" "}
                 <span className="nav_name">MY ITEMS</span>{" "}
               </Link>
-              <Link to="/addItem" className="nav_link">
-                {" "}
+              {" "}
+              <Link to="/Seller/MyProfile" className="nav_link">
                 <i className="bx bx-user nav_icon"></i>{" "}
+                <span className="nav_name">MY PROFILE</span>{" "}
+              </Link>
+              {" "}
+              <Link to="/allItems" className="nav_link">
+                <i className="bx bx-store nav_icon"></i>{" "}
+                <span className="nav_name">MY SHOP </span>{" "}
+              </Link>
+              <Link to="/Seller/AddItem" className="nav_link">
+                {" "}
+                <i className="bx bx-plus nav_icon"></i>{" "}
                 <span className="nav_name">ADD ITEM</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Seller/CreatePackage" className="nav_link">
                 {" "}
-                <i className="bx bx-message-square-detail nav_icon"></i>{" "}
-                <span className="nav_name">Messages</span>{" "}
+                <i className="bx bx-package nav_icon"></i>{" "}
+                <span className="nav_name">CREATE PACKAGE</span>{" "}
               </Link>{" "}
               <Link to="#" className="nav_link">
                 {" "}
-                <i className="bx bx-bookmark nav_icon"></i>{" "}
-                <span className="nav_name">Bookmark</span>{" "}
-              </Link>{" "}
-              <Link to="#" className="nav_link">
-                {" "}
-                <i className="bx bx-folder nav_icon"></i>{" "}
-                <span className="nav_name">Files</span>{" "}
+                <i className="bx bx-heart nav_icon"></i>{" "}
+                <span className="nav_name">REVIEWS</span>{" "}
               </Link>{" "}
               <Link to="#" className="nav_link">
                 {" "}
                 <i className="bx bx-bar-chart-alt-2 nav_icon"></i>{" "}
-                <span className="nav_name">Stats</span>{" "}
+                <span className="nav_name">REPORTS</span>{" "}
+              </Link>{" "}
+              <Link to="#" className="nav_link">
+                {" "}
+                <i className="bx bx-message nav_icon"></i>{" "}
+                <span className="nav_name">CONTACT</span>{" "}
               </Link>{" "}
             </div>
           </div>{" "}
-          <Link to="#" className="nav_link">
+          <Link  onClick={() => Logout()}  className="nav_link">
             {" "}
             <i className="bx bx-log-out nav_icon"></i>{" "}
-            <span className="nav_name">SignOut</span>{" "}
+            <span className="nav_name">SIGNOUT</span>{" "}
           </Link>
         </nav>
       </div>
