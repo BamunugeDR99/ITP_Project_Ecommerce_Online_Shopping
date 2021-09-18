@@ -11,7 +11,7 @@ export default function ContactAdmin(props){
     const [email,setEmail] = useState("");
     const [message,setMessage] = useState("");
   
-
+    let customerid  = "";
     let [errorMsg,setErrorMsg] = useState("");
 	let flag = 0;
 
@@ -39,7 +39,7 @@ export default function ContactAdmin(props){
 
       e.preventDefault();
       validEmail();
-  
+      customerid  = localStorage.getItem("CustomerID");
 
       if(flag == 1){
           
@@ -47,7 +47,8 @@ export default function ContactAdmin(props){
       const newContact = {
         name,
         email,
-        message
+        message,
+        customerid 
       }
   
      
@@ -58,9 +59,9 @@ export default function ContactAdmin(props){
         setName(" ");
         setEmail(" ");
         setMessage(" ");
-        props.history.push("/Home");
-        setErrorMsg("");
-        document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        //props.history.push("/Home");
+        //setErrorMsg("");
+        //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         
       }).catch((err) =>{
         alert(err)

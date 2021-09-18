@@ -1,0 +1,82 @@
+
+.OffersnPacks.innertag  {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+
+ 
+  }
+
+  .OffersnPacks .innertag #disPercentage{
+
+    background-color:#0057d1;
+    color: white;
+    border-radius: 3px !important;
+  }
+
+  .OffersnPacks.container-fluid{
+      position: relative;
+  }
+
+  .OffersnPacks .btn{
+    background-color: #0057d1;
+  }
+
+  .OffersnPacks .cardText{
+
+    text-align: left;
+  }
+
+  .OffersnPacks .cardText p{
+     margin:0 ;
+  }
+
+  .OffersnPacks .iPrice{
+
+    text-decoration: line-through;
+  }
+
+  #GPackageBtn{
+
+    border-radius: 0px 5px 5px 0px;
+    margin-left: 2px;
+    margin-right: 3rem;
+    font-size: 16px;
+    color:#0057d1 ;
+    background-color: white;
+    border: 1px  solid#0057d1 ;
+
+  }
+
+
+  #GDisItemsBtn{
+
+    border-radius: 5px 0px 0px 5px;
+    font-size: 16px;
+    border: 1px  solid#0057d1 ;
+    
+
+
+  }
+
+
+  #GPackageBtn2{
+
+    
+    border-radius: 0px 5px 5px 0px;
+    font-size: 16px;
+    border: 1px  solid#0057d1 ;
+    margin-left: 2px;
+    margin-right: 3rem;
+
+  }
+ 
+  #GDisItemsBtn2{
+
+    border-radius: 5px 0px 0px 5px;
+    margin-left: 2px;
+    font-size: 16px;
+    color:#0057d1 ;
+    background-color: white;
+    border: 1px  solid#0057d1 ;
+  }

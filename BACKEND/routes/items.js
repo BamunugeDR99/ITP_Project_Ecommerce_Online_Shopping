@@ -175,4 +175,45 @@ router.route("/get/:id").get(async (req, res) => {
     });
 });
 
+
+
+//Update Discount
+router.route("/updateDiscount/:id").put(async (req, res) => {
+  let itemID = req.params.id;
+  const{
+        DiscountStatus,
+        DiscountPrecentage,
+        FinalPrice
+       } = req.body;
+
+  const DiscountedItem  = {
+    DiscountStatus,
+    DiscountPrecentage,
+    FinalPrice
+  }
+
+  const update = await Item.updateOne(
+
+    {_id : itemID},
+    {$set : {DiscountStatus :DiscountStatus , DiscountPrecentage: DiscountPrecentage, FinalPrice : FinalPrice}},
+
+
+  ).then(() => {
+
+    res.status(200).send({ status: "Item updated" });
+  })
+  .catch((err) => {
+    console.log(err);
+    res
+      .status(500)
+      .send({ status: "Error with updating data", error: err.message });
+  });
+
+
+  })
+
+
+
+
+
 module.exports = router;

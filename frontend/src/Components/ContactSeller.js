@@ -47,7 +47,9 @@ export default function ContactSeller(props){
       const newContactsel = {
         name,
         email,
-        message
+        message,
+        
+
       }
   
      

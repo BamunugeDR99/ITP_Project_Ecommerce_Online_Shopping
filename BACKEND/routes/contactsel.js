@@ -10,7 +10,7 @@ router.route("/add").post((req,res)=>{
     const email = req.body.email;
     const message = req.body.message;
     const customerid = req.body.customerid;
-    const sellerid = req.body.sellerid
+    const sellerid = req.body.sellerid;
 
     const newContactsel= new Contactsel({
         name,
