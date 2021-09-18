@@ -209,7 +209,7 @@ export default function UpdatePackages(props) {
                                         <label className="labels">Content</label><table className="table table-bordered table-dark" id="myTable">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">ItemID</th>
+                                                    <th scope="col">Item Model</th>
                                                     <th scope="col">Item Name</th>
                                                     <th scope="col">Action</th>
 
@@ -230,7 +230,7 @@ export default function UpdatePackages(props) {
 
                                                             <tr>
 
-                                                                <td>{item._id}</td>
+                                                                <td>{item.Model}</td>
                                                                 <td>{item.Item_name}</td>
                                                                 <td><button className="btn btn-danger" type="button" onClick={() => { deleteRow(item._id) }}>Remove</button></td>
 

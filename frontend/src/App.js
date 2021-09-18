@@ -33,13 +33,14 @@ import CustomerList from './Components/CustomerList';
 import UpdateProfile from './Components/UpdateProfile';
 import Seller_items from './Components/Seller_items';
 // import './css/update.css';
-// import Side_bar from './Components/Side_bar';
+ import Side_bar from './Components/Side_bar';
 // import Add_items from './Components/Add_items';
  import Update_Items from './Components/Update_Items';
 import AddDiscount from './Components/AddDiscount';
 import AllDiscountedItems from './Components/AllDiscountedItems';
 import UpdateDiscount from './Components/UpdateDiscount';
 import InitialPage from './Components/InitialPage';
+import ShoppingCart from './Components/ShoppingCart';
 // import Seller_items from './Components/Seller_items';
 // import customer_wishlist from './Components/customer_wishlist';
 // import SideBarAdmin from './Components/SideBarAdmin';
@@ -62,10 +63,10 @@ function App() {
 
       {/* <Header/> */}
     
-      <Route path= "/initialPage" exact component = {InitialPage}/>
+      {/* <Route path= "/initialPage" exact component = {InitialPage}/> */}
 
-      {/* <Header/>
-    <Side_bar/> */}
+      <Header/>
+      <Side_bar/>
       <Route path= "/createpackage1" exact component = {CreatePackage1}/>
       <Route path= "/createpackage2" exact component = {CreatePackage2}/>
       <Route path= "/allpackages" exact component = {AllPackages}/>
@@ -79,6 +80,7 @@ function App() {
    
       <Route path= "/alldiscounteditems_customerView" exact component = {All_DiscountedItems_Customer}/>
       <Route path= "/allpackage_customerView" exact component = {AllPackages_CustomerView}/>
+      <Route path= "/shoppingCart" exact component = {ShoppingCart}/>
 
 
     </div>
