@@ -68,6 +68,10 @@ app.use("/itemtest", itemtestRouter);
 const contactRouter = require("./routes/contact.js");
 app.use("/contact", contactRouter);
 
+const paymentdetailsRouter = require("./routes/paymentdetails.js");
+
+app.use("/paymentdetails",paymentdetailsRouter);
+
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB Connection successful");

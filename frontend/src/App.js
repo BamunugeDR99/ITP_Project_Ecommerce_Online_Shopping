@@ -115,6 +115,7 @@ import UpdateDiscount from './Components/UpdateDiscount';
 // import TestFile from './Components/TestFile';
 import Forloop from './Components/Forloop';
 import YourReviews from './Components/YourReviews';
+import ViewCardDetails from './Components/ViewCardDetails';
 
 
 function App() {
@@ -139,11 +140,12 @@ function App() {
       <Route path = "/Customer/DiscountedItems" exact component = {All_DiscountedItems_Customer}/>
       <Route path = "/Customer/Packages" exact component = {AllPackages_CustomerView}/>
       <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
+      <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
+
       {/* <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/> */}
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer" component = {Footer_customer}/>
-
 
 
       {/* Seller Route */}
