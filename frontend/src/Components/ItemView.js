@@ -13,6 +13,8 @@ import v3 from "../images/paypal2.png";
 export default function ItemView(props){
 
     const [items,setItems] = useState([]);
+    let [itemss,setItemss] = useState([]);
+    const [ratings, setRatings] = useState([]);
 
     let [allitems,setAllitems] = useState([]);
     let [filtereditems,setFiltereditems] = useState([]);
@@ -198,7 +200,60 @@ export default function ItemView(props){
     }, []);
 
 
-
+    useEffect(() => {
+        calculateStarRating();
+        
+      })
+      
+      function calculateStarRating(){
+        let totalNoRatings = 0;
+        let totalstarforRatingCount = 0;
+        let starCount = 0;
+        let average = 0; 
+        // for(let i = 0; i < items.length; i++){
+          
+          // totalNoRatings = 0;
+          // totalstarforRatingCount = 0;
+          // starCount = 0;
+          // average = 0;
+        
+          for(let j = 0; j < ratings.length; j++){
+              if(items._id == ratings[j].itemid){
+                totalNoRatings++;
+                starCount += parseInt(ratings[j].noofstars);  
+              }
+      
+             
+          }
+      
+          totalstarforRatingCount = totalNoRatings * 5;
+          average = parseInt((starCount / totalstarforRatingCount) * 5);
+          console.log(average);
+          displayStarRating(average);
+      
+      
+      }
+      
+      
+      function displayStarRating(totalAverage){
+        let txt = "";
+          if(isNaN(totalAverage)){
+            txt = "No Ratings yet!";
+            document.getElementById('stars').innerHTML = txt;
+            // document.getElementById('stars').style.color = "#FF0000";
+          }else{
+          
+          for(let j = 0; j < totalAverage; j++){
+            txt += '<span class="fa fa-star checked"></span>';
+          }
+          for(let j = 0; j < (5 - totalAverage); j++){
+            txt += '<span class="fa fa-star"></span>';
+          }
+         
+      
+          document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+         }
+      }
     
 
 
@@ -212,7 +267,20 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{height:'100%',width:'100%',  paddingRight:'20px'}} src={`../images/${items.Item_name}`}/>
+            <img style={{width:'90%',  paddingRight:'20px'}} src={p2}
+            // {`../images/${items.Item_name}`}
+            />
+            <div>
+                <img style={{width:'25%',  padding:'10px'}} src={p2}
+                // {`../images/${items.Item_name}`}
+                />
+                <img style={{width:'25%',  padding:'10px'}} src={p2}
+                // {`../images/${items.Item_name}`}
+                />
+                <img style={{width:'25%',  padding:'10px'}} src={p2}
+                // {`../images/${items.Item_name}`}
+                />
+            </div>
         </div>
 
         <div className="col">
@@ -241,14 +309,14 @@ return(
             <br/>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/adrep" className = "nav-link" >
+                    <Link to = "/contactsel" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%' ,borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
                     </Link>
                 </a>
             </div>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/adrep" className = "nav-link" >
+                    <Link to = "/contactad" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%', borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Us</button>
                     </Link>
                 </a>
@@ -262,7 +330,7 @@ return(
         
     </div>  
             <br/><br/>
-        <div className="row" style={{padding:'10px 40px 10px 10px'}}>
+        <div className="row" style={{padding:'0px 40px 10px 10px'}}>
                 <div className="col"> 
                      <div className="row" style={{backgroundColor:'white',lineHeight:'32px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
                             <span style={{alignItems:"center", fontSize:'20px', padding:'10px 10px 20px 10px'}}><b>Item Description</b></span>   
@@ -322,14 +390,15 @@ return(
                                 <span style={{alignItems:"center", fontSize:'20px'}}><b>Ratings And Reviews</b></span>      <br/><br/>
                                 <div className="row">
                                     <div className="col">
-                                        <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>&emsp;&emsp;{items.Review}/5</span><br/>
+                                        {/* <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>&emsp;&emsp;{items.Review}/5</span><br/> */}
                                         <span>
-                                            <div style={{color: "#f9d71c" ,fontSize:'24px'}}>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="far fa-star"></i>
+                                        <div id = 'stars'class="card-text">
+                                            <br/><span id ='review'>4.0 / 5.0</span><br/>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span><br/>
+                                            <span class="fa fa-star"></span>
                                             </div>
                                             
                                         </span>

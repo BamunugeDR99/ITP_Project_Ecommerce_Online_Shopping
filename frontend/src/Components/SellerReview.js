@@ -5,7 +5,7 @@ import axios from "axios";
 
 import {Link} from 'react-router-dom';
 
-
+import a1 from "../images/avatar1.png";
 import p2 from "../images/p3.jpg";
 
 export default function SellerReviews(props){
@@ -13,6 +13,13 @@ export default function SellerReviews(props){
     const [items,setItems] = useState([]);
     let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
+
+    const [review,setReview] = useState([]);
+    const [reportreason,setReportreason] = useState("");
+
+    const [data,setData] = useState({
+      reportreason : "",
+    });
 
     let reviews = [];
     let customers = [];
@@ -193,31 +200,22 @@ function displayStarRating(totalAverage){
    }
 }
 
-//  onTaskClicked(){
-//   console.log("clicked");
-// }
-// function setReport(){
+// function updatee(id){
 
-// }
+//   // e.preventDefault();
+//   const ReviewId = id;
+//   console.log(ReviewId);
 
-// function sendData(e){
-
-//   e.preventDefault();
-
-//   const newContact = {
-//     name,
-//     email,
-//     message
+//   const newReview = {
+    
+//     reportreason,
 //   }
 
- 
-//   console.log(newContact);
+//   console.log(newReview);
 
-//   axios.post("http://localhost:8070/contact/add",newContact).then(()=>{
+//   axios.put("http://localhost:8070/review/updateReport/" +ReviewId,newReview).then(()=>{
 
-//     setName(" ");
-//     setEmail(" ");
-//     setMessage(" ");
+//     setReview(" ");
 //     props.history.push("/Home");
 //     document.getElementById("txt").innerHTML = "Message Sended Successfully!";
     
@@ -226,18 +224,37 @@ function displayStarRating(totalAverage){
 //   })
 // }
 
-  // function toogleHandler() {
-  //   if (isOrderd) {
-  //     orderedCtx.removeOrder(props.id);
-  //   } else {
-  //     orderedCtx.addOrder({
-  //       id: props.id,
-  //       name: props.name,
-  //       review: props.review,
-  //       status: 1,
-  //     });
-  //   }
+function sendData(e){
+ 
+  const ReviewId = props.match.params.id; 
+  console.log(ReviewId);
+ 
+  // alert("d0");
+  e.preventDefault();
+
+  // const newStudent = {
+  //   name,
+  //   age,
+  //   gender,
   // }
+
+  //console.log(newStudent);
+  //document.write("newStudent");
+  axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
+    alert("Report Updated");
+  //  document.getElementById("txt").innerHTML = "Report Sended Successfully!";
+  console.log(data);
+
+  }).catch((err) =>{
+    alert(err)
+  })
+}
+
+function handle(e){
+  const newdata = {...data}
+  newdata[e.target.id] = e.target.value
+  setData(newdata)
+}
 
 
  return(    
@@ -253,11 +270,22 @@ function displayStarRating(totalAverage){
                  return (   */}
 
                     <div className="col-4">
-                      <img style={{width:'70%'}}
+                      <img style={{width:'100%'}}
                        src=
                        {p2}
                       //  {"/Images/" + items.userImage[0]}
                        />
+                       <div>
+                          <img style={{width:'30%',  padding:'10px'}} src={p2}
+                          // {`../images/${items.Item_name}`}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src={p2}
+                          // {`../images/${items.Item_name}`}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src={p2}
+                          // {`../images/${items.Item_name}`}
+                          />
+                      </div>
                     </div>
                 
                     <div className="col">
@@ -272,8 +300,8 @@ function displayStarRating(totalAverage){
                 	
             </div>
             <br/>
-            <div className="row" style={{padding:'10px 20px 0px 10px'}}>
-                <div className="row" style={{lineHeight:'32px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
+            <div className="row" style={{padding:'0px 20px 0px 10px'}}>
+                <div className="row" style={{lineHeight:'25px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
                             <span style={{alignItems:"center", fontSize:'20px', padding:'10px 10px 20px 10px'}}><b>Item Description</b></span>   
                                
                                 <div className="col-2">
@@ -324,16 +352,16 @@ function displayStarRating(totalAverage){
                                 </div>
                                 
                             </div> 
-                
+
         </div> 
             
             {/* {abc.map((reviewss) => {
               return ( */}
             <div className="row">
                 <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>
-                  {/* {index +'stars'} */}
-                  </span><br/> 
+                {/* <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>
+                  {index +'stars'}
+                  </span><br/>  */}
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
                     {/* <div style={{color: "#f9d71c"}}>
                       <i class="fas fa-star"></i>
@@ -342,19 +370,17 @@ function displayStarRating(totalAverage){
                       <i class="fas fa-star"></i>
                       <i class="far fa-star"></i>
                     </div> */}
-            
- 
-              <div id = 'stars'class="card-text">
-              <span id ='review'>4.0 / 5.0</span><br/>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span><span> </span> 
-            </div>
 
+                    <div id = 'stars'class="card-text">
+                      <br/><span id ='review'>4.0 / 5.0</span><br/>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span><br/>
+                      <span class="fa fa-star"></span>
+                    </div>
 
-                </span>
+                  </span>
             </div>
               {/* )
             })} */}
@@ -377,7 +403,9 @@ function displayStarRating(totalAverage){
                     <div className="row">
                         <div className="col-2">
                             
-                                <img style={{width:'100%'}} src={"/Images/" + reviewss.customerImage[0]}/>
+                                <img style={{width:'100%'}} src={a1}
+                                // {"/Images/" + reviewss.customerImage[0]}
+                                />
                         </div>
 
                         <div className="col">
@@ -432,13 +460,12 @@ function displayStarRating(totalAverage){
                     <div class="modal-body">
                       <div class="form-group">
                         
-                        <label>write your report</label>
+                        <label>write your reason</label>
                         <input type="text" class="form-control" 
-                        // required  onChange= {
-                        //         (e)=>{
-                        //         setReport(e.target.value);
-                        //         }
-                        //       }
+                        required  onChange= {
+                                (e)=>{handle(e)
+                                }
+                              }
                               />
                       </div>
                     </div>
@@ -449,7 +476,9 @@ function displayStarRating(totalAverage){
                         data-dismiss="modal"
                         value="Cancel"
                       />
-                      {/* <button onClick = {()=> updatee(review.review_id)} type="submit" class="btn btn-info" value="Submit" >Update</button> */}
+                      <button 
+                      // onClick = {()=> updatee(review.review_id)} 
+                      type="submit" class="btn btn-info" value="Submit" >Send</button>
                     </div>
                   </form>
                 </div>

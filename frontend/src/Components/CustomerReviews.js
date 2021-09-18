@@ -2,6 +2,8 @@ import React, { useState, useEffect} from "react";
 import axios from "axios";
 
 
+import a1 from "../images/avatar1.png";
+
 export default function CustomerReviews(props) {
 
   
@@ -97,21 +99,25 @@ export default function CustomerReviews(props) {
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
                       <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
                         <div class="card-body">
-                          <img src={"/Images/"+reviewss.customerImage[0]} style={{ width: "80%", alignItems: "center" }}/>
-                        
-                          <h5 style={{ color: "#191919", textAlign: "center" }}>{reviewss.customerName}</h5>
-
+                          <center>
+                          <img src={a1}
+                          // {"/Images/"+reviewss.customerImage[0]} 
+                          style={{ width: "65%", alignItems: "center" }}/>
+                          <br/>
+                          <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
+                          </center>
                           
-                          <div style={{ color: "#f9d71c", textAlign: "center" }}>
-                          <span style={{ color: "#191919" }}>{reviewss.Stars}/5</span><br/>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                          
+
+                          <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
+                            <span id ='review'>{reviewss.Stars}/5</span><br/>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span><span> </span> 
                           </div>
-                          <br />
-                          <p style={{ textAlign: "center", fontSize: "16px" }}>
+                          <p style={{ textAlign: "center", fontSize: "16px"}}>
                             {reviewss.Review}
                           </p>
                         </div>

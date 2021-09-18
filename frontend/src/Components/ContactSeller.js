@@ -3,7 +3,7 @@ import axios from "axios";
 
 // import validator from 'validator';
 
-import "../CSS/contact.css";
+import "../Css/contact.css";
 import go from "../images/bg13.jpg";
 
 

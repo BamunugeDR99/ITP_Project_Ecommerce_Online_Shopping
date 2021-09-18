@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-import "../CSS/msg.css";
+import "../Css/msg.css";
 // import g1 from "../images/avatar1.png";
 
 

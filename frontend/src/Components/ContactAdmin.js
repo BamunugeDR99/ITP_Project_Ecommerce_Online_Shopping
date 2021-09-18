@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 
-import "../CSS/contact.css";
+import "../Css/contact.css";
 import go from "../images/bg2.jpg";
 
 

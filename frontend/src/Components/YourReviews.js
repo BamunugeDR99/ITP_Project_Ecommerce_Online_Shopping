@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "../CSS/yourreviews.css";
+import "../Css/yourreviews.css";
 import p2 from "../images/p3.jpg";
 
 export default function YourReviews(props) {
@@ -14,13 +14,17 @@ export default function YourReviews(props) {
   let items = [];
   let itemName = "";
   let itemImage = "";
+  let itemDescription= "";
   let Review = "";
+  let Date = "";
   let [abc, setabc] = useState([]);
   let reviewWithItem = {
     review_id,
     itemName,
     itemImage,
+    itemDescription,
     Review,
+    Date,
   };
 
   let reviewWithItems = [];
@@ -60,7 +64,9 @@ export default function YourReviews(props) {
             review_id  : reviews[i]._id,
               itemName: items[j].Item_name,
               itemImage: items[j].Images[0],
+              itemDescription: items[j].Description,
               Review: reviews[i].description,
+              Date: reviews[i].date,
             };
 
             reviewWithItems.push(reviewWithItem);
@@ -162,8 +168,8 @@ export default function YourReviews(props) {
                         </div>
 
                         <div class="name-user">
-                          <strong>{reviewss.itemName}</strong>
-                          
+                          <strong>{reviewss.itemName}</strong><br/>
+                          <span>{reviewss.itemDescription}</span>
                           <div class="reviews">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -177,9 +183,9 @@ export default function YourReviews(props) {
                         </div>
                       </div>
 
-                      {/* <div class="name-user">
-									<label>{reviewss.date}</label>
-								</div> */}
+                      <div class="name-user">
+                            <label>{reviewss.Date}</label>
+                          </div>
                     </div>
 
                     <div class="profile">
