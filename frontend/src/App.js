@@ -40,6 +40,7 @@ import MainHeader from './Components/MainHeader';
 import Home_Customer from './Components/Home_Customer';
 // import Home_Customer from './Components/Home_Customer';
 // import SellerProfile from './Components/SellerProfile';
+
 // import EmailTest from './Components/EmailTest';
 // import All_the_items_customer from './Components/All_the_items_customer';
 
