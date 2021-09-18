@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "../CSS/yourreviews.css";
+import "../Css/yourreviews.css";
 import p2 from "../images/p3.jpg";
 
 export default function YourReviews(props) {
@@ -24,15 +24,17 @@ export default function YourReviews(props) {
   };
 
   let reviewWithItems = [];
-
+let objectId = "";
   useEffect(() => {
     function getReview() {
+      objectId = localStorage.getItem("CustomerID");
+
       axios
         .get("http://localhost:8070/review/get")
         .then((res) => {
           const filter = res.data.filter(
             (customerrev) =>
-              customerrev.customerid === "613b4f1a73eceb40702affe6"
+              customerrev.customerid === objectId
           );
           reviews = filter;
           axios
@@ -133,8 +135,9 @@ export default function YourReviews(props) {
           
             <div className="testimonial-heading">
               <h1>Your Reviews</h1>
-            </div>
+<br/>
 
+            </div>
             {abc.map((re,index) => {
               return (
                 <div className="testimonial-box-container">
