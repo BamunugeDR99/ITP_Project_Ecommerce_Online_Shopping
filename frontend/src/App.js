@@ -78,7 +78,7 @@ import SellerReview from './Components/SellerReview';
 import AdminReport from './Components/AdminReport';
 import ItemView from './Components/ItemView';
 // import test from './Components/test';
-
+import ContactSeller from './Components/ContactSeller';
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -116,8 +116,10 @@ import UpdateDiscount from './Components/UpdateDiscount';
 import Forloop from './Components/Forloop';
 import YourReviews from './Components/YourReviews';
 import ViewCardDetails from './Components/ViewCardDetails';
-
-
+import SellerReviews from './Components/SellerReview';
+import AddpaymentMethod from './Components/AddpaymentMethod';
+import AddCard from './Components/AddCard';
+import ConfirmPayment from './Components/ConfirmPayment';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -140,8 +142,20 @@ function App() {
       <Route path = "/Customer/DiscountedItems" exact component = {All_DiscountedItems_Customer}/>
       <Route path = "/Customer/Packages" exact component = {AllPackages_CustomerView}/>
       <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
+      <Route path = "/Customer/ContactUs" exact component = {ContactAdmin}/>
+      <Route path = "/Customer/addCard" exact component = {AddpaymentMethod}/>
+      <Route path = "/Customer/ContactSeller" exact component = {ContactSeller}/>
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
+      <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
+
+
+
+      <Route path = "/Customer/ItemDetails" exact component = {ItemView}/> 
+      <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
+        {/* id  */}
+      {/* // from my item incomplete */}
+      
       {/* <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/> */}
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
@@ -156,6 +170,7 @@ function App() {
       <Route path = "/Seller/MyDiscountedItems"  exact component = {AllDiscountedItems}/>
       <Route path = "/Seller/MyPackages"  exact component = {AllPackages}/>
       <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
+      <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>

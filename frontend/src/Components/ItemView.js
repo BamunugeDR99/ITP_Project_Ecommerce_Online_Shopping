@@ -212,7 +212,7 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{height:'100%',width:'100%',  paddingRight:'20px'}} src={`../images/${items.Item_name}`}/>
+            <img style={{height:'100%',width:'100%',  paddingRight:'20px'}}  src={"/Images/"+items.itemImages} />
         </div>
 
         <div className="col">
@@ -241,14 +241,14 @@ return(
             <br/>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/adrep" className = "nav-link" >
+                    <Link to = "/Customer/ContactSeller" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%' ,borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
                     </Link>
                 </a>
             </div>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/adrep" className = "nav-link" >
+                    <Link to = "/Customer/ContactUs" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%', borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Us</button>
                     </Link>
                 </a>

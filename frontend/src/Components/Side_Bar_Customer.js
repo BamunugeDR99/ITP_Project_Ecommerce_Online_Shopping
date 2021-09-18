@@ -61,7 +61,7 @@ export default function Side_bar_Customer(props) {
                 <i className="bx bx-heart nav_icon"></i>{" "}
                 <span className="nav_name">MY REVIEWS</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Customer/ContactUs" className="nav_link">
                 {" "}
                 <i className="bx bx-message nav_icon"></i>{" "}
                 <span className="nav_name">CONTACT US</span>{" "}

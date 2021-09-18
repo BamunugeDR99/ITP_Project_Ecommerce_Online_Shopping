@@ -64,6 +64,7 @@ return(
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
 <div class="AddPaymentMethod">
+	<br/><br/>
 <div class="padding">
 	<form method="post" onSubmit = {sendData}>
     <div class="row">
@@ -148,6 +149,7 @@ return(
 	</form>
 </div>
 </div>
+<br/><br/><br/>
 </div> 
 
  );
