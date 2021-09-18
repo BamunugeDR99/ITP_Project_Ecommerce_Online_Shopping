@@ -191,9 +191,7 @@ function SignUp(props) {
     	setPassword(" ");
     	setConfirmPassword(" ");
 
-    alert("Customer Added Successfully!");
-    setErrorMsg("");
-
+      props.history.push("/CustomerLogin");
     }).catch((err) =>{
 
     	console.log(err.response.data);
@@ -386,7 +384,7 @@ function SignUp(props) {
             <div className="signup">
               <br />
               <p>
-                <b>Already have an account ?</b> <a href="">Login</a>
+                <b>Already have an account ?</b> <Link to="/CustomerLogin">Login</Link>
               </p>
             </div>
           </form>

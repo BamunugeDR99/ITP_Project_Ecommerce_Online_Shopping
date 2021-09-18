@@ -4,12 +4,13 @@ import './Css/Side_bar_styles.css';
 import './Js/sidebar_script.js';
 import './Css/toogle.css';
 // import './Css/InitialPage.css';
-
+// import React from 'react';
+import React, { Component }  from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import CreatePackage1 from './Components/CreatePackage1';
 import CreatePackage2 from './Components/CreatePackage2';
 import AllPackages from './Components/AllPackages';
-import React from 'react';
+// import React from 'react';
 import UpdatePackages from './Components/UpdatePackage';
 //import Side_bar from './Components/Side_bar';
 import All_DiscountedItems_Customer from './Components/All_DiscountedItems_Customer';

@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import SignUp from "./SignUp";
 
-export default function CustomerLogin() {
+export default function CustomerLogin(props) {
   //remember me
 
   const [rememberMe, setRememberMe] = useState(false);
@@ -58,10 +60,12 @@ export default function CustomerLogin() {
 
         // sessionStorage.setItem('userID',"sss");
 
-        alert("Customer loggin Successfully!");
-        console.log("logging success");
-        console.log(res.data);
-        setErrorMsg("");
+       // alert("Customer loggin Successfully!");
+        //console.log("logging success");
+        ///console.log(res.data);
+       // setErrorMsg("");
+        props.history.push("/Customer/Home");
+
       })
       .catch((err) => {
         //alert(err);
@@ -149,7 +153,7 @@ export default function CustomerLogin() {
                     <div className="col">
                       <p className="fp">
                         {" "}
-                        <a href="">Forgot Password?</a>
+                        <Link to="/CustomerForgotPassword">Forgot Password?</Link>
                       </p>
                     </div>
                   </div>
@@ -167,13 +171,15 @@ export default function CustomerLogin() {
                   <h4 className="acc">Don't have an account?</h4>
                   <br />
 
-                  <input type="button" className="butt_out" value="Sign Up" />
+                  <input type="button" className="butt_out" onClick = {() => {
+                    props.history.push("/CustomerRegistration");
+                  }} value="Sign Up" />
 
                   <div className="changeSLogin">
                     <p>
                       {" "}
                       If You Are A Seller Use This Link To Login!{" "}
-                      <a href="">LogIn</a>
+                      <Link to="/SellerLogin">LogIn</Link>
                     </p>
                   </div>
                 </div>

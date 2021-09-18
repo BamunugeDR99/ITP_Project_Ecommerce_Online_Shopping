@@ -37,12 +37,12 @@ function UserProfile(props){
     // image();
   }, []);
 
-  // function Updatecus(id){
+  function Updatecus(id){
 
       console.log(id);
-      props.history.push("/Customer/update/" +id)
+      props.history.push("/Customer/update/" +id);
      
-  // }
+  }
 
     return(
 

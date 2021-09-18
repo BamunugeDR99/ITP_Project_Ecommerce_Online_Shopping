@@ -180,7 +180,7 @@ export default function UpdateProfile(props){
 			
 			<div className="UserProImage">
 			
-			<img src={"Images/" + customer.userImage} id="userproI" alt="UserImage"/>
+			<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
 			
 			</div>
 			
