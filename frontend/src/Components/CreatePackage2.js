@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
+import swal from "sweetalert2";
 
 
 export default function CreatePackage2(props) {
@@ -62,7 +63,9 @@ export default function CreatePackage2(props) {
 
         axios.post("http://localhost:8070/Packages/addPackage", newPackage).then(() => {
 
-            alert("Package Added");
+
+            swal.fire("Success", "Package Added Successfully", "success");
+            //alert("Package Added");
 
             sessionStorage.clear();
 

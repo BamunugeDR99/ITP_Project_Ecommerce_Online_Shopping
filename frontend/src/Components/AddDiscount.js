@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
 import go from "./../images/go.jfif";
+import swal from "sweetalert2";
 
 function AddDiscount(props) {
 
@@ -44,12 +45,15 @@ function AddDiscount(props) {
 
         e.preventDefault();
 
-        if (DiscountPrecentage <= 0 || DiscountPrecentage >= 80  ) {
 
-            
-            setAlert("Discount should be with in a range of minimum 1% & maximum 80%") ;
+        if (DiscountPrecentage <= 0 || DiscountPrecentage >= 80) {
+
+
+            //setAlert("Discount should be with in a range of minimum 1% & maximum 80%") ;
+            swal.fire("Alert", "Discount should be with in a range of minimum 1% & maximum 80%", "warning");
 
         }
+
         else {
 
             let DiscountStatus = true;
@@ -70,7 +74,9 @@ function AddDiscount(props) {
             //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
             axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
 
-                alert("! Added Discount to the Item");
+                // alert("! Added Discount to the Item");
+
+                swal.fire("Success", "Added Discount to the Item", "success");
 
                 props.history.push("/alldiscounteditems");
             }).catch((err) => {
@@ -86,8 +92,19 @@ function AddDiscount(props) {
 
         setDiscount(e.target.value);
 
+
         let dis = document.getElementById("discountPercentage").value;
 
+        if (dis <= 0 || dis >= 80) {
+
+
+            setAlert("Discount should be with in a range of minimum 1% & maximum 80%");
+
+        }
+
+        else {
+            setAlert("");
+        }
         console.log(dis);
         let finalP = Number(item.Price) - (Number(item.Price) * (Number(dis) / 100));
 
@@ -96,6 +113,8 @@ function AddDiscount(props) {
         document.getElementById("newPrice").value = finalP;
 
         setFinalPrice(finalP);
+
+
 
     }
 
@@ -147,9 +166,9 @@ function AddDiscount(props) {
                                     onChange={CalcDiscount}
 
 
-                                required ={true}/> </div> 
-                                
-                                <p id ="discountValidation" style={{color:'red'}}>{disalert}</p>
+                                    required={true} /> </div>
+
+                                <p id="discountValidation" style={{ color: 'red' }}>{disalert}</p>
                                 <br />
 
                                 <div className="col-md-12"><label className="labels" style={{ textAlign: 'left' }}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" readOnly={true} />

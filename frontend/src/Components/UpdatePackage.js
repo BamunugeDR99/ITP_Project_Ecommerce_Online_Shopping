@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
 import go from "./../images/go.jfif";
-
+import swal from "sweetalert2";
 
 export default function UpdatePackages(props) {
 
@@ -12,6 +12,7 @@ export default function UpdatePackages(props) {
     const [seller, setSeller] = useState("");
     const [price, setPrice] = useState("");
     const [content, setContent] = useState([]);
+    const [content2, setContent2] = useState([]);
 
     const [sdate, setSdate] = useState("");
     const [edate, setEdate] = useState("");
@@ -42,6 +43,7 @@ export default function UpdatePackages(props) {
                 setSeller(res.data.seller);
                 setPrice(res.data.price);
                 setContent(res.data.content);
+                setContent2(res.data.content);
                 setCurrImage(res.data.image);
 
                 startDate = res.data.startDate;
@@ -91,7 +93,8 @@ export default function UpdatePackages(props) {
             .delete("http://localhost:8070/Packages/deletePackage/" + packageId)
             .then((res) => {
 
-                alert("Package Deleted");
+                //alert("Package Deleted");
+                swal.fire("Success", "Package Deleted Successfully", "success");
                 props.history.push("/allpackages");
 
             }).catch((err) => {
@@ -110,8 +113,11 @@ export default function UpdatePackages(props) {
         getsDetails();
 
         if (content.length === 0) {
-            alert("Cannot Delete All Items From a Package");
-            window.location.reload(true);
+
+            swal.fire("Alert", "Cannot Delete All Items From a Package", "error");
+            //alert("Cannot Delete All Items From a Package");
+            //window.location.reload(true);
+            setContent(content2);
         }
 
         else {
@@ -134,7 +140,8 @@ export default function UpdatePackages(props) {
 
             axios.put("http://localhost:8070/Packages/updatePackages/" + packageId, updatedPackage).then(() => {
 
-                alert("Package Updated");
+                //alert("Package Updated");
+                swal.fire("Success", "Package Updated Successfully", "success");
                 props.history.push("/allpackages");
             }).catch((err) => {
 

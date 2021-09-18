@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
 import go from "./../images/go.jfif";
+import swal from "sweetalert2";
 
 
 
@@ -65,7 +66,10 @@ function UpdateDiscount(props) {
         //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
         axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
 
-            alert("Discount Updated");
+            //alert("Discount Updated");
+
+            
+            swal.fire("Success", "Discount Updated", "success");
 
             props.history.push("/alldiscounteditems");
         }).catch((err) => {
@@ -125,7 +129,10 @@ function UpdateDiscount(props) {
         //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
         axios.put("http://localhost:8070/items/updateDiscount/" + itemID, revokedDiscountedItem).then(() => {
 
-            alert(" Discount Revoked");
+            //alert(" Discount Revoked");
+
+            swal.fire("Success", "Discount Revoked", "success");
+
             props.history.push("/alldiscounteditems");
         }).catch((err) => {
 
