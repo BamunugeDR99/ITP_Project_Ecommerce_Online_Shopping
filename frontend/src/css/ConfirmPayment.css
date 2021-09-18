@@ -1,4 +1,4 @@
-body {
+.ConfirmPay body {
     color: #000;
     overflow-x: hidden;
     height: 100%;
@@ -6,7 +6,7 @@ body {
     background-repeat: no-repeat
 }
 
-.card {
+.ConfirmPay .card {
     padding: 30px 25px 35px 50px;
     border-radius: 30px;
     box-shadow: 0px 4px 8px 0px #B71C1C;
@@ -14,37 +14,37 @@ body {
     margin-bottom: 50px
 }
 
-.border-line {
+.ConfirmPay .border-line {
     border-right: 1px solid #BDBDBD
 }
 
-.text-sm {
+.ConfirmPay .text-sm {
     font-size: 13px
 }
 
-.text-md {
+.ConfirmPay .text-md {
     font-size: 18px
 }
 
-.image {
+.ConfirmPay .image {
     width: 60px;
     height: 30px
 }
 
-::placeholder {
+.ConfirmPay ::placeholder {
     color: grey;
     opacity: 1
 }
 
-:-ms-input-placeholder {
+.ConfirmPay :-ms-input-placeholder {
     color: grey
 }
 
-::-ms-input-placeholder {
+.ConfirmPay ::-ms-input-placeholder {
     color: grey
 }
 
-input {
+.ConfirmPay input {
     padding: 2px 0px;
     border: none;
     border-bottom: 1px solid lightgrey;
@@ -57,7 +57,7 @@ input {
     font-weight: 500
 }
 
-input:focus {
+.ConfirmPay input:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -65,14 +65,14 @@ input:focus {
     outline-width: 0
 }
 
-button:focus {
+.ConfirmPay button:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     outline-width: 0
 }
 
-.btn-red {
+.ConfirmPay .btn-red {
     background-color: #EF5350;
     color: #fff;
     padding: 8px 25px;
@@ -82,20 +82,20 @@ button:focus {
     border: 2px solid #fff
 }
 
-.btn-red:hover {
+.ConfirmPay .btn-red:hover {
     box-shadow: 0 0 0 2px #EF5350
 }
 
-.btn-red:focus {
+.ConfirmPay .btn-red:focus {
     box-shadow: 0 0 0 2px #EF5350 !important
 }
 
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+.ConfirmPay .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #EF5350
 }
 
 @media screen and (max-width: 575px) {
-    .border-line {
+    .ConfirmPay .border-line {
         border-right: none;
         border-bottom: 1px solid #EEEEEE
     }

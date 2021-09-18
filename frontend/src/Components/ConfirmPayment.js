@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
-import "../css/ConfirmPayment.css"; //css linked
+import "../Css/ConfirmPayment.css"; //css linked
 
 export default function ConfirmPayment(props){
 
     return(
-        <div>
+        <div class="ConfirmPay">
 
 <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
     <div class="row d-flex justify-content-center">

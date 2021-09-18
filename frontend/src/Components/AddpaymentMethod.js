@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../JS/Addpayment";
 
 
-// import "../css/AddpaymentMethod.css"; //css linked
+
+// import "../Css/AddpaymentMethod.css"; //css linked
 
 export default function AddpaymentMethod(props){
 
@@ -76,9 +76,9 @@ return(
                             <div class="col-md-6 text-right" style= {{ marginTop: "-5px" }}>
 
 								<div class="cc-selector">
-									<span><input id="visa" type="radio" name="credit-card" value="VISA" style= {{ marginRight: "0px"}} /></span>
+									<span><input id="visa" type="radio" name="credit-card" value="VISA" style= {{ marginRight: "0px"}} required /></span>
 									<label class="drinkcard-cc visa" for="visa" ></label>
-								<span><input id="mastercard" type="radio" name="credit-card" value="MASTER" style= {{ marginLeft: "0px"}} /></span>
+								<span><input id="mastercard" type="radio" name="credit-card" value="MASTER" style= {{ marginLeft: "0px"}} required /></span>
 									<label class="drinkcard-cc mastercard"for="mastercard"></label>
 								</div>
 								
@@ -89,7 +89,7 @@ return(
                     <div class="card-body" style={{height: "300px"}} >
 					<div class="form-group">
 							 <label for="numeric" class="control-label">CARD HOLDER NAME</label>
-							  <input type="text" class="input-lg form-control"
+							  <input type="text" class="input-lg form-control" required 
 							  		onChange= {
 										(e)=>{
 											setcardowner(e.target.value);
@@ -98,7 +98,7 @@ return(
 							  </div>
 						<div class="form-group"> 
 						<label for="cc-number" class="control-label">CARD NUMBER</label>
-						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="•••• •••• •••• ••••" required pattern ="[0-9]{12}"
+						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="1234 •••• •••• 7890" required pattern="[0-9]{16}"
 									onChange= {
 										(e)=>{
 											setcardnumber(e.target.value);
@@ -109,7 +109,7 @@ return(
                             <div class="col-md-6">
                                 <div class="form-group">
 									 <label for="cc-exp" class="control-label">CARD EXPIRY</label> 
-									 <input id="cc-exp" type="text" class="input-lg form-control cc-exp" placeholder="•• / ••" required
+									 <input id="cc-exp" type="text" class="input-lg form-control cc-exp" placeholder="M M / Y Y" required 
 									onChange= {
 										(e)=>{
 											setcarddate(e.target.value);
@@ -121,7 +121,7 @@ return(
                             <div class="col-md-6">
                                 <div class="form-group">
 									 <label for="cc-cvc" class="control-label">CARD CVC</label> 
-									 <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" placeholder="••••" required
+									 <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" placeholder="•••" required pattern="[0-9]{3}"
 									 onChange= {
 										(e)=>{
 										setcardcvv(e.target.value);

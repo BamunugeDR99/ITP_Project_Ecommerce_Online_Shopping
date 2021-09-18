@@ -5,7 +5,7 @@
 .Selectpay .card {
     border: none;
     border-radius: 8px;
-    box-shadow: 5px 6px 6px 2px #2f5377
+    box-shadow: 5px 6px 6px 2px #7898b8
 }
 
 .Selectpay .heading {
@@ -21,7 +21,7 @@
 
 .Selectpay .pricing {
     border: 2px solid #304FFE;
-    background-color: #1e2f66
+    background-color: #7d90ce
 }
 
 .Selectpay .business {
