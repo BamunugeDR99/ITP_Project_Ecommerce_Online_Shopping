@@ -70,6 +70,15 @@ import ForgotP from './Components/ForgotP';
 
 
 import ReactSession from 'react-client-session';
+import CustomerReviews from './Components/CustomerReviews';
+// import Report from './Components/Report';
+import WriteReview from './Components/WriteReview';
+import ContactAdmin from './Components/ContactAdmin';
+import SellerReview from './Components/SellerReview';
+import AdminReport from './Components/AdminReport';
+import ItemView from './Components/ItemView';
+// import test from './Components/test';
+
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -103,6 +112,9 @@ import UpdateDiscount from './Components/UpdateDiscount';
 // import Home_Customer from './Components/Home_Customer';
 // import SellerProfile from './Components/SellerProfile';
 
+// import TestFile from './Components/TestFile';
+import Forloop from './Components/Forloop';
+import YourReviews from './Components/YourReviews';
 
 
 function App() {
@@ -128,6 +140,7 @@ function App() {
       <Route path = "/Customer/Packages" exact component = {AllPackages_CustomerView}/>
       <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
       {/* <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/> */}
+      <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer" component = {Footer_customer}/>
 

@@ -16,14 +16,6 @@ const ReviewSchema = new Schema({
         type : String,
         required : true
     },
-    customerid : {
-        type : String,
-        required : true
-    },
-    itemid : {
-        type : String,
-        required : true
-    },
     reviewstatus : {
         type : String,
         required : true,
@@ -32,7 +24,34 @@ const ReviewSchema = new Schema({
     reportreason : {
         type : String,
         required : true
-    }
+    },
+    customerid : {
+        type : String,
+        required : true
+    },
+    itemid : {
+        type : String,
+        required : true
+    },
+    sellerid : {
+        type : String,
+        required : true
+    },
+
+    // reviewcus : [{
+
+    //     name: {type: String},
+
+    //     cusimage : {type: String},
+
+    // }],
+    // reviewitem : [{
+
+    //     name: {type: String},
+
+    //     itemimage : {type: String},
+
+    // }]
 
 })
 
