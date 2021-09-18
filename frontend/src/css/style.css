@@ -1,0 +1,98 @@
+.CustomerSignup .wrapper {
+  height: 1100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  }
+
+  .CustomerSignup .inner {
+ 
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  width: 1200px;
+  height: 930px;
+  margin: auto;
+  margin-top: 50px;
+  margin-left:-20px;
+  box-shadow: rgba(5, 5, 131, 0.25) 0px 30px 60px -12px, rgba(23, 6, 172, 0.459) 0px 18px 36px -18px;
+  display: flex;
+  
+ }
+ .CustomerSignup  .inner .image-holder {
+	display: flex;
+    width: 50%; }
+
+  .CustomerSignup  .inner form {
+    width: 50%;
+    padding-top: 36px;
+    padding-left: 45px;
+    padding-right: 45px;
+     }
+
+  .CustomerSignup .inner #sign_up {
+    text-transform: uppercase;
+    font-size: 45px;
+    font-family: "Poppins-SemiBold";
+    color: black;
+    text-align: left;
+    margin-bottom: 28px; }
+	
+
+#signUpI {
+  max-width: 100%; }	
+
+
+
+.CustomerSignup .CusCreateBtn {background-image: linear-gradient(to right, #0575E6 0%, #021B79  51%, #0575E6  100%)}
+.CustomerSignup .CusCreateBtn {
+  
+  
+  width: 320px;
+  height: 45px;
+  margin: auto;
+  margin-top: 40px;
+   text-align: center;
+   cursor: pointer;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+   align-items: center;
+  justify-content: center;
+  border: none;
+ }
+
+ .CustomerSignup .CusCreateBtn:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.CustomerSignup .signup{
+	
+	text-align:center;
+}
+
+.CustomerSignup .form-group {
+  position: relative;
+}
+
+.CustomerSignup  .form-group i {
+    position: absolute;
+    bottom: 4px;
+    right: 15px; }
+
+.CustomerSignup  .form-group #eye {
+    position: absolute;
+    bottom: 2px;
+    right: 40px;
+    cursor: pointer ; }    
+
+ .CustomerSignup #signupError{
+	
+      text-align:center;
+      color: red;
+  
+    }

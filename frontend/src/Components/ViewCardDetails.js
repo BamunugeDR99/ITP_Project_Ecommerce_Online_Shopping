@@ -76,9 +76,14 @@ export default function ViewCardDetails(props){
                 <h1>{paymentdetails.cardtype}</h1>
 
             </div>
-            <div class="px-2 number mt-3 d-flex justify-content-between align-items-center"> 
+            {/* <div class="px-2 number mt-3 d-flex justify-content-between align-items-center">  */}
             {/* real card */}
-            <center><span >{paymentdetails.cardnumber}</span> </center> </div>
+            {/* <center> */}
+                {/* <h4 style = {{textAlign : "center"}}>XXXX  XXXX  XXXX  4456</h4> */}
+                <h4 style = {{textAlign : "center"}}>{paymentdetails.cardnumber}</h4>
+
+                {/* </center> */}
+            {/* </div> */}
             <div class="p-4 card-border mt-4">
                 <div class="d-flex justify-content-between align-items-center"> 
                 <span class="cardholder">Card Holder</span> <span class="expires">Expires</span> </div>

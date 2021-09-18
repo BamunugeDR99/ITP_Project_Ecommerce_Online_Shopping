@@ -8,7 +8,7 @@
 
 .ViewCard .card {
     border: none;
-    width: 550px;
+    width: 500px;
     border-radius: 12px;
     color: #fff;
     background-image: linear-gradient(to right top, #690e91, #910780, #a3026b, #d30568, #fa1258)
