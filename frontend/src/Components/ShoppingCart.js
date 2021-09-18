@@ -208,29 +208,44 @@ export default function ShoppingCart(props) {
 
 
 
-  let itemPrice = 1300;
-  let [newItemPrice, setNewItemPrice] = useState(itemPrice);
+
+ 
   // let itemPrice;
 
   function increment(index) {
-    let qunatity = document.getElementById("number" + index).value;
-    qunatity++;
-    setNewItemPrice(itemPrice * qunatity);
-    document.getElementById("number" + index).value = qunatity;
+    let quantity = document.getElementById( index + "quantity" ).value;
+    quantity++;
+
+    console.log(quantity);
+
+
+    let itemPrice = document.getElementById(index + "summary").value;
+    console.log(itemPrice);
+    let  newItemPrice = (Number(itemPrice) * Number(quantity));
+
+    console.log(newItemPrice);
+    document.getElementById(index + "quantity").value = quantity;
+    document.getElementById(index + "summary").value = newItemPrice;
   }
+
+
+
 
   function decrement(index) {
 
-    let qunatity = document.getElementById("number" + index).value;
-    if (qunatity == 1) {
+    let quantity = document.getElementById(index + "quantity").value;
+    if (quantity == 1) {
       alert("can't");
     } else {
-      qunatity--;
+      quantity--;
 
     }
 
-    setNewItemPrice(itemPrice * qunatity);
-    document.getElementById("number" + index).value = qunatity;
+    let itemPrice = document.getElementById(index + "summary").value;
+    let  newItemPrice = (Number(itemPrice) * Number(quantity));
+    console.log(newItemPrice);
+    document.getElementById(index + "quantity").value = quantity;
+    document.getElementById(index + "summary").value = newItemPrice;
   }
 
 
@@ -295,9 +310,9 @@ export default function ShoppingCart(props) {
                         </div>
                         <div>
                           <div class="def-number-input number-input safari_only mb-0 w-100">
-                            <button type="button" id="plus" class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
-                            <input class="quantity" min="0" defaultValue="1" name="quantity" id="number1" type="text" style={{ width: "45px" }} readOnly /><span> </span>
-                            <button type="button" id="minus1" onClick={() => decrement(1)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
+                            <button type="button"  id = {index +'plus'} class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
+                            <input class="quantity" min="0" defaultValue="1" name="quantity"  id = {index +'quantity'}type="text" style={{ width: "45px" }} readOnly /><span> </span>
+                            <button type="button"  id = {index +'minus'} onClick={() => decrement(index)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
                           </div>
                           <small id="passwordHelpBlock" class="form-text text-muted text-center">
                             (Note, 1 piece)
@@ -309,7 +324,7 @@ export default function ShoppingCart(props) {
                           <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
                         </div>
-                        <p class="mb-0"><span><strong id="summary"><h3>LKR {item.fPrice}</h3></strong></span></p>
+                        <p class="mb-0"><span><strong  ><h3>LKR <span id = {index +'summary'}>{item.fPrice}</span></h3></strong></span></p>
                       </div>
                     </div>
                   </div>
