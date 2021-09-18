@@ -2,6 +2,7 @@ import "./App.css";
 import "./Css/slide.css";
 import "./Css/Side_bar_styles.css";
 import "./Js/sidebar_script.js";
+import React from "react";
 // import Counter from './Components/Counter';
 // import CounterFunction from './Components/CounterFunction';
 // import Header from './Components/Header';
