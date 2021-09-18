@@ -12,6 +12,7 @@ import SellerForget from './Components/SellerForget';
 import SellerUpdate from './Components/SellerUpdate';
 
 import SellerLogin from './Components/SellerLogin';
+import SellerPassword from './Components/SellerPassword';
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route path = "/update/:id" exact component = {SellerUpdate}/>
 
       <Route path = "/seller/login" exact component = {SellerLogin}/>
+      <Route path = "/sellpass" exact component = {SellerPassword}/>
 
       
 

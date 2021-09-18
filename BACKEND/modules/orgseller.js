@@ -56,5 +56,20 @@ const OrgSellerSchema = new Schema (
     }
 )
 
+//hashing password
+OrgSellerSchema.pre('save',async function (next) {
+
+    // console.log("hi")
+
+    if(this.isModified('password')){
+
+        var salt = bcrypt.genSaltSync(12);
+        this.password = bcrypt.hashSync(this.password, salt);
+    }
+
+    next();
+
+});
+
 const orgseller = mongoose.model("orgseller", OrgSellerSchema);
 module.exports = orgseller;

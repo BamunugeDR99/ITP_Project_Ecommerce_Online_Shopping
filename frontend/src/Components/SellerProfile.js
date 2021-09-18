@@ -38,6 +38,7 @@ export default function SellerProfile(props) {
     <div className="height-100 bg-light">
       <br />
       <br />
+      <h2 style={{color:"black", marginLeft:"130px", marginBottom:"20px"}}>Seller Profile</h2>
 
       <div class="container">
         <div class="main-body">
@@ -130,14 +131,14 @@ export default function SellerProfile(props) {
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="sellerB">
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
                             <textarea
                               class="form-control"
                               id="exampleFormControlTextarea1"
-                              rows="7"
+                              rows="9"
                               placeholder={orgSeller.description} readOnly
                             ></textarea>
                           </div>
@@ -154,7 +155,7 @@ export default function SellerProfile(props) {
                               <textarea
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
-                                rows="4"
+                                rows="6"
                                 placeholder={orgSeller.address} readOnly
                               ></textarea>
                             </div>
@@ -162,7 +163,7 @@ export default function SellerProfile(props) {
                         </div>
 						<div className = "container">
 						<div class="float-right">
-            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button>
+            <button type="button" class="btn btn-primary" style={{marginRight:"20px"}}>CHANGE PASSWORD</button>
 						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
 							<span> </span>
 							</div>

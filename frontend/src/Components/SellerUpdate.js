@@ -48,13 +48,16 @@ export default function SellerUpdate(props) {
   
   
       axios.put("http://localhost:8070/orgSeller/update/" + objectId,data).then(()=>{
-  
-        alert("Seller Updated Successfully!");
+
+
+    
+      //  alert("Seller Updated Successfully!");
        document.getElementById("txt").innerHTML = "Seller Updated Successfully!";
        
         
   
       }).catch((err) =>{
+
         alert(err)
       })
     }
@@ -71,6 +74,9 @@ export default function SellerUpdate(props) {
     <div className="height-100 bg-light">
       <br />
       <br />
+      <h2 style={{color:"black", marginLeft:"130px", marginBottom:"30px"}}>Edit Profile</h2>
+      <h1 id = "txt"></h1>
+
 
       <div class="container">
       <form onSubmit = {sendData}> 
@@ -160,11 +166,11 @@ export default function SellerUpdate(props) {
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="sellerB">
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                          <textarea type="text" className="form-control" id="description" value = {data.description}
+                          <textarea type="text" rows="9" className="form-control" id="description" value = {data.description}
                                     onChange= {
                                     (e)=>handle(e)}
                                     />
@@ -178,7 +184,7 @@ export default function SellerUpdate(props) {
                           <div className="row">
                             <div class="form-group">
                               <textarea
-                               className="form-control" id="address" value = {data.address}
+                               className="form-control" id="address" rows="6" value = {data.address}
                                 onChange= {
                                  (e)=>handle(e)}
                                  >
