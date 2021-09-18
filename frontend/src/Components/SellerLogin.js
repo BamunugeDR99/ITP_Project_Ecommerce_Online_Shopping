@@ -88,7 +88,7 @@ export default function SellerLogin(props){
 									<p className ="fp"> <Link to="/SellerForgotPassword">Forgot Password?</Link></p>
 								</div>
 							<br/>
-                            <button type="submit" class="btn btn-danger">Sign in</button> <br/><br/>
+                            <button type="submit" class="btn btn-primary">Sign in</button> <br/><br/>
                                 <div class="text-center d-flex justify-content-between mt-10"> 
                                     <p> Don't have an account? 
                                         <Link to="/SellerRegistration" class="font-italic text-muted"> <u>Sign up!</u></Link></p>

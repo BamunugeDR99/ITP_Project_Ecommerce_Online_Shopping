@@ -25,6 +25,11 @@ export default function SellerProfile(props) {
 
     }, );
 
+    function update(id){
+      console.log(id);
+      props.history.push("/update/" + id);
+  };
+
   return (
 
     <div className="sellerprofile">
@@ -155,9 +160,13 @@ export default function SellerProfile(props) {
                         </div>
 						<div className = "container">
 						<div class="float-right">
-						<button type="button" class="btn btn-primary">EDIT</button>
+            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button>
+						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
 							<span> </span>
 							</div>
+              <p id = {orgSeller._id} class="card-text">
+                                
+                            </p>
 						</div>
                       </div>
                     </div>

@@ -77,7 +77,7 @@ import SellerProfile from './Components/SellerProfile';
 import './Css/sellerregistration.css'
 
 import SellerForget from './Components/SellerForget';
-import UpdateSeller from './Components/UpdateSeller';
+import SellerUpdate from './Components/SellerUpdate';
 
 import SellerLogin from './Components/SellerLogin';
 import InitialPage from './Components/InitialPage';
