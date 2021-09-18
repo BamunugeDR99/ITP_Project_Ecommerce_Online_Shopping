@@ -17,6 +17,7 @@ import ViewCardDetails from './Components/ViewCardDetails';
 import ConfirmPayment from './Components/ConfirmPayment';
 // import new1 from './Components/new1';
 import AddCard from './Components/AddCard';
+import EditCardDetails from './Components/EditCardDetails';
 
 
 
@@ -28,7 +29,8 @@ function App() {
       <div>
 
       <Header/>
-      <Route path = "/" exact component = {Login}/>
+      <EditCardDetails/>
+      {/* <Route path = "/" exact component = {Login}/>
       <Route path = "/Home" exact component= {AllStudents}/>
       <Route path = "/add" exact component = {AddStudent}/>
       <Route path = "/update/:id" exact component = {UpdateStudent}/>
@@ -38,8 +40,9 @@ function App() {
       <Route path = "/sepay" exact component = {SelectPaymentMethod}/>
       <Route path = "/view" exact component = {ViewCardDetails}/>
       <Route path = "/confpay" exact component = {ConfirmPayment}/>
-      {/* <Route path = "/new" exact component = {new1}/> */}
-      <Route path = "/card" exact component = {AddCard}/>
+      {/* <Route path = "/new" exact component = {new1}/> 
+      <Route path = "/card" exact component = {AddCard}/> */}
+      
 
       {/* add default to last <Route path = "/" exact component = {AddStudent}/>*/}
 {/* <AddStudent/> */}
