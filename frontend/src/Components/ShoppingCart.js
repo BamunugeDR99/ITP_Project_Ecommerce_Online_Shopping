@@ -12,25 +12,47 @@ export default function ShoppingCart(props) {
   const [ItemArr, setItemArr] = useState([]);
 
 
-    let Name = "";
-    let  Brand = "";
-    let Model = "";
-    let  Specification = "";
-    //let Color = "";
-    let SKU = "";
+  let Name = "";
+  let Brand = "";
+  let Model = "";
+  let Specification = "";
+  //let Color = "";
+  let SKU = "";
+  let fPrice = "";
 
   let ItemDetails = {
-     
+
     Name,
     Brand,
     Model,
     Specification,
     //Color,
-    SKU
+    SKU,
+    fPrice
   };
 
+
+  let packageName = "";
+  let description = "";
+  let content = [];
+  let price = [];
+
+
+  let PackageDetails = {
+
+    packageName,
+    description,
+    content,
+    price
+
+
+  }
+
+
   let AllItemsArr = [];
-  let [gItems,setgItems] = useState([]);
+  let [gItems, setgItems] = useState([]);
+  let AllPackagesArr = [];
+  let [gPackages, setgPackages] = useState([]);
 
   useEffect(() => {
 
@@ -44,33 +66,35 @@ export default function ShoppingCart(props) {
         console.log(res.data);
 
         cart = res.data;
-      
+
         CartItems = res.data.ItemIDs;
         CartPackages = res.data.PackageIDs;
 
 
         axios.get("http://localhost:8070/items/getItems").then((res) => {
 
-                  console.log(res.data);
-                  Allitems = res.data;
+          console.log(res.data);
+          Allitems = res.data;
 
-                  getItemss(Allitems, CartItems);
+          getItemss(Allitems, CartItems);
 
         }).catch((err) => {
 
 
         })
 
-       
+
         axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
 
           console.log(res.data);
           Allpackages = res.data;
 
+          getPackagess(Allpackages, CartPackages);
 
-      }).catch((err) => {
+
+        }).catch((err) => {
           alert(err.message);
-      })
+        })
 
 
       })
@@ -81,27 +105,28 @@ export default function ShoppingCart(props) {
 
 
 
-    function getItemss(allItems, items){
+    function getItemss(allItems, items) {
 
       let j = 0;
 
-      for(let i = 0; i< items.length; i++){
+      for (let i = 0; i < items.length; i++) {
 
         j = 0;
 
-        for(j = 0; j < allItems.length ; j++){
+        for (j = 0; j < allItems.length; j++) {
 
-          if(items[i] == allItems[j]._id ){
+          if (items[i] == allItems[j]._id) {
 
 
             ItemDetails = {
-     
-              Name : allItems[j].Item_name,
-              Brand : allItems[j].Brand,
-              Model : allItems[j].Model,
-              Specification : allItems[j].Specification,
+
+              Name: allItems[j].Item_name,
+              Brand: allItems[j].Brand,
+              Model: allItems[j].Model,
+              Specification: allItems[j].Specification,
               //Color = allItems[i].Color_family[1],
-              SKU : allItems[j].Stock_keeping_unit
+              SKU: allItems[j].Stock_keeping_unit,
+              fPrice: allItems[j].FinalPrice
 
             };
 
@@ -122,10 +147,40 @@ export default function ShoppingCart(props) {
   }, [])
 
 
-  function getPackagess(allPackages, packages){
+  function getPackagess(allPackages, packages) {
+
+    let j = 0;
+
+    for (let i = 0; i < packages.length; i++) {
+
+      j = 0;
+
+      for (j = 0; j < allPackages.length; j++) {
+
+        if (packages[i] == allPackages[j]._id) {
+
+          
+          PackageDetails = {
+
+            packageName: allPackages[j].packageName,
+            description: allPackages[j].description,
+            content: allPackages[j].content,
+            price: allPackages[j].price
+
+          };
+
+          AllPackagesArr.push(PackageDetails);
+
+        }
+      }
+    }
+
+    setgPackages(AllPackagesArr);
 
 
-    
+
+
+
   }
 
 
@@ -140,7 +195,9 @@ export default function ShoppingCart(props) {
 
 
 
-console.log(gItems);
+  console.log(gItems);
+
+  console.log(gPackages);
 
 
 
@@ -176,6 +233,19 @@ console.log(gItems);
     document.getElementById("number" + index).value = qunatity;
   }
 
+
+  // function removeItems(id){
+
+  //   const remainingItems = CartItems.filter(
+  //     (pack) => pack != id
+  //   );
+
+  //   console.log(remainingPacks);
+
+  //   setC(remainingPacks);
+
+  // }
+
   return (
     <div>
       <section>
@@ -193,23 +263,12 @@ console.log(gItems);
 
                 <h5>{cart.customerID}</h5>
 
-                {gItems.map((item) => {
+                {gItems.map((item, index) => {
 
-                  return(
+                  return (
                     <div>
-                        <h5>{item.Name}</h5>
-
-                    </div>
-                  )
-
-                })
-
-
-
-                }
-
-                {/* one item */}
-                <div class="row mb-4">
+                      
+                      <div class="row mb-4">
                   <div class="col-md-5 col-lg-3 col-xl-3">
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
@@ -227,16 +286,16 @@ console.log(gItems);
                     <div>
                       <div class="d-flex justify-content-between">
                         <div>
-                          <h5>Item name</h5>
-                          <p class="mb-3 text-muted text-uppercase small">Brand</p>
-                          <p class="mb-3 text-muted text-uppercase small">Model</p>
-                          <p class="mb-3 text-muted text-uppercase small">Specification</p>
+                          <h5>{item.Name}</h5>
+                          <p class="mb-3 text-muted text-uppercase small">{`Brand : ${item.Brand}`}</p>
+                          <p class="mb-3 text-muted text-uppercase small">{`Model :  ${item.Model}`}</p>
+                          <p class="mb-3 text-muted text-uppercase small">{`Specifications : ${item.Specification}`}</p>
                           <p class="mb-2 text-muted text-uppercase small">Color: selected color</p>
-                          <p class="mb-3 text-muted text-uppercase small">SKU</p>
+                          <p class="mb-3 text-muted text-uppercase small">{`SKU : ${item.SKU}`}</p>
                         </div>
                         <div>
                           <div class="def-number-input number-input safari_only mb-0 w-100">
-                            <button type="button" id="plus1" class="btn btn-success" onClick={() => increment(1)} ><i class="fa fa-plus"></i></button><span> </span>
+                            <button type="button" id="plus" class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
                             <input class="quantity" min="0" defaultValue="1" name="quantity" id="number1" type="text" style={{ width: "45px" }} readOnly /><span> </span>
                             <button type="button" id="minus1" onClick={() => decrement(1)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
                           </div>
@@ -250,11 +309,130 @@ console.log(gItems);
                           <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
                         </div>
-                        <p class="mb-0"><span><strong id="summary"><h3>LKR {newItemPrice}</h3></strong></span></p>
+                        <p class="mb-0"><span><strong id="summary"><h3>LKR {item.fPrice}</h3></strong></span></p>
                       </div>
                     </div>
                   </div>
                 </div>
+                <br/>
+                  
+                    </div>
+                    
+                  )
+
+                })
+
+
+
+                }
+
+
+                
+{gPackages.map((item, index) => {
+
+return (
+  <div>
+    
+    <div class="row mb-4">
+<div class="col-md-5 col-lg-3 col-xl-3">
+  <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+    <img class="img-fluid w-100"
+      src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample" />
+    <a href="#!">
+      <div class="mask">
+        <img class="img-fluid w-100"
+          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
+        <div class="mask rgba-black-slight"></div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="col-md-7 col-lg-9 col-xl-9">
+  <div>
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5>{item.packageName}</h5>
+        <p class="mb-3 text-muted text-uppercase small">{`Description : ${item.description}`}</p>
+        <p class="mb-3 text-muted text-uppercase small">Content</p>
+        {item.content.map((con) => {
+
+          return(
+            <div>
+          <p>{con.Item_name}</p>
+          </div>
+          )
+
+        })
+
+        }
+      </div>
+      <div>
+        <div class="def-number-input number-input safari_only mb-0 w-100">
+          <button type="button" id="plus" class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
+          <input class="quantity" min="0" defaultValue="1" name="quantity" id="number1" type="text" style={{ width: "45px" }} readOnly /><span> </span>
+          <button type="button" id="minus1" onClick={() => decrement(1)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
+        </div>
+        <small id="passwordHelpBlock" class="form-text text-muted text-center">
+          (Note, 1 piece)
+        </small>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
+          class="fas fa-trash-alt mr-1"></i> Remove item </a>
+      </div>
+      <p class="mb-0"><span><strong id="summary"><h3>LKR {item.price}</h3></strong></span></p>
+    </div>
+  </div>
+</div>
+</div>
+<br/>
+
+  </div>
+  
+)
+
+})
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
