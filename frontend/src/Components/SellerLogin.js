@@ -91,7 +91,12 @@ export default function SellerLogin(props){
                             <button type="submit" class="btn btn-primary">Sign in</button> <br/><br/>
                                 <div class="text-center d-flex justify-content-between mt-10"> 
                                     <p> Don't have an account? 
-                                        <Link to="/SellerRegistration" class="font-italic text-muted"> <u>Sign up!</u></Link></p>
+                                        <a href="/sellreg" class="font-italic text-muted"> <u>Sign up!</u></a></p>
+                                </div>
+                                
+                                <div class="text-center d-flex justify-content-between mt-10"> 
+                                    <p> Are you a customer? 
+                                        <Link to="/CustomerLogin" class="font-italic text-muted"> <u>Go to Customer Sign in!</u></Link></p>
                                 </div>
                         </form>
                         </div>

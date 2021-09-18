@@ -69,7 +69,7 @@ export default function CreatePackage2(props) {
 
             sessionStorage.clear();
 
-            props.history.push("/allpackages")
+            props.history.push("/Seller/MyPackages")
         }).catch((err) => {
 
             alert(err);

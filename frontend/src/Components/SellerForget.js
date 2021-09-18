@@ -36,7 +36,9 @@ return(
                     <br/>
                     </div>
                 <div class="float-right">
-                    <button class="btn btn-danger" onClick = {()=> login()}>Back to Login</button>
+                    <button class="btn btn-danger" onClick = {()=> {
+                        props.history.push("/SellerLogin");
+                    }}>Back to Login</button>
                     <span> </span>
                     <button type="submit" class="btn btn-success">Get New Password</button>
                     <br/><br/>

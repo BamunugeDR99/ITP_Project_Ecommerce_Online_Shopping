@@ -160,7 +160,7 @@ export default function SellerProfile(props) {
                         </div>
 						<div className = "container">
 						<div class="float-right">
-            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button>
+            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button><span> </span>
 						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
 							<span> </span>
 							</div>
