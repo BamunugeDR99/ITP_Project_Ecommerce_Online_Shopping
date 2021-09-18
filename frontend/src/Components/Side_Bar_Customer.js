@@ -41,7 +41,7 @@ export default function Side_bar_Customer(props) {
                 <i className="bx bx-store nav_icon"></i>{" "}
                 <span className="nav_name">MY WISHLIST</span>{" "}
               </Link>
-              <Link to="/addItem" className="nav_link">
+              <Link to="/Customer/MyWallet" className="nav_link">
                 {" "}
                 <i className="bx bx-credit-card nav_icon"></i>{" "}
                 <span className="nav_name">MY WALLET</span>{" "}

@@ -59,8 +59,6 @@ app.use("/review", reviewRouter);
 const contactselRouter = require("./routes/contactsel.js");
 app.use("/contactsel", contactselRouter);
 
-const customerRouter = require("./routes/customer.js");
-app.use("/Customer", customerRouter);
 
 const itemtestRouter = require("./routes/itemtest.js");
 app.use("/itemtest", itemtestRouter);
