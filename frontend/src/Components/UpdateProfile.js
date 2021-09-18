@@ -31,7 +31,7 @@ export default function UpdateProfile(props){
 	let [password , setPassword ] = useState("");
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
-	
+	let objectID = "";
 	let userImage = "";
 
 	const [customer,setCustomer] = useState([]);
@@ -56,9 +56,9 @@ export default function UpdateProfile(props){
 
 		
 		function getCustomer(){
-			
-			
-			axios.get("http://localhost:8070/Customer/get/6144a68888cbe1257c8a8888").then((res) =>
+
+			objectID = props.match.params.id;
+			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -128,12 +128,12 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
-		axios.put("http://localhost:8070/Customer/update/6144a68888cbe1257c8a8888", updatecus).then(()=>{
+		axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
 		
 
-		alert("Customer Updated Successfully!");
+		//alert("Customer Updated Successfully!");
 		
-		props.histroy.push("/userPro");
+		props.histroy.push("/Customer/MyProfile");
 			
 		}).catch((err) =>{
 			alert(err)
@@ -146,9 +146,10 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/6144a68888cbe1257c8a8888").then((res) =>
+	  axios.delete("http://localhost:8070/Customer/delete/"+objectID).then((res) =>
 	  {
 		  alert("Customer Deleted Successfully!");
+		  props.histroy.push("/CustomerRegistration");
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
 		  //setCustomer(afterDeleteCustomer);
 	  }).catch((err) =>{
@@ -179,7 +180,7 @@ export default function UpdateProfile(props){
 			
 			<div className="UserProImage">
 			
-			<img src={"Images/" + customer.userImage} id="userproI" alt="UserImage"/>
+			<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
 			
 			</div>
 			
