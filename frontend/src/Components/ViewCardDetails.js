@@ -91,7 +91,7 @@ export default function ViewCardDetails(props){
                 <span class="cardholder">Card Holder</span> <span class="expires">Expires</span> </div>
                 <div class="d-flex justify-content-between align-items-center"> 
                 <span class="name">{paymentdetails.cardowner}</span> <span class="date">{paymentdetails.carddate}</span> </div>
-
+                {/* <br></br> */}
             </div>
             <br/><br/>
 
