@@ -1,0 +1,16 @@
+.adminlogin .login,
+.adminlogin .image {
+    min-height: 100vh
+}
+
+.adminlogin .bg-image {
+    /* background-image: url('https://res.cloudinary.com/dxfq3iotg/image/upload/v1561631318/img-123.jpg'); */
+    background-image: url('./../images/adminlogin3.jpg');
+    background-size: cover;
+    background-position: center center
+}
+
+.adminlogin {
+    margin-top: -65px;
+    margin-left: -90px;
+}
