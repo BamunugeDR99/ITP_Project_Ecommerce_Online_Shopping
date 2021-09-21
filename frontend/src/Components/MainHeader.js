@@ -23,7 +23,7 @@ export default function MainHeader(props) {
       <li class="nav-item">
         <a class="nav-link" href="#">Discover Items</a>
       </li>
-
+{/* applw */}
       <li class="nav-item">
         <a class="nav-link" href="#">Discover Discounted Items</a>
       </li>
