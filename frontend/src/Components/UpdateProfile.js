@@ -20,7 +20,8 @@ export default function UpdateProfile(props){
 	let [firstName, setFirstName] = useState("");
 	let [lastName,setLastName] = useState("");
 	let [email,setEmail] = useState("");
-	let[currentPassword,setCurrentPassword] = useState("");
+	//let[currentPassword,setCurrentPassword] = useState("");
+	let[currentImage, setCurrentImage]= useState("");
 	let [phoneNumber, setPhoneNumber] = useState("");
 	//let [dob ,setDob] = useState("");
 	let dob = "";
@@ -67,7 +68,7 @@ export default function UpdateProfile(props){
 				setFirstName(res.data.firstName);
 				setLastName(res.data.lastName);
 				setEmail(res.data.email);
-				// setCurrentPassword(res.data.password);
+				setCurrentImage(res.data.userImage);
 				setPhoneNumber(res.data.phoneNumber);
 				setAddress(res.data.address);
 				setUsername(res.data.username);
@@ -99,6 +100,15 @@ export default function UpdateProfile(props){
 
 	// 	}
 	// }
+
+	function checkImage(){
+
+		
+
+
+	}
+
+
 	function UpdateCusProfile(){
 		// alert("d0");
 		// e.preventDefault();
