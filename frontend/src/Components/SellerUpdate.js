@@ -74,6 +74,7 @@ export default function SellerUpdate(props) {
     <div className="height-100 bg-light">
       <br />
       <br />
+      {/* <br/><br/><br/><br/> */}
       <h2 style={{color:"black", marginLeft:"130px", marginBottom:"30px"}}>Edit Profile</h2>
       <h1 id = "txt"></h1>
 
