@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import swal from "sweetalert2";
 export default function ShoppingCart(props) {
 
 
@@ -10,7 +10,19 @@ export default function ShoppingCart(props) {
   let Allitems = [];
   let Allpackages = [];
   const [ItemArr, setItemArr] = useState([]);
+  
 
+  let [InItemPrice, setInItemPrice] = useState(0);
+  let [InPackagePrice, setInPackagePrice] = useState(0);
+
+  let [allItemsTotal, setAllItemsTotal] = useState(0);
+  let [allPackagesTotal, setAllPackagesTotal] = useState(0);
+  let [GrandTotal, setGrandTotal] = useState(0);
+
+
+
+  
+ 
 
   let Name = "";
   let Brand = "";
@@ -86,7 +98,7 @@ export default function ShoppingCart(props) {
 
         axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
 
-          console.log(res.data);
+          //console.log(res.data);
           Allpackages = res.data;
 
           getPackagess(Allpackages, CartPackages);
@@ -130,6 +142,10 @@ export default function ShoppingCart(props) {
 
             };
 
+
+           // console.log(allItemsTotal);
+           setAllItemsTotal(Number(allItemsTotal) + Number(allItems[j].FinalPrice));
+            allItemsTotal = (Number(allItemsTotal) + Number(allItems[j].FinalPrice))
             AllItemsArr.push(ItemDetails);
 
           }
@@ -169,6 +185,9 @@ export default function ShoppingCart(props) {
 
           };
 
+
+          setAllPackagesTotal(Number(allPackagesTotal) + Number(allPackages[j].price));
+          allPackagesTotal = (Number(allPackagesTotal) + Number(allPackages[j].price))
           AllPackagesArr.push(PackageDetails);
 
         }
@@ -195,9 +214,9 @@ export default function ShoppingCart(props) {
 
 
 
-  console.log(gItems);
+  // console.log(gItems);
 
-  console.log(gPackages);
+  // console.log(gPackages);
 
 
 
@@ -213,19 +232,41 @@ export default function ShoppingCart(props) {
   // let itemPrice;
 
   function increment(index) {
+
+
     let quantity = document.getElementById( index + "quantity" ).value;
     quantity++;
 
     console.log(Number(quantity));
 
 
-    let itemPrice = document.getElementById(index + "summary").value;
+    let itemPrice = document.getElementById(index + "ItemPrice").value;
+
+    console.log(document.getElementById(index + "ItemPrice").value)
+    console.log(itemPrice);
     console.log(Number(itemPrice));
-    let  newItemPrice = (Number(itemPrice) * Number(quantity));
+
+    InItemPrice = document.getElementById(index + "SinglePrice").value;
+
+    console.log("Initial Price");
+    console.log(InItemPrice);
+    let  newItemPrice = (InItemPrice * quantity);
 
     console.log(newItemPrice);
     document.getElementById(index + "quantity").value = quantity;
-    document.getElementById(index + "summary").value = newItemPrice;
+    document.getElementById(index + "ItemPrice").value = newItemPrice;
+
+
+    //Total
+    let total = document.getElementById("GrandTotal").value;
+    console.log(`Total = ${total}`);
+
+    let newTotal = (Number(total) + Number(InItemPrice));
+    console.log(newTotal);
+
+    document.getElementById("GrandTotal").value = newTotal;
+
+
   }
 
 
@@ -233,21 +274,137 @@ export default function ShoppingCart(props) {
 
   function decrement(index) {
 
-    let quantity = document.getElementById(index + "quantity").value;
-    if (quantity == 1) {
-      alert("can't");
-    } else {
-      quantity--;
+   
+     let quantity = document.getElementById(index + "quantity").value;
+     quantity--;
+
+
+    if (quantity == 0) {
+      swal.fire("Alert", "Item Quantity Cannot be reduced to zero", "warning");
+      quantity = 1;
+    
+      
+    } 
+
+    else{
+
+      document.getElementById(index + "quantity").value = quantity;
+      InItemPrice = document.getElementById(index + "SinglePrice").value;
+
+      let  newItemPrice = (InItemPrice * quantity);
+      console.log(newItemPrice);
+      document.getElementById(index + "quantity").value = quantity;
+      document.getElementById(index + "ItemPrice").value = newItemPrice;
+       
+    //Total
+    let total = document.getElementById("GrandTotal").value;
+    console.log(`Total = ${total}`);
+
+    let newTotal = (Number(total) - Number(InItemPrice));
+    console.log(newTotal);
+
+    document.getElementById("GrandTotal").value = newTotal;
+
+
+    }
+  
+
+   
+
+
+
+   
+
+
+
+  }
+
+
+
+  function incrementPackages(index){
+
+    
+    let quantity = document.getElementById( index + "Packagequantity" ).value;
+    quantity++;
+
+    InPackagePrice = document.getElementById( index + "SinglePackagePrice" ).value;
+
+    console.log(InPackagePrice);
+
+    let  newPackagePrice = (InPackagePrice * quantity);
+
+    
+    console.log(document.getElementById( index + "Packagequantity" ).value)
+    document.getElementById(index + "Packagequantity").value = quantity;
+    document.getElementById(index + "PackagePrice").value = newPackagePrice;
+
+
+       //Total
+       let total = document.getElementById("GrandTotal").value;
+       console.log(`Total = ${total}`);
+   
+       let newTotal = (Number(total) + Number(InPackagePrice));
+       console.log(newTotal);
+   
+       document.getElementById("GrandTotal").value = newTotal;
+   
+
+
+  }
+
+
+
+  function decrementPackages(index){
+
+    let quantity = document.getElementById( index + "Packagequantity" ).value;
+    quantity--;
+
+    InPackagePrice = document.getElementById( index + "SinglePackagePrice" ).value;
+
+
+    if(quantity == 0){
+
+      swal.fire("Alert", "Package Quantity Cannot be reduced to zero", "warning");
+      quantity = 1;
+     
 
     }
 
-    let itemPrice = document.getElementById(index + "summary").value;
-    let  newItemPrice = (Number(itemPrice) * Number(quantity));
-    console.log(newItemPrice);
-    document.getElementById(index + "quantity").value = quantity;
-    document.getElementById(index + "summary").value = newItemPrice;
+    else{
+    let  newPackagePrice = (InPackagePrice * quantity);
+
+    console.log(document.getElementById( index + "Packagequantity" ).value)
+    document.getElementById(index + "Packagequantity").value = quantity;
+    document.getElementById(index + "PackagePrice").value = newPackagePrice;
+
+
+     //Total
+     let total = document.getElementById("GrandTotal").value;
+     console.log(`Total = ${total}`);
+ 
+     let newTotal = (Number(total) - Number(InPackagePrice));
+     console.log(newTotal);
+ 
+     document.getElementById("GrandTotal").value = newTotal;
+ 
+    }
+
   }
 
+
+
+
+
+console.log("All Items Total");
+console.log(allItemsTotal);
+
+
+
+console.log("All Packages Total");
+console.log(allPackagesTotal);
+
+GrandTotal = allItemsTotal + allPackagesTotal;
+console.log(GrandTotal);
 
   // function removeItems(id){
 
@@ -272,18 +429,22 @@ export default function ShoppingCart(props) {
             <div class="mb-3">
               <div class="pt-4 wish-list">
 
-                <h5 class="mb-4">Cart (<span>2</span> items)</h5>
-
+                <div style = {{alignContent:"center"}} className="d-flex justify-content-center">
+                <h2 class="mb-4" style = {{alignContent:"center"}}>My Shopping Cart</h2>
+                </div>
 
 
                 <h5>{cart.customerID}</h5>
+                
 
-                {gItems.map((item, index) => {
+                { 
+                  gItems.map((item, index) => {
+
 
                   return (
                     <div>
                       
-                      <div class="row mb-4">
+                      <div class="row mb-4 border-primary">
                   <div class="col-md-5 col-lg-3 col-xl-3">
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
@@ -311,7 +472,7 @@ export default function ShoppingCart(props) {
                         <div>
                           <div class="def-number-input number-input safari_only mb-0 w-100">
                             <button type="button"  id = {index +'plus'} class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
-                            <input class="quantity" min="0" defaultValue="1" name="quantity"  id = {index +'quantity'}type="text" style={{ width: "45px" }} readOnly /><span> </span>
+                            <input class="quantity" min="0" defaultValue="1" name="quantity"  id = {index +'quantity'}type="text" style={{ width: "45px" }} readOnly  /><span> </span>
                             <button type="button"  id = {index +'minus'} onClick={() => decrement(index)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
                           </div>
                           <small id="passwordHelpBlock" class="form-text text-muted text-center">
@@ -324,7 +485,12 @@ export default function ShoppingCart(props) {
                           <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
                         </div>
-                        <p class="mb-0"><span><strong  ><h3>LKR  <h3 id = {index +'summary'}>{item.fPrice}</h3></h3></strong></span></p>
+                        <p class="mb-0" >{item.fPrice}</p>
+
+                        <input type = "text" id = {index +'ItemPrice'} value ={item.fPrice} readOnly/>
+                        <input type = "text" id = {index + "SinglePrice"} value ={item.fPrice} hidden></input>
+
+
                       </div>
                     </div>
                   </div>
@@ -383,9 +549,9 @@ return (
       </div>
       <div>
         <div class="def-number-input number-input safari_only mb-0 w-100">
-          <button type="button" id="plus" class="btn btn-success" onClick={() => increment(index)} ><i class="fa fa-plus"></i></button><span> </span>
-          <input class="quantity" min="0" defaultValue="1" name="quantity" id="number1" type="text" style={{ width: "45px" }} readOnly /><span> </span>
-          <button type="button" id="minus1" onClick={() => decrement(index)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
+        <button type="button"  id = {index +'Packageplus'} class="btn btn-success" onClick={() => incrementPackages(index)} ><i class="fa fa-plus"></i></button><span> </span>
+        <input class="quantity" min="0" defaultValue="1" name="quantity"  id = {index +'Packagequantity'}type="text" style={{ width: "45px" }} readOnly  /><span> </span>
+        <button type="button"  id = {index +'Packageminus'} onClick={() => decrementPackages(index)} class="btn btn-danger"><i class="fa fa-minus"></i></button><span> </span><span> </span>
         </div>
         <small id="passwordHelpBlock" class="form-text text-muted text-center">
           (Note, 1 piece)
@@ -397,7 +563,12 @@ return (
         <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
           class="fas fa-trash-alt mr-1"></i> Remove item </a>
       </div>
-      <p class="mb-0"><span><strong ><h3>LKR <span id = "summary">{item.price}</span> </h3></strong></span></p>
+      {/* <p class="mb-0"><span><strong ><h3>LKR <span id = "summary">{item.price}</span> </h3></strong></span></p> */}
+
+      <p class="mb-0" >{item.price}</p>
+      <input type = "text" id = {index +'PackagePrice'} value ={item.price} readOnly/>
+      <input type = "text" id = {index + "SinglePackagePrice"} value ={item.price} hidden></input>
+
     </div>
   </div>
 </div>
@@ -492,7 +663,7 @@ return (
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Temporary Amount
-                    <span>LKR 23049.00</span>
+                    <input type = "text" id = 'GrandTotal' value ={GrandTotal} readOnly/>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                     Discount
