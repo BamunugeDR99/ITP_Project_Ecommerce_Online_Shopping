@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
     import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
+import Swal from "sweetalert2";
 
 import "../Css/writereview.css";
 
@@ -13,6 +14,11 @@ export default function WriteReview(props){
     const [description,setDescription] = useState("");
     const [date,setDate] = useState("");
     const [noofstars,setNoofstars] = useState("");
+    let customerid  = "";
+    let itemid  = "";
+    // let sellerid  = "";
+    let reviewstatus  = "";
+    let reportreason  = "";
   
     function sendData(e){
 
@@ -21,7 +27,12 @@ export default function WriteReview(props){
       const newReview = {
         description,
         date,
-        noofstars
+        noofstars,
+        customerid,
+        itemid,
+        // sellerid,
+        reviewstatus,
+        reportreason
       }
   
      
@@ -32,8 +43,13 @@ export default function WriteReview(props){
         setDescription(" ");
         setDate(" ");
         setNoofstars(" ");
-        props.history.push("/Home");
-        document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        // props.history.push("/Home");
+        // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        Swal.fire(
+          'Good job!',
+          'You Send the message!',
+          'success'
+        )
         
       }).catch((err) =>{
         alert(err)
@@ -87,7 +103,7 @@ const ratingChanged = (newRating) => {
 
  return(
 <div className="rev">   
-  <div className="container" style={{ padding: "20px 10px 10px 10px",width: '80%' }}>
+  <div className="container" style={{ padding: "20px 10px 10px 10px",width: '70%',borderRadius:'15px' }}>
   <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "90%", alignItems: "center", borderRadius: "10px" }} >
     
     <h2 style={{ textAlign: "center", color: "black" }}>
@@ -102,9 +118,9 @@ const ratingChanged = (newRating) => {
     <div>
     
     
-          <div className="row" style={{fontSize:'22px', padding:'20px 20px 20px 50px'}}>
+          <div className="row" style={{fontSize:'22px', padding:'20px 0px 20px 50px'}}>
             <div className="col">
-              <span>Item Name</span>
+              <span style={{color:'black', fontStyle:'strong'}}>Item Name</span>
             </div>
             <div className="col">
             {/* <div 
@@ -138,7 +154,7 @@ const ratingChanged = (newRating) => {
                     </div>
             </div>
           </div>
-          <div className="row"  style={{padding:'20px 20px 20px 10px'}}>
+          <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
               <img src={go} style={{width:'70%'}}/>
             </div>
@@ -149,7 +165,7 @@ const ratingChanged = (newRating) => {
           </div>
           <div className="row" style={{padding:"20px 0px 20px 0px"}}>
           <center>
-            <button style={{width:'20%', alignItems:'center',borderRadius: '25px',height: '45px',fontSize: '16px'}} className="btn btn-primary">Submit</button>
+            <button style={{width:'25%', alignItems:'center',borderRadius: '25px',height: '45px',fontSize: '18px'}} className="btn btn-primary">Submit</button>
             </center>
 
           </div>

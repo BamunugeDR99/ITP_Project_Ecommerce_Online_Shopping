@@ -148,7 +148,7 @@ function App() {
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
-
+      <Route path = "/Customer/WriteReview" exact component = {WriteReview}/>
 
 
       <Route path = "/Customer/ItemDetails" exact component = {ItemView}/> 
