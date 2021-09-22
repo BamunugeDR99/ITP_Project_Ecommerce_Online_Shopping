@@ -53,8 +53,8 @@ app.use("/ShoppingCart", ShoppingCartRouter);
 const studentRouter = require("./routes/students.js");
 app.use("/student", studentRouter);
 
-const reviewRouter = require("./routes/review.js");
-app.use("/review", reviewRouter);
+// const reviewRouter = require("./routes/review.js");
+// app.use("/review", reviewRouter);
 
 const contactselRouter = require("./routes/contactsel.js");
 app.use("/contactsel", contactselRouter);

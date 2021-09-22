@@ -90,7 +90,71 @@ export default function SellermMsg(props){
 
  return(
 
-<section className="rev">
+
+ <div style={{ padding: "20px 15px 10px 50px" }}>
+ <div className="container">
+   <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
+	 <br />
+	 <h1 style={{ textAlign: "center", color: "black" }}>
+	   {" "}
+	   Customer Messages
+	 </h1>
+	 <h5 style={{ textAlign: "center", color: "black" }}>
+	   what our customers say about us
+	 </h5>
+
+	 <div>
+	 
+	   {abc.map((reviewss) => {
+		 return (
+		   <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+			 <div class="col-3" style={{ paddingBottom:'30px'}}>
+			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+				 <div class="card-body">
+				   <center>
+				   <img src={a1}
+				   // {"/Images/"+reviewss.customerImage[0]} 
+				   style={{ width: "65%", alignItems: "center" }}/>
+				   <br/>
+				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
+				   </center>
+				   
+				   
+
+				   <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
+					 <span id ='review'>{reviewss.Stars}/5</span><br/>
+					 <span class="fa fa-star checked"></span>
+					 <span class="fa fa-star checked"></span>
+					 <span class="fa fa-star checked"></span>
+					 <span class="fa fa-star checked"></span>
+					 <span class="fa fa-star"></span><span> </span> 
+				   </div>
+				   <p style={{ textAlign: "center", fontSize: "16px"}}>
+					 {reviewss.Contactsel}
+				   </p><br/>
+					<button onClick = {()=> deletee(contactsel._id)} className="btn btn-danger" type="button">Remove</button>
+				 </div>
+			   </div>
+			 </div>
+
+		   </div>
+	   
+		 );
+	   })}
+	   
+	 </div>
+	 
+   </div>
+ </div>
+</div>
+
+ )
+
+}
+
+
+
+{/* <section className="rev">
 	<div className="container-xl">
 		<div className="table-responsive">
 			<div className="table-wrapper">
@@ -113,9 +177,9 @@ export default function SellermMsg(props){
 					<tbody>
 						<tr>
 							<td>{reviewss.customerName}</td>
-							{/* <td>
+							<td>
 								<img src={"/Images/" +reviewss.customerImage.Images[0]} className="img"/>
-							</td> */}
+							</td>
 							<td>{reviewss.Email}</td>
 							<td>{reviewss.Contactsel}</td>
 							<td>
@@ -131,59 +195,5 @@ export default function SellermMsg(props){
 			</div>
 		</div>        
 	</div>
-</section>
+</section> */}
 
-
- )
-
-}
-
-
-
-
-
-// 	const [contact,setContact] = useState([]);
-// 	const [customer,setCustomer] = useState([]);
-//     const [loads,setLoad] = useState(false);
-
-//   useEffect(() =>{
-//     function getContact(){
-//         axios.get("http://localhost:8070/contact/get").then((res) =>
-//         {
-//             setContact(res.data);
-//             console.log(res.data);
-            
-            
-//         }).catch((err) =>{
-//             alert(err);
-//         })
-//     }
-   
-//     getContact();
-
-// 	function getCustomer(){
-//         axios.get("http://localhost:8070/Customer/get").then((res) =>
-//         {
-//             setCustomer(res.data);
-//             console.log(res.data);
-            
-            
-//         }).catch((err) =>{
-//             alert(err);
-//         })
-//     }
-   
-//     getCustomer();
-   
-// }, []);
-
-// function deletee(id){
-//     axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
-//     {
-//         // document.getElementById("txt").innerHTML = "Message Deleted!";
-//         const afterDeleteContact = contact.filter(contact=>contact._id != id);
-//         setContact(afterDeleteContact);
-//     }).catch((err) =>{
-//         alert(err);
-//     })
-// }

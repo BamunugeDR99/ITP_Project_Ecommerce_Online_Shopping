@@ -79,6 +79,11 @@ let objectId = "";
       console.log(reviewWithItems)
       setabc(reviewWithItems);
 
+      if(reviewWithItems.length==0){
+        document.getElementById("errortext").innerHTML="No Reviews yet!"
+        document.getElementById("error").innerHTML='<br><br><br><br><br><br><br><br><br><br>'
+      }
+      
       
     }
 
@@ -145,9 +150,13 @@ let objectId = "";
     <div className="row" >
 
     <div className="col">
-        
-        <span style={{fontSize: '21px',textalign: 'left',fontstyle: 'strong',padding:'20px'}}>Product Reviews</span>
+      
+        <h1 style={{textalign: 'center',fontstyle: 'strong',padding:'20px'}}><center><b>Your Reviews</b></center></h1>
         <hr style={{width:'90%'}}/>
+        <br/><br/>
+        <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2>
+
+        <div id="error"></div>
               {/* <h1>Your Reviews</h1> */}
     {/* <br/> */}
 

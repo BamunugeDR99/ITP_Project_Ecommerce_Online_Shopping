@@ -407,7 +407,7 @@ return(
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/adrep" className = "nav-link" >
+                                                <Link to = "/ItemReviews" className = "nav-link" >
                                                     <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
                                                 </Link>
                                             </a>
@@ -416,7 +416,7 @@ return(
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/adrep" className = "nav-link" >
+                                                <Link to = "/WriteReview" className = "nav-link" >
                                                     <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
                                                 </Link>
                                             </a>
