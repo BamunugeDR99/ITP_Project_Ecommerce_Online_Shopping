@@ -23,7 +23,7 @@ export default function ShoppingCart(props) {
 
   
  
-
+  let ItemID = "";
   let Name = "";
   let Brand = "";
   let Model = "";
@@ -34,6 +34,7 @@ export default function ShoppingCart(props) {
 
   let ItemDetails = {
 
+    ItemID,
     Name,
     Brand,
     Model,
@@ -43,7 +44,7 @@ export default function ShoppingCart(props) {
     fPrice
   };
 
-
+  let packageID = "";
   let packageName = "";
   let description = "";
   let content = [];
@@ -52,6 +53,7 @@ export default function ShoppingCart(props) {
 
   let PackageDetails = {
 
+    packageID,
     packageName,
     description,
     content,
@@ -132,6 +134,7 @@ export default function ShoppingCart(props) {
 
             ItemDetails = {
 
+              ItemID : allItems[j]._id,
               Name: allItems[j].Item_name,
               Brand: allItems[j].Brand,
               Model: allItems[j].Model,
@@ -178,6 +181,7 @@ export default function ShoppingCart(props) {
           
           PackageDetails = {
 
+            packageID : allPackages[j]._id,
             packageName: allPackages[j].packageName,
             description: allPackages[j].description,
             content: allPackages[j].content,
@@ -214,6 +218,7 @@ export default function ShoppingCart(props) {
 
 
 
+
   // console.log(gItems);
 
   // console.log(gPackages);
@@ -237,32 +242,27 @@ export default function ShoppingCart(props) {
     let quantity = document.getElementById( index + "quantity" ).value;
     quantity++;
 
-    console.log(Number(quantity));
+ 
 
 
     let itemPrice = document.getElementById(index + "ItemPrice").value;
 
-    console.log(document.getElementById(index + "ItemPrice").value)
-    console.log(itemPrice);
-    console.log(Number(itemPrice));
+   
 
     InItemPrice = document.getElementById(index + "SinglePrice").value;
 
-    console.log("Initial Price");
-    console.log(InItemPrice);
     let  newItemPrice = (InItemPrice * quantity);
 
-    console.log(newItemPrice);
     document.getElementById(index + "quantity").value = quantity;
     document.getElementById(index + "ItemPrice").value = newItemPrice;
 
 
     //Total
     let total = document.getElementById("GrandTotal").value;
-    console.log(`Total = ${total}`);
+ 
 
     let newTotal = (Number(total) + Number(InItemPrice));
-    console.log(newTotal);
+
 
     document.getElementById("GrandTotal").value = newTotal;
 
@@ -292,16 +292,16 @@ export default function ShoppingCart(props) {
       InItemPrice = document.getElementById(index + "SinglePrice").value;
 
       let  newItemPrice = (InItemPrice * quantity);
-      console.log(newItemPrice);
+  
       document.getElementById(index + "quantity").value = quantity;
       document.getElementById(index + "ItemPrice").value = newItemPrice;
        
     //Total
     let total = document.getElementById("GrandTotal").value;
-    console.log(`Total = ${total}`);
+
 
     let newTotal = (Number(total) - Number(InItemPrice));
-    console.log(newTotal);
+  
 
     document.getElementById("GrandTotal").value = newTotal;
 
@@ -329,22 +329,21 @@ export default function ShoppingCart(props) {
 
     InPackagePrice = document.getElementById( index + "SinglePackagePrice" ).value;
 
-    console.log(InPackagePrice);
-
+   
     let  newPackagePrice = (InPackagePrice * quantity);
 
     
-    console.log(document.getElementById( index + "Packagequantity" ).value)
+    
     document.getElementById(index + "Packagequantity").value = quantity;
     document.getElementById(index + "PackagePrice").value = newPackagePrice;
 
 
        //Total
        let total = document.getElementById("GrandTotal").value;
-       console.log(`Total = ${total}`);
+    
    
        let newTotal = (Number(total) + Number(InPackagePrice));
-       console.log(newTotal);
+      
    
        document.getElementById("GrandTotal").value = newTotal;
    
@@ -373,17 +372,17 @@ export default function ShoppingCart(props) {
     else{
     let  newPackagePrice = (InPackagePrice * quantity);
 
-    console.log(document.getElementById( index + "Packagequantity" ).value)
+   
     document.getElementById(index + "Packagequantity").value = quantity;
     document.getElementById(index + "PackagePrice").value = newPackagePrice;
 
 
      //Total
      let total = document.getElementById("GrandTotal").value;
-     console.log(`Total = ${total}`);
+   
  
      let newTotal = (Number(total) - Number(InPackagePrice));
-     console.log(newTotal);
+    
  
      document.getElementById("GrandTotal").value = newTotal;
  
@@ -391,32 +390,54 @@ export default function ShoppingCart(props) {
 
   }
 
-
-
-
-
-console.log("All Items Total");
-console.log(allItemsTotal);
-
-
-
-console.log("All Packages Total");
-console.log(allPackagesTotal);
-
 GrandTotal = allItemsTotal + allPackagesTotal;
-console.log(GrandTotal);
 
-  // function removeItems(id){
 
-  //   const remainingItems = CartItems.filter(
-  //     (pack) => pack != id
-  //   );
 
-  //   console.log(remainingPacks);
 
-  //   setC(remainingPacks);
+  function removeItems(id, index){
 
-  // }
+    console.log(index);
+
+     console.log(id);
+    let Citems = [];
+
+    const customerID = "6144a56b88cbe1257c8a887b";
+      axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
+
+        console.log(res.data);
+        Citems = res.data.ItemIDs;
+        console.log(Citems);
+
+        // Citems.map((pack) => {
+
+        //     console.log(pack);
+
+        // })
+        // const remainingItems = Citems.filter((pack) =>{
+
+
+        //   pack === id 
+        //    // pack.includes(id);
+    
+        // });
+    
+
+       // let newARRR = Citems.splice(index, 1);
+        //console.log(newARRR);
+        console.log(Citems.splice((index+1), 1));
+
+
+  }).catch((err) =>{
+
+    console.log(err);
+
+
+  })
+
+
+
+  }
 
   return (
     <div>
@@ -482,8 +503,9 @@ console.log(GrandTotal);
                       </div>
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
+                          <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger" ><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                            <button onClick={()=> removeItems(item.ItemID, index)}></button>
                         </div>
                         <p class="mb-0" >{item.fPrice}</p>
 

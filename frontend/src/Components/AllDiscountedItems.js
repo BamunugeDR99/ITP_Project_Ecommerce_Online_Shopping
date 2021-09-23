@@ -290,8 +290,7 @@ export default function AllDiscountedItems(props) {
 
 
 
-
-
+    
 
 
 
@@ -333,7 +332,7 @@ export default function AllDiscountedItems(props) {
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1" src={go} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1" src={"/Images/" + item.Images[0]} width="286px" height="250px" />
                                             <div className="innertag" id = "disPercentage" ><label className="innertag" id = "disPercentage" ><b >-{item.DiscountPrecentage}%</b></label></div>
                                         </div>
                                         <div className="card-body">
