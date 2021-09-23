@@ -125,6 +125,7 @@ import ConfirmPayment from './Components/ConfirmPayment';
 
 //Admin
 import AdminLogin from './Components/AdminLogin';
+import CreditCardTemp from './Components/CreditCardTemp';
 
 
 function App() {
@@ -185,7 +186,8 @@ function App() {
       <Route path = "/Seller" component = {Footer_customer}/>
     
     {/* Admin */}
-    <Route path = "/admin/login" component = {AdminLogin}/>
+    <Route path = "/admin/login" exact component = {AdminLogin}/>
+    <Route path = "/credit" exact component = {CreditCardTemp}/>
 
     </div>
   </Router>
