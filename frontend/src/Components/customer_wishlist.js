@@ -45,7 +45,7 @@ export default function Customer_wishlist(props) {
                  
   
               //items = newItems;
-                          
+                //setItems(res.data)          
               display(result2,wishlist.Items);
             })
             .catch((err) => {
@@ -81,12 +81,12 @@ export default function Customer_wishlist(props) {
 
     useEffect(() => {
       //displayStatus();
-    // calculateStarRating(1);
+     calculateStarRating(1);
 
     })
 
     useEffect(() =>{
-      //displayStarRating();
+     //s displayStarRating();
     })
 
     function display(re,wi){
@@ -104,82 +104,66 @@ export default function Customer_wishlist(props) {
     setItems(newItems);
 
     }
-  // function calculateStarRating(id){
-  //   let totalNoRatings = 0;
-  //   let totalstarforRatingCount = 0;
-  //   let starCount = 0;
-  //   let average = 0;
+  function calculateStarRating(id){
+    let totalNoRatings = 0;
+    let totalstarforRatingCount = 0;
+    let starCount = 0;
+    let average = 0;
 
-  //   for(let i = 0; i < items.length; i++){
+    for(let i = 0; i < items.length; i++){
 
-  //     totalNoRatings = 0;
-  //     totalstarforRatingCount = 0;
-  //     starCount = 0;
-  //     average = 0;
+      totalNoRatings = 0;
+      totalstarforRatingCount = 0;
+      starCount = 0;
+      average = 0;
 
-  //     for(let j = 0; j < ratings.length; j++){
-  //         if(items[i]._id == ratings[j].itemid){
-  //           totalNoRatings++;
-  //         }
+      for(let j = 0; j < ratings.length; j++){
+          if(items[i]._id == ratings[j].itemid){
+            totalNoRatings++;
+          }
 
-  //         if(items[i]._id == ratings[j].itemid){
-  //           starCount += parseInt(ratings[j].noofstars);
-  //         }
+          if(items[i]._id == ratings[j].itemid){
+            starCount += parseInt(ratings[j].noofstars);
+          }
 
-  //     }
+      }
 
-  //     totalstarforRatingCount = totalNoRatings * 5;
-  //     average = parseInt((starCount / totalstarforRatingCount) * 5);
-  //     console.log(average);
-  //     if(id == 1){
-  //     displayStarRating(i,average);
-  //     }
-  //     itemWithRatings = {
-  //       itemID : items[i]._id,
-  //       averageRating :average
-  //     }
-  //     itemsWithRatings.push(itemWithRatings);
-  //     console.log(itemsWithRatings);
+      totalstarforRatingCount = totalNoRatings * 5;
+      average = parseInt((starCount / totalstarforRatingCount) * 5);
+      console.log(average);
+      if(id == 1){
+      //displayStarRating(i,average);
+      }
+      itemWithRatings = {
+        itemID : items[i]._id,
+        averageRating :average
+      }
+      itemsWithRatings.push(itemWithRatings);
+      console.log(itemsWithRatings);
 
-  //   }
+    }
 
-  // }
+  }
 
-  // function displayStarRating(id,totalAverage){
-  //   let txt = "";
-  //     if(isNaN(totalAverage)){
-  //       txt = "No Ratings yet!";
-  //    //   document.getElementById(id +'stars').innerHTML = txt;
-  //       //document.getElementById(id +'stars').style.color = "#FF0000";
-  //     }else{
+  /*function displayStarRating(id,totalAverage){
+    let txt = "";
+      if(isNaN(totalAverage)){
+        txt = "No Ratings yet!";
+       document.getElementById(id +'stars').innerHTML = txt;
+      document.getElementById(id +'stars').style.color = "#FF0000";
+      }else{
 
-  //     for(let j = 0; j < totalAverage; j++){
-  //       txt += '<span class="fa fa-star checked"></span>';
-  //     }
-  //     for(let j = 0; j < (5 - totalAverage); j++){
-  //       txt += '<span class="fa fa-star"></span>';
-  //     }
+      for(let j = 0; j < totalAverage; j++){
+        txt += '<span class="fa fa-star checked"></span>';
+      }
+      for(let j = 0; j < (5 - totalAverage); j++){
+        txt += '<span class="fa fa-star"></span>';
+      }
 
-  //    // document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
-  //    }
-  // }
+     document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+     }
+  }*/
 
-  // function displayStatus(){
-  //   for(let i = 0; i < items.length; i++){
-
-  //     if(items[i].ItemAvailabilityStatus == true){
-  //       document.getElementById(i+'x').checked = true;
-  //       document.getElementById(i).innerHTML = "Item Available";
-  //       document.getElementById(i).style.color = "#A4DE02";
-
-  //     }else if(items[i].ItemAvailabilityStatus == false){
-  //       document.getElementById(i+'x').checked = false;
-  //       document.getElementById(i).innerHTML = "Item Out of Stock";
-  //       document.getElementById(i).style.color = "#FF0000";
-  //     }
-  //   }
-
-  // }
   function more(num) {
     if (document.getElementById(num).innerHTML == "") {
       document.getElementById(num).innerHTML =
@@ -193,7 +177,8 @@ export default function Customer_wishlist(props) {
   return (
     <div>
       <div class="row">
-        {items.map((items, index) => {
+        {items.map((itemss, index) => {
+          return(
           <div class="col-sm-6">
             <br />
             <div class="card">
@@ -208,7 +193,7 @@ export default function Customer_wishlist(props) {
                 </div>
                 <div class="col-sm-7">
                   <div class="card-body">
-                    <h5 class="card-title">Brand Alice Liddel</h5>
+                    <h5 class="card-title">{itemss.Item_name}</h5>
                     <div  id = {index +'stars'} class="card-text">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -218,9 +203,9 @@ export default function Customer_wishlist(props) {
                       <span> </span> <span id = {index +'review'} >4.0 / 5.0</span>
                     </div>
                     <p class="card-text">
-                      <b>Price</b>
+                      <b>{itemss.Price}</b>
                     </p>
-                    <p class="card-text">Item status</p>
+                    <p class="card-text" id = {"i"+index}>Item status</p>
                     <a href="#" class="btn btn-danger ">
                       Remove from list
                     </a>{" "}
@@ -233,7 +218,7 @@ export default function Customer_wishlist(props) {
                     <button
                       id="showBtn"
                       class="btn btn-primary"
-                      onClick={() => more("w1")}
+                      onClick={() => more(index)}
                     >
                       Show More
                     </button>
@@ -242,7 +227,7 @@ export default function Customer_wishlist(props) {
                 <div id="w1"></div>
               </div>
             </div>
-          </div>;
+          </div>)
         })}
       </div>
     </div>
