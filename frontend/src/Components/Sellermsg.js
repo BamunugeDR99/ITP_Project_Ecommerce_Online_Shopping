@@ -104,16 +104,16 @@ export default function SellermMsg(props){
 	 </h5>
 
 	 <div>
-	 
+	 <div className="row" style={{margin: "50px 20px 20px 30px",}}>
 	   {abc.map((reviewss) => {
 		 return (
-		   <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+		   
 			 <div class="col-3" style={{ paddingBottom:'30px'}}>
 			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
-				   <img src={a1}
-				   // {"/Images/"+reviewss.customerImage[0]} 
+				   <img src=
+				   {"/Images/"+reviewss.customerImage[0]} 
 				   style={{ width: "65%", alignItems: "center" }}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
@@ -137,10 +137,11 @@ export default function SellermMsg(props){
 			   </div>
 			 </div>
 
-		   </div>
+		   
 	   
 		 );
 	   })}
+	   </div>
 	   
 	 </div>
 	 

@@ -14,6 +14,8 @@ export default function SellerReviews(props){
     const [items,setItems] = useState([]);
     let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
+    
+  const [updateReviewId,setupdateReviewId] = useState("");
 
     const [review,setReview] = useState([]);
     const [reportreason,setReportreason] = useState("");
@@ -23,6 +25,7 @@ export default function SellerReviews(props){
     });
 
     let reviews = [];
+    let review_id = "";
     let customers = [];
     let customerName = "";
     let customerImage = "";
@@ -201,65 +204,71 @@ function displayStarRating(totalAverage){
    }
 }
 
-// function updatee(id){
 
-//   // e.preventDefault();
-//   const ReviewId = id;
-//   console.log(ReviewId);
+function updatee(e){
 
-//   const newReview = {
-    
-//     reportreason,
-//   }
-
-//   console.log(newReview);
-
-//   axios.put("http://localhost:8070/review/updateReport/" +ReviewId,newReview).then(()=>{
-
-//     setReview(" ");
-//     props.history.push("/Home");
-//     document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-    
-//   }).catch((err) =>{
-//     alert(err)
-//   })
-// }
-
-function sendData(e){
- 
-  const ReviewId = props.match.params.id; 
-  console.log(ReviewId);
- 
-  // alert("d0");
   e.preventDefault();
 
-  // const newStudent = {
-  //   name,
-  //   age,
-  //   gender,
-  // }
+  const ReviewId = updateReviewId;
+  //console.log(ReviewId);
 
-  //console.log(newStudent);
-  //document.write("newStudent");
-  axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
-    alert("Report Updated");
-    Swal.fire(
-      'Good job!',
-      'You Send the report!',
-      'success'
-    )
-  console.log(data);
+  const newReview = {
+    
+    reportreason,
+  }
 
+  console.log(newReview);
+
+  axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
+
+    setReview(" ");
+
+
+    alert("Updated!");
+     Swal.fire(
+       'Good job!',
+       'You Send the report!',
+        'success'
+     )
+    
+    
   }).catch((err) =>{
     alert(err)
   })
 }
 
-function handle(e){
-  const newdata = {...data}
-  newdata[e.target.id] = e.target.value
-  setData(newdata)
-}
+// function sendData(e){
+ 
+//   const ReviewId = props.match.params.id; 
+//   console.log(ReviewId);
+ 
+//   // alert("d0");
+//   e.preventDefault();
+
+//   //   const newReview = {
+    
+// //     reportreason,
+// //   }
+
+//   axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
+//     alert("Report Updated");
+//     Swal.fire(
+//       'Good job!',
+//       'You Send the report!',
+//       'success'
+//     )
+//   console.log(data);
+
+//   }).catch((err) =>{
+//     alert(err)
+//   })
+// }
+
+// function handle(e){
+//   const newdata = {...data}
+//   newdata[e.target.id] = e.target.value
+//   setData(newdata)
+// }
 
 
  return(    
@@ -359,22 +368,12 @@ function handle(e){
                             </div> 
 
         </div> 
-            
-            {/* {abc.map((reviewss) => {
-              return ( */}
+           
             <div className="row">
                 <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
-                {/* <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 100px'}}>
-                  {index +'stars'}
-                  </span><br/>  */}
+               
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
-                    {/* <div style={{color: "#f9d71c"}}>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div> */}
+                    
 
                     <div id = 'stars'class="card-text">
                       <br/><span id ='review'>4.0 / 5.0</span><br/>
@@ -432,7 +431,7 @@ function handle(e){
                             </span> 
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">  
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal" data-target="#exampleModalCenter">  
                                 <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
                             </a>
                         </div>
@@ -450,221 +449,53 @@ function handle(e){
         <form 
         // onSubmit = {sendData}
         >
-
-        <div id="editEmployeeModal" class="modal fade">
-              <div class="modal-dialog">
+      
+         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <form>
-                    <div class="modal-header">
-                      <h4 class="modal-title">Report Review</h4>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Report Review</h5>
                       
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
+                      
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div class="form-group">
+                      {/* <div class="form-group"> */}
                         
                         <label>write your reason</label>
                         <input type="text" class="form-control" 
                         required  onChange= {
-                                (e)=>{handle(e)
+                                (e)=>{
+                                  setReportreason(e.target.value);
+                                  // handle(e)
                                 }
                               }
                               />
-                      </div>
+                      {/* </div> */}
                     </div>
+                    
                     <div class="modal-footer">
-                      <input
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                        value="Cancel"
-                      />
-                      <button 
-                      // onClick = {()=> updatee(review.review_id)} 
-                      type="submit" class="btn btn-info" value="Submit" >Send</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button 
+                        onClick = {()=> updatee(review.review_id)} 
+                        type="button" class="btn btn-primary">Send</button>
+                     
+                      
                     </div>
                   </form>
                 </div>
               </div>
             </div>
+           
           </form>    
            
-           
+          
          </div>
     </div>
 </div>   
  )
 
 }
-
-
-// function CalcDiscount(e) {
-
-//   setDiscount(e.target.value);
-
-//   let dis = document.getElementById("discountPercentage").value;
-
-//   console.log(dis);
-//   let finalP = Number(item.Price) - (Number(item.Price) * (Number(dis) / 100));
-
-//   console.log(finalP);
-
-//   document.getElementById("newPrice").value = finalP;
-
-//   setFinalPrice(finalP);
-
-// }
-
-
-
-// export default function FoodItem(props) {
-//   //getting access to the ordered context object in orderontext.js page
-//   const orderedCtx = useContext(OrderContext);
-//   const isOrderd = orderedCtx.isOrdered(props.id);
-//   const favouriteCtx = useContext(FavouriteContext);
-//   const isFavourite = favouriteCtx.isFavourite(props.id);
-//   let [user, setUser] = useState("");
-
-//   const [modelOpen, setmodelOpen] = useState(false);
-//   const [comment, setComment] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .get("http://localhost:8000/orderDetails/getUserbyid/111")
-//       .then((res) => {
-//         setUser(res.data);
-//       })
-//       .catch((err) => {
-//         alert(err.message);
-//       });
-//   }, []);
-
-//   function toogleOrderStatusHandler() {
-//     if (isOrderd) {
-//       orderedCtx.removeOrder(props.id);
-//     } else {
-//       orderedCtx.addOrder({
-//         id: props.id,
-//         price: props.price,
-//         name: props.name,
-//         image: props.image,
-//         status: 1,
-//         description: props.description,
-//       });
-//     }
-//   }
-
-
-//   return (
-//   
-//       <div class="blog grid-blog">
-//         <div class="blog-image">
-//           <a>
-//             <img
-//               class="img-fluid"
-//               src={`img/${props.image}`}
-//               alt="Food image"
-//               onClick={modalOpen}
-//               style={{
-//                 width: "250px",
-//                 height: "200px",
-//               }}
-//             />
-//           </a>
-//         </div>
-//         <div class="blog-content">
-//           <div className="row">
-//             <div className="col-md-3">
-//               <a onClick={toogleFavouriteStatusHandler}>
-//                 {isFavourite ? (
-//                   <FeatherIcon
-//                     icon="heart"
-//                     fill="red"
-//                     color="white"
-//                     style={{ stroke: "red" }}
-//                   />
-//                 ) : (
-//                   <FeatherIcon
-//                     icon="heart"
-//                     borderColor="white"
-//                     style={{ stroke: "black" }}
-//                   />
-//                 )}
-//               </a>
-//             </div>
-//             <div className="col-md-6"></div>
-//             <div className="col-md-3">
-//               <a onClick={toogleFavouriteStatusHandler}>
-//                 <FeatherIcon icon="more-vertical" style={{ stroke: "black" }} />
-//               </a>
-//             </div>
-//             <div className="col-md-2"></div>
-//           </div>
-//         </div>
-//       </div>
-
-//       <Modal
-//         animation={true}
-//         isOpen={modelOpen}
-//         onRequestClose={modalClose} >
-//         <div className="row">
-//           <div
-//             className="card col-md-6"
-//             style={{
-//               overflowY: "initial",
-//             }}
-//           >
-//             <FoodDetails
-//               name={props.name}
-//               price={props.price}
-//               id={props.foodID}
-//               description={props.description}
-//               image={props.image}
-//               type={props.type}
-//             />
-//             <div className="row">
-//               <div className="col-md-5">
-//                 <button
-//                   onClick={toogleOrderStatusHandler}
-//                   className="btn btn-primary"
-//                 >
-//                   {isOrderd ? "Cancel order" : "Order now"}
-//                 </button>
-//               </div>
-//               <div className="col-md-2"></div>
-//               <div className="col-md-5">
-//                 <button onClick={modalClose} className="btn btn-danger">
-//                   Close
-//                 </button>
-//               </div>
-//             </div>
-//             <br />
-//           </div>
-
-//           <div className="model-body col-md-6">
-//             <div
-//               style={{
-//                 height: "350px",
-//                 overflowY: "scroll",
-//               }}
-//             >
-//               {comment.map((post) => (
-//                 <div key={post._id}>
-//                   <FoodComment
-//                     userID={post.userID}
-//                     foodID={post.foodID}
-//                     comment={post.comment}
-//                   />
-//                 </div>
-//               ))}
-//             </div>
-
-//             <SendComment func={modalOpen} foodID={props.id} />
-//           </div>
-//         </div>
-//       </Modal>
-//     </div>
-//   );
-// }

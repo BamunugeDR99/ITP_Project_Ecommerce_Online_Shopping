@@ -309,14 +309,14 @@ return(
             <br/>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/contactsel" className = "nav-link" >
+                    <Link to = "/Customer/contactseller" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%' ,borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
                     </Link>
                 </a>
             </div>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/contactad" className = "nav-link" >
+                    <Link to = "/Customer/contactus" className = "nav-link" >
                         <button type="button" class="btn btn-outline-info" style={{width:'40%', borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Us</button>
                     </Link>
                 </a>

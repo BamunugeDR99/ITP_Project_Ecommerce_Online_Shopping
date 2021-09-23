@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Swal from "sweetalert2";
 // import "../Css/yourreviews.css";
 import p2 from "../images/p3.jpg";
 
@@ -101,6 +102,11 @@ let objectId = "";
     
           let afterDelete = abc.splice(index,1);
           setabc(afterDelete);
+          Swal.fire(
+            'Good job!',
+            'Your Review Deleted Successfuly',
+            'success'
+          )
         
         })
         .catch((err) => {
@@ -130,7 +136,12 @@ let objectId = "";
         setReview(" ");
         //props.history.push("/Home");
         //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-        alert("Updated!");
+        Swal.fire(
+          'Good job!',
+          'Your Review Edited Successfuly',
+          'success'
+        )
+        // alert("Updated!");
         
         
       }).catch((err) =>{
@@ -171,9 +182,9 @@ let objectId = "";
                     <div className="row">
                       {/* <div class="profile"> */}
                         {/* <div class="profile-img">*/}
-                         <div className="col-2">
-                          {/* <img src={`../images/{re.itemImage}`} className="card-img-top"/> */}
-                        </div>
+                          <div className="col-2">
+                          <img src={`../images/{re.itemImage}`}/>
+                          </div>
 
                         {/* <div class="name-user"> */}
                         <div className="col">
