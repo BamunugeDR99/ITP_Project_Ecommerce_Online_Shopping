@@ -21,11 +21,15 @@ export default function AllDiscountedItems(props) {
 
         //function to getItems
         function getItems() {
+
+          let seller = localStorage.getItem("SellerID");
+
+            
             //call a backend URL using axios
             axios.get("http://localhost:8070/items/getItems").then((res) => {
 
                 console.log(res.data);
-                setItems(res.data.filter((item) => item.DiscountStatus === true));
+                setItems(res.data.filter((item) => item.DiscountStatus === true && item.SellerID === seller));
 
                 fitems = items;
                 console.log(fitems);
