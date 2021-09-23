@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default function All_the_items_customer(props) {
   const [items, setItems] = useState([]);
@@ -285,8 +286,16 @@ export default function All_the_items_customer(props) {
         .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
         .then(() => {
           //alert("Student Updated");
-          document.getElementById("itemsTxt").innerHTML =
-            "Item added to your Wishlist!";
+         // document.getElementById("itemsTxt").innerHTML =
+            //"Item added to your Wishlist!";
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
         })
         .catch((err) => {
           alert(err);
