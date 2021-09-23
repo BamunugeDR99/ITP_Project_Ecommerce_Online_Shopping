@@ -122,7 +122,7 @@ import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
-import PaymentHistory from './Components/PaymentHistory';
+
 import EditCardDetails from './Components/EditCardDetails';
 
 function App() {
@@ -192,7 +192,7 @@ function App() {
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>
     
     {/* Admin */}
-    <Route path = "/admin/login" exact component = {AdminLogin}/>
+    {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}
     
 
     </div>
