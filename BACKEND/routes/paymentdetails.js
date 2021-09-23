@@ -11,13 +11,15 @@ router.route("/add").post((req,res)=>{
     const cardnumber = Number(req.body.cardnumber);
     const carddate = req.body.carddate;
     const cardcvv = Number(req.body.cardcvv);
+    const ownerID = req.body.ownerID;
 
     const newpaymentdetails = new paymentdetails({
         cardtype,
         cardowner,
         cardnumber,
         carddate,
-        cardcvv
+        cardcvv,
+        ownerID
     })
 
     newpaymentdetails.save().then(()=>{
@@ -54,14 +56,15 @@ router.route("/get").get((reg,res)=> {
 // update 
 router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
-    const{cardtype,cardowner,cardnumber,carddate,cardcvv} = req.body;
+    const{cardtype,cardowner,cardnumber,carddate,cardcvv, ownerID} = req.body;
 
     const updatepaymentdetails = {
         cardtype,
         cardowner,
         cardnumber,
         carddate,
-        cardcvv
+        cardcvv,
+        ownerID
 
     }
 

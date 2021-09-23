@@ -5,34 +5,42 @@ const paymentdetailSchema = mongoose.Schema({
 
 cardtype:{
     type:String,
-    requied:true,
+    required:true
 },
 
 cardowner : {
     type: String,
-    requied:true,
+    required:true
+    
 },
 
 cardnumber:{
     type:Number,
-    requied:true,
+    required:true
 },
 
 carddate :{
     type:String,
-    requied:true,
+    required:true
 },
 
 carddate :{
     type:String,
-    requied:true,
+    required:true
 },
 
 cardcvv :{
     type:Number,
-    requied:true,
-}
+    required:true
+},
 
+ownerID : {
+
+    type:String,
+    required:true
+    
+
+}
 
 })
 
