@@ -186,6 +186,9 @@ export default function UpdateProfile(props){
 			<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
 			
 			</div>
+			<br/>
+			<h2 style={{color:"black", textAlign:"center"}}>{customer.username}</h2>
+			<h3 style={{color:"black", textAlign:"center"}}>{customer.email}</h3>
 			
 			<div className="main-text">
 			

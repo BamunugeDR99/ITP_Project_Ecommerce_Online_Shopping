@@ -135,12 +135,22 @@ function SignUp(props) {
   //send a avatar
 
   function avatar() {
-    let useri = "avatar.png";
+    let useriM = "avatarM.jpg";
+    let useriF = "avatarF.png";
 
     let uimage = document.getElementById("user_image").value;
     // console.log(uimage);
     if (uimage === "") {
-      image3 = useri;
+
+      let gen = document.getElementById("gender").value;
+
+      if(gen === "Male"){
+        image3 = useriM;
+
+      }else{
+        image3 = useriF;
+      }
+      
     } else {
        image2 = document.getElementById("user_image").value;
 
