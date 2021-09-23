@@ -233,7 +233,9 @@ function SignUp(props) {
 
       Swal.fire({
 
-        title: 'Your Account is Successfully Created! Now You Can login With Credentials.',
+        icon: 'success',
+        title: 'Success',
+        text: 'Your Account is Successfully Created! Now You Can login With Credentials.',
         showClass: {
           popup: 'animate__animated animate__fadeInDown'
         },

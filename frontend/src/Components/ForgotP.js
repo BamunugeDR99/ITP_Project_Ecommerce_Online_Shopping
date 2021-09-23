@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import Swal from 'sweetalert2'
 const bcrypt = require('bcryptjs');
 
 export default function ForgotP(props) {
@@ -156,6 +157,12 @@ export default function ForgotP(props) {
 		
 
 		// alert("Customer Updated Successfully!");
+
+    Swal.fire(
+      'Succes!',
+      'Successfully Changed the Password!',
+      'success'
+    )
     props.history.push("/CustomerLogin");
 		
 				
