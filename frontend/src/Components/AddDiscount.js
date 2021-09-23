@@ -23,7 +23,7 @@ function AddDiscount(props) {
                 const ItemId = props.match.params.id;
                 const result = await (await (axios.get("http://localhost:8070/items/get/" + ItemId))).data;
                 console.log(result);
-                console.log(result.image);
+                console.log(result.Images);
 
                 setItem(result);
                 console.log(item);
@@ -123,8 +123,11 @@ function AddDiscount(props) {
 
         <div className="OffersnPacks2">
 
-
+            <div class="mx-auto">
             <h1>Add Discount Form</h1>
+
+            </div>
+            
 
 
             <form onSubmit={sendData}>
@@ -132,7 +135,8 @@ function AddDiscount(props) {
                 <div className="container rounded bg-white mt-5 mb-5 cont">
                     <div className="row">
                         <div className="col-md-3 border-right">
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={go} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                          <p>{item.Images}</p>
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + item.Images} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">

@@ -229,7 +229,7 @@ export default function AllDiscountedItems(props) {
 
     function update(id) {
         console.log(id);
-        props.history.push("/updateDiscount/" + id);
+        props.history.push("/Seller/UpdateDiscount/" + id);
     };
 
 

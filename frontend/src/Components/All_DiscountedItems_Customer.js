@@ -218,19 +218,21 @@ export default function AllDiscountedItems(props) {
 
 
 
-function Add(ItemIDArr, customerId){
+// function Add(ItemIDArr, customerId){
 
-  axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerId, ItemIDArr).then((res) => {
+//   let ItemIDs = ItemIDArr;
 
-    alert("Added to Cart");      
+//   axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerId, ).then((res) => {
 
-}).catch((err) => {
+//     alert("Added to Cart");      
 
-    console.log(err);
-})
+// }).catch((err) => {
+
+//     console.log(err);
+// })
 
 
-}
+// }
 
 
 
@@ -327,7 +329,7 @@ function Add(ItemIDArr, customerId){
 
                       <button
                         class="btn btn-success" 
-                        onClick={() => addToCart(item._id)} >
+                         >
                         Add to cart
                       </button>
                     </div>

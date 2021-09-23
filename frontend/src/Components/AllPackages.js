@@ -168,7 +168,7 @@ export default function AllPackages(props) {
 
     function goToupdate(id) {
         console.log(id);
-        props.history.push("/updatepackage/" + id);
+        props.history.push("/Seller/UpdatePackage/" + id);
     };
 
 
