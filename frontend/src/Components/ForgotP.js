@@ -1,8 +1,30 @@
 import axios from "axios";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+const bcrypt = require('bcryptjs');
 
 export default function ForgotP(props) {
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [CpasswordShown, setCPasswordShown] = useState(false);
+
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+
+  const toggleCPassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setCPasswordShown(!CpasswordShown);
+  };
+
+
+
+
+
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [email, setEmail] = useState();
@@ -125,7 +147,7 @@ export default function ForgotP(props) {
           gender:  customer.gender,
           address:  customer.address,
           username: customer.username,
-          password: newPassword,
+          password: bcrypt.hashSync(newPassword, bcrypt.genSaltSync(12)),
           // confirmPassword,
           userImage : customer.userImage
         }
@@ -189,19 +211,46 @@ export default function ForgotP(props) {
       <h1>Change Password</h1><br/>
     <div class="form-group">
     <label for="exampleInputEmail1">New Password</label>
-    <input type="text" class="form-control" id="new_password" aria-describedby="emailHelp" placeholder="Enter new password" required
+    <input type={passwordShown ? "text" : "password"} class="form-control" id="new_password" aria-describedby="emailHelp" placeholder="Enter new password" required
        onChange= {
         (e)=>{
           setPassword(e.target.value);
         } } />
+         <i
+                className="bi bi-eye-fill"
+                id="eye"
+                onClick={togglePassword}
+                style={{position: "relative",
+                  bottom: "30px",
+                  left: "1030px",
+                  cursor:"pointer" }}
+              ></i>
+              <i className="bi bi-lock-fill" style={{position: "relative",
+                  bottom: "32px",
+                  left: "1040px",
+                  cursor:"pointer"}}></i>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Confirm New Password</label>
-    <input type="text" class="form-control" id="confirm_new_password" aria-describedby="emailHelp" placeholder="Re-enter Password"  required
+    <input  type={CpasswordShown ? "text" : "password"} class="form-control" id="confirm_new_password" aria-describedby="emailHelp" placeholder="Re-enter Password"  required
        onChange= {
         (e)=>{
           setConfirmPassword(e.target.value);
         } }/>
+        <i
+                className="bi bi-eye-fill"
+                id="eye"
+                onClick={toggleCPassword}
+                style={{position: "relative",
+                  bottom: "30px",
+                  left: "1030px",
+                  cursor:"pointer" }}
+              ></i>
+
+              <i className="bi bi-lock-fill" style={{position: "relative",
+                  bottom: "32px",
+                  left: "1040px",
+                  cursor:"pointer"}}></i>
   </div>
   <button type="submit" class="btn btn-success">Change Password</button>
     </form>
