@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
+const bcrypt = require('bcryptjs')
 
 
 export default function UpdateProfile(props){
 
 	const [passwordShown, setPasswordShown] = useState(false);
+	const [NpasswordShown, setNPasswordShown] = useState(false);
+	const [CNpasswordShown, setCNPasswordShown] = useState(false);
 	
 
 	// Password toggle handler
@@ -12,7 +15,21 @@ export default function UpdateProfile(props){
 		// When the handler is invoked
 		// inverse the boolean state of passwordShown
 		setPasswordShown(!passwordShown);
+		
 	  };
+
+	  const toggleNPassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setNPasswordShown(!NpasswordShown);
+	  };
+
+	  const toggleCNPassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setCNPasswordShown(!CNpasswordShown);
+	  };
+
 
 	let Dateofb;
 
@@ -21,8 +38,6 @@ export default function UpdateProfile(props){
 	let [firstName, setFirstName] = useState("");
 	let [lastName,setLastName] = useState("");
 	let [email,setEmail] = useState("");
-	//let[currentPassword,setCurrentPassword] = useState("");
-	//let[currentImage, setCurrentImage]= useState("");
 	let [phoneNumber, setPhoneNumber] = useState("");
 	//let [dob ,setDob] = useState("");
 	let dob = "";
@@ -38,7 +53,11 @@ export default function UpdateProfile(props){
 
 	let image2 = "";
 	let image3 = "";
-	let CurrentImage = "";
+
+	
+	let [Currentpassword , setCurrentPassword ] = useState("");
+	
+
 
 	const [customer,setCustomer] = useState([]);
 
@@ -55,6 +74,8 @@ export default function UpdateProfile(props){
 	}
 
 
+	let flag = 0;
+	let flag1 = 0;
 
 	
 
@@ -80,6 +101,10 @@ export default function UpdateProfile(props){
 				userImage = res.data.userImage;
 				dob = res.data.dob;
 				setCurrentImage(res.data.userImage);
+				setPassword(res.data.password);
+				// setCurrentConfirmPassword(res.data.confirmPassword);
+				
+
 				
 
 				
@@ -112,7 +137,77 @@ export default function UpdateProfile(props){
 		}
 	}
 
+	function validPhoneNumber() {
+		const phoneNumber = document.getElementById("phone").value;
+	
+		if (isNaN(phoneNumber)) {
+		  flag1 = 0;
+		  alert("Enter only numeric value to phone number!");
+		} else if (phoneNumber.length < 10) {
+		  flag1 = 0;
+		  alert("Phone number must be 10 digit!");
+		} else if (phoneNumber.length > 10) {
+		  flag1 = 0;
+		  alert("Phone number must be 10 digit!");
+		} else if (phoneNumber.charAt(0) != 0) {
+		  flag1 = 0;
+		  alert("Phone number must start with 0!");
+		} else {
+		  flag1 = 1;
+		}
+	  }
 
+
+	function changePassword(){
+
+		let psw = document.getElementById("current_password").value;  
+
+		if(psw === ""){
+
+			psw = password;
+
+		}else{
+
+			let nCpsw = document.getElementById("new_password").value;
+		    let nCopsw = document.getElementById("confirm_new_password").value;
+
+		    const npsw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+			const isMatch = bcrypt.compareSync(psw, password);
+
+			if(!isMatch){
+				flag = 0;
+				alert("Invalid Current Password!");
+				
+			}else{
+
+				if(nCpsw.length < 8){
+					flag = 0;
+    			    alert("Password must be contain minimum 8 charcters!");
+
+				}else if(!nCpsw.match(npsw)){
+
+					flag = 0;
+					alert(
+					  "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit");
+
+				}else if(nCpsw != nCopsw){
+					flag = 0;
+					alert("Password mismatch!");
+
+				}else{
+
+					password = bcrypt.hashSync(nCpsw, bcrypt.genSaltSync(12));	
+					flag = 1;
+					
+				}
+
+			}
+		}
+
+
+
+	}
 
 
 
@@ -122,10 +217,12 @@ export default function UpdateProfile(props){
 		 genderSelect();
 		images();
 		birthday();
-		// checkPassword();
 		Imagecheck();
+		changePassword();
+		validPhoneNumber()
   
-		
+		if(flag == 1 && flag1 == 1){
+
 		const updatecus={
 
 		firstName,
@@ -153,11 +250,9 @@ export default function UpdateProfile(props){
 		}).catch((err) =>{
 			alert(err)
 		  })
+		}
 
 			}
-	
-
-	
 	
 	
 	function deleteCustomer(id){
@@ -170,11 +265,13 @@ export default function UpdateProfile(props){
 	  }).catch((err) =>{
 		  alert(err);
 	  })
+
+
+
+	
   }
 
 
-
-  
 
     return(
 
@@ -311,7 +408,7 @@ export default function UpdateProfile(props){
 			   
 			   <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="current_password" placeholder = "Current Password"/>
 					
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
@@ -319,17 +416,17 @@ export default function UpdateProfile(props){
 			  
 			  <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "New Password"/>
+					<input type={NpasswordShown ? "text" : "password"} className="form-control" id="new_password" placeholder = "New Password"/>
 					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleNPassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			   <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"/>
+					<input type={CNpasswordShown ? "text" : "password"} className="form-control" id="confirm_new_password" placeholder = "Confirm Password"/>
 					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleCNPassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  

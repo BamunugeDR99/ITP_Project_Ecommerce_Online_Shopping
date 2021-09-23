@@ -79,6 +79,7 @@ customerSchema.pre('save',async function (next) {
 
 });
 
+
 const customer = mongoose.model("customer", customerSchema);
 
 module.exports = customer;

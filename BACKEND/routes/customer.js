@@ -90,6 +90,11 @@ router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
     const{firstName, lastName , email, phoneNumber,dob,  gender, address, username, password,  confirmPassword,  userImage} = req.body;
 
+    
+    try{
+
+        
+
     const updatedCustomer = {
         firstName,
         lastName,
@@ -104,19 +109,14 @@ router.route("/update/:id").put(async (req,res) =>{
         userImage
     }
 
-   
-    if(emailExist && username){
- 
-      return res.status(422).json({ error: "Email Already Exist"});
-    }
 
-    const update = await Customer.findByIdAndUpdate(userID, updatedCustomer).then(()=>{
+    const update = await Customer.findByIdAndUpdate(userID, updatedCustomer);
         res.status(200).send({status: "User Updated"})
 
-        }).catch((err) => {
+        }catch(err){
             console.log(err);
             res.status(500).send({status: "Error with updating data", error:err.message});
-        })
+        }
     });
 
     // Delete CUstomer
