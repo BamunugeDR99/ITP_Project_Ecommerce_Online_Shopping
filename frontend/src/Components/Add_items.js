@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default function Add_items(props) {
   let [Item_name, setItemName] = useState("");
@@ -18,7 +19,7 @@ export default function Add_items(props) {
   let [Category, setSelectCategory] = useState("Mobile Phones");
   const [erorMsg,setErrorMsg] = useState("");
   const [button,setButton] = useState(false)
-
+  let flag = 0;
   //check this again
   function warrentyCheck() {
     if (document.getElementById("customRadio2").checked) {
@@ -89,24 +90,47 @@ export default function Add_items(props) {
       Category,
     };
     console.log(newItem); // remove after checking
+
+
+
     axios
       .post("http://localhost:8070/items/addItems", newItem)
       .then(() => {
         //custome message to the user
-        document.getElementById("Submitstatus").innerHTML =
-          "Item Added SuccessFully!";
-        document.getElementById("Submitstatus").style.color = "#A4DE02";
+       // document.getElementById("Submitstatus").innerHTML =
+         // "Item Added SuccessFully!";
+       // document.getElementById("Submitstatus").style.color = "#A4DE02";
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Item has been saved',
+          showConfirmButton: false,
+          timer: 1200
+        })
+
          props.history.push("/Seller/Home");
         // document.getElementById("txt").innerHTML = "Student Added Successfully!";
       })
       .catch((err) => {
         alert(err);
-        document.getElementById("Submitstatus").innerHTML =
-          "Process UnsuccessFull Please try again!";
-        document.getElementById("Submitstatus").style.color = "#FF0000";
+       // document.getElementById("Submitstatus").innerHTML =
+         // "Process UnsuccessFull Please try again!";
+        //document.getElementById("Submitstatus").style.color = "#FF0000";
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: 'Please try again!'
+        })
+        props.history.push("/Seller/Home");
+
       });
 
     Color_family = [];
+
+
   }
   return (
     <div>
@@ -130,6 +154,7 @@ export default function Add_items(props) {
                   <input
                     type="text"
                     id="item_name"
+            
                     class="form-control"
                     placeholder="Name of the item" required
                     onChange={(e) => {
@@ -144,15 +169,19 @@ export default function Add_items(props) {
                     id="quantity"
                     class="form-control"
                     pattern="[0-9]"
+                    Min = "0"
                     placeholder="Quantity" required
                     onChange={(e) => {
                       setQuantity(e.target.value);
                       if(e.target.value > 100){
-                        setErrorMsg("Quantity cannot be more than 100")
+                        setErrorMsg("Quantity cannot be more than 100");
+                        flag = 0;
                       }else if(e.target.value <= 0){
-                        setErrorMsg("Quantity cannot be Zero or less")
+                        setErrorMsg("Quantity cannot be Zero or less");
+                        flag = 0;
                       }else{
-                        setErrorMsg("")
+                        setErrorMsg("");
+                        flag = 1;
                       }
                     }}
                   />
