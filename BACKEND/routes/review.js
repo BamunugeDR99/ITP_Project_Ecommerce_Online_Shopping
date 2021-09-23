@@ -11,17 +11,17 @@ router.route("/add").post((req,res)=>{
     const noofstars = req.body.noofstars;
     const customerid = req.body.customerid;
     const itemid = req.body.itemid;
-    const reviewstatus = req.body.reviewstatus;
-    const reportreason = req.body.reportreason;
+    // const reviewstatus = req.body.reviewstatus;
+    // const reportreason = req.body.reportreason;
 
     const newReview= new Review({
         description,
         date,
         noofstars,
-        reviewstatus,
-        reportreason,
+        // reviewstatus,
+        // reportreason,
         customerid,
-        sellerid,
+        // sellerid,
         itemid
     })
 
@@ -33,9 +33,9 @@ router.route("/add").post((req,res)=>{
                           noofstars : newReview.noofstars,
                           customerid : newReview.customerid,
                           itemid : newReview.itemid,
-                          sellerid : newReview.sellerid,
-                          reviewstatus : newReview.reviewstatus,
-                          reportreason : newReview.reportreason
+                        //   sellerid : newReview.sellerid,
+                        //   reviewstatus : newReview.reviewstatus,
+                        //   reportreason : newReview.reportreason
                       }});
               
     }).catch((err) =>{
