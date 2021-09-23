@@ -111,7 +111,7 @@ router.route("/update/:id").put(async (req,res) =>{
     }
 
     const update = await Customer.findByIdAndUpdate(userID, updatedCustomer).then(()=>{
-        res.status(200).send({status: "User updated"})
+        res.status(200).send({status: "User Updated"})
 
         }).catch((err) => {
             console.log(err);

@@ -180,8 +180,8 @@ return(
 	</div>
 </div>
 
-<br/><br/>
-Already have an account ? <Link to = "/SellerLogin">Sign in!</Link>
+
+<b>Already have an account ? </b><Link to = "/SellerLogin">Sign in!</Link>
 </form>
 </div>
 </div>

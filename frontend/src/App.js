@@ -64,6 +64,9 @@ import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
 import ForgotP from './Components/ForgotP';
 
+import AdminLogin from './Components/AdminLogin';
+import './Css/adminLogin.css'
+
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
 
@@ -120,6 +123,7 @@ import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
+
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -176,6 +180,8 @@ function App() {
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller" component = {Footer_customer}/>
+
+      <Route path = "/Admin/adminLogin" exact component = {AdminLogin}/>
     
     </div>
   </Router>

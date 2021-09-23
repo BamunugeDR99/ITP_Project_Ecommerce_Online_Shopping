@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-import updateI from "./../images/updt.jpg"
+
 
 export default function UpdateProfile(props){
 
@@ -21,7 +21,7 @@ export default function UpdateProfile(props){
 	let [lastName,setLastName] = useState("");
 	let [email,setEmail] = useState("");
 	//let[currentPassword,setCurrentPassword] = useState("");
-	let[currentImage, setCurrentImage]= useState("");
+	//let[currentImage, setCurrentImage]= useState("");
 	let [phoneNumber, setPhoneNumber] = useState("");
 	//let [dob ,setDob] = useState("");
 	let dob = "";
@@ -68,7 +68,7 @@ export default function UpdateProfile(props){
 				setFirstName(res.data.firstName);
 				setLastName(res.data.lastName);
 				setEmail(res.data.email);
-				setCurrentImage(res.data.userImage);
+				// setCurrentImage(res.data.userImage);
 				setPhoneNumber(res.data.phoneNumber);
 				setAddress(res.data.address);
 				setUsername(res.data.username);
@@ -100,13 +100,6 @@ export default function UpdateProfile(props){
 
 	// 	}
 	// }
-
-	function checkImage(){
-
-		
-
-
-	}
 
 
 	function UpdateCusProfile(){

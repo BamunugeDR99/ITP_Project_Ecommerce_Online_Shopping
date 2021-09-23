@@ -70,6 +70,12 @@ const paymentdetailsRouter = require("./routes/paymentdetails.js");
 
 app.use("/paymentdetails",paymentdetailsRouter);
 
+
+const adminRouter = require("./routes/admin.js");
+app.use("/Admin", adminRouter);
+
+
+
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB Connection successful");
