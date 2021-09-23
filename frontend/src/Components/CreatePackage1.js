@@ -15,6 +15,7 @@ export default function CreatePackage1(props) {
     const [items, setItems] = useState([]); //Defines that items is an array
     const [packageName, setPname] = useState("");
     const [ContentN, setContentN] = useState([]);
+    const [ratings, setRatings] = useState([]);
     
 
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
@@ -43,6 +44,23 @@ export default function CreatePackage1(props) {
         }
 
 
+        function displayRating(){
+            axios
+            .get("http://localhost:8070/review/get")
+            .then((res) => {
+              setRatings(res.data);
+              //console.log(ratings[0].itemid)
+              console.log(res.data);
+            })
+            .catch((err) => {
+              alert(err);
+            });
+          }
+
+
+        
+          displayRating();
+
 
 
 
@@ -51,6 +69,71 @@ export default function CreatePackage1(props) {
 
 
     }, [])
+
+
+
+    
+    useEffect(() => {
+    
+        calculateStarRating();
+        
+      })
+
+
+
+      function calculateStarRating(){
+        let totalNoRatings = 0;
+        let totalstarforRatingCount = 0;
+        let starCount = 0;
+        let average = 0; 
+        for(let i = 0; i < items.length; i++){
+          
+          totalNoRatings = 0;
+          totalstarforRatingCount = 0;
+          starCount = 0;
+          average = 0;
+        
+          for(let j = 0; j < ratings.length; j++){
+              if(items[i]._id == ratings[j].itemid){
+                totalNoRatings++;
+              }
+      
+              if(items[i]._id == ratings[j].itemid){
+                starCount += parseInt(ratings[j].noofstars);  
+              }
+      
+          }
+      
+          totalstarforRatingCount = totalNoRatings * 5;
+          average = parseInt((starCount / totalstarforRatingCount) * 5);
+          console.log(average);
+          displayStarRating(i,average);
+      
+        }
+      
+      }
+      
+      
+      function displayStarRating(id,totalAverage){
+        let txt = "";
+          if(isNaN(totalAverage)){
+            txt = "No Ratings yet!";
+            document.getElementById(id +'stars').innerHTML = txt;
+            document.getElementById(id +'stars').style.color = "#FF0000";
+          }else{
+          
+          for(let j = 0; j < totalAverage; j++){
+            txt += '<span class="fa fa-star checked"></span>';
+          }
+          for(let j = 0; j < (5 - totalAverage); j++){
+            txt += '<span class="fa fa-star"></span>';
+          }
+         
+      
+          document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+         }
+      }
+      
 
 
 
@@ -121,7 +204,7 @@ export default function CreatePackage1(props) {
                     </form>
 
                     <div className="row">
-                        {items.map((item) => {
+                        {items.map((item, index) => {
                             return (
 
 
@@ -136,7 +219,16 @@ export default function CreatePackage1(props) {
                                                 <p><b>{item.Item_name}</b></p>
                                                 <p><b>{`${item.Model}`}</b></p>
                                                 <p  style={{ padding: '0px' }}> Rs.{item.Price}.00</p>
-                                                <p>Rating</p>
+                                               
+
+                                                <div id = {index +'stars'} class="card-text">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span><span> </span> <span id = {index +'review'}>4.0 / 5.0</span>
+                      </div>
+
                                             </div>
                                             <a href="#" className="btn btn-primary" onClick={(e) => { add2Pac(item) }}>Add to Package</a>
 

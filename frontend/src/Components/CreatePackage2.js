@@ -110,7 +110,7 @@ export default function CreatePackage2(props) {
                                     <label class="labels">Content</label><table class="table table-bordered table-dark">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ItemID</th>
+                                                <th scope="col">Item Model</th>
                                                 <th scope="col">Item Name</th>
 
                                             </tr>
@@ -130,7 +130,7 @@ export default function CreatePackage2(props) {
 
                                                         <tr>
 
-                                                            <td>{item._id}</td>
+                                                            <td>{item.Model}</td>
                                                             <td>{item.Item_name}</td>
 
                                                         </tr>

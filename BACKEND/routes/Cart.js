@@ -117,7 +117,7 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
 
         let customerID = req.params.id;
 
-        const getOne = Cart.find({customerID:customerID}).exec ((err, post) =>{
+        const getOne = Cart.findOne({customerID:customerID}).exec ((err, post) =>{
 
             if(err){
 

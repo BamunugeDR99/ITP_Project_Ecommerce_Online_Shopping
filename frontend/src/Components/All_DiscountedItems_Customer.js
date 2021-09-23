@@ -226,7 +226,7 @@ export default function AllDiscountedItems(props) {
                       </div>
 
                       <button
-                        class="btn btn-success"
+                        class="btn btn-success" 
                       >
                         Add to cart
                       </button>
