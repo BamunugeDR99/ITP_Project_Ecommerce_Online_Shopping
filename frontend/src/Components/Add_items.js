@@ -46,6 +46,7 @@ export default function Add_items(props) {
     }
 
     console.log(Images);
+    //ffff
   }
 
   function ItemCategorySelection() {
@@ -95,7 +96,7 @@ export default function Add_items(props) {
         document.getElementById("Submitstatus").innerHTML =
           "Item Added SuccessFully!";
         document.getElementById("Submitstatus").style.color = "#A4DE02";
-         props.history.push("/allItems");
+         props.history.push("/Seller/Home");
         // document.getElementById("txt").innerHTML = "Student Added Successfully!";
       })
       .catch((err) => {

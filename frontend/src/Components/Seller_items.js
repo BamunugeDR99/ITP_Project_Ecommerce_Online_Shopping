@@ -11,12 +11,18 @@ export default function Seller_items(props) {
     averageRating
   };
   let itemsWithRatings = [];
+  let objectID = localStorage.getItem("SellerID");
 
   useEffect(() => {
     async function getItems() {
        axios
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
+          
+          // let result = res.data.filter(
+          //                 (post) =>
+          //                   post.CustomerID.includes(objectID)            
+          //               );
           setItems(res.data);
           console.log(res.data);
         })
@@ -177,7 +183,7 @@ function displayStarRating(id,totalAverage){
   }
 
   function update(id) {
-    props.history.push("/updateItem/" + id);
+    props.history.push("/Seller/UpdateItem/" + id);
   }
 
   function filterByCategory(categoryType) {
@@ -406,9 +412,7 @@ function displayStarRating(id,totalAverage){
   return (
     <div>
       <div >
-        <br />
-        <br />
-        <br />
+       <br/>
         <div class = "float-right"><button type="button" class="btn btn-danger" onClick={() => clearFilter()}>Clear Filter</button></div>
         <br/><br/>
         <div class="input-group mb-3">

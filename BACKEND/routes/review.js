@@ -18,10 +18,11 @@ router.route("/add").post((req,res)=>{
         description,
         date,
         noofstars,
-        customerid,
-        itemid,
         reviewstatus,
-        reportreason
+        reportreason,
+        customerid,
+        sellerid,
+        itemid
     })
 
     newReview.save().then(()=>{
@@ -32,6 +33,7 @@ router.route("/add").post((req,res)=>{
                           noofstars : newReview.noofstars,
                           customerid : newReview.customerid,
                           itemid : newReview.itemid,
+                          sellerid : newReview.sellerid,
                           reviewstatus : newReview.reviewstatus,
                           reportreason : newReview.reportreason
                       }});
@@ -52,40 +54,64 @@ router.route("/get").get((req,res)=>{
 });
 
 router.route("/get/:id").get(async(req,res)=>{
-   
     let userID = req.params.id;
 
-    const user = await Review.findById(userID).then((review) => {
+    const user = await Review.findById(userID).then((item) => {
 
-        res.json(review);
+        res.json(item);
     
     }).catch((err)=>{
         console.log(err.message);
     })
 });
 
-// router.route("/uprev/:id").put(async (req,res) =>{
-//     let userID = req.params.id;
-//     const{description,date} = req.body;
+router.route("/update/:id").put(async (req,res) =>{
+    let userID = req.params.id;
+    const{description,date} = req.body;
 
-//     const updateReview = {
-//         description,
-//         date,
-//         noofstars,
-//         customerid,
-//         itemid,
-//         reviewstatus,
-//         reportreason
-//     }
+    const updateReview = {
+        description,
+        date,
+        noofstars,
+        customerid,
+        itemid,
+        sellerid,
+        reviewstatus,
+        reportreason
+    }
 
-//     const update = await Review.findByIdAndUpdate(userID,updateReview).then(()=>{
-//         res.status(200).send({status: "User updated"})
-//         }).catch((err) => {
-//             console.log(err);
-//             res.status(500).send({status: "Error with updating data", error:err.message});
-//         })
-//     });
+    const update = await Review.findByIdAndUpdate(userID,updateReview).then(()=>{
+        res.status(200).send({status: "User updated"})
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send({status: "Error with updating data", error:err.message});
+        })
+    });
 
+
+
+    // exports.updateReview = async (req, res) => {
+    //     let reviewid = req.params.id;
+    //     const { description } = req.body;
+      
+    //     const updateReview = { description };
+      
+    //     //Metana findBiId dmmoth vada kranava findOneAndUpdate dmmama vda na.
+    //     const update = await ReviewModule.update(
+    //       { _id: reviewid },
+    //       { $set: { description: description } }
+    //     )
+    //       .then(() => {
+    //         res.status(200).send({ description: "Review updated" });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //         res.status(500).send({
+    //           status: "Error with updating Review",
+    //           error: err.message,
+    //         });
+    //       });
+    //   };
 
 // delete 
 router.route("/delete/:id").delete(async (req,res) =>{
@@ -100,6 +126,37 @@ router.route("/delete/:id").delete(async (req,res) =>{
             res.status(500).send({status : "Error with delete", error : err.message});
         })
     });
+
+
+    router.route("/updateReview/:id").put(async (req, res) => {
+        let reviewID = req.params.id;
+        const{
+              description,
+             } = req.body;
+      
+        const newReview  = {
+          description,
+        }
+      
+        const update = await Review.updateOne(
+      
+          {_id : reviewID},
+          {$set : {description :description}},
+      
+      
+        ).then(() => {
+      
+          res.status(200).send({ status: "Review updated" });
+        })
+        .catch((err) => {
+          console.log(err);
+          res
+            .status(500)
+            .send({ status: "Error with updating review", error: err.message });
+        });
+      
+      
+        })
 
 module.exports = router;
 

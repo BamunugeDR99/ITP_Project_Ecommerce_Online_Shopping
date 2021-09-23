@@ -35,7 +35,7 @@ router.route("/addItems").post((req, res) => {
 
 // route("/") this can use for fetching all the data from the DB
 router.route("/getItems").get((reg, res) => {
-  Item.find()
+  ItemWishList.find()
     .then((itemss) => {
       res.json(itemss);
     })
@@ -61,7 +61,7 @@ router.route("/update/:id").put(async (req, res) => {
 
   const update = await ItemWishList.findByIdAndUpdate(wishListItemID, updateItem)
     .then(() => {
-      res.status(200).send({ status: "wishlist Item updated" });
+      res.status(200).send({ status: "wishlist ItemWishList updated" });
     })
     .catch((err) => {
       console.log(err);
@@ -77,7 +77,7 @@ router.route("/delete/:id").delete(async (req, res) => {
 
   await ItemWishList.findByIdAndDelete(wishListItemID)
     .then(() => {
-      res.status(200).send({ status: "Item Deleted" });
+      res.status(200).send({ status: "ItemWishList Deleted" });
     })
     .catch((err) => {
       console.log(err.message);
