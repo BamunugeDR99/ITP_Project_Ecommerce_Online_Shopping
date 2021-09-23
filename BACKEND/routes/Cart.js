@@ -156,4 +156,32 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
     
 
 
+
+    router.route("/updateSItem/:id").put(async (req, res) => {
+        let CartID = req.params.id;
+        const {
+          customerID,
+          ItemIDs,PackageIDs
+        
+        } = req.body;
+      
+        const updateItem = {
+          customerID,
+          ItemIDs,
+          PackageIDs
+      
+        };
+      
+        const update = await Cart.findByIdAndUpdate(CartID, updateItem)
+          .then(() => {
+            res.status(200).send({ status: "cart updated" });
+          })
+          .catch((err) => {
+            console.log(err);
+            res
+              .status(500)
+              .send({ status: "Error with updating data", error: err.message });
+          });
+      });
+
 module.exports = router;
