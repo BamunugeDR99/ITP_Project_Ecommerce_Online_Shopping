@@ -50,10 +50,10 @@ const customerSchema = new Schema({
         required: true
     },
 
-    confirmPassword: {
-        type: String,
-        required: true
-    },
+    // confirmPassword: {
+    //     type: String,
+    //     required: true
+    // },
 
     userImage: {
         type: String,
@@ -72,7 +72,7 @@ customerSchema.pre('save',async function (next) {
 
         var salt = bcrypt.genSaltSync(12);
         this.password = bcrypt.hashSync(this.password, salt);
-        this.confirmPassword = bcrypt.hashSync(this.confirmPassword, salt);
+        // this.confirmPassword = bcrypt.hashSync(this.confirmPassword, salt);
     }
 
     next();

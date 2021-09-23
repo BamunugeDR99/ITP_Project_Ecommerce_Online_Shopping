@@ -27,7 +27,7 @@ export default function ForgotP(props) {
       if(res.data != null){
         flag = 1;
       }else{
-        alert("gg");
+        // alert("gg");
       }
 
       if(flag == 1){
@@ -41,10 +41,10 @@ export default function ForgotP(props) {
     
         emailjs
           .send(
-            "service_ac9xbqd", //your service id
-            "template_zuxlt3d", // template id
+            "service_f2jwhyr", //your service id
+            "template_25xzkan", // template id
             emailContent,
-            "user_TGhnW7M8Z4dNu0PzvbuZ9" //
+            "user_twU9MTlC54wOOrtS498AM" //
           )
           .then(
             (result) => {
@@ -111,7 +111,45 @@ export default function ForgotP(props) {
     //update passsword 
     if(verification == 1){
 
-      
+      const newPassword = document.getElementById("new_password").value;
+      const ConfirmnewPassword = document.getElementById("confirm_new_password").value;
+
+      if(newPassword == ConfirmnewPassword){
+         
+        let customer2 = {
+          firstName: customer.firstName,
+          lastName:  customer.lastName,
+          email:  customer.email,
+          phoneNumber:  customer.phoneNumber,
+          dob:  customer.dob,
+          gender:  customer.gender,
+          address:  customer.address,
+          username: customer.username,
+          password: newPassword,
+          // confirmPassword,
+          userImage : customer.userImage
+        }
+
+        axios.put("http://localhost:8070/Customer/update/"+ customer._id, customer2).then(()=>{
+		
+
+		// alert("Customer Updated Successfully!");
+    props.history.push("/CustomerLogin");
+		
+				
+		}).catch((err) =>{
+
+			alert(err)
+		  })
+		
+
+      }else{
+        //sweetlert
+        //bcrypt
+
+        alert("password mismatch!");
+      }
+
 
     }else{
 
@@ -151,7 +189,7 @@ export default function ForgotP(props) {
       <h1>Change Password</h1><br/>
     <div class="form-group">
     <label for="exampleInputEmail1">New Password</label>
-    <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter new password" required
+    <input type="text" class="form-control" id="new_password" aria-describedby="emailHelp" placeholder="Enter new password" required
        onChange= {
         (e)=>{
           setPassword(e.target.value);
@@ -159,7 +197,7 @@ export default function ForgotP(props) {
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Confirm New Password</label>
-    <input type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="Re-enter Password"  required
+    <input type="text" class="form-control" id="confirm_new_password" aria-describedby="emailHelp" placeholder="Re-enter Password"  required
        onChange= {
         (e)=>{
           setConfirmPassword(e.target.value);

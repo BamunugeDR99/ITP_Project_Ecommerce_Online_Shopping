@@ -35,6 +35,7 @@ function SignUp(props) {
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
   // let [userImage ,setUserImage] = useState("");
+  
   let userImage = "";
   let image2 = "";
   let image3 = "";
@@ -55,7 +56,27 @@ function SignUp(props) {
   }
 
 
-  //Validtion
+  // //Validtion
+  // function validate(){
+
+  // const firstN = document.getElementById("firstname").value;
+  // const form = document.getElementById("form").value;
+  // const errorElement = document.getElementById("error").value;
+
+  // let messages = []
+
+  // if(firstN.value === "" || firstN.value === null){
+
+  //   messages.push("first name is requiredd");
+
+  //   errorElement.innerText = messages.join(' , ')
+  // }
+
+
+
+  // }
+
+ 
 
 
   //check password
@@ -191,7 +212,7 @@ function SignUp(props) {
     	address,
     	username,
     	password,
-    	confirmPassword,
+    	// confirmPassword,
     	userImage : image3
 
       }
@@ -240,7 +261,7 @@ function SignUp(props) {
             <img src={img1} alt="" id="signUpI" />
           </div>
 
-          <form action="" onSubmit={sendData}>
+          <form action="" id="form" onSubmit={sendData}>
             <h3 id="sign_up">Sign Up</h3>
 
             <h6 id="signupError">{errorMsg}</h6>
@@ -256,7 +277,7 @@ function SignUp(props) {
                     setFirstName(e.target.value);
                   }}
                 />
-                <span id="firstname" class="text-danger font-weight-bold"> </span>
+                  
               </div>
               <div className="col">
                 <input
@@ -268,8 +289,9 @@ function SignUp(props) {
                     setLastName(e.target.value);
                   }}
                 />
-                
+                  
               </div>
+
             </div>
 
             <br />
@@ -313,7 +335,7 @@ function SignUp(props) {
                 id="birthday"
                 placeholder="Date of Birth"
               />
-             
+                <div id="error"></div>
             </div>
 
             <div className="form-group">
@@ -325,7 +347,7 @@ function SignUp(props) {
                 <option value="Female">Female</option>
               </select>
               <i class="bi bi-caret-down-fill"></i>
-              
+              <div id="error"></div>
             </div>
 
             <div className="form-group">
@@ -395,7 +417,7 @@ function SignUp(props) {
                 onClick={toggleCPassword}
               ></i>
               <i className="bi bi-lock-fill"></i>
-             
+            
             </div>
 
             <div className="form-group">
@@ -410,7 +432,7 @@ function SignUp(props) {
                 className="form-control-file"
                 id="user_image"
               />
-            
+              
             </div>
 
             <div className="form-group form-check">

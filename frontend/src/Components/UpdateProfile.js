@@ -238,7 +238,7 @@ export default function UpdateProfile(props){
 		address,
 		username,
 		password,
-		confirmPassword,
+		// confirmPassword,
 		userImage : image3
 		}
 
@@ -259,10 +259,10 @@ export default function UpdateProfile(props){
 		  }).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				
 			  Swal.fire('Your Profile Has Been Successfully Updated!', '', 'success')
 			  props.history.push("/Customer/MyProfile");
 			  window.location.reload();
+			 
 			 
 			} else if (result.isDenied) {
 			  Swal.fire('Changes are not saved.', '', 'info')
