@@ -15,7 +15,7 @@ export default function Customer_wishlist(props) {
     };
     let itemsWithRatings = [];
     let objectID = "";
-
+  let newItems = [];
     let result;
     let wishlist;
     useEffect(() => {
@@ -32,13 +32,7 @@ export default function Customer_wishlist(props) {
             wishlist = res.data.wishlistss;
 
             console.log(wishlist.Items);
-           // setStudents(result);
-          // result.Items;
-            // console.log(result.items);
-            // console.log(itemIDs.length)
-        
-
-            //console.log(res.data);
+   
 
 
 
@@ -48,22 +42,11 @@ export default function Customer_wishlist(props) {
             .then((res) => {
               
               let result2 = res.data;
-                let newItems = [];
+                 
   
-              for(let i = 0; i < wishlist.Items.length; i++){
-                  for(let j = 0; j < result2.length; j++){
-                      if(wishlist.Items[i] == result2[j]._id){
-                        newItems.push(result2[j]);
-                      }
-                  }
-              }
-  
-              console.log(newItems);
-           
-              setItems(newItems);
               //items = newItems;
                           
-              
+              display(result2,wishlist.Items);
             })
             .catch((err) => {
               alert(err);
@@ -74,7 +57,7 @@ export default function Customer_wishlist(props) {
           });
 
 
-
+         
 
        
       }
@@ -106,6 +89,21 @@ export default function Customer_wishlist(props) {
       //displayStarRating();
     })
 
+    function display(re,wi){
+
+      for(let i = 0; i < wi.length; i++){
+        for(let j = 0; j < re.length; j++){
+            if(wi[i] == re[j]._id){
+              newItems.push(re[j]);
+            }
+        }
+    }
+
+    console.log(newItems);
+ 
+    setItems(newItems);
+
+    }
   // function calculateStarRating(id){
   //   let totalNoRatings = 0;
   //   let totalstarforRatingCount = 0;

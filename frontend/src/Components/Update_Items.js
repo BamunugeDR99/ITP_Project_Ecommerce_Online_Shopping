@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 export default function Update_Items(props) {
   // const [students,setStudents] = useState([]);
   const [data, setData] = useState({
@@ -181,19 +181,46 @@ export default function Update_Items(props) {
 
   function deletee(id) {
     const objectId = id;
-    axios
-      .delete("http://localhost:8070/items/delete/" + objectId)
-      .then((res) => {
-        alert("Are you sure do you want to delete this item ?");
-        props.history.push("/allItems");
-        document.getElementById("itemsTxt").innerHTML =
-          "Item Deleted Successfully!";
-        // const afterDeleteStudent = students.filter(student=>student._id != id);
-        // setStudents(afterDeleteStudent);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+
+
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .delete("http://localhost:8070/items/delete/" + objectId)
+        .then((res) => {
+         
+          // const afterDeleteStudent = students.filter(student=>student._id != id);
+          // setStudents(afterDeleteStudent);
+
+          
+      Swal.fire(
+        'Deleted!',
+        'Your Item has been deleted.',
+        'success'
+      )
+
+      props.history.push("/Seller/Home");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
+    })
+
+
+   
+
+
+
   }
 
   function sendData(e) {
@@ -215,16 +242,21 @@ export default function Update_Items(props) {
     axios
       .put("http://localhost:8070/items/update/" + objectId, data)
       .then(() => {
-        //   //alert("Student Updated");
-        document.getElementById("Submitstatus").innerHTML =
-          "Item Updated SuccessFully!";
-        document.getElementById("Submitstatus").style.color = "#A4DE02";
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Item has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        props.history.push("/Seller/Home");
+  
       })
       .catch((err) => {
         alert(err);
-        document.getElementById("Submitstatus").innerHTML =
-          "Process UnsuccessFull Please try again!";
-        document.getElementById("Submitstatus").style.color = "#FF0000";
+   
       });
   }
 
@@ -238,7 +270,16 @@ export default function Update_Items(props) {
 
     props.history.push("/addDiscount/" + id);
   }
+  function displayImage(){
+    let images = document.getElementById("customFile").files;
+    let name = "";
+    for (let i = 0; i < images.length; i++) {
 
+      name += images[i].name + '<br/>';
+    }
+    document.getElementById("GG").innerHTML = name;
+
+  }
 
   return (
     
@@ -312,7 +353,8 @@ export default function Update_Items(props) {
                     Value={data.Quantity}
                     class="form-control"
                     placeholder="Quantity"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)
+                    }
                   />
                 </div>
               </div>
@@ -534,6 +576,8 @@ export default function Update_Items(props) {
                       class="custom-file-input"
                       id="customFile"
                       multiple
+
+                      onChange = {() => displayImage()}
                     />
                     <label class="custom-file-label" for="customFile">
                       Choose file
@@ -554,9 +598,9 @@ export default function Update_Items(props) {
                   <h5 id="txt3"></h5>
                 </div>
               </div>
-              <br />
-              <br />
+         
               <center>
+                <center><div id = "GG"></div></center>
               <button
                   type = "button"
                   class="btn btn-primary"
@@ -566,7 +610,7 @@ export default function Update_Items(props) {
                   ADD DISCOUNT
                 </button><span> </span>
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-success"
                   style={{ marginright: "20px" }}
                 >
