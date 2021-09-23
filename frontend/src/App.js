@@ -79,6 +79,7 @@ import AdminReport from './Components/AdminReport';
 import ItemView from './Components/ItemView';
 // import test from './Components/test';
 import ContactSeller from './Components/ContactSeller';
+import PaymentHistory from './Components/PaymentHistory';
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -122,12 +123,7 @@ import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
 
-
-
-//Admin
-import AdminLogin from './Components/AdminLogin';
 import EditCardDetails from './Components/EditCardDetails';
-
 
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -153,9 +149,12 @@ function App() {
       <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
       <Route path = "/Customer/ContactUs" exact component = {ContactAdmin}/>
       <Route path = "/Customer/addCard" exact component = {AddpaymentMethod}/>
+      <Route path = "/Customer/editCard/:id" exact component = {EditCardDetails}/>
       <Route path = "/Customer/ContactSeller" exact component = {ContactSeller}/>
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
-      <Route path = "/Customer/UpdateCard/:id" exact component = {EditCardDetails}/>
+      <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
+      <Route path = "/Customer/Payhis" exact component = {PaymentHistory}/>
+      {/* <Route path = "/Customer/Payhis" exact component = {}/> */}
 
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
@@ -167,7 +166,7 @@ function App() {
       <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
         {/* id  */}
       {/* // from my item incomplete */}
-      
+      <Route path = "/Customer/paymentHistory" exact component = {PaymentHistory}/>
       <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/>
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
@@ -200,7 +199,7 @@ function App() {
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>
     
     {/* Admin */}
-    <Route path = "/admin/login" exact component = {AdminLogin}/>
+    {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}
     
 
     </div>
