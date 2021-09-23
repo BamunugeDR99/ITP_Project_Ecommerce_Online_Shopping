@@ -267,32 +267,32 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{width:'90%',  paddingRight:'20px'}} src={p2}
-            // {`../images/${items.Item_name}`}
+            <img style={{width:'90%',  paddingRight:'20px'}} src=
+            {"./Images/"+items.Item_name}
             />
             <div>
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} src=
+                {"./Images/"+items.Item_name}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} src=
+                {"./Images/"+items.Item_name}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} src=
+                {"./Images/"+items.Item_name}
                 />
             </div>
         </div>
 
         <div className="col">
-            <span style={{fontSize:'22px'}}><b>{items.Item_name}</b></span><br/>
-            <span style={{fontSize:'20px'}}>{items.itemDescription}</span><br/>
-        
+            <span style={{fontSize:'22px'}}><b>{items.Item_name} </b></span><br/>
+            <span style={{fontSize:'19px'}}>{items.Description}</span><br/>
+            <span style={{fontSize:'16px'}}>{items.Brand}</span><br/>
              
              <br/>
-             <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/>
+             {/* <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/> */}
              &nbsp;
-             <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/>
-             <span style={{fontSize:'18px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
+             {/* <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/> */}
+             <span style={{fontSize:'19px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
             <br/>
             <div >
                 <button type="button" class="btn btn-danger" style={{width:'50%'}}>Buy Now</button>
@@ -310,14 +310,14 @@ return(
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <Link to = "/Customer/contactseller" className = "nav-link" >
-                        <button type="button" class="btn btn-outline-info" style={{width:'40%' ,borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
+                        <button type="button" class="btn btn-outline-info" style={{borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
                     </Link>
                 </a>
             </div>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                     <Link to = "/Customer/contactus" className = "nav-link" >
-                        <button type="button" class="btn btn-outline-info" style={{width:'40%', borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Us</button>
+                        <button type="button" class="btn btn-outline-info" style={{ borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Admin</button>
                     </Link>
                 </a>
             </div>
@@ -362,8 +362,8 @@ return(
                                     
                                     <span> Quantity</span><br/>
                                     <span> WHT </span><br/>
-                                    <span> Category</span><br/>
                                     <span> Stock unit</span><br/>
+                                    <span> Category</span><br/>
                                     <span> Other_colors</span><br/>
                                 </div> 
                                 <div className="col-1">
@@ -377,8 +377,8 @@ return(
                                 <div className="col-3">    
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
-                                    <span>{items.Category}</span><br/>
                                     <span>{items.Unit}</span><br/>
+                                    <span>{items.Category}</span><br/>
                                     <span>{items.Colors}</span><br/>
                                 </div>
                                 
@@ -408,7 +408,7 @@ return(
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                 <Link to = "/ItemReviews" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
                                                 </Link>
                                             </a>
                                             
@@ -417,7 +417,7 @@ return(
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                 <Link to = "/WriteReview" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
                                                 </Link>
                                             </a>
                                             

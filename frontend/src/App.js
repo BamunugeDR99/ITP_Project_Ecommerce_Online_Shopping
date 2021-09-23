@@ -121,6 +121,7 @@ import ViewCardDetails from './Components/ViewCardDetails';
 import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
+import Sellermsg from './Components/Sellermsg';
 import ConfirmPayment from './Components/ConfirmPayment';
 
 import EditCardDetails from './Components/EditCardDetails';
