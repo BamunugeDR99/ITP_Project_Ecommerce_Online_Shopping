@@ -35,7 +35,7 @@ router.route("/add").post((req,res)=>{
 
     neworgSeller.save().then(()=>{
        
-        res.json("Your request added successfully!");
+        res.json("New Seller Added Successfully!");
                       
               
               

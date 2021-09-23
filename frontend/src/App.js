@@ -120,6 +120,13 @@ import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
+
+
+
+//Admin
+import AdminLogin from './Components/AdminLogin';
+
+
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -177,6 +184,9 @@ function App() {
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller" component = {Footer_customer}/>
     
+    {/* Admin */}
+    <Route path = "/admin/login" component = {AdminLogin}/>
+
     </div>
   </Router>
   

@@ -15,6 +15,9 @@ export default function SellerRegistration(props){
 	let [email,setemail] = useState("");
 	let [description,setdescription] = useState("");
 	let logo;
+	let [errorMsg, setErrorMsg] = useState("");
+
+
 		function sendData(e){
 
 		e.preventDefault();
@@ -37,12 +40,17 @@ export default function SellerRegistration(props){
 
 
 	alert("Request Sent");
+	setErrorMsg("");
 	props.history.push("/Home");
 	document.getElementById("txt").innerHTML = "Request added Successfully!";
 		
 	}).catch((err) =>{
-	alert(err)
-	 })
+
+		console.log(err.response.data);
+    	alert(err.response.data.error);
+    	setErrorMsg(err.response.data.error);
+	 
+	})
 	 }
 
 	//Enabling submit button when seller click terms
@@ -65,9 +73,12 @@ return(
 <div> <br/>
 <center><h1>Start Your Business</h1></center> <br/>
 </div>
+
+<h4 style={{color:"red", textAlign:"center"}}>{errorMsg}</h4>
+
 <form class="form-detail" align="center" method="post" onSubmit = {sendData}>
-<div class="card container shadow-lg p-3 mb-5 bg-white rounded">
-  <div class="card-body">
+<div class="card container" style={{boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+  <div class="card-body"  id="sellerReq">
    
 
    <div class="row">
@@ -148,7 +159,7 @@ return(
       <div className = "card container-size">
 		  <br/>
 		  <div className = "card-container">
-			  <label>Company logo</label><br/>
+			  <label style={{textAlign:"left"}}>Company logo</label><br/>
 			  <div className = "card-container">
 			  <input type="file" name="logo" id="logo" class="form-control-file" placeholder="Allowed types: png/jpg/jpeg" accept="image/*" required />
 		  </div>
@@ -166,16 +177,16 @@ return(
 	
 	<div class="float-right">
 	<div class="form-check">
-  <input class="form-check-input" type="checkbox" id="policy" name="policy" value="true" onclick= {()=> submitButton() }required />
+  <br/><br/><input class="form-check-input" type="checkbox" id="policy" name="policy" value="true" onclick= {()=> submitButton() }required />
  
   <label class="form-check-label" for="defaultCheck1">
-    I agree to the Terms of service
+   <b> I agree to the Terms of service </b>
   </label>
 </div>
 	
 	<button type="reset" class="btn btn-success">Reset</button>
 	<span> </span>
-	<button type="submit" class="btn btn-primary" id="btn1" name="btn1" value="submit" disabled>Request</button>
+	<button type="submit" class="btn btn-primary" id="btn1" name="btn1" value="submit">Request</button>
 	<br/><br/>
 	</div>
 </div>
