@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import "../Css/contact.css";
-import go from "../images/bg2.jpg";
+import go from "../images/bgcontact3.jpg";
 
 
 export default function ContactAdmin(props){
