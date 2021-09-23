@@ -54,6 +54,10 @@ function SignUp(props) {
     dob = document.getElementById("birthday").value;
   }
 
+
+  //Validtion
+
+
   //check password
 
   function checkPassword() {
@@ -159,6 +163,8 @@ function SignUp(props) {
     }
   }
 
+  
+
   function sendData(e) {
     // alert("d0");
     e.preventDefault();
@@ -170,6 +176,7 @@ function SignUp(props) {
       validEmail();
       checkCheckbox();
       avatar();
+      
       
 
     if(flag1 == 1 && flag2 == 1 && flag3 == 1 && flag4 ==1 ){
@@ -244,20 +251,24 @@ function SignUp(props) {
                   type="text"
                   className="form-control"
                   placeholder="First name"
+                  id="firstname"
                   onChange={(e) => {
                     setFirstName(e.target.value);
                   }}
                 />
+                <span id="firstname" class="text-danger font-weight-bold"> </span>
               </div>
               <div className="col">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Last name"
+                  id="lastname"
                   onChange={(e) => {
                     setLastName(e.target.value);
                   }}
                 />
+                
               </div>
             </div>
 
@@ -275,6 +286,7 @@ function SignUp(props) {
               />
 
               <i className="bi bi-envelope-fill"></i>
+              
             </div>
 
             <div className="form-group">
@@ -288,6 +300,7 @@ function SignUp(props) {
                 }}
               />
               <i className="bi bi-telephone-fill"></i>
+              
             </div>
 
             <div className="form-group">
@@ -300,6 +313,7 @@ function SignUp(props) {
                 id="birthday"
                 placeholder="Date of Birth"
               />
+             
             </div>
 
             <div className="form-group">
@@ -311,6 +325,7 @@ function SignUp(props) {
                 <option value="Female">Female</option>
               </select>
               <i class="bi bi-caret-down-fill"></i>
+              
             </div>
 
             <div className="form-group">
@@ -324,6 +339,7 @@ function SignUp(props) {
                 }}
               />
               <i className="bi bi-geo-alt-fill"></i>
+              
             </div>
 
             <div className="form-group">
@@ -337,6 +353,7 @@ function SignUp(props) {
                 }}
               />
               <i className="bi bi-person-fill"></i>
+              
             </div>
 
             <div className="form-group">
@@ -356,9 +373,10 @@ function SignUp(props) {
                 onClick={togglePassword}
               ></i>
               <i className="bi bi-lock-fill"></i>
-              <span id="message" style={{ color: "red" }}>
+             
+              {/* <span id="message" style={{ color: "red" }}>
                 {" "}
-              </span>
+              </span> */}
             </div>
 
             <div className="form-group">
@@ -377,6 +395,7 @@ function SignUp(props) {
                 onClick={toggleCPassword}
               ></i>
               <i className="bi bi-lock-fill"></i>
+             
             </div>
 
             <div className="form-group">
@@ -391,6 +410,7 @@ function SignUp(props) {
                 className="form-control-file"
                 id="user_image"
               />
+            
             </div>
 
             <div className="form-group form-check">

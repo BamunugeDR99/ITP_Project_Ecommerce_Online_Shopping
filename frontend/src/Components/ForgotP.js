@@ -111,6 +111,8 @@ export default function ForgotP(props) {
     //update passsword 
     if(verification == 1){
 
+      
+
     }else{
 
     }
