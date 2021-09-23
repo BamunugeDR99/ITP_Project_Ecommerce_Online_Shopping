@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import axios from "axios";
+import Cards from 'react-credit-cards';
 
+import 'react-credit-cards/es/styles-compiled.css';
 
-export default function AddCard(props){
+export default class PaymentForm extends React.Component {
+
+	state = {
+		cardcvc: '',
+		carddate: '',
+		focus: '',
+		cardowner: '',
+		cardnumber: '',
+	  };
+	 
+	  handleInputFocus = (e) => {
+		this.setState({ focus: e.target.name });
+	  }
 
     let [cardtype, setcardtype] = useState("");
 	let [cardowner, setcardowner] = useState("");
 	let [cardnumber, setcardnumber] = useState("");
 	let [carddate, setcarddate] = useState("");
-	// let [cardccv, setcardccv] = useState("");
+	let [cardcvc, setcardcvc] = useState("");
   
 	function sendData(e){
 
@@ -19,7 +33,7 @@ export default function AddCard(props){
 		cardowner,
      	cardnumber,
      	carddate,
-		// cardcvv,
+		cardcvc,
 
 	  }
 
@@ -35,11 +49,19 @@ export default function AddCard(props){
 		alert(err)
 	  })
 	}
-    
+render() {   
 return (  
 
 <div className = "addcard">
 <div className = "container">
+<div id="PaymentForm">
+        <Cards
+          cvc={this.state.cardcvc}
+          expiry={this.state.carddate}
+          focused={this.state.focus}
+          name={this.state.name}
+          cardnumber={this.state.cardnumber}
+        />
 
 <form method = "post" onSubmit = {sendData}> 
 
@@ -61,6 +83,7 @@ return (
 							setcardowner(e.target.value);
 							}
 					}/> 
+					onFocus={this.handleInputFocus}
 </div>
 
 <div className="mb-3">
@@ -83,10 +106,22 @@ return (
 					}/> 
 </div>
 
+<div className="mb-3">
+<label className ="form-label">CARD CVC</label>
+<input id="carddate" type="text" class="form-control" placeholder="•••" required
+				onChange= {
+							(e)=>{
+							setcardcvc(e.target.value);
+							}
+					}/> 
+</div>
+
 <button type="reset" className="btn btn-danger">Cancel</button>
 <button type="submit" className="btn btn-primary">Save</button>
 </form>
 </div>
 </div>
+</div>
   );
+}
 }
