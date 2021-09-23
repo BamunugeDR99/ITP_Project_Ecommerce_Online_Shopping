@@ -238,9 +238,12 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         //setStudents(res.data);
         // console.log(res.data);
-
+        let item = res.data.filter(
+          (post) =>
+            post.SellerID == objectID            
+        );
         // filterContentForCatrgory(res.data,categoryType);
-        let item = res.data;
+        //let item = res.data;
         const afterFilterItems = item.filter(
           (item) => item.Category == categoryType
         );
@@ -278,7 +281,12 @@ function displayStarRating(id,totalAverage){
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        let item = res.data;
+        let item = res.data.filter(
+          (post) =>
+            post.SellerID == objectID            
+        );
+
+       // let item = res.data;
         let afterFilterItems = [];
         if (btnid == 5) {
            afterFilterItems = item.filter(
