@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-    import ReactStars from "react-rating-stars-component";
+   // mer
+   // import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
 import Swal from "sweetalert2";
 
