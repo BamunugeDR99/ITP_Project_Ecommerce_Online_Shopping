@@ -70,7 +70,7 @@ export default function CustomerLogin(props) {
       .catch((err) => {
         //alert(err);
         console.log(err.response.data);
-        alert(err.response.data.error);
+        // alert(err.response.data.error);
         setErrorMsg(err.response.data.error);
       });
   }

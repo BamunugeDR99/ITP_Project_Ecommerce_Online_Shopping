@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-const bcrypt = require('bcryptjs')
+import Swal from 'sweetalert2';
+const bcrypt = require('bcryptjs');
+
+
 
 
 export default function UpdateProfile(props){
@@ -48,14 +51,14 @@ export default function UpdateProfile(props){
 	let [password , setPassword ] = useState("");
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
+	
 	let objectID = "";
 	let userImage = "";
 
 	let image2 = "";
 	let image3 = "";
 
-	
-	let [Currentpassword , setCurrentPassword ] = useState("");
+
 	
 
 
@@ -102,7 +105,7 @@ export default function UpdateProfile(props){
 				dob = res.data.dob;
 				setCurrentImage(res.data.userImage);
 				setPassword(res.data.password);
-				// setCurrentConfirmPassword(res.data.confirmPassword);
+				
 				
 
 				
@@ -165,6 +168,7 @@ export default function UpdateProfile(props){
 		if(psw === ""){
 
 			psw = password;
+			flag = 1;
 
 		}else{
 
@@ -240,14 +244,38 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
+		objectID = props.match.params.id;
 		axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
 		
 
 		//alert("Customer Updated Successfully!");
+
+		Swal.fire({
+			title: 'Do you want to save the changes?',
+			showDenyButton: true,
+			showCancelButton: true,
+			confirmButtonText: 'Save',
+			denyButtonText: `Don't Save`,
+		  }).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				
+			  Swal.fire('Your Profile Has Been Successfully Updated!', '', 'success')
+			  props.history.push("/Customer/MyProfile");
+			  window.location.reload();
+			 
+			} else if (result.isDenied) {
+			  Swal.fire('Changes are not saved.', '', 'info')
+			  props.history.push("/Customer/MyProfile");
+			}
+		  })
+		  
 		
-		props.histroy.push("/Customer/MyProfile");
+		
+	
 			
 		}).catch((err) =>{
+
 			alert(err)
 		  })
 		}
@@ -256,10 +284,32 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/"+objectID).then((res) =>
+
+		objectID = props.match.params.id;
+	  axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
 	  {
-		  alert("Customer Deleted Successfully!");
-		  props.histroy.push("/CustomerRegistration");
+		//   alert("Customer Deleted Successfully!");
+
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this account!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire(
+				'Deleted!',
+				'Your Profile Has Been Successfully Deleted!',
+				'success'
+				
+			  )
+			  props.history.push("/CustomerRegistration");
+			}
+		  })
+		 
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
 		  //setCustomer(afterDeleteCustomer);
 	  }).catch((err) =>{

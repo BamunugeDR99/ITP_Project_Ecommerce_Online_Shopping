@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 import img1 from "./../images/kl.jpg";
 import { Link } from "react-router-dom";
@@ -135,8 +135,9 @@ function SignUp(props) {
   //send a avatar
 
   function avatar() {
-    let useriM = "avatarM.jpg";
-    let useriF = "avatarF.png";
+
+    let useriM = "avatarMale.jpg";
+    let useriF = "avatarFemale.jpg";
 
     let uimage = document.getElementById("user_image").value;
     // console.log(uimage);
@@ -169,6 +170,7 @@ function SignUp(props) {
       validEmail();
       checkCheckbox();
       avatar();
+      
 
     if(flag1 == 1 && flag2 == 1 && flag3 == 1 && flag4 ==1 ){
 
@@ -201,7 +203,18 @@ function SignUp(props) {
     	setPassword(" ");
     	setConfirmPassword(" ");
 
+      Swal.fire({
+
+        title: 'Your Account is Successfully Created! Now You Can login With Credentials.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        } 
+      })
       props.history.push("/CustomerLogin");
+     
     }).catch((err) =>{
 
     	console.log(err.response.data);
