@@ -21,7 +21,7 @@ export default function AllDiscountedItems(props) {
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           console.log(res.data);
-          setItems(res.data.filter((item) => item.DiscountStatus === true));
+          setItems(res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true));
 
           fitems = items;
           console.log(fitems);
