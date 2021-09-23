@@ -7,7 +7,7 @@ import swal from "sweetalert2";
 export default function UpdatePackages(props) {
 
 
-    const [package1, setPackage] = useState("");
+    const [package1, setPackage] = useState([]);
     const [packageName, setPname] = useState("");
     const [seller, setSeller] = useState("");
     const [price, setPrice] = useState("");
