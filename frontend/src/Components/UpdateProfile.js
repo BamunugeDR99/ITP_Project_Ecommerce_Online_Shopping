@@ -16,6 +16,7 @@ export default function UpdateProfile(props){
 
 	let Dateofb;
 
+	let[currentImage,setCurrentImage] = useState("");
 	const [birth, setBirthday] = useState("");
 	let [firstName, setFirstName] = useState("");
 	let [lastName,setLastName] = useState("");
@@ -34,6 +35,10 @@ export default function UpdateProfile(props){
 	// let [userImage ,setUserImage] = useState("");
 	let objectID = "";
 	let userImage = "";
+
+	let image2 = "";
+	let image3 = "";
+	let CurrentImage = "";
 
 	const [customer,setCustomer] = useState([]);
 
@@ -68,13 +73,13 @@ export default function UpdateProfile(props){
 				setFirstName(res.data.firstName);
 				setLastName(res.data.lastName);
 				setEmail(res.data.email);
-				// setCurrentImage(res.data.userImage);
 				setPhoneNumber(res.data.phoneNumber);
 				setAddress(res.data.address);
 				setUsername(res.data.username);
 				gender = res.data.gender;
 				userImage = res.data.userImage;
 				dob = res.data.dob;
+				setCurrentImage(res.data.userImage);
 				
 
 				
@@ -90,16 +95,25 @@ export default function UpdateProfile(props){
 	}, []);
 
 
-	// function checkPassword(){
-	// 	if (currentpassword == currentpasswordtextfieldpasssword){
-	// 		confirm and new 
-	// 		display error
-	// 		flag = 0
-	// 	}else{
-	// 		flag = 1
+	function Imagecheck(){
 
-	// 	}
-	// }
+		let uimage = document.getElementById("user_image").value;
+
+		if (uimage === "") {
+
+			image3 = currentImage;
+
+		}else{
+
+			 image2 = document.getElementById("user_image").value;
+		  
+			 image3 = image2.substring(12);
+
+		}
+	}
+
+
+
 
 
 	function UpdateCusProfile(){
@@ -109,11 +123,9 @@ export default function UpdateProfile(props){
 		images();
 		birthday();
 		// checkPassword();
+		Imagecheck();
   
-		let image2 = document.getElementById("user_image").value;
-		  
-		let image3 = image2.substring(12);
-
+		
 		const updatecus={
 
 		firstName,
