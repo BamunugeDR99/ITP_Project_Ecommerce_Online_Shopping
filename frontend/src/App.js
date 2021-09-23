@@ -122,13 +122,8 @@ import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
-
-
-
-//Admin
-import AdminLogin from './Components/AdminLogin';
+import PaymentHistory from './Components/PaymentHistory';
 import EditCardDetails from './Components/EditCardDetails';
-
 
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -154,9 +149,12 @@ function App() {
       <Route path = "/Customer/MyProfile" exact component = {UserProfile}/>
       <Route path = "/Customer/ContactUs" exact component = {ContactAdmin}/>
       <Route path = "/Customer/addCard" exact component = {AddpaymentMethod}/>
+      <Route path = "/Customer/editCard/:id" exact component = {EditCardDetails}/>
       <Route path = "/Customer/ContactSeller" exact component = {ContactSeller}/>
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
-      <Route path = "/Customer/UpdateCard/:id" exact component = {EditCardDetails}/>
+      <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
+      <Route path = "/Customer/Payhis" exact component = {PaymentHistory}/>
+      {/* <Route path = "/Customer/Payhis" exact component = {}/> */}
 
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
