@@ -23,15 +23,11 @@ carddate :{
     requied:true,
 },
 
-carddate :{
-    type:String,
-    requied:true,
-},
-
 cardcvv :{
     type:Number,
     requied:true,
 }
+
 
 
 })

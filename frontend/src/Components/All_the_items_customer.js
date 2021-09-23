@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
+import {Link} from 'react-router-dom';
+
 
 export default function All_the_items_customer(props) {
   const [items, setItems] = useState([]);
@@ -254,9 +257,73 @@ export default function All_the_items_customer(props) {
     }
   }
 
-  function addToCart() {
+  function addToCart(id) {
     /// complete this
+    axios
+    .get("http://localhost:8070/items/get/" + id)
+    .then((res) => {
+
+      console.log(res.data)
+      if(res.data.ItemAvailabilityStatus == false){
+        
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Item is not available Right now!',
+        
+        });
+
+      }else{
+
+      
+        let CustomerID = localStorage.getItem("CustomerID");
+
+        // http://localhost:8070/ShoppingCart/getOneCart/:id
+        axios
+        .get("http://localhost:8070/ShoppingCart/getOneCart/" +CustomerID)
+        .then((res) => {
+          let cartID = res.data._id;
+          console.log(res.data)
+           let newwItems = res.data.ItemIDs;
+           newwItems.push(id);
+           console.log(newwItems); 
+
+
+
+           axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" +cartID,newwItems).then((res) =>{
+
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Item added to cart Successfully!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+
+           }).catch((err) =>{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Please try again!',
+            
+            });
+           })
+
+      
+        })
+          .catch((err) => {
+            alert(err);
+    });
+
+      }  
+      }).catch((err) =>{
+        alert(err);
+      })
+     
+  
   }
+
+
 
   function addToWishlist(itemId) {
 
@@ -285,8 +352,16 @@ export default function All_the_items_customer(props) {
         .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
         .then(() => {
           //alert("Student Updated");
-          document.getElementById("itemsTxt").innerHTML =
-            "Item added to your Wishlist!";
+         // document.getElementById("itemsTxt").innerHTML =
+            //"Item added to your Wishlist!";
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
         })
         .catch((err) => {
           alert(err);
@@ -353,7 +428,9 @@ export default function All_the_items_customer(props) {
         alert(err);
       });
   }
-
+function RedirectedReviews(id){
+  props.history.push("/Customer/ItemDetails/" + id);
+}
   return (
     <div>
       <div>
@@ -604,7 +681,8 @@ export default function All_the_items_customer(props) {
                       </button>
                       <span> </span> <br />
                       <br />
-                      <button class="btn btn-success" hidden>
+                  
+                      <button class="btn btn-success" onClick={() => RedirectedReviews(items._id)}>
                         Show more
                       </button>
                     </center>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 export default function Seller_items(props) {
   const [items, setItems] = useState([]);
   const [ratings, setRatings] = useState([]);
@@ -19,11 +19,11 @@ export default function Seller_items(props) {
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           
-          // let result = res.data.filter(
-          //                 (post) =>
-          //                   post.CustomerID.includes(objectID)            
-          //               );
-          setItems(res.data);
+          let result = res.data.filter(
+                          (post) =>
+                            post.SellerID == objectID            
+                        );
+          setItems(result);
           console.log(res.data);
         })
         .catch((err) => {
@@ -162,7 +162,11 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
-        filterContent(res.data, userSearch);
+        let results = res.data.filter(
+          (post) =>
+          post.SellerID == objectID           
+        );
+        filterContent(results, userSearch);
       })
       .catch((err) => {
         alert(err);
@@ -170,16 +174,57 @@ function displayStarRating(id,totalAverage){
   }
 
   function deletee(id) {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: true
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+
+          'Deleted!',
+          'Your item has been deleted.',
+          'success',
     axios
-      .delete("http://localhost:8070/items/delete/" + id)
-      .then((res) => {
-        //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
-        const afterDeleteItems = items.filter((items) => items._id != id);
-        setItems(afterDeleteItems);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    .delete("http://localhost:8070/items/delete/" + id)
+    .then((res) => {
+      //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
+      const afterDeleteItems = items.filter((items) => items._id != id);
+      setItems(afterDeleteItems);
+    })
+    .catch((err) => {
+      alert(err);
+    })
+
+         
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your item is safe :)',
+          'error'
+        )
+      }
+    })
+
+
+
   }
 
   function update(id) {
@@ -193,9 +238,12 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         //setStudents(res.data);
         // console.log(res.data);
-
+        let item = res.data.filter(
+          (post) =>
+            post.SellerID == objectID            
+        );
         // filterContentForCatrgory(res.data,categoryType);
-        let item = res.data;
+        //let item = res.data;
         const afterFilterItems = item.filter(
           (item) => item.Category == categoryType
         );
@@ -233,7 +281,12 @@ function displayStarRating(id,totalAverage){
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        let item = res.data;
+        let item = res.data.filter(
+          (post) =>
+            post.SellerID == objectID            
+        );
+
+       // let item = res.data;
         let afterFilterItems = [];
         if (btnid == 5) {
            afterFilterItems = item.filter(
@@ -364,7 +417,11 @@ function displayStarRating(id,totalAverage){
     .get("http://localhost:8070/items/getItems")
     .then((res) => {
       
-      let item = res.data;
+      let result = res.data.filter(
+        (post) =>
+        post.SellerID == objectID             
+      );
+      let item = result;
       // console.log(item[2]._id);
       // console.log(filterdItemsWithRatings);
       let afterFilterItemss = [];
@@ -394,8 +451,11 @@ function displayStarRating(id,totalAverage){
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        
-       setItems(res.data);
+        let result = res.data.filter(
+          (post) =>
+          post.SellerID == objectID             
+        );
+       setItems(result);
        if(res.data.length === 0){
         document.getElementById("itemsTxt").innerHTML = "No Result Found!";
       }else{
@@ -409,7 +469,13 @@ function displayStarRating(id,totalAverage){
      
   }
 
-  return (
+
+
+function showwMore(id){
+  //alert("a");
+   props.history.push("/Seller/ItemReviews/"+ id);
+}
+    return (
     <div>
       <div >
        <br/>
@@ -645,7 +711,7 @@ function displayStarRating(id,totalAverage){
                         Delete
                       </button>
                       <span> </span> <br/><br/>
-                      <button class="btn btn-success">Show more</button>
+                      <button class="btn btn-success" onClick = {() => showwMore(items._id)}>Show more</button>
                     </center>
                     <br />
                     <center>

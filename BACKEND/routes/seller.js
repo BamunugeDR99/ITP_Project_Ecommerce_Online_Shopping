@@ -5,7 +5,7 @@ let seller = require("../modules/seller");
 
 
 //Insert -->
-router.route("/add").post((req,res)=>{
+router.route("/add").post(async(req,res)=>{
     // http://localhost:8070/seller/add
 
     const ownername = req.body.ownername;
@@ -15,8 +15,18 @@ router.route("/add").post((req,res)=>{
     const year = req.body.year;
     const email = req.body.email;
     const description = req.body.description;
+   
     const logo = req.body.logo;
-    
+
+ try {  
+
+    const emailExist = await seller.findOne({ email: email});
+
+    if(emailExist){
+ 
+      return res.status(422).json({ error: "Email Already Exist"});
+    }
+
     const newseller = new seller({
         ownername, 
         mobile,
@@ -28,7 +38,7 @@ router.route("/add").post((req,res)=>{
         logo
     })
 
-    newseller.save().then(()=>{
+    await newseller.save();
        
         res.json("Your request added successfully!");
                       
@@ -43,14 +53,14 @@ router.route("/add").post((req,res)=>{
                         logo : newseller.logo
                       }});*/
               
-    }).catch((err) =>{
-        
-        res.json(err);
+                    } catch(err){
+
+                        console.log(err);
+                    }
         
         //res.json("Error, Please try again later!");
         
         //console.log(err);
-    })
 });
 
 //Retrieve -->

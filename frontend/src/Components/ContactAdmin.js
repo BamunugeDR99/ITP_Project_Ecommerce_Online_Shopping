@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 
+import Swal from "sweetalert2";
+
 import "../Css/contact.css";
 import go from "../images/bg2.jpg";
 
@@ -62,6 +64,12 @@ export default function ContactAdmin(props){
         //props.history.push("/Home");
         //setErrorMsg("");
         //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        // alert("Message Sended Successfully!");
+        Swal.fire(
+            'Good job!',
+            'You Send the message!',
+            'success'
+          )
         
       }).catch((err) =>{
         alert(err)

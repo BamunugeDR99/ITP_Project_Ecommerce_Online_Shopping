@@ -163,7 +163,7 @@ function UpdateDiscount(props) {
                 <div className="container rounded bg-white mt-5 mb-5 cont">
                     <div className="row">
                         <div className="col-md-3 border-right">
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={go} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + item.Images[0]} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">

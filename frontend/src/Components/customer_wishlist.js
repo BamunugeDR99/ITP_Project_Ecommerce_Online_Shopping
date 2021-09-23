@@ -1,58 +1,86 @@
-// import axios from "axios";
-// import React, { useState, useEffect } from "react";
-// import { ClipLoader } from "react-spinners";
-// import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { ClipLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
-// export default function Customer_wishlist(props) {
-//     const [items, setItems] = useState([]);
-//     const [ratings, setRatings] = useState([]);
-//     let itemID = "";
-//     let averageRating = "";
-//     let itemWithRatings = {
-//       itemID,
-//       averageRating
-//     };
-//     let itemsWithRatings = [];
-//     let objectID = ""
-//     useEffect(() => {
-//       async function getItems() {
-//         //change url
-//         objectID = localStorage.getItem("CustomerID");
-//         axios
-//           .get("http://localhost:8070/wishlist/getItems")
-//           .then((res) => {
+export default function Customer_wishlist(props) {
+    const [items, setItems] = useState([]);
+    const [ratings, setRatings] = useState([]);
+    let itemIDs = [];
+    let itemID = "";
+    let averageRating = "";
+    let itemWithRatings = {
+      itemID,
+      averageRating
+    };
+    let itemsWithRatings = [];
+    let objectID = "";
 
-//             let result = res.data.filter(
-//               (post) =>
-//                 post.CustomerID.includes(objectID) 
+    let result;
+    useEffect(() => {
+      async function getItems() {
+        //change url
+        objectID = localStorage.getItem("CustomerID");
+        axios
+          .get("http://localhost:8070/wishlist/getItems")
+          .then((res) => {
+            console.log(res.data);
+             result = res.data.filter(
+              (post) =>
+                post.CustomerID == objectID 
                 
-//             );
-//             console.log(result);
-//            // setStudents(result);
-//             setItems(result.Items);
-//             //console.log(res.data);
-//           })
-//           .catch((err) => {
-//             alert(err);
-//           });
-//       }
+            );
+            console.log(result);
+           // setStudents(result);
+           result.Items;
+            console.log(result.items);
+            // console.log(itemIDs.length)
+            axios
+            .get("http://localhost:8070/items/getItems")
+            .then((res) => {
+              
+              let result2 = res.data;
+                let newItems = [];
 
-//        function displayRating(){
-//         axios
-//         .get("http://localhost:8070/review/get")
-//         .then((res) => {
-//           setRatings(res.data);
-//           //console.log(ratings[0].itemid)
-//           console.log(res.data);
-//         })
-//         .catch((err) => {
-//           alert(err);
-//         });
-//       }
-//     //displayRating();
-//      getItems();
+              for(let i = 0; i < 1; i++){
+                  for(let j = 0; j < 3; j++){
+                      if(itemIDs[i] == result2[j]._id){
+                        newItems.push(result2[j]);
+                      }
+                  }
+              }
 
-//     }, []);
+              console.log(newItems);
+                          
+              
+            })
+            .catch((err) => {
+              alert(err);
+            });
+
+            //console.log(res.data);
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
+
+       function displayRating(){
+        axios
+        .get("http://localhost:8070/review/get")
+        .then((res) => {
+          setRatings(res.data);
+          //console.log(ratings[0].itemid)
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
+    //displayRating();
+     getItems();
+
+    }, []);
 
 //     useEffect(() => {
 //       //displayStatus();
@@ -150,7 +178,7 @@
 //       document.getElementById("showBtn").innerHTML = "show more";
 //     }
 //   }
-
+return(<div></div>)
 //   return (
 //     <div>
 //       <div class="row">
@@ -208,4 +236,4 @@
 //       </div>
 //     </div>
 //   );
-// }
+}

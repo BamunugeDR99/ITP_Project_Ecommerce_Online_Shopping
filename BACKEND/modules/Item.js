@@ -95,6 +95,11 @@ const ItemSchema = new Schema({
         type : String,
         required : true,
         default : "0"
+    },
+
+    SellerID : {
+        type : String,
+        required : false,
     }
 
 

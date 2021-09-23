@@ -18,12 +18,12 @@ const ReviewSchema = new Schema({
     },
     reviewstatus : {
         type : String,
-        required : true,
+        required : false,
         default: false
     },
     reportreason : {
         type : String,
-        required : true
+        required : false
     },
     customerid : {
         type : String,
@@ -35,7 +35,7 @@ const ReviewSchema = new Schema({
     },
     sellerid : {
         type : String,
-        required : true
+        required : false
     },
 
     // reviewcus : [{
