@@ -32,6 +32,7 @@ export default function SellerPassword(props) {
       props.history.push("/update/" + id);
   };
 
+
   return (
 
     <div className="sellerpass">
