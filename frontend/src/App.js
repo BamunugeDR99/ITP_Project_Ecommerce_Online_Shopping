@@ -161,12 +161,12 @@ function App() {
       <Route path = "/Customer/WriteReview" exact component = {WriteReview}/>
 
 
-      <Route path = "/Customer/ItemDetails" exact component = {ItemView}/> 
+      <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
         {/* id  */}
       {/* // from my item incomplete */}
       
-      {/* <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/> */}
+      <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/>
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer" component = {Footer_customer}/>
@@ -180,6 +180,7 @@ function App() {
       <Route path = "/Seller/MyDiscountedItems"  exact component = {AllDiscountedItems}/>
       <Route path = "/Seller/MyPackages"  exact component = {AllPackages}/>
       <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
+      <Route path = "/Seller/ItemReviews/:id" exact component = {SellerReview}/>
       <Route path = "/Seller/updateProfile/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>

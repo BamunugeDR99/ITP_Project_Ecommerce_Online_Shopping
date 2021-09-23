@@ -9,11 +9,17 @@ export default function ViewCardDetails(props){
     const [paymentdetails,setpaymentdetails] = useState([]);
     const [loads,setLoad] = useState(false);
     const [data,setData] = useState();
-    
+    let objectID = localStorage.getItem("CustomerID");
     useEffect(() =>{
         function getpaymentdetails(){
             axios.get("http://localhost:8070/paymentdetails/get").then((res) =>
             {
+
+                // let result = res.data.filter(
+                //     (post) =>
+                //     post.SellerID == objectID             
+                //   );
+
                 setpaymentdetails(res.data);
                 console.log(res.data);
                 

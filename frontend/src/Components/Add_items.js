@@ -111,7 +111,7 @@ export default function Add_items(props) {
           icon: 'success',
           title: 'Your Item has been saved',
           showConfirmButton: false,
-          timer: 1200
+          timer: 1500
         })
 
          props.history.push("/Seller/Home");

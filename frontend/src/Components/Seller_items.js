@@ -461,7 +461,13 @@ function displayStarRating(id,totalAverage){
      
   }
 
-  return (
+
+
+function showwMore(id){
+  //alert("a");
+   props.history.push("/Seller/ItemReviews/"+ id);
+}
+    return (
     <div>
       <div >
        <br/>
@@ -697,7 +703,7 @@ function displayStarRating(id,totalAverage){
                         Delete
                       </button>
                       <span> </span> <br/><br/>
-                      <button class="btn btn-success">Show more</button>
+                      <button class="btn btn-success" onClick = {() => showwMore(items._id)}>Show more</button>
                     </center>
                     <br />
                     <center>
