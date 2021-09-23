@@ -79,6 +79,7 @@ import AdminReport from './Components/AdminReport';
 import ItemView from './Components/ItemView';
 // import test from './Components/test';
 import ContactSeller from './Components/ContactSeller';
+import PaymentHistory from './Components/PaymentHistory';
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -166,7 +167,7 @@ function App() {
       <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
         {/* id  */}
       {/* // from my item incomplete */}
-      
+      <Route path = "/Customer/paymentHistory" exact component = {PaymentHistory}/>
       <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/>
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>

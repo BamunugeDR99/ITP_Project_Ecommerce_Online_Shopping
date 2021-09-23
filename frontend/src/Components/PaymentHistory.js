@@ -1,23 +1,26 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
+
 //import {ClipLoader} from "react-spinners";
 
 
 export default function PaymentHistory(props){
     const [payhistory,setpayhistory] = useState([]);
     const [loads,setLoad] = useState(false);
-    
+    const [data, setData] = useState();
+
+
     useEffect(() =>{
         function getpayhistory(){
-            axios.get("http://localhost:8070/paymentdetails/get").then((res) =>
+            axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
             {
                 setpayhistory(res.data);
                 console.log(res.data);
                 
-                
-            }).catch((err) =>{
+                })
+            .catch((err) =>{
                 alert(err);
-            })
+            });
         }
        
         getpayhistory();
@@ -42,8 +45,9 @@ export default function PaymentHistory(props){
                         <tr>
                         <th scope="col">Transaction Time</th>
                         <th scope="col">Recipt No</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Payment Type</th>
+                        {/* <th scope="col">Package ID</th> */}
+                        {/* <th scope="col">Item List</th> */}
                         <th scope="col"> </th>
                         </tr>
                     </thead>
@@ -56,17 +60,24 @@ export default function PaymentHistory(props){
                    
                     <tbody>
                         <tr>
-                        <th>{payhistory.trantime}</th>
-                        <td>{payhistory.reciptno}</td>
-                        <td>{payhistory.description}</td>
-                        <td>{payhistory.amount}</td>
+                        <th>{payhistory.TransTime}</th>
+                        <th>{payhistory.RecieptNo}</th>
+                        <th>{payhistory.PaymentType}</th>
+                        {/* {payhistory.ItemList.map((Il)=>{
+                            return(
+                        <th>{Il}</th>
+                            )
+                        })} */}
+                        {/* <th>{payhistory.PacakgeID}</th> */}
+                        {/* <th>{payhistory.ItemList}</th> */}
+                        
                         <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td>
                         </tr>
                        
                        
                     </tbody>
                 // </div>
-            )
+            );
 
         })}
 
@@ -74,5 +85,5 @@ export default function PaymentHistory(props){
         </table>
 
         </div>
-    )
+    );
 }
