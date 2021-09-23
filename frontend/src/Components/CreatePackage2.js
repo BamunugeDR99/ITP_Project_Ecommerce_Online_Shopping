@@ -8,7 +8,7 @@ export default function CreatePackage2(props) {
 
 
     //console.log(props.location.state);
-    let seller = "56890FFF";
+    let seller = localStorage.getItem("SellerID");
     let content = props.location.state;
     //console.log(content);
     // content.map((item) => {

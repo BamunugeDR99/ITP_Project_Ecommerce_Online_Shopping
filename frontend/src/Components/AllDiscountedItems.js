@@ -268,7 +268,11 @@ export default function AllDiscountedItems(props) {
             .get("http://localhost:8070/items/getItems")
             .then((res) => {
 
-                filterContent(res.data, userSearch);
+              let seller = localStorage.getItem("SellerID");
+
+            let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.SellerID === seller)
+
+                filterContent(filteredData, userSearch);
                 console.log(res.data);
             })
             .catch((err) => {

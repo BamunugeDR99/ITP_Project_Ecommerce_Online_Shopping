@@ -27,7 +27,7 @@ export default function AllPackages(props) {
             axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
 
                 console.log(res.data);
-                setPackages(res.data);
+                setPackages(res.data.filter((item) =>  item.packageAvailability== true));
 
                 console.log(packages);
 
@@ -98,7 +98,8 @@ export default function AllPackages(props) {
             .get("http://localhost:8070/Packages/getPackages")
             .then((res) => {
 
-                filterContent(res.data, userSearch);
+                let filteredData = res.data.filter((item) =>  item.packageAvailability== true)
+                filterContent(filteredData, userSearch);
                
             })
             .catch((err) => {

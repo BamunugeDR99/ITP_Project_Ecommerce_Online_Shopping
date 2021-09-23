@@ -13,6 +13,7 @@ import go from "./../images/go.jfif";
 export default function AllPackages(props) {
 
     const [items, setItems] = useState([]); //Defines that items is an array
+    let [packSearchAlert, setPSearchAlert] = useState([]);
 
     const [packages, setPackages] = useState([]); //Defines that items is an array
     let fitems = [];
@@ -28,7 +29,8 @@ export default function AllPackages(props) {
             axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
 
                 console.log(res.data);
-                setPackages(res.data);
+                let seller = localStorage.getItem("SellerID");
+                setPackages(res.data.filter((item) =>item.seller === seller));
 
                 console.log(packages);
 
@@ -174,25 +176,37 @@ export default function AllPackages(props) {
     //search
     function filterContent(data, userSearch) {
 
+        // setPackages(res.data.filter((item) =>item.seller === seller));
+
+
         let result = data.filter((post) =>
             post.packageName.toLowerCase().includes(userSearch.toLowerCase())
 
         );
 
 
-
-        setPackages(result);
-
         if (result != null) {
             setLoad(false);
             //document.getElementById("txt2").innerHTML = "";
+            setPSearchAlert("");
         }
 
-        if (result.length == 0) {
+        else if (result.length == 0) {
             //alert("d");
             setLoad(true);
+            
+            setPSearchAlert("Ooops ! We don't have quite the thing you are looking for...");
+
             //document.getElementById("txt2").innerHTML = "No Result Found!";
         }
+
+        else{
+           
+           
+        }
+
+        setPackages(result);
+
     }
 
     // search
@@ -205,7 +219,12 @@ export default function AllPackages(props) {
             .get("http://localhost:8070/Packages/getPackages")
             .then((res) => {
 
-                filterContent(res.data, userSearch);
+
+                
+                let seller = localStorage.getItem("SellerID");
+                let filteredData = res.data.filter((item) =>item.seller === seller) 
+
+                filterContent(filteredData, userSearch);
 
             })
             .catch((err) => {
@@ -261,6 +280,10 @@ export default function AllPackages(props) {
                         onChange={(e) => handleSearch(e.target.value)}
                     />
                     <br></br>
+
+
+                        
+            <p id="PackageSearchAlert" style={{ color: 'red', fontSize: '26px' }}>{packSearchAlert}</p>
 
 
                     <div className="row">

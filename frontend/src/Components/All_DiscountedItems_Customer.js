@@ -178,7 +178,10 @@ export default function AllDiscountedItems(props) {
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        filterContent(res.data, userSearch);
+
+        let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true)
+
+        filterContent(filteredData, userSearch);
         console.log(res.data);
       })
       .catch((err) => {

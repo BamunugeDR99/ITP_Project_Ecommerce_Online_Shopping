@@ -28,7 +28,9 @@ export default function CreatePackage1(props) {
 
             axios.get("http://localhost:8070/items/getItems").then((res) => {
 
-                setItems(res.data);
+                let seller = localStorage.getItem("SellerID");
+
+                setItems(res.data.filter((item) =>item.SellerID === seller));
 
 
                 console.log(items);
@@ -211,7 +213,7 @@ export default function CreatePackage1(props) {
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1" src={go} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1" src={"/Images/" + item.Images[0]} width="286px" height="250px" />
                                             {/* <div className='inner'><label><b>-{item.discountPercentage}%</b></label></div> */}
                                         </div>
                                         <div className="card-body">
