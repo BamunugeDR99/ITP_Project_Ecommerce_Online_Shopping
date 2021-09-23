@@ -121,6 +121,7 @@ import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
 import ConfirmPayment from './Components/ConfirmPayment';
 import PaymentHistory from './Components/PaymentHistory';
+
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -149,6 +150,7 @@ function App() {
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
       <Route path = "/Customer/Payhis" exact component = {PaymentHistory}/>
+      <Route path = "/Customer/Payhis" exact component = {}/>
 
 
 
