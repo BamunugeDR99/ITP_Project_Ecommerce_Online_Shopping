@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SignUp from "./SignUp";
+import Swal from 'sweetalert2'
 
 export default function CustomerLogin(props) {
   //remember me
@@ -71,6 +71,18 @@ export default function CustomerLogin(props) {
         //alert(err);
         console.log(err.response.data);
         // alert(err.response.data.error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please Check Your Username & Password!',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
         setErrorMsg(err.response.data.error);
       });
   }
