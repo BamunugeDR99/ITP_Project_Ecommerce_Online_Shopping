@@ -27,6 +27,7 @@ export default function PaymentHistory(props){
     
     
     );
+    
 
 
 
@@ -36,7 +37,7 @@ export default function PaymentHistory(props){
         <div className = "container">
            <center> <h1>Payment History</h1></center>
             <h1 id = "txt"></h1>
-            <table class="table table-hover table-dark">
+            <table class="table table-hover table">
                     <thead>
                         <tr>
                         <th scope="col">Transaction Time</th>
@@ -59,7 +60,7 @@ export default function PaymentHistory(props){
                         <td>{payhistory.reciptno}</td>
                         <td>{payhistory.description}</td>
                         <td>{payhistory.amount}</td>
-                        <td><button class="btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td>
+                        <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td>
                         </tr>
                        
                        

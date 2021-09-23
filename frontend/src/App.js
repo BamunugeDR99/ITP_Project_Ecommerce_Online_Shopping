@@ -192,7 +192,7 @@ function App() {
     
     {/* Admin */}
     <Route path = "/admin/login" exact component = {AdminLogin}/>
-    <Route path = "/credit" exact component = {CreditCardTemp}/>
+    
 
     </div>
   </Router>
