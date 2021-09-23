@@ -65,11 +65,21 @@ export default function ContactAdmin(props){
         //setErrorMsg("");
         //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         // alert("Message Sended Successfully!");
-        Swal.fire(
-            'Good job!',
-            'You Send the message!',
-            'success'
-          )
+        // Swal.fire(
+        //     'Good job!',
+        //     'You Send the message!',
+        //     'success'
+            
+        //   )
+          Swal.fire({
+            title: "Good job!",
+            text: "You send the messege!",
+            icon: "success",
+            button: "ok!"
+            
+        });
+        props.history.push("/Customer/Home");
+        // window.location.reload();
         
       }).catch((err) =>{
         alert(err)

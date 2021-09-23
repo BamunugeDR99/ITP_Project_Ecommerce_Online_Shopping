@@ -73,7 +73,8 @@ export default function WriteReview(props){
           'You Send the message!',
           'success'
         )
-        
+        props.history.push("/Customer/Home");
+
       }).catch((err) =>{
         alert(err)
       })
@@ -129,7 +130,7 @@ function  getNoOfStars(){
     
           <div className="row" style={{fontSize:'22px', padding:'20px 0px 20px 50px'}}>
             <div className="col">
-              <span style={{color:'black', fontStyle:'strong'}}>{items.name}</span>
+              <span style={{color:'black', fontStyle:'strong'}}>{items.Item_name}</span>
             </div>
             <div className="col">
           
@@ -145,7 +146,7 @@ function  getNoOfStars(){
           <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
               <img src=
-              {`../Images/{item.itemImage}`}
+              {"/Images/"+items.Images}
               style={{width:'70%'}}/>
             </div>
             <div className="col">

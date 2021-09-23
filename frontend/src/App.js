@@ -119,6 +119,7 @@ import ViewCardDetails from './Components/ViewCardDetails';
 import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
+import Sellermsg from './Components/Sellermsg';
 import ConfirmPayment from './Components/ConfirmPayment';
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -149,6 +150,7 @@ function App() {
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
       <Route path = "/Customer/WriteReview" exact component = {WriteReview}/>
+      
 
 
       <Route path = "/Customer/ItemDetails" exact component = {ItemView}/> 
@@ -175,6 +177,7 @@ function App() {
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
+      <Route path = "/Seller/Sellermsg" exact component = {Sellermsg}/>
       <Route path = "/Seller" component = {Footer_customer}/>
     
     </div>

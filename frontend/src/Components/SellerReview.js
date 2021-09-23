@@ -14,6 +14,12 @@ export default function SellerReviews(props){
     const [items,setItems] = useState([]);
     let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
+
+    
+  const [description,setDescription] = useState("");
+  const [date,setDate] = useState("");
+  const [noofstars,setNoofstars] = useState("");
+  const [reviewstatus,setReviewstatus] = useState("");
     
   const [updateReviewId,setupdateReviewId] = useState("");
 
@@ -36,6 +42,7 @@ export default function SellerReviews(props){
       customerName,
       customerImage,
       Review,
+      review_id,
       Stars,
     };
     let content;
@@ -107,6 +114,7 @@ export default function SellerReviews(props){
                 customerImage: customers[j].userImage,
                 Review: reviews[i].description,
                 Stars: reviews[i].noofstars,
+                review_id:reviews[i]._id
               };
   
               reviewWithCustomers.push(reviewWithCustomer);
@@ -205,74 +213,110 @@ function displayStarRating(totalAverage){
 }
 
 
-function updatee(e){
-
-  e.preventDefault();
-
-  const ReviewId = updateReviewId;
-  //console.log(ReviewId);
-
-  const newReview = {
-    
-    reportreason,
-  }
-
-  console.log(newReview);
-
-  axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
-
-    setReview(" ");
 
 
-    alert("Updated!");
-     Swal.fire(
-       'Good job!',
-       'You Send the report!',
-        'success'
-     )
-    
-    
-  }).catch((err) =>{
-    alert(err)
-  })
+function updatee(id){
+  console.log(id)
+  // e.preventDefault();
+  // const ReviewId = updateReviewId;
+  // //console.log(ReviewId);
+  // const newReview = {
+   
+  //   reportreason,
+  // }
+  // console.log(newReview);
+
+  // axios.put("http://localhost:8070/review/updateReview/" +id,newReview).then(()=>{
+  //   setReview(" ");
+    Swal.fire({
+      title: 'Submit your Report',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Send',
+      showLoaderOnConfirm: true,
+     
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(result.value)
+        let newItem = {
+          reportreason : result.value,
+        }
+        axios.put("http://localhost:8070/review/updateRev/" +id,newItem).then((res)=>{
+          setReportreason(" ");
+          console.log(result.value)
+          // alert("success");
+        }).catch((err)=>{
+          console.log(err)
+        })
+        Swal.fire('Good job!',
+        'You Send the report!',
+         'success'
+        )
+      }
+    })
+
 }
 
-// function sendData(e){
+
+// function updatee(id){
+
+//   console.log(id)
+
+//     Swal.fire({
+//       title: 'Submit your Report',
+//       input: 'text',
+//       inputAttributes: {
+//         autocapitalize: 'off'
+//       },
+//       showCancelButton: true,
+//       confirmButtonText: 'Send',
+//       showLoaderOnConfirm: true,
  
-//   const ReviewId = props.match.params.id; 
-//   console.log(ReviewId);
- 
-//   // alert("d0");
-//   e.preventDefault();
+//       allowOutsideClick: () => !Swal.isLoading()
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         console.log(result.value)
 
-//   //   const newReview = {
-    
-// //     reportreason,
-// //   }
+//         const updatedReview = {
 
-//   axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
-//     alert("Report Updated");
-//     Swal.fire(
-//       'Good job!',
-//       'You Send the report!',
-//       'success'
-//     )
-//   console.log(data);
+//           description,
+//           date,
+//           noofstars,
+//           // customerid,
+//           // itemid,
+//           // sellerid,
+//           reviewstatus,
+//           reportreason
+//       }
 
-//   }).catch((err) =>{
-//     alert(err)
-//   })
+//       console.log(updatedReview);
+      
+//         axios.put("http://localhost:8070/review/updateRev/" +id,result.value).then((res)=>{
+          
+//           setReportreason(" ");
+//           console.log(result.value)
+//           alert("success");
+//         }).catch((err)=>{
+//           console.log(err)
+//         })
+//         Swal.fire('Good job!',
+//         'You Send the report!',
+//          'success'
+//         )
+//       }
+//     })
+
 // }
 
-// function handle(e){
-//   const newdata = {...data}
-//   newdata[e.target.id] = e.target.value
-//   setData(newdata)
-// }
+
 
 
  return(    
- <div style={{padding:'20px 15px 10px 50px'}}>    
+ <div className="rev" style={{padding:'20px 15px 10px 50px'}}>    
     <div className="row" >
         <div className="col-6" style={{alignItems:'center'}}>
         
@@ -290,14 +334,14 @@ function updatee(e){
                       //  {"/Images/" + items.userImage[0]}
                        />
                        <div>
-                          <img style={{width:'30%',  padding:'10px'}} src={p2}
-                          // {`../images/${items.Item_name}`}
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Item_name}
                           />
-                          <img style={{width:'30%',  padding:'10px'}} src={p2}
-                          // {`../images/${items.Item_name}`}
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Item_name}
                           />
-                          <img style={{width:'30%',  padding:'10px'}} src={p2}
-                          // {`../images/${items.Item_name}`}
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Item_name}
                           />
                       </div>
                     </div>
@@ -432,10 +476,52 @@ function updatee(e){
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal" data-target="#exampleModalCenter">  
-                                <button type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                <button  onClick = {()=> updatee(reviewss.review_id)}  type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
                             </a>
                         </div>
                     </div>
+
+
+
+                    {/* <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <form>
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Report Review</h5>
+                                
+                                
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                
+                                  
+                                  <label>write your reason</label>
+                                  <input type="text" class="form-control" 
+                                  required  onChange= {
+                                          (e)=>{
+                                            setReportreason(e.target.value);
+                                            
+                                          }
+                                        }
+                                        />
+                                
+                              </div>
+                              
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button 
+                                  onClick = {()=> updatee(reviewss._id)} 
+                                  type="button" class="btn btn-primary">Send</button>
+                              
+                                
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div> */}
                 </div>  
                
                 );
@@ -446,51 +532,13 @@ function updatee(e){
         </div> 
 
 
-        <form 
+        {/* <form 
         // onSubmit = {sendData}
-        >
-      
-         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <form>
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Report Review</h5>
-                      
-                      
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      {/* <div class="form-group"> */}
-                        
-                        <label>write your reason</label>
-                        <input type="text" class="form-control" 
-                        required  onChange= {
-                                (e)=>{
-                                  setReportreason(e.target.value);
-                                  // handle(e)
-                                }
-                              }
-                              />
-                      {/* </div> */}
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button 
-                        onClick = {()=> updatee(review.review_id)} 
-                        type="button" class="btn btn-primary">Send</button>
-                     
-                      
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-           
-          </form>    
+        > */}
+      <center>
+         
+           </center>
+          {/* </form>     */}
            
           
          </div>
@@ -499,3 +547,37 @@ function updatee(e){
  )
 
 }
+
+
+// function sendData(e){
+ 
+//   const ReviewId = props.match.params.id; 
+//   console.log(ReviewId);
+ 
+//   // alert("d0");
+//   e.preventDefault();
+
+//   //   const newReview = {
+    
+// //     reportreason,
+// //   }
+
+//   axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
+//     alert("Report Updated");
+//     Swal.fire(
+//       'Good job!',
+//       'You Send the report!',
+//       'success'
+//     )
+//   console.log(data);
+
+//   }).catch((err) =>{
+//     alert(err)
+//   })
+// }
+
+// function handle(e){
+//   const newdata = {...data}
+//   newdata[e.target.id] = e.target.value
+//   setData(newdata)
+// }
