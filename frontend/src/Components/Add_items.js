@@ -63,6 +63,8 @@ export default function Add_items(props) {
       Category = "Gaming";
     } else if (valueof == 4) {
       //setSelectCategory("Other");
+      Category = "Wearable";
+    }else if(valueof == 5){
       Category = "Other";
     }
   }
@@ -427,7 +429,9 @@ export default function Add_items(props) {
                     </option>
                     <option value="2">Tablet / iPad / iPod</option>
                     <option value="3">Gaming</option>
-                    <option value="4">Other</option>
+                    <option value = "4">Wearable</option>
+                    <option value="5">Other</option>
+                    
                   </select>
                 </div>
               </div>
