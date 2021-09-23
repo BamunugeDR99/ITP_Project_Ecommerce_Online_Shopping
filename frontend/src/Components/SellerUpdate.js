@@ -90,7 +90,7 @@ export default function SellerUpdate(props) {
                     <br></br>
                     <img
                        src = {require('../images/flight-logo.png').default} 
-                      alt="Admin"
+                      alt="Seller"
                       class="rounded-circle p-1 bg-black"
                       width="175"
                     />

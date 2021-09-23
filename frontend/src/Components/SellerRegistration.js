@@ -14,8 +14,14 @@ export default function SellerRegistration(props){
 	let [year,setyear] = useState("");
 	let [email,setemail] = useState("");
 	let [description,setdescription] = useState("");
-	let logo;
+	let logo = "";
+	let logo2 = "";
+	let logo3 = "";
 	let [errorMsg, setErrorMsg] = useState("");
+
+
+	logo2 = document.getElementById("logo").value;
+	logo3 = logo2.substring(12);
 
 
 		function sendData(e){
