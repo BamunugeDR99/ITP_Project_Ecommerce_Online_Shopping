@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Swal from "sweetalert2";
 // import { FaStar } from "react-icons/fa";
 
 import {Link} from 'react-router-dom';
@@ -242,7 +243,11 @@ function sendData(e){
   //document.write("newStudent");
   axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
     alert("Report Updated");
-  //  document.getElementById("txt").innerHTML = "Report Sended Successfully!";
+    Swal.fire(
+      'Good job!',
+      'You Send the report!',
+      'success'
+    )
   console.log(data);
 
   }).catch((err) =>{
