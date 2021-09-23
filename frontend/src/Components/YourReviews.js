@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "../Css/yourreviews.css";
+// import "../Css/yourreviews.css";
 import p2 from "../images/p3.jpg";
 
 export default function YourReviews(props) {
@@ -14,13 +14,17 @@ export default function YourReviews(props) {
   let items = [];
   let itemName = "";
   let itemImage = "";
+  let itemDescription= "";
   let Review = "";
+  let Date = "";
   let [abc, setabc] = useState([]);
   let reviewWithItem = {
     review_id,
     itemName,
     itemImage,
+    itemDescription,
     Review,
+    Date,
   };
 
   let reviewWithItems = [];
@@ -62,7 +66,9 @@ let objectId = "";
               review_id  : reviews[i]._id,
               itemName: items[j].Item_name,
               itemImage: items[j].Images[0],
+              itemDescription: items[j].Description,
               Review: reviews[i].description,
+              Date: reviews[i].date,
             };
 
             reviewWithItems.push(reviewWithItem);
@@ -73,6 +79,11 @@ let objectId = "";
       console.log(reviewWithItems)
       setabc(reviewWithItems);
 
+      if(reviewWithItems.length==0){
+        document.getElementById("errortext").innerHTML="No Reviews yet!"
+        document.getElementById("error").innerHTML='<br><br><br><br><br><br><br><br><br><br>'
+      }
+      
       
     }
 
@@ -129,45 +140,87 @@ let objectId = "";
 
 
   return (
-    <div className="rev">
-      <section id="testimonials">
-        <div className="box">
+    // <div className="rev">
+    //   <section id="testimonials">
+    //     <div className="box">
           
-            <div className="testimonial-heading">
-              <h1>Your Reviews</h1>
-<br/>
+    //         <div className="testimonial-heading">
+    <div style={{padding:'20px 15px 10px 50px', width:'60%'}} className="container">    
+    
+    <div className="row" >
+
+    <div className="col">
+      
+        <h1 style={{textalign: 'center',fontstyle: 'strong',padding:'20px'}}><center><b>Your Reviews</b></center></h1>
+        <hr style={{width:'90%'}}/>
+        <br/><br/>
+        <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2>
+
+        <div id="error"></div>
+              {/* <h1>Your Reviews</h1> */}
+    {/* <br/> */}
 
             </div>
             {abc.map((re,index) => {
               return (
-                <div className="testimonial-box-container">
-                  <div class="testimonial-box">
-                    <div class="box-top">
-                      <div class="profile">
-                        <div class="profile-img">
+                // <div className="testimonial-box-container">
+                <div className="row" style={{width:'90%', padding:'10px 0px 10px 20px',margin:'0px 0px 20px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px',border:'red'}}>
+                    
+                  {/* <div class="testimonial-box"> */}
+                    {/* <div class="box-top"> */}
+                    <div className="row">
+                      {/* <div class="profile"> */}
+                        {/* <div class="profile-img">*/}
+                         <div className="col-2">
                           {/* <img src={`../images/{re.itemImage}`} className="card-img-top"/> */}
                         </div>
 
-                        <div class="name-user">
-                          <strong>{re.itemName}</strong>
-                          
-                          <div class="reviews">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                        {/* <div class="name-user"> */}
+                        <div className="col">
+                              <strong>{re.itemName}</strong>
+                              
+                                <div style={{color: "#f9d71c"}}>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                {/* <div class="client-comment">
+                                  <p>{re.Review}</p>
+                                </div> */}
+                            {/* </div> */}
+                         </div>
+                         <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                            <div className="col">
+                              <p>{re.Review}</p>
+                            </div>
                           </div>
-                          <div class="client-comment">
-                            <p>{re.Review}</p>
+
+                          <div className="row" style={{width:'100%', padding:'10px 0px 0px 10px', backgroundColor:'white'}}>
+                            <div className="col">
+                            <div class="profile">
+                                  <div>
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                      <button class="button1" onClick = {()=>setupdateReviewId(re.review_id)} type="button">
+                                        Edit Review
+                                      </button>
+                                    </a>
+                                  </div>
+                                  <div>
+                                      <button  onClick = {()=>deletee(re.review_id,index)} class="button2" type="button">
+                                        Delete Review
+                                      </button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
 
                
                     </div>
 
-                    <div class="profile">
+                    {/* <div class="profile">
                       <div>
                         <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                           <button class="button1" onClick = {()=>setupdateReviewId(re.review_id)} type="button">
@@ -181,12 +234,12 @@ let objectId = "";
                           </button>
                          
                       </div>
-                    </div>
-                  </div>
+                    </div> */}
+                  {/* </div> */}
                 </div>
               );
             })}
-    
+    {/* dd */}
             <div id="editEmployeeModal" class="modal fade">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -229,7 +282,7 @@ let objectId = "";
 
            
         </div>
-      </section>
+     {/* </section> */}
     </div>
     /* <Modal
         animation={true}

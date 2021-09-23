@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // import validator from 'validator';
 
@@ -61,9 +62,15 @@ export default function ContactSeller(props){
         setEmail(" ");
         setMessage(" ");
         // validate:validCustomer;
-        props.history.push("/Home");
+        // props.history.push("/Home");
         setErrorMsg("");
-        document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
+        // alert("Message Sended Successfully!");
+        Swal.fire(
+            'Good job!',
+            'You Send the message!',
+            'success'
+          )
         
       }).catch((err) =>{
         alert(err)

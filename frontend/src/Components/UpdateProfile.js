@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-import updateI from "./../images/updt.jpg"
+const bcrypt = require('bcryptjs')
+
 
 export default function UpdateProfile(props){
 
 	const [passwordShown, setPasswordShown] = useState(false);
+	const [NpasswordShown, setNPasswordShown] = useState(false);
+	const [CNpasswordShown, setCNPasswordShown] = useState(false);
 	
 
 	// Password toggle handler
@@ -12,15 +15,29 @@ export default function UpdateProfile(props){
 		// When the handler is invoked
 		// inverse the boolean state of passwordShown
 		setPasswordShown(!passwordShown);
+		
 	  };
+
+	  const toggleNPassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setNPasswordShown(!NpasswordShown);
+	  };
+
+	  const toggleCNPassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setCNPasswordShown(!CNpasswordShown);
+	  };
+
 
 	let Dateofb;
 
+	let[currentImage,setCurrentImage] = useState("");
 	const [birth, setBirthday] = useState("");
 	let [firstName, setFirstName] = useState("");
 	let [lastName,setLastName] = useState("");
 	let [email,setEmail] = useState("");
-	let[currentPassword,setCurrentPassword] = useState("");
 	let [phoneNumber, setPhoneNumber] = useState("");
 	//let [dob ,setDob] = useState("");
 	let dob = "";
@@ -33,6 +50,14 @@ export default function UpdateProfile(props){
 	// let [userImage ,setUserImage] = useState("");
 	let objectID = "";
 	let userImage = "";
+
+	let image2 = "";
+	let image3 = "";
+
+	
+	let [Currentpassword , setCurrentPassword ] = useState("");
+	
+
 
 	const [customer,setCustomer] = useState([]);
 
@@ -49,6 +74,8 @@ export default function UpdateProfile(props){
 	}
 
 
+	let flag = 0;
+	let flag1 = 0;
 
 	
 
@@ -67,13 +94,17 @@ export default function UpdateProfile(props){
 				setFirstName(res.data.firstName);
 				setLastName(res.data.lastName);
 				setEmail(res.data.email);
-				// setCurrentPassword(res.data.password);
 				setPhoneNumber(res.data.phoneNumber);
 				setAddress(res.data.address);
 				setUsername(res.data.username);
 				gender = res.data.gender;
 				userImage = res.data.userImage;
 				dob = res.data.dob;
+				setCurrentImage(res.data.userImage);
+				setPassword(res.data.password);
+				// setCurrentConfirmPassword(res.data.confirmPassword);
+				
+
 				
 
 				
@@ -89,27 +120,108 @@ export default function UpdateProfile(props){
 	}, []);
 
 
-	// function checkPassword(){
-	// 	if (currentpassword == currentpasswordtextfieldpasssword){
-	// 		confirm and new 
-	// 		display error
-	// 		flag = 0
-	// 	}else{
-	// 		flag = 1
+	function Imagecheck(){
 
-	// 	}
-	// }
+		let uimage = document.getElementById("user_image").value;
+
+		if (uimage === "") {
+
+			image3 = currentImage;
+
+		}else{
+
+			 image2 = document.getElementById("user_image").value;
+		  
+			 image3 = image2.substring(12);
+
+		}
+	}
+
+	function validPhoneNumber() {
+		const phoneNumber = document.getElementById("phone").value;
+	
+		if (isNaN(phoneNumber)) {
+		  flag1 = 0;
+		  alert("Enter only numeric value to phone number!");
+		} else if (phoneNumber.length < 10) {
+		  flag1 = 0;
+		  alert("Phone number must be 10 digit!");
+		} else if (phoneNumber.length > 10) {
+		  flag1 = 0;
+		  alert("Phone number must be 10 digit!");
+		} else if (phoneNumber.charAt(0) != 0) {
+		  flag1 = 0;
+		  alert("Phone number must start with 0!");
+		} else {
+		  flag1 = 1;
+		}
+	  }
+
+
+	function changePassword(){
+
+		let psw = document.getElementById("current_password").value;  
+
+		if(psw === ""){
+
+			psw = password;
+
+		}else{
+
+			let nCpsw = document.getElementById("new_password").value;
+		    let nCopsw = document.getElementById("confirm_new_password").value;
+
+		    const npsw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+			const isMatch = bcrypt.compareSync(psw, password);
+
+			if(!isMatch){
+				flag = 0;
+				alert("Invalid Current Password!");
+				
+			}else{
+
+				if(nCpsw.length < 8){
+					flag = 0;
+    			    alert("Password must be contain minimum 8 charcters!");
+
+				}else if(!nCpsw.match(npsw)){
+
+					flag = 0;
+					alert(
+					  "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit");
+
+				}else if(nCpsw != nCopsw){
+					flag = 0;
+					alert("Password mismatch!");
+
+				}else{
+
+					password = bcrypt.hashSync(nCpsw, bcrypt.genSaltSync(12));	
+					flag = 1;
+					
+				}
+
+			}
+		}
+
+
+
+	}
+
+
+
 	function UpdateCusProfile(){
 		// alert("d0");
 		// e.preventDefault();
 		 genderSelect();
 		images();
 		birthday();
-		// checkPassword();
+		Imagecheck();
+		changePassword();
+		validPhoneNumber()
   
-		let image2 = document.getElementById("user_image").value;
-		  
-		let image3 = image2.substring(12);
+		if(flag == 1 && flag1 == 1){
 
 		const updatecus={
 
@@ -138,11 +250,9 @@ export default function UpdateProfile(props){
 		}).catch((err) =>{
 			alert(err)
 		  })
+		}
 
 			}
-	
-
-	
 	
 	
 	function deleteCustomer(id){
@@ -155,11 +265,13 @@ export default function UpdateProfile(props){
 	  }).catch((err) =>{
 		  alert(err);
 	  })
+
+
+
+	
   }
 
 
-
-  
 
     return(
 
@@ -175,7 +287,7 @@ export default function UpdateProfile(props){
 			
 			<div className="cardUpdatePro">
 			
-			<div className="top-leftI">Edit Profile</div>
+			<h1 className="top-leftI">Edit Profile</h1>
 			
 			
 			<div className="UserProImage">
@@ -183,6 +295,9 @@ export default function UpdateProfile(props){
 			<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
 			
 			</div>
+			<br/>
+			<h2 style={{color:"black", textAlign:"center"}}>{customer.username}</h2>
+			<h3 style={{color:"black", textAlign:"center"}}>{customer.email}</h3>
 			
 			<div className="main-text">
 			
@@ -293,7 +408,7 @@ export default function UpdateProfile(props){
 			   
 			   <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Current Password"/>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="current_password" placeholder = "Current Password"/>
 					
 					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
 					<i className="bi bi-lock-fill"></i>
@@ -301,17 +416,17 @@ export default function UpdateProfile(props){
 			  
 			  <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "New Password"/>
+					<input type={NpasswordShown ? "text" : "password"} className="form-control" id="new_password" placeholder = "New Password"/>
 					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleNPassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
 			   <div className="form-group">
 					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="exampleInputPassword1" placeholder = "Confirm Password"/>
+					<input type={CNpasswordShown ? "text" : "password"} className="form-control" id="confirm_new_password" placeholder = "Confirm Password"/>
 					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
+					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleCNPassword}></i>
 					<i className="bi bi-lock-fill"></i>
 			  </div>
 			  
@@ -323,7 +438,7 @@ export default function UpdateProfile(props){
 						 <button type="submit" className="btnUpdate" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
 						</div>
 						<div className="col">
-						  <button type="submit" className="btnDelete" style = {{backgroundColor: "#D2042D"}}  onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
+						  <button type="submit" className="btnDelete" onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
 						</div>
 		 	  </div>
 			
