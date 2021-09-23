@@ -5,7 +5,7 @@ let seller = require("../modules/seller");
 
 
 //Insert -->
-router.route("/add").post((req,res)=>{
+router.route("/add").post(async(req,res)=>{
     // http://localhost:8070/seller/add
 
     const ownername = req.body.ownername;
@@ -20,7 +20,7 @@ router.route("/add").post((req,res)=>{
 
  try {  
 
-    const emailExist = seller.findOne({ email: email});
+    const emailExist = await seller.findOne({ email: email});
 
     if(emailExist){
  
@@ -38,7 +38,7 @@ router.route("/add").post((req,res)=>{
         logo
     })
 
-    newseller.save();
+    await newseller.save();
        
         res.json("Your request added successfully!");
                       

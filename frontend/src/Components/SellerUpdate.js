@@ -53,16 +53,13 @@ export default function SellerUpdate(props) {
 
     
       //  alert("Seller Updated Successfully!");
-      // document.getElementById("txt").innerHTML = "Seller Updated Successfully!";
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Your Profile has been updated',
-        showConfirmButton: false,
-        timer: 1500
-      })
-       props.history.push("/Seller/MyProfile");
-        
+      Swal.fire(
+        'Success!',
+        'Successfully Updated !',
+        'success'
+      )
+       
+        props.history.push("/Seller/MyProfile");
   
       }).catch((err) =>{
 
