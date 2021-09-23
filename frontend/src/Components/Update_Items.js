@@ -236,7 +236,7 @@ export default function Update_Items(props) {
 
   function gotoAddDiscount(id){
 
-    props.history.push("/addDiscount/" + id);
+    props.history.push("/Seller/AddDiscount/" + id);
   }
 
 

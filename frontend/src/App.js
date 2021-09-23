@@ -186,8 +186,14 @@ function App() {
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
+      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
+      
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
+
+      <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
+      <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
+      
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>

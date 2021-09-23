@@ -21,11 +21,15 @@ export default function AllDiscountedItems(props) {
 
         //function to getItems
         function getItems() {
+
+          let seller = localStorage.getItem("SellerID");
+
+            
             //call a backend URL using axios
             axios.get("http://localhost:8070/items/getItems").then((res) => {
 
                 console.log(res.data);
-                setItems(res.data.filter((item) => item.DiscountStatus === true));
+                setItems(res.data.filter((item) => item.DiscountStatus === true && item.SellerID === seller));
 
                 fitems = items;
                 console.log(fitems);
@@ -225,7 +229,7 @@ export default function AllDiscountedItems(props) {
 
     function update(id) {
         console.log(id);
-        props.history.push("/updateDiscount/" + id);
+        props.history.push("/Seller/UpdateDiscount/" + id);
     };
 
 
@@ -264,7 +268,11 @@ export default function AllDiscountedItems(props) {
             .get("http://localhost:8070/items/getItems")
             .then((res) => {
 
-                filterContent(res.data, userSearch);
+              let seller = localStorage.getItem("SellerID");
+
+            let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.SellerID === seller)
+
+                filterContent(filteredData, userSearch);
                 console.log(res.data);
             })
             .catch((err) => {

@@ -142,7 +142,7 @@ export default function UpdatePackages(props) {
 
                 //alert("Package Updated");
                 swal.fire("Success", "Package Updated Successfully", "success");
-                props.history.push("/allpackages");
+                props.history.push("/Seller/MyPackages");
             }).catch((err) => {
 
                 alert(err);
@@ -181,7 +181,8 @@ export default function UpdatePackages(props) {
                     <form>
                         <div className="row">
                             <div className="col-md-3 border-right">
-                                <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={go} width="250px" height="250px" /><span className="font-weight-bold">{packageName}</span><span className="text-black-50">packageID : {package1._id}</span><span> </span></div>
+                              
+                                <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + package1.image} width="250px" height="250px" /><span className="font-weight-bold">{packageName}</span><span className="text-black-50">packageID : {package1._id}</span><span> </span></div>
                             </div>
 
                             <div className="col-md-4 border-right ">
