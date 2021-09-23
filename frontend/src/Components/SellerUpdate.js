@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 import "../Css/sellerprofile.css";
 
@@ -52,8 +53,15 @@ export default function SellerUpdate(props) {
 
     
       //  alert("Seller Updated Successfully!");
-       document.getElementById("txt").innerHTML = "Seller Updated Successfully!";
-       
+      // document.getElementById("txt").innerHTML = "Seller Updated Successfully!";
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your Profile has been updated',
+        showConfirmButton: false,
+        timer: 1500
+      })
+       props.history.push("/Seller/MyProfile");
         
   
       }).catch((err) =>{
@@ -89,7 +97,7 @@ export default function SellerUpdate(props) {
                   <div class="d-flex flex-column align-items-center text-center">
                     <br></br>
                     <img
-                       src = {require('../images/flight-logo.png').default} 
+                       src = {'/Images/'+data.logo}
                       alt="Admin"
                       class="rounded-circle p-1 bg-black"
                       width="175"
@@ -211,6 +219,7 @@ export default function SellerUpdate(props) {
       </div>
  
     </div>
+    <br/><br/><br></br>
     </div>
   );
 }

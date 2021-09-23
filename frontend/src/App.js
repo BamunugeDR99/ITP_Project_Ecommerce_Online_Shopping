@@ -125,6 +125,7 @@ import ConfirmPayment from './Components/ConfirmPayment';
 
 //Admin
 import AdminLogin from './Components/AdminLogin';
+import EditCardDetails from './Components/EditCardDetails';
 
 
 function App() {
@@ -153,6 +154,8 @@ function App() {
       <Route path = "/Customer/addCard" exact component = {AddpaymentMethod}/>
       <Route path = "/Customer/ContactSeller" exact component = {ContactSeller}/>
       <Route path = "/Customer/MyWallet" exact component = {ViewCardDetails}/>
+      <Route path = "/Customer/UpdateCard/:id" exact component = {EditCardDetails}/>
+
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
       <Route path = "/Customer/WriteReview" exact component = {WriteReview}/>
@@ -177,6 +180,7 @@ function App() {
       <Route path = "/Seller/MyDiscountedItems"  exact component = {AllDiscountedItems}/>
       <Route path = "/Seller/MyPackages"  exact component = {AllPackages}/>
       <Route path = "/Seller/MyProfile" exact component = {SellerProfile}/>
+      <Route path = "/Seller/updateProfile/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>

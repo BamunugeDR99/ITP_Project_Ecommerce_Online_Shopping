@@ -19,11 +19,11 @@ export default function Seller_items(props) {
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           
-          // let result = res.data.filter(
-          //                 (post) =>
-          //                   post.CustomerID.includes(objectID)            
-          //               );
-          setItems(res.data);
+          let result = res.data.filter(
+                          (post) =>
+                            post.SellerID == objectID            
+                        );
+          setItems(result);
           console.log(res.data);
         })
         .catch((err) => {
@@ -162,7 +162,11 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
-        filterContent(res.data, userSearch);
+        let results = res.data.filter(
+          (post) =>
+          post.SellerID == objectID           
+        );
+        filterContent(results, userSearch);
       })
       .catch((err) => {
         alert(err);
@@ -405,7 +409,11 @@ function displayStarRating(id,totalAverage){
     .get("http://localhost:8070/items/getItems")
     .then((res) => {
       
-      let item = res.data;
+      let result = res.data.filter(
+        (post) =>
+        post.SellerID == objectID             
+      );
+      let item = result;
       // console.log(item[2]._id);
       // console.log(filterdItemsWithRatings);
       let afterFilterItemss = [];
@@ -435,8 +443,11 @@ function displayStarRating(id,totalAverage){
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        
-       setItems(res.data);
+        let result = res.data.filter(
+          (post) =>
+          post.SellerID == objectID             
+        );
+       setItems(result);
        if(res.data.length === 0){
         document.getElementById("itemsTxt").innerHTML = "No Result Found!";
       }else{

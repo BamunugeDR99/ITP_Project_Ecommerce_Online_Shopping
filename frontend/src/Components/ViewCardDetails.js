@@ -42,15 +42,9 @@ export default function ViewCardDetails(props){
            .delete("http://localhost:8070/paymentdetails/delete/" +CardId) 
 
            .then((res) => {
-
-
-
                 alert("Package Deleted");
-
+                
         //         props.history.push("/allpackages");
-
-
-
           }).catch((err)=>{
 
 
@@ -59,6 +53,12 @@ export default function ViewCardDetails(props){
 
           })
 
+    }
+
+    function updatePackage(id){
+
+        props.history.push("/Customer/UpdateCard/" + id);
+    
     }
     
 
@@ -97,7 +97,7 @@ export default function ViewCardDetails(props){
 
             <div class="float-right">
 							 
-							 <span style= {{ marginRight: "150px" , marginLeft:"80px"}}> <button id="" type="reset" class="btn btn-primary">Edit</button></span>  
+							 <span style= {{ marginRight: "150px" , marginLeft:"80px"}}> <button id="" type="reset" class="btn btn-primary"onClick ={()=>updatePackage(paymentdetails._id)} >Edit</button></span>  
 						
 							 <span><button  class="btn btn-danger " onClick ={()=>deletePackage(paymentdetails._id)}>Remove</button></span> 
 						</div>

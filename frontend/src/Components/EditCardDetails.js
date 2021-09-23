@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useState, useEffect} from "react";
 
 
-export default function EditCardDetails(){
+export default function EditCardDetails(props){
 
 
     let [cardowner, setcardowner] = useState("");
@@ -11,10 +11,12 @@ export default function EditCardDetails(){
 	let [cardcvv, setcardcvv] = useState("");
 	let cardtype = "";
     const [paymentdetails,setpaymentdetails] = useState([]);
-
+    let objectId = "";
     useEffect(() =>{
+
+        objectId = props.match.params.id;
         function getpaymentdetails(){
-            axios.get("http://localhost:8070/paymentdetails/getItem/6143954f7171f222d40afdac").then((res) =>
+            axios.get("http://localhost:8070/paymentdetails/getItem/" + objectId).then((res) =>
             {
                 setpaymentdetails(res.data);
                 console.log(res.data);
@@ -44,25 +46,30 @@ export default function EditCardDetails(){
 	
 	  }
 	
-
+      function backToWallet(){
+          props.history.push("/Customer/MyWallet");
+      }
 
     function updateCardDetails(){
-
-
+        
+        alert("ggg");
         const updateCard = {
 
-           
-            carddate
+            cardtype : paymentdetails.cardtype,
+            cardowner : paymentdetails.cardowner,
+            cardnumber : paymentdetails.cardnumber,
+            carddate,
+            cardcvv : paymentdetails.cardcvv
             
         }
 
         console.log(updateCard);
 
-		axios.put("http://localhost:8070/paymentdetails/update/6143954f7171f222d40afda", updateCard).then(()=>{
+		axios.put("http://localhost:8070/paymentdetails/update/"+ objectId, updateCard).then(()=>{
 		
 
 		alert("Card Updated Successfully!");
-		
+		props.history.push("/Customer/MyWallet");
 	
 			
 		}).catch((err) =>{
@@ -73,7 +80,7 @@ export default function EditCardDetails(){
     return(
 
         <div>
-        
+        <br/><br/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
         <div class="AddPaymentMethod">
         <div class="padding">
@@ -124,7 +131,7 @@ export default function EditCardDetails(){
                                     <div class="col-md-6">
                                         <div class="form-group">
                                              <label for="cc-cvc" class="control-label">CARD CVC</label> 
-                                             <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" readOnly Value={paymentdetails.cardcvv}
+                                             <input id="cc-cvc" type="password" class="input-lg form-control cc-cvc" readOnly Value={paymentdetails.cardcvv}
                                             /> 
                                               </div>
                                     </div>
@@ -133,9 +140,9 @@ export default function EditCardDetails(){
                                
                                      <div class="float-right">
                                      
-                                     <span style= {{ marginRight: "200px"}}> <button type="reset" class="btn btn-success">Cancel</button></span>  
+                                     <span style= {{ marginRight: "200px"}}> <button type="reset" class="btn btn-success"onClick={()=> backToWallet()} >Cancel</button></span>  
                                 
-                                     <span><button type="submit" class="btn btn-primary" onClick={()=> updateCardDetails()}>Update</button></span> 
+                                     <span><button type="button" class="btn btn-primary" onClick={()=> updateCardDetails(paymentdetails._id)}>Update</button></span> 
                                 </div>
                             <br/><br/>
                             </div>
@@ -146,6 +153,7 @@ export default function EditCardDetails(){
             </form>
         </div>
         </div>
+        <br/><br/> <br/><br/>
         </div> 
         
          );

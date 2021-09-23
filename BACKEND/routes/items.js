@@ -21,6 +21,7 @@ router.route("/addItems").post((req, res) => {
   const DiscountStatus = req.body.DiscountStatus;
   const FinalPrice = req.body.FinalPrice;
   const DiscountPrecentage = req.body.DiscountPrecentage;
+  const SellerID = req.body.SellerID;
 
   const newItem = new Item({
     Item_name,
@@ -40,7 +41,8 @@ router.route("/addItems").post((req, res) => {
     ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
-    DiscountPrecentage
+    DiscountPrecentage,
+    SellerID
   });
 
   newItem
@@ -66,7 +68,8 @@ router.route("/addItems").post((req, res) => {
           ItemAvailabilityStatus : newItem.ItemAvailabilityStatus,
           DiscountStatus : newItem.DiscountStatus,
           FinalPrice : newItem.FinalPrice,
-          DiscountPrecentage : newItem.DiscountPrecentage
+          DiscountPrecentage : newItem.DiscountPrecentage,
+          SellerID : newItem.SellerID
         },
       });
     })
@@ -109,7 +112,8 @@ router.route("/update/:id").put(async (req, res) => {
     ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
-    DiscountPrecentage
+    DiscountPrecentage,
+    SellerID
   } = req.body;
 
   const updateItem = {
@@ -130,7 +134,8 @@ router.route("/update/:id").put(async (req, res) => {
     ItemAvailabilityStatus,
     DiscountStatus,
     FinalPrice,
-    DiscountPrecentage
+    DiscountPrecentage,
+    SellerID
   };
 
   const update = await Item.findByIdAndUpdate(itemID, updateItem)

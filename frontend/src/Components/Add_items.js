@@ -20,6 +20,8 @@ export default function Add_items(props) {
   const [erorMsg,setErrorMsg] = useState("");
   const [button,setButton] = useState(false)
   let flag = 0;
+
+  let SellerID = localStorage.getItem("SellerID");
   //check this again
   function warrentyCheck() {
     if (document.getElementById("customRadio2").checked) {
@@ -90,6 +92,7 @@ export default function Add_items(props) {
       Other_colors,
       Images,
       Category,
+      SellerID
     };
     console.log(newItem); // remove after checking
 

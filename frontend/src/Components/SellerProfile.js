@@ -27,16 +27,17 @@ export default function SellerProfile(props) {
 
     function update(id){
       console.log(id);
-      props.history.push("/update/" + id);
+      props.history.push("/Seller/updateProfile/" + id);
   };
 
   return (
 
     <div className="sellerprofile">
+    
     <div className="height-100 bg-light">
       <br />
       <br />
-      <h2 style={{color:"black", marginLeft:"130px", marginBottom:"20px"}}>Seller Profile</h2>
+      <h2 style={{color:"black",textAlign : "center"}}>SELLER PROFILE</h2><br/>
 
       <div class="container">
         <div class="main-body">
@@ -180,6 +181,7 @@ export default function SellerProfile(props) {
       </div>
  
     </div>
+    <br/><br/><br/><br/>
     </div>
   );
 }
