@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 
-import "../css/sellerpassword.css";
+import "../Css/sellerpassword.css";
 
 export default function SellerPassword(props) {
 

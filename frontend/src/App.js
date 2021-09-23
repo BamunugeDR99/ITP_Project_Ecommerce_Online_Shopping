@@ -87,6 +87,7 @@ import './Css/sellerregistration.css'
 
 import SellerForget from './Components/SellerForget';
 import SellerUpdate from './Components/SellerUpdate';
+import SellerPassword from './Components/SellerPassword';
 
 import SellerLogin from './Components/SellerLogin';
 import InitialPage from './Components/InitialPage';
@@ -185,10 +186,12 @@ function App() {
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
+      <Route path = "/Seller/Password" exact component = {SellerPassword}/>
     
     {/* Admin */}
     <Route path = "/admin/login" exact component = {AdminLogin}/>
     <Route path = "/credit" exact component = {CreditCardTemp}/>
+    <Route path = "/admin/sellers" exact component = {AllSellers}/>
 
     </div>
   </Router>
