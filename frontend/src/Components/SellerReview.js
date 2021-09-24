@@ -15,6 +15,7 @@ export default function SellerReviews(props){
     let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
 
+    var ipsumText = true;
     
   const [description,setDescription] = useState("");
   const [date,setDate] = useState("");
@@ -262,57 +263,6 @@ function updatee(id){
 }
 
 
-// function updatee(id){
-
-//   console.log(id)
-
-//     Swal.fire({
-//       title: 'Submit your Report',
-//       input: 'text',
-//       inputAttributes: {
-//         autocapitalize: 'off'
-//       },
-//       showCancelButton: true,
-//       confirmButtonText: 'Send',
-//       showLoaderOnConfirm: true,
- 
-//       allowOutsideClick: () => !Swal.isLoading()
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         console.log(result.value)
-
-//         const updatedReview = {
-
-//           description,
-//           date,
-//           noofstars,
-//           // customerid,
-//           // itemid,
-//           // sellerid,
-//           reviewstatus,
-//           reportreason
-//       }
-
-//       console.log(updatedReview);
-      
-//         axios.put("http://localhost:8070/review/updateRev/" +id,result.value).then((res)=>{
-          
-//           setReportreason(" ");
-//           console.log(result.value)
-//           alert("success");
-//         }).catch((err)=>{
-//           console.log(err)
-//         })
-//         Swal.fire('Good job!',
-//         'You Send the report!',
-//          'success'
-//         )
-//       }
-//     })
-
-// }
-
-
 
 
  return(    
@@ -329,19 +279,16 @@ function updatee(id){
 
                     <div className="col-4">
                       <img style={{width:'100%'}}
-                       src=
-                       {p2}
-                      //  {"/Images/" + items.userImage[0]}
-                       />
+                       src={"/Images/" + items.Images}/>
                        <div>
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Item_name}
+                          {"/Images/"+items.Images}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Item_name}
+                          {"/Images/"+items.Images}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Item_name}
+                          {"/Images/"+items.Images}
                           />
                       </div>
                     </div>
@@ -381,9 +328,9 @@ function updatee(id){
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
-                                    <span>{items.ItemAvailabilityStatus} </span><br/>
+                                    <span> {ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
                                     <span>{items.Specification} </span><br/>
-                                    <span>{items.Warrenty} </span>
+                                    <span>{ipsumText.toString(items.Warrenty) } </span>
                                 </div>
                                 <div className="col-2">
                                     
@@ -405,7 +352,7 @@ function updatee(id){
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{items.Unit}</span><br/>
+                                    <span>{ipsumText.toString(items.Unit) }</span><br/>
                                     <span>{items.Colors}</span><br/>
                                 </div>
                                 
@@ -451,8 +398,8 @@ function updatee(id){
                     <div className="row">
                         <div className="col-2">
                             
-                                <img style={{width:'100%'}} src={a1}
-                                // {"/Images/" + reviewss.customerImage[0]}
+                                <img style={{width:'100%'}} src=
+                                {"/Images/" + reviewss.customerImage[0]}
                                 />
                         </div>
 
