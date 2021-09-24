@@ -70,7 +70,7 @@ function SignUp(props) {
       Swal.fire('First Name is required')
        flag1 = 0;
     
-   }else if(lastName.length === 0){
+    }else if(lastName.length === 0){
 
     Swal.fire('Last Name is required')
           flag1 = 0;
@@ -80,8 +80,7 @@ function SignUp(props) {
     Swal.fire('Email is required')
           flag1 = 0;
 
-   } 
-   else if(phoneNumber.length === 0){
+    }else if(phoneNumber.length === 0){
 
     Swal.fire('Phone Number is required')
           flag1 = 0;
@@ -112,34 +111,32 @@ function SignUp(props) {
     Swal.fire('Birthday is required')
     flag1 = 0;
 
-}else if(gender.length === 0){
+    }else if(gender.length === 0){
 
   Swal.fire('Gender is required')
   flag1 = 0;
 
-}else if(username.length === 0){
+  }else if(username.length === 0){
 
   Swal.fire('Username is required')
   flag1 = 0;
 
-}
-else if(password.length === 0){
+  }
+  else if(password.length === 0){
 
   Swal.fire('Password is required')
   flag1 = 0;
-}
-else if(password.length < 8) {
+
+  }else if(password.length < 8) {
   flag1 = 0;
   Swal.fire('Password must contain minimum 8 chracters')
 
-}else if(confirmPassword.length === 0){
+  }else if(confirmPassword.length === 0){
 
   Swal.fire('Confirm Password is required')
   flag1 = 0;
 
-}
-
-else if (!password.match(psw)) {
+ }else if (!password.match(psw)) {
   flag1 = 0;
   Swal.fire('Password must contain at least one lowercase letter, one uppercase letter, one numeric digit') 
  
