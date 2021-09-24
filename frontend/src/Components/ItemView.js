@@ -21,6 +21,10 @@ export default function ItemView(props){
 
     let [ICategory, setICategory]= useState("");
 
+    var ipsumText = true;
+
+   
+
     let reviews = [];
     // let items = [];
     let itemName = "";
@@ -256,7 +260,9 @@ export default function ItemView(props){
       }
     
 
+      const array1 = [itemImage];
 
+      const found = array1.find(element=>element>1);
 
     
 return(
@@ -354,9 +360,9 @@ return(
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
-                                    <span>{items.ItemAvailabilityStatus} </span><br/>
+                                    <span>{ipsumText.toString(items.ItemAvailabilityStatus) } </span><br/>
                                     <span>{items.Specification} </span><br/>
-                                    <span>{items.Warrenty} </span>
+                                    <span>{ipsumText.toString(items.Warrenty)}</span>
                                 </div>
                                 <div className="col-2">
                                     
@@ -377,9 +383,13 @@ return(
                                 <div className="col-3">    
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
-                                    <span>{items.Unit}</span><br/>
+                                    <span>{ipsumText.toString(items.Unit) }
+                                    {/* {`items.Unit: ${ipsumText}`} */}
+                                    </span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{items.Colors}</span><br/>
+                                    <span>{found}
+                                        {/* {items.Colors} */}
+                                    </span><br/>
                                 </div>
                                 
                             </div> 

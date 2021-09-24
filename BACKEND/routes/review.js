@@ -189,39 +189,39 @@ router.route("/delete/:id").delete(async (req,res) =>{
             })
 
 
-            router.route("/updateR/:id").put(async (req,res) =>{
-                let userID = req.params.id;
-                const{description,date} = req.body;
+            // router.route("/updateR/:id").put(async (req,res) =>{
+            //     let userID = req.params.id;
+            //     const{description,date} = req.body;
             
-                const updateReview2 = {
-                    description,
-                    date,
-                    noofstars,
-                    customerid,
-                    itemid,
-                    sellerid,
-                    reviewstatus,
-                    reportreason
-                } = req.body;
+            //     const updateReview = {
+            //         description,
+            //         date,
+            //         noofstars,
+            //         customerid,
+            //         itemid,
+            //         sellerid,
+            //         reviewstatus,
+            //         reportreason
+            //     } = req.body;
 
-                 updateReview2 = {
-                    description,
-                    date,
-                    noofstars,
-                    customerid,
-                    itemid,
-                    sellerid,
-                    reviewstatus,
-                    reportreason
-                };
+            //     const updateReview = {
+            //         description,
+            //         date,
+            //         noofstars,
+            //         customerid,
+            //         itemid,
+            //         sellerid,
+            //         reviewstatus,
+            //         reportreason
+            //     };
             
-                const update = await Review.findByIdAndUpdate(userID,updateReview2).then(()=>{
-                    res.status(200).send({status: "User updated"})
-                    }).catch((err) => {
-                        console.log(err);
-                        res.status(500).send({status: "Error with updating data", error:err.message});
-                    })
-                });
+            //     const update = await Review.findByIdAndUpdate(userID,updateReview).then(()=>{
+            //         res.status(200).send({status: "User updated"})
+            //         }).catch((err) => {
+            //             console.log(err);
+            //             res.status(500).send({status: "Error with updating data", error:err.message});
+            //         })
+            //     });
             
 
 module.exports = router;
