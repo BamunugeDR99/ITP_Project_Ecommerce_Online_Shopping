@@ -14,7 +14,7 @@ function AddDiscount(props) {
 
     const [item, setItem] = useState([]);
 
-    const [image, setImage] = useState("");
+    let [image, setImage] = useState("");
 
     useEffect(() => {
 
@@ -23,10 +23,13 @@ function AddDiscount(props) {
                 const ItemId = props.match.params.id;
                 const result = await (await (axios.get("http://localhost:8070/items/get/" + ItemId))).data;
                 console.log(result);
-                console.log(result.Images);
-
+                console.log(result.Images[0]);
+                setImage(result.Images[0]);
+                image = result.Images[0];
                 setItem(result);
+
                 console.log(item);
+                console.log(image);
 
             } catch (err) {
                 console.error(err)
@@ -78,7 +81,7 @@ function AddDiscount(props) {
 
                 swal.fire("Success", "Added Discount to the Item", "success");
 
-                props.history.push("/alldiscounteditems");
+                props.history.push("/Seller/MyDiscountedItems");
             }).catch((err) => {
 
                 alert(err);
@@ -135,8 +138,8 @@ function AddDiscount(props) {
                 <div className="container rounded bg-white mt-5 mb-5 cont">
                     <div className="row">
                         <div className="col-md-3 border-right">
-                          <p>{item.Images}</p>
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + item.Images} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                         
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + image} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">

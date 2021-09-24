@@ -16,6 +16,7 @@ export default function CreatePackage1(props) {
     const [packageName, setPname] = useState("");
     const [ContentN, setContentN] = useState([]);
     const [ratings, setRatings] = useState([]);
+    let [packageNameValidation, setPnameVal] = useState("");
     
 
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
@@ -165,7 +166,15 @@ export default function CreatePackage1(props) {
 
         }
 
+        else if(packageName.length === 0){
+
+            setPnameVal("Cannot create a Package without a Name!!")
+
+        }
+
         else{
+
+         setPnameVal("");   
         sessionStorage.setItem("packageName", packageName);
         sessionStorage.setItem("Content", ContentN);
 
@@ -192,17 +201,34 @@ export default function CreatePackage1(props) {
                         <center>
                             <div class="input-group mb-4" style={{ width: '50rem' }}>
 
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="true" pattern = "^[a-zA-Z_.-]*$"
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required pattern = "^[a-zA-Z_.-]*$"
 
                                     onChange={(e) => {
                                         setPname(e.target.value);
+
+                                        if(e.target.value.length === 0){
+
+                                            setPnameVal("Cannot create a Package without a Name!!");
+
+                                        }
+
+                                        else{
+
+                                            setPnameVal("");
+                                        }
+
+
                                     }}
 
                                  
                                 />
+                               
                                 <button type="button" class="btn btn-primary ml-2" onClick={sendData}>Create Package</button>
                             </div>
+                            <label id = "PackageNameWarning" style={{ color: 'red', fontSize:'20px' }}>{packageNameValidation}</label><br/> <br/>
                         </center>
+                        
+                               
                     </form>
 
                     <div className="row">
