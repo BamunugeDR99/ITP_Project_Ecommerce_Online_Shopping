@@ -47,7 +47,7 @@ export default function SellerUpdate(props) {
       e.preventDefault();
   
   
-  
+     
       axios.put("http://localhost:8070/orgSeller/update/" + objectId,data).then(()=>{
 
 

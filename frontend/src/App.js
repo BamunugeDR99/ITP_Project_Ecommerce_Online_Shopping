@@ -194,6 +194,7 @@ function App() {
     
     {/* Admin */}
     <Route path = "/admin/login" exact component = {AdminLogin}/>
+    <Route path = "/admin/sellers" exact component = {AllSellers}/>
     
 
     </div>
