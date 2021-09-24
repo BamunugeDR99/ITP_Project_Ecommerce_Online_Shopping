@@ -253,7 +253,7 @@ function SignUp(props) {
     }).catch((err) =>{
 
     	console.log(err.response.data);
-      Swal.fire('Email or Username Already Exits')
+      Swal.fire('Email or Username Already Exists')
     	setErrorMsg(err.response.data.error);
 
       })
