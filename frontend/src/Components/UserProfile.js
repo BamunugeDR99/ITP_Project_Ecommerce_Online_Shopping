@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useState,useEffect} from "react";
 
 
-
+//cm
 function UserProfile(props){
 
   const [customer,setCustomer] = useState([]);
@@ -60,7 +60,7 @@ function UserProfile(props){
                     <div className="mt-3">
                       <h2 id="CusfullN"> {customer.firstName} {customer.lastName}</h2>
                       <h5><p className="text-secondary mb-1" id="CususerN"><b> {customer.username}</b></p></h5>
-                      <h5><p className="text-muted font-size-sm"  id="CusE"><b> {customer.email}</b></p></h5>
+                      <h6><p className="text-muted font-size-sm"  id="CusE"><b> {customer.email}</b></p></h6>
                       
                     </div>
                   </div>

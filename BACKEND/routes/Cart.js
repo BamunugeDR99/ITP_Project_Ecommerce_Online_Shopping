@@ -46,7 +46,7 @@ router.route("/getAllCarts").get((req, res) => {
 
 //Update ItemIDS
 router.route("/updateCartItems/:id").put(async (req, res) => {
-    let CartID = req.params.id;
+    let CustomerID = req.params.id;
     const{
             ItemIDs
        
@@ -59,7 +59,7 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
  
     const update = await Cart.updateOne(
   
-      {_id :CartID },
+      {customerID : CustomerID },
       {$set : { ItemIDs : ItemIDs}},
   
   
@@ -81,7 +81,7 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
 
     //Update Package Ids
     router.route("/updateCartPackages/:id").put(async (req, res) => {
-        let CartID = req.params.id;
+        let CustomerID = req.params.id;
         const{
             PackageIDs
            
@@ -92,7 +92,7 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
      
         const update = await Cart.updateOne(
       
-          {_id :CartID },
+          {customerID :CustomerID },
           {$set : { PackageIDs : PackageIDs}},
       
       
@@ -117,7 +117,7 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
 
         let customerID = req.params.id;
 
-        const getOne = Cart.find({customerID:customerID}).exec ((err, post) =>{
+        const getOne = Cart.findOne({customerID:customerID}).exec ((err, post) =>{
 
             if(err){
 
@@ -155,5 +155,33 @@ router.route("/updateCartItems/:id").put(async (req, res) => {
     
     
 
+
+
+    router.route("/updateSItem/:id").put(async (req, res) => {
+        let CartID = req.params.id;
+        const {
+          customerID,
+          ItemIDs,PackageIDs
+        
+        } = req.body;
+      
+        const updateItem = {
+          customerID,
+          ItemIDs,
+          PackageIDs
+      
+        };
+      
+        const update = await Cart.findByIdAndUpdate(CartID, updateItem)
+          .then(() => {
+            res.status(200).send({ status: "cart updated" });
+          })
+          .catch((err) => {
+            console.log(err);
+            res
+              .status(500)
+              .send({ status: "Error with updating data", error: err.message });
+          });
+      });
 
 module.exports = router;

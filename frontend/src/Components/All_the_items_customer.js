@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function All_the_items_customer(props) {
   const [items, setItems] = useState([]);
@@ -254,43 +256,137 @@ export default function All_the_items_customer(props) {
     }
   }
 
-  function addToCart() {
+  function addToCart(id) {
     /// complete this
+    axios
+      .get("http://localhost:8070/items/get/" + id)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.ItemAvailabilityStatus == false) {
+          Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Item is not available Right now!",
+          });
+        } else {
+          let CustomerID = localStorage.getItem("CustomerID");
+
+          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          axios
+            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .then((res) => {
+              let cartID = res.data._id;
+              console.log(res.data);
+              let packages = res.data.PackageIDs;
+              let newwItems = res.data.ItemIDs;
+
+              let falgs = 0;
+              for (let i = 0; i < newwItems.length; i++) {
+                if (newwItems[i] == id) {
+                  falgs = 1;
+                }
+              }
+              newwItems.push(id);
+              console.log(newwItems);
+
+              const updatedCart = {
+                  customerID : CustomerID,
+                  PackageIDs : packages,
+                  ItemIDs : newwItems
+              }
+
+           
+if(falgs == 0){
+              axios
+                .put(
+                  "http://localhost:8070/ShoppingCart/updateSItem/" +
+                    cartID,
+                  updatedCart
+                )
+                .then((res) => {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Item added to cart Successfully!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                })
+                .catch((err) => {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please try again!",
+                  });
+                });
+              }else if(falgs == 1){
+                Swal.fire("Item Already in Your Shopping Cart.");
+              }    
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        
+       
+        
+        
+          }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   function addToWishlist(itemId) {
-
     // already added check
-    let customerID = "613b4f1a73eceb40702affe6"; 
+    let customerID = localStorage.getItem("CustomerID");
     let newItems = []; /// Change this later
     let Items = [];
     let ItemID = "";
     axios
-      .post("http://localhost:8070/wishlist/getByCustomerID/"+ customerID)
+      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
       .then((res) => {
-       
-        console.log(res.data.wishlistss.Items)
+        console.log(res.data.wishlistss.Items);
         ItemID = res.data.wishlistss._id;
         newItems = res.data.wishlistss.Items;
+        //let CustomerIDs = res.data.wishlistss.CustomerID;
+        // console.log(CustomerIDs)
+        let falgs = 0;
+        for (let i = 0; i < newItems.length; i++) {
+          if (newItems[i] == itemId) {
+            falgs = 1;
+          }
+        }
         newItems.push(itemId);
         console.log(newItems);
         let newWishList = {
-          customerID,
-          Items : newItems
-        }
+          CustomerID: customerID,
+          Items: newItems,
+        };
         console.log(newWishList);
+        if (falgs == 0) {
+          axios
+            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .then(() => {
+              //alert("Student Updated");
+              // document.getElementById("itemsTxt").innerHTML =
+              //"Item added to your Wishlist!";
 
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your Item has been added to your wishlist!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        } else if (falgs == 1) {
 
-        axios
-        .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
-        .then(() => {
-          //alert("Student Updated");
-          document.getElementById("itemsTxt").innerHTML =
-            "Item added to your Wishlist!";
-        })
-        .catch((err) => {
-          alert(err);
-        });
+          Swal.fire("Item Already in Your Wishlist.");
+        }
       })
       .catch((err) => {
         alert(err);
@@ -353,7 +449,9 @@ export default function All_the_items_customer(props) {
         alert(err);
       });
   }
-
+  function RedirectedReviews(id) {
+    props.history.push("/Customer/ItemDetails/" + id);
+  }
   return (
     <div>
       <div>
@@ -604,7 +702,10 @@ export default function All_the_items_customer(props) {
                       </button>
                       <span> </span> <br />
                       <br />
-                      <button class="btn btn-success" hidden>
+                      <button
+                        class="btn btn-success"
+                        onClick={() => RedirectedReviews(items._id)}
+                      >
                         Show more
                       </button>
                     </center>
@@ -624,6 +725,7 @@ export default function All_the_items_customer(props) {
                     </center>
                   </div>
                 </div>
+                <br/>
               </div>
             );
           })}

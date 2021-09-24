@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default function Add_items(props) {
+  let [succMsg,setSuccMsg] = useState("");
+  let [Error2Msg,setError2Msg] = useState("");
+  let [Err3Msg,setErr3Msg] = useState("");
+  let [ModelMsg,setModelMsg] = useState("");
   let [Item_name, setItemName] = useState("");
   let [Quantity, setQuantity] = useState("");
   let [Brand, setBrand] = useState("");
@@ -18,7 +23,9 @@ export default function Add_items(props) {
   let [Category, setSelectCategory] = useState("Mobile Phones");
   const [erorMsg,setErrorMsg] = useState("");
   const [button,setButton] = useState(false)
+  let flag = 0;
 
+  let SellerID = localStorage.getItem("SellerID");
   //check this again
   function warrentyCheck() {
     if (document.getElementById("customRadio2").checked) {
@@ -28,6 +35,18 @@ export default function Add_items(props) {
     }
   }
   // Clear all after submit
+
+  function displayImage(){
+    let images = document.getElementById("customFile").files;
+    let name = "";
+    for (let i = 0; i < images.length; i++) {
+
+      name += images[i].name + '<br/>';
+    }
+    document.getElementById("GG").innerHTML = name;
+
+  }
+
   function colors() {
     for (let i = 1; i <= 6; i++) {
       let checkBoxId = "customCheck" + i;
@@ -62,6 +81,8 @@ export default function Add_items(props) {
       Category = "Gaming";
     } else if (valueof == 4) {
       //setSelectCategory("Other");
+      Category = "Wearable";
+    }else if(valueof == 5){
       Category = "Other";
     }
   }
@@ -87,26 +108,57 @@ export default function Add_items(props) {
       Other_colors,
       Images,
       Category,
+      SellerID
     };
     console.log(newItem); // remove after checking
+
+
+//if(flag == 1){
     axios
       .post("http://localhost:8070/items/addItems", newItem)
       .then(() => {
         //custome message to the user
-        document.getElementById("Submitstatus").innerHTML =
-          "Item Added SuccessFully!";
-        document.getElementById("Submitstatus").style.color = "#A4DE02";
+       // document.getElementById("Submitstatus").innerHTML =
+         // "Item Added SuccessFully!";
+       // document.getElementById("Submitstatus").style.color = "#A4DE02";
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Item has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
          props.history.push("/Seller/Home");
         // document.getElementById("txt").innerHTML = "Student Added Successfully!";
       })
       .catch((err) => {
         alert(err);
-        document.getElementById("Submitstatus").innerHTML =
-          "Process UnsuccessFull Please try again!";
-        document.getElementById("Submitstatus").style.color = "#FF0000";
+       // document.getElementById("Submitstatus").innerHTML =
+         // "Process UnsuccessFull Please try again!";
+        //document.getElementById("Submitstatus").style.color = "#FF0000";
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: 'Please try again!'
+        })
+        props.history.push("/Seller/Home");
+
       });
 
     Color_family = [];
+   /* }else if(flag == 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Complete All the Validations',
+        footer: 'Please try again!'
+      })
+    }*/
+
   }
   return (
     <div>
@@ -122,7 +174,7 @@ export default function Add_items(props) {
         <br />
         <div class="card">
           <div class="card-body">
-            <h2  style={{ textAlign: "center", color: "#FF0000" }}>{erorMsg}</h2>
+          
             <form onSubmit={sendData}>
               <div class="row">
                 <div class="col">
@@ -130,6 +182,7 @@ export default function Add_items(props) {
                   <input
                     type="text"
                     id="item_name"
+            
                     class="form-control"
                     placeholder="Name of the item" required
                     onChange={(e) => {
@@ -138,21 +191,34 @@ export default function Add_items(props) {
                   />
                 </div>
                 <div class="col">
-                  <label for="quantity">QUANTITY</label>
+                  <label for="quantity">QUANTITY   <h6  style={{ textAlign: "center", color: "#FF0000" }}>{erorMsg}</h6></label>
                   <input
                     type="number"
                     id="quantity"
                     class="form-control"
                     pattern="[0-9]"
-                    placeholder="Quantity" required
+                    Min = "0"
+                    placeholder="Quantity (Quantity cannot exceed 200)" required
                     onChange={(e) => {
                       setQuantity(e.target.value);
                       if(e.target.value > 100){
-                        setErrorMsg("Quantity cannot be more than 100")
+                        setErrorMsg("Quantity cannot be more than 100");
+                        setSuccMsg("")
+                        flag = 0;
                       }else if(e.target.value <= 0){
-                        setErrorMsg("Quantity cannot be Zero or less")
-                      }else{
-                        setErrorMsg("")
+                        setErrorMsg("Quantity cannot be Zero or less");
+                        setSuccMsg("")
+                        flag = 0;
+                      }else if((e.target.value).length == 0){
+
+                      }else if((e.target.value) > 0 && (e.target.value) < 200){
+                      
+                          setSuccMsg("All Set!")
+                          setErrorMsg("");
+                          flag = 1
+                        }else{
+                        setErrorMsg("");
+                        flag = 1;
                       }
                     }}
                   />
@@ -173,14 +239,36 @@ export default function Add_items(props) {
                   />
                 </div>
                 <div class="col">
-                  <label for="model">MODEL</label>
+                  <label for="model">MODEL  <h6  style={{ textAlign: "center", color: "#00FF00" }}>{ModelMsg}</h6><h6  style={{ textAlign: "center", color: "#FF0000" }}>{Err3Msg}</h6></label>
                   <input
                     type="text"
                     id="model"
                     class="form-control"
-                    placeholder="Item model" required
+                    placeholder="Model Starts with(M:New N:Replacement F:Refurbished P:Personalized)" required
                     onChange={(e) => {
                       setModel(e.target.value);
+
+                      if((e.target.value).startsWith("M")){
+                        setModelMsg("New")
+                        setErr3Msg("")
+                        flag = 1
+                      }else if((e.target.value).startsWith("N")){
+                        setModelMsg("Replacement")
+                        setErr3Msg("")
+                        flag = 1 
+                      }else if((e.target.value).startsWith("F")){
+                        setModelMsg("Refurbished")
+                        setErr3Msg("")
+                        flag = 1
+                      }else if((e.target.value).startsWith("P")){
+                        setModelMsg("Personalized")
+                        setErr3Msg("")
+                        flag = 1
+                      }else{
+                        setErr3Msg("Invalid")
+                        setModelMsg("")
+                        flag = 0
+                      }
                     }}
                   />
                 </div>
@@ -188,15 +276,25 @@ export default function Add_items(props) {
               <br />
               <div class="row">
                 <div class="col">
-                  <label for="price">PRICE</label>
+                  <label for="price">PRICE  <h6  style={{ textAlign: "center", color: "#FF0000" }}>{Error2Msg}</h6></label>
                   <input
                     type="number"
                     id="price"
                     class="form-control"
                     pattern="[0-9]+(\\.[0-9][0-9]?)?"
-                    placeholder="Price of the item" required
+                    placeholder="Price of the item (Price cannot exceed 1 Million)" required
                     onChange={(e) => {
                       setPrice(e.target.value);
+                      if(e.target.value > 1000000){
+                        setError2Msg("Price cannot exceed 1 Million");
+                        flag = 0;
+                      }else if(e.target.value <= 0){
+                        setError2Msg("Price cannot be Zero or less");
+                        flag = 0;
+                      }else{
+                        setError2Msg("");
+                        flag = 1;
+                      }
                     }}
                   />
                 </div>
@@ -209,6 +307,32 @@ export default function Add_items(props) {
                     placeholder="SKU"
                     onChange={(e) => {
                       setSKU(e.target.value);
+                      axios
+                      .get("http://localhost:8070/items/getItems")
+                      .then((res) => {
+                        
+                     let items = res.data;
+                      for(let i = 0; i < items.length; i++ ){
+                        if(items[i].Stock_keeping_unit == e.target.value){
+                          
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'This Stock keeping unit is Already in use!',
+                            
+                          })
+                          flag = 0
+                          break;
+                        }else{
+                          flag = 1
+                        }
+                      }
+                        
+                      })
+                      .catch((err) => {
+                        alert(err);
+                      });
+
                     }}
                   />
                 </div>
@@ -383,6 +507,8 @@ export default function Add_items(props) {
                       class="custom-file-input"
                       id="customFile"
                       multiple
+
+                      onChange = {() => displayImage()}
                     />
                     <label class="custom-file-label" for="customFile">
                       Choose file
@@ -398,12 +524,22 @@ export default function Add_items(props) {
                     </option>
                     <option value="2">Tablet / iPad / iPod</option>
                     <option value="3">Gaming</option>
-                    <option value="4">Other</option>
+                    <option value = "4">Wearable</option>
+                    <option value="5">Other</option>
+                    
                   </select>
                 </div>
               </div>
               <br />
-              <br />
+            
+              <center>
+              <div id = "GG">
+              {/* <img  src={"/Images/avatar.png"} style = {{width : "90px", marginRight : "10px"}}/>  */}
+              {/* <img  src={"/Images/avatar.png"} style = {{width : "90px"}}/>  */}
+
+              </div>
+              </center>
+              <br/>
               <center>
                 <button type="submit" class="btn btn-success">
                   ADD

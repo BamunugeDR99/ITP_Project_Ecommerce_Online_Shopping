@@ -53,8 +53,10 @@ export default function SellerReviews(props){
     useEffect(() => {
 
         function getItem(){
+
+          const objectId = props.match.params.id;
             axios
-            .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+            .get("http://localhost:8070/items/get/"+ objectId)
             .then((res) =>
             {
                 setItems(res.data);
@@ -78,12 +80,13 @@ export default function SellerReviews(props){
 
 
       function getReview() {
+        const objectId = props.match.params.id;
         axios
           .get("http://localhost:8070/review/get")
           .then((res) => {
             //setReview(res.data);
             const filter = res.data.filter(
-              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+              (itemrev) => itemrev.itemid === objectId
             );
             reviews = filter;
             // 6120b61011f8374ae1fa904f

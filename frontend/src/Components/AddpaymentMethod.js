@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert2";
 
 
 
-// import "../Css/AddpaymentMethod.css"; //css linked
+
+ //import "../Css/AddpaymentMethod.css"; //css linked
 
 export default function AddpaymentMethod(props){
 
@@ -19,6 +21,10 @@ export default function AddpaymentMethod(props){
 
 	  e.preventDefault();
 	  cardtypeCheck();
+
+	  let ownerID = localStorage.getItem("CustomerID");
+	  console.log(ownerID);
+
 	//	setcardtype("visa");
 	  const newpaymentdetails = {
 		cardtype,
@@ -26,6 +32,7 @@ export default function AddpaymentMethod(props){
      	cardnumber,
      	carddate,
 		cardcvv,
+		ownerID
 
 	  }
 
@@ -33,10 +40,11 @@ export default function AddpaymentMethod(props){
 
 	  axios.post("http://localhost:8070/paymentdetails/add",newpaymentdetails).then(()=>{
 
-		alert(" Card Added");
-	/*	props.history.push("/Home");
-		document.getElementById("txt").innerHTML = "Card added Successfully!";
-	*/
+		
+		swal.fire("Success", "New Payment Method Added Successfully", "success");
+		props.history.push("/Customer/MyWallet");
+		// document.getElementById("txt").innerHTML = "Card added Successfully!";
+	
 	  }).catch((err) =>{
 		alert(err)
 	  }) 
@@ -56,6 +64,16 @@ export default function AddpaymentMethod(props){
 	
 	  }
 	
+
+	  
+	  function cancel(){
+
+        props.history.push("/Customer/MyWallet");
+    }
+
+
+
+	  
 	
 
 return(
@@ -78,9 +96,9 @@ return(
 
 								<div class="cc-selector">
 									<span><input id="visa" type="radio" name="credit-card" value="VISA" style= {{ marginRight: "0px"}} required /></span>
-									<label class="drinkcard-cc visa" for="visa" ></label>
-								<span><input id="mastercard" type="radio" name="credit-card" value="MASTER" style= {{ marginLeft: "0px"}} required /></span>
-									<label class="drinkcard-cc mastercard"for="mastercard"></label>
+									<label class="drinkcard-cc visa" for="visa" ></label> <img src = "/Images/visaLogo.png" height = '60rem' width = '60rem'/>
+								<span><input id="mastercard" type="radio" name="credit-card" value="MASTER" style= {{ marginLeft: "10px"}} required /></span>
+									<label class="drinkcard-cc mastercard"for="mastercard"></label><img src = "/Images/masterLogo.png" height = '60rem' width = '60rem'/>
 								</div>
 								
 
@@ -136,7 +154,7 @@ return(
                        
 							 <div class="float-right">
 							 
-							 <span style= {{ marginRight: "200px"}}> <button type="reset" class="btn btn-success">Cancel</button></span>  
+							 <span style= {{ marginRight: "200px"}}> <button type="reset" class="btn btn-success" onClick={() => cancel()}>Cancel</button></span>  
 						
 							 <span><button type="submit" class="btn btn-primary">Save</button></span> 
 						</div>

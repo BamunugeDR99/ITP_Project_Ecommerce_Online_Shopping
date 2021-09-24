@@ -13,3 +13,10 @@
 .sellerregistration .container-size{
     width : 500px;
 }
+
+.sellerregistration #sellerReq{
+
+    margin-left:75px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

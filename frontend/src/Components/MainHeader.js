@@ -55,7 +55,7 @@ const [userImage,setUserImage] = useState("");
       <li class="nav-item">
         <Link class="nav-link" to="/Customer/AllItmes">Discover Items</Link>
       </li>
-
+{/* applw */}
       <li class="nav-item">
         <Link class="nav-link" to="/Customer/DiscountedItems">Discover Discounted Items</Link>
       </li>

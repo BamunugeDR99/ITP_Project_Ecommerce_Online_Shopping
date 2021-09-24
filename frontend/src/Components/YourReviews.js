@@ -42,7 +42,7 @@ export default function YourReviews(props) {
         .get("http://localhost:8070/review/get")
         .then((res) => {
           const filter = res.data.filter(
-            (customerrev) => customerrev.customerid === "6144a56b88cbe1257c8a887b"
+            (customerrev) => customerrev.customerid === objectId
             // objectId
           );
           reviews = filter;

@@ -15,6 +15,8 @@ export default function CreatePackage1(props) {
     const [items, setItems] = useState([]); //Defines that items is an array
     const [packageName, setPname] = useState("");
     const [ContentN, setContentN] = useState([]);
+    const [ratings, setRatings] = useState([]);
+    let [packageNameValidation, setPnameVal] = useState("");
     
 
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
@@ -27,7 +29,9 @@ export default function CreatePackage1(props) {
 
             axios.get("http://localhost:8070/items/getItems").then((res) => {
 
-                setItems(res.data);
+                let seller = localStorage.getItem("SellerID");
+
+                setItems(res.data.filter((item) =>item.SellerID === seller));
 
 
                 console.log(items);
@@ -43,6 +47,23 @@ export default function CreatePackage1(props) {
         }
 
 
+        function displayRating(){
+            axios
+            .get("http://localhost:8070/review/get")
+            .then((res) => {
+              setRatings(res.data);
+              //console.log(ratings[0].itemid)
+              console.log(res.data);
+            })
+            .catch((err) => {
+              alert(err);
+            });
+          }
+
+
+        
+          displayRating();
+
 
 
 
@@ -51,6 +72,71 @@ export default function CreatePackage1(props) {
 
 
     }, [])
+
+
+
+    
+    useEffect(() => {
+    
+        calculateStarRating();
+        
+      })
+
+
+
+      function calculateStarRating(){
+        let totalNoRatings = 0;
+        let totalstarforRatingCount = 0;
+        let starCount = 0;
+        let average = 0; 
+        for(let i = 0; i < items.length; i++){
+          
+          totalNoRatings = 0;
+          totalstarforRatingCount = 0;
+          starCount = 0;
+          average = 0;
+        
+          for(let j = 0; j < ratings.length; j++){
+              if(items[i]._id == ratings[j].itemid){
+                totalNoRatings++;
+              }
+      
+              if(items[i]._id == ratings[j].itemid){
+                starCount += parseInt(ratings[j].noofstars);  
+              }
+      
+          }
+      
+          totalstarforRatingCount = totalNoRatings * 5;
+          average = parseInt((starCount / totalstarforRatingCount) * 5);
+          console.log(average);
+          displayStarRating(i,average);
+      
+        }
+      
+      }
+      
+      
+      function displayStarRating(id,totalAverage){
+        let txt = "";
+          if(isNaN(totalAverage)){
+            txt = "No Ratings yet!";
+            document.getElementById(id +'stars').innerHTML = txt;
+            document.getElementById(id +'stars').style.color = "#FF0000";
+          }else{
+          
+          for(let j = 0; j < totalAverage; j++){
+            txt += '<span class="fa fa-star checked"></span>';
+          }
+          for(let j = 0; j < (5 - totalAverage); j++){
+            txt += '<span class="fa fa-star"></span>';
+          }
+         
+      
+          document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+         }
+      }
+      
 
 
 
@@ -80,7 +166,15 @@ export default function CreatePackage1(props) {
 
         }
 
+        else if(packageName.length === 0){
+
+            setPnameVal("Cannot create a Package without a Name!!")
+
+        }
+
         else{
+
+         setPnameVal("");   
         sessionStorage.setItem("packageName", packageName);
         sessionStorage.setItem("Content", ContentN);
 
@@ -107,28 +201,45 @@ export default function CreatePackage1(props) {
                         <center>
                             <div class="input-group mb-4" style={{ width: '50rem' }}>
 
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="true" pattern = "^[a-zA-Z_.-]*$"
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required pattern = "^[a-zA-Z_.-]*$"
 
                                     onChange={(e) => {
                                         setPname(e.target.value);
+
+                                        if(e.target.value.length === 0){
+
+                                            setPnameVal("Cannot create a Package without a Name!!");
+
+                                        }
+
+                                        else{
+
+                                            setPnameVal("");
+                                        }
+
+
                                     }}
 
                                  
                                 />
+                               
                                 <button type="button" class="btn btn-primary ml-2" onClick={sendData}>Create Package</button>
                             </div>
+                            <label id = "PackageNameWarning" style={{ color: 'red', fontSize:'20px' }}>{packageNameValidation}</label><br/> <br/>
                         </center>
+                        
+                               
                     </form>
 
                     <div className="row">
-                        {items.map((item) => {
+                        {items.map((item, index) => {
                             return (
 
 
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1" src={go} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1" src={"/Images/" + item.Images[0]} width="286px" height="250px" />
                                             {/* <div className='inner'><label><b>-{item.discountPercentage}%</b></label></div> */}
                                         </div>
                                         <div className="card-body">
@@ -136,7 +247,16 @@ export default function CreatePackage1(props) {
                                                 <p><b>{item.Item_name}</b></p>
                                                 <p><b>{`${item.Model}`}</b></p>
                                                 <p  style={{ padding: '0px' }}> Rs.{item.Price}.00</p>
-                                                <p>Rating</p>
+                                               
+
+                                                <div id = {index +'stars'} class="card-text">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span><span> </span> <span id = {index +'review'}>4.0 / 5.0</span>
+                      </div>
+
                                             </div>
                                             <a href="#" className="btn btn-primary" onClick={(e) => { add2Pac(item) }}>Add to Package</a>
 

@@ -39,6 +39,9 @@ app.use("/review", ReviewRouter);
 const WishlistRouter = require("./routes/itemwishlists.js");
 app.use("/wishlist", WishlistRouter);
 
+const OrderHistoryRouter = require("./routes/orderhistory.js");
+app.use("/orderhistory", OrderHistoryRouter);
+
 const sellerRouter = require("./routes/seller.js");
 app.use("/seller", sellerRouter);
 
@@ -69,6 +72,12 @@ app.use("/contact", contactRouter);
 const paymentdetailsRouter = require("./routes/paymentdetails.js");
 
 app.use("/paymentdetails",paymentdetailsRouter);
+
+
+const adminRouter = require("./routes/admin.js");
+app.use("/Admin", adminRouter);
+
+
 
 const connection = mongoose.connection;
 connection.once("open", () => {

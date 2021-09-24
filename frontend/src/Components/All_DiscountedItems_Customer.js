@@ -9,6 +9,9 @@ export default function AllDiscountedItems(props) {
   let fitems = [];
   const [ratings, setRatings] = useState([]);
   const [loads, setLoad] = useState(false);
+
+  let [ItemsArrr,setItemsArrr] = useState([]);
+
   //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
   useEffect(() => {
     //function to getItems
@@ -18,7 +21,7 @@ export default function AllDiscountedItems(props) {
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           console.log(res.data);
-          setItems(res.data.filter((item) => item.DiscountStatus === true));
+          setItems(res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true));
 
           fitems = items;
           console.log(fitems);
@@ -41,13 +44,60 @@ export default function AllDiscountedItems(props) {
         });
     }
 
+
+
+      //Get Cart
+      function getCart(){
+
+      
+        const customerId= "6144a56b88cbe1257c8a887b";
+    
+        axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerId).then((res) => {
+    
+          console.log("====================CART=======================");
+          console.log(res.data);
+          setItemsArrr(res.data.ItemIDs);
+    
+    
+        }).catch((err)=> {
+    
+          console.log(err);
+        })
+
+
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     displayRating();
     getItems();
+    getCart();
+
   }, []);
 
   useEffect(() => {
     calculateStarRating();
   });
+
+
+  
+
+
+
+
 
   function calculateStarRating() {
     let totalNoRatings = 0;
@@ -128,7 +178,10 @@ export default function AllDiscountedItems(props) {
     axios
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
-        filterContent(res.data, userSearch);
+
+        let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true)
+
+        filterContent(filteredData, userSearch);
         console.log(res.data);
       })
       .catch((err) => {
@@ -143,6 +196,54 @@ export default function AllDiscountedItems(props) {
   function goToDisItems() {
     props.history.push("/Customer/DiscountedItems");
   }
+
+
+
+
+   function addToCart(id){
+
+    const customerId= "6144a56b88cbe1257c8a887b";
+
+    console.log(id);
+    console.log(ItemsArrr); 
+    
+    ItemsArrr.push(id);
+    console.log(ItemsArrr); 
+
+    //Add(ItemsArrr, customerId);
+
+  }
+
+
+
+
+
+// function Add(ItemIDArr, customerId){
+
+//   let ItemIDs = ItemIDArr;
+
+//   axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerId, ).then((res) => {
+
+//     alert("Added to Cart");      
+
+// }).catch((err) => {
+
+//     console.log(err);
+// })
+
+
+// }
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="OffersnPacks">
@@ -188,9 +289,10 @@ export default function AllDiscountedItems(props) {
                 <div className="col-sm-4">
                   <div className="card" style={{ width: "18rem" }}>
                     <div className="container-fluid" style={{ padding: "0px" }}>
+                      
                       <img
                         className="img-responsive center-block header1"
-                        src={go}
+                        src={"/Images/" + item.Images[0]}
                         width="286px"
                         height="250px"
                       />
@@ -226,8 +328,8 @@ export default function AllDiscountedItems(props) {
                       </div>
 
                       <button
-                        class="btn btn-success"
-                      >
+                        class="btn btn-success" 
+                         >
                         Add to cart
                       </button>
                     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 import "../Css/sellerprofile.css";
 
@@ -27,15 +28,24 @@ export default function SellerProfile(props) {
 
     function update(id){
       console.log(id);
-      props.history.push("/update/" + id);
+      props.history.push("/Seller/updateProfile/" + id);
   };
 
+  function deleteSeller() {
+    Swal.fire(
+      'Success!',
+      'Request Sent!',
+      'success'
+    )
+  }
   return (
 
     <div className="sellerprofile">
+    
     <div className="height-100 bg-light">
       <br />
       <br />
+      <h2 style={{color:"black",textAlign : "center"}}>SELLER PROFILE</h2><br/>
 
       <div class="container">
         <div class="main-body">
@@ -76,7 +86,7 @@ export default function SellerProfile(props) {
              
                 
                     <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape">
+                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
                         REQUEST DELETE
                       </button>
                     </div>
@@ -128,14 +138,14 @@ export default function SellerProfile(props) {
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="sellerB">
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
                             <textarea
                               class="form-control"
                               id="exampleFormControlTextarea1"
-                              rows="7"
+                              rows="9"
                               placeholder={orgSeller.description} readOnly
                             ></textarea>
                           </div>
@@ -152,7 +162,7 @@ export default function SellerProfile(props) {
                               <textarea
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
-                                rows="4"
+                                rows="6"
                                 placeholder={orgSeller.address} readOnly
                               ></textarea>
                             </div>
@@ -179,6 +189,7 @@ export default function SellerProfile(props) {
       </div>
  
     </div>
+    <br/><br/><br/><br/>
     </div>
   );
 }

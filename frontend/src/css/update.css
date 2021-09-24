@@ -1,7 +1,7 @@
 .CusUpdatePro {
 	
 	background:rgb(255, 255, 255);
-  margin-left: -50px;
+  margin-left: -80px;
   
 	
 }
@@ -23,14 +23,6 @@
 	width:1100px;
 }
 
-.CusUpdatePro .CusEditI #cuseditI{
-	
-
-  height:500px;
-	width:100%;
-	
-	
-}
 
 .CusUpdatePro .UserProImage #userproI{
 	
@@ -50,11 +42,6 @@
 	
 }
 
-.CusUpdatePro .cardUpdatePro:hover .UserProImage #userproI{
-	
-	border-color: rgba(0, 0, 0, 0.863);
-	transition: .7s;
-}
 
 .CusUpdatePro .main-text{
 	
@@ -67,6 +54,7 @@
 
 
 
+
 .CusUpdatePro .btnUpdate {
    
      width: 170px;
@@ -74,46 +62,46 @@
      margin-top: 40px;
      text-align: center;
      margin-left: 180px;
-     background-color: rgb(11, 7, 245);
+     background-color: #0057d1 ;
      cursor: pointer;
-     transition: 0.5s;
-     background-size: 200% auto;
-     color: white;            
-     box-shadow: 0 0 20px #eee;
-     border-radius: 10px;
-     font-size: 22px;
-     border:none;
+     border: none;
+     color: white;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 20px;
+     border-radius: 10px;;
+     -webkit-transition-duration: 0.4s; /* Safari */
+     transition-duration: 0.4s;
 }
 
 .CusUpdatePro .btnUpdate:hover {
-   background-position: right center; /* change the direction of the change here */
-   color: #fff;
-   text-decoration: none;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
  }
  
-  .CusUpdatePro .btnDelete {background-image: linear-gradient(to right, #870000 0%, #190A05  51%, #870000  100%)}
   .CusUpdatePro  .btnDelete {
     
-     width: 170px;
-     height: 45px;
-     margin-top: 40px;
-     text-align: center;
-     cursor: pointer;
-     transition: 0.5s;
-     background-size: 200% auto;
-     color: white;            
-     box-shadow: 0 0 20px #eee;
-     border-radius: 10px;
-     display: block;
-     font-size: 22px;
-     border:none;
-     margin-left: 100px;
+    width: 170px;
+    height: 45px;
+    margin-top: 40px;
+    text-align: center;
+    margin-left: 180px;
+    background-color: #db131d ;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 10px;;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin-left: 100px;
    }
 
    .CusUpdatePro .btnDelete:hover {
-     background-position: right center; /* change the direction of the change here */
-     color: #fff;
-     text-decoration: none;
+
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+     
    }
   
 
@@ -168,11 +156,10 @@
 }
 
 .CusUpdatePro .top-leftI {
-  position: absolute;
-  top: 30px;
-  left:50px;
-  color: #fff;
-  font-size: 60px;
+ 
+  margin-top: 30px;
+  margin-left:80px;
+  color: rgb(0, 0, 0);
   font-weight: bold;
  
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import {Link} from 'react-router-dom';
 
 
@@ -69,20 +69,22 @@ export default function ItemView(props){
     };
   
     let reviewWithItems = [];
-  
+
     useEffect(() => {
       function getReview() {
+
+        const objectId = props.match.params.id;
         axios
           .get("http://localhost:8070/review/get")
           .then((res) => {
             // setReview(res.data);
             const filter = res.data.filter(
-              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+              (itemrev) => itemrev.itemid === objectId
             );
             reviews = filter;
             console.log(reviews);
             axios
-              .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+              .get("http://localhost:8070/items/get/"+ objectId)
               .then((res) => {
                   ICategory= res.data.Category;
                   console.log(ICategory);
@@ -264,7 +266,182 @@ export default function ItemView(props){
 
       const found = array1.find(element=>element>1);
 
+
+
+      function addToCart(id) {
+        /// complete this
+        axios
+          .get("http://localhost:8070/items/get/" + id)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.ItemAvailabilityStatus == false) {
+              Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "Item is not available Right now!",
+              });
+            } else {
+              let CustomerID = localStorage.getItem("CustomerID");
     
+              // http://localhost:8070/ShoppingCart/getOneCart/:id
+              axios
+                .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+                .then((res) => {
+                  let cartID = res.data._id;
+                  console.log(res.data);
+                  let packages = res.data.PackageIDs;
+                  let newwItems = res.data.ItemIDs;
+    
+                  let falgs = 0;
+                  for (let i = 0; i < newwItems.length; i++) {
+                    if (newwItems[i] == id) {
+                      falgs = 1;
+                    }
+                  }
+                  newwItems.push(id);
+                  console.log(newwItems);
+    
+                  const updatedCart = {
+                      customerID : CustomerID,
+                      PackageIDs : packages,
+                      ItemIDs : newwItems
+                  }
+    
+               
+    if(falgs == 0){
+                  axios
+                    .put(
+                      "http://localhost:8070/ShoppingCart/updateSItem/" +
+                        cartID,
+                      updatedCart
+                    )
+                    .then((res) => {
+                      Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Item added to cart Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                    })
+                    .catch((err) => {
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Please try again!",
+                      });
+                    });
+                  }else if(falgs == 1){
+                    Swal.fire("Item Already in Your Shopping Cart.");
+                  }    
+                })
+                .catch((err) => {
+                  alert(err);
+                });
+            
+           
+            
+            
+              }
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
+            
+function buyNow(id){
+    axios
+    .get("http://localhost:8070/items/get/" + id)
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.ItemAvailabilityStatus == false) {
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "Item is not available Right now!",
+        });
+      } else {
+        let CustomerID = localStorage.getItem("CustomerID");
+
+        // http://localhost:8070/ShoppingCart/getOneCart/:id
+        axios
+          .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+          .then((res) => {
+            let cartID = res.data._id;
+            console.log(res.data);
+            let packages = res.data.PackageIDs;
+            let newwItems = res.data.ItemIDs;
+
+            let falgs = 0;
+            for (let i = 0; i < newwItems.length; i++) {
+              if (newwItems[i] == id) {
+                falgs = 1;
+              }
+            }
+            newwItems.push(id);
+            console.log(newwItems);
+
+            const updatedCart = {
+                customerID : CustomerID,
+                PackageIDs : packages,
+                ItemIDs : newwItems
+            }
+
+         
+if(falgs == 0){
+            axios
+              .put(
+                "http://localhost:8070/ShoppingCart/updateSItem/" +
+                  cartID,
+                updatedCart
+              )
+              .then((res) => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Item added to cart Successfully!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                props.history.push("/Customer/MyShoppingCart");
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Please try again!",
+                });
+              });
+            }else if(falgs == 1){
+              Swal.fire("Item Already in Your Shopping Cart.");
+
+              props.history.push("/Customer/MyShoppingCart");
+            }    
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      
+     
+      
+      
+        }
+    })
+    .catch((err) => {
+      alert(err);
+    });
+}
+    
+
+
+function viewReview(id){
+props.history.push("/Customer/ItemReviews/" + id)
+}
+
+function writeReview(id){
+    props.history.push("/Customer/WriteReview/" + id)
+}
 return(
 <div style={{padding:'20px 15px 10px 50px'}}>  
 
@@ -273,18 +450,18 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{width:'90%',  paddingRight:'20px'}} src=
-            {"./Images/"+items.Item_name}
+            <img style={{width:'90%',  paddingRight:'20px'}} 
+                // src={"/Images/"+items.Images[0]}
             />
             <div>
-                <img style={{width:'25%',  padding:'10px'}} src=
-                {"./Images/"+items.Item_name}
+                <img style={{width:'25%',  padding:'10px'}} 
+                // src={"/Images/"+items.Images[1]}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src=
-                {"./Images/"+items.Item_name}
+                <img style={{width:'25%',  padding:'10px'}} 
+                // src={"/Images/"+items.Images[0]}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src=
-                {"./Images/"+items.Item_name}
+                <img style={{width:'25%',  padding:'10px'}} 
+               //src={"/Images/"+items.Images[2]} 
                 />
             </div>
         </div>
@@ -301,11 +478,11 @@ return(
              <span style={{fontSize:'19px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
             <br/>
             <div >
-                <button type="button" class="btn btn-danger" style={{width:'50%'}}>Buy Now</button>
+                <button type="button" class="btn btn-danger" style={{width:'50%'}} onClick={() => buyNow(items._id)} >Buy Now</button>
             </div>
             <br/>
             <div >
-                <button type="button" class="btn btn-success" style={{width:'50%'}}>Add to cart</button>
+                <button type="button" class="btn btn-success" style={{width:'50%'}} onClick={() => addToCart(items._id)}>Add to cart</button>
             </div>
         </div>
         <div className="col">
@@ -415,18 +592,18 @@ return(
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/ItemReviews" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
-                                                </Link>
+                                                
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-primary"onClick={() =>viewReview(items._id)}  >View Reviews</button>
+                                                
                                             </a>
                                             
                                         </div>
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/WriteReview" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
-                                                </Link>
+                                               
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-info" onClick={() =>writeReview(items._id)} >Write a Review</button>
+                                                
                                             </a>
                                             
                                         </div>
