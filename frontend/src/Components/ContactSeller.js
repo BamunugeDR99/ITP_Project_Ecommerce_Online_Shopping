@@ -66,11 +66,14 @@ export default function ContactSeller(props){
         setErrorMsg("");
         // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         // alert("Message Sended Successfully!");
-        Swal.fire(
-            'Good job!',
-            'You Send the message!',
-            'success'
-          )
+        Swal.fire({
+            title: "Good job!",
+            text: "You send the messege!",
+            icon: "success",
+            button: "ok!"
+            
+        });
+        props.history.push("/Customer/ItemDetails")
         
       }).catch((err) =>{
         alert(err)

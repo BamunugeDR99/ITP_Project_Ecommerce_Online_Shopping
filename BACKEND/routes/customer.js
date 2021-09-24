@@ -15,7 +15,7 @@ router.route("/add").post(async(req,res)=>{
     const address = req.body.address;
     const username = req.body.username;
     const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
+    // const confirmPassword = req.body.confirmPassword;
     const userImage = req.body.userImage;
 
  try{
@@ -44,7 +44,7 @@ router.route("/add").post(async(req,res)=>{
         address,
         username,
         password,
-        confirmPassword,
+        // confirmPassword,
         userImage
     })
 
@@ -105,7 +105,7 @@ router.route("/update/:id").put(async (req,res) =>{
         address,
         username,
         password,
-        confirmPassword,
+        // confirmPassword,
         userImage
     }
 

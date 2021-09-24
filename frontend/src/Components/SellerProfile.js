@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 import "../Css/sellerprofile.css";
 
@@ -30,6 +31,13 @@ export default function SellerProfile(props) {
       props.history.push("/Seller/updateProfile/" + id);
   };
 
+  function deleteSeller() {
+    Swal.fire(
+      'Success!',
+      'Request Sent!',
+      'success'
+    )
+  }
   return (
 
     <div className="sellerprofile">
@@ -78,7 +86,7 @@ export default function SellerProfile(props) {
              
                 
                     <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape">
+                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
                         REQUEST DELETE
                       </button>
                     </div>

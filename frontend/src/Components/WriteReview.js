@@ -15,12 +15,35 @@ export default function WriteReview(props){
     const [description,setDescription] = useState("");
     const [date,setDate] = useState("");
     const [noofstars,setNoofstars] = useState("");
+  
+    const [items,setItems] = useState([]);
+
     let customerid  = ""; ///local Storage
     let itemid  = "";// url
     // let sellerid  = "";
     let reviewstatus  = "";
     let reportreason  = "";
-  let count = 0;
+    let count = 0;
+
+    useEffect(() => {
+      function getItems() {
+            axios
+              .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+              .then((res) => {
+              setItems(res.data);
+              console.log(res.data);
+              // setItems(items);
+              })
+              .catch((err) => {
+                alert(err);
+              });
+          
+          
+      }
+    getItems();
+    }, []);
+
+
     function sendData(e){
 
       e.preventDefault();
@@ -51,7 +74,8 @@ export default function WriteReview(props){
           'You Send the message!',
           'success'
         )
-        
+        props.history.push("/Customer/Home");
+
       }).catch((err) =>{
         alert(err)
       })
@@ -107,7 +131,7 @@ function  getNoOfStars(){
     
           <div className="row" style={{fontSize:'22px', padding:'20px 0px 20px 50px'}}>
             <div className="col">
-              <span style={{color:'black', fontStyle:'strong'}}>Item Name</span>
+              <span style={{color:'black', fontStyle:'strong'}}>{items.Item_name}</span>
             </div>
             <div className="col">
           
@@ -122,7 +146,9 @@ function  getNoOfStars(){
           </div>
           <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
-              <img src={go} style={{width:'70%'}}/>
+              <img src=
+              {"/Images/"+items.Images}
+              style={{width:'70%'}}/>
             </div>
             <div className="col">
               <textarea name="review" style={{width: '80%' ,height: '80%', borderRadius: '25px',background: '#e6e6e6',outline: 'none', border: 'none',padding: '20px'}} placeholder="Enter your review here"
