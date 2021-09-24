@@ -123,6 +123,67 @@ export default function UpdateProfile(props){
 	}, []);
 
 
+
+	function validate(){
+
+		// To check a password  which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+		const phoneNumber = document.getElementById("phone").value;
+	
+	
+		if(firstName.length === 0){
+	
+		  Swal.fire('First Name is required')
+		   flag1 = 0;
+		
+		}else if(lastName.length === 0){
+	
+		Swal.fire('Last Name is required')
+			  flag1 = 0;
+	
+	   }else if(phoneNumber.length === 0){
+	
+		Swal.fire('Phone Number is required')
+			  flag1 = 0;
+	   
+	   
+	   }else if (isNaN(phoneNumber)) {
+		flag1 = 0;
+		Swal.fire('Enter only numeric values to phone number')
+	   
+	
+	  } else if (phoneNumber.length < 10) {
+		flag1 = 0;
+		Swal.fire('Phone Number must be 10 digit number')
+	   
+	   
+		
+	  } else if (phoneNumber.length > 10) {
+		flag1 = 0;
+		Swal.fire('Phone Number must be 10 digit number')
+		
+		
+	  } else if (phoneNumber.charAt(0) != 0) {
+		flag1 = 0;
+		Swal.fire('Phone Number must start with 0')
+	   
+	  }  else if(dob.length === 0){
+	
+		Swal.fire('Birthday is required')
+		flag1 = 0;
+	
+		}else if(gender.length === 0){
+	
+	  Swal.fire('Gender is required')
+	  flag1 = 0;
+	  
+	}else{
+	
+	  flag1 = 1;
+	}
+	  
+	}
+
+
 	function Imagecheck(){
 
 		let uimage = document.getElementById("user_image").value;
@@ -140,25 +201,6 @@ export default function UpdateProfile(props){
 		}
 	}
 
-	function validPhoneNumber() {
-		const phoneNumber = document.getElementById("phone").value;
-	
-		if (isNaN(phoneNumber)) {
-		  flag1 = 0;
-		  alert("Enter only numeric value to phone number!");
-		} else if (phoneNumber.length < 10) {
-		  flag1 = 0;
-		  alert("Phone number must be 10 digit!");
-		} else if (phoneNumber.length > 10) {
-		  flag1 = 0;
-		  alert("Phone number must be 10 digit!");
-		} else if (phoneNumber.charAt(0) != 0) {
-		  flag1 = 0;
-		  alert("Phone number must start with 0!");
-		} else {
-		  flag1 = 1;
-		}
-	  }
 
 
 	function changePassword(){
@@ -181,23 +223,25 @@ export default function UpdateProfile(props){
 
 			if(!isMatch){
 				flag = 0;
-				alert("Invalid Current Password!");
+				Swal.fire('Invalid Current Password!')
 				
 			}else{
 
 				if(nCpsw.length < 8){
 					flag = 0;
-    			    alert("Password must be contain minimum 8 charcters!");
+					Swal.fire('Password must be contain minimum 8 charcters!')
+    			   
 
 				}else if(!nCpsw.match(npsw)){
 
 					flag = 0;
-					alert(
-					  "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit");
+					Swal.fire('"Password must contain at least one lowercase letter, one uppercase letter, one numeric digit"!')
+					
 
 				}else if(nCpsw != nCopsw){
 					flag = 0;
-					alert("Password mismatch!");
+					Swal.fire('Password Mismatch!!')
+	
 
 				}else{
 
@@ -223,7 +267,8 @@ export default function UpdateProfile(props){
 		birthday();
 		Imagecheck();
 		changePassword();
-		validPhoneNumber()
+		validate()
+		
   
 		if(flag == 1 && flag1 == 1){
 
