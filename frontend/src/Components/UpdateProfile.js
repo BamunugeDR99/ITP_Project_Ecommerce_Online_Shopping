@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-const bcrypt = require('bcryptjs')
+import Swal from 'sweetalert2';
+const bcrypt = require('bcryptjs');
+
+
 
 
 export default function UpdateProfile(props){
@@ -48,14 +51,14 @@ export default function UpdateProfile(props){
 	let [password , setPassword ] = useState("");
 	let [confirmPassword ,setConfirmPassword] = useState("");
 	// let [userImage ,setUserImage] = useState("");
+	
 	let objectID = "";
 	let userImage = "";
 
 	let image2 = "";
 	let image3 = "";
 
-	
-	let [Currentpassword , setCurrentPassword ] = useState("");
+
 	
 
 
@@ -102,7 +105,7 @@ export default function UpdateProfile(props){
 				dob = res.data.dob;
 				setCurrentImage(res.data.userImage);
 				setPassword(res.data.password);
-				// setCurrentConfirmPassword(res.data.confirmPassword);
+				
 				
 
 				
@@ -118,6 +121,67 @@ export default function UpdateProfile(props){
 
 
 	}, []);
+
+
+
+	function validate(){
+
+		// To check a password  which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+		const phoneNumber = document.getElementById("phone").value;
+	
+	
+		if(firstName.length === 0){
+	
+		  Swal.fire('First Name is required')
+		   flag1 = 0;
+		
+		}else if(lastName.length === 0){
+	
+		Swal.fire('Last Name is required')
+			  flag1 = 0;
+	
+	   }else if(phoneNumber.length === 0){
+	
+		Swal.fire('Phone Number is required')
+			  flag1 = 0;
+	   
+	   
+	   }else if (isNaN(phoneNumber)) {
+		flag1 = 0;
+		Swal.fire('Enter only numeric values to phone number')
+	   
+	
+	  } else if (phoneNumber.length < 10) {
+		flag1 = 0;
+		Swal.fire('Phone Number must be 10 digit number')
+	   
+	   
+		
+	  } else if (phoneNumber.length > 10) {
+		flag1 = 0;
+		Swal.fire('Phone Number must be 10 digit number')
+		
+		
+	  } else if (phoneNumber.charAt(0) != 0) {
+		flag1 = 0;
+		Swal.fire('Phone Number must start with 0')
+	   
+	  }  else if(dob.length === 0){
+	
+		Swal.fire('Birthday is required')
+		flag1 = 0;
+	
+		}else if(gender.length === 0){
+	
+	  Swal.fire('Gender is required')
+	  flag1 = 0;
+	  
+	}else{
+	
+	  flag1 = 1;
+	}
+	  
+	}
 
 
 	function Imagecheck(){
@@ -137,25 +201,6 @@ export default function UpdateProfile(props){
 		}
 	}
 
-	function validPhoneNumber() {
-		const phoneNumber = document.getElementById("phone").value;
-	
-		if (isNaN(phoneNumber)) {
-		  flag1 = 0;
-		  alert("Enter only numeric value to phone number!");
-		} else if (phoneNumber.length < 10) {
-		  flag1 = 0;
-		  alert("Phone number must be 10 digit!");
-		} else if (phoneNumber.length > 10) {
-		  flag1 = 0;
-		  alert("Phone number must be 10 digit!");
-		} else if (phoneNumber.charAt(0) != 0) {
-		  flag1 = 0;
-		  alert("Phone number must start with 0!");
-		} else {
-		  flag1 = 1;
-		}
-	  }
 
 
 	function changePassword(){
@@ -165,6 +210,7 @@ export default function UpdateProfile(props){
 		if(psw === ""){
 
 			psw = password;
+			flag = 1;
 
 		}else{
 
@@ -177,23 +223,25 @@ export default function UpdateProfile(props){
 
 			if(!isMatch){
 				flag = 0;
-				alert("Invalid Current Password!");
+				Swal.fire('Invalid Current Password!')
 				
 			}else{
 
 				if(nCpsw.length < 8){
 					flag = 0;
-    			    alert("Password must be contain minimum 8 charcters!");
+					Swal.fire('Password must be contain minimum 8 charcters!')
+    			   
 
 				}else if(!nCpsw.match(npsw)){
 
 					flag = 0;
-					alert(
-					  "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit");
+					Swal.fire('"Password must contain at least one lowercase letter, one uppercase letter, one numeric digit"!')
+					
 
 				}else if(nCpsw != nCopsw){
 					flag = 0;
-					alert("Password mismatch!");
+					Swal.fire('Password Mismatch!!')
+	
 
 				}else{
 
@@ -219,7 +267,8 @@ export default function UpdateProfile(props){
 		birthday();
 		Imagecheck();
 		changePassword();
-		validPhoneNumber()
+		validate()
+		
   
 		if(flag == 1 && flag1 == 1){
 
@@ -234,20 +283,44 @@ export default function UpdateProfile(props){
 		address,
 		username,
 		password,
-		confirmPassword,
+		// confirmPassword,
 		userImage : image3
 		}
 
 		console.log(updatecus);
 
+		objectID = props.match.params.id;
 		axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
 		
 
 		//alert("Customer Updated Successfully!");
+
+		Swal.fire({
+			title: 'Do you want to save the changes?',
+			showDenyButton: true,
+			showCancelButton: true,
+			confirmButtonText: 'Save',
+			denyButtonText: `Don't Save`,
+		  }).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+			  Swal.fire('Your Profile Has Been Successfully Updated!', '', 'success')
+			  props.history.push("/Customer/MyProfile");
+			  window.location.reload();
+			 
+			 
+			} else if (result.isDenied) {
+			  Swal.fire('Changes are not saved.', '', 'info')
+			  props.history.push("/Customer/MyProfile");
+			}
+		  })
+		  
 		
-		props.histroy.push("/Customer/MyProfile");
+		
+	
 			
 		}).catch((err) =>{
+
 			alert(err)
 		  })
 		}
@@ -256,10 +329,32 @@ export default function UpdateProfile(props){
 	
 	
 	function deleteCustomer(id){
-	  axios.delete("http://localhost:8070/Customer/delete/"+objectID).then((res) =>
+
+		objectID = props.match.params.id;
+	  axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
 	  {
-		  alert("Customer Deleted Successfully!");
-		  props.histroy.push("/CustomerRegistration");
+		//   alert("Customer Deleted Successfully!");
+
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this account!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire(
+				'Deleted!',
+				'Your Profile Has Been Successfully Deleted!',
+				'success'
+				
+			  )
+			  props.history.push("/CustomerRegistration");
+			}
+		  })
+		 
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
 		  //setCustomer(afterDeleteCustomer);
 	  }).catch((err) =>{

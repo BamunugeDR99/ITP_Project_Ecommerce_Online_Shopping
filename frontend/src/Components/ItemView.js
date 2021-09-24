@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import {Link} from 'react-router-dom';
 
 
@@ -20,6 +20,10 @@ export default function ItemView(props){
     let [filtereditems,setFiltereditems] = useState([]);
 
     let [ICategory, setICategory]= useState("");
+
+    var ipsumText = true;
+
+   
 
     let reviews = [];
     // let items = [];
@@ -65,20 +69,22 @@ export default function ItemView(props){
     };
   
     let reviewWithItems = [];
-  
+
     useEffect(() => {
       function getReview() {
+
+        const objectId = props.match.params.id;
         axios
           .get("http://localhost:8070/review/get")
           .then((res) => {
             // setReview(res.data);
             const filter = res.data.filter(
-              (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+              (itemrev) => itemrev.itemid === objectId
             );
             reviews = filter;
             console.log(reviews);
             axios
-              .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+              .get("http://localhost:8070/items/get/"+ objectId)
               .then((res) => {
                   ICategory= res.data.Category;
                   console.log(ICategory);
@@ -256,9 +262,186 @@ export default function ItemView(props){
       }
     
 
+      const array1 = [itemImage];
+
+      const found = array1.find(element=>element>1);
 
 
+
+      function addToCart(id) {
+        /// complete this
+        axios
+          .get("http://localhost:8070/items/get/" + id)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.ItemAvailabilityStatus == false) {
+              Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "Item is not available Right now!",
+              });
+            } else {
+              let CustomerID = localStorage.getItem("CustomerID");
     
+              // http://localhost:8070/ShoppingCart/getOneCart/:id
+              axios
+                .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+                .then((res) => {
+                  let cartID = res.data._id;
+                  console.log(res.data);
+                  let packages = res.data.PackageIDs;
+                  let newwItems = res.data.ItemIDs;
+    
+                  let falgs = 0;
+                  for (let i = 0; i < newwItems.length; i++) {
+                    if (newwItems[i] == id) {
+                      falgs = 1;
+                    }
+                  }
+                  newwItems.push(id);
+                  console.log(newwItems);
+    
+                  const updatedCart = {
+                      customerID : CustomerID,
+                      PackageIDs : packages,
+                      ItemIDs : newwItems
+                  }
+    
+               
+    if(falgs == 0){
+                  axios
+                    .put(
+                      "http://localhost:8070/ShoppingCart/updateSItem/" +
+                        cartID,
+                      updatedCart
+                    )
+                    .then((res) => {
+                      Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Item added to cart Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                    })
+                    .catch((err) => {
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Please try again!",
+                      });
+                    });
+                  }else if(falgs == 1){
+                    Swal.fire("Item Already in Your Shopping Cart.");
+                  }    
+                })
+                .catch((err) => {
+                  alert(err);
+                });
+            
+           
+            
+            
+              }
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
+            
+function buyNow(id){
+    axios
+    .get("http://localhost:8070/items/get/" + id)
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.ItemAvailabilityStatus == false) {
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "Item is not available Right now!",
+        });
+      } else {
+        let CustomerID = localStorage.getItem("CustomerID");
+
+        // http://localhost:8070/ShoppingCart/getOneCart/:id
+        axios
+          .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+          .then((res) => {
+            let cartID = res.data._id;
+            console.log(res.data);
+            let packages = res.data.PackageIDs;
+            let newwItems = res.data.ItemIDs;
+
+            let falgs = 0;
+            for (let i = 0; i < newwItems.length; i++) {
+              if (newwItems[i] == id) {
+                falgs = 1;
+              }
+            }
+            newwItems.push(id);
+            console.log(newwItems);
+
+            const updatedCart = {
+                customerID : CustomerID,
+                PackageIDs : packages,
+                ItemIDs : newwItems
+            }
+
+         
+if(falgs == 0){
+            axios
+              .put(
+                "http://localhost:8070/ShoppingCart/updateSItem/" +
+                  cartID,
+                updatedCart
+              )
+              .then((res) => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Item added to cart Successfully!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                props.history.push("/Customer/MyShoppingCart");
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Please try again!",
+                });
+              });
+            }else if(falgs == 1){
+              Swal.fire("Item Already in Your Shopping Cart.");
+
+              props.history.push("/Customer/MyShoppingCart");
+            }    
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      
+     
+      
+      
+        }
+    })
+    .catch((err) => {
+      alert(err);
+    });
+}
+    
+
+
+function viewReview(id){
+props.history.push("/Customer/ItemReviews/" + id)
+}
+
+function writeReview(id){
+    props.history.push("/Customer/WriteReview/" + id)
+}
 return(
 <div style={{padding:'20px 15px 10px 50px'}}>  
 
@@ -267,39 +450,39 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{width:'90%',  paddingRight:'20px'}} src={p2}
-            // {`../images/${items.Item_name}`}
+            <img style={{width:'90%',  paddingRight:'20px'}} 
+                // src={"/Images/"+items.Images[0]}
             />
             <div>
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} 
+                // src={"/Images/"+items.Images[1]}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} 
+                // src={"/Images/"+items.Images[0]}
                 />
-                <img style={{width:'25%',  padding:'10px'}} src={p2}
-                // {`../images/${items.Item_name}`}
+                <img style={{width:'25%',  padding:'10px'}} 
+               //src={"/Images/"+items.Images[2]} 
                 />
             </div>
         </div>
 
         <div className="col">
-            <span style={{fontSize:'22px'}}><b>{items.Item_name}</b></span><br/>
-            <span style={{fontSize:'20px'}}>{items.itemDescription}</span><br/>
-        
+            <span style={{fontSize:'22px'}}><b>{items.Item_name} </b></span><br/>
+            <span style={{fontSize:'19px'}}>{items.Description}</span><br/>
+            <span style={{fontSize:'16px'}}>{items.Brand}</span><br/>
              
              <br/>
-             <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/>
+             {/* <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/> */}
              &nbsp;
-             <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/>
-             <span style={{fontSize:'18px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
+             {/* <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/> */}
+             <span style={{fontSize:'19px'}}>Rs. {items.FinalPrice}.00/=</span><br/>
             <br/>
             <div >
-                <button type="button" class="btn btn-danger" style={{width:'50%'}}>Buy Now</button>
+                <button type="button" class="btn btn-danger" style={{width:'50%'}} onClick={() => buyNow(items._id)} >Buy Now</button>
             </div>
             <br/>
             <div >
-                <button type="button" class="btn btn-success" style={{width:'50%'}}>Add to cart</button>
+                <button type="button" class="btn btn-success" style={{width:'50%'}} onClick={() => addToCart(items._id)}>Add to cart</button>
             </div>
         </div>
         <div className="col">
@@ -309,15 +492,15 @@ return(
             <br/>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/contactsel" className = "nav-link" >
-                        <button type="button" class="btn btn-outline-info" style={{width:'40%' ,borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
+                    <Link to = "/Customer/contactseller" className = "nav-link" >
+                        <button type="button" class="btn btn-outline-info" style={{borderRadius:'25px'}}><i class="fas fa-comments"></i>  Contact Seller</button>
                     </Link>
                 </a>
             </div>
             <div >
                 <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                    <Link to = "/contactad" className = "nav-link" >
-                        <button type="button" class="btn btn-outline-info" style={{width:'40%', borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Us</button>
+                    <Link to = "/Customer/contactus" className = "nav-link" >
+                        <button type="button" class="btn btn-outline-info" style={{ borderRadius:'25px'}}><i class="fas fa-comment-alt"></i>  Contact Admin</button>
                     </Link>
                 </a>
             </div>
@@ -354,16 +537,16 @@ return(
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
-                                    <span>{items.ItemAvailabilityStatus} </span><br/>
+                                    <span>{ipsumText.toString(items.ItemAvailabilityStatus) } </span><br/>
                                     <span>{items.Specification} </span><br/>
-                                    <span>{items.Warrenty} </span>
+                                    <span>{ipsumText.toString(items.Warrenty)}</span>
                                 </div>
                                 <div className="col-2">
                                     
                                     <span> Quantity</span><br/>
                                     <span> WHT </span><br/>
-                                    <span> Category</span><br/>
                                     <span> Stock unit</span><br/>
+                                    <span> Category</span><br/>
                                     <span> Other_colors</span><br/>
                                 </div> 
                                 <div className="col-1">
@@ -377,9 +560,13 @@ return(
                                 <div className="col-3">    
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
+                                    <span>{ipsumText.toString(items.Unit) }
+                                    {/* {`items.Unit: ${ipsumText}`} */}
+                                    </span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{items.Unit}</span><br/>
-                                    <span>{items.Colors}</span><br/>
+                                    <span>{found}
+                                        {/* {items.Colors} */}
+                                    </span><br/>
                                 </div>
                                 
                             </div> 
@@ -407,18 +594,18 @@ return(
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/ItemReviews" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-primary">View Reviews</button>
-                                                </Link>
+                                                
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-primary"onClick={() =>viewReview(items._id)}  >View Reviews</button>
+                                                
                                             </a>
                                             
                                         </div>
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                <Link to = "/WriteReview" className = "nav-link" >
-                                                    <button type="button"style={{fontSize:'16px'}} style={{width:'50%', borderRadius:'15px'}} class="btn btn-info">Write a Review</button>
-                                                </Link>
+                                               
+                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-info" onClick={() =>writeReview(items._id)} >Write a Review</button>
+                                                
                                             </a>
                                             
                                         </div>

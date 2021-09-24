@@ -121,10 +121,12 @@ import ViewCardDetails from './Components/ViewCardDetails';
 import SellerReviews from './Components/SellerReview';
 import AddpaymentMethod from './Components/AddpaymentMethod';
 import AddCard from './Components/AddCard';
+import Sellermsg from './Components/Sellermsg';
 import ConfirmPayment from './Components/ConfirmPayment';
-
+import ShoppingCart from './Components/ShoppingCart';
 import EditCardDetails from './Components/EditCardDetails';
-
+import SellermMsg from './Components/Sellermsg';
+import SelectPaymentMethod from './Components/SelectPaymentMethod';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -158,17 +160,21 @@ function App() {
 
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
-      <Route path = "/Customer/WriteReview" exact component = {WriteReview}/>
+      <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
+    
 
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
-      <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
+      <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
         {/* id  */}
       {/* // from my item incomplete */}
       <Route path = "/Customer/paymentHistory" exact component = {PaymentHistory}/>
+      <Route path = "/Customer/SelectPayment" excat component = {SelectPaymentMethod} />
+      <Route path = "/Customer/Confrim/:id" exact component = {ConfirmPayment}/>
       <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/>
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
+      <Route path = "/Customer/MyShoppingCart" exact component = {ShoppingCart}/>
       <Route path = "/Customer" component = {Footer_customer}/>
 
 
@@ -185,8 +191,14 @@ function App() {
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
+      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
+      
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
+
+      <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
+      <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
+      <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>

@@ -32,9 +32,10 @@ export default function CustomerReviews(props) {
           //setReview(res.data);
           const filter = res.data.filter(
             (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+           
           );
           reviews = filter;
-
+console.log(reviews)
           axios
             .get("http://localhost:8070/Customer/getAll")
             .then((res) => {
@@ -79,11 +80,13 @@ export default function CustomerReviews(props) {
  
 
   return (
-    <div style={{ padding: "20px 15px 10px 50px" }}>
-        <div className="container">
-          <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
+    <div style={{ padding: "20px 15px 10px 50px", backgroundColor:'#F9F9F9'}}>
+        
+        
+          <div class="row" style={{ width: "100%", alignItems: "center", borderRadius: "10px",backgroundColor:'#F9F9F9' }} >
+          <div className="container" style={{backgroundColor:'#F9F9F9', width:'95%'}}>
             <br />
-            <h1 style={{ textAlign: "center", color: "black" }}>
+            <h1 style={{ textAlign: "center", color: "black" ,textShadow:'3px 3px #CECECE '}}>
               {" "}
               Customer Reviews
             </h1>
@@ -92,16 +95,16 @@ export default function CustomerReviews(props) {
             </h5>
 
             <div>
+               <div className="row" style={{margin: "50px 20px 20px 30px",}}>
             
               {abc.map((reviewss) => {
                 return (
-                  <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+                 
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
-                      <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+                      <div class="Regular shadow" style={{width: "80%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "300px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white'}}>
                         <div class="card-body">
                           <center>
-                          <img src={a1}
-                          // {"/Images/"+reviewss.customerImage[0]} 
+                          <img src={"/Images/"+reviewss.customerImage[0]} 
                           style={{ width: "65%", alignItems: "center" }}/>
                           <br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
@@ -109,7 +112,7 @@ export default function CustomerReviews(props) {
                           
                           
 
-                          <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
+                          <div id = 'stars'class="card-text" style={{textAlign: "center", padding:'0px 0px 10px 0px' }}>
                             <span id ='review'>{reviewss.Stars}/5</span><br/>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -124,11 +127,11 @@ export default function CustomerReviews(props) {
                       </div>
                     </div>
 
-                  </div>
+                  
               
                 );
               })}
-              
+              </div>
             </div>
             
           </div>

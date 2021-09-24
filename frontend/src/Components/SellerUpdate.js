@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import "../Css/sellerprofile.css";
 
@@ -47,7 +47,7 @@ export default function SellerUpdate(props) {
       e.preventDefault();
   
   
-  
+     
       axios.put("http://localhost:8070/orgSeller/update/" + objectId,data).then(()=>{
 
 
@@ -55,7 +55,7 @@ export default function SellerUpdate(props) {
       //  alert("Seller Updated Successfully!");
       Swal.fire(
         'Success!',
-        'Successfully Updated !',
+        'Successfully Updated Your Profile!',
         'success'
       )
        
@@ -71,6 +71,14 @@ export default function SellerUpdate(props) {
       const newdata = {...data}
       newdata[e.target.id] = e.target.value
       setData(newdata)
+    }
+
+    function deleteSeller() {
+      Swal.fire(
+        'Success!',
+        'Request Sent!',
+        'success'
+      )
     }
 
   return (
@@ -124,7 +132,7 @@ export default function SellerUpdate(props) {
              
                 
                     <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape">
+                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
                         REQUEST DELETE
                       </button>
                     </div>

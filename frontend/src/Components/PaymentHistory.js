@@ -38,6 +38,7 @@ export default function PaymentHistory(props){
     return(
 
         <div className = "container">
+            <br/>
            <center> <h1>Payment History</h1></center>
             <h1 id = "txt"></h1>
             <table class="table table-hover table">
