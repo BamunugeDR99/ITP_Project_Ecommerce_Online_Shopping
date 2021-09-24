@@ -384,11 +384,10 @@ return(
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
                                     <span>{ipsumText.toString(items.Unit) }
-                                    {/* {`items.Unit: ${ipsumText}`} */}
                                     </span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{found}
-                                        {/* {items.Colors} */}
+                                    <span>{ipsumText.toString(items.Colors)}
+                                        
                                     </span><br/>
                                 </div>
                                 
@@ -410,8 +409,7 @@ return(
                                             <span class="fa fa-star checked"></span><br/>
                                             <span class="fa fa-star"></span>
                                             </div>
-                                            
-                                        </span>
+                                                                </span>
                                     </div>
                                     <div className="col-7">
                                         <div >

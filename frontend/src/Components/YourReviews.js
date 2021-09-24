@@ -226,7 +226,7 @@ export default function YourReviews(props) {
             </div>
             {abc.map((re,index) => {
               return (
-                <div className="row" style={{width:'90%', padding:'20px 0px 20px 0px',margin:'0px 0px 30px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px',border:'red'}}>
+                <div className="row" style={{width:'95%', padding:'20px 0px 20px 0px',margin:'0px 0px 30px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px',border:'red'}}>
                    
                     <div className="row">
                     

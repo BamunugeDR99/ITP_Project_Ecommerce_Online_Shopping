@@ -328,7 +328,7 @@ function updatee(id){
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
-                                    <span> {ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
+                                    <span>{ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
                                     <span>{items.Specification} </span><br/>
                                     <span>{ipsumText.toString(items.Warrenty) } </span>
                                 </div>
@@ -353,7 +353,7 @@ function updatee(id){
                                     <span>{items.WHT}</span><br/>
                                     <span>{items.Category}</span><br/>
                                     <span>{ipsumText.toString(items.Unit) }</span><br/>
-                                    <span>{items.Colors}</span><br/>
+                                    <span>{ipsumText.toString(items.Colors) }</span><br/>
                                 </div>
                                 
                             </div> 
@@ -398,8 +398,8 @@ function updatee(id){
                     <div className="row">
                         <div className="col-2">
                             
-                                <img style={{width:'100%'}} src=
-                                {"/Images/" + reviewss.customerImage[0]}
+                                <img style={{width:'100%', borderRadius:'30px'}} src=
+                                {"/Images/" + reviewss.customerImage}
                                 />
                         </div>
 

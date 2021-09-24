@@ -61,11 +61,8 @@ export default function ContactSeller(props){
         setName(" ");
         setEmail(" ");
         setMessage(" ");
-        // validate:validCustomer;
-        // props.history.push("/Home");
         setErrorMsg("");
-        // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-        // alert("Message Sended Successfully!");
+       
         Swal.fire({
             title: "Good job!",
             text: "You send the messege!",

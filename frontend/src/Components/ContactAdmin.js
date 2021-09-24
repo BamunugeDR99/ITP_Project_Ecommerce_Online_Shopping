@@ -15,7 +15,8 @@ export default function ContactAdmin(props){
   
     let customerid  = "";
     let [errorMsg,setErrorMsg] = useState("");
-	let flag = 0;
+	let flag1 = 0;
+    let flag2 = 0;
 
     function validEmail(){
 
@@ -25,12 +26,30 @@ export default function ContactAdmin(props){
 
 		 if(email.match(EmailAdd)){
 
-			flag = 1;
+			flag1 = 1;
 
 		 }else{
 			
-			flag = 0;
+			flag1 = 0;
 			alert("You have entered an invalid email address!");
+
+		 }
+		
+	}
+    function validName(){
+
+		const name = document.getElementById("name").value;
+
+		const NameAdd = /^[a-zA-Z]+$/
+
+		 if(name.match(NameAdd)){
+
+			flag2 = 1;
+
+		 }else{
+			
+			flag2 = 0;
+			alert("Invalid name!");
 
 		 }
 		
@@ -41,9 +60,10 @@ export default function ContactAdmin(props){
 
       e.preventDefault();
       validEmail();
+      validName();
       customerid  = localStorage.getItem("CustomerID");
 
-      if(flag == 1){
+      if((flag1 == 1) && (flag2=1)){
           
   
       const newContact = {
@@ -61,16 +81,7 @@ export default function ContactAdmin(props){
         setName(" ");
         setEmail(" ");
         setMessage(" ");
-        //props.history.push("/Home");
-        //setErrorMsg("");
-        //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-        // alert("Message Sended Successfully!");
-        // Swal.fire(
-        //     'Good job!',
-        //     'You Send the message!',
-        //     'success'
-            
-        //   )
+      
           Swal.fire({
             title: "Good job!",
             text: "You send the messege!",
@@ -111,7 +122,7 @@ export default function ContactAdmin(props){
                         </span>
                             
                         <div className="wrap-input1 validate-input" data-validate = "Name is required">
-                            <input className="input1" type="text" name="name" placeholder="Name"
+                            <input className="input1" type="text" id="name" name="name" placeholder="Name" required
                             onChange= {
                                 (e)=>{
                                 setName(e.target.value);
@@ -121,7 +132,7 @@ export default function ContactAdmin(props){
                         </div>
 
                         <div className="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input className="input1" type="text" id="email" name="email" placeholder="Email"
+                            <input className="input1" type="text" id="email" name="email" placeholder="Email" required
                             onChange= {
                                 (e)=>{
                                 setEmail(e.target.value);
@@ -131,7 +142,7 @@ export default function ContactAdmin(props){
                         </div>
 
                         <div className="wrap-input1 validate-input" data-validate = "Message is required">
-                            <textarea className="textarea1" name="message" placeholder="Message"onChange= {
+                            <textarea className="textarea1" name="message" placeholder="Message" required onChange= {
                                 (e)=>{
                                 setMessage(e.target.value);
                                 }

@@ -101,12 +101,12 @@ console.log(reviews)
                 return (
                  
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
-                      <div class="Regular shadow" style={{width: "80%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "300px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white'}}>
+                      <div class="Regular shadow" style={{width: "70%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white'}}>
                         <div class="card-body">
                           <center>
-                          <img src={"/Images/"+reviewss.customerImage[0]} 
-                          style={{ width: "65%", alignItems: "center" }}/>
-                          <br/>
+                          <img src={"/Images/"+reviewss.customerImage} 
+                          style={{ width: "65%", alignItems: "center", borderRadius:400/2 }}/>
+                          <br/><br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
                           </center>
                           
