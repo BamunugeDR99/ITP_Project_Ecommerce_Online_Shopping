@@ -2,6 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2'
 export default function Update_Items(props) {
+  let [succMsg,setSuccMsg] = useState("");
+  let [Error2Msg,setError2Msg] = useState("");
+  let [Err3Msg,setErr3Msg] = useState("");
+  let [ModelMsg,setModelMsg] = useState("");
+  let flag = 0;
+  const [erorMsg,setErrorMsg] = useState("");
   // const [students,setStudents] = useState([]);
   const [data, setData] = useState({
     Item_name: "",
@@ -264,6 +270,42 @@ export default function Update_Items(props) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
+
+    if(e.target.id == "Quantity"){
+      if(e.target.value > 100){
+        setErrorMsg("Quantity cannot be more than 100");
+        setSuccMsg("")
+        flag = 0;
+      }else if(e.target.value <= 0){
+        setErrorMsg("Quantity cannot be Zero or less");
+        setSuccMsg("")
+        flag = 0;
+      }else if((e.target.value).length == 0){
+
+      }else if((e.target.value) > 0 && (e.target.value) < 200){
+      
+          setSuccMsg("All Set!")
+          setErrorMsg("");
+          flag = 1
+        }else{
+        setErrorMsg("");
+        flag = 1;
+      }
+      
+    } 
+    
+    if(e.target.id == "Price"){
+      if(e.target.value > 1000000){
+        setError2Msg("Price cannot exceed 1 Million");
+        flag = 0;
+      }else if(e.target.value <= 0){
+        setError2Msg("Price cannot be Zero or less");
+        flag = 0;
+      }else{
+        setError2Msg("");
+        flag = 1;
+      }
+    }
   }
 
   function gotoAddDiscount(id){
@@ -335,26 +377,26 @@ export default function Update_Items(props) {
 
               <div class="row">
                 <div class="col">
-                  <label for="item_name">ITEM NAME</label>
+                  <label for="item_name">ITEM NAME <h6  style={{ textAlign: "center", color: "#FF0000" }}></h6></label>
                   <input
                     type="text"
                     id="Item_name"
                     Value={data.Item_name}
                     class="form-control"
                     placeholder="Name of the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
-                  <label for="quantity">QUANTITY</label>
+                  <label for="quantity">QUANTITY  <h6  style={{ textAlign: "center", color: "#FF0000" }}>{erorMsg}</h6></label>
                   <input
-                    type="text"
+                    type="Number"
                     id="Quantity"
                     Value={data.Quantity}
                     class="form-control"
                     placeholder="Quantity"
                     onChange={(e) => handle(e)
-                    }
+                    } required
                   />
                 </div>
               </div>
@@ -368,7 +410,7 @@ export default function Update_Items(props) {
                     Value={data.Brand}
                     class="form-control"
                     placeholder="Item brand"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
@@ -379,21 +421,21 @@ export default function Update_Items(props) {
                     Value={data.Model}
                     class="form-control"
                     placeholder="Item model"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} readOnly
                   />
                 </div>
               </div>
               <br />
               <div class="row">
                 <div class="col">
-                  <label for="price">PRICE</label>
+                  <label for="price">PRICE  <h6  style={{ textAlign: "center", color: "#FF0000" }}>{Error2Msg}</h6> </label>
                   <input
-                    type="text"
+                    type="Number" 
                     id="Price"
                     Value={data.Price}
                     class="form-control"
                     placeholder="Price of the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
@@ -404,7 +446,8 @@ export default function Update_Items(props) {
                     Value={data.Stock_keeping_unit}
                     class="form-control"
                     placeholder="SKU"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e) }
+                    readOnly
                   />
                 </div>
               </div>
@@ -419,7 +462,7 @@ export default function Update_Items(props) {
                     defaultValue={data.Description}
                     rows="5"
                     placeholder="Description about the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
                 <div class="col">
@@ -430,7 +473,7 @@ export default function Update_Items(props) {
                     defaultValue={data.Specification}
                     rows="5"
                     placeholder="Item specifications"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
                 <br />
@@ -442,7 +485,7 @@ export default function Update_Items(props) {
                     id="WHT"
                     defaultValue={data.WHT}
                     placeholder="Tell what inside the package ?"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
               </div>

@@ -193,7 +193,7 @@ router.route("/delete/:id").delete(async (req,res) =>{
                 let userID = req.params.id;
                 const{description,date} = req.body;
             
-                const updateReview = {
+                const updateReview2 = {
                     description,
                     date,
                     noofstars,
@@ -204,7 +204,7 @@ router.route("/delete/:id").delete(async (req,res) =>{
                     reportreason
                 } = req.body;
 
-                const updateReview = {
+                 updateReview2 = {
                     description,
                     date,
                     noofstars,
@@ -215,7 +215,7 @@ router.route("/delete/:id").delete(async (req,res) =>{
                     reportreason
                 };
             
-                const update = await Review.findByIdAndUpdate(userID,updateReview).then(()=>{
+                const update = await Review.findByIdAndUpdate(userID,updateReview2).then(()=>{
                     res.status(200).send({status: "User updated"})
                     }).catch((err) => {
                         console.log(err);

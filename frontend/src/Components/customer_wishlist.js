@@ -74,7 +74,7 @@ export default function Customer_wishlist(props) {
           alert(err);
         });
       }
-   // displayRating();
+    displayRating();
      getItems();
 
     }, []);
@@ -86,7 +86,7 @@ export default function Customer_wishlist(props) {
     })
 
     useEffect(() =>{
-     //s displayStarRating();
+     displayStarRating();
     })
 
     function display(re,wi){
@@ -145,7 +145,7 @@ export default function Customer_wishlist(props) {
 
   }
 
-  /*function displayStarRating(id,totalAverage){
+  function displayStarRating(id,totalAverage){
     let txt = "";
       if(isNaN(totalAverage)){
         txt = "No Ratings yet!";
@@ -162,15 +162,15 @@ export default function Customer_wishlist(props) {
 
      document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
      }
-  }*/
+  }
 
   function more(num) {
-    if (document.getElementById(num).innerHTML == "") {
-      document.getElementById(num).innerHTML =
-        "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.";
+    if (document.getElementById(num).hidden == true) {
+      document.getElementById(num).hidden = false; 
+       
       document.getElementById("showBtn").innerHTML = "Minimize";
     } else {
-      document.getElementById(num).innerHTML = "";
+      document.getElementById(num).hidden = true;
       document.getElementById("showBtn").innerHTML = "show more";
     }
   }
@@ -193,7 +193,7 @@ export default function Customer_wishlist(props) {
                 </div>
                 <div class="col-sm-7">
                   <div class="card-body">
-                    <h5 class="card-title">{itemss.Item_name}</h5>
+                    <h5 class="card-title">{itemss.Brand} {itemss.Item_name}</h5>
                     <div  id = {index +'stars'} class="card-text">
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -203,9 +203,9 @@ export default function Customer_wishlist(props) {
                       <span> </span> <span id = {index +'review'} >4.0 / 5.0</span>
                     </div>
                     <p class="card-text">
-                      <b>{itemss.Price}</b>
+                      <b>LKR {itemss.Price}</b>
                     </p>
-                    <p class="card-text" id = {"i"+index}>Item status</p>
+                    <p class="card-text" id = {"i"+index}></p>
                     <a href="#" class="btn btn-danger ">
                       Remove from list
                     </a>{" "}
@@ -224,7 +224,7 @@ export default function Customer_wishlist(props) {
                     </button>
                   </div>
                 </div>
-                <div id="w1"></div>
+                <div id={index} hidden>{itemss.Description}</div>
               </div>
             </div>
           </div>)
