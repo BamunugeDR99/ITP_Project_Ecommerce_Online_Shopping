@@ -17,6 +17,14 @@ export default function UpdatePackages(props) {
     const [sdate, setSdate] = useState("");
     const [edate, setEdate] = useState("");
     const [currImage, setCurrImage] = useState("");
+  
+    let [packageNameValidation, setPnameVal] = useState("");
+    let [pricevalidation, setPval] = useState("");
+    let [startDatevalidation, setstartDateVal] = useState("");
+    let [endDatevalidation, setendDateVal] = useState("");
+    let [descriptionValidation,setDesVal ] = useState("");
+    let [imagesValidation,setImgVal ] = useState("");
+
 
 
     let [description, setDes] = useState("");
@@ -95,7 +103,7 @@ export default function UpdatePackages(props) {
 
                 //alert("Package Deleted");
                 swal.fire("Success", "Package Deleted Successfully", "success");
-                props.history.push("/allpackages");
+                props.history.push("/Seller/MyPackages");
 
             }).catch((err) => {
 
@@ -135,6 +143,47 @@ export default function UpdatePackages(props) {
 
             }
 
+        console.log(packageName.length);
+        console.log(description.length);
+        console.log(price.length);
+
+         if(packageName.length === 0){
+                setPnameVal("Package Name is required !");
+        }
+                
+        else if(description.length === 0){
+
+            setDesVal("Description is required !");
+        }
+
+        else if(price.length === 0){
+
+            setPval("Price is required !!!");
+        }
+
+        else if(Number(price) <= 0 || Number(price) > 2000000 ){
+            setPval("Invalid Price !!!")
+        }
+
+        else if(startDate.length === 0){
+
+            setstartDateVal("Start Date Required !");
+        }
+
+        
+        else if(endDate.length === 0){
+
+            setstartDateVal("End Date Required !");
+        }
+
+        else if(image.length === 0){
+
+            setImgVal("Image Required!");
+        }
+
+        else{
+
+
             console.log(updatedPackage);
 
 
@@ -147,6 +196,12 @@ export default function UpdatePackages(props) {
 
                 alert(err);
             })
+
+
+
+        }
+
+           
 
         }
     }
@@ -197,13 +252,24 @@ export default function UpdatePackages(props) {
                                     <div className="row mt-2">
                                         <label className="labels">Package Name</label>
 
-                                        <input type="text" className="form-control" placeholder="" Value={packageName}
+                                        <input type="text" className="form-control" placeholder="" Value={package1.packageName} required
 
                                             onChange={(e) => {
                                                 setPname(e.target.value);
+
+                                                if(e.target.value.length === 0){
+
+                                                    setPnameVal("Package Name is required !");
+                                                }
+
+                                                else{
+
+                                                    setPnameVal("");
+                                                }
+
                                             }} />
 
-
+                                            <label id = "PackageNameWarning" style={{ color: 'red', fontSize:'20px' }}>{packageNameValidation}</label><br/>
 
                                     </div>
                                     <div className="row mt-2">
@@ -253,13 +319,17 @@ export default function UpdatePackages(props) {
 
                                     </div>
 
-                                    <div className="row mt-2"><label className="labels">Special Price</label><input type="text" className="form-control" placeholder="" Value={price}
+                                    <div className="row mt-2"><label className="labels">Special Price</label><input type="text" className="form-control" placeholder="" Value={price}  required
 
                                         onChange={(e) => {
                                             setPrice(e.target.value);
+                                            if(e.target.value.length > 0){
+
+                                                setPval("");
+                                            }
                                         }} /></div>
 
-
+                                    <label id = "PriceWarning" style={{ color: 'red', fontSize:'20px' }}>{pricevalidation}</label><br/>
                                 </div>
                             </div>
 
@@ -267,17 +337,66 @@ export default function UpdatePackages(props) {
                             <div className="col-md-5">
                                 <div class="p-3 py-5">
                                     <br /><br />
-                                    <div class="col-md-12"><label className="labels">Description</label><textarea className="form-control ml-3" aria-label="With textarea" id="des" defaultValue={description}></textarea></div> <br />
+                                    <div class="col-md-12"><label className="labels">Description</label><textarea className="form-control ml-3" aria-label="With textarea" id="des" defaultValue={description}  required
+                                    
+                                    onChange={(e) => {
+                                     
+                                        if(e.target.value.length > 0){
+
+                                            setDesVal("");
+                                        }}}
+                                    
+                                    
+                                    ></textarea></div> <br />
+                                   
+                                    <label id = "descriptionWarning" style={{ color: 'red', fontSize:'20px' }}>{descriptionValidation}</label><br/>
                                     <div className="row mt-2 ml-5"><label className="labels">Duration</label></div>
                                     <div className="row mt-2 ml-3">
                                         <div className="col-md-6"><label className="labels">Start Date</label>
-                                            <input type="date" className="form-control" placeholder="" id="sDate" defaultValue={sdate} /></div>
+                                            <input type="date" className="form-control" placeholder="" id="sDate" defaultValue={sdate} 
+                                            
+                                            onChange={(e) => {
+                                     
+                                                if(e.target.value.length > 0){
+            
+                                                    setstartDateVal("");
+                                                }}}
+                                            
+                                            /></div>
+                                            <label id = "StartDateValidation" style={{ color: 'red', fontSize:'20px' }}>{startDatevalidation}</label><br/>
+                                        
                                         <div className="col-md-6"><label className="labels">End Date</label>
-                                            <input type="date" className="form-control" placeholder="" id="eDate" defaultValue={edate} /></div><br />
+                                            <input type="date" className="form-control" placeholder="" id="eDate" defaultValue={edate} 
+                                            
+                                            onChange={(e) => {
+                                     
+                                                if(e.target.value.length > 0){
+            
+                                                    setendDateVal("");
+                                                }}}
+                    
+                                            
+                                            /></div><br />
+                                            <label id = "EndDateValidation" style={{ color: 'red', fontSize:'20px' }}>{endDatevalidation}</label><br/>   
+                                    
                                     </div>
-                                    <div className="row mt-2 ml-5"><label className="labels">Images</label><input type="file" className="form-control mr-6" placeholder="" id="img" Value={image} /></div>
+                                    <div className="row mt-2 ml-5"><label className="labels">Images</label><input type="file" className="form-control mr-6" placeholder="" id="img" Value={image} 
+                                    
+                                    onChange={(e) => {
+                                     
+                                        if(e.target.value.length > 0){
+    
+                                            setImgVal("");
+                                        }}}
+                                    
+                                    
+                                    
+                                    /></div>
+                                    <label id = "ImageWarning" style={{ color: 'red', fontSize:'20px' }}>{imagesValidation}</label><br/>   
+                                    
+                                    
                                     <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button" onClick={updatePackage} >Update Package</button><button className="btn btn-primary profile-button ml-3" type="button" onClick={deletePackage}>Delete Package</button></div>
-
+                                    
                                 </div>
                             </div>
                         </div>

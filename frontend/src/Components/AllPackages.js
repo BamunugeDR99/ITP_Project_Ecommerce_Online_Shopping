@@ -126,7 +126,7 @@ export default function AllPackages(props) {
             
             
               //let data = res.data;
-              res.data.ItemAvailabilityStatus = true;
+              res.data.packageAvailability = true;
               console.log(res.data);
           axios
           .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
