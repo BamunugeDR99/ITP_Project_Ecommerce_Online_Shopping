@@ -126,7 +126,10 @@ function AddDiscount(props) {
 
         <div className="OffersnPacks2">
 
-            <div class="mx-auto">
+           
+
+            <div class="d-flex justify-content-center">
+
             <h1>Add Discount Form</h1>
 
             </div>

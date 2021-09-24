@@ -186,7 +186,7 @@ export default function AllPackages(props) {
 
                                                 
                                             </div>
-                                            <a href="#" className="btn btn-primary" >Add to Cart</a>
+                                            <a href="#" className="btn btn-success" >Add to Cart</a>
 
                                         </div>
                                     </div>
