@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 
 import axios from "axios"; //To get the data from the DB
 import '../Css/AllItems.css';
+import Swal from "sweetalert2";
 import go from "./../images/go.jfif";
+
 
 
 ;
@@ -126,6 +128,89 @@ export default function AllPackages(props) {
   
 
 
+      //Add to Cart
+      function addToCart(id) {
+        /// complete this
+        console.log(id);
+        axios
+          .get("http://localhost:8070/Packages/getPackage/" + id)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.packageAvailability == false) {
+              Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "Package is not available Right now!",
+              });
+            } else {
+              let CustomerID = localStorage.getItem("CustomerID");
+    
+              // http://localhost:8070/ShoppingCart/getOneCart/:id
+              axios
+                .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+                .then((res) => {
+                  let cartID = res.data._id;
+                  console.log(res.data);
+                  let packages = res.data.PackageIDs;
+                  let newwItems = res.data.ItemIDs;
+    
+                  let falgs = 0;
+                  for (let i = 0; i < packages.length; i++) {
+                    if (packages[i] == id) {
+                      falgs = 1;
+                    }
+                  }
+                  packages.push(id);
+                  console.log(packages);
+    
+                  const updatedCart = {
+                    customerID: CustomerID,
+                    PackageIDs: packages,
+                    ItemIDs: newwItems
+                  }
+    
+    
+                  if (falgs == 0) {
+                    axios
+                      .put(
+                        "http://localhost:8070/ShoppingCart/updateSItem/" +
+                        cartID,
+                        updatedCart
+                      )
+                      .then((res) => {
+                        Swal.fire({
+                          position: "center",
+                          icon: "success",
+                          title: "Item added to cart Successfully!",
+                          showConfirmButton: false,
+                          timer: 1500,
+                        });
+                      })
+                      .catch((err) => {
+                        Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: "Please try again!",
+                        });
+                      });
+                  } else if (falgs == 1) {
+                    Swal.fire("Item Already in Your Shopping Cart.");
+                  }
+                })
+                .catch((err) => {
+                  alert(err);
+                });
+    
+    
+    
+    
+            }
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
+    
 
 
       
@@ -186,7 +271,7 @@ export default function AllPackages(props) {
 
                                                 
                                             </div>
-                                            <a href="#" className="btn btn-success" >Add to Cart</a>
+                                            <a href="#" className="btn btn-success" onClick={()=>addToCart(item._id)}>Add to Cart</a>
 
                                         </div>
                                     </div>
