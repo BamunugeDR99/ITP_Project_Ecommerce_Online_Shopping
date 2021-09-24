@@ -31,6 +31,7 @@ export default function ShoppingCart(props) {
   //let Color = "";
   let SKU = "";
   let fPrice = "";
+  let itemImage = "";
 
   let ItemDetails = {
 
@@ -41,7 +42,8 @@ export default function ShoppingCart(props) {
     Specification,
     //Color,
     SKU,
-    fPrice
+    fPrice,
+    itemImage
   };
 
   let packageID = "";
@@ -49,6 +51,7 @@ export default function ShoppingCart(props) {
   let description = "";
   let content = [];
   let price = [];
+  let packageImage = "";
 
 
   let PackageDetails = {
@@ -57,7 +60,8 @@ export default function ShoppingCart(props) {
     packageName,
     description,
     content,
-    price
+    price,
+    packageImage
 
 
   }
@@ -141,7 +145,8 @@ export default function ShoppingCart(props) {
               Specification: allItems[j].Specification,
               //Color = allItems[i].Color_family[1],
               SKU: allItems[j].Stock_keeping_unit,
-              fPrice: allItems[j].FinalPrice
+              fPrice: allItems[j].FinalPrice,
+              itemImage : allItems[j].Images[1]
 
             };
 
@@ -185,7 +190,8 @@ export default function ShoppingCart(props) {
             packageName: allPackages[j].packageName,
             description: allPackages[j].description,
             content: allPackages[j].content,
-            price: allPackages[j].price
+            price: allPackages[j].price,
+            packageImage:allPackages[j].image
 
           };
 
@@ -476,11 +482,12 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                   <div class="col-md-5 col-lg-3 col-xl-3">
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample" />
+                        src={"/Images/" + item.itemImage} alt="Sample" />
                       <a href="#!">
                         <div class="mask">
                           <img class="img-fluid w-100"
-                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
+                          src={"/Images/" + item.itemImage} alt="Sample"
+                            />
                           <div class="mask rgba-black-slight"></div>
                         </div>
                       </a>
