@@ -46,7 +46,7 @@ export default function Side_bar_Customer(props) {
                 <i className="bx bx-credit-card nav_icon"></i>{" "}
                 <span className="nav_name">MY WALLET</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Customer/paymentHistory" className="nav_link">
                 {" "}
                 <i className="bx bx-history nav_icon"></i>{" "}
                 <span className="nav_name">PURCHASE HISTORY</span>{" "}

@@ -126,7 +126,7 @@ import ConfirmPayment from './Components/ConfirmPayment';
 import ShoppingCart from './Components/ShoppingCart';
 import EditCardDetails from './Components/EditCardDetails';
 import SellermMsg from './Components/Sellermsg';
-
+import SelectPaymentMethod from './Components/SelectPaymentMethod';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -169,6 +169,8 @@ function App() {
         {/* id  */}
       {/* // from my item incomplete */}
       <Route path = "/Customer/paymentHistory" exact component = {PaymentHistory}/>
+      <Route path = "/Customer/SelectPayment" excat component = {SelectPaymentMethod} />
+      <Route path = "/Customer/Confrim/:id" exact component = {ConfirmPayment}/>
       <Route path = "/Customer/Mywishlist" exact component = {Customer_wishlist}/>
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
