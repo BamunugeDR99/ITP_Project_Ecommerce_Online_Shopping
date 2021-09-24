@@ -72,7 +72,7 @@ export default function ShoppingCart(props) {
 
     function getCart() {
 
-      const customerID = "6144a56b88cbe1257c8a887b";
+      const customerID = localStorage.getItem("CustomerID");
       console.log(customerID);
 
       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
