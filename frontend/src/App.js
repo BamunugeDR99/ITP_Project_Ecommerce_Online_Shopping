@@ -164,6 +164,9 @@ function App() {
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews" exact component = {CustomerReviews}/> 
+
+
+      <Route path = "/Customer/CustomerList" exact component = {CustomerList}/>
         {/* id  */}
       {/* // from my item incomplete */}
       
