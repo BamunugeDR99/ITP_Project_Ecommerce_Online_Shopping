@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect,radix} from "react";
 import axios from "axios";
 import Swal from 'sweetalert2'
 export default function Update_Items(props) {
@@ -20,9 +20,9 @@ export default function Update_Items(props) {
     Category: "",
   });
   let isFirstRender = true;
-  let slideImages = [];
   let imageName = "";
-
+  
+let slideImages = [];
   const [images, setImages] = useState([]);
   //learn  .......
    useEffect(() => {
@@ -83,9 +83,9 @@ export default function Update_Items(props) {
 
   function warrentyChecks() {
     if (document.getElementById("customRadio2").checked) {
-      data.Warrenty = parseInt(document.getElementById("customRadio2").value);
+      data.Warrenty = parseInt(document.getElementById("customRadio2").value,radix);
     } else if (document.getElementById("customRadio1").checked) {
-      data.Warrenty = parseInt(document.getElementById("customRadio1").value);
+      data.Warrenty = parseInt(document.getElementById("customRadio1").value,radix);
     }
   }
   // Clear all after submit
@@ -107,7 +107,7 @@ export default function Update_Items(props) {
     let newImages = [];
     let imagess = document.getElementById("customFile").files;
     console.log(imagess)
-    if(imagess.length != 0){
+    if(imagess.length !== 0){
       for (let i = 0; i < imagess.length; i++) {
         newImages.push(imagess[i].name);
       }
@@ -125,17 +125,17 @@ export default function Update_Items(props) {
   function ItemCategorySelection() {
 
     let valueof = parseInt(document.getElementById("selectCategory").value);
-    if (valueof == 1) {
+    if (valueof === 1) {
       data.Category = "Mobile Phones";
       // setData()= "MM";
       //alert("111");
-    } else if (valueof == 2) {
+    } else if (valueof === 2) {
       // setSelectCategory("Tablet / iPad / iPod");
       data.Category = "Tablet / iPad / iPod";
-    } else if (valueof == 3) {
+    } else if (valueof === 3) {
       //setSelectCategory("Gaming");
       data.Category = "Gaming";
-    } else if (valueof == 4) {
+    } else if (valueof === 4) {
       //setSelectCategory("Other");
       data.Category = "Other";
     }
@@ -143,11 +143,11 @@ export default function Update_Items(props) {
 
   // Check this again ....
   function warrentyCheck() {
-    if (data.Warrenty == true) {
+    if (data.Warrenty === true) {
       document.getElementById("txt1").innerHTML =
         "Warrenty Available For this Item";
       document.getElementById("txt1").style.color = "#A4DE02";
-    } else if (data.Warrenty == false) {
+    } else if (data.Warrenty === false) {
       document.getElementById("txt1").innerHTML =
         "Warrenty Not Available For this Item";
       document.getElementById("txt1").style.color = "#FF0000";
@@ -166,11 +166,11 @@ export default function Update_Items(props) {
   function categoryCheck() {
 
     let txt = "Item is Category under ";
-    if (data.Category == "Mobile Phones") {
+    if (data.Category === "Mobile Phones") {
       txt += "Mobile Phones";
-    } else if (data.Category == "Tablet / iPad / iPod") {
+    } else if (data.Category === "Tablet / iPad / iPod") {
       txt += "Tablet / iPad / iPod";
-    } else if (data.Category == "Gaming") {
+    } else if (data.Category === "Gaming") {
       txt += "Gaming";
     } else {
       txt += "Others";

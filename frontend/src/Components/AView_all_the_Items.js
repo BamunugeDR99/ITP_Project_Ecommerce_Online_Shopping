@@ -30,9 +30,9 @@ export default function AView_all_the_items(props) {
     );
 
     setItems(result);
-    if (result.length != 0) {
+    if (result.length !== 0) {
       // document.getElementById("itemsTxt").innerHTML = "";
-    } else if (result.length == 0) {
+    } else if (result.length === 0) {
       // document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
   }
@@ -60,7 +60,7 @@ export default function AView_all_the_items(props) {
       .delete("http://localhost:8070/items/delete/" + id)
       .then((res) => {
         //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
-        const afterDeleteItems = items.filter((items) => items._id != id);
+        const afterDeleteItems = items.filter((items) => items._id !== id);
         setItems(afterDeleteItems);
       })
       .catch((err) => {
@@ -77,7 +77,7 @@ export default function AView_all_the_items(props) {
     .then((res) => {
     
       //console.log(res.data);
-      if(document.getElementById(id+'div').innerHTML == ""){
+      if(document.getElementById(id+'div').innerHTML === ""){
         document.getElementById(id + 'div').innerHTML = '<div class="row"><div class="col-sm"><br/>brand</div><div class="col-sm"><img src={"/Images/iphone-x-.jpg"}style={{ width: "100px" }} alt="pic"/>'+
         +"<img src={'/Images/iphone-x-.jpg'} style={{ width: '100px' }} alt='pic'/>"+'<br />'+ res.data._id+'</div><div class="col-sm">'+ res.data.Description+ '<br/>'+res.data.ItemAvailabilityStatus+'</div><div class="col-sm">colors<br/></div>'+
    '<div className = "col-sm"></div></div>';
@@ -100,19 +100,19 @@ export default function AView_all_the_items(props) {
     document.getElementById("itemsTxt").innerHTML = "";
     let price2;
     let price1;
-    if (btnid == 1) {
+    if (btnid === 1) {
       price1 = parseFloat(0);
       price2 = parseFloat(10000);
-    } else if (btnid == 2) {
+    } else if (btnid === 2) {
       price1 = parseFloat(10000);
       price2 = parseFloat(20000);
-    } else if (btnid == 3) {
+    } else if (btnid === 3) {
       price1 = parseFloat(20000);
       price2 = parseFloat(30000);
-    } else if (btnid == 4) {
+    } else if (btnid === 4) {
       price1 = parseFloat(30000);
       price2 = parseFloat(40000);
-    } else if (btnid == 5) {
+    } else if (btnid === 5) {
       price2 = parseFloat(40001);
     }
 
@@ -121,7 +121,7 @@ export default function AView_all_the_items(props) {
       .then((res) => {
         let item = res.data;
         let afterFilterItems = [];
-        if (btnid == 5) {
+        if (btnid === 5) {
           const afterFilterItems = item.filter(
             (item) => parseFloat(item.Price) >= price2
           );
@@ -134,7 +134,7 @@ export default function AView_all_the_items(props) {
           setItems(afterFilterItems);
         }
 
-        if (afterFilterItems.length == 0) {
+        if (afterFilterItems.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })

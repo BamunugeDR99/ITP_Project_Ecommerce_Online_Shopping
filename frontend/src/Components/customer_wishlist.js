@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect,radix } from "react";
+// import { ClipLoader } from "react-spinners";
+// import { Link } from "react-router-dom";
 
 export default function Customer_wishlist(props) {
     let [items,setItems] = useState([]);
@@ -16,7 +16,7 @@ export default function Customer_wishlist(props) {
     let itemsWithRatings = [];
     let objectID = "";
   let newItems = [];
-    let result;
+   // let result;
     let wishlist;
     useEffect(() => {
       async function getItems() {
@@ -62,18 +62,18 @@ export default function Customer_wishlist(props) {
        
       }
 
-       function displayRating(){
-        axios
-        .get("http://localhost:8070/review/get")
-        .then((res) => {
-          setRatings(res.data);
-          //console.log(ratings[0].itemid)
-          console.log(res.data);
-        })
-        .catch((err) => {
-          alert(err);
-        });
-      }
+      //  function displayRating(){
+      //   axios
+      //   .get("http://localhost:8070/review/get")
+      //   .then((res) => {
+      //     setRatings(res.data);
+      //     //console.log(ratings[0].itemid)
+      //     console.log(res.data);
+      //   })
+      //   .catch((err) => {
+      //     alert(err);
+      //   });
+      // }
    // displayRating();
      getItems();
 
@@ -93,7 +93,7 @@ export default function Customer_wishlist(props) {
 
       for(let i = 0; i < wi.length; i++){
         for(let j = 0; j < re.length; j++){
-            if(wi[i] == re[j]._id){
+            if(wi[i] === re[j]._id){
               newItems.push(re[j]);
             }
         }
@@ -122,16 +122,16 @@ export default function Customer_wishlist(props) {
             totalNoRatings++;
           }
 
-          if(items[i]._id == ratings[j].itemid){
+          if(items[i]._id === ratings[j].itemid){
             starCount += parseInt(ratings[j].noofstars);
           }
 
       }
 
       totalstarforRatingCount = totalNoRatings * 5;
-      average = parseInt((starCount / totalstarforRatingCount) * 5);
+      average = parseInt((starCount / totalstarforRatingCount) * 5,radix);
       console.log(average);
-      if(id == 1){
+      if(id === 1){
       //displayStarRating(i,average);
       }
       itemWithRatings = {
@@ -165,7 +165,7 @@ export default function Customer_wishlist(props) {
   }*/
 
   function more(num) {
-    if (document.getElementById(num).innerHTML == "") {
+    if (document.getElementById(num).innerHTML === "") {
       document.getElementById(num).innerHTML =
         "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.";
       document.getElementById("showBtn").innerHTML = "Minimize";

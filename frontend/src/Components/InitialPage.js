@@ -1,5 +1,5 @@
 import React from "react";
- import back from "./../images/back2.jpg"
+//  import back from "./../images/back2.jpg"
  import '../Css/InitialPage.css'
 
 

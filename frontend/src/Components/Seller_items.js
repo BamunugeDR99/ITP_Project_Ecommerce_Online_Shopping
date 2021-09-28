@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,radix } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2'
 export default function Seller_items(props) {
@@ -21,7 +21,7 @@ export default function Seller_items(props) {
           
           let result = res.data.filter(
                           (post) =>
-                            post.SellerID == objectID            
+                            post.SellerID === objectID            
                         );
           setItems(result);
           console.log(res.data);
@@ -74,20 +74,20 @@ function calculateStarRating(id){
     average = 0;
   
     for(let j = 0; j < ratings.length; j++){
-        if(items[i]._id == ratings[j].itemid){
+        if(items[i]._id === ratings[j].itemid){
           totalNoRatings++;
         }
 
-        if(items[i]._id == ratings[j].itemid){
-          starCount += parseInt(ratings[j].noofstars);  
+        if(items[i]._id === ratings[j].itemid){
+          starCount += parseInt(ratings[j].noofstars,radix);  
         }
 
     }
 
     totalstarforRatingCount = totalNoRatings * 5;
-    average = parseInt((starCount / totalstarforRatingCount) * 5);
+    average = parseInt((starCount / totalstarforRatingCount) * 5,radix);
     console.log(average);
-    if(id == 1){
+    if(id === 1){
     displayStarRating(i,average);
     }
     itemWithRatings = {
@@ -133,18 +133,18 @@ function displayStarRating(id,totalAverage){
     );
 
     setItems(result);
-    if (result.length != 0) {
+    if (result.length !== 0) {
       document.getElementById("itemsTxt").innerHTML = "";
-    } else if (result.length == 0) {
+    } else if (result.length === 0) {
       document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
 
-    if (result != null) {
+    if (result !== null) {
       // setLoad(false);
       //document.getElementById("txt2").innerHTML = "";
     }
 
-    if (result.length == 0) {
+    if (result.length === 0) {
       //alert("d");
       // setLoad(true);
       //document.getElementById("txt2").innerHTML = "No Result Found!";
@@ -164,7 +164,7 @@ function displayStarRating(id,totalAverage){
         //console.log(res.data);
         let results = res.data.filter(
           (post) =>
-          post.SellerID == objectID           
+          post.SellerID === objectID           
         );
         filterContent(results, userSearch);
       })
@@ -202,7 +202,7 @@ function displayStarRating(id,totalAverage){
     .delete("http://localhost:8070/items/delete/" + id)
     .then((res) => {
       //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
-      const afterDeleteItems = items.filter((items) => items._id != id);
+      const afterDeleteItems = items.filter((items) => items._id !== id);
       setItems(afterDeleteItems);
     })
     .catch((err) => {
@@ -240,16 +240,16 @@ function displayStarRating(id,totalAverage){
         // console.log(res.data);
         let item = res.data.filter(
           (post) =>
-            post.SellerID == objectID            
+            post.SellerID === objectID            
         );
         // filterContentForCatrgory(res.data,categoryType);
         //let item = res.data;
         const afterFilterItems = item.filter(
-          (item) => item.Category == categoryType
+          (item) => item.Category === categoryType
         );
         setItems(afterFilterItems);
 
-        if (afterFilterItems.length == 0) {
+        if (afterFilterItems.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })
@@ -262,19 +262,19 @@ function displayStarRating(id,totalAverage){
     document.getElementById("itemsTxt").innerHTML = "";
     let price2;
     let price1;
-    if (btnid == 1) {
+    if (btnid === 1) {
       price1 = parseFloat(0);
       price2 = parseFloat(10000);
-    } else if (btnid == 2) {
+    } else if (btnid === 2) {
       price1 = parseFloat(10000);
       price2 = parseFloat(20000);
-    } else if (btnid == 3) {
+    } else if (btnid === 3) {
       price1 = parseFloat(20000);
       price2 = parseFloat(30000);
-    } else if (btnid == 4) {
+    } else if (btnid === 4) {
       price1 = parseFloat(30000);
       price2 = parseFloat(40000);
-    } else if (btnid == 5) {
+    } else if (btnid === 5) {
       price2 = parseFloat(40001);
     }
 
@@ -283,12 +283,12 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         let item = res.data.filter(
           (post) =>
-            post.SellerID == objectID            
+            post.SellerID === objectID            
         );
 
        // let item = res.data;
         let afterFilterItems = [];
-        if (btnid == 5) {
+        if (btnid === 5) {
            afterFilterItems = item.filter(
             (item) => parseFloat(item.Price) >= price2
           );
@@ -301,7 +301,7 @@ function displayStarRating(id,totalAverage){
           setItems(afterFilterItems);
         }
 
-        if (afterFilterItems.length == 0) {
+        if (afterFilterItems.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })
@@ -313,12 +313,12 @@ function displayStarRating(id,totalAverage){
   function displayStatus(){
     for(let i = 0; i < items.length; i++){
 
-      if(items[i].ItemAvailabilityStatus == true){
+      if(items[i].ItemAvailabilityStatus === true){
         document.getElementById(i+'x').checked = true;
         document.getElementById(i).innerHTML = "Item Available";
         document.getElementById(i).style.color = "#A4DE02";
 
-      }else if(items[i].ItemAvailabilityStatus == false){
+      }else if(items[i].ItemAvailabilityStatus === false){
         document.getElementById(i+'x').checked = false;
         document.getElementById(i).innerHTML = "Item Out of Stock";
         document.getElementById(i).style.color = "#FF0000";
@@ -332,7 +332,7 @@ function displayStarRating(id,totalAverage){
     console.log(id);
     console.log(index);
 
-    if(document.getElementById(index+'x').checked == false){
+    if(document.getElementById(index+'x').checked === false){
 
       axios
       .get("http://localhost:8070/items/get/" + id)
@@ -362,7 +362,7 @@ function displayStarRating(id,totalAverage){
       .catch((err) => {
         alert(err);
       });
-    }else if(document.getElementById(index+'x').checked == true){
+    }else if(document.getElementById(index+'x').checked === true){
 
       axios
       .get("http://localhost:8070/items/get/" + id)
@@ -405,7 +405,7 @@ function displayStarRating(id,totalAverage){
     //let itemsWithRatings = calculateStarRatingdd(0);
     console.log(itemsWithRatings);
       for(let i = 0; i < itemsWithRatings.length; i++){
-        if(itemsWithRatings[i].averageRating == btnId){
+        if(itemsWithRatings[i].averageRating === btnId){
             filterdItemsWithRatings.push(itemsWithRatings[i].itemID);
         } 
       }
@@ -419,7 +419,7 @@ function displayStarRating(id,totalAverage){
       
       let result = res.data.filter(
         (post) =>
-        post.SellerID == objectID             
+        post.SellerID === objectID             
       );
       let item = result;
       // console.log(item[2]._id);
@@ -427,7 +427,7 @@ function displayStarRating(id,totalAverage){
       let afterFilterItemss = [];
       for(let i  = 0; i < filterdItemsWithRatings.length; i++ ){
         for(let j = 0; j < item.length; j++){
-          if(filterdItemsWithRatings[i] == item[j]._id){
+          if(filterdItemsWithRatings[i] === item[j]._id){
             afterFilterItemss.push(item[j]);
           }
         }
@@ -437,7 +437,7 @@ function displayStarRating(id,totalAverage){
       setItems(afterFilterItemss);
       console.log(afterFilterItemss);
 
-      if (afterFilterItemss.length == 0) {
+      if (afterFilterItemss.length === 0) {
         document.getElementById("itemsTxt").innerHTML = "No Result Found!";
       }
     })
@@ -453,7 +453,7 @@ function displayStarRating(id,totalAverage){
       .then((res) => {
         let result = res.data.filter(
           (post) =>
-          post.SellerID == objectID             
+          post.SellerID === objectID             
         );
        setItems(result);
        if(res.data.length === 0){

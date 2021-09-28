@@ -1,9 +1,5 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
-import { Link } from "react-router-dom";
 // import '../Css/Side_bar_styles.css';
-
+import React from 'react';
 
 export default function Footer_customer(props) {
   return (
