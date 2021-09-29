@@ -37,6 +37,7 @@ function SignUp(props) {
   // let [userImage ,setUserImage] = useState("");
   
   let userImage = "";
+
   let image2 = "";
   let image3 = "";
   let [errorMsg, setErrorMsg] = useState("");
@@ -102,7 +103,7 @@ function SignUp(props) {
     Swal.fire('Phone Number must be 10 digit number')
     
     
-  } else if (phoneNumber.charAt(0) != 0) {
+  } else if (phoneNumber.charAt(0) !== 0) {
     flag1 = 0;
     Swal.fire('Phone Number must start with 0')
    
@@ -141,7 +142,7 @@ function SignUp(props) {
   Swal.fire('Password must contain at least one lowercase letter, one uppercase letter, one numeric digit') 
  
 
-} else if (password != confirmPassword) {
+} else if (password !== confirmPassword) {
   flag1 = 0;
   Swal.fire('Password Mismatch')
 
@@ -204,8 +205,7 @@ function SignUp(props) {
       validate()
       
       
-
-    if(flag1 == 1){
+     if(flag1 === 1){
 
       const newCustomer = {
     	firstName,

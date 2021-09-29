@@ -49,11 +49,12 @@ export default function UpdateProfile(props){
 	let [address ,setAddress] = useState("");
 	let [username ,setUsername] = useState("");
 	let [password , setPassword ] = useState("");
-	let [confirmPassword ,setConfirmPassword] = useState("");
+	let userImage = "";
+	//let [confirmPassword ,setConfirmPassword] = useState("");
+
 	// let [userImage ,setUserImage] = useState("");
 	
 	let objectID = "";
-	let userImage = "";
 
 	let image2 = "";
 	let image3 = "";
@@ -68,7 +69,7 @@ export default function UpdateProfile(props){
 		gender = document.getElementById("gender").value;	
 	}
 	function images(){
-		userImage = document.getElementById("user_image").value;	
+	  userImage = document.getElementById("user_image").value;	
 
 	}
 	function birthday(){
@@ -162,7 +163,7 @@ export default function UpdateProfile(props){
 		Swal.fire('Phone Number must be 10 digit number')
 		
 		
-	  } else if (phoneNumber.charAt(0) != 0) {
+	  } else if (phoneNumber.charAt(0) !== 0) {
 		flag1 = 0;
 		Swal.fire('Phone Number must start with 0')
 	   
@@ -238,7 +239,7 @@ export default function UpdateProfile(props){
 					Swal.fire('"Password must contain at least one lowercase letter, one uppercase letter, one numeric digit"!')
 					
 
-				}else if(nCpsw != nCopsw){
+				}else if(nCpsw !== nCopsw){
 					flag = 0;
 					Swal.fire('Password Mismatch!!')
 	
@@ -270,7 +271,7 @@ export default function UpdateProfile(props){
 		validate()
 		
   
-		if(flag == 1 && flag1 == 1){
+		if(flag === 1 && flag1 === 1){
 
 		const updatecus={
 

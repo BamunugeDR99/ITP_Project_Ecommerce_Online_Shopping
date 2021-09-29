@@ -1,6 +1,5 @@
 import React from "react";
- import back from "./../images/back2.jpg"
- import '../Css/InitialPage.css'
+import '../Css/InitialPage.css'
 
 
 export default function InitialPage(props) {

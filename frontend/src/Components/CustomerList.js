@@ -76,7 +76,7 @@ export default function CustomerList(){
         setLoad(false);
       }
 
-      if(result.length == 0){
+      if(result.length === 0){
 
         setLoad(true);
       }
@@ -131,7 +131,7 @@ return (
      	  	  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
      	  	  <td data-label="Other Details">
 
-               <img src = {"Images/" + customer.userImage}  width="100px" height="100px"/>
+               <img src = {"Images/" + customer.userImage} alt="userImage" width="100px" height="100px"/>
               { 
                 show? <p>{customer.email}</p>:null
               }  
@@ -139,7 +139,7 @@ return (
                 show? <p>{customer.address}</p>:null
               } 
               {     
-                show? <p>{customer. phoneNumber}</p>:null
+                show? <p>{customer.phoneNumber}</p>:null
               }
               
 

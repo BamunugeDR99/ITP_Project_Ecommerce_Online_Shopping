@@ -53,7 +53,7 @@ export default function ForgotP(props) {
         // alert("gg");
       }
 
-      if(flag == 1){
+      if(flag === 1){
         Code = makeid(20);
         setCodeCheck(Code);
         emailContent = {
@@ -116,7 +116,7 @@ export default function ForgotP(props) {
   function verifyCode(){
     console.log(enteredCode);
     console.log(codeCheck);
-    if(enteredCode == codeCheck){
+    if(enteredCode === codeCheck){
       document.getElementById("txtMsg").innerHTML = "Code Verified Successfully!";
       document.getElementById("txtMsg").style.color = "#228B22";
       setVarification(1);
@@ -132,12 +132,12 @@ export default function ForgotP(props) {
   function changePassword(e){
     e.preventDefault();
     //update passsword 
-    if(verification == 1){
+    if(verification === 1){
 
       const newPassword = document.getElementById("new_password").value;
       const ConfirmnewPassword = document.getElementById("confirm_new_password").value;
 
-      if(newPassword == ConfirmnewPassword){
+      if(newPassword === ConfirmnewPassword){
          
         let customer2 = {
           firstName: customer.firstName,
@@ -192,7 +192,7 @@ export default function ForgotP(props) {
   <div className = "container">
     <div class="card">
   <div class="card-body">
-    <h2 style ={{textAlign : "center"}} id = "txtMsg"></h2>
+    <h2 style ={{textAlign : "center"}} id = "txtMsg">.</h2>
     <form onSubmit = {sendEmail}>
     <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
