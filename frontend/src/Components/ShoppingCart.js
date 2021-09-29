@@ -9,7 +9,7 @@ export default function ShoppingCart(props) {
   let [CartPackages, setCartPackages] = useState([]);
   let Allitems = [];
   let Allpackages = [];
-  const [ItemArr, setItemArr] = useState([]);
+ // const [ItemArr, setItemArr] = useState([]);
   
 
   let [InItemPrice, setInItemPrice] = useState(0);
@@ -133,7 +133,7 @@ export default function ShoppingCart(props) {
 
         for (j = 0; j < allItems.length; j++) {
 
-          if (items[i] == allItems[j]._id) {
+          if (items[i] === allItems[j]._id) {
 
 
             ItemDetails = {
@@ -181,7 +181,7 @@ export default function ShoppingCart(props) {
 
       for (j = 0; j < allPackages.length; j++) {
 
-        if (packages[i] == allPackages[j]._id) {
+        if (packages[i] === allPackages[j]._id) {
 
           
           PackageDetails = {
@@ -367,7 +367,7 @@ export default function ShoppingCart(props) {
     InPackagePrice = document.getElementById( index + "SinglePackagePrice" ).value;
 
 
-    if(quantity == 0){
+    if(quantity === 0){
 
       swal.fire("Alert", "Package Quantity Cannot be reduced to zero", "warning");
       quantity = 1;
@@ -558,7 +558,7 @@ return (
     <a href="#!">
       <div class="mask">
         <img class="img-fluid w-100"
-          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
+          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"  alt="gg"/>
         <div class="mask rgba-black-slight"></div>
       </div>
     </a>

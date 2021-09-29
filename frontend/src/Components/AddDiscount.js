@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
-import go from "./../images/go.jfif";
+
 import swal from "sweetalert2";
 
 function AddDiscount(props) {
@@ -142,7 +142,7 @@ function AddDiscount(props) {
                     <div className="row">
                         <div className="col-md-3 border-right">
                          
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + image} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + image} width="250px" height="250px" alt ="gg" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">
