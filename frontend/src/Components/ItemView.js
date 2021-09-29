@@ -102,65 +102,65 @@ export default function ItemView(props){
           });
       }
 
-      function filtercatogory(){
+    //   function filtercatogory(){
 
 
-        let cat = "";
+    //     let cat = "";
 
-        axios
-        .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
-        .then((res) => {
-            cat= res.data.Category;
-            console.log(cat);
+    //     axios
+    //     .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+    //     .then((res) => {
+    //         cat= res.data.Category;
+    //         console.log(cat);
     
-        })
-        .catch((err) => {
-          alert(err);
-        });
+    //     })
+    //     .catch((err) => {
+    //       alert(err);
+    //     });
 
 
 
 
-            axios
-            .get("http://localhost:8070/items/getItems")
-            .then((res)=>{
+    //         axios
+    //         .get("http://localhost:8070/items/getItems")
+    //         .then((res)=>{
         
-                console.log(cat);
-                // console.log(ICategory);
-                console.log(res.data);
-                setAllitems(res.data);
-                // console.log(items.Category);
+    //             console.log(cat);
+    //             // console.log(ICategory);
+    //             console.log(res.data);
+    //             setAllitems(res.data);
+    //             // console.log(items.Category);
                 
 
             
-            })
-            .catch((err) => {
-                alert(err);
-              });
+    //         })
+    //         .catch((err) => {
+    //             alert(err);
+    //           });
 
 
-              console.log(allitems);
-              console.log(cat);
-              filter(allitems, cat);
+    //           console.log(allitems);
+    //           console.log(cat);
+    //           filter(allitems, cat);
 
-      }
-      function filter(data, Caategory) {
+    //   }
+    //   function filter(data, Caategory) {
 
-            console.log("Filter");
-            console.log(data);
-            console.log(Caategory);
+    //         console.log("Filter");
+    //         console.log(data);
+    //         console.log(Caategory);
 
-        let result = data.filter((post) =>
-
-
-            post.Category.toLowerCase().includes(Caategory.toLowerCase())
+    //     let result = data.filter((post) =>
 
 
+    //         post.Category.toLowerCase().includes(Caategory.toLowerCase())
 
-       );
-        console.log(result);
-    // setFiltereditems(result);
-      }
+
+
+    //    );
+    //     console.log(result);
+    // // setFiltereditems(result);
+    //   }
 
     
       
@@ -202,7 +202,7 @@ export default function ItemView(props){
       }
   
       getReview();
-      filtercatogory();
+      // filtercatogory();
     }, []);
 
 

@@ -74,15 +74,15 @@ export default function YourReviews(props) {
       let j = 0;
       for (let i = 0; i < reviews.length; i++) {
         j = 0;
+
+        console.log(reviews[i]);
         for (j = 0; j < items.length; j++) {
-          
-          console.log(reviews[i].itemid)
-          console.log(items[j]._id)
+          //console.log(reviews[i]);
+        
 
-          if (reviews[i].itemid == items[j]._id) {
+          if (reviews[i].itemid === items[j]._id) {
 
-            console.log(reviews[i].itemid)
-          console.log(items[j]._id)
+           //console.log(reviews[i]);
           
             reviewWithItem = {
               review_id  : reviews[i]._id,

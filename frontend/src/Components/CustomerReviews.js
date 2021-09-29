@@ -35,9 +35,11 @@ export default function CustomerReviews(props) {
         .get("http://localhost:8070/review/get")
         .then((res) => {
           //setReview(res.data);
+
+          const ItemId = props.match.params.id;
           const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === 
-            "614c80200704f13750c09928"
+            (itemrev) => itemrev.itemid === ItemId
+    
             // ItemID
            
           );

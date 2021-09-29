@@ -50,13 +50,19 @@ export default function WriteReview(props){
       e.preventDefault();
 
       getNoOfStars();
+
+      const cusId = localStorage.getItem("CustomerID")
+      const ItemId = props.match.params.id;
+
+      console.log(ItemId);
+      console.log(cusId);
   
       const newReview = {
         description,
         date : Date(),
         noofstars : count, 
-        customerid : "6144a56b88cbe1257c8a887b",
-        itemid : "6120b61011f8374ae1fa904f",
+        customerid : cusId,
+        itemid : ItemId,
         //sellerid,
       }
   
