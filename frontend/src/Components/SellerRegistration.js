@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import "../Css/sellerregistration.css";
 import { NavLink } from "react-router-dom";
@@ -18,10 +19,28 @@ export default function SellerRegistration(props){
 	let logo2 = "";
 	let logo3 = "";
 	let [errorMsg, setErrorMsg] = useState("");
-	
+	let flag1 = 0;
 	let flag2 = 0;
 	let flag3 = 0;
 	let flag4 = 0;
+	
+	  //validate year
+	  function validYear() {
+		const yearValue = document.getElementById("year").value;
+	
+		if (isNaN(yearValue)) {
+		  flag1 = 0;
+		  alert("Enter only numeric value to Established Year!");
+		} else if (yearValue.length < 4) {
+		  flag1 = 0;
+		  alert("Established Year must be 4 digit! Entered value is less than 4!");
+		} else if (yearValue.length > 4) {
+		  flag1 = 0;
+		  alert("Phone number must be 10 digit! Entered value is greater than 4!");
+		}  else {
+		  flag1 = 1;
+		}
+	  }
 
 	  //check phone number
 
@@ -30,16 +49,16 @@ export default function SellerRegistration(props){
 	
 		if (isNaN(phoneNumber)) {
 		  flag2 = 0;
-		  alert("Enter only numeric value to phone number!");
+		  alert("Enter only numeric value to Contact Number!");
 		} else if (phoneNumber.length < 10) {
 		  flag2 = 0;
-		  alert("Phone number must be 10 digit!");
+		  alert("Contact Number must be 10 digit! Your Number is less than 10!");
 		} else if (phoneNumber.length > 10) {
 		  flag2 = 0;
-		  alert("Phone number must be 10 digit!");
+		  alert("Contact Number must be 10 digit! Your Number is greater than 10!");
 		} else if (phoneNumber.charAt(0) != 0) {
 		  flag2 = 0;
-		  alert("Phone number must start with 0!");
+		  alert("Contact Number must start with 0!");
 		} else {
 		  flag2 = 1;
 		}
@@ -77,6 +96,7 @@ export default function SellerRegistration(props){
 
 		e.preventDefault();
 
+		validYear();
 		validPhoneNumber();
 		validEmail();
 		checkCheckbox();
@@ -97,7 +117,7 @@ export default function SellerRegistration(props){
 		}
 
 	console.log(newseller);
-
+if(flag1 == 1 && flag2 == 1 && flag3  === 1 && flag4 == 1){
 	axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
 		setownername(" ");
     	setmobile(" ");
@@ -109,7 +129,12 @@ export default function SellerRegistration(props){
 
 
 
-	alert("Request Sent");
+	//alert("Request Sent");
+	Swal.fire(
+        'Success!',
+        'Request Sent Successfully! We will get back to you soon. Make sure to check your email.',
+        'success'
+      )
 	setErrorMsg("");
 	
 		
@@ -117,9 +142,12 @@ export default function SellerRegistration(props){
 
 		console.log(err.response.data);
     	alert(err.response.data.error);
-    	setErrorMsg(err.response.data.error);
+    	//setErrorMsg(err.response.data.error);
 	 
 	})
+}else{
+	setErrorMsg("Make sure to provide valid information");
+}
 	 }
 
   
@@ -128,11 +156,11 @@ return(
 <div>
 {/* <img src = {require('../images/sellerheader22.jpg').default} class="img-fluid" alt="Responsive image"/> */}
 
-<div> <br/>
-<center><h1>Start Your Business</h1></center> <br/>
+<div> 
+<center><h1>Start Your Business</h1></center> 
 </div>
 
-<h4 style={{color:"red", textAlign:"center"}}>{errorMsg}</h4>
+<h4 style={{color:"red", textAlign:"center"}}>{errorMsg}</h4> <br/>
 
 <form class="form-detail" align="center" method="post" onSubmit = {sendData}>
 <div class="card container" style={{boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
@@ -154,7 +182,7 @@ return(
 						}/>
     </div>
     <div class="col">
-	<input type="text" name="mobile" id="mobile" class="form-control" placeholder="Contact Number" required pattern="[0-9]{10}"
+	<input type="text" name="mobile" id="mobile" class="form-control" placeholder="Contact Number" required 
 					onChange= {
 						(e)=>{
 							setmobile(e.target.value);
@@ -187,7 +215,7 @@ return(
   <br/><br/>
   <div class="row">
     <div class="col">
-	<input type="text" name="year" id="year" class="form-control" placeholder="Established Year" required pattern="[0-9]{4}"
+	<input type="text" name="year" id="year" class="form-control" placeholder="Established Year" required 
 					onChange= {	
 						(e)=>{	
 							setyear(e.target.value);
@@ -195,7 +223,7 @@ return(
 						}/>
     </div>
     <div class="col">
-	<input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+	<input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required
 					onChange= {
 						(e)=>{
 							setemail(e.target.value);
@@ -240,7 +268,7 @@ return(
 	
 	<div class="float-right">
 	<div class="form-check">
-  <br/><br/><input class="form-check-input" type="checkbox" id="policy" name="policy" value="true" required />
+  <br/><br/><input class="form-check-input" type="checkbox" id="policy" name="policy" value="true"/>
  
   <label class="form-check-label" for="defaultCheck1">
    <b> I agree to the Terms of service </b>
@@ -254,8 +282,9 @@ return(
 	</div>
 </div>
 
-
+<div class="float-left"> <br/><br/>
 <b>Already have an account ? </b><Link to = "/SellerLogin">Sign in!</Link>
+</div>
 </form>
 </div>
 </div>

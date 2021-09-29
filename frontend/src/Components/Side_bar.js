@@ -68,7 +68,7 @@ export default function Side_bar(props) {
                 <i className="bx bx-bar-chart-alt-2 nav_icon"></i>{" "}
                 <span className="nav_name">REPORTS</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Seller/Contact" className="nav_link">
                 {" "}
                 <i className="bx bx-message nav_icon"></i>{" "}
                 <span className="nav_name">CONTACT</span>{" "}

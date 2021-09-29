@@ -8,7 +8,7 @@ export default function CreatePackage2(props) {
 
 
     //console.log(props.location.state);
-    let seller = "56890FFF";
+    let seller = localStorage.getItem("SellerID");
     let content = props.location.state;
     //console.log(content);
     // content.map((item) => {
@@ -16,6 +16,14 @@ export default function CreatePackage2(props) {
     //     console.log(item);
     // })
     let packageName = sessionStorage.getItem("packageName");
+
+    let [pricevalidation, setPval] = useState("");
+    let [startDatevalidation, setstartDateVal] = useState("");
+    let [endDatevalidation, setendDateVal] = useState("");
+    let [descriptionValidation,setDesVal ] = useState("");
+    let [imagesValidation,setImgVal ] = useState("");
+
+
 
     const [price, setPrice] = useState("");
     let description = "";
@@ -59,21 +67,62 @@ export default function CreatePackage2(props) {
 
         }
 
-        console.log(newPackage);
 
-        axios.post("http://localhost:8070/Packages/addPackage", newPackage).then(() => {
+        console.log(description.length);
+
+        if(description.length === 0){
+
+            setDesVal("Description is required !");
+        }
+
+        else if(price.length === 0){
+
+            setPval("Price is required !!!");
+        }
+
+        else if(Number(price) <= 0 || Number(price) > 2000000 ){
+            setPval("Invalid Price !!!")
+        }
+
+        else if(startDate.length === 0){
+
+            setstartDateVal("Start Date Required !");
+        }
+
+        
+        else if(endDate.length === 0){
+
+            setendDateVal("End Date Required !");
+        }
+
+        else if(image.length === 0){
+
+            setImgVal("Image Required!");
+        }
 
 
-            swal.fire("Success", "Package Added Successfully", "success");
-            //alert("Package Added");
+        else{
 
-            sessionStorage.clear();
 
-            props.history.push("/Seller/MyPackages")
-        }).catch((err) => {
+            console.log(newPackage);
 
-            alert(err);
-        })
+            axios.post("http://localhost:8070/Packages/addPackage", newPackage).then(() => {
+    
+    
+                swal.fire("Success", "Package Added Successfully", "success");
+                //alert("Package Added");
+    
+                sessionStorage.clear();
+    
+                props.history.push("/Seller/MyPackages")
+            }).catch((err) => {
+    
+                alert(err);
+            })
+
+        }
+
+       
 
        
     }
@@ -151,13 +200,18 @@ export default function CreatePackage2(props) {
 
                                 </div>
 
-                                <div class="row mt-2"><label class="labels">Special Price</label><input type="text" class="form-control" placeholder=""    required
+                                <div class="row mt-2"><label class="labels">Special Price</label><input type="number" class="form-control" placeholder=""    required
 
                                     onChange={(e) => {
                                         setPrice(e.target.value);
+                                        if(e.target.value.length > 0){
+
+                                            setPval("");
+                                        }
+
                                     }} /></div>
 
-
+                                <label id = "PriceWarning" style={{ color: 'red', fontSize:'20px' }}>{pricevalidation}</label><br/>     
                             </div>
                         </div>
 
@@ -165,15 +219,65 @@ export default function CreatePackage2(props) {
                         <div class="col-md-6">
                             <div class="p-3 py-5">
                                 <br /><br />
-                                <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" aria-label="With textarea" id="des"    required></textarea></div> <br />
+                                <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" aria-label="With textarea" id="des"    required
+                                
+                                onChange={(e) => {
+                                     
+                                    if(e.target.value.length > 0){
+
+                                        setDesVal("");
+                                    }}}
+                                
+                                ></textarea></div> <br />
+                                <label id = "descriptionWarning" style={{ color: 'red', fontSize:'20px' }}>{descriptionValidation}</label><br/>   
+
                                 <div class="row mt-2 ml-3"><label class="labels">Duration</label></div>
                                 <div class="row mt-2 ml-3">
                                     <div class="col-md-6"><label class="labels">Start Date</label>
-                                        <input type="date" class="form-control" placeholder="" id="sDate"    required/></div>
+                                        <input type="date" class="form-control" placeholder="" id="sDate"    required
+                                        
+                                        
+                                        onChange={(e) => {
+                                     
+                                            if(e.target.value.length > 0){
+        
+                                                setstartDateVal("");
+                                            }}}
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        /></div>
+                                        <label id = "StartDateValidation" style={{ color: 'red', fontSize:'20px' }}>{startDatevalidation}</label><br/>   
                                     <div class="col-md-6"><label class="labels">End Date</label>
-                                        <input type="date" class="form-control" placeholder="" id="eDate"    required /></div><br />
+                                        <input type="date" class="form-control" placeholder="" id="eDate"    required
+                                        
+                                        onChange={(e) => {
+                                     
+                                            if(e.target.value.length > 0){
+        
+                                                setendDateVal("");
+                                            }}}
+                                        
+                                        
+                                        /></div><br />
+                                        <label id = "EndDateValidation" style={{ color: 'red', fontSize:'20px' }}>{endDatevalidation}</label><br/>   
                                 </div>
-                                <div class="row mt-2 ml-3"><label class="labels">Images</label><input type="file" class="form-control" placeholder="" id="img"    required  /></div>
+                                <div class="row mt-2 ml-3"><label class="labels">Images</label><input type="file" class="form-control" placeholder="" id="img"    required 
+                                
+                                
+                                 
+                                onChange={(e) => {
+                                     
+                                    if(e.target.value.length > 0){
+
+                                        setImgVal("");
+                                    }}}
+                                
+                                
+                                /></div>
+                                <label id = "ImageWarning" style={{ color: 'red', fontSize:'20px' }}>{imagesValidation}</label><br/>   
                                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onClick={submitData}>Create Package</button></div>
                             </div>
                         </div>

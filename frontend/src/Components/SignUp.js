@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 import img1 from "./../images/kl.jpg";
 import { Link } from "react-router-dom";
@@ -35,15 +35,13 @@ function SignUp(props) {
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
   // let [userImage ,setUserImage] = useState("");
+  
   let userImage = "";
   let image2 = "";
   let image3 = "";
   let [errorMsg, setErrorMsg] = useState("");
   let flag1 = 0;
-  let flag2 = 0;
-  let flag3 = 0;
-  let flag4 = 0;
-
+  
   function genderSelect() {
     gender = document.getElementById("gender").value;
   }
@@ -54,89 +52,125 @@ function SignUp(props) {
     dob = document.getElementById("birthday").value;
   }
 
-  //check password
 
-  function checkPassword() {
+  function validate(){
+
     const password = document.getElementById("CusPassword").value;
     const confirmPassword = document.getElementById("CusConfirmPsw").value;
-
     const psw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     // To check a password  which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-
-    if (password == "") {
-      flag1 = 0;
-      alert("Password shouldn't be null!");
-    } else if (password.length < 8) {
-      flag1 = 0;
-      alert("Password must be contain minimum 8 charcters!");
-    } else if (!password.match(psw)) {
-      flag1 = 0;
-      alert(
-        "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit"
-      );
-    } else if (password != confirmPassword) {
-      flag1 = 0;
-      alert("Password mismatch!");
-    } else {
-      flag1 = 1;
-    }
-  }
-
-  //check phone number
-
-  function validPhoneNumber() {
     const phoneNumber = document.getElementById("phone").value;
-
-    if (isNaN(phoneNumber)) {
-      flag2 = 0;
-      alert("Enter only numeric value to phone number!");
-    } else if (phoneNumber.length < 10) {
-      flag2 = 0;
-      alert("Phone number must be 10 digit!");
-    } else if (phoneNumber.length > 10) {
-      flag2 = 0;
-      alert("Phone number must be 10 digit!");
-    } else if (phoneNumber.charAt(0) != 0) {
-      flag2 = 0;
-      alert("Phone number must start with 0!");
-    } else {
-      flag2 = 1;
-    }
-  }
-
-  //check email
-
-  function validEmail() {
     const email = document.getElementById("email").value;
 
     const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-    if (email.match(EmailAdd)) {
-      flag3 = 1;
-    } else {
-      flag3 = 0;
-      alert("You have entered an invalid email address!");
-    }
-  }
-
-  // check ckeckbox
-
-  function checkCheckbox() {
     const checkbox = document.getElementById("TermsC");
 
-    if (!checkbox.checked) {
-      flag4 = 0;
-      alert("You Should Agree To Our Terms & Conditions!");
-    } else {
-      flag4 = 1;
-    }
+    if(firstName.length === 0){
+
+      Swal.fire('First Name is required')
+       flag1 = 0;
+    
+    }else if(lastName.length === 0){
+
+    Swal.fire('Last Name is required')
+          flag1 = 0;
+
+   }else if(email.length === 0){
+
+    Swal.fire('Email is required')
+          flag1 = 0;
+
+    }else if(phoneNumber.length === 0){
+
+    Swal.fire('Phone Number is required')
+          flag1 = 0;
+   
+   
+   }else if (isNaN(phoneNumber)) {
+    flag1 = 0;
+    Swal.fire('Enter only numeric values to phone number')
+   
+
+  } else if (phoneNumber.length < 10) {
+    flag1 = 0;
+    Swal.fire('Phone Number must be 10 digit number')
+   
+   
+    
+  } else if (phoneNumber.length > 10) {
+    flag1 = 0;
+    Swal.fire('Phone Number must be 10 digit number')
+    
+    
+  } else if (phoneNumber.charAt(0) != 0) {
+    flag1 = 0;
+    Swal.fire('Phone Number must start with 0')
+   
+  }  else if(dob.length === 0){
+
+    Swal.fire('Birthday is required')
+    flag1 = 0;
+
+    }else if(gender.length === 0){
+
+  Swal.fire('Gender is required')
+  flag1 = 0;
+
+  }else if(username.length === 0){
+
+  Swal.fire('Username is required')
+  flag1 = 0;
+
   }
+  else if(password.length === 0){
+
+  Swal.fire('Password is required')
+  flag1 = 0;
+
+  }else if(password.length < 8) {
+  flag1 = 0;
+  Swal.fire('Password must contain minimum 8 chracters')
+
+  }else if(confirmPassword.length === 0){
+
+  Swal.fire('Confirm Password is required')
+  flag1 = 0;
+
+ }else if (!password.match(psw)) {
+  flag1 = 0;
+  Swal.fire('Password must contain at least one lowercase letter, one uppercase letter, one numeric digit') 
+ 
+
+} else if (password != confirmPassword) {
+  flag1 = 0;
+  Swal.fire('Password Mismatch')
+
+  
+} else if (!checkbox.checked) {
+  flag1 = 0;
+  Swal.fire('You must agree with our terms & conditions')
+
+
+
+}else if(!email.match(EmailAdd)){
+   
+  Swal.fire('Invalid Email Address')
+
+}else{
+
+  flag1 = 1;
+}
+  
+}
+
+
 
   //send a avatar
 
   function avatar() {
-    let useriM = "avatarM.jpg";
-    let useriF = "avatarF.png";
+
+    let useriM = "avatarMale.jpg";
+    let useriF = "avatarFemale.jpg";
 
     let uimage = document.getElementById("user_image").value;
     // console.log(uimage);
@@ -158,19 +192,20 @@ function SignUp(props) {
     }
   }
 
+  
+
   function sendData(e) {
     // alert("d0");
     e.preventDefault();
       genderSelect();
       images();
       birthday();
-      checkPassword();
-      validPhoneNumber();
-      validEmail();
-      checkCheckbox();
       avatar();
+      validate()
+      
+      
 
-    if(flag1 == 1 && flag2 == 1 && flag3 == 1 && flag4 ==1 ){
+    if(flag1 == 1){
 
       const newCustomer = {
     	firstName,
@@ -182,7 +217,7 @@ function SignUp(props) {
     	address,
     	username,
     	password,
-    	confirmPassword,
+    	// confirmPassword,
     	userImage : image3
 
       }
@@ -201,11 +236,24 @@ function SignUp(props) {
     	setPassword(" ");
     	setConfirmPassword(" ");
 
+      Swal.fire({
+
+        icon: 'success',
+        title: 'Success',
+        text: 'Your Account is Successfully Created! Now You Can login With Credentials.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        } 
+      })
       props.history.push("/CustomerLogin");
+     
     }).catch((err) =>{
 
     	console.log(err.response.data);
-    	alert(err.response.data.error);
+      Swal.fire('Email or Username Already Exits')
     	setErrorMsg(err.response.data.error);
 
       })
@@ -220,7 +268,7 @@ function SignUp(props) {
             <img src={img1} alt="" id="signUpI" />
           </div>
 
-          <form action="" onSubmit={sendData}>
+          <form action="" id="form" onSubmit={sendData}>
             <h3 id="sign_up">Sign Up</h3>
 
             <h6 id="signupError">{errorMsg}</h6>
@@ -231,21 +279,29 @@ function SignUp(props) {
                   type="text"
                   className="form-control"
                   placeholder="First name"
+                  id="firstname"
                   onChange={(e) => {
                     setFirstName(e.target.value);
+                   
                   }}
                 />
+                  {/* <samall id = "FNtxtMsg" style={{color:"red"}}>{FNErr}</samall> */}
               </div>
               <div className="col">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Last name"
+                  id="lastname"
                   onChange={(e) => {
                     setLastName(e.target.value);
+                    
+                   
                   }}
                 />
+                  {/* <samall id = "LNtxtMsg" style={{color:"red"}}>{LNErr}</samall>  */}
               </div>
+
             </div>
 
             <br />
@@ -258,10 +314,13 @@ function SignUp(props) {
                 placeholder="Email"
                 onChange={(e) => {
                   setEmail(e.target.value);
+                  
+                  
                 }}
               />
 
               <i className="bi bi-envelope-fill"></i>
+               {/* <samall id = "emtxtMsg" style={{color:"red"}}>{emailErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -272,9 +331,11 @@ function SignUp(props) {
                 placeholder="Phone Number"
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
+                  
                 }}
               />
               <i className="bi bi-telephone-fill"></i>
+              {/* <samall id = "phtxtMsg" style={{color:"red"}}>{phoneNumberErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -286,7 +347,11 @@ function SignUp(props) {
                 className="form-control"
                 id="birthday"
                 placeholder="Date of Birth"
+
+
+                
               />
+               {/* <samall id = "bdtxtMsg" style={{color:"red"}}>{dobErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -298,6 +363,7 @@ function SignUp(props) {
                 <option value="Female">Female</option>
               </select>
               <i class="bi bi-caret-down-fill"></i>
+              {/* <samall id = "gentxtMsg" style={{color:"red"}}>{genErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -308,9 +374,11 @@ function SignUp(props) {
                 placeholder="Address"
                 onChange={(e) => {
                   setAddress(e.target.value);
+                  
                 }}
               />
               <i className="bi bi-geo-alt-fill"></i>
+              {/* <samall id = "adtxtMsg" style={{color:"red"}}>{addressErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -321,9 +389,12 @@ function SignUp(props) {
                 placeholder="Username"
                 onChange={(e) => {
                   setUsername(e.target.value);
+                  
+                
                 }}
               />
               <i className="bi bi-person-fill"></i>
+              {/* <samall id = "untxtMsg" style={{color:"red"}}>{usernameErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -334,6 +405,9 @@ function SignUp(props) {
                 placeholder="Password"
                 onChange={(e) => {
                   setPassword(e.target.value);
+
+                 
+                  
                 }}
               />
 
@@ -343,9 +417,8 @@ function SignUp(props) {
                 onClick={togglePassword}
               ></i>
               <i className="bi bi-lock-fill"></i>
-              <span id="message" style={{ color: "red" }}>
-                {" "}
-              </span>
+             
+              {/* <samall id = "pwtxtMsg" style={{color:"red"}}>{passwordErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -356,6 +429,9 @@ function SignUp(props) {
                 placeholder="Confirm Password"
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
+
+                 
+                 
                 }}
               />
               <i
@@ -364,6 +440,7 @@ function SignUp(props) {
                 onClick={toggleCPassword}
               ></i>
               <i className="bi bi-lock-fill"></i>
+              {/* <samall id = "cpwtxtMsg" style={{color:"red"}}>{confirmPasswordErr}</samall>  */}
             </div>
 
             <div className="form-group">
@@ -381,11 +458,16 @@ function SignUp(props) {
             </div>
 
             <div className="form-group form-check">
-              <input type="checkbox" className="form-check-input" id="TermsC" />
+              <input type="checkbox" className="form-check-input" id="TermsC" 
+              
+              
+              />
+             
               <label className="form-check-label" htmlFor="exampleCheck1">
                 I Accept the Terms of Use & Privacy Policy.
               </label>
             </div>
+            {/* <samall id = "checktxtMsg" style={{color:"red"}}>{checkboxErr}</samall>  */}
 
             <button type="submit" className="CusCreateBtn" id="CusCreateBtn">
               Create Account

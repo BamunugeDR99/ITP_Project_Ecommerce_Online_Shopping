@@ -72,7 +72,7 @@ export default function ShoppingCart(props) {
 
     function getCart() {
 
-      const customerID = "6144a56b88cbe1257c8a887b";
+      const customerID = localStorage.getItem("CustomerID");
       console.log(customerID);
 
       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
@@ -439,6 +439,13 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
   }
 
+  function checkOut(){
+
+    localStorage.setItem("totalPrice",GrandTotal);
+    props.history.push("/Customer/SelectPayment");
+
+  }
+
   return (
     <div>
       <section>
@@ -702,7 +709,7 @@ return (
                   </li>
                 </ul>
 
-                <button type="button" class="btn btn-primary btn-block">Go to Checkout</button>
+                <button type="button" class="btn btn-primary btn-block" onClick={() => checkOut()}>Go to Checkout</button>
 
               </div>
             </div>

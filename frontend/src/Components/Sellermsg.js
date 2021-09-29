@@ -28,12 +28,14 @@ export default function SellermMsg(props){
   
 	useEffect(() => {
 	  function getContactsel() {
+
+		const objectID = localStorage.getItem("SellerID")
 		axios
 		  .get("http://localhost:8070/contactsel/get")
 		  .then((res) => {
 			contactsels=(res.data);
 			const filter = res.data.filter(
-			  (selmsg) => selmsg.sellerid === "613b33772b517a0f50634c8e"
+			  (selmsg) => selmsg.sellerid === objectID
 			);
 			contactsels = filter;
 			console.log(contactsels);
@@ -104,16 +106,16 @@ export default function SellermMsg(props){
 	 </h5>
 
 	 <div>
-	 
+	 <div className="row" style={{margin: "50px 20px 20px 30px",}}>
 	   {abc.map((reviewss) => {
 		 return (
-		   <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+		   
 			 <div class="col-3" style={{ paddingBottom:'30px'}}>
 			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
-				   <img src={a1}
-				   // {"/Images/"+reviewss.customerImage[0]} 
+				   <img src=
+				   {"/Images/"+reviewss.customerImage[0]} 
 				   style={{ width: "65%", alignItems: "center" }}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
@@ -137,10 +139,11 @@ export default function SellermMsg(props){
 			   </div>
 			 </div>
 
-		   </div>
+		   
 	   
 		 );
 	   })}
+	   </div>
 	   
 	 </div>
 	 
@@ -153,47 +156,4 @@ export default function SellermMsg(props){
 }
 
 
-
-{/* <section className="rev">
-	<div className="container-xl">
-		<div className="table-responsive">
-			<div className="table-wrapper">
-				<div className="table-title">
-							<h2><center><b>Customer Messages</b></center></h2>
-				</div>
-				<table className="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>Customer Name</th>
-							<th>Customer Photo</th>
-							<th>Customer Email</th>
-							<th>Message</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					{abc.map((reviewss) => {
-						return(
-
-					<tbody>
-						<tr>
-							<td>{reviewss.customerName}</td>
-							<td>
-								<img src={"/Images/" +reviewss.customerImage.Images[0]} className="img"/>
-							</td>
-							<td>{reviewss.Email}</td>
-							<td>{reviewss.Contactsel}</td>
-							<td>
-							<button onClick = {()=> deletee(contactsel._id)} className="button2" type="button">Remove</button>
-							</td>
-						</tr>
-					</tbody>
-
-					 )
-					})}	
-
-				</table>
-			</div>
-		</div>        
-	</div>
-</section> */}
 

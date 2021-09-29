@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useState, useEffect,radix } from "react";
-// import { ClipLoader } from "react-spinners";
-// import { Link } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { ClipLoader } from "react-spinners";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function Customer_wishlist(props) {
     let [items,setItems] = useState([]);
     const [ratings, setRatings] = useState([]);
@@ -62,19 +62,19 @@ export default function Customer_wishlist(props) {
        
       }
 
-      //  function displayRating(){
-      //   axios
-      //   .get("http://localhost:8070/review/get")
-      //   .then((res) => {
-      //     setRatings(res.data);
-      //     //console.log(ratings[0].itemid)
-      //     console.log(res.data);
-      //   })
-      //   .catch((err) => {
-      //     alert(err);
-      //   });
-      // }
-   // displayRating();
+       function displayRating(){
+        axios
+        .get("http://localhost:8070/review/get")
+        .then((res) => {
+          setRatings(res.data);
+          //console.log(ratings[0].itemid)
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
+    displayRating();
      getItems();
 
     }, []);
@@ -86,7 +86,7 @@ export default function Customer_wishlist(props) {
     })
 
     useEffect(() =>{
-     //s displayStarRating();
+     //displayStarRating();
     })
 
     function display(re,wi){
@@ -104,6 +104,7 @@ export default function Customer_wishlist(props) {
     setItems(newItems);
 
     }
+
   function calculateStarRating(id){
     let totalNoRatings = 0;
     let totalstarforRatingCount = 0;
@@ -145,32 +146,91 @@ export default function Customer_wishlist(props) {
 
   }
 
-  /*function displayStarRating(id,totalAverage){
-    let txt = "";
-      if(isNaN(totalAverage)){
-        txt = "No Ratings yet!";
-       document.getElementById(id +'stars').innerHTML = txt;
-      document.getElementById(id +'stars').style.color = "#FF0000";
-      }else{
 
-      for(let j = 0; j < totalAverage; j++){
-        txt += '<span class="fa fa-star checked"></span>';
-      }
-      for(let j = 0; j < (5 - totalAverage); j++){
-        txt += '<span class="fa fa-star"></span>';
-      }
+  function addToWishlist(itemId) {
+    // already added check
+    let customerID = localStorage.getItem("CustomerID");
+    let newItems = []; /// Change this later
+    let Items = [];
+    let ItemID = "";
+    axios
+      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .then((res) => {
+        console.log(res.data.wishlistss.Items);
+        ItemID = res.data.wishlistss._id;
+        newItems = res.data.wishlistss.Items;
+        //let CustomerIDs = res.data.wishlistss.CustomerID;
+        // console.log(CustomerIDs)
+        let falgs = 0;
+        for (let i = 0; i < newItems.length; i++) {
+          if (newItems[i] == itemId) {
+            falgs = 1;
+          }
+        }
+        newItems.push(itemId);
+        console.log(newItems);
+        let newWishList = {
+          CustomerID: customerID,
+          Items: newItems,
+        };
+        console.log(newWishList);
+        if (falgs == 0) {
+          axios
+            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .then(() => {
+              //alert("Student Updated");
+              // document.getElementById("itemsTxt").innerHTML =
+              //"Item added to your Wishlist!";
 
-     document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
-     }
-  }*/
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your Item has been added to your wishlist!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        } else if (falgs == 1) {
 
+          Swal.fire("Item Already in Your Wishlist.");
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+
+  function remove(id){
+
+    axios
+    .delete("http://localhost:8070/wishlist/delete/" + id) 
+    .then((res) => {
+     
+
+
+      const afterDeletewishlist = items.filter(
+        (a) => a._id != id
+      );
+
+      setItems(afterDeletewishlist);
+      
+    })
+    .catch((err) => {
+      alert(err);
+    });
+
+  }
   function more(num) {
-    if (document.getElementById(num).innerHTML === "") {
-      document.getElementById(num).innerHTML =
-        "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.";
+    if (document.getElementById(num).hidden == true) {
+      document.getElementById(num).hidden = false; 
+       
       document.getElementById("showBtn").innerHTML = "Minimize";
     } else {
-      document.getElementById(num).innerHTML = "";
+      document.getElementById(num).hidden = true;
       document.getElementById("showBtn").innerHTML = "show more";
     }
   }
@@ -193,24 +253,17 @@ export default function Customer_wishlist(props) {
                 </div>
                 <div class="col-sm-7">
                   <div class="card-body">
-                    <h5 class="card-title">{itemss.Item_name}</h5>
-                    <div  id = {index +'stars'} class="card-text">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span> </span> <span id = {index +'review'} >4.0 / 5.0</span>
-                    </div>
+                    <h5 class="card-title">{itemss.Brand} {itemss.Item_name}</h5>
+                    <h5 class="card-title">{itemss.Specification}</h5>
                     <p class="card-text">
-                      <b>{itemss.Price}</b>
+                      <b>LKR {itemss.Price}</b>
                     </p>
-                    <p class="card-text" id = {"i"+index}>Item status</p>
-                    <a href="#" class="btn btn-danger ">
-                      Remove from list
-                    </a>{" "}
+                    <p class="card-text" id = {"i"+index}></p>
+                    
+                    <button class = "btn btn-danger" onClick={() => remove(itemss._id)}>  Remove from list</button>
+                    {" "}
                     <span> </span>
-                    <button class="btn btn-success">Add to cart</button>{" "}
+                    <button class="btn btn-success" onClick={() => addToWishlist(itemss._id)} >Add to cart</button>{" "}
                     <span></span>
                     <br />
                     <br />
@@ -224,7 +277,7 @@ export default function Customer_wishlist(props) {
                     </button>
                   </div>
                 </div>
-                <div id="w1"></div>
+                <div id={index} hidden>{itemss.Description}</div>
               </div>
             </div>
           </div>)
