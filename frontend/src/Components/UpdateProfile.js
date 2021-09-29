@@ -49,6 +49,7 @@ export default function UpdateProfile(props){
 	let [address ,setAddress] = useState("");
 	let [username ,setUsername] = useState("");
 	let [password , setPassword ] = useState("");
+	
 	let userImage = "";
 	//let [confirmPassword ,setConfirmPassword] = useState("");
 
@@ -107,12 +108,7 @@ export default function UpdateProfile(props){
 				setCurrentImage(res.data.userImage);
 				setPassword(res.data.password);
 				
-				
-
-				
-
-				
-				
+	
 			}).catch((err) =>{
 				alert(err);
 			})
@@ -162,11 +158,7 @@ export default function UpdateProfile(props){
 		flag1 = 0;
 		Swal.fire('Phone Number must be 10 digit number')
 		
-		
-	  } else if (phoneNumber.charAt(0) !== 0) {
-		flag1 = 0;
-		Swal.fire('Phone Number must start with 0')
-	   
+	
 	  }  else if(dob.length === 0){
 	
 		Swal.fire('Birthday is required')
@@ -296,29 +288,20 @@ export default function UpdateProfile(props){
 
 		//alert("Customer Updated Successfully!");
 
-		Swal.fire({
-			title: 'Do you want to save the changes?',
-			showDenyButton: true,
-			showCancelButton: true,
-			confirmButtonText: 'Save',
-			denyButtonText: `Don't Save`,
-		  }).then((result) => {
-			/* Read more about isConfirmed, isDenied below */
-			if (result.isConfirmed) {
-			  Swal.fire('Your Profile Has Been Successfully Updated!', '', 'success')
-			  props.history.push("/Customer/MyProfile");
-			  window.location.reload();
-			 
-			 
-			} else if (result.isDenied) {
-			  Swal.fire('Changes are not saved.', '', 'info')
-			  props.history.push("/Customer/MyProfile");
-			}
-		  })
+
+
+		Swal.fire(
+			'Success',
+			'Your Profile has been successfully updated',
+			'success'
+			
+		  )
+		props.history.push("/Customer/MyProfile");
+		window.location.reload();
+
+		 
 		  
 		
-		
-	
 			
 		}).catch((err) =>{
 
@@ -373,179 +356,209 @@ export default function UpdateProfile(props){
 
 		<div  className="CusUpdatePro">
 
-
-			<div className="profile-area">
-			
-			<div className="containerrrrr">
-			<div className="row">
-			
-			<div className="col-md-4">
-			
-			<div className="cardUpdatePro">
-			
-			<h1 className="top-leftI">Edit Profile</h1>
-			
-			
-			<div className="UserProImage">
-			
-			<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
-			
-			</div>
-			<br/>
-			<h2 style={{color:"black", textAlign:"center"}}>{customer.username}</h2>
-			<h3 style={{color:"black", textAlign:"center"}}>{customer.email}</h3>
-			
-			<div className="main-text">
-			
-			<h4 className="CusAccountD">Account Details</h4>
-			
-			<br/>
-			<div className="form-row">
-
-						<div className="col">
-						  <input type="text" className="form-control" placeholder="First name" Value = {customer.firstName}
-						  onChange= {
-							(e)=>{
-							  setFirstName(e.target.value);
-							}
-						  }
-						  />
-						</div>
-
-						<div className="col">
-						  <input type="text" className="form-control" placeholder="Last name" Value = {customer.lastName}
-						  onChange= {
-							(e)=>{
-							  setLastName(e.target.value);
-							}
-						  }/>
-						</div>
-						</div>
-						<br/>
-			
-			<div className="form-group">
+<div class="container">
+				<div class="row gutters">
+				<h1 class="edit" style={{color:"black", textAlign:"center"}}>Edit Profile</h1><br/>
+				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
 				
-					<input type="email" className="form-control" id="exampleInputEmail1" placeholder = "Email"  readOnly Value = {customer.email}
-					onChange= {
-						(e)=>{
-						  setEmail(e.target.value);
-						}
-					  }
-					/>
-					
-					<i className="bi bi-envelope-fill"></i>
-			  </div>
-			  
-			  <div className="form-group">
-					
-					<input type="text" className="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber}
-					onChange= {
-						(e)=>{
-						  setPhoneNumber(e.target.value);
-						}
-					  }
-				
-					/>
-					<i className="bi bi-telephone-fill"></i>
-			  </div>
-			  
-			  
-			  <div className="form-group">
-					<label for="DOB" id="CusDOB">Date of Birth</label>
-					<input type="date" className="form-control" id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/>
-			  </div>
-			  
-			  
-			  <div className="form-group">
-				<select className="form-control" id = "gender">
-					<option>{customer.gender}</option>
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-				</select>
-				<i className="bi bi-caret-down-fill"></i>
-				
-			  </div>
-			  
-			  
-			  <div className="form-group">
-					
-					<input type="text" className="form-control" id="address" placeholder = "Address" Value = {customer.address}
-					onChange= {
-						(e)=>{
-						  setAddress(e.target.value);
-						}
-					  }
-					/>
-					<i className="bi bi-geo-alt-fill"></i>
-			  </div>
-			  
-			  
-			  <div className="form-group">
-					<input type="text" className="form-control" id="username" placeholder = "Username" Value = {customer.username} 
-					onChange= {
-						(e)=>{
-						  setUsername(e.target.value);
-						}
-					  }
-					readOnly/>
-					<i className="bi bi-person-fill"></i>
-			  </div>
-
-			  <div className="form-group">
-				<label for="UserI" id="CusI">User Image</label>
-				<input type="file" className="form-control-file" id="user_image"/>
-			  </div>
-			  
-			  <br/>
-			  
-			  <h4 className="CusChangeP"><b>Change Password</b></h4>
-			  
-			   <br/>
-			   
-			   <div className="form-group">
-					
-					<input type={passwordShown ? "text" : "password"} className="form-control" id="current_password" placeholder = "Current Password"/>
-					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={togglePassword}></i>
-					<i className="bi bi-lock-fill"></i>
-			  </div>
-			  
-			  <div className="form-group">
-					
-					<input type={NpasswordShown ? "text" : "password"} className="form-control" id="new_password" placeholder = "New Password"/>
-					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleNPassword}></i>
-					<i className="bi bi-lock-fill"></i>
-			  </div>
-			  
-			   <div className="form-group">
-					
-					<input type={CNpasswordShown ? "text" : "password"} className="form-control" id="confirm_new_password" placeholder = "Confirm Password"/>
-					
-					<i className="bi bi-eye-fill" id="eyerx" onClick={toggleCNPassword}></i>
-					<i className="bi bi-lock-fill"></i>
-			  </div>
-			  
-			  
-			 
-			  
-			  <div className="form-row">
-						<div className="col">
-						 <button type="submit" className="btnUpdate" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
-						</div>
-						<div className="col">
-						  <button type="submit" className="btnDelete" onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
-						</div>
-		 	  </div>
-			
-			
-			
+						<div class="account-settings">
+							<div class="user-profile">
+							
+								<div class="user-avatar">
+								<img src={"/Images/" + customer.userImage} id="userproI" alt="UserImage"/>
+								</div>
+								<br/>
+								<h5 class="user-name">{customer.username}</h5>
+								<h6 class="user-email">{customer.email}</h6>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+				</div>
+				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="row gutters">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<h3 class="mb-2 text-primary">Personal Details</h3><br/>
+							</div>
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="FirsName"><b>Fist Name</b></label>
+									<input type="text" class="form-control" id="fullName" placeholder="Frist Name" Value = {customer.firstName}
+									 onChange= {
+										(e)=>{
+										  setFirstName(e.target.value);
+										}
+									  }
+									
+									/>
+								</div>
+							</div>
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="LastName"><b>Last Name</b></label>
+									<input type="text" class="form-control" id="LastName" placeholder="Last Name" Value = {customer.lastName}
+									 onChange= {
+										(e)=>{
+											setLastName(e.target.value);
+										}
+									  }
+									
+									/>
+								</div>
+							</div>
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="eMail"><b>Email</b></label>
+									<input type="email" class="form-control" id="eMail" placeholder="Email Address" readOnly Value = {customer.email}
+									onChange= {
+										(e)=>{
+										  setEmail(e.target.value);
+										}
+									  }
+									
+									/>
+									  <i className="bi bi-envelope-fill"></i>
+								</div>
+							</div>
+							
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="phone"><b>Phone</b></label>
+									<input type="text" class="form-control" id="phone" placeholder = "Phone Number" Value = {customer.phoneNumber}
+									
+									onChange= {
+										(e)=>{
+										  setPhoneNumber(e.target.value);
+										}
+									  }
+									
+									/>
+									<i className="bi bi-telephone-fill"></i>
+								</div>
+							</div>
+
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="DOB" id="CusDOB"><b>Date of Birth</b></label>
+									<input type="date" class="form-control"  id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/>
+								</div>
+							</div>
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="gender"><b>Gender</b></label>
+									<select className="form-control" id = "gender">
+										<option>{customer.gender}</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+									</select>
+									<i className="bi bi-caret-down-fill"></i>
+								</div>
+							</div>
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="Address"><b>Address</b></label>
+									<input type="text" class="form-control" id="address" placeholder = "Address" Value = {customer.address}
+									onChange= {
+										(e)=>{
+										  setAddress(e.target.value);
+										}
+									  }
+									
+									
+									/>
+									<i className="bi bi-geo-alt-fill"></i>
+								</div>
+							</div>
+
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="Username"><b>Username</b></label>
+									<input type="text" class="form-control"  id="username" placeholder = "Username" Value = {customer.username}
+									onChange= {
+										(e)=>{
+										  setUsername(e.target.value);
+										}
+									  }
+									readOnly/>
+									<i className="bi bi-person-fill"></i>
+								</div>
+							</div>
+							
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label for="UserI" id="CusI"><b>User Image</b></label>
+									<input type="file" class="form-control" id="user_image"/>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row gutters">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<h3 class="mt-3 mb-2 text-primary">Change Password</h3>
+							</div>
+
+							<br/>
+			   
+			   <div className="form-group">
+
+			       <label for="CurrentP"><b>Current Password</b></label>
+					<input type={passwordShown ? "text" : "password"} className="form-control" id="current_password" placeholder = "Current Password"/>
+					
+					<i className="bi bi-eye-fill" id="eyerx1" onClick={togglePassword}></i>
+					<i className="bi bi-lock-fill" id="lock1"></i>
+			  </div>
+			  
+			  <div className="form-group">
+					
+			  		<label for="NewP"><b>New Password</b></label>
+					<input type={NpasswordShown ? "text" : "password"} className="form-control" id="new_password" placeholder = "New Password"/>
+					
+					<i className="bi bi-eye-fill" id="eyerx2" onClick={toggleNPassword}></i>
+					<i className="bi bi-lock-fill"  id="lock2"></i>
+			  </div>
+			  
+			  <div className="form-group">
+
+			  		<label for="CNewP"><b>Confirm New Password</b></label>
+					
+					<input type={CNpasswordShown ? "text" : "password"} className="form-control" id="confirm_new_password" placeholder = "Confirm Password"/>
+					
+					<i className="bi bi-eye-fill" id="eyerx3" onClick={toggleCNPassword}></i>
+					<i className="bi bi-lock-fill"  id="lock3"></i>
+			  </div>
+			
+						
+						</div>
+						<div class="row gutters">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								
+									<button type="submit" className="btnUpdate" onClick={()=>UpdateCusProfile(customer._id)}>Update</button>
+									<button type="submit" className="btnDelete" onClick = {()=> deleteCustomer(customer._id)}>Delete</button>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+
+				<br/><br/>
+				</div>
+
+
+
+
+			
 </div>
 	
     );

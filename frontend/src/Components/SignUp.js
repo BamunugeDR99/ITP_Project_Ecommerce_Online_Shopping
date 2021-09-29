@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import img1 from "./../images/kl.jpg";
 import { Link } from "react-router-dom";
 
+
 function SignUp(props) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [CpasswordShown, setCPasswordShown] = useState(false);
@@ -13,7 +14,8 @@ function SignUp(props) {
   const togglePassword = () => {
     // When the handler is invoked
     // inverse the boolean state of passwordShown
-    setPasswordShown(!passwordShown);
+  setPasswordShown(!passwordShown);
+
   };
 
   const toggleCPassword = () => {
@@ -102,11 +104,6 @@ function SignUp(props) {
     flag1 = 0;
     Swal.fire('Phone Number must be 10 digit number')
     
-    
-  } else if (phoneNumber.charAt(0) !== 0) {
-    flag1 = 0;
-    Swal.fire('Phone Number must start with 0')
-   
   }  else if(dob.length === 0){
 
     Swal.fire('Birthday is required')
@@ -163,6 +160,9 @@ function SignUp(props) {
 }
   
 }
+
+//image Preview
+
 
 
 
@@ -457,11 +457,20 @@ function SignUp(props) {
               />
             </div>
 
+            
+            <div className="ImagePreview">
+            
+            <img src="#" id="UserPro" alt="user image"/>
+            
+            </div>
+            <br/>
+
             <div className="form-group form-check">
               <input type="checkbox" className="form-check-input" id="TermsC" 
               
               
-              />
+            />
+             
              
               <label className="form-check-label" htmlFor="exampleCheck1">
                 I Accept the Terms of Use & Privacy Policy.
