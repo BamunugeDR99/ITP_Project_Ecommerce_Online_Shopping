@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
+import iphone from "./../images/Ip.png"
 export default function ShoppingCart(props) {
 
 
@@ -482,11 +483,11 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                   <div class="col-md-5 col-lg-3 col-xl-3">
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
-                        src={"/Images/" + item.itemImage} alt="Sample" />
+                        src={iphone} alt="Sample" />
                       <a href="#!">
                         <div class="mask">
                           <img class="img-fluid w-100"
-                          src={"/Images/" + item.itemImage} alt="Sample"
+                          src={iphone} alt="Sample"
                             />
                           <div class="mask rgba-black-slight"></div>
                         </div>
