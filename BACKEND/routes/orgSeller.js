@@ -183,4 +183,25 @@ router.post('/loginSeller', async(req,res) => {
 });
 
 
+//Update --> 
+router.route("/ChangePwd/:id").put(async (req,res) =>{
+    //http://localhost:8070/orgSeller/update/
+
+    let userID = req.params.id;  //params = parameter
+    const{password} = req.body;
+
+    const change = {
+    
+        password,
+    }
+
+    const update = await orgSeller.findByIdAndUpdate(userID,change).then(()=>{
+        res.json("Password Updated Successfully!");
+        }).catch((err) => {
+            console.log(err);
+        })
+    });
+
+
+
 module.exports = router;

@@ -188,9 +188,10 @@ function App() {
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
-      <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
-      <Route path = "/Seller/Password" exact component = {SellerPassword}/>
+      <Route path = "/Seller/sellerPassword" exact component = {SellerPassword}/>
+      <Route path = "/Seller" component = {Footer_customer}/>
+    
     
     {/* Admin */}
     <Route path = "/admin/login" exact component = {AdminLogin}/>
