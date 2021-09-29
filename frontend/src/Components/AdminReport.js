@@ -58,7 +58,7 @@ export default function AdminReport(props){
 		for (let i = 0; i < reviews.length; i++) {
 		  j = 0;
 		  for (j = 0; j < sellers.length; j++) {
-			if (reviews[i].sellerid == sellers[j]._id) {
+			if (reviews[i].sellerid === sellers[j]._id) {
 			  reviewWithSeller = {
 				sellerName: sellers[j].ownername,
 				sellerImage: sellers[j].logo,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
    // mer
    // import ReactStars from "react-rating-stars-component";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import Swal from "sweetalert2";
 
 import "../Css/writereview.css";
@@ -13,22 +13,23 @@ import go from "../images/p2.jpg";
 export default function WriteReview(props){
 
     const [description,setDescription] = useState("");
-    const [date,setDate] = useState("");
-    const [noofstars,setNoofstars] = useState("");
+    // const [date,setDate] = useState("");
+    // const [noofstars,setNoofstars] = useState("");
   
     const [items,setItems] = useState([]);
 
     let customerid  = ""; ///local Storage
     let itemid  = "";// url
     // let sellerid  = "";
-    let reviewstatus  = "";
-    let reportreason  = "";
+    // let reviewstatus  = "";
+    // let reportreason  = "";
     let count = 0;
 
     useEffect(() => {
+      const objectId = props.match.params.id;
       function getItems() {
             axios
-              .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+              .get("http://localhost:8070/items/get/" + objectId)
               .then((res) => {
               setItems(res.data);
               console.log(res.data);
@@ -82,9 +83,9 @@ export default function WriteReview(props){
     }
 
  
-const ratingChanged = (newRating) => {
-  console.log(newRating);
-};
+// const ratingChanged = (newRating) => {
+//   console.log(newRating);
+// };
 
 
 function  getNoOfStars(){
@@ -131,7 +132,7 @@ function  getNoOfStars(){
     
           <div className="row" style={{fontSize:'22px', padding:'20px 0px 20px 50px'}}>
             <div className="col">
-              <span style={{color:'black', fontStyle:'strong'}}>{items.Item_name}</span>
+              <span style={{color:'black', fontStyle:'strong'}}><b>{items.Item_name}</b></span>
             </div>
             <div className="col">
           
@@ -146,9 +147,21 @@ function  getNoOfStars(){
           </div>
           <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
-              <img src=
-              {"/Images/"+items.Images}
-              style={{width:'70%'}}/>
+                      <img alt={go} style={{width:'70%'}}
+                       src={"/Images/" + items.Images}/>
+                       <div>
+                          {/* <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          /> */}
+                      </div>
+              {/* <img src={"/Images/"+items.Images[0]}
+              style={{width:'70%'}}/> */}
             </div>
             <div className="col">
               <textarea name="review" style={{width: '80%' ,height: '80%', borderRadius: '25px',background: '#e6e6e6',outline: 'none', border: 'none',padding: '20px'}} placeholder="Enter your review here"
@@ -248,27 +261,6 @@ function  getNoOfStars(){
 // }
 
 
-  {/* <div 
-              className="cursor-pointer"
-              onMouseEnter={() => onMouseEnter(index)} 
-              onMouseLeave={() => onMouseLeave()} 
-              onClick={() => onSaveRating(index)}>
-              <StarIcon fill={fill} />
-            </div> */}
-                {/* <div style={{ color: "#f9d71c", textAlign: "center", color: '#FFD600',cursor: 'pointer'}}>
-                   
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                </div> */}
-                  {/* <div id = 'stars'class="card-text">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span><span> </span> 
-            </div> */}
+
 
 

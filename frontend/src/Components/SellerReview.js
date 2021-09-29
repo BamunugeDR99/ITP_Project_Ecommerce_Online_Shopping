@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 // import { FaStar } from "react-icons/fa";
 
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 import a1 from "../images/avatar1.png";
 import p2 from "../images/p3.jpg";
@@ -17,19 +17,19 @@ export default function SellerReviews(props){
 
     var ipsumText = true;
     
-  const [description,setDescription] = useState("");
-  const [date,setDate] = useState("");
-  const [noofstars,setNoofstars] = useState("");
-  const [reviewstatus,setReviewstatus] = useState("");
+  // const [description,setDescription] = useState("");
+  // const [date,setDate] = useState("");
+  // const [noofstars,setNoofstars] = useState("");
+  // const [reviewstatus,setReviewstatus] = useState("");
     
-  const [updateReviewId,setupdateReviewId] = useState("");
+  // const [updateReviewId,setupdateReviewId] = useState("");
 
-    const [review,setReview] = useState([]);
+  //   const [review,setReview] = useState([]);
     const [reportreason,setReportreason] = useState("");
 
-    const [data,setData] = useState({
-      reportreason : "",
-    });
+    
+    // let reportreason = " ";
+    
 
     let reviews = [];
     let review_id = "";
@@ -46,7 +46,7 @@ export default function SellerReviews(props){
       review_id,
       Stars,
     };
-    let content;
+    // let content;
   
     let reviewWithCustomers = [];
   

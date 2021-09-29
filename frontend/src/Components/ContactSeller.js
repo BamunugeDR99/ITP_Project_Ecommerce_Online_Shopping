@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, {  useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -21,7 +21,8 @@ export default function ContactSeller(props){
 
 		const email = document.getElementById("email").value;
 
-		const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+		const EmailAdd = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\w{2,3})+$/
+        //above line chaneged cause of warnings /. removed
 
 		 if(email.match(EmailAdd)){
 
@@ -43,7 +44,7 @@ export default function ContactSeller(props){
       validEmail();
   
 
-      if(flag == 1){
+      if(flag === 1){
           
       const newContactsel = {
         name,
@@ -85,14 +86,14 @@ export default function ContactSeller(props){
  return(
 <div className="rev">  
 <div className="contact1">
-  <h1 id = "txt"></h1>
+  {/* <h1 id = "txt"></h1> */}
   
     <div className="container-contact1">
 
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <img src={go} className="img3" />
+                        <img src={go} className="img3" alt={go}/>
                     </div>
                     <div className="col">
                     <form onSubmit = {sendData} className="contact1-form validate-form">
