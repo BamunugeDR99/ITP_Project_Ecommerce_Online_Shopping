@@ -180,6 +180,7 @@ function App() {
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer/MyShoppingCart" exact component = {ShoppingCart}/>
+      <Route path = "/Customer/purchaseHistoryExtended/:id" exact component = {PaymentHistoryCard}/>
       <Route path = "/Customer" component = {Footer_customer}/>
 
 
@@ -207,6 +208,7 @@ function App() {
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>
+      
     
     {/* Admin */}
     {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}

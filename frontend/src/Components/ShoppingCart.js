@@ -48,7 +48,7 @@ export default function ShoppingCart(props) {
   let packageName = "";
   let description = "";
   let content = [];
-  let price = [];
+  let price = "";
 
 
   let PackageDetails = {
