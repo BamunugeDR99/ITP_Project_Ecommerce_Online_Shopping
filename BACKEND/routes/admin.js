@@ -31,6 +31,7 @@ router.route("/addAdmin").post(async(req,res)=>{
 
 
         res.status(201).json({ message: "Admin Added Successfully!"});
+        
 
     } catch(err){
 
@@ -99,11 +100,12 @@ router.post('/loginAdmin', async(req,res) => {
 
             else if (password == adminLogin.password){
 
-                 res.json({message: "Admin Sign In Successfully"});
-                console.log(res.status.error);
-                // res.json({adminLogin: {
-                //     _id : adminLogin._id,
-                // }})
+                // res.json({message: "Admin Sign In Successfully"});
+                //console.log(res.status.error);
+                
+                res.json({adminLogin: {
+                    _id : adminLogin._id,
+                }})
                
                 
             }else{ 

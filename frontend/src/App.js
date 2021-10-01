@@ -129,6 +129,10 @@ import ShoppingCart from './Components/ShoppingCart';
 import EditCardDetails from './Components/EditCardDetails';
 import SellermMsg from './Components/Sellermsg';
 import SelectPaymentMethod from './Components/SelectPaymentMethod';
+import AdminDashBoard from './Components/AdminDashBoard';
+import SideBarAdmin from './Components/SideBarAdmin';
+import AdminHeader from './Components/AdminHeader';
+import AdminLogin from './Components/AdminLogin';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -141,7 +145,7 @@ function App() {
     <Route path = "/SellerLogin" exact component = {SellerLogin}/>
     <Route path = "/SellerRegistration" exact component = {SellerRegistration}/>
     <Route path = "/SellerForgotPassword" exact component = {SellerForget}/>
-
+    <Route path = "/AdminLogin" exact component = {AdminLogin}/>
     
       {/* Customer Route */}
       <Route path = "/Customer" component = {MainHeader}/>
@@ -165,9 +169,6 @@ function App() {
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
 
       <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
-
-    
-
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
@@ -210,8 +211,17 @@ function App() {
       <Route path = "/Seller" component = {Footer_customer}/>
     
     
-    {/* Admin */}
-    {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}
+    {/* Admin Route*/}
+    
+    <Route path = "/Admin" component = {AdminHeader}/>
+    <Route path = "/Admin" component = {SideBarAdmin}/>
+    
+    <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
+
+
+
+
+    <Route path = "/Admin" component = {Footer_customer}/>
     
 
     </div>

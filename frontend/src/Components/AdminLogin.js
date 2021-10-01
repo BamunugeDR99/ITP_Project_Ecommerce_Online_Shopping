@@ -32,18 +32,16 @@ export default function AdminLogin(props){
 
           axios.post("http://localhost:8070/Admin/loginAdmin", loginCredentials).then((res)=>{
 
-          alert("login success");
-          seterrormsg("");
-
-         //   console.log(res.data.adminLogin._id);
-        //    localStorage.setItem("AdminID",res.data.adminLogin._id);
-
+          
+          localStorage.setItem("AdminID",res.data.adminLogin._id);
+         // seterrormsg("");
+          props.history.push("/Admin/Home");
 
           }).catch((err) =>{
 
-          console.log(err.response.data);
-          alert(err.response.data.error);
-          seterrormsg(err.response.data.error);
+         // console.log(err.response.data);
+          //alert(err.response.data);
+          seterrormsg(err.response.data);
         
 
         })
