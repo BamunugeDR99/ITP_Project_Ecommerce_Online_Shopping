@@ -66,33 +66,33 @@ function UserProfile(props){
                                
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600" style={{marginTop:"20px"}}>First Name</p>
-                                        <h6 class="text-muted f-w-400"> {customer.firstName}</h6>
+                                        <p class="m-b-10 f-w-600" id="p" style={{marginTop:"20px"}}>First Name</p>
+                                        <h6 class="text-muted f-w-400" id="h6"> {customer.firstName}</h6>
                                     </div>
                                    
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600" style={{marginTop:"20px"}}>Last Name</p>
-                                        <h6 class="text-muted f-w-400"> {customer.lastName}</h6>
+                                        <p class="m-b-10 f-w-600"  id="p" style={{marginTop:"20px"}}>Last Name</p>
+                                        <h6 class="text-muted f-w-400"  id="h6"> {customer.lastName}</h6>
                                     </div>
                                     
 									<div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Email</p>
-                                        <h6 class="text-muted f-w-400">{customer.email}</h6>
+                                        <p class="m-b-10 f-w-600"  id="p">Email</p>
+                                        <h6 class="text-muted f-w-400"  id="h6">{customer.email}</h6>
                                     </div>
                                    
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Phone</p>
-                                        <h6 class="text-muted f-w-400"> {customer.phoneNumber}</h6>
+                                        <p class="m-b-10 f-w-600"  id="p">Phone</p>
+                                        <h6 class="text-muted f-w-400"  id="h6"> {customer.phoneNumber}</h6>
                                     </div>
                                     
 									 <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Address</p>
-                                        <h6 class="text-muted f-w-400"> {customer.address}</h6>
+                                        <p class="m-b-10 f-w-600"  id="p">Address</p>
+                                        <h6 class="text-muted f-w-400"  id="h6"> {customer.address}</h6>
                                     </div>
                             
 									 <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Username</p>
-                                        <h6 class="text-muted f-w-400">{customer.username}</h6>
+                                        <p class="m-b-10 f-w-600"  id="p">Username</p>
+                                        <h6 class="text-muted f-w-400"  id="h6">{customer.username}</h6>
                                     </div>
                                     <button className="btnCancel"><b>Back</b></button>
                                     

@@ -39,7 +39,7 @@
 
 .CuseDetails .bg-c-lite-green {
   
-    background: linear-gradient(to right, #0d0b5c, #4d01ff)
+    background: linear-gradient(to right, #0d0b5c, #013cff)
 }
 
 .CuseDetails .user-profile {
@@ -62,11 +62,11 @@
     border-radius: 5px
 }
 
-.CuseDetails h6 {
+.CuseDetails #h6 {
     font-size: 14px
 }
 
-.CuseDetails .card .card-block p {
+.CuseDetails .card .card-block #p {
     line-height: 25px
 }
 
@@ -97,7 +97,7 @@
  }
 
 @media only screen and (min-width: 1400px) {
-    .CuseDetails    p {
+    .CuseDetails    #p {
         font-size: 14px
     }
 }
@@ -124,10 +124,11 @@
 
 .CuseDetails .m-b-10 {
     margin-bottom: 25px;
+    color: black !important;
 }
 
 .CuseDetails .text-muted {
-    color: #919aa3 !important;
+    color: #6d6c6c !important;
     margin-bottom: 25px !important;
 }
 

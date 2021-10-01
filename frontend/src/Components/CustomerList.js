@@ -4,7 +4,7 @@ import React, {useState,useEffect} from "react";
 export default function CustomerList(){
 
     const [customer,setCustomers] = useState([]);
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
     const [load, setLoad] = useState(false);
   
     useEffect(() =>{
@@ -132,7 +132,7 @@ return (
      	  	  <td data-label="Other Details">
 
                <img src = {"/Images/" + customer.userImage} alt="userImage" width="100px" height="100px"/>
-              { 
+              {/* { 
                 show? <p>{customer.email}</p>:null
               }  
               {
@@ -140,24 +140,25 @@ return (
               } 
               {     
                 show? <p>{customer.phoneNumber}</p>:null
-              }
+              } */}
               
 
             </td>
      	  	  <td data-label="Action">
 			  
 			  <div>
-						  <button class="btnshowmr" onClick = {() => setShow(true)}>Show More</button>
+						  <button class="btnshowmr">Show More</button>  
 
 						  <button class="btnremove"  onClick = {()=> deleteCus(customer._id)}>Remove</button>
               
 			  </div>
 
-         <div id = {customer._id}>    
+         {/* <div id = {customer._id}>   
+         onClick = {() => setShow(true)} 
               {     
                 show? <button class="btnshowless" onClick = {() => setShow(false)}>Show Less</button>:null
               }
-			  </div>
+			  </div> */}
 			  
 			  </td>
         {/* <p id = {customer._id}></p> */}
