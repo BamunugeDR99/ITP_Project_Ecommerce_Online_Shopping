@@ -26,17 +26,18 @@ export default function AView_all_the_items(props) {
       (post) =>
         post.Item_name.toLowerCase().includes(userSearch) ||
         post.Brand.toLowerCase().includes(userSearch) ||
-        post.Model.toLowerCase().includes(userSearch)
+        post.Model.toLowerCase().includes(userSearch) ||
+        post.Stock_keeping_unit.toLowerCase().includes(userSearch)
     );
 
     setItems(result);
     if (result.length !== 0) {
-      // document.getElementById("itemsTxt").innerHTML = "";
+      document.getElementById("itemsTxt").innerHTML = "";
     } else if (result.length === 0) {
-      // document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+      document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
   }
-  let im = "ippp.jpeg";
+  //let im = "ippp.jpeg";
   // search
   function handleSearch(e) {
     let userSearch = e;
@@ -68,101 +69,31 @@ export default function AView_all_the_items(props) {
       });
   }
 
- 
+  function viewMore(id) {
 
-  function viewMore(id){
-
-    axios
-    .get("http://localhost:8070/items/get/" + id)
-    .then((res) => {
-    
-      //console.log(res.data);
-      if(document.getElementById(id+'div').innerHTML === ""){
-        document.getElementById(id + 'div').innerHTML = '<div class="row"><div class="col-sm"><br/>brand</div><div class="col-sm"><img src={"/Images/iphone-x-.jpg"}style={{ width: "100px" }} alt="pic"/>'+
-        +"<img src={'/Images/iphone-x-.jpg'} style={{ width: '100px' }} alt='pic'/>"+'<br />'+ res.data._id+'</div><div class="col-sm">'+ res.data.Description+ '<br/>'+res.data.ItemAvailabilityStatus+'</div><div class="col-sm">colors<br/></div>'+
-   '<div className = "col-sm"></div></div>';
-      }else{
-        document.getElementById(id + 'div').innerHTML = '';
-      }
-
-
-      
-    })
-    .catch((err) => {
-      document.getElementById(id+'div').innerHTML = "Error Has been Occured!";
-    });
-
-
-   
-  }
-
-  function filterByPrice(btnid) {
-    document.getElementById("itemsTxt").innerHTML = "";
-    let price2;
-    let price1;
-    if (btnid === 1) {
-      price1 = parseFloat(0);
-      price2 = parseFloat(10000);
-    } else if (btnid === 2) {
-      price1 = parseFloat(10000);
-      price2 = parseFloat(20000);
-    } else if (btnid === 3) {
-      price1 = parseFloat(20000);
-      price2 = parseFloat(30000);
-    } else if (btnid === 4) {
-      price1 = parseFloat(30000);
-      price2 = parseFloat(40000);
-    } else if (btnid === 5) {
-      price2 = parseFloat(40001);
-    }
-
-    axios
-      .get("http://localhost:8070/items/getItems")
-      .then((res) => {
-        let item = res.data;
-        let afterFilterItems = [];
-        if (btnid === 5) {
-          const afterFilterItems = item.filter(
-            (item) => parseFloat(item.Price) >= price2
-          );
-          setItems(afterFilterItems);
+        if (document.getElementById(id + "div").hidden === true) {
+          document.getElementById(id + "div").hidden = false;
         } else {
-          afterFilterItems = item.filter(
-            (post) => post.Price >= price1 && post.Price <= price2
-          );
-
-          setItems(afterFilterItems);
+          document.getElementById(id + "div").hidden = true;
         }
-
-        if (afterFilterItems.length === 0) {
-          document.getElementById("itemsTxt").innerHTML = "No Result Found!";
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
   }
+
   // check again
 
   return (
     <div>
-      <div class="height-100 bg-light" style={{ backgroundColor: "white" }}>
-        <br />
-        <br />
+      <div style={{ backgroundColor: "white" }}>
         <br />
         <h2>All the Items</h2>
         <h2>Dashboard</h2>
-        <br />
-        <div class="form-outline">
-          <input
-            type="search"
-            id="form1"
-            class="form-control"
-            placeholder="Search an Item"
-            aria-label="Search"
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-        </div>
+        <input
+          type="search"
+          id="form1"
+          class="form-control"
+          placeholder="Search by Item no, Item name"
+          aria-label="Search"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
         <br />
         <table class="table">
           <thead class="thead-dark">
@@ -177,6 +108,7 @@ export default function AView_all_the_items(props) {
             </tr>
           </thead>
         </table>
+        <h3 id="itemsTxt" style={{ textAlign: "center", color: "red" }}></h3>
         {items.map((item, index) => {
           return (
             <div>
@@ -186,7 +118,7 @@ export default function AView_all_the_items(props) {
                     <div class="row">
                       <div class="col-sm">
                         <img
-                          src={"/Images/iphone-x-.jpg"}
+                          src={"/Images/" + item.Images[0]}
                           style={{ width: "90px" }}
                           alt="pic"
                         />
@@ -197,25 +129,68 @@ export default function AView_all_the_items(props) {
                       <div class="col-sm">{item.Category}</div>
                       <div class="col-sm">LKR {item.Price}</div>
                       <div class="col-sm">
-                        <button type="button"  onClick={() => viewMore(item._id)}  class="btn btn-success">
+                        <button
+                          type="button"
+                          onClick={() => viewMore(item._id)}
+                          class="btn btn-success"
+                        >
                           More
                         </button>
                         <span> </span>
-                        <button type="button" class="btn btn-danger">
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          onClick={() => deletee(item._id)}
+                        >
                           Remove
                         </button>
                       </div>
                     </div>
-                    <br/>
-                    <div id = {item._id + 'div'}>
+                    <br />
+                    <div id={item._id + "div"} hidden>
+                      <div class="row">
+                        <div class="col-sm">
+                          <br />
+                          Brand : {item.Brand}
+                        </div>
+                        <div class="col-sm">
+                          <img
+                            src={"/Images/"+ item.Images[1]}
+                            style={{ width: "100px" }}
+                            alt="pic"
+                          />
+                      
+                          <img
+                            src={"/Images/" + item.Images[2]}
+                            style={{ width: "100px" }}
+                            alt="pic"
+                          />
+
+                          <br />
+                          
+                        </div>
+                        <div class="col-sm">
+                          Description : {item.Description}<br />
+                          Specification :{item.Specification}
+                        </div>
+                        <div class="col-sm">
+                          Quantity : {item.Quantity}<br/>
+                          Model : {item.Model}
+                          <br />
+                        </div>
+                        <div className="col-sm"></div>
+                      </div>
+                     <hr></hr>
                     </div>
                   </div>
                 </div>
               </div>
+              <hr></hr>
             </div>
           );
         })}
       </div>
+      <br />
     </div>
   );
 }
