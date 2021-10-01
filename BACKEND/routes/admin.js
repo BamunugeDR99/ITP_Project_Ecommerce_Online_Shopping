@@ -12,7 +12,7 @@ router.route("/addAdmin").post(async(req,res)=>{
  try{
 
    const usernameExist = await Admin.findOne({ username: username});
-    const emailExist = await Admin.find({email:email})
+    const emailExist = await Admin.findOne({email:email})
     
     if(emailExist){
         return res.status(422).json({ error: "Email Already Exist"});

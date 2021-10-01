@@ -2,20 +2,76 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export default function AddNewAdmin(props) {
 
     const [firstName,setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username,setUserName] = useState("");
-    const [password, setPassword] = useState("");
     const [email,setEmail] = useState("");
-
+    let password;
+    
     function sendData(e){
         e.preventDefault();
+
+        password = makeid(20);
+
+        const newAdmin = {
+            firstName,
+            lastName,
+            username,
+            password,
+            email
+        }
         
 
+        console.log(newAdmin);
+
+        axios
+        .post("http://localhost:8070/Admin/addAdmin", newAdmin)
+        .then(() => {
+          //alert("Student Added");
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'New admin has been Created',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          props.history.push("/Admin/Admins");
+
+         
+        })
+        .catch((err) => {
+          alert(err);
+        });
+
     }
+
+    function makeid(length) {
+        var result = "";
+        var characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+      }
+
+
+      function usernameGenerator(firstName) {
+        var result = firstName;
+        var characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var charactersLength = characters.length;
+        for (var i = 0; i < 5; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+      }
+
   return (
     <div>
       <br />
@@ -35,6 +91,7 @@ export default function AddNewAdmin(props) {
                   placeholder="Enter first name"
                   onChange={(e) => {
                     setFirstName(e.target.value);
+                    setUserName(usernameGenerator(firstName))
                   }}
                 />
               </div>
@@ -45,7 +102,7 @@ export default function AddNewAdmin(props) {
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter last name"
+                  placeholder="Enter last name" 
                   onChange={(e) => {
                     setLastName(e.target.value);
                   }}
@@ -74,11 +131,14 @@ export default function AddNewAdmin(props) {
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter username"
+                  placeholder="Enter username" value = {username}
                   onChange={(e) => {
                     setUserName(e.target.value);
                   }}
                 />
+                 <small id="emailHelp" class="form-text text-muted">
+                 These is a Suggestion for username
+                </small>
               </div>
 
               <div class="form-group">
