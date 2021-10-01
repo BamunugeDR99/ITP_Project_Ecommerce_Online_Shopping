@@ -8,11 +8,15 @@ router.route("/addAdmin").post(async(req,res)=>{
     const lastName = req.body.lastName;
     const username = req.body.username;
     const password = req.body.password;
-
+    const email = req.body.email;
  try{
 
    const usernameExist = await Admin.findOne({ username: username});
-
+    const emailExist = await Admin.find({email:email})
+    
+    if(emailExist){
+        return res.status(422).json({ error: "Email Already Exist"});
+    }
    if(usernameExist){
 
     return res.status(422).json({ error: "Username Already Exist"});
@@ -23,6 +27,7 @@ router.route("/addAdmin").post(async(req,res)=>{
         lastName,
         username,
         password,
+        email,
         
     })
 
