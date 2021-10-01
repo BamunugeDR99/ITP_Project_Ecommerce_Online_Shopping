@@ -70,19 +70,12 @@ export default function AView_all_the_items(props) {
   }
 
   function viewMore(id) {
-    axios
-      .get("http://localhost:8070/items/get/" + id)
-      .then((res) => {
+
         if (document.getElementById(id + "div").hidden === true) {
           document.getElementById(id + "div").hidden = false;
         } else {
           document.getElementById(id + "div").hidden = true;
         }
-      })
-      .catch((err) => {
-        document.getElementById(id + "div").innerHTML =
-          "Error Has been Occured!";
-      });
   }
 
   // check again
@@ -178,18 +171,21 @@ export default function AView_all_the_items(props) {
                         </div>
                         <div class="col-sm">
                           Description : {item.Description}<br />
-                          Item Availability Status :{"ss"}
+                          Specification :{item.Specification}
                         </div>
                         <div class="col-sm">
-                          colors
+                          Quantity : {item.Quantity}<br/>
+                          Model : {item.Model}
                           <br />
                         </div>
                         <div className="col-sm"></div>
                       </div>
+                     <hr></hr>
                     </div>
                   </div>
                 </div>
               </div>
+              <hr></hr>
             </div>
           );
         })}
