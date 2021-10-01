@@ -74,7 +74,7 @@ router.route("/update/:id").put(async (req,res) =>{
             description,
             logo,
             username,
-            password} = req.body;
+            password } = req.body;
 
     const updateseller = {
         ownername, 
