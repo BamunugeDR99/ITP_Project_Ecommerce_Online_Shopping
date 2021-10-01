@@ -21,21 +21,30 @@ export default function CustomerReviews(props) {
     Review,
     Stars,
   };
+  
+  let objectId = "";
 
+  // const [items,setItems] = useState([]);
+  const [ratings, setRatings] = useState([]);
   let reviewWithCustomers = [];
 
   useEffect(() => {
     function getReview() {
+      objectId = localStorage.getItem("ItemID");
       axios
         .get("http://localhost:8070/review/get")
         .then((res) => {
           //setReview(res.data);
+
+          const ItemId = props.match.params.id;
           const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+            (itemrev) => itemrev.itemid === ItemId
+    
+            // ItemID
            
           );
           reviews = filter;
-console.log(reviews)
+          console.log(reviews)
           axios
             .get("http://localhost:8070/Customer/getAll")
             .then((res) => {
@@ -56,7 +65,7 @@ console.log(reviews)
       for (let i = 0; i < reviews.length; i++) {
         j = 0;
         for (j = 0; j < customers.length; j++) {
-          if (reviews[i].customerid == customers[j]._id) {
+          if (reviews[i].customerid === customers[j]._id) {
             reviewWithCustomer = {
               customerName: customers[j].firstName,
               customerImage: customers[j].userImage,
@@ -76,7 +85,46 @@ console.log(reviews)
   }, []);
 
 
+  // function calculateStarRating(){
+  //   let totalNoRatings = 0
+  //   let totalstarforRatingCount = 0;
+  
+    
+  //     for(let j = 0; j < ratings.length; j++){
+  //         if(items._id == ratings[j].itemid){
+  //           totalNoRatings=ratings[j].noofstars;
+  //           // starCount += parseInt(ratings[j].noofstars);  
+  //         }
+  
+         
+  //     }
+  
+  //     totalstarforRatingCount = totalNoRatings * 5;
+  //     console.log(totalNoRatings);
+  //     displayStarRating(totalNoRatings);
+  
+  
+  // }
 
+  // function displayStarRating(totalNoRatings){
+  //   let txt = "";
+  //     if(isNaN(totalNoRatings)){
+  //       txt = "No Ratings yet!";
+  //       document.getElementById('stars').innerHTML = txt;
+  //       // document.getElementById('stars').style.color = "#FF0000";
+  //     }else{
+      
+  //     for(let j = 0; j < totalNoRatings; j++){
+  //       txt += '<span class="fa fa-star checked"></span>';
+  //     }
+  //     for(let j = 0; j < (5 - totalNoRatings); j++){
+  //       txt += '<span class="fa fa-star"></span>';
+  //     }
+     
+  
+  //     document.getElementById('stars').innerHTML = txt +'  '+ totalNoRatings + '.0 / 5.0';
+  //    }
+  // }
  
 
   return (
@@ -101,12 +149,12 @@ console.log(reviews)
                 return (
                  
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
-                      <div class="Regular shadow" style={{width: "80%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "300px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white'}}>
+                      <div class="Regular shadow" style={{width: "70%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white'}}>
                         <div class="card-body">
                           <center>
-                          <img src={"/Images/"+reviewss.customerImage[0]} 
-                          style={{ width: "65%", alignItems: "center" }}/>
-                          <br/>
+                          <img alt={a1} src={"/Images/"+reviewss.customerImage  }
+                          style={{ width: "65%", alignItems: "center", borderRadius:400/2 }}/>
+                          <br/><br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
                           </center>
                           
@@ -120,6 +168,15 @@ console.log(reviews)
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span><span> </span> 
                           </div>
+
+                          {/* <div id = 'stars'class="card-text">
+                            <br/><span id ='review'>4.0/ 5.0</span><br/>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span><br/>
+                            <span class="fa fa-star"></span>
+                          </div> */}
                           <p style={{ textAlign: "center", fontSize: "16px"}}>
                             {reviewss.Review}
                           </p>

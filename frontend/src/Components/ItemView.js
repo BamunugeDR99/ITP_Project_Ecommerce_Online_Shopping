@@ -6,20 +6,20 @@ import {Link} from 'react-router-dom';
 
 import p2 from "../images/p3.jpg";
 import v1 from "../images/visa2.png";
-import v2 from "../images/master2.png";
-import v3 from "../images/paypal2.png";
+// import v2 from "../images/master2.png";
+// import v3 from "../images/paypal2.png";
 
 
 export default function ItemView(props){
 
     const [items,setItems] = useState([]);
-    let [itemss,setItemss] = useState([]);
+    // let [itemss,setItemss] = useState([]);
     const [ratings, setRatings] = useState([]);
 
     let [allitems,setAllitems] = useState([]);
-    let [filtereditems,setFiltereditems] = useState([]);
+    // let [filtereditems,setFiltereditems] = useState([]);
 
-    let [ICategory, setICategory]= useState("");
+    // let [ICategory, setICategory]= useState("");
 
     var ipsumText = true;
 
@@ -86,8 +86,8 @@ export default function ItemView(props){
             axios
               .get("http://localhost:8070/items/get/"+ objectId)
               .then((res) => {
-                  ICategory= res.data.Category;
-                  console.log(ICategory);
+                  // ICategory= res.data.Category;
+                  // console.log(ICategory);
               setItems(res.data);
               console.log(res.data);
             //   console.log(items);
@@ -102,65 +102,65 @@ export default function ItemView(props){
           });
       }
 
-      function filtercatogory(){
+    //   function filtercatogory(){
 
 
-        let cat = "";
+    //     let cat = "";
 
-        axios
-        .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
-        .then((res) => {
-            cat= res.data.Category;
-            console.log(cat);
+    //     axios
+    //     .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+    //     .then((res) => {
+    //         cat= res.data.Category;
+    //         console.log(cat);
     
-        })
-        .catch((err) => {
-          alert(err);
-        });
+    //     })
+    //     .catch((err) => {
+    //       alert(err);
+    //     });
 
 
 
 
-            axios
-            .get("http://localhost:8070/items/getItems")
-            .then((res)=>{
+    //         axios
+    //         .get("http://localhost:8070/items/getItems")
+    //         .then((res)=>{
         
-                console.log(cat);
-                console.log(ICategory);
-                console.log(res.data);
-                setAllitems(res.data);
-                // console.log(items.Category);
+    //             console.log(cat);
+    //             // console.log(ICategory);
+    //             console.log(res.data);
+    //             setAllitems(res.data);
+    //             // console.log(items.Category);
                 
 
             
-            })
-            .catch((err) => {
-                alert(err);
-              });
+    //         })
+    //         .catch((err) => {
+    //             alert(err);
+    //           });
 
 
-              console.log(allitems);
-              console.log(cat);
-              filter(allitems, cat);
+    //           console.log(allitems);
+    //           console.log(cat);
+    //           filter(allitems, cat);
 
-      }
-      function filter(data, Caategory) {
+    //   }
+    //   function filter(data, Caategory) {
 
-            console.log("Filter");
-            console.log(data);
-            console.log(Caategory);
+    //         console.log("Filter");
+    //         console.log(data);
+    //         console.log(Caategory);
 
-        let result = data.filter((post) =>
-
-
-            post.Category.toLowerCase().includes(Caategory.toLowerCase())
+    //     let result = data.filter((post) =>
 
 
+    //         post.Category.toLowerCase().includes(Caategory.toLowerCase())
 
-       );
-        console.log(result);
-    setFiltereditems(result);
-      }
+
+
+    //    );
+    //     console.log(result);
+    // // setFiltereditems(result);
+    //   }
 
     
       
@@ -170,7 +170,7 @@ export default function ItemView(props){
         for (let i = 0; i < reviews.length; i++) {
           j = 0;
           for (j = 0; j < items.length; j++) {
-            if (reviews[i].itemid == items[j]._id) {
+            if (reviews[i].itemid === items[j]._id) {
               reviewWithItem = {
                 itemName: items[j].Item_name,
                 itemBrand: items[j].Brand,
@@ -202,7 +202,7 @@ export default function ItemView(props){
       }
   
       getReview();
-      filtercatogory();
+      // filtercatogory();
     }, []);
 
 
@@ -224,7 +224,7 @@ export default function ItemView(props){
           // average = 0;
         
           for(let j = 0; j < ratings.length; j++){
-              if(items._id == ratings[j].itemid){
+              if(items._id === ratings[j].itemid){
                 totalNoRatings++;
                 starCount += parseInt(ratings[j].noofstars);  
               }
@@ -262,9 +262,9 @@ export default function ItemView(props){
       }
     
 
-      const array1 = [itemImage];
+      // const array1 = [itemImage];
 
-      const found = array1.find(element=>element>1);
+      // const found = array1.find(element=>element>1);
 
 
 
@@ -274,7 +274,7 @@ export default function ItemView(props){
           .get("http://localhost:8070/items/get/" + id)
           .then((res) => {
             console.log(res.data);
-            if (res.data.ItemAvailabilityStatus == false) {
+            if (res.data.ItemAvailabilityStatus === false) {
               Swal.fire({
                 icon: "warning",
                 title: "Oops...",
@@ -294,7 +294,7 @@ export default function ItemView(props){
     
                   let falgs = 0;
                   for (let i = 0; i < newwItems.length; i++) {
-                    if (newwItems[i] == id) {
+                    if (newwItems[i] === id) {
                       falgs = 1;
                     }
                   }
@@ -308,7 +308,7 @@ export default function ItemView(props){
                   }
     
                
-    if(falgs == 0){
+    if(falgs === 0){
                   axios
                     .put(
                       "http://localhost:8070/ShoppingCart/updateSItem/" +
@@ -331,7 +331,7 @@ export default function ItemView(props){
                         text: "Please try again!",
                       });
                     });
-                  }else if(falgs == 1){
+                  }else if(falgs === 1){
                     Swal.fire("Item Already in Your Shopping Cart.");
                   }    
                 })
@@ -354,7 +354,7 @@ function buyNow(id){
     .get("http://localhost:8070/items/get/" + id)
     .then((res) => {
       console.log(res.data);
-      if (res.data.ItemAvailabilityStatus == false) {
+      if (res.data.ItemAvailabilityStatus === false) {
         Swal.fire({
           icon: "warning",
           title: "Oops...",
@@ -374,7 +374,7 @@ function buyNow(id){
 
             let falgs = 0;
             for (let i = 0; i < newwItems.length; i++) {
-              if (newwItems[i] == id) {
+              if (newwItems[i] === id) {
                 falgs = 1;
               }
             }
@@ -388,7 +388,7 @@ function buyNow(id){
             }
 
          
-if(falgs == 0){
+if(falgs === 0){
             axios
               .put(
                 "http://localhost:8070/ShoppingCart/updateSItem/" +
@@ -413,7 +413,7 @@ if(falgs == 0){
                   text: "Please try again!",
                 });
               });
-            }else if(falgs == 1){
+            }else if(falgs === 1){
               Swal.fire("Item Already in Your Shopping Cart.");
 
               props.history.push("/Customer/MyShoppingCart");
@@ -450,18 +450,18 @@ return(
 
     <div className="row" >
         <div className="col-3">
-            <img style={{width:'90%',  paddingRight:'20px'}} 
-                // src={"/Images/"+items.Images[0]}
+            <img alt={p2} style={{width:'90%',  paddingRight:'20px'}} 
+                src={"/Images/"+items.Images}
             />
             <div>
-                <img style={{width:'25%',  padding:'10px'}} 
-                // src={"/Images/"+items.Images[1]}
+                <img alt={p2} style={{width:'25%',  padding:'10px'}} 
+                src={"/Images/"+items.Images}
                 />
-                <img style={{width:'25%',  padding:'10px'}} 
-                // src={"/Images/"+items.Images[0]}
+                <img alt={p2} style={{width:'25%',  padding:'10px'}} 
+                src={"/Images/"+items.Images}
                 />
-                <img style={{width:'25%',  padding:'10px'}} 
-               //src={"/Images/"+items.Images[2]} 
+                <img alt={p2} style={{width:'25%',  padding:'10px'}} 
+               src={"/Images/"+items.Images} 
                 />
             </div>
         </div>
@@ -506,9 +506,9 @@ return(
             </div>
             <br/><br/><br/><br/>
             <span >Payment Methods :</span>&emsp;&emsp;
-            <img src={v1} style={{width:'10%'}}/>&emsp;
-            <img src={v2} style={{width:'10%'}}/>&emsp;
-            <img src={v3} style={{width:'10%'}}/>
+            <img alt="Visa" src={v1} style={{width:'10%'}}/>&emsp;
+            <img alt="Master" style={{width:'10%'}}/>&emsp;
+            <img alt="Paypal" style={{width:'10%'}}/>
         </div>
         
     </div>  
@@ -561,11 +561,10 @@ return(
                                     <span>{items.Quantity}</span><br/>
                                     <span>{items.WHT}</span><br/>
                                     <span>{ipsumText.toString(items.Unit) }
-                                    {/* {`items.Unit: ${ipsumText}`} */}
                                     </span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{found}
-                                        {/* {items.Colors} */}
+                                    <span>{ipsumText.toString(items.Colors)}
+                                        
                                     </span><br/>
                                 </div>
                                 
@@ -587,15 +586,14 @@ return(
                                             <span class="fa fa-star checked"></span><br/>
                                             <span class="fa fa-star"></span>
                                             </div>
-                                            
-                                        </span>
+                                                                </span>
                                     </div>
                                     <div className="col-7">
                                         <div >
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                 
-                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-primary"onClick={() =>viewReview(items._id)}  >View Reviews</button>
+                                                    <button type="button"style={{fontSize:'16px', borderRadius:'15px'}} class="btn btn-primary"onClick={() =>viewReview(items._id)}  >View Reviews</button>
                                                 
                                             </a>
                                             
@@ -604,7 +602,7 @@ return(
                                             <br/>
                                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                
-                                                    <button type="button"style={{fontSize:'16px'}} style={{ borderRadius:'15px'}} class="btn btn-info" onClick={() =>writeReview(items._id)} >Write a Review</button>
+                                                    <button type="button"style={{fontSize:'16px', borderRadius:'15px'}} class="btn btn-info" onClick={() =>writeReview(items._id)} >Write a Review</button>
                                                 
                                             </a>
                                             
