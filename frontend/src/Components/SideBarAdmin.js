@@ -4,6 +4,10 @@ import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 
 export default function SideBarAdmin(props) {
+
+
+
+  
   return (
     <div>
     <header className="header" id="header">
@@ -17,13 +21,13 @@ export default function SideBarAdmin(props) {
       <nav className="nav">
         <div>
           {" "}
-          <Link to="#" className="nav_logo">
+          <Link to="#" className="nav_logo" disabled>
             <i className="bx bx-layer nav_logo-icon"></i>
             <span className="nav_logo-name">MANAGEMENTS</span>{" "}
           </Link>
           <div className="nav_list">
             {" "}
-            <Link to="/allItems" className="nav_link active">
+            <Link to="/Admin/Items" className="nav_link active">
               <i className="bx bx-grid-alt nav_icon"></i>{" "}
               <span className="nav_name" >ITEMS</span>{" "}
             </Link>
@@ -49,7 +53,12 @@ export default function SideBarAdmin(props) {
             </Link>{" "}
           </div>
         </div>{" "}
-        <Link to="#" className="nav_link">
+        <Link onClick = {()=> {
+
+              localStorage.removeItem("AdminID");
+              props.history.push("/AdminLogin");
+
+        }} className="nav_link">
           {" "}
           <i className="bx bx-log-out nav_icon"></i>{" "}
           <span className="nav_name">SIGNOUT</span>{" "}

@@ -4,21 +4,20 @@ import { Link } from "react-router-dom";
 
 export default function AdminHeader(props) {
 
-const [adminName, setAdminName] = useState("");
+const [adminFirstName, setAdminFirstName] = useState("");
+const [adminLastName, setAdminLastName] = useState("");
   useEffect(() =>{
 
 		let objectID = "";
 		function getAdmin(){
 
-			objectID = localStorage.getItem("ADminID");
-			axios.get("http://localhost:8070/orgseller/get/"+ objectID).then((res) =>
+			objectID = localStorage.getItem("AdminID");
+
+			axios.get("http://localhost:8070/Admin/getAdmin/"+ objectID).then((res) =>
 			{
 				
-        //setCompanyName(res.data.companyname);
-        //setLogo(res.data.logo);
-				
-
-				
+				setAdminFirstName(res.data.firstName);
+        setAdminLastName(res.data.lastName);
 				
 			}).catch((err) =>{
 				alert(err);
@@ -31,7 +30,7 @@ const [adminName, setAdminName] = useState("");
 	}, []);
 
   function Logout(){
-    //localStorage.removeItem("SellerID");
+    localStorage.removeItem("AdminID");
     props.history.push("/AdminLogin");
   }
 
@@ -56,17 +55,19 @@ const [adminName, setAdminName] = useState("");
       </li> */}
 
       <li class="nav-item">
-        <Link class="nav-link" to ="/Seller/MyDiscountedItems">Sellers</Link>
+        <Link class="nav-link" to ="/Admin/Sellers">Sellers</Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to ="/Seller/MyPackages">Customers</Link>
+        <Link class="nav-link" to ="/Admin/Customers">Customers</Link>
       </li>
- 
+  <li class="nav-item">
+        <Link class="nav-link" to ="/Admin/Admins">Admins</Link>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}
      {/* <img className="card-img-top" src = {'/Images/shopping-cart.png'} style = {{width: "30px", borderRadius : "0px",marginLeft : "10px",marginRight : "20px"}}alt="Card image cap"/> */}
-     <b>{adminName}</b>
+     <b style = {{marginRight : "10px"}}>{adminFirstName}<span> </span>{adminLastName}</b>
       {/* <img className="card-img-top" src = {'/Images/'+logo} style = {{width: "50px", borderRadius : "30px",marginLeft : "10px",marginRight : "10px"}}alt="Card image cap"/> */}
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"   onClick={() => Logout()} >Logout</button>
     

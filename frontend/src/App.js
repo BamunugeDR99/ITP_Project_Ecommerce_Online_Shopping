@@ -133,6 +133,9 @@ import AdminDashBoard from './Components/AdminDashBoard';
 import SideBarAdmin from './Components/SideBarAdmin';
 import AdminHeader from './Components/AdminHeader';
 import AdminLogin from './Components/AdminLogin';
+import AllAdmins from './Components/AllAdmins';
+import AddNewAdmin from './Components/AddNewAdmin';
+import AllRequests from './Components/AllSellers';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -217,9 +220,20 @@ function App() {
     <Route path = "/Admin" component = {SideBarAdmin}/>
     
     <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
+    <Route path = "/Admin/Sellers" exact component = {AllRequests}/>
+    <Route path = "/Admin/AllSellersRequest" exact component = {AllSellers}/>
+    <Route path = "/Admin/Customers" exact component = {CustomerList}/>
+    <Route path = "/Admin/Admins" exact component = {AllAdmins}/>
+    <Route path = "/Admin/AddAdmin" exact component = {AddNewAdmin}/>
+    <Route path = "/Admin/Items" exact component = {AView_all_the_items}/>
+    {/* <Route path = "/Admin/DiscountItems" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Packages" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Reviews" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Payment" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Delivery" exact component = {AView_all_the_items}/> */}
 
-
-
+    
 
     <Route path = "/Admin" component = {Footer_customer}/>
     

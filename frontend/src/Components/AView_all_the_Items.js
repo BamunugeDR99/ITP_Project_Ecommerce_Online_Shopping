@@ -146,13 +146,10 @@ export default function AView_all_the_items(props) {
 
   return (
     <div>
-      <div class="height-100 bg-light" style={{ backgroundColor: "white" }}>
-        <br />
-        <br />
+      <div style={{ backgroundColor: "white" }}>
         <br />
         <h2>All the Items</h2>
         <h2>Dashboard</h2>
-        <br />
         <div class="form-outline">
           <input
             type="search"
@@ -163,7 +160,6 @@ export default function AView_all_the_items(props) {
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
-        <br />
         <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -216,6 +212,7 @@ export default function AView_all_the_items(props) {
           );
         })}
       </div>
+      <br/>
     </div>
   );
 }
