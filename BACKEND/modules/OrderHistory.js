@@ -24,6 +24,11 @@ const OrderHistorySchema = new Schema({
         required : true
     },
 
+    Amount : {
+        type : String,
+        required : true
+    },
+
     ItemList : [{
         type : String,
     }],

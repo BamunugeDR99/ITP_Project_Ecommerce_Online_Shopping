@@ -80,6 +80,8 @@ import ItemView from './Components/ItemView';
 // import test from './Components/test';
 import ContactSeller from './Components/ContactSeller';
 import PaymentHistory from './Components/PaymentHistory';
+import PaymentHistoryCard from './Components/PaymentHistoryCard';
+
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -161,6 +163,9 @@ function App() {
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
 
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
+
+      <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
+
     
 
 

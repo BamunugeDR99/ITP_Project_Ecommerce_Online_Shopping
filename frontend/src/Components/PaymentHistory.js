@@ -47,6 +47,7 @@ export default function PaymentHistory(props){
                         <th scope="col">Transaction Time</th>
                         <th scope="col">Recipt No</th>
                         <th scope="col">Payment Type</th>
+                        <th scope="col">Total Amount</th>
                         {/* <th scope="col">Package ID</th> */}
                         {/* <th scope="col">Item List</th> */}
                         <th scope="col"> </th>
@@ -64,6 +65,7 @@ export default function PaymentHistory(props){
                         <th>{payhistory.TransTime}</th>
                         <th>{payhistory.RecieptNo}</th>
                         <th>{payhistory.PaymentType}</th>
+                        <th>{payhistory.Amount}</th>
                         {/* {payhistory.ItemList.map((Il)=>{
                             return(
                         <th>{Il}</th>
@@ -72,7 +74,7 @@ export default function PaymentHistory(props){
                         {/* <th>{payhistory.PacakgeID}</th> */}
                         {/* <th>{payhistory.ItemList}</th> */}
                         
-                        {/* <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td> */}
+                        <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td>
                         </tr>
                        
                        
