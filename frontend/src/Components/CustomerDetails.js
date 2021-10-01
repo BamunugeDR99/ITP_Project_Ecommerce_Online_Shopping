@@ -56,22 +56,22 @@ function UserProfile(props){
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-c-lite-green user-profile">
                             <div class="card-block text-center text-white">
-                                <div class="m-b-25"> <img src={"/Images/" + customer.userImage} className="rounded-circle"  width="100px" height="100px" alt="User-Image"/> </div>
+                                <div class="m-b-25"> <img src={"/Images/" + customer.userImage} className="rounded-circle"  width="180px" height="180px" alt="User-Image"/> </div>
                                 <h5 class="f-w-600"> {customer.firstName} {customer.lastName}</h5>
-
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="card-block">
                                 <h3 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h3>
+                               
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">First Name</p>
+                                        <p class="m-b-10 f-w-600" style={{marginTop:"20px"}}>First Name</p>
                                         <h6 class="text-muted f-w-400"> {customer.firstName}</h6>
                                     </div>
                                    
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Last Name</p>
+                                        <p class="m-b-10 f-w-600" style={{marginTop:"20px"}}>Last Name</p>
                                         <h6 class="text-muted f-w-400"> {customer.lastName}</h6>
                                     </div>
                                     
@@ -94,6 +94,7 @@ function UserProfile(props){
                                         <p class="m-b-10 f-w-600">Username</p>
                                         <h6 class="text-muted f-w-400">{customer.username}</h6>
                                     </div>
+                                    <button className="btnCancel"><b>Back</b></button>
                                     
                                 </div>
                             </div>

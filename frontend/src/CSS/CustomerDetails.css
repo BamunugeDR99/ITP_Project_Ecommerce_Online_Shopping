@@ -18,8 +18,8 @@
     border: none;
     margin-bottom: 40px;
     margin-top: 40px;
-    width:750px;
-    height: 400px;
+    width:700px;
+    height: 420px;
     
   
    
@@ -50,7 +50,7 @@
 
 .CuseDetails .card-block {
     padding: 1.25rem;
-    height: 400px;
+    height: 420px;
     
 }
 
@@ -70,6 +70,32 @@
     line-height: 25px
 }
 
+.CuseDetails .btnCancel {background-image: linear-gradient(to right, #0057d1 0%, #0f12da  51%, #0057d1  100%)}
+.CuseDetails .btnCancel {
+   
+   margin-left: 150px;
+   padding: 0;
+   width: 100px;
+   height: 30px;
+   font-size: 18px;
+   text-align: center;
+   cursor: pointer;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   border: none;
+   margin-bottom: 10px;
+  
+ }
+
+ .CuseDetails .btnCancel:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
 @media only screen and (min-width: 1400px) {
     .CuseDetails    p {
         font-size: 14px
@@ -85,7 +111,7 @@
 }
 
 .CuseDetails .m-b-20 {
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .CuseDetails .p-b-5 {
@@ -93,41 +119,33 @@
 }
 
 .CuseDetails .card .card-block p {
-    line-height: 25px
+    line-height: 25px;
 }
 
 .CuseDetails .m-b-10 {
-    margin-bottom: 10px
+    margin-bottom: 25px;
 }
 
 .CuseDetails .text-muted {
-    color: #919aa3 !important
+    color: #919aa3 !important;
+    margin-bottom: 25px !important;
 }
 
 .CuseDetails .b-b-default {
-    border-bottom: 1px solid #e0e0e0
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .CuseDetails .f-w-600 {
-    font-weight: 600
+    font-weight: 600;
 }
 
-.CuseDetails .m-b-20 {
-    margin-bottom: 20px
-}
 
 .CuseDetails .m-t-40 {
-    margin-top: 20px
+    margin-top: 20px;
 }
 
  .CuseDetails .p-b-5 {
-    padding-bottom: 5px !important
+    padding-bottom: 5px !important;
 }
 
-.CuseDetails .m-b-10 {
-    margin-bottom: 10px
-}
 
-.CuseDetails .m-t-40 {
-    margin-top: 20px
-}
