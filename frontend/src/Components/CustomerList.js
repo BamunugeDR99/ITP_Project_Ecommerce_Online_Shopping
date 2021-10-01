@@ -109,7 +109,7 @@ export default function CustomerList(){
         <table class="tablex">
           <thead class="theadD">
             <tr>
-            <th>Customer ID</th>
+            <th>Username</th>
             <th>Cutomer Name</th>
             <th>Other Details</th>
             <th>Action</th>
@@ -127,11 +127,11 @@ return (
      <tbody>
 
      	  <tr>
-     	  	  <td data-label="Customer ID">{customer._id}</td>
+     	  	  <td data-label="Customer Username">{customer.username}</td>
      	  	  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
      	  	  <td data-label="Other Details">
 
-               <img src = {"Images/" + customer.userImage} alt="userImage" width="100px" height="100px"/>
+               <img src = {"/Images/" + customer.userImage} alt="userImage" width="100px" height="100px"/>
               { 
                 show? <p>{customer.email}</p>:null
               }  
