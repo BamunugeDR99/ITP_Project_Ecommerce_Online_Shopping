@@ -127,6 +127,10 @@ import ShoppingCart from './Components/ShoppingCart';
 import EditCardDetails from './Components/EditCardDetails';
 import SellermMsg from './Components/Sellermsg';
 import SelectPaymentMethod from './Components/SelectPaymentMethod';
+import AdminAllItems from './Components/Admin_All_Packages';
+import SinglePackage_AdminView from './Components/Admin_single_packageView';
+import AdminAllPackages from './Components/Admin_All_Packages';
+import AllAdmins from './Components/AllAdmins';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -192,6 +196,11 @@ function App() {
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
       <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
+
+
+      <Route path = "/Seller/AllPackageAdmin" exact component = {AdminAllPackages}/>
+      <Route path = "/Seller/AllAdmins" exact component = {AllAdmins}/>
+      <Route path = "/Seller/SinglePackageAdmin/:id" exact component = {SinglePackage_AdminView}/>
       
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
@@ -202,6 +211,8 @@ function App() {
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/Password" exact component = {SellerPassword}/>
+
+    
     
     {/* Admin */}
     {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}
