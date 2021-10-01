@@ -20,86 +20,70 @@ export default function SellerRegistration(props){
 	let logo3 = "";
 	let [errorMsg, setErrorMsg] = useState("");
 	let flag1 = 0;
-	let flag2 = 0;
-	let flag3 = 0;
-	let flag4 = 0;
+	
 	
 	  //validate year
-	  function validYear() {
+
+	  function validatereg(){
 		const yearValue = document.getElementById("year").value;
-	
-		if (isNaN(yearValue)) {
-		  flag1 = 0;
-		  alert("Enter only numeric value to Established Year!");
-		} else if (yearValue.length < 4) {
-		  flag1 = 0;
-		  alert("Established Year must be 4 digit! Entered value is less than 4!");
-		} else if (yearValue.length > 4) {
-		  flag1 = 0;
-		  alert("Phone number must be 10 digit! Entered value is greater than 4!");
-		}  else {
-		  flag1 = 1;
-		}
-	  }
-
-	  //check phone number
-
-	  function validPhoneNumber() {
 		const phoneNumber = document.getElementById("mobile").value;
-	
-		if (isNaN(phoneNumber)) {
-		  flag2 = 0;
-		  alert("Enter only numeric value to Contact Number!");
-		} else if (phoneNumber.length < 10) {
-		  flag2 = 0;
-		  alert("Contact Number must be 10 digit! Your Number is less than 10!");
-		} else if (phoneNumber.length > 10) {
-		  flag2 = 0;
-		  alert("Contact Number must be 10 digit! Your Number is greater than 10!");
-		} else if (phoneNumber.charAt(0) != 0) {
-		  flag2 = 0;
-		  alert("Contact Number must start with 0!");
-		} else {
-		  flag2 = 1;
-		}
-	  }
-	
-	  //check email
-	
-	  function validEmail() {
 		const email = document.getElementById("email").value;
-	
-		const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	
-		if (email.match(EmailAdd)) {
-		  flag3 = 1;
-		} else {
-		  flag3 = 0;
-		  alert("You have entered an invalid email address!");
-		}
-	  }
-	
-	  // check ckeckbox
-	
-	  function checkCheckbox() {
 		const checkbox = document.getElementById("policy");
-	
-		if (!checkbox.checked) {
-		  flag4 = 0;
-		  alert("You Should Agree To Our Terms & Conditions!");
-		} else {
-		  flag4 = 1;
-		}
+
+		const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+		 if (isNaN(yearValue)) {
+			flag1 = 0;
+		
+			Swal.fire('Enter only numeric value to Established Year!')	
+		  } else if (yearValue.length < 4) {
+			flag1 = 0;
+			Swal.fire('Established Year must be 4 digit! Entered value is less than 4!!')
+			
+		  } else if (yearValue.length > 4) {
+			flag1 = 0;
+			Swal.fire('Established Year must be 4 digit! Entered value is greater than 4!!')
+			
+		  } else if (isNaN(phoneNumber)) {
+			flag1 = 0;
+			Swal.fire('Enter only numeric value to Contact Number!')
+			
+		  } else if (phoneNumber.length < 10) {
+			flag1 = 0;
+			Swal.fire('Contact Number must be 10 digit! Your Number is less than 10!')
+		
+		  } else if (phoneNumber.length > 10) {
+			flag1 = 0;
+			Swal.fire('Contact Number must be 10 digit! Your Number is greater than 10!')
+			
+		  } else if (phoneNumber.charAt(0) != 0) {
+			flag1 = 0;
+			Swal.fire('Contact Number must start with 0!')
+		
+		  }else if (!email.match(EmailAdd)) {
+			flag1 = 0;
+			Swal.fire('You have entered an invalid email address!')
+			
+
+		  }else if (!checkbox.checked) {
+			flag1 = 0;
+			Swal.fire('You Should Agree To Our Terms & Conditions!!')
+		 
+		   } else {
+			flag1 = 1;
+		  }
+		  
 	  }
+	
+
+	
+
 
 		function sendData(e){
 
 		e.preventDefault();
 
-		validYear();
-		validPhoneNumber();
-		validEmail();
-		checkCheckbox();
+		validatereg()
 		
 		logo2 = document.getElementById("logo").value;
 	    logo3 = logo2.substring(12);
@@ -117,7 +101,7 @@ export default function SellerRegistration(props){
 		}
 
 	console.log(newseller);
-if(flag1 == 1 && flag2 == 1 && flag3  === 1 && flag4 == 1){
+if(flag1 == 1){
 	axios.post("http://localhost:8070/seller/add",newseller).then(()=>{
 		setownername(" ");
     	setmobile(" ");
@@ -135,6 +119,7 @@ if(flag1 == 1 && flag2 == 1 && flag3  === 1 && flag4 == 1){
         'Request Sent Successfully! We will get back to you soon. Make sure to check your email.',
         'success'
       )
+
 	setErrorMsg("");
 	
 		
@@ -142,14 +127,13 @@ if(flag1 == 1 && flag2 == 1 && flag3  === 1 && flag4 == 1){
 
 		console.log(err.response.data);
     	alert(err.response.data.error);
-    	//setErrorMsg(err.response.data.error);
+		//Swal.fire('Email Already Exists!!')
+    	setErrorMsg(err.response.data.error);
 	 
 	})
-}else{
-	setErrorMsg("Make sure to provide valid information");
-}
-	 }
 
+	 }
+	}
   
 return(
 <div class="sellerregistration">

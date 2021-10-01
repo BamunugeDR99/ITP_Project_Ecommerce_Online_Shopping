@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+// import axios from "axios";
 
 import "../Css/sellerforget.css"; 
 
 
 export default function SellerForget (props){ 
-    function login(){
-        props.history.push("/selllog");
-    }
 
 return(
 <div class=" sellerforget">
