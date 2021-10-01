@@ -164,10 +164,9 @@ function App() {
 
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
 
-      <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
-
+      <Route path = "/adminreport" exact component = {AdminReport}/>
     
-
+      <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 

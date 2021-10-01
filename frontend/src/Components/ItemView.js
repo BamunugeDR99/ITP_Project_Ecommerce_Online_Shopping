@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom';
 
 import p2 from "../images/p3.jpg";
 import v1 from "../images/visa2.png";
-// import v2 from "../images/master2.png";
-// import v3 from "../images/paypal2.png";
+import v2 from "../images/master2.png";
+import v3 from "../images/paypal2.png";
 
 
 export default function ItemView(props){
@@ -207,64 +207,61 @@ export default function ItemView(props){
 
 
     useEffect(() => {
-        calculateStarRating();
+      calculateStarRating();
+      
+    })
+    
+    function calculateStarRating(){
+      let totalNoRatings = 0;
+      let totalstarforRatingCount = 0;
+      let starCount = 0;
+      let average = 0; 
+      // for(let i = 0; i < items.length; i++){
         
-      })
+        // totalNoRatings = 0;
+        // totalstarforRatingCount = 0;
+        // starCount = 0;
+        // average = 0;
       
-      function calculateStarRating(){
-        let totalNoRatings = 0;
-        let totalstarforRatingCount = 0;
-        let starCount = 0;
-        let average = 0; 
-        // for(let i = 0; i < items.length; i++){
-          
-          // totalNoRatings = 0;
-          // totalstarforRatingCount = 0;
-          // starCount = 0;
-          // average = 0;
+        for(let j = 0; j < ratings.length; j++){
+            if(items._id == ratings[j].itemid){
+              totalNoRatings++;
+              starCount += parseInt(ratings[j].noofstars);  
+            }
+    
+           
+        }
+    
+        totalstarforRatingCount = totalNoRatings * 5;
+        average = parseInt((starCount / totalstarforRatingCount) * 5);
+        console.log(average);
+        displayStarRating(average);
+    
+    
+    }
+    
+    
+    function displayStarRating(totalAverage){
+      let txt = "";
+        if(isNaN(totalAverage)){
+          txt = "No Ratings yet!";
+          document.getElementById('stars').innerHTML = txt;
+          // document.getElementById('stars').style.color = "#FF0000";
+        }else{
         
-          for(let j = 0; j < ratings.length; j++){
-              if(items._id === ratings[j].itemid){
-                totalNoRatings++;
-                starCount += parseInt(ratings[j].noofstars);  
-              }
-      
-             
-          }
-      
-          totalstarforRatingCount = totalNoRatings * 5;
-          average = parseInt((starCount / totalstarforRatingCount) * 5);
-          console.log(average);
-          displayStarRating(average);
-      
-      
-      }
-      
-      
-      function displayStarRating(totalAverage){
-        let txt = "";
-          if(isNaN(totalAverage)){
-            txt = "No Ratings yet!";
-            document.getElementById('stars').innerHTML = txt;
-            // document.getElementById('stars').style.color = "#FF0000";
-          }else{
-          
-          for(let j = 0; j < totalAverage; j++){
-            txt += '<span class="fa fa-star checked"></span>';
-          }
-          for(let j = 0; j < (5 - totalAverage); j++){
-            txt += '<span class="fa fa-star"></span>';
-          }
-         
-      
-          document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
-         }
-      }
+        for(let j = 0; j < totalAverage; j++){
+          txt += '<span class="fa fa-star checked"></span>';
+        }
+        for(let j = 0; j < (5 - totalAverage); j++){
+          txt += '<span class="fa fa-star"></span>';
+        }
+       
+    
+        document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+       }
+    }
     
 
-      // const array1 = [itemImage];
-
-      // const found = array1.find(element=>element>1);
 
 
 
@@ -507,8 +504,8 @@ return(
             <br/><br/><br/><br/>
             <span >Payment Methods :</span>&emsp;&emsp;
             <img alt="Visa" src={v1} style={{width:'10%'}}/>&emsp;
-            <img alt="Master" style={{width:'10%'}}/>&emsp;
-            <img alt="Paypal" style={{width:'10%'}}/>
+            <img alt="Master"src={v2} style={{width:'10%'}}/>&emsp;
+            <img alt="Paypal" src={v3} style={{width:'10%'}}/>
         </div>
         
     </div>  
@@ -585,7 +582,7 @@ return(
                                             <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star checked"></span><br/>
                                             <span class="fa fa-star"></span>
-                                            </div>
+                                          </div>
                                                                 </span>
                                     </div>
                                     <div className="col-7">

@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import "../Css/msg.css";
-// import g1 from "../images/avatar1.png";
+import g1 from "../images/avatar1.png";
 
 
 export default function AdminReport(props){
 
-	// const [review,setReview] = useState([]);
+	const [review,setReview] = useState([]);
 
 	let reviews = [];
 	// let emails = [];
@@ -23,17 +23,24 @@ export default function AdminReport(props){
 	  Review,
 	  Report,
 	};
+	let filter_review = [];
   
 	let reviewWithSellers = [];
   
 	useEffect(() => {
 	  function getReview() {
+
+		let seller = localStorage.getItem("SellerID");
+
 		axios
 		  .get("http://localhost:8070/review/get")
 		  .then((res) => {
 			reviews=(res.data);
 			// const filter = res.data.filter(
-			//   (selmsg) => selmsg.sellerid === "613b33772b517a0f50634c8e"
+			setReview(res.data.filter((Review) => Review.reviewstatus === true && Review.sellerid === seller));
+			filter_review = review;
+          	console.log(filter_review);
+			  console.log(seller);
 			// );
 			// reviews = filter;
 			console.log(reviews);
@@ -77,17 +84,17 @@ export default function AdminReport(props){
 	  getReview();
 	}, []);
 
-// 	function deletee(id){
-//     axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
-//     {
-//         // document.getElementById("txt").innerHTML = "Message Deleted!";
-//         const afterDeleteReview = review.filter(review=>review._id != id);
-//         setReview(afterDeleteReview);
-//     }).catch((err) =>{
-//         alert(err);
-//     })
-// }
-// console.log(sellers)
+	function deletee(id){
+    axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
+    {
+        
+        const afterDeleteReview = review.filter(review=>review._id != id);
+        setReview(afterDeleteReview);
+    }).catch((err) =>{
+        alert(err);
+    })
+}
+console.log(sellers)
  return(
 
 <section className="rev">
@@ -107,19 +114,17 @@ export default function AdminReport(props){
 							<th>Action</th>
 						</tr>
 					</thead>
-					{abc.map((reviewss) => {
+					{abc.map((reviewss, index) => {
 						return(
 
 					<tbody>
 						<tr>
 							<td>{reviewss.sellerName}</td>
-							{/* <td>
-								<img src={"/Images/" +reviewss.sellerImage.Images[0]} className="img"/>
-							</td> */}
+							<td><img src={"/Images/"+reviewss.sellerImage} className="img" alt={g1}/></td>
 							<td>{reviewss.Review}</td>
 							<td>{reviewss.Report}</td>
 							<td>
-							<button className="button2" type="button">Remove</button>
+							<button onClick = {()=>deletee(reviewss.review_id,index)} className="button2" type="button">Remove</button>
 							</td>
 						</tr>
 					</tbody>

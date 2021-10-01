@@ -223,8 +223,7 @@ export default function YourReviews(props) {
   axios
     .get("http://localhost:8070/items/getItems")
     .then((res) => {
-      //setStudents(res.data);
-      //console.log(res.data);
+      console.log(res.data);
       filterContent(res.data, userSearch);
     })
     .catch((err) => {
@@ -233,38 +232,6 @@ export default function YourReviews(props) {
 }
  
 
-    // function updatee(e){
-
-    //   e.preventDefault();
-
-    //   const ReviewId = updateReviewId;
-    //   //console.log(ReviewId);
-
-    //   const newReview = {
-        
-    //     description,
-    //     date : Date()
-    //   }
-
-    //   console.log(newReview);
-
-    //   axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
-
-    //     setReview(" ");
-    //     //props.history.push("/Home");
-    //     //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-    //     Swal.fire(
-    //       'Good job!',
-    //       'Your Review Edited Successfuly',
-    //       'success'
-    //     )
-    //     // alert("Updated!");
-        
-        
-    //   }).catch((err) =>{
-    //     alert(err)
-    //   })
-    // }
 
 
   return (
@@ -291,7 +258,7 @@ export default function YourReviews(props) {
         <h1 style={{textalign: 'center',fontstyle: 'strong',padding:'20px'}}><center><b>Your Reviews</b></center></h1>
         <hr style={{width:'90%'}}/>
         <br/>
-        {/* <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2> */}
+        <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2>
 
         <div id="error"></div>
 

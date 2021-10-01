@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import { useHistory } from "react-router-dom";
    // mer
    // import ReactStars from "react-rating-stars-component";
 // import { render } from "react-dom";
@@ -11,6 +13,8 @@ import go from "../images/p2.jpg";
 
 
 export default function WriteReview(props){
+
+  let history = useHistory();
 
     const [description,setDescription] = useState("");
     // const [date,setDate] = useState("");
@@ -77,8 +81,8 @@ export default function WriteReview(props){
         // props.history.push("/Home");
         // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         Swal.fire(
-          'Good job!',
-          'You Send the message!',
+          'All Done!',
+          'Review Submitted',
           'success'
         )
         props.history.push("/Customer/Home");
@@ -119,8 +123,11 @@ function  getNoOfStars(){
 
 
  return(
-<div className="rev">   
-
+<div className="rev"> 
+<br/>  
+        <div>
+            <button type="button"style={{fontSize:'14px', borderRadius:'15px'}} class="btn btn-info" onClick={() => history.goBack()} ><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+          </div>
   <div className="container" style={{ padding: "20px 10px 10px 10px",width: '70%',borderRadius:'15px' }}>
   <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "90%", alignItems: "center", borderRadius: "10px" }} >
     

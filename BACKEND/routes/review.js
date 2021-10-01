@@ -162,16 +162,18 @@ router.route("/delete/:id").delete(async (req,res) =>{
             let reviewID = req.params.id;
             const{
                   reportreason,
+                  reviewstatus,
                  } = req.body;
           
             const newReview  = {
               reportreason,
+              reviewstatus,
             }
           
             const update = await Review.updateOne(
           
               {_id : reviewID},
-              {$set : {reportreason :reportreason}},
+              {$set : {reportreason :reportreason, reviewstatus: reviewstatus}},
           
           
             ).then(() => {
