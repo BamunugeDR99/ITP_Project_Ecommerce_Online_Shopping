@@ -10,8 +10,9 @@ export default function AddNewAdmin(props) {
     const [lastName, setLastName] = useState("");
     const [username,setUserName] = useState("");
     const [email,setEmail] = useState("");
+    const [errorMsg,setErrorMsg] = useState("");
     let password;
-    
+
     function sendData(e){
         e.preventDefault();
 
@@ -44,7 +45,7 @@ export default function AddNewAdmin(props) {
          
         })
         .catch((err) => {
-          alert(err);
+            setErrorMsg(err.response.data.error);
         });
 
     }
@@ -78,8 +79,10 @@ export default function AddNewAdmin(props) {
       <h2>Create an Account to Admin</h2>
       <br />
       <div className="d-flex justify-content-center">
+         
         <div class="card shadow p-3 mb-5 bg-white rounded" style={{ width: "600px" }}>
           <div class="card-body">
+          <h4 style = {{textAlign : "center", color : "red"}}>{errorMsg}</h4>
             <form onSubmit = {sendData}>
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
