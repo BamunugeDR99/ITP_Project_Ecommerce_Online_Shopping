@@ -233,6 +233,7 @@ function updatee(id){
         let newItem = {
           reportreason : result.value,
           reviewstatus : true,
+          sellerid: items.SellerID
         }
         axios.put("http://localhost:8070/review/updateRev/" +id,newItem).then((res)=>{
           setReportreason(" ");

@@ -37,10 +37,10 @@ export default function AdminReport(props){
 		  .then((res) => {
 			reviews=(res.data);
 			// const filter = res.data.filter(
-			setReview(res.data.filter((Review) => Review.reviewstatus === true && Review.sellerid === seller));
-			filter_review = review;
+		
+			filter_review = res.data.filter((Review) => Review.reviewstatus === true && Review.sellerid === seller);
           	console.log(filter_review);
-			  console.log(seller);
+			console.log(seller);
 			// );
 			// reviews = filter;
 			console.log(reviews);
@@ -48,7 +48,7 @@ export default function AdminReport(props){
 			  .get("http://localhost:8070/seller/get")
 			  .then((res) => {
 				sellers = res.data;
-				createReview(reviews, sellers);
+				createReview(filter_review, sellers);
 				console.log(sellers);
 			  })
 			  .catch((err) => {
@@ -77,7 +77,7 @@ export default function AdminReport(props){
 			}
 		  }
 		}
-  
+  console.log("acss")
 		setabc(reviewWithSellers);
 	  }
   
@@ -95,6 +95,7 @@ export default function AdminReport(props){
     })
 }
 console.log(sellers)
+
  return(
 
 <section className="rev">
