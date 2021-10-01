@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 import swal from "sweetalert2";
 import axios from "axios"; //To get the data from the DB
 import '../Css/AllItems.css';
-import go from "./../images/go.jfif";
+
 //import CreatePackage2 from "./CreatePackage2";
 
 
@@ -14,7 +14,7 @@ export default function CreatePackage1(props) {
 
     const [items, setItems] = useState([]); //Defines that items is an array
     const [packageName, setPname] = useState("");
-    const [ContentN, setContentN] = useState([]);
+    let ContentN = [];
     const [ratings, setRatings] = useState([]);
     let [packageNameValidation, setPnameVal] = useState("");
     
@@ -97,11 +97,11 @@ export default function CreatePackage1(props) {
           average = 0;
         
           for(let j = 0; j < ratings.length; j++){
-              if(items[i]._id == ratings[j].itemid){
+              if(items[i]._id === ratings[j].itemid){
                 totalNoRatings++;
               }
       
-              if(items[i]._id == ratings[j].itemid){
+              if(items[i]._id === ratings[j].itemid){
                 starCount += parseInt(ratings[j].noofstars);  
               }
       
@@ -158,7 +158,7 @@ export default function CreatePackage1(props) {
         console.log(packageName);
         console.log(ContentN);
         
-        if(ContentN.length == 0){
+        if(ContentN.length === 0){
 
             swal.fire("Alert", "Cannot Create a Package Without Items", "warning");
             //alert("Cannot Create a package Without Items");
@@ -239,7 +239,7 @@ export default function CreatePackage1(props) {
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1" src={"/Images/" + item.Images[0]} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1" src={"/Images/" + item.Images[0]} width="286px" height="250px" alt="gg"/>
                                             {/* <div className='inner'><label><b>-{item.discountPercentage}%</b></label></div> */}
                                         </div>
                                         <div className="card-body">

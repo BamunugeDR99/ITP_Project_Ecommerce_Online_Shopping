@@ -3,14 +3,16 @@ import React, { useState, useEffect } from "react"; //useEffect is used to get t
 
 import axios from "axios"; //To get the data from the DB
 import "../Css/AllItems.css";
-import go from "./../images/go.jfif";
+
+import Swal from "sweetalert2";
+
 export default function AllDiscountedItems(props) {
   const [items, setItems] = useState([]); //Defines that items is an array
   let fitems = [];
   const [ratings, setRatings] = useState([]);
-  const [loads, setLoad] = useState(false);
+ 
 
-  let [ItemsArrr,setItemsArrr] = useState([]);
+ // const [wishlist, setWishList] = useState();
 
   //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function AllDiscountedItems(props) {
         .get("http://localhost:8070/items/getItems")
         .then((res) => {
           console.log(res.data);
-          setItems(res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true));
+          setItems(res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus === true));
 
           fitems = items;
           console.log(fitems);
@@ -46,27 +48,6 @@ export default function AllDiscountedItems(props) {
 
 
 
-      //Get Cart
-      function getCart(){
-
-      
-        const customerId= "6144a56b88cbe1257c8a887b";
-    
-        axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerId).then((res) => {
-    
-          console.log("====================CART=======================");
-          console.log(res.data);
-          setItemsArrr(res.data.ItemIDs);
-    
-    
-        }).catch((err)=> {
-    
-          console.log(err);
-        })
-
-
-      }
-
 
 
 
@@ -84,7 +65,7 @@ export default function AllDiscountedItems(props) {
 
     displayRating();
     getItems();
-    getCart();
+    
 
   }, []);
 
@@ -93,7 +74,7 @@ export default function AllDiscountedItems(props) {
   });
 
 
-  
+
 
 
 
@@ -111,11 +92,11 @@ export default function AllDiscountedItems(props) {
       average = 0;
 
       for (let j = 0; j < ratings.length; j++) {
-        if (items[i]._id == ratings[j].itemid) {
+        if (items[i]._id === ratings[j].itemid) {
           totalNoRatings++;
         }
 
-        if (items[i]._id == ratings[j].itemid) {
+        if (items[i]._id === ratings[j].itemid) {
           starCount += parseInt(ratings[j].noofstars);
         }
       }
@@ -158,14 +139,14 @@ export default function AllDiscountedItems(props) {
 
     setItems(result);
 
-    if (result != null) {
-      setLoad(false);
+    if (result !== null) {
+     //
       //document.getElementById("txt2").innerHTML = "";
     }
 
-    if (result.length == 0) {
+    if (result.length === 0) {
       //alert("d");
-      setLoad(true);
+     //
       //document.getElementById("txt2").innerHTML = "No Result Found!";
     }
   }
@@ -179,7 +160,7 @@ export default function AllDiscountedItems(props) {
       .get("http://localhost:8070/items/getItems")
       .then((res) => {
 
-        let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus == true)
+        let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus === true)
 
         filterContent(filteredData, userSearch);
         console.log(res.data);
@@ -200,50 +181,157 @@ export default function AllDiscountedItems(props) {
 
 
 
-   function addToCart(id){
 
-    const customerId= "6144a56b88cbe1257c8a887b";
 
-    console.log(id);
-    console.log(ItemsArrr); 
-    
-    ItemsArrr.push(id);
-    console.log(ItemsArrr); 
+  //Add to wishList
+  function addToWishlist(itemId) {
+    // already added check
+    let customerID = localStorage.getItem("CustomerID");
+    let newItems = []; /// Change this later
+    // let Items = [];
+    let ItemID = "";
+    axios
+      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .then((res) => {
+        console.log(res.data.wishlistss.Items);
+        ItemID = res.data.wishlistss._id;
+        newItems = res.data.wishlistss.Items;
+        //let CustomerIDs = res.data.wishlistss.CustomerID;
+        // console.log(CustomerIDs)
+        let falgs = 0;
+        for (let i = 0; i < newItems.length; i++) {
+          if (newItems[i] === itemId) {
+            falgs = 1;
+          }
+        }
+        newItems.push(itemId);
+        console.log(newItems);
+        let newWishList = {
+          CustomerID: customerID,
+          Items: newItems,
+        };
+        console.log(newWishList);
+        if (falgs === 0) {
+          axios
+            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .then(() => {
+              //alert("Student Updated");
+              // document.getElementById("itemsTxt").innerHTML =
+              //"Item added to your Wishlist!";
 
-    //Add(ItemsArrr, customerId);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your Item has been added to your wishlist!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        } else if (falgs === 1) {
 
+          Swal.fire("Item Already in Your Wishlist.");
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
 
 
 
+  //Add to Cart
+  function addToCart(id) {
+    /// complete this
+    console.log(id);
+    axios
+      .get("http://localhost:8070/items/get/" + id)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.ItemAvailabilityStatus === false) {
+          Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Item is not available Right now!",
+          });
+        } else {
+          let CustomerID = localStorage.getItem("CustomerID");
 
-// function Add(ItemIDArr, customerId){
+          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          axios
+            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .then((res) => {
+              let cartID = res.data._id;
+              console.log(res.data);
+              let packages = res.data.PackageIDs;
+              let newwItems = res.data.ItemIDs;
 
-//   let ItemIDs = ItemIDArr;
+              let falgs = 0;
+              for (let i = 0; i < newwItems.length; i++) {
+                if (newwItems[i] === id) {
+                  falgs = 1;
+                }
+              }
+              newwItems.push(id);
+              console.log(newwItems);
 
-//   axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerId, ).then((res) => {
-
-//     alert("Added to Cart");      
-
-// }).catch((err) => {
-
-//     console.log(err);
-// })
-
-
-// }
-
-
-
+              const updatedCart = {
+                customerID: CustomerID,
+                PackageIDs: packages,
+                ItemIDs: newwItems
+              }
 
 
+              if (falgs === 0) {
+                axios
+                  .put(
+                    "http://localhost:8070/ShoppingCart/updateSItem/" +
+                    cartID,
+                    updatedCart
+                  )
+                  .then((res) => {
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Item added to cart Successfully!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((err) => {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Please try again!",
+                    });
+                  });
+              } else if (falgs === 1) {
+                Swal.fire("Item Already in Your Shopping Cart.");
+              }
+            })
+            .catch((err) => {
+              alert(err);
+            });
 
 
 
 
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 
 
+
+  //View More
+  function RedirectedReviews(id) {
+    props.history.push("/Customer/ItemDetails/" + id);
+  }
 
   return (
     <div className="OffersnPacks">
@@ -289,12 +377,13 @@ export default function AllDiscountedItems(props) {
                 <div className="col-sm-4">
                   <div className="card" style={{ width: "18rem" }}>
                     <div className="container-fluid" style={{ padding: "0px" }}>
-                      
+
                       <img
                         className="img-responsive center-block header1"
                         src={"/Images/" + item.Images[0]}
                         width="286px"
                         height="250px"
+                        alt = "gg"
                       />
                       <div className="innertag" id="disPercentage">
                         <label className="innertag" id="disPercentage">
@@ -317,21 +406,48 @@ export default function AllDiscountedItems(props) {
                           <span id={index + "review"}>4.0 / 5.0</span>
                         </div>
 
-                        <p>
-                          <b>Rs.</b>
-                          {item.FinalPrice}.00
+                        <p style={{ color: 'orange' }}>
+                          <b>Rs.
+                            {item.FinalPrice}.00</b>
                         </p>
-                        <p className="iPrice" style={{ padding: "0px" }}>
+                        <p className="iPrice" style={{ padding: "0px", color: 'red' }}>
                           {" "}
                           Rs.{item.Price}.00
                         </p>
                       </div>
 
+                      <br />
+                     
                       <button
-                        class="btn btn-success" 
-                         >
+                        class="btn btn-primary" style={{marginTop : '10px'}}
+                        onClick={() => addToWishlist(item._id)}
+                      >
+                        Add to Wishlist
+                      </button>
+                      <span> </span> 
+                      <button
+                        class="btn btn-success" style={{marginTop : '10px'}}
+                        onClick={() => addToCart(item._id)}
+                      >
                         Add to cart
                       </button>
+                      <span> </span> 
+                      <br />
+                      <button
+                        class="btn btn-success" style={{marginTop : '10px'}}
+                        onClick={() => RedirectedReviews(item._id)}
+                      >
+                        Show more
+                      </button>
+
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                   <br></br>
