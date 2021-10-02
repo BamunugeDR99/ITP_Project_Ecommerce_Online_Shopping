@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-import "../Css/msg.css";
-// import g1 from "../images/avatar1.png";
+// import "../Css/msg.css";
+import g1 from "../images/avatar1.png";
 
 
 export default function CustomerMsg(props){
@@ -10,7 +10,7 @@ export default function CustomerMsg(props){
 	const [contact,setContact] = useState([]);
 
 	let contacts = [];
-	// let emails = [];
+	let contact_id="";
 	let customers = [];
 	let customerName = "";
 	let customerImage = "";
@@ -19,6 +19,7 @@ export default function CustomerMsg(props){
 	let [abc, setabc] = useState([]);
 	let contactWithCustomer = {
 	  customerName,
+	  contact_id,
 	  customerImage,
 	  Contact,
 	  Email,
@@ -62,6 +63,7 @@ export default function CustomerMsg(props){
 			  contactWithCustomer = {
 				customerName: customers[j].firstName,
 				customerImage: customers[j].userImage,
+				contact_id:contacts[i]._id,
 				Contact: contacts[i].message,
 				Email: contacts[i].email,
 			  };
@@ -78,11 +80,18 @@ export default function CustomerMsg(props){
 	}, []);
 
 	function deletee(id){
+		console.log(id)
+
+		const afterDeleteContact = contact.filter(contact=>contact.contact_id != id);
+		console.log(afterDeleteContact);
+
+      setabc(afterDeleteContact);
+
     axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
     {
-        // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteContact = contact.filter(contact=>contact._id != id);
-        setContact(afterDeleteContact);
+        
+        
+        alert("Message Deleted!");
     }).catch((err) =>{
         alert(err);
     })
@@ -90,15 +99,16 @@ export default function CustomerMsg(props){
 
  return(
 
-<section className="rev">
-	<div className="container-xl">
-		<div className="table-responsive">
-			<div className="table-wrapper">
-				<div className="table-title">
-							<h2><center><b>Customer Messages</b></center></h2>
-				</div>
-				<table className="table table-striped table-hover">
-					<thead>
+<div className="container">
+            <div style={{backgroundColor:'#dcdcdc', width:'90%', height:'70px'}}>
+              <h2>
+                <center>
+                  <b>Seller Messages</b>
+                </center>
+              </h2>
+            </div>
+            <table className="table table-hover" style={{width:'90%',tableLayout: 'fixed', fontSize:'16px', textAlign:'center'}}>
+              <thead style={{fontSize:'18px'}}>
 						<tr>
 							<th>Customer Name</th>
 							<th>Customer Photo</th>
@@ -113,13 +123,11 @@ export default function CustomerMsg(props){
 					<tbody>
 						<tr>
 							<td>{reviewss.customerName}</td>
-							{/* <td>
-								<img src={"/Images/" +reviewss.customerImage.Images[0]} className="img"/>
-							</td> */}
+							<td><img src={"/Images/"+reviewss.customerImage  }style={{width:'40%'}} alt={g1}/></td>
 							<td>{reviewss.Email}</td>
 							<td>{reviewss.Contact}</td>
 							<td>
-							<button onClick = {()=> deletee(contact._id)} className="button2" type="button">Remove</button>
+							<button onClick = {()=> deletee(reviewss.contact_id)} className="btn btn-link" type="button"><i class="fas fa-trash-alt" style={{color:'red', fontSize:'20px'}}></i></button>
 							</td>
 						</tr>
 					</tbody>
@@ -129,11 +137,6 @@ export default function CustomerMsg(props){
 
 				</table>
 			</div>
-		</div>        
-	</div>
-</section>
-
-
  )
 
 }

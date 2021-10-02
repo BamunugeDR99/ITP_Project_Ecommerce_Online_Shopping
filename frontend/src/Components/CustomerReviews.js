@@ -8,7 +8,7 @@ export default function CustomerReviews(props) {
 
   let history = useHistory();
 
-  // const [ratings, setRatings] = useState([]);
+  const[rating,setRating]=useState([]);
 
   let reviews = [];
   let customers = [];
@@ -90,17 +90,28 @@ export default function CustomerReviews(props) {
       setabc(reviewWithCustomers);
     }
     
-    function displayRating() {
+    function displayRating(){
+
       axios
-        .get("http://localhost:8070/review/get")
-        .then((res) => {
-          setRatings(res.data);
-          //console.log(ratings[0].itemid)
-          console.log(res.data);
-        })
-        .catch((err) => {
-          alert(err);
-        });
+
+      .get("http://localhost:8070/review/get")
+
+      .then((res) => {
+
+        setRating(res.data);
+
+        //console.log(ratings[0].itemid)
+
+        console.log(res.data);
+
+      })
+
+      .catch((err) => {
+
+        alert(err);
+
+      });
+
     }
     displayRating();
     
@@ -112,70 +123,57 @@ export default function CustomerReviews(props) {
   
 
 
-  useEffect(() => {
-    calculateStarRating(1);
-  });
+  useEffect(()=>{
+    calculateStarRating()
+  })
 
-  function calculateStarRating() {
-    let totalNoRatings = 0;
-    let totalstarforRatingCount = 0;
-    let starCount = 0;
-    let average = 0;
-    for (let i = 0; i < items.length; i++) {
-      totalNoRatings = 0;
-      totalstarforRatingCount = 0;
-      starCount = 0;
-      average = 0;
+  useEffect(()=>{
+    calculateStarRating()
+  })
 
-      for (let j = 0; j < ratings.length; j++) {
-        if (items[i]._id == ratings[j].itemid) {
-          totalNoRatings++;
-        }
+  function calculateStarRating(){
 
-        if (items[i]._id == ratings[j].itemid) {
-          starCount += parseInt(ratings[j].noofstars);
-        }
-      }
+    abc.map((item,index)=>{
+        console.log(item.Stars)
+        displayStarRating(index,item.Stars);
+    })
+      // displayStarRating(i,average);
+    // }
 
-      totalstarforRatingCount = totalNoRatings * 5;
-      average = parseInt((starCount / totalstarforRatingCount) * 5);
-      console.log(average);
-      displayStarRating(i, average);
-    }
   }
 
-  function displayStarRating(id, totalAverage) {
+  function displayStarRating(id,totalAverage){
+
     let txt = "";
-    if (isNaN(totalAverage)) {
-      txt = "No Ratings yet!";
-      document.getElementById(id + "stars").innerHTML = txt;
-      //  document.getElementById(id +'stars').style.color = "#FF0000";
-    } else {
-      for (let j = 0; j < totalAverage; j++) {
+
+      if(isNaN(totalAverage)){
+
+        txt = "No Ratings yet!";
+
+        document.getElementById(id +'stars').innerHTML = txt;
+
+        document.getElementById(id +'stars').style.color = "#FF0000";
+
+      }else{
+
+      
+
+      for(let j = 0; j < totalAverage; j++){
+
         txt += '<span class="fa fa-star checked"></span>';
+
       }
-      for (let j = 0; j < 5 - totalAverage; j++) {
+
+      for(let j = 0; j < (5 - totalAverage); j++){
+
         txt += '<span class="fa fa-star"></span>';
+
       }
 
-      document.getElementById(id + "stars").innerHTML =
-        txt + "  " + totalAverage + ".0 / 5.0";
-    }
-  }
-  
+      document.getElementById(id +'stars').innerHTML = txt +'  ';
 
-  function displayStatus() {
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].ItemAvailabilityStatus == true) {
-        document.getElementById(i + "x").checked = true;
-        document.getElementById(i).innerHTML = "Item Available";
-        document.getElementById(i).style.color = "#A4DE02";
-      } else if (items[i].ItemAvailabilityStatus == false) {
-        document.getElementById(i + "x").checked = false;
-        document.getElementById(i).innerHTML = "Item Out of Stock";
-        document.getElementById(i).style.color = "#FF0000";
-      }
-    }
+     }
+
   }
   
   return (
@@ -210,35 +208,22 @@ export default function CustomerReviews(props) {
                           style={{ width: "65%", height:'80%', maxHeight:'100px',alignItems: "center", borderRadius:400/2 }}/>
                           <br/><br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
-                          </center>
                           
-                          {/* <div id={index + "stars"} class="card-text">
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span> </span>{" "}
-                          <span id={index + "review"}>4.0 / 5.0</span>
-                        </div> */}
+                          
+                          <div id = {index +'stars'} class="card-text">
 
-                          <div id = 'stars'class="card-text" style={{textAlign: "center", padding:'0px 0px 10px 0px' }}>
-                            <span id ='review'>{reviewss.Stars}/5</span><br/>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span><span> </span> 
-                          </div>
+                                    <span class="fa fa-star checked"></span>
 
-                          {/* <div id = 'stars'class="card-text">
-                            <br/><span id ='review'>4.0/ 5.0</span><br/>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span><br/>
-                            <span class="fa fa-star"></span>
-                          </div> */}
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star"></span><span> </span> 
+
+                                    </div>
+                                    </center>
                           <p style={{ textAlign: "center", fontSize: "16px"}}>
                             {reviewss.Review}
                           </p>

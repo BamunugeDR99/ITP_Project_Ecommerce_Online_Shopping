@@ -206,8 +206,59 @@ function displayStarRating(totalAverage){
     }
    
 
-    document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+    document.getElementById('stars').innerHTML =  totalAverage + ' / 5' + txt +'  ';
    }
+}
+
+///////////solo stars
+
+useEffect(()=>{
+  calculateStarRatings()
+})
+
+function calculateStarRatings(){
+
+  abc.map((item,index)=>{
+      console.log(item.Stars)
+      displayStarRatings(index,item.Stars);
+  })
+    // displayStarRating(i,average);
+  // }
+
+}
+
+function displayStarRatings(id,totalAverages){
+
+  let txt = "";
+
+    if(isNaN(totalAverages)){
+
+      txt = "No Ratings yet!";
+
+      document.getElementById(id +'stars').innerHTML = txt;
+
+      document.getElementById(id +'stars').style.color = "#FF0000";
+
+    }else{
+
+    
+
+    for(let j = 0; j < totalAverages; j++){
+
+      txt += '<span class="fa fa-star checked"></span>';
+
+    }
+
+    for(let j = 0; j < (5 - totalAverages); j++){
+
+      txt += '<span class="fa fa-star"></span>';
+
+    }
+
+    document.getElementById(id +'stars').innerHTML = txt +'  ';
+
+   }
+
 }
 
 
@@ -375,7 +426,7 @@ function updatee(id){
         <div style={{height:'550px',overflowY: 'scroll', paddingBottom:'20px'}}>
             
 
-        {abc.map((reviewss) => {
+        {abc.map((reviewss,index) => {
       
               return (
 
@@ -392,13 +443,19 @@ function updatee(id){
 
                         <div className="col">
                             <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{reviewss.customerName}</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
+                            <div id = {index +'stars'} class="card-text">
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star"></span><span> </span> 
+
+                                </div>
                         </div>
                         
                     </div>    

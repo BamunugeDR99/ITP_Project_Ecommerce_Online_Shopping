@@ -343,44 +343,44 @@ export default function ItemView(props) {
         <div className="row">
           <div className="col-3">
             <img
-              alt={p2}
               style={{ width: "90%", paddingRight: "20px" }}
               src={"/Images/" + items.Images}
+              alt={p2}
             />
             <div>
               <img
-                alt={p2}
                 style={{ width: "25%", padding: "10px" }}
                 src={"/Images/" + items.Images}
+                alt={p2}
               />
               <img
-                alt={p2}
                 style={{ width: "25%", padding: "10px" }}
                 src={"/Images/" + items.Images}
+                alt={p2}
               />
               <img
-                alt={p2}
                 style={{ width: "25%", padding: "10px" }}
                 src={"/Images/" + items.Images}
+                alt={p2}
               />
             </div>
           </div>
 
-          <div className="col">
+          <div className="col" style={{padding:'10px'}}>
             <span style={{ fontSize: "22px" }}>
               <b>{items.Item_name} </b>
             </span>
             <br />
             <span style={{ fontSize: "19px" }}>{items.Description}</span>
             <br />
-            <span style={{ fontSize: "16px" }}>{items.Brand}</span>
+            <span style={{ fontSize: "16px" ,padding:'10px 10px 10px 10px'}}>{items.Specification}</span>
             <br />
             <br />
             {/* <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/> */}
             &nbsp;
             {/* <span style={{fontSize:'16px'}}><i>discount : {items.DiscountPrecentage}%</i></span><br/><br/> */}
             <span style={{ fontSize: "19px" }}>
-              Rs. {items.FinalPrice}.00/=
+              Rs. {items.Price}.00/=
             </span>
             <br />
             <br />
@@ -480,8 +480,8 @@ export default function ItemView(props) {
                 <br />
                 <span>Availability</span>
                 <br />
-                <span>Specification</span>
-                <br />
+                {/* <span>Specification</span> */}
+                {/* <br /> */}
                 <span>Warrenty</span>
               </div>
               <div className="col-1">
@@ -491,8 +491,8 @@ export default function ItemView(props) {
                 <br />
                 <span> : </span>
                 <br />
-                <span> : </span>
-                <br />
+                {/* <span> : </span> */}
+                {/* <br /> */}
                 <span> : </span>
               </div>
               <div className="col">
@@ -502,8 +502,8 @@ export default function ItemView(props) {
                 <br />
                 <span>{ipsumText.toString(items.ItemAvailabilityStatus)} </span>
                 <br />
-                <span>{items.Specification} </span>
-                <br />
+                {/* <span>{items.Specification} </span> */}
+                {/* <br /> */}
                 <span>{ipsumText.toString(items.Warrenty)}</span>
               </div>
               <div className="col-2">

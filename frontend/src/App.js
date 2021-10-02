@@ -136,6 +136,7 @@ import AdminLogin from './Components/AdminLogin';
 import AllAdmins from './Components/AllAdmins';
 import AddNewAdmin from './Components/AddNewAdmin';
 import AllRequests from './Components/AllSellers';
+import CustomerMsg from './Components/CustomerMsg';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -215,10 +216,12 @@ function App() {
     
     
     {/* Admin Route*/}
+
+    <Route path = "/CustomerMsg" component = {CustomerMsg}/>
     
     <Route path = "/Admin" component = {AdminHeader}/>
     <Route path = "/Admin" component = {SideBarAdmin}/>
-    <Route path = "/Admin/SelReport" component = {AdminReport}/>
+    <Route path = "/SelReport" component = {AdminReport}/>
     
     <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
     <Route path = "/Admin/Sellers" exact component = {AllRequests}/>
