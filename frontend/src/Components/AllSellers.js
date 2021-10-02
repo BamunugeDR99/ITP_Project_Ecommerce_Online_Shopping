@@ -33,8 +33,6 @@ export default function AllRequests(props) {
     getsellers();
   }, []);
 
-
-
   function deleteSeller(id) {
     axios
       .delete("http://localhost:8070/seller/delete/" + id)
@@ -55,79 +53,89 @@ export default function AllRequests(props) {
     axios
       .get("http://localhost:8070/seller/get/" + id)
       .then((res) => {
-        setData(res.data);
-        //console.log(res.data);
-
+        //setData(res.data);
+        //console.log(res.data.ownername)
         password = passwordGenerator(25);
-        // console.log(username);
         console.log(password);
         // if same usename came
         //  while(flag == 0){
-        username = usernameGenerator(sellers.companyname);
-        axios
-          .get("http://localhost:8070/orgseller/getUsername/" + username)
-          .then((res) => {
-            console.log(res.data);
+        username = usernameGenerator(res.data.companyname);
+        // axios
+        //   .get("http://localhost:8070/orgseller/getUsername/" + username)
+        //   .then((res) => {
+        //     console.log(res.data);
 
-           // document.getElementById("txt").innerHTML =
-                //"Seller Accepted Successfully!";
-            // what if
-          })
-          .catch((err) => {
-            alert(err);
-          });
-          
+        //    // document.getElementById("txt").innerHTML =
+        //         //"Seller Accepted Successfully!";
+        //     // what if
+        //   })
+        //   .catch((err) => {
+        //     alert(err);
+        //   });
+        let ownername = res.data.ownername;
+        let mobile = res.data.mobile;
+        let companyname = res.data.companyname;
+        let address = res.data.address;
+        let year = res.data.year;
+        let email = res.data.email;
+        let description = res.data.description;
+        let logo = res.data.logo;
 
         const newSeller = {
-          ownername: sellers.ownername,
-          mobile: sellers.mobile,
-          companyname: sellers.companyname,
-          address: sellers.address,
-          year: sellers.year,
-          email: sellers.email,
-          description: sellers.description,
-          logo: sellers.logo,
+          ownername,
+          mobile,
+          companyname,
+          address,
+          year,
+          email,
+          description,
+          logo,
           username,
           password,
         };
 
         console.log(newSeller);
-        emailContent = {
-            email : sellers.email,
-            username,
-            password
-        }
-        axios
-          .post("http://localhost:8070/orgseller/add", newSeller)
-          .then(() => {
-            alert("Added");
-            emailjs
-              .send(
-                "service_amyey5b", //your service id
-                "template_fy5ukg1", // template id
-                emailContent,
-                "user_yX9pt2mdVNlUhiI2lw7tv" // user access
-              )
-              .then(
-                (result) => {
-                  console.log(result.text);
-                  alert("send successfully");
 
-                  // document.getElementById("verifyBtn").disabled = false;
-                },
-                (error) => {
-                  console.log(error.text);
-                }
-              );
-            // document.getElementById("txt").innerHTML = "Student Added Successfully!";
-          })
-          .catch((err) => {
-            alert(err);
-          });
+        emailContent = {
+          email: res.data.email,
+          username,
+          password,
+        };
+
+
+        axios
+        .post("http://localhost:8070/orgseller/add", newSeller)
+        .then(() => {
+            alert("Added");
+          // emailjs
+          //   .send(
+          //     "service_amyey5b", //your service id
+          //     "template_fy5ukg1", // template id
+          //     emailContent,
+          //     "user_yX9pt2mdVNlUhiI2lw7tv" // user access
+          //   )
+          //   .then(
+          //     (result) => {
+          //       console.log(result.text);
+          //       alert("send successfully");
+  
+          //       // document.getElementById("verifyBtn").disabled = false;
+          //     },
+          //     (error) => {
+          //       console.log(error.text);
+          //     }
+          //   );
+          // document.getElementById("txt").innerHTML = "Student Added Successfully!";
+        })
+        .catch((err) => {
+          alert(err);
+        });
       })
       .catch((err) => {
         alert(err);
       });
+
+   
   }
 
   function usernameGenerator(companyName) {

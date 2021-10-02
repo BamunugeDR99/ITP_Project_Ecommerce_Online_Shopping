@@ -7,7 +7,7 @@ const { createSecretKey } = require("crypto");
 
 //Insert -->
 router.route("/add").post((req,res)=>{
-    // http://localhost:8070/orgSeller/add
+    // http://localhost:8070/orgseller/add
 
     const ownername = req.body.ownername;
     const mobile = req.body.mobile;
@@ -74,7 +74,7 @@ router.route("/update/:id").put(async (req,res) =>{
             description,
             logo,
             username,
-            password} = req.body;
+            password } = req.body;
 
     const updateseller = {
         ownername, 
