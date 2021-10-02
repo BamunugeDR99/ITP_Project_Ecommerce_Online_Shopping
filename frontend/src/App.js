@@ -127,7 +127,8 @@ import ConfirmPayment from './Components/ConfirmPayment';
 //Admin
 import AdminLogin from './Components/AdminLogin';
 import EditCardDetails from './Components/EditCardDetails';
-
+import RegSellers from './Components/RegSellers';
+import SellerView from './Components/SellerView';
 
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -195,7 +196,9 @@ function App() {
     
     {/* Admin */}
     <Route path = "/admin/login" exact component = {AdminLogin}/>
-    <Route path = "/admin/sellers" exact component = {AllSellers}/>
+    <Route path = "/admin/req/sellers" exact component = {AllSellers}/>
+    <Route path = "/admin/reg/sellers" exact component = {RegSellers}/>
+    <Route path = "/admin/reg/sellers/view/:id" exact component = {SellerView}/>
     
 
     </div>
