@@ -9,12 +9,12 @@ function UserProfile(props){
   let Dateofb;
   const [birth, setBirthday] = useState("");
   
- 
+  let objectID = "";
   
   useEffect(() =>{
       function getCustomer(){
-        const objectID = localStorage.getItem("CustomerID") 
-          axios.get("http://localhost:8070/Customer/get/61547cbbe2ce402e58f887d0").then((res) =>
+        objectID = props.match.params.id;
+          axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
@@ -37,12 +37,10 @@ function UserProfile(props){
     // image();
   }, []);
 
-//   function Updatecus(id){
+  function Back(){
 
-//       console.log(id);
-//       props.history.push("/Customer/update/" +id);
-     
-//   }
+    props.history.push("/Customer/CustomerList");
+  }
 
     return(
 
@@ -94,13 +92,14 @@ function UserProfile(props){
                                         <p class="m-b-10 f-w-600"  id="p">Username</p>
                                         <h6 class="text-muted f-w-400"  id="h6">{customer.username}</h6>
                                     </div>
-                                    <button className="btnCancel"><b>Back</b></button>
+                                   
                                     
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <button className="btnCancel" onClick={()=> Back()}><b>Back</b></button>
             </div>
         </div>
     </div>

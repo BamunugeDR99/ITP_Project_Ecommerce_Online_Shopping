@@ -169,7 +169,7 @@ function App() {
 
 
       <Route path = "/Customer/CustomerList" exact component = {CustomerList}/>
-      <Route path = "/Customer/CustomerDetails" exact component = {CustomerDetails}/>
+      <Route path = "/Customer/CustomerDetails/:id" exact component = {CustomerDetails}/>
         {/* id  */}
       {/* // from my item incomplete */}
       

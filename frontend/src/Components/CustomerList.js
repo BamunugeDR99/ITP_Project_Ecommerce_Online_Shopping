@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
 
-export default function CustomerList(){
+export default function CustomerList(props){
 
     const [customer,setCustomers] = useState([]);
     // const [show, setShow] = useState(false);
     const [load, setLoad] = useState(false);
+
+    
   
     useEffect(() =>{
         function getCustomers(){
@@ -84,6 +86,12 @@ export default function CustomerList(){
       
   }
 
+  function showMore(id){
+
+    console.log(id);
+    props.history.push("/Customer/CustomerDetails/" + id);
+  }
+
 
    return(
       <div class="CustomerList">    
@@ -109,9 +117,10 @@ export default function CustomerList(){
         <table class="tablex">
           <thead class="theadD">
             <tr>
-            <th>Username</th>
+            <th>User Image</th> 
             <th>Cutomer Name</th>
-            <th>Other Details</th>
+            <th>Username</th>
+            <th>Email</th>
             <th>Action</th>
             </tr>
           </thead>
@@ -127,27 +136,18 @@ return (
      <tbody>
 
      	  <tr>
-     	  	  <td data-label="Customer Username">{customer.username}</td>
-     	  	  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
-     	  	  <td data-label="Other Details">
-
-               <img src = {"/Images/" + customer.userImage} alt="userImage" width="100px" height="100px"/>
-              {/* { 
-                show? <p>{customer.email}</p>:null
-              }  
-              {
-                show? <p>{customer.address}</p>:null
-              } 
-              {     
-                show? <p>{customer.phoneNumber}</p>:null
-              } */}
-              
-
+            <td data-label="UserImage">
+            <img src = {"/Images/" + customer.userImage} alt="userImage" width="110px" height="110px"  className="rounded-circle" />
             </td>
+            <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
+     	  	  <td data-label="Customer Username">{customer.username}</td>
+            <td data-label="Customer Email">{customer.email}</td>
+     	  
+     	  	  
      	  	  <td data-label="Action">
 			  
 			  <div>
-						  <button class="btnshowmr">Show More</button>  
+						  <button class="btnshowmr" onClick = {()=> showMore(customer._id)}>Show More</button>  
 
 						  <button class="btnremove"  onClick = {()=> deleteCus(customer._id)}>Remove</button>
               

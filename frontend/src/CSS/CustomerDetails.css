@@ -73,10 +73,10 @@
 .CuseDetails .btnCancel {background-image: linear-gradient(to right, #0057d1 0%, #0f12da  51%, #0057d1  100%)}
 .CuseDetails .btnCancel {
    
-   margin-left: 150px;
+   margin-left: 320px;
    padding: 0;
    width: 100px;
-   height: 30px;
+   height:45px;
    font-size: 18px;
    text-align: center;
    cursor: pointer;
