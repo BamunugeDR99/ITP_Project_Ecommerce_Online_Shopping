@@ -185,6 +185,7 @@ function App() {
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer/MyShoppingCart" exact component = {ShoppingCart}/>
+      <Route path = "/Customer/purchaseHistoryExtended/:id" exact component = {PaymentHistoryCard}/>
       <Route path = "/Customer" component = {Footer_customer}/>
 
       {/* Seller Route */}
