@@ -290,8 +290,7 @@ function App() {
 
         <Route path="/Admin" component={AdminHeader} />
         <Route path="/Admin" component={SideBarAdmin} />
-        <Route path="/SelReport" component={AdminReport} />
-
+        <Route path="/Admin/SelReport" component={AdminReport} />
         <Route path="/Admin/Home" exact component={AdminDashBoard} />
         <Route path="/Admin/Sellers" exact component={RegSellers} />
         <Route path="/Admin/AllSellersRequest" exact component={AllSellers} />
