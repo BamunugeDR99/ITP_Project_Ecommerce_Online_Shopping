@@ -94,21 +94,55 @@ export default function UpdatePackages(props) {
     }
 
     function deletePackage() {
-
-        const packageId = props.match.params.id;
-        console.log(packageId);
-        axios
-            .delete("http://localhost:8070/Packages/deletePackage/" + packageId)
-            .then((res) => {
-
-                //alert("Package Deleted");
-                swal.fire("Success", "Package Deleted Successfully", "success");
-                props.history.push("/Seller/MyPackages");
-
-            }).catch((err) => {
-
-                console.log(err);
+                swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                        const packageId = props.match.params.id;
+                         console.log(packageId);
+    
+                    axios
+                        .delete("http://localhost:8070/Packages/deletePackage/" + packageId)
+                        .then((res) => {
+    
+                          
+                            swal.fire("Success", "Package Deleted Successfully", "success");
+                            props.history.push("/Seller/MyPackages");
+    
+                        }).catch((err) => {
+    
+                            console.log(err);
+                        })
+    
+    
+                }
             })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 

@@ -140,44 +140,73 @@ function UpdateDiscount(props) {
     function RevokeDiscount(e) {
 
         e.preventDefault();
-      
-
-        
-        const itemID = props.match.params.id;
-        let DiscountStatus = false;
-        setDiscount("0");
-        setFinalPrice(item.Price)
-
-        FinalPrice = item.Price;
-        DiscountPrecentage = "0";
-        //Creating a js object
-        const revokedDiscountedItem = {
-
-            DiscountStatus,
-            FinalPrice,
-            DiscountPrecentage
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Revoke the discount!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
             
-        }
+                const itemID = props.match.params.id;
+                let DiscountStatus = false;
+                setDiscount("0");
+                setFinalPrice(item.Price)
+        
+                FinalPrice = item.Price;
+                DiscountPrecentage = "0";
+                //Creating a js object
+                const revokedDiscountedItem = {
+        
+                    DiscountStatus,
+                    FinalPrice,
+                    DiscountPrecentage
+                    
+                }
+        
+                console.log(revokedDiscountedItem);
+                console.log(itemID);
+        
+                //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
+                axios.put("http://localhost:8070/items/updateDiscount/" + itemID, revokedDiscountedItem).then(() => {
+        
+                    //alert(" Discount Revoked");
+        
+                    swal.fire("Success", "Discount Revoked", "success");
+        
+                    props.history.push("/Seller/MyDiscountedItems");
+                }).catch((err) => {
+        
+                    alert(err);
+                })
+        
 
-        console.log(revokedDiscountedItem);
-        console.log(itemID);
-
-        //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-        axios.put("http://localhost:8070/items/updateDiscount/" + itemID, revokedDiscountedItem).then(() => {
-
-            //alert(" Discount Revoked");
-
-            swal.fire("Success", "Discount Revoked", "success");
-
-            props.history.push("/Seller/MyDiscountedItems");
-        }).catch((err) => {
-
-            alert(err);
+            }
         })
 
-    
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     }
 

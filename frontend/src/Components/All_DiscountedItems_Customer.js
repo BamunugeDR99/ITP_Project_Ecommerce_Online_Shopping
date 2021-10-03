@@ -141,18 +141,20 @@ export default function AllDiscountedItems(props) {
 
     if (result !== null) {
      //
-      //document.getElementById("txt2").innerHTML = "";
+     document.getElementById("itemsTxt").innerHTML = "";
     }
 
     if (result.length === 0) {
       //alert("d");
      //
-      //document.getElementById("txt2").innerHTML = "No Result Found!";
+     document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
   }
 
   // search
   function handleSearch(e) {
+
+    document.getElementById("itemsTxt").innerHTML = "";
     let userSearch = e;
     console.log(userSearch);
 
@@ -371,6 +373,10 @@ export default function AllDiscountedItems(props) {
           />
           <br></br>
 
+          <h3
+          id="itemsTxt"
+          style={{ textAlign: "center", color: "#FF0000" }}
+        ></h3>
           <div className="row">
             {items.map((item, index) => {
               return (

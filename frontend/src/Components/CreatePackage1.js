@@ -141,9 +141,11 @@ export default function CreatePackage1(props) {
 
 
 
-    function add2Pac(item) {
+    function add2Pac( item) {
 
 
+        console.log(ContentN)
+        console.log(item);
         ContentN.push(item);
         console.log(ContentN);
 
@@ -155,8 +157,11 @@ export default function CreatePackage1(props) {
         e.preventDefault();
 
 
-        console.log(packageName);
+        
         console.log(ContentN);
+
+        let packName = document.getElementById("packname").value;
+        console.log(packName);
         
         if(ContentN.length === 0){
 
@@ -166,16 +171,17 @@ export default function CreatePackage1(props) {
 
         }
 
-        else if(packageName.length === 0){
+        else if(packName.length === 0){
 
-            setPnameVal("Cannot create a Package without a Name!!")
+            //setPnameVal("Cannot create a Package without a Name!!")
+            alert("Ba")
 
         }
 
         else{
 
          setPnameVal("");   
-        sessionStorage.setItem("packageName", packageName);
+        sessionStorage.setItem("packageName", packName);
         sessionStorage.setItem("Content", ContentN);
 
 
@@ -188,6 +194,7 @@ export default function CreatePackage1(props) {
     }
 
 
+    console.log(items);
 
     return (
         <div className= "OffersnPacks">
@@ -201,21 +208,23 @@ export default function CreatePackage1(props) {
                         <center>
                             <div class="input-group mb-4" style={{ width: '50rem' }}>
 
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required pattern = "^[a-zA-Z_.-]*$"
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required pattern = "^[a-zA-Z_.-]*$" id= "packname"
 
                                     onChange={(e) => {
-                                        setPname(e.target.value);
 
-                                        if(e.target.value.length === 0){
+                                        e.preventDefault;
+                                        // setPname(e.target.value);
 
-                                            setPnameVal("Cannot create a Package without a Name!!");
+                                        // if(e.target.value.length === 0){
 
-                                        }
+                                        //     setPnameVal("Cannot create a Package without a Name!!");
 
-                                        else{
+                                        // }
 
-                                            setPnameVal("");
-                                        }
+                                        // else{
+
+                                        //     setPnameVal("");
+                                        // }
 
 
                                     }}
@@ -258,7 +267,7 @@ export default function CreatePackage1(props) {
                       </div>
 
                                             </div>
-                                            <a href="#" className="btn btn-primary" onClick={(e) => { add2Pac(item) }}>Add to Package</a>
+                                            <button type= "button" className="btn btn-primary" onClick={(e) => { add2Pac(item) }}>Add to Package</button>
 
                                         </div>
                                     </div>
