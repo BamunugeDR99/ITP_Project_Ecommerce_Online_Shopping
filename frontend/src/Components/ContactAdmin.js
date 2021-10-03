@@ -3,11 +3,15 @@ import axios from "axios";
 
 import Swal from "sweetalert2";
 
+import { useHistory } from "react-router-dom";
+
 import "../Css/contact.css";
 import go from "../images/bgcontact3.jpg";
 
 
 export default function ContactAdmin(props){
+
+    let history = useHistory();
 
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
@@ -64,8 +68,7 @@ export default function ContactAdmin(props){
       customerid  = localStorage.getItem("CustomerID");
 
       if((flag1 == 1) && (flag2==1)){
-          
-  
+           
       const newContact = {
         name,
         email,
@@ -102,10 +105,15 @@ export default function ContactAdmin(props){
 
  return(
 <div className="rev">  
+<br/>
+<div>
+            <button type="button"style={{fontSize:'14px', borderRadius:'15px'}} class="btn btn-info" onClick={() => history.goBack()} ><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+          </div>
 <div className="contact1">
   {/* <h1 id = "txt"></h1> */}
   
     <div className="container-contact1">
+    
 
             <div className="container">
                 <div className="row">

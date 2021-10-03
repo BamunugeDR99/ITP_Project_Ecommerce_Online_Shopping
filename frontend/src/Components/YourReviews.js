@@ -13,6 +13,7 @@ export default function YourReviews(props) {
   
   const [itemss, setItemss] = useState([]);
   const [description,setDescription] = useState("");
+  const[ratings,setRatings]=useState([]);
   // const [updateReviewId,setupdateReviewId] = useState("");
   let reviews = [];
   let review_id = "";
@@ -23,6 +24,7 @@ export default function YourReviews(props) {
   let itemModel= "";
   let itemBrand= "";
   let Review = "";
+  let Stars ="";
   let Date = "";
   let [abc, setabc] = useState([]);
   let reviewWithItem = {
@@ -33,6 +35,7 @@ export default function YourReviews(props) {
     itemModel,
     itemBrand,
     Review,
+    Stars,
     Date,
   };
 
@@ -59,6 +62,8 @@ export default function YourReviews(props) {
             .then((res) => {
               items = res.data;
               createReview(reviews, items);
+              
+              calculateStarRating(reviews);
               console.log(res.data)
             })
             .catch((err) => {
@@ -92,6 +97,7 @@ export default function YourReviews(props) {
               itemModel: items[j].Model,
               itemBrand: items[j].Brand,
               Review: reviews[i].description,
+              Stars: reviews[i].noofstars,
               Date: reviews[i].date,
             };
 
@@ -110,10 +116,125 @@ export default function YourReviews(props) {
       
       
     }
+    function displayRating(){
+
+      axios
+
+      .get("http://localhost:8070/review/get")
+
+      .then((res) => {
+
+        setRatings(res.data);
+
+        //console.log(ratings[0].itemid)
+
+        console.log(res.data);
+
+      })
+
+      .catch((err) => {
+
+        alert(err);
+
+      });
+
+    }
+
+    displayRating();
 
     getReview();
-    // getCustomer();
   }, []);
+
+  useEffect(()=>{
+    calculateStarRating()
+  })
+
+  function calculateStarRating(){
+
+    abc.map((item,index)=>{
+        console.log(item.Stars)
+        displayStarRating(index,item.Stars);
+    })
+      // displayStarRating(i,average);
+    // }
+
+  }
+
+  function displayStarRating(id,totalAverage){
+
+    let txt = "";
+
+      if(isNaN(totalAverage)){
+
+        txt = "No Ratings yet!";
+
+        document.getElementById(id +'stars').innerHTML = txt;
+
+        document.getElementById(id +'stars').style.color = "#FF0000";
+
+      }else{
+
+      
+
+      for(let j = 0; j < totalAverage; j++){
+
+        txt += '<span class="fa fa-star checked"></span>';
+
+      }
+
+      for(let j = 0; j < (5 - totalAverage); j++){
+
+        txt += '<span class="fa fa-star"></span>';
+
+      }
+
+      document.getElementById(id +'stars').innerHTML = txt +'  ';
+
+     }
+
+  }
+
+  // function calculateStarRating(re) {
+  //   let totalNoRatings = 0;
+  //   let totalstarforRatingCount = 0;
+  //   let starCount = 0;
+  //   let average = 0;
+
+  //   console.log(re);
+
+  //   for (let j = 0; j < reviews.length; j++) {
+  //     // if(items._id == ratings[j].itemid){
+  //     totalNoRatings++;
+  //     // console.log("s")
+  //     starCount += parseInt(reviews[j].noofstars);
+  //     // }
+  //   }
+
+  //   // totalstarforRatingCount = totalNoRatings * 5;
+  //   // average = parseInt((starCount / totalstarforRatingCount) * 5);
+  //   // console.log(average);
+  //   // displayStarRating(average);
+  // }
+
+  // function displayStarRating(totalAverage) {
+  //   let txt = "";
+  //   if (isNaN(totalAverage)) {
+  //     txt = "No Ratings yet!";
+  //     document.getElementById("stars").innerHTML = txt;
+  //     // document.getElementById('stars').style.color = "#FF0000";
+  //   } else {
+  //     for (let j = 0; j < totalAverage; j++) {
+  //       txt += '<span class="fa fa-star checked"></span>';
+  //     }
+  //     for (let j = 0; j < 5 - totalAverage; j++) {
+  //       txt += '<span class="fa fa-star"></span>';
+  //     }
+
+  //     document.getElementById("stars").innerHTML =
+  //       txt + "  " + totalAverage + ".0 / 5.0";
+  //   }
+  // }
+
 
   function deletee(id,index) {
  
@@ -223,8 +344,7 @@ export default function YourReviews(props) {
   axios
     .get("http://localhost:8070/items/getItems")
     .then((res) => {
-      //setStudents(res.data);
-      //console.log(res.data);
+      console.log(res.data);
       filterContent(res.data, userSearch);
     })
     .catch((err) => {
@@ -233,38 +353,6 @@ export default function YourReviews(props) {
 }
  
 
-    // function updatee(e){
-
-    //   e.preventDefault();
-
-    //   const ReviewId = updateReviewId;
-    //   //console.log(ReviewId);
-
-    //   const newReview = {
-        
-    //     description,
-    //     date : Date()
-    //   }
-
-    //   console.log(newReview);
-
-    //   axios.put("http://localhost:8070/review/updateReview/" +ReviewId,newReview).then(()=>{
-
-    //     setReview(" ");
-    //     //props.history.push("/Home");
-    //     //document.getElementById("txt").innerHTML = "Message Sended Successfully!";
-    //     Swal.fire(
-    //       'Good job!',
-    //       'Your Review Edited Successfuly',
-    //       'success'
-    //     )
-    //     // alert("Updated!");
-        
-        
-    //   }).catch((err) =>{
-    //     alert(err)
-    //   })
-    // }
 
 
   return (
@@ -291,7 +379,7 @@ export default function YourReviews(props) {
         <h1 style={{textalign: 'center',fontstyle: 'strong',padding:'20px'}}><center><b>Your Reviews</b></center></h1>
         <hr style={{width:'90%'}}/>
         <br/>
-        {/* <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2> */}
+        <h2 id="errortext" style={{color:'red', textAlign:'center'}}></h2>
 
         <div id="error"></div>
 
@@ -310,13 +398,23 @@ export default function YourReviews(props) {
                             <div className="col" style={{fontSize:'20px'}}>
                                   <span><b>{re.itemName}</b>&emsp; - &emsp;{re.itemModel}</span><br/>
                                   <span style={{fontSize:'18px'}}>{re.itemDescription}</span>
-                                    <div style={{color: "#f9d71c"}}>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="far fa-star"></i>
+
+
+                                  <div id = {index +'stars'} class="card-text">
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star"></span><span> </span> 
+
                                     </div>
+
+
                                    
                             </div>
                             

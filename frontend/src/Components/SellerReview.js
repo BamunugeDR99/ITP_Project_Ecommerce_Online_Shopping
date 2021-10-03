@@ -148,12 +148,6 @@ export default function SellerReviews(props){
     
       displayRating();
 
-
-
-
-
-
-
   
       getReview();
     
@@ -212,8 +206,59 @@ function displayStarRating(totalAverage){
     }
    
 
-    document.getElementById('stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
+    document.getElementById('stars').innerHTML =  totalAverage + ' / 5' + txt +'  ';
    }
+}
+
+///////////solo stars
+
+useEffect(()=>{
+  calculateStarRatings()
+})
+
+function calculateStarRatings(){
+
+  abc.map((item,index)=>{
+      console.log(item.Stars)
+      displayStarRatings(index,item.Stars);
+  })
+    // displayStarRating(i,average);
+  // }
+
+}
+
+function displayStarRatings(id,totalAverages){
+
+  let txt = "";
+
+    if(isNaN(totalAverages)){
+
+      txt = "No Ratings yet!";
+
+      document.getElementById(id +'stars').innerHTML = txt;
+
+      document.getElementById(id +'stars').style.color = "#FF0000";
+
+    }else{
+
+    
+
+    for(let j = 0; j < totalAverages; j++){
+
+      txt += '<span class="fa fa-star checked"></span>';
+
+    }
+
+    for(let j = 0; j < (5 - totalAverages); j++){
+
+      txt += '<span class="fa fa-star"></span>';
+
+    }
+
+    document.getElementById(id +'stars').innerHTML = txt +'  ';
+
+   }
+
 }
 
 
@@ -221,17 +266,7 @@ function displayStarRating(totalAverage){
 
 function updatee(id){
   console.log(id)
-  // e.preventDefault();
-  // const ReviewId = updateReviewId;
-  // //console.log(ReviewId);
-  // const newReview = {
-   
-  //   reportreason,
-  // }
-  // console.log(newReview);
 
-  // axios.put("http://localhost:8070/review/updateReview/" +id,newReview).then(()=>{
-  //   setReview(" ");
     Swal.fire({
       title: 'Submit your Report',
       input: 'text',
@@ -248,6 +283,8 @@ function updatee(id){
         console.log(result.value)
         let newItem = {
           reportreason : result.value,
+          reviewstatus : true,
+          sellerid: items.SellerID
         }
         axios.put("http://localhost:8070/review/updateRev/" +id,newItem).then((res)=>{
           setReportreason(" ");
@@ -273,12 +310,11 @@ function updatee(id){
     <div className="row" >
         <div className="col-6" style={{alignItems:'center'}}>
         
-       {/* { alert(item)} */}
+       
        
             <div className="row">
                 
-                {/* {/* {item.Images.map((post) => {
-                 return (   */}
+                
 
                     <div className="col-4">
                       <img style={{width:'100%'}}
@@ -380,8 +416,7 @@ function updatee(id){
 
                   </span>
             </div>
-              {/* )
-            })} */}
+
         </div>
         <div className="col">
         
@@ -391,7 +426,7 @@ function updatee(id){
         <div style={{height:'550px',overflowY: 'scroll', paddingBottom:'20px'}}>
             
 
-        {abc.map((reviewss) => {
+        {abc.map((reviewss,index) => {
       
               return (
 
@@ -408,13 +443,19 @@ function updatee(id){
 
                         <div className="col">
                             <span style={{fontSize: '16px',textalign: 'left',fontstyle: 'strong'}}>{reviewss.customerName}</span>
-                            <div style={{color: "#f9d71c"}}>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
+                            <div id = {index +'stars'} class="card-text">
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star checked"></span>
+
+                                <span class="fa fa-star"></span><span> </span> 
+
+                                </div>
                         </div>
                         
                     </div>    
@@ -432,102 +473,17 @@ function updatee(id){
                     </div>
 
 
-
-                    {/* <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <form>
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Report Review</h5>
-                                
-                                
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                
-                                  
-                                  <label>write your reason</label>
-                                  <input type="text" class="form-control" 
-                                  required  onChange= {
-                                          (e)=>{
-                                            setReportreason(e.target.value);
-                                            
-                                          }
-                                        }
-                                        />
-                                
-                              </div>
-                              
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button 
-                                  onClick = {()=> updatee(reviewss._id)} 
-                                  type="button" class="btn btn-primary">Send</button>
-                              
-                                
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div> */}
                 </div>  
                
                 );
               
             })}
             
-         
-        </div> 
-
-
-        {/* <form 
-        // onSubmit = {sendData}
-        > */}
-      <center>
-         
-           </center>
-          {/* </form>     */}
-           
-          
-         </div>
+         </div>                
+        </div>
     </div>
 </div>   
  )
 
 }
 
-
-// function sendData(e){
- 
-//   const ReviewId = props.match.params.id; 
-//   console.log(ReviewId);
- 
-//   // alert("d0");
-//   e.preventDefault();
-
-//   //   const newReview = {
-    
-// //     reportreason,
-// //   }
-
-//   axios.put("http://localhost:8070/review/updateReport/" + ReviewId,data).then(()=>{
-//     alert("Report Updated");
-//     Swal.fire(
-//       'Good job!',
-//       'You Send the report!',
-//       'success'
-//     )
-//   console.log(data);
-
-//   }).catch((err) =>{
-//     alert(err)
-//   })
-// }
-
-// function handle(e){
-//   const newdata = {...data}
-//   newdata[e.target.id] = e.target.value
-//   setData(newdata)
-// }
