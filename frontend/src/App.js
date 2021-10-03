@@ -61,6 +61,7 @@ import './Css/userprofile.css';
 import './Css/style.css';
 import './Css/stylelogin.css';
 import './Css/CustomerDetails.css';
+import './Css/AdminDashBoard.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
 import ForgotP from './Components/ForgotP';
@@ -238,6 +239,7 @@ function App() {
     <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
     <Route path = "/Admin/viewSellerProfile/:id" exact component = {SellerView}/>
     <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
+    <Route path = "/Admin/AdminDashBoard" exact component = {AdminDashBoard}/>
     {/* <Route path = "/Admin/Reviews" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Payment" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}
