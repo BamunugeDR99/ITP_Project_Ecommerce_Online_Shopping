@@ -10,8 +10,8 @@ function SignUp(props) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [CpasswordShown, setCPasswordShown] = useState(false);
 
-  const [picture, setPicture] = useState(null);
-  const [imgData, setImgData] = useState(null);
+  const [picture, setPicture] = useState("");
+  const [imgData, setImgData] = useState("");
   const onChangePicture = e => {
     if (e.target.files[0]) {
       console.log("picture: ", e.target.files);
