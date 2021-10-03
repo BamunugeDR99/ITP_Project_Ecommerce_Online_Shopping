@@ -158,5 +158,75 @@ router.route("/delete/:id").delete(async (req,res) =>{
       
         })
 
+        router.route("/updateRev/:id").put(async (req, res) => {
+            let reviewID = req.params.id;
+            const{
+                  reportreason,
+                  sellerid,
+                  reviewstatus,
+                 } = req.body;
+          
+            const newReview  = {
+              reportreason,
+              reviewstatus,
+              sellerid,
+            }
+          
+            const update = await Review.updateOne(
+          
+              {_id : reviewID},
+              {$set : {reportreason :reportreason, reviewstatus: reviewstatus, sellerid: sellerid}},
+          
+          
+            ).then(() => {
+          
+              res.status(200).send({ status: "Report updated" });
+            })
+            .catch((err) => {
+              console.log(err);
+              res
+                .status(500)
+                .send({ status: "Error with updating report", error: err.message });
+            });
+          
+          
+            })
+
+
+            // router.route("/updateR/:id").put(async (req,res) =>{
+            //     let userID = req.params.id;
+            //     const{description,date} = req.body;
+            
+            //     const updateReview = {
+            //         description,
+            //         date,
+            //         noofstars,
+            //         customerid,
+            //         itemid,
+            //         sellerid,
+            //         reviewstatus,
+            //         reportreason
+            //     } = req.body;
+
+            //     const updateReview = {
+            //         description,
+            //         date,
+            //         noofstars,
+            //         customerid,
+            //         itemid,
+            //         sellerid,
+            //         reviewstatus,
+            //         reportreason
+            //     };
+            
+            //     const update = await Review.findByIdAndUpdate(userID,updateReview).then(()=>{
+            //         res.status(200).send({status: "User updated"})
+            //         }).catch((err) => {
+            //             console.log(err);
+            //             res.status(500).send({status: "Error with updating data", error:err.message});
+            //         })
+            //     });
+            
+
 module.exports = router;
 

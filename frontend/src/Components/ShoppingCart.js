@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
+import iphone from "./../images/Ip.png"
 export default function ShoppingCart(props) {
 
 
@@ -9,7 +10,7 @@ export default function ShoppingCart(props) {
   let [CartPackages, setCartPackages] = useState([]);
   let Allitems = [];
   let Allpackages = [];
-  const [ItemArr, setItemArr] = useState([]);
+ // const [ItemArr, setItemArr] = useState([]);
   
 
   let [InItemPrice, setInItemPrice] = useState(0);
@@ -31,6 +32,7 @@ export default function ShoppingCart(props) {
   //let Color = "";
   let SKU = "";
   let fPrice = "";
+  let itemImage = "";
 
   let ItemDetails = {
 
@@ -41,7 +43,8 @@ export default function ShoppingCart(props) {
     Specification,
     //Color,
     SKU,
-    fPrice
+    fPrice,
+    itemImage
   };
 
   let packageID = "";
@@ -49,6 +52,7 @@ export default function ShoppingCart(props) {
   let description = "";
   let content = [];
   let price = [];
+  let packageImage = "";
 
 
   let PackageDetails = {
@@ -57,7 +61,8 @@ export default function ShoppingCart(props) {
     packageName,
     description,
     content,
-    price
+    price,
+    packageImage
 
 
   }
@@ -72,7 +77,7 @@ export default function ShoppingCart(props) {
 
     function getCart() {
 
-      const customerID = "6144a56b88cbe1257c8a887b";
+      const customerID = localStorage.getItem("CustomerID");
       console.log(customerID);
 
       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
@@ -129,7 +134,7 @@ export default function ShoppingCart(props) {
 
         for (j = 0; j < allItems.length; j++) {
 
-          if (items[i] == allItems[j]._id) {
+          if (items[i] === allItems[j]._id) {
 
 
             ItemDetails = {
@@ -141,7 +146,8 @@ export default function ShoppingCart(props) {
               Specification: allItems[j].Specification,
               //Color = allItems[i].Color_family[1],
               SKU: allItems[j].Stock_keeping_unit,
-              fPrice: allItems[j].FinalPrice
+              fPrice: allItems[j].FinalPrice,
+              itemImage : allItems[j].Images[1]
 
             };
 
@@ -176,7 +182,7 @@ export default function ShoppingCart(props) {
 
       for (j = 0; j < allPackages.length; j++) {
 
-        if (packages[i] == allPackages[j]._id) {
+        if (packages[i] === allPackages[j]._id) {
 
           
           PackageDetails = {
@@ -185,7 +191,8 @@ export default function ShoppingCart(props) {
             packageName: allPackages[j].packageName,
             description: allPackages[j].description,
             content: allPackages[j].content,
-            price: allPackages[j].price
+            price: allPackages[j].price,
+            packageImage:allPackages[j].image
 
           };
 
@@ -361,7 +368,7 @@ export default function ShoppingCart(props) {
     InPackagePrice = document.getElementById( index + "SinglePackagePrice" ).value;
 
 
-    if(quantity == 0){
+    if(quantity === 0){
 
       swal.fire("Alert", "Package Quantity Cannot be reduced to zero", "warning");
       quantity = 1;
@@ -439,6 +446,13 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
   }
 
+  function checkOut(){
+
+    localStorage.setItem("totalPrice",GrandTotal);
+    props.history.push("/Customer/SelectPayment");
+
+  }
+
   return (
     <div>
       <section>
@@ -469,11 +483,12 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                   <div class="col-md-5 col-lg-3 col-xl-3">
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
-                        src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample" />
+                        src={iphone} alt="Sample" />
                       <a href="#!">
                         <div class="mask">
                           <img class="img-fluid w-100"
-                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
+                          src={iphone} alt="Sample"
+                            />
                           <div class="mask rgba-black-slight"></div>
                         </div>
                       </a>
@@ -544,7 +559,7 @@ return (
     <a href="#!">
       <div class="mask">
         <img class="img-fluid w-100"
-          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
+          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"  alt="gg"/>
         <div class="mask rgba-black-slight"></div>
       </div>
     </a>
@@ -702,7 +717,7 @@ return (
                   </li>
                 </ul>
 
-                <button type="button" class="btn btn-primary btn-block">Go to Checkout</button>
+                <button type="button" class="btn btn-primary btn-block" onClick={() => checkOut()}>Go to Checkout</button>
 
               </div>
             </div>

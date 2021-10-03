@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 import "../Css/sellerprofile.css";
 
@@ -13,7 +14,7 @@ export default function SellerProfile(props) {
           axios.get("http://localhost:8070/orgSeller/get/"+objectID).then((res) =>
           {
               setorgSellers(res.data);
-              console.log(res.data);
+             // console.log(res.data);
               
               
           }).catch((err) =>{
@@ -30,11 +31,18 @@ export default function SellerProfile(props) {
       props.history.push("/Seller/updateProfile/" + id);
   };
 
+  function deleteSeller() {
+    Swal.fire(
+      'Success!',
+      'Request Sent!',
+      'success'
+    )
+  }
   return (
 
     <div className="sellerprofile">
     
-    <div className="height-100 bg-light">
+    <div>
       <br />
       <br />
       <h2 style={{color:"black",textAlign : "center"}}>SELLER PROFILE</h2><br/>
@@ -78,7 +86,7 @@ export default function SellerProfile(props) {
              
                 
                     <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape">
+                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
                         REQUEST DELETE
                       </button>
                     </div>
@@ -162,7 +170,9 @@ export default function SellerProfile(props) {
                         </div>
 						<div className = "container">
 						<div class="float-right">
-            <button type="button" class="btn btn-primary">CHANGE PASSWORD</button><span> </span>
+            <button type="button" class="btn btn-primary" onClick = {()=> {
+                        props.history.push("/Seller/sellerPassword");
+                    }}>CHANGE PASSWORD</button><span> </span>
 						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
 							<span> </span>
 							</div>

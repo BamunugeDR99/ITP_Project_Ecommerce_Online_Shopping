@@ -1,14 +1,12 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 // import '../Css/Side_bar_styles.css';
 
 export default function Side_bar(props) {
-  const [render, setrender] = useState(false);
+ // const [render, setrender] = useState(false);
   useEffect(() => {
     function reRender() {
-      setrender(true);
+      //setrender(true);
     }
 
     reRender();
@@ -70,7 +68,7 @@ export default function Side_bar(props) {
                 <i className="bx bx-bar-chart-alt-2 nav_icon"></i>{" "}
                 <span className="nav_name">REPORTS</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Seller/Contact" className="nav_link">
                 {" "}
                 <i className="bx bx-message nav_icon"></i>{" "}
                 <span className="nav_name">CONTACT</span>{" "}

@@ -9,6 +9,7 @@ router.route("/addItems").post((req, res) => {
   const PacakgeID = req.body.PacakgeID;
   const PaymentType = req.body.PaymentType;
   const ItemList = req.body.ItemList;
+  const Amount = req.body.Amount;
 
 
   const newOrderHistory = new OrderHistory({
@@ -16,7 +17,8 @@ router.route("/addItems").post((req, res) => {
     TransTime,
     PacakgeID,
     PaymentType,
-    ItemList
+    ItemList,
+    Amount
    
   });
 
@@ -30,6 +32,7 @@ router.route("/addItems").post((req, res) => {
             PacakgeID: newOrderHistory.PacakgeID,
             PaymentType: newOrderHistory.PaymentType,
             ItemList: newOrderHistory.ItemList,
+            Amount: newOrderHistory.Amount,
 
 
   

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 
 import axios from "axios"; //To get the data from the DB
 import '../Css/AllItems.css';
-import go from "./../images/go.jfif";
+
 
 
 ;
@@ -12,11 +12,12 @@ import go from "./../images/go.jfif";
 
 export default function AllPackages(props) {
 
-    const [items, setItems] = useState([]); //Defines that items is an array
+    //const [items, setItems] = useState([]); //Defines that items is an array
+    let [packSearchAlert, setPSearchAlert] = useState([]);
 
     const [packages, setPackages] = useState([]); //Defines that items is an array
-    let fitems = [];
-    const [loads, setLoad] = useState(false);
+   // let fitems = [];
+    // const [loads, setLoad] = useState(false);
     //Implementing useEffect() --> accepts 2 parameters -->1) Callback function, 2) Additional options as an array
 
     useEffect(() => {
@@ -28,7 +29,8 @@ export default function AllPackages(props) {
             axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
 
                 console.log(res.data);
-                setPackages(res.data);
+                let seller = localStorage.getItem("SellerID");
+                setPackages(res.data.filter((item) =>item.seller === seller));
 
                 console.log(packages);
 
@@ -65,12 +67,12 @@ export default function AllPackages(props) {
       function displayStatus(){
         for(let i = 0; i < packages.length; i++){
     
-          if(packages[i].packageAvailability == true){
+          if(packages[i].packageAvailability === true){
             document.getElementById(i+'x').checked = true;
             document.getElementById(i).innerHTML = "Item Available";
             document.getElementById(i).style.color = "#A4DE02";
     
-          }else if(packages[i].packageAvailability == false){
+          }else if(packages[i].packageAvailability === false){
             document.getElementById(i+'x').checked = false;
             document.getElementById(i).innerHTML = "Item Out of Stock";
             document.getElementById(i).style.color = "#FF0000";
@@ -86,7 +88,7 @@ export default function AllPackages(props) {
         console.log(id);
         console.log(index);
     
-        if(document.getElementById(index+'x').checked == false){
+        if(document.getElementById(index+'x').checked === false){
     
           axios
           .get("http://localhost:8070/Packages/getPackage/" + id)
@@ -116,7 +118,7 @@ export default function AllPackages(props) {
           .catch((err) => {
             alert(err);
           });
-        }else if(document.getElementById(index+'x').checked == true){
+        }else if(document.getElementById(index+'x').checked === true){
     
           axios
           .get("http://localhost:8070/Packages/getPackage/" + id)
@@ -124,7 +126,7 @@ export default function AllPackages(props) {
             
             
               //let data = res.data;
-              res.data.ItemAvailabilityStatus = true;
+              res.data.packageAvailability = true;
               console.log(res.data);
           axios
           .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
@@ -166,7 +168,7 @@ export default function AllPackages(props) {
 
     function goToupdate(id) {
         console.log(id);
-        props.history.push("/updatepackage/" + id);
+        props.history.push("/Seller/UpdatePackage/" + id);
     };
 
 
@@ -174,25 +176,37 @@ export default function AllPackages(props) {
     //search
     function filterContent(data, userSearch) {
 
+        // setPackages(res.data.filter((item) =>item.seller === seller));
+
+
         let result = data.filter((post) =>
             post.packageName.toLowerCase().includes(userSearch.toLowerCase())
 
         );
 
 
+        if (result !== null) {
+            //setLoad(false);
+            //document.getElementById("txt2").innerHTML = "";
+            setPSearchAlert("");
+        }
+
+        else if (result.length === 0) {
+            //alert("d");
+           // setLoad(true);
+            
+            setPSearchAlert("Ooops ! We don't have quite the thing you are looking for...");
+
+            //document.getElementById("txt2").innerHTML = "No Result Found!";
+        }
+
+        else{
+           
+           
+        }
 
         setPackages(result);
 
-        if (result != null) {
-            setLoad(false);
-            //document.getElementById("txt2").innerHTML = "";
-        }
-
-        if (result.length == 0) {
-            //alert("d");
-            setLoad(true);
-            //document.getElementById("txt2").innerHTML = "No Result Found!";
-        }
     }
 
     // search
@@ -205,7 +219,12 @@ export default function AllPackages(props) {
             .get("http://localhost:8070/Packages/getPackages")
             .then((res) => {
 
-                filterContent(res.data, userSearch);
+
+                
+                let seller = localStorage.getItem("SellerID");
+                let filteredData = res.data.filter((item) =>item.seller === seller) 
+
+                filterContent(filteredData, userSearch);
 
             })
             .catch((err) => {
@@ -263,6 +282,10 @@ export default function AllPackages(props) {
                     <br></br>
 
 
+                        
+            <p id="PackageSearchAlert" style={{ color: 'red', fontSize: '26px' }}>{packSearchAlert}</p>
+
+
                     <div className="row">
                         {packages.map((item ,index) => {
                             return (
@@ -271,7 +294,7 @@ export default function AllPackages(props) {
                                 <div className="col-sm-4">
                                     <div className="card" style={{ width: '18rem' }}>
                                         <div className="container-fluid" style={{ padding: '0px' }}>
-                                            <img className="img-responsive center-block header1 rounded-top" src={"/Images/" + item.image} width="286px" height="250px" />
+                                            <img className="img-responsive center-block header1 rounded-top" src={"/Images/" + item.image} width="286px" height="250px" alt="gg" />
 
                                         </div>
                                         <div className="card-body">

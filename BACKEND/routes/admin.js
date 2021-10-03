@@ -8,11 +8,15 @@ router.route("/addAdmin").post(async(req,res)=>{
     const lastName = req.body.lastName;
     const username = req.body.username;
     const password = req.body.password;
-
+    const email = req.body.email;
  try{
 
    const usernameExist = await Admin.findOne({ username: username});
-
+    const emailExist = await Admin.findOne({email:email})
+    
+    if(emailExist){
+        return res.status(422).json({ error: "Email Already Exist"});
+    }
    if(usernameExist){
 
     return res.status(422).json({ error: "Username Already Exist"});
@@ -23,6 +27,7 @@ router.route("/addAdmin").post(async(req,res)=>{
         lastName,
         username,
         password,
+        email,
         
     })
 
@@ -31,6 +36,7 @@ router.route("/addAdmin").post(async(req,res)=>{
 
 
         res.status(201).json({ message: "Admin Added Successfully!"});
+        
 
     } catch(err){
 
@@ -99,11 +105,12 @@ router.post('/loginAdmin', async(req,res) => {
 
             else if (password == adminLogin.password){
 
-                 res.json({message: "Admin Sign In Successfully"});
-                console.log(res.status.error);
-                // res.json({adminLogin: {
-                //     _id : adminLogin._id,
-                // }})
+                // res.json({message: "Admin Sign In Successfully"});
+                //console.log(res.status.error);
+                
+                res.json({adminLogin: {
+                    _id : adminLogin._id,
+                }})
                
                 
             }else{ 

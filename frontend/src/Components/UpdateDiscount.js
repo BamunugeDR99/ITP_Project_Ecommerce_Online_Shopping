@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
-import go from "./../images/go.jfif";
+
+import iphone from "./../images/Ip.png"
 import swal from "sweetalert2";
 
 
@@ -11,6 +12,9 @@ function UpdateDiscount(props) {
     const [item, setItem] = useState([]);
     let [DiscountPrecentage, setDiscount] = useState("");
     let [FinalPrice, setFinalPrice] = useState("");
+    
+    let image = "";
+    const [disalert, setAlert] = useState("");
 
 
     useEffect(() => {
@@ -23,6 +27,9 @@ function UpdateDiscount(props) {
 
                 console.log(res.data);
                 setItem(res.data);
+                console.log(res.data.Images);
+                image = res.data.Images[0];
+                console.log(image);
                 setFinalPrice(res.data.FinalPrice);
                 setDiscount(res.data.DiscountPrecentage);
 
@@ -46,36 +53,53 @@ function UpdateDiscount(props) {
     function UpdateData(e) {
 
         e.preventDefault();
-     
-        let DiscountStatus = true;
 
-        const itemID = props.match.params.id;
-        setFinalPrice(FinalPrice);
-        //Creating a js object
-        const newDiscountedItem = {
 
-            DiscountStatus,
-            FinalPrice,
-            DiscountPrecentage
-            
+        
+        if (DiscountPrecentage <= 0 || DiscountPrecentage >= 80) {
+
+
+            //setAlert("Discount should be with in a range of minimum 1% & maximum 80%") ;
+            swal.fire("Alert", "Discount should be with in a range of minimum 1% & maximum 80%", "warning");
+
         }
 
-        console.log(newDiscountedItem);
-        console.log(itemID);
+        else{
 
-        //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-        axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+            let DiscountStatus = true;
 
-            //alert("Discount Updated");
+            const itemID = props.match.params.id;
+            setFinalPrice(FinalPrice);
+            //Creating a js object
+            const newDiscountedItem = {
+    
+                DiscountStatus,
+                FinalPrice,
+                DiscountPrecentage
+                
+            }
+    
+            console.log(newDiscountedItem);
+            console.log(itemID);
+    
+            //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
+            axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+    
+                //alert("Discount Updated");
+    
+                
+                swal.fire("Success", "Discount Updated", "success");
+    
+                props.history.push("/Seller/MyDiscountedItems");
+            }).catch((err) => {
+    
+                alert(err);
+            })
 
-            
-            swal.fire("Success", "Discount Updated", "success");
 
-            props.history.push("/alldiscounteditems");
-        }).catch((err) => {
-
-            alert(err);
-        })
+        }
+     
+       
     }
 
 
@@ -85,16 +109,28 @@ function UpdateDiscount(props) {
 
         setDiscount(e.target.value);
 
+
         let dis = document.getElementById("discountPercentage").value;
 
+        if (dis <= 0 || dis >= 80) {
+
+
+            setAlert("Discount should be with in a range of minimum 1% & maximum 80%");
+
+        }
+
+        else {
+            setAlert("");
+        }
         console.log(dis);
-        let finalP  = Number(item.Price) - (Number(item.Price) * (Number(dis)/100));
+        let finalP = Number(item.Price) - (Number(item.Price) * (Number(dis) / 100));
 
         console.log(finalP);
 
         document.getElementById("newPrice").value = finalP;
 
         setFinalPrice(finalP);
+
 
         
 
@@ -133,7 +169,7 @@ function UpdateDiscount(props) {
 
             swal.fire("Success", "Discount Revoked", "success");
 
-            props.history.push("/alldiscounteditems");
+            props.history.push("/Seller/MyDiscountedItems");
         }).catch((err) => {
 
             alert(err);
@@ -163,7 +199,8 @@ function UpdateDiscount(props) {
                 <div className="container rounded bg-white mt-5 mb-5 cont">
                     <div className="row">
                         <div className="col-md-3 border-right">
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + item.Images[0]} width="250px" height="250px" /><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                            {/* <p>{item.Images[0]}</p> */}
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src= {iphone} width="250px" height="250px" alt="gg"/><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">
@@ -198,6 +235,8 @@ function UpdateDiscount(props) {
 
 
                                 /> </div> <br />
+
+                            <p id="discountValidation" style={{ color: 'red' }}>{disalert}</p>
 
                                 <div className="col-md-12"><label className="labels" style = {{textAlign:'left'}}>New Price</label><input type="text" name="newPrice" id="newPrice" className="form-control" placeholder="" Value={item.FinalPrice} readOnly = {true} />
 

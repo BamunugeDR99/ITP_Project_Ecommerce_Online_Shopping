@@ -1,7 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect,radix} from "react";
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 export default function Update_Items(props) {
+  let [succMsg,setSuccMsg] = useState("");
+  let [Error2Msg,setError2Msg] = useState("");
+  let [Err3Msg,setErr3Msg] = useState("");
+  let [ModelMsg,setModelMsg] = useState("");
+  let flag = 0;
+  const [erorMsg,setErrorMsg] = useState("");
   // const [students,setStudents] = useState([]);
   const [data, setData] = useState({
     Item_name: "",
@@ -20,9 +26,9 @@ export default function Update_Items(props) {
     Category: "",
   });
   let isFirstRender = true;
-  let slideImages = [];
   let imageName = "";
-
+  
+let slideImages = [];
   const [images, setImages] = useState([]);
   //learn  .......
    useEffect(() => {
@@ -83,9 +89,9 @@ export default function Update_Items(props) {
 
   function warrentyChecks() {
     if (document.getElementById("customRadio2").checked) {
-      data.Warrenty = parseInt(document.getElementById("customRadio2").value);
+      data.Warrenty = parseInt(document.getElementById("customRadio2").value,radix);
     } else if (document.getElementById("customRadio1").checked) {
-      data.Warrenty = parseInt(document.getElementById("customRadio1").value);
+      data.Warrenty = parseInt(document.getElementById("customRadio1").value,radix);
     }
   }
   // Clear all after submit
@@ -107,7 +113,7 @@ export default function Update_Items(props) {
     let newImages = [];
     let imagess = document.getElementById("customFile").files;
     console.log(imagess)
-    if(imagess.length != 0){
+    if(imagess.length !== 0){
       for (let i = 0; i < imagess.length; i++) {
         newImages.push(imagess[i].name);
       }
@@ -125,17 +131,17 @@ export default function Update_Items(props) {
   function ItemCategorySelection() {
 
     let valueof = parseInt(document.getElementById("selectCategory").value);
-    if (valueof == 1) {
+    if (valueof === 1) {
       data.Category = "Mobile Phones";
       // setData()= "MM";
       //alert("111");
-    } else if (valueof == 2) {
+    } else if (valueof === 2) {
       // setSelectCategory("Tablet / iPad / iPod");
       data.Category = "Tablet / iPad / iPod";
-    } else if (valueof == 3) {
+    } else if (valueof === 3) {
       //setSelectCategory("Gaming");
       data.Category = "Gaming";
-    } else if (valueof == 4) {
+    } else if (valueof === 4) {
       //setSelectCategory("Other");
       data.Category = "Other";
     }
@@ -143,11 +149,11 @@ export default function Update_Items(props) {
 
   // Check this again ....
   function warrentyCheck() {
-    if (data.Warrenty == true) {
+    if (data.Warrenty === true) {
       document.getElementById("txt1").innerHTML =
         "Warrenty Available For this Item";
       document.getElementById("txt1").style.color = "#A4DE02";
-    } else if (data.Warrenty == false) {
+    } else if (data.Warrenty === false) {
       document.getElementById("txt1").innerHTML =
         "Warrenty Not Available For this Item";
       document.getElementById("txt1").style.color = "#FF0000";
@@ -166,11 +172,11 @@ export default function Update_Items(props) {
   function categoryCheck() {
 
     let txt = "Item is Category under ";
-    if (data.Category == "Mobile Phones") {
+    if (data.Category === "Mobile Phones") {
       txt += "Mobile Phones";
-    } else if (data.Category == "Tablet / iPad / iPod") {
+    } else if (data.Category === "Tablet / iPad / iPod") {
       txt += "Tablet / iPad / iPod";
-    } else if (data.Category == "Gaming") {
+    } else if (data.Category === "Gaming") {
       txt += "Gaming";
     } else {
       txt += "Others";
@@ -181,19 +187,46 @@ export default function Update_Items(props) {
 
   function deletee(id) {
     const objectId = id;
-    axios
-      .delete("http://localhost:8070/items/delete/" + objectId)
-      .then((res) => {
-        alert("Are you sure do you want to delete this item ?");
-        props.history.push("/allItems");
-        document.getElementById("itemsTxt").innerHTML =
-          "Item Deleted Successfully!";
-        // const afterDeleteStudent = students.filter(student=>student._id != id);
-        // setStudents(afterDeleteStudent);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+
+
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .delete("http://localhost:8070/items/delete/" + objectId)
+        .then((res) => {
+         
+          // const afterDeleteStudent = students.filter(student=>student._id != id);
+          // setStudents(afterDeleteStudent);
+
+          
+      Swal.fire(
+        'Deleted!',
+        'Your Item has been deleted.',
+        'success'
+      )
+
+      props.history.push("/Seller/Home");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
+    })
+
+
+   
+
+
+
   }
 
   function sendData(e) {
@@ -215,16 +248,21 @@ export default function Update_Items(props) {
     axios
       .put("http://localhost:8070/items/update/" + objectId, data)
       .then(() => {
-        //   //alert("Student Updated");
-        document.getElementById("Submitstatus").innerHTML =
-          "Item Updated SuccessFully!";
-        document.getElementById("Submitstatus").style.color = "#A4DE02";
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Item has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        props.history.push("/Seller/Home");
+  
       })
       .catch((err) => {
         alert(err);
-        document.getElementById("Submitstatus").innerHTML =
-          "Process UnsuccessFull Please try again!";
-        document.getElementById("Submitstatus").style.color = "#FF0000";
+   
       });
   }
 
@@ -232,13 +270,58 @@ export default function Update_Items(props) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
+
+    if(e.target.id == "Quantity"){
+      if(e.target.value > 100){
+        setErrorMsg("Quantity cannot be more than 100");
+        setSuccMsg("")
+        flag = 0;
+      }else if(e.target.value <= 0){
+        setErrorMsg("Quantity cannot be Zero or less");
+        setSuccMsg("")
+        flag = 0;
+      }else if((e.target.value).length == 0){
+
+      }else if((e.target.value) > 0 && (e.target.value) < 200){
+      
+          setSuccMsg("All Set!")
+          setErrorMsg("");
+          flag = 1
+        }else{
+        setErrorMsg("");
+        flag = 1;
+      }
+      
+    } 
+    
+    if(e.target.id == "Price"){
+      if(e.target.value > 1000000){
+        setError2Msg("Price cannot exceed 1 Million");
+        flag = 0;
+      }else if(e.target.value <= 0){
+        setError2Msg("Price cannot be Zero or less");
+        flag = 0;
+      }else{
+        setError2Msg("");
+        flag = 1;
+      }
+    }
   }
 
   function gotoAddDiscount(id){
 
-    props.history.push("/addDiscount/" + id);
+    props.history.push("/Seller/AddDiscount/" + id);
   }
+  function displayImage(){
+    let images = document.getElementById("customFile").files;
+    let name = "";
+    for (let i = 0; i < images.length; i++) {
 
+      name += images[i].name + '<br/>';
+    }
+    document.getElementById("GG").innerHTML = name;
+
+  }
 
   return (
     
@@ -294,25 +377,26 @@ export default function Update_Items(props) {
 
               <div class="row">
                 <div class="col">
-                  <label for="item_name">ITEM NAME</label>
+                  <label for="item_name">ITEM NAME <h6  style={{ textAlign: "center", color: "#FF0000" }}></h6></label>
                   <input
                     type="text"
                     id="Item_name"
                     Value={data.Item_name}
                     class="form-control"
                     placeholder="Name of the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
-                  <label for="quantity">QUANTITY</label>
+                  <label for="quantity">QUANTITY  <h6  style={{ textAlign: "center", color: "#FF0000" }}>{erorMsg}</h6></label>
                   <input
-                    type="text"
+                    type="Number"
                     id="Quantity"
                     Value={data.Quantity}
                     class="form-control"
                     placeholder="Quantity"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)
+                    } required
                   />
                 </div>
               </div>
@@ -326,7 +410,7 @@ export default function Update_Items(props) {
                     Value={data.Brand}
                     class="form-control"
                     placeholder="Item brand"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
@@ -337,21 +421,21 @@ export default function Update_Items(props) {
                     Value={data.Model}
                     class="form-control"
                     placeholder="Item model"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} readOnly
                   />
                 </div>
               </div>
               <br />
               <div class="row">
                 <div class="col">
-                  <label for="price">PRICE</label>
+                  <label for="price">PRICE  <h6  style={{ textAlign: "center", color: "#FF0000" }}>{Error2Msg}</h6> </label>
                   <input
-                    type="text"
+                    type="Number" 
                     id="Price"
                     Value={data.Price}
                     class="form-control"
                     placeholder="Price of the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   />
                 </div>
                 <div class="col">
@@ -362,7 +446,8 @@ export default function Update_Items(props) {
                     Value={data.Stock_keeping_unit}
                     class="form-control"
                     placeholder="SKU"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e) }
+                    readOnly
                   />
                 </div>
               </div>
@@ -377,7 +462,7 @@ export default function Update_Items(props) {
                     defaultValue={data.Description}
                     rows="5"
                     placeholder="Description about the item"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
                 <div class="col">
@@ -388,7 +473,7 @@ export default function Update_Items(props) {
                     defaultValue={data.Specification}
                     rows="5"
                     placeholder="Item specifications"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
                 <br />
@@ -400,7 +485,7 @@ export default function Update_Items(props) {
                     id="WHT"
                     defaultValue={data.WHT}
                     placeholder="Tell what inside the package ?"
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handle(e)} required
                   ></textarea>
                 </div>
               </div>
@@ -534,6 +619,8 @@ export default function Update_Items(props) {
                       class="custom-file-input"
                       id="customFile"
                       multiple
+
+                      onChange = {() => displayImage()}
                     />
                     <label class="custom-file-label" for="customFile">
                       Choose file
@@ -554,9 +641,9 @@ export default function Update_Items(props) {
                   <h5 id="txt3"></h5>
                 </div>
               </div>
-              <br />
-              <br />
+         
               <center>
+                <center><div id = "GG"></div></center>
               <button
                   type = "button"
                   class="btn btn-primary"
@@ -566,7 +653,7 @@ export default function Update_Items(props) {
                   ADD DISCOUNT
                 </button><span> </span>
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-success"
                   style={{ marginright: "20px" }}
                 >
