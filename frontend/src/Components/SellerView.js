@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "../Css/sellerview.css";
 
-export default function SellerProfile(props) {
+export default function SellerView(props) {
 
   const [orgSeller,setorgSellers] = useState([]);
  

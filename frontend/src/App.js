@@ -139,6 +139,11 @@ import AllAdmins from './Components/AllAdmins';
 import AddNewAdmin from './Components/AddNewAdmin';
 import AllRequests from './Components/AllSellers';
 import CustomerMsg from './Components/CustomerMsg';
+import AdminAllPackages from './Components/Admin_All_Packages';
+import SinglePackage_AdminView from './Components/Admin_single_packageView';
+// import AdminReport from './Components/AdminReport';
+import SellerView from './Components/SellerView';
+import RegSellers from './Components/RegSellers';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -222,14 +227,17 @@ function App() {
     <Route path = "/SelReport" component = {AdminReport}/>
     
     <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
-    <Route path = "/Admin/Sellers" exact component = {AllRequests}/>
+    <Route path = "/Admin/Sellers" exact component = {RegSellers}/>
     <Route path = "/Admin/AllSellersRequest" exact component = {AllSellers}/>
     <Route path = "/Admin/Customers" exact component = {CustomerList}/>
     <Route path = "/Admin/Admins" exact component = {AllAdmins}/>
     <Route path = "/Admin/AddAdmin" exact component = {AddNewAdmin}/>
     <Route path = "/Admin/Items" exact component = {AView_all_the_items}/>
-    {/* <Route path = "/Admin/DiscountItems" exact component = {AView_all_the_items}/> */}
-    {/* <Route path = "/Admin/Packages" exact component = {AView_all_the_items}/> */}
+    <Route path = "/Admin/Packages/:id" exact component = {SinglePackage_AdminView}/>
+    <Route path = "/Admin/Reports" exact component = {AdminReport}/>
+    <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
+    <Route path = "/Admin/viewSellerProfile/:id" exact component = {SellerView}/>
+    <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
     {/* <Route path = "/Admin/Reviews" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Payment" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}

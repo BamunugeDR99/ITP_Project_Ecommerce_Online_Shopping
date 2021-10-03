@@ -143,7 +143,7 @@ export default function AdminAllPackages(props) {
 
     function gToShowMore(packageId) {
 
-        props.history.push("/Seller/SinglePackageAdmin/" + packageId);
+        props.history.push("/Admin/Packages/" + packageId);
     }
 
 
@@ -171,8 +171,8 @@ export default function AdminAllPackages(props) {
 
             <div className="d-flex justify-content-center mt-3">
 
-                <table class="table table-bordered table-dark" style={{ width: '80rem' }}>
-                    <thead>
+                <table class="table table-bordered" style={{ width: '80rem' }}>
+                    <thead className = "thead-dark">
                         <tr>
                             <th scope="col">Package Name</th>
                             <th scope="col">Seller ID</th>
@@ -216,6 +216,7 @@ export default function AdminAllPackages(props) {
 
               
             </div>
+            <br/><br/>
         </div>
     )
 

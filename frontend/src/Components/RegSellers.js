@@ -22,8 +22,8 @@ export default function RegSellers(props) {
   }, []);
 
   function showmore(id){
-    console.log(id);
-    props.history.push("/admin/reg/sellers/view/" + id);
+   // console.log(id);
+    props.history.push("/Admin/viewSellerProfile/" + id);
 };
 
 
@@ -77,7 +77,8 @@ function filterorgSellers(data, orgSellerSearch){
 
   return (
     <div className="container">
-      <h1>Registered Sellers</h1><br/>
+      <br/><br/>
+      <h1>Registered Sellers</h1>
       
       <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
         

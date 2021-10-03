@@ -30,7 +30,7 @@ export default function AdminReport(props) {
   useEffect(() => {
     function getReview() {
       let seller = localStorage.getItem("SellerID");
-     // let seller = "";
+    //    let seller = "";
 
 
       axios
@@ -111,6 +111,7 @@ export default function AdminReport(props) {
 
   return (
     <div className="container" >
+      <br/>
             <div style={{backgroundColor:'#dcdcdc', width:'90%', height:'70px'}}>
               <h2>
                 <center>
@@ -144,6 +145,8 @@ export default function AdminReport(props) {
                 );
               })}
             </table>
+
+            <br/>
     </div>
   );
 }
