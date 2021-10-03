@@ -17,7 +17,7 @@ export default function AdminAllPackages(props) {
                 //let seller = localStorage.getItem("SellerID");
                 SellerID = props.match.params.id;
 
-                setPackages(res.data.filter((item) => item.SellerID === "613a2af6b31f783accd94445"));
+                setPackages(res.data.filter((item) => item.seller === "613a2af6b31f783accd94445"));
 
 
 
@@ -143,7 +143,7 @@ export default function AdminAllPackages(props) {
 
     function gToShowMore(packageId) {
 
-        props.history.push("/Admin/Packages/" + packageId);
+        props.history.push("/Admin/Packagesss/"+packageId);
     }
 
 
