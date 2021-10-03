@@ -40,11 +40,21 @@ export default function SellerView(props) {
           });
       }
 
+
+      function moreItems(id){
+        props.history.push("/Admin/sellerItems/"+ id);
+      }
+
+      function morePackages(id){
+        props.history.push("/Admin/packages/"+ id);
+      }
+
   return (
 
     <div className="sellerview">
     
     <div>
+      <br/>
 
       <h2 style={{color:"black",textAlign : "center"}}>SELLER DETAILS - {orgSeller.companyname}</h2><br/>
 
@@ -141,8 +151,8 @@ export default function SellerView(props) {
                         </div><br/><br/>
 						<div className = "container">
 						<div class="float-center">
-            <button type="button" class="btn btn-primary">VIEW ITEMS</button><span> </span>
-            <button type="button" class="btn btn-primary">VIEW PACKAGES</button><span> </span>
+            <button type="button" class="btn btn-primary"  onClick={() => moreItems(orgSeller._id)} >VIEW ITEMS</button><span> </span>
+            <button type="button" class="btn btn-primary" onClick = {() =>  morePackages(orgSeller._id)}>VIEW PACKAGES</button><span> </span>
 						<button type="button"  onClick={() => deleteSeller(orgSeller._id)} class="btn btn-danger">DELETE SELLER</button>
 							<span> </span>
 							</div>

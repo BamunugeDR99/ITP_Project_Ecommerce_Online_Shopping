@@ -144,6 +144,7 @@ import SinglePackage_AdminView from './Components/Admin_single_packageView';
 // import AdminReport from './Components/AdminReport';
 import SellerView from './Components/SellerView';
 import RegSellers from './Components/RegSellers';
+import ItemsForSpecificSeller from './Components/ItemsForSpecificSeller';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -235,7 +236,7 @@ function App() {
     <Route path = "/Admin/Items" exact component = {AView_all_the_items}/>
     <Route path = "/Admin/Packages/:id" exact component = {SinglePackage_AdminView}/>
     <Route path = "/Admin/Reports" exact component = {AdminReport}/>
-    <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
+    <Route path = "/Admin/packages/:id" exact component = {AdminAllPackages}/>
     <Route path = "/Admin/viewSellerProfile/:id" exact component = {SellerView}/>
     <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
     {/* <Route path = "/Admin/Reviews" exact component = {AView_all_the_items}/> */}
@@ -243,7 +244,7 @@ function App() {
     {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Delivery" exact component = {AView_all_the_items}/> */}
 
-    
+    <Route path = "/Admin/sellerItems/:id" exact component = {ItemsForSpecificSeller}/>
 
     <Route path = "/Admin" component = {Footer_customer}/>
     
