@@ -24,6 +24,11 @@ const adminSchema = new Schema({
         required: true
     },
 
+    email: {
+        type: String,
+        required: true
+    },
+
 })
 
 const admin = mongoose.model("admin", adminSchema);

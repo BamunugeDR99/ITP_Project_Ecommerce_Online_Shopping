@@ -52,9 +52,9 @@ export default function SinglePackage_AdminView(props) {
 
     function gBack(SellerId) {
 
-        console.log(`Seller ID : ${SellerId}`);
+      //  console.log(`Seller ID : ${SellerId}`);
 
-        props.history.push("/Seller/AllPackageAdmin");
+        props.history.push("/Admin/Packages");
     }
 
 

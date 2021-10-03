@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import { useHistory } from "react-router-dom";
    // mer
    // import ReactStars from "react-rating-stars-component";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import Swal from "sweetalert2";
 
 import "../Css/writereview.css";
@@ -12,23 +14,26 @@ import go from "../images/p2.jpg";
 
 export default function WriteReview(props){
 
+  let history = useHistory();
+
     const [description,setDescription] = useState("");
-    const [date,setDate] = useState("");
-    const [noofstars,setNoofstars] = useState("");
+    // const [date,setDate] = useState("");
+    // const [noofstars,setNoofstars] = useState("");
   
     const [items,setItems] = useState([]);
 
     let customerid  = ""; ///local Storage
     let itemid  = "";// url
     // let sellerid  = "";
-    let reviewstatus  = "";
-    let reportreason  = "";
+    // let reviewstatus  = "";
+    // let reportreason  = "";
     let count = 0;
 
     useEffect(() => {
+      const objectId = props.match.params.id;
       function getItems() {
             axios
-              .get("http://localhost:8070/items/get/6120b61011f8374ae1fa904f")
+              .get("http://localhost:8070/items/get/" + objectId)
               .then((res) => {
               setItems(res.data);
               console.log(res.data);
@@ -49,13 +54,19 @@ export default function WriteReview(props){
       e.preventDefault();
 
       getNoOfStars();
+
+      const cusId = localStorage.getItem("CustomerID")
+      const ItemId = props.match.params.id;
+
+      console.log(ItemId);
+      console.log(cusId);
   
       const newReview = {
         description,
         date : Date(),
         noofstars : count, 
-        customerid : "6144a56b88cbe1257c8a887b",
-        itemid : "6120b61011f8374ae1fa904f",
+        customerid : cusId,
+        itemid : ItemId,
         //sellerid,
       }
   
@@ -70,8 +81,8 @@ export default function WriteReview(props){
         // props.history.push("/Home");
         // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         Swal.fire(
-          'Good job!',
-          'You Send the message!',
+          'All Done!',
+          'Review Submitted',
           'success'
         )
         props.history.push("/Customer/Home");
@@ -82,9 +93,9 @@ export default function WriteReview(props){
     }
 
  
-const ratingChanged = (newRating) => {
-  console.log(newRating);
-};
+// const ratingChanged = (newRating) => {
+//   console.log(newRating);
+// };
 
 
 function  getNoOfStars(){
@@ -112,8 +123,11 @@ function  getNoOfStars(){
 
 
  return(
-<div className="rev">   
-
+<div className="rev"> 
+<br/>  
+        <div>
+            <button type="button"style={{fontSize:'14px', borderRadius:'15px'}} class="btn btn-info" onClick={() => history.goBack()} ><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+          </div>
   <div className="container" style={{ padding: "20px 10px 10px 10px",width: '70%',borderRadius:'15px' }}>
   <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "90%", alignItems: "center", borderRadius: "10px" }} >
     
@@ -131,7 +145,7 @@ function  getNoOfStars(){
     
           <div className="row" style={{fontSize:'22px', padding:'20px 0px 20px 50px'}}>
             <div className="col">
-              <span style={{color:'black', fontStyle:'strong'}}>{items.Item_name}</span>
+              <span style={{color:'black', fontStyle:'strong'}}><b>{items.Item_name}</b></span>
             </div>
             <div className="col">
           
@@ -146,9 +160,21 @@ function  getNoOfStars(){
           </div>
           <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
-              <img src=
-              {"/Images/"+items.Images}
-              style={{width:'70%'}}/>
+                      <img alt={go} style={{width:'70%'}}
+                       src={"/Images/" + items.Images}/>
+                       <div>
+                          {/* <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          />
+                          <img style={{width:'30%',  padding:'10px'}} src=
+                          {"/Images/"+items.Images}
+                          /> */}
+                      </div>
+              {/* <img src={"/Images/"+items.Images[0]}
+              style={{width:'70%'}}/> */}
             </div>
             <div className="col">
               <textarea name="review" style={{width: '80%' ,height: '80%', borderRadius: '25px',background: '#e6e6e6',outline: 'none', border: 'none',padding: '20px'}} placeholder="Enter your review here"
@@ -248,27 +274,6 @@ function  getNoOfStars(){
 // }
 
 
-  {/* <div 
-              className="cursor-pointer"
-              onMouseEnter={() => onMouseEnter(index)} 
-              onMouseLeave={() => onMouseLeave()} 
-              onClick={() => onSaveRating(index)}>
-              <StarIcon fill={fill} />
-            </div> */}
-                {/* <div style={{ color: "#f9d71c", textAlign: "center", color: '#FFD600',cursor: 'pointer'}}>
-                   
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                </div> */}
-                  {/* <div id = 'stars'class="card-text">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span><span> </span> 
-            </div> */}
+
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,radix} from "react";
 import axios from "axios";
 import Swal from 'sweetalert2'
 
@@ -22,16 +22,16 @@ export default function Add_items(props) {
   let Images = [];
   let [Category, setSelectCategory] = useState("Mobile Phones");
   const [erorMsg,setErrorMsg] = useState("");
-  const [button,setButton] = useState(false)
+  // const [button,setButton] = useState(false)
   let flag = 0;
 
   let SellerID = localStorage.getItem("SellerID");
   //check this again
   function warrentyCheck() {
     if (document.getElementById("customRadio2").checked) {
-      Warrenty = parseInt(document.getElementById("customRadio2").value);
+      Warrenty = parseInt(document.getElementById("customRadio2").value,radix);
     } else if (document.getElementById("customRadio1").checked) {
-      Warrenty = parseInt(document.getElementById("customRadio1").value);
+      Warrenty = parseInt(document.getElementById("customRadio1").value,radix);
     }
   }
   // Clear all after submit
@@ -69,20 +69,20 @@ export default function Add_items(props) {
   }
 
   function ItemCategorySelection() {
-    let valueof = parseInt(document.getElementById("selectCategory").value);
-    if (valueof == 1) {
+    let valueof = parseInt(document.getElementById("selectCategory").value,radix);
+    if (valueof === 1) {
       Category = "Mobile Phones";
       //alert("111");
-    } else if (valueof == 2) {
+    } else if (valueof === 2) {
       // setSelectCategory("Tablet / iPad / iPod");
       Category = "Tablet / iPad / iPod";
-    } else if (valueof == 3) {
+    } else if (valueof === 3) {
       //setSelectCategory("Gaming");
       Category = "Gaming";
-    } else if (valueof == 4) {
+    } else if (valueof === 4) {
       //setSelectCategory("Other");
       Category = "Wearable";
-    }else if(valueof == 5){
+    }else if(valueof === 5){
       Category = "Other";
     }
   }
@@ -209,7 +209,7 @@ export default function Add_items(props) {
                         setErrorMsg("Quantity cannot be Zero or less");
                         setSuccMsg("")
                         flag = 0;
-                      }else if((e.target.value).length == 0){
+                      }else if((e.target.value).length === 0){
 
                       }else if((e.target.value) > 0 && (e.target.value) < 200){
                       
@@ -313,7 +313,7 @@ export default function Add_items(props) {
                         
                      let items = res.data;
                       for(let i = 0; i < items.length; i++ ){
-                        if(items[i].Stock_keeping_unit == e.target.value){
+                        if(items[i].Stock_keeping_unit === e.target.value){
                           
                           Swal.fire({
                             icon: 'error',

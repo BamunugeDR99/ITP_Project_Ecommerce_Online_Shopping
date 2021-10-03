@@ -1,5 +1,5 @@
 .CustomerSignup .wrapper {
-  height: 1100px;
+  height: 1130px;
   background-size: cover;
   background-repeat: no-repeat;
   }
@@ -11,7 +11,7 @@
   padding: 20px;
   background: #fff;
   width: 1200px;
-  height: 950px;
+  height: 1060px;
   margin: auto;
   margin-top: 50px;
   margin-left:-20px;
@@ -19,9 +19,11 @@
   display: flex;
   
  }
+
  .CustomerSignup  .inner .image-holder {
 
   display: flex;
+  height: 1010px;
   width: 50%;
   }
 
@@ -31,6 +33,7 @@
     padding-top: 36px;
     padding-left: 45px;
     padding-right: 45px;
+   
      }
 
   .CustomerSignup .inner #sign_up {
@@ -99,4 +102,22 @@
       text-align:center;
       color: red;
   
+}.CustomerSignup .ImagePreview #UserPro{
+	
+      position: relative;
+      margin-left:auto;
+      margin-right:auto;
+      width:150px;
+      height:150px;
+      border: 1px solid rgb(255, 255, 255);
+      margin-top:10px;  
+      background-size: cover;
+      background-repeat:no-repeat;
+      
+      
+      
+      
+      
     }
+    
+

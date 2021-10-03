@@ -17,9 +17,8 @@ const ReviewSchema = new Schema({
         required : true
     },
     reviewstatus : {
-        type : String,
+        type : Boolean,
         required : false,
-        default: false
     },
     reportreason : {
         type : String,

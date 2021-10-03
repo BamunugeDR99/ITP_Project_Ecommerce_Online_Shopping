@@ -1,20 +1,20 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import Swal from 'sweetalert2';
 
-import "../Css/sellerprofile.css";
+import "../Css/sellerview.css";
 
-export default function SellerProfile(props) {
+export default function SellerView(props) {
 
   const [orgSeller,setorgSellers] = useState([]);
+ 
   let objectID = "";
   useEffect(() =>{
       function getorgSellers(){
-        objectID = localStorage.getItem("SellerID");
-          axios.get("http://localhost:8070/orgSeller/get/"+objectID).then((res) =>
+        objectID = props.match.params.id;
+          axios.get("http://localhost:8070/orgSeller/get/" + objectID).then((res) =>
           {
               setorgSellers(res.data);
-             // console.log(res.data);
+
               
               
           }).catch((err) =>{
@@ -26,88 +26,57 @@ export default function SellerProfile(props) {
 
     }, );
 
-    function update(id){
-      console.log(id);
-      props.history.push("/Seller/updateProfile/" + id);
-  };
+    function deleteSeller(id) {
+        axios
+          .delete("http://localhost:8070/orgSeller/delete/" + id)
+          .then((res) => {
+            document.getElementById("txt").innerHTML =
+              "Seller Deleted Successfully!";
+            const afterDeleteSeller = orgSeller.filter((orgSeller) => orgSeller._id !== id);
+            setorgSellers(afterDeleteSeller);
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      }
 
-  function deleteSeller() {
-    Swal.fire(
-      'Success!',
-      'Request Sent!',
-      'success'
-    )
-  }
   return (
 
-    <div className="sellerprofile">
+    <div className="sellerview">
     
     <div>
-      <br />
-      <br />
-      <h2 style={{color:"black",textAlign : "center"}}>SELLER PROFILE</h2><br/>
+
+      <h2 style={{color:"black",textAlign : "center"}}>SELLER DETAILS - {orgSeller.companyname}</h2><br/>
 
       <div class="container">
         <div class="main-body">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card">
-                <div class="card-body">
+
+          
                   <div class="d-flex flex-column align-items-center text-center">
                     <br></br>
-                    <img
+
+            <div class="col-lg-8">
+              <div class="card"><br></br>
+                <div class="card-body">
+                <img
                        src = {'/Images/'+orgSeller.logo}
                       alt="Admin"
                       class="rounded-circle p-1 bg-black"
                       width="175"
                     />
-                    <br></br>
-                  </div>
-
-				  <div className = "card border border-dark rounded ">
-					  <br/>
-					  <div className = "card-body">
-                  <ul class="list-group list-group-flush">
-                    <div class="shop">
-                      <h4 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.companyname}</h4>
-                    </div>
-                    <br></br>
-
-                    <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}} >{orgSeller.mobile}</h6>
-                    </div>
-                    <br></br>
-
-                    <div class="shop">
-                      <h6 class="mb-0" style = {{textAlign : "center"}}>{orgSeller.email}</h6>
-                    </div>
-                    <br></br>
-
-             
-                
-                    <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
-                        REQUEST DELETE
-                      </button>
-                    </div>
-                  </ul>
-				  <br/></div></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-8">
-              <div class="card">
-                <div class="card-body">
+                   <br/><br/>
                   <div class="row">
-                    <div class="col">
+                    <div class="col"><div class="d-flex justify-content-start">
+                        <label style={{color:"black",textAlign : "left"}}>OWNER NAME</label>
+                        </div>
                       <input
                         type="text"
                         class="form-control"
                         placeholder={orgSeller.ownername} readOnly
                       />
                     </div>
-                    <div class="col">
+                    <div class="col"><div class="d-flex justify-content-start">
+                    <label style={{color:"black",textAlign : "left"}}>COMPANY NAME</label></div>
                       <input
                         type="text"
                         class="form-control"
@@ -116,16 +85,18 @@ export default function SellerProfile(props) {
                     </div>
                   </div>
                   <br />
-                  <br />
+                  
                   <div class="row">
-                    <div class="col">
+                    <div class="col"><div class="d-flex justify-content-start">
+                    <label style={{color:"black",textAlign : "left"}}>CONTACT NUMBER</label></div>
                       <input
                         type="text"
                         class="form-control"
                         placeholder={orgSeller.mobile} readOnly
                       />
                     </div>
-                    <div class="col">
+                    <div class="col"><div class="d-flex justify-content-start">
+                    <label style={{color:"black",textAlign : "left"}}>EMAIL ADDRESS</label></div>
                       <input
                         type="text"
                         class="form-control"
@@ -134,23 +105,22 @@ export default function SellerProfile(props) {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card">
+
                     <div class="card-body" id="sellerB">
                       <div class="row">
                         <div class="col">
-                          <div class="form-group">
+                          <div class="form-group"><div class="d-flex justify-content-start">
+                          <label style={{color:"black",textAlign : "left"}}>DESCRIPTION</label></div>
                             <textarea
                               class="form-control"
                               id="exampleFormControlTextarea1"
-                              rows="9"
+                              rows="10"
                               placeholder={orgSeller.description} readOnly
                             ></textarea>
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col"><div class="d-flex justify-content-start">
+                        <label style={{color:"black",textAlign : "left"}}>ESTABLISHED YEAR</label></div>
                           <input
                             type="text"
                             class="form-control"
@@ -158,7 +128,8 @@ export default function SellerProfile(props) {
                           />
                           <br />
                           <div className="row">
-                            <div class="form-group">
+                            <div class="form-group"><div class="d-flex justify-content-start">
+                            <label style={{color:"black",textAlign : "left"}}>PHYSICAL ADDRESS</label></div>
                               <textarea
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
@@ -167,31 +138,28 @@ export default function SellerProfile(props) {
                               ></textarea>
                             </div>
                           </div>
-                        </div>
+                        </div><br/><br/>
 						<div className = "container">
-						<div class="float-right">
-            <button type="button" class="btn btn-primary" onClick = {()=> {
-                        props.history.push("/Seller/sellerPassword");
-                    }}>CHANGE PASSWORD</button><span> </span>
-						<button type="button" onClick = {()=>update(orgSeller._id)} class="btn btn-primary">EDIT</button>
+						<div class="float-center">
+            <button type="button" class="btn btn-primary">VIEW ITEMS</button><span> </span>
+            <button type="button" class="btn btn-primary">VIEW PACKAGES</button><span> </span>
+						<button type="button"  onClick={() => deleteSeller(orgSeller._id)} class="btn btn-danger">DELETE SELLER</button>
 							<span> </span>
 							</div>
               <p id = {orgSeller._id} class="card-text">
-                                
+                                <br/><br/><br/>
                             </p>
 						</div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                    </div>
             </div>
-          </div>
+            </div>
         </div>
       </div>
  
     </div>
-    <br/><br/><br/><br/>
+
     </div>
   );
 }

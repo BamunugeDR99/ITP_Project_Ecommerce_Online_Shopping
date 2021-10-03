@@ -60,9 +60,11 @@ import './Css/customerList.css'
 import './Css/userprofile.css';
 import './Css/style.css';
 import './Css/stylelogin.css';
+import './Css/CustomerDetails.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
 import ForgotP from './Components/ForgotP';
+import CustomerDetails from './Components/CustomerDetails'
 
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
@@ -80,6 +82,8 @@ import ItemView from './Components/ItemView';
 // import test from './Components/test';
 import ContactSeller from './Components/ContactSeller';
 import PaymentHistory from './Components/PaymentHistory';
+import PaymentHistoryCard from './Components/PaymentHistoryCard';
+
 
 import SellerRegistration from './Components/SellerRegistration';
 import AllSellers from './Components/AllSellers';
@@ -127,10 +131,19 @@ import ShoppingCart from './Components/ShoppingCart';
 import EditCardDetails from './Components/EditCardDetails';
 import SellermMsg from './Components/Sellermsg';
 import SelectPaymentMethod from './Components/SelectPaymentMethod';
-import AdminAllItems from './Components/Admin_All_Packages';
-import SinglePackage_AdminView from './Components/Admin_single_packageView';
-import AdminAllPackages from './Components/Admin_All_Packages';
+import AdminDashBoard from './Components/AdminDashBoard';
+import SideBarAdmin from './Components/SideBarAdmin';
+import AdminHeader from './Components/AdminHeader';
+import AdminLogin from './Components/AdminLogin';
 import AllAdmins from './Components/AllAdmins';
+import AddNewAdmin from './Components/AddNewAdmin';
+import AllRequests from './Components/AllSellers';
+import CustomerMsg from './Components/CustomerMsg';
+import AdminAllPackages from './Components/Admin_All_Packages';
+import SinglePackage_AdminView from './Components/Admin_single_packageView';
+// import AdminReport from './Components/AdminReport';
+import SellerView from './Components/SellerView';
+import RegSellers from './Components/RegSellers';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -143,7 +156,7 @@ function App() {
     <Route path = "/SellerLogin" exact component = {SellerLogin}/>
     <Route path = "/SellerRegistration" exact component = {SellerRegistration}/>
     <Route path = "/SellerForgotPassword" exact component = {SellerForget}/>
-
+    <Route path = "/AdminLogin" exact component = {AdminLogin}/>
     
       {/* Customer Route */}
       <Route path = "/Customer" component = {MainHeader}/>
@@ -161,12 +174,10 @@ function App() {
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
       <Route path = "/Customer/Payhis" exact component = {PaymentHistory}/>
       {/* <Route path = "/Customer/Payhis" exact component = {}/> */}
-
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
-
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
-    
 
+      <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
@@ -179,8 +190,8 @@ function App() {
       <Route path = "/Customer/MyReviews" exact component = {YourReviews}/>
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer/MyShoppingCart" exact component = {ShoppingCart}/>
+      <Route path = "/Customer/purchaseHistoryExtended/:id" exact component = {PaymentHistoryCard}/>
       <Route path = "/Customer" component = {Footer_customer}/>
-
 
       {/* Seller Route */}
       {/* header */}
@@ -195,27 +206,46 @@ function App() {
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
-      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
-
-
-      <Route path = "/Seller/AllPackageAdmin" exact component = {AdminAllPackages}/>
-      <Route path = "/Seller/AllAdmins" exact component = {AllAdmins}/>
-      <Route path = "/Seller/SinglePackageAdmin/:id" exact component = {SinglePackage_AdminView}/>
-      
+      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/> 
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
-
       <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
       <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
       <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
       <Route path = "/Seller" component = {Footer_customer}/>
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
-      <Route path = "/Seller/Password" exact component = {SellerPassword}/>
+      <Route path = "/Seller/sellerPassword" exact component = {SellerPassword}/>
+      <Route path = "/Seller" component = {Footer_customer}/>
+    
+    
+    {/* Admin Route*/}
+
+    <Route path = "/CustomerMsg" component = {CustomerMsg}/>
+    
+    <Route path = "/Admin" component = {AdminHeader}/>
+    <Route path = "/Admin" component = {SideBarAdmin}/>
+    <Route path = "/SelReport" component = {AdminReport}/>
+    
+    <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
+    <Route path = "/Admin/Sellers" exact component = {RegSellers}/>
+    <Route path = "/Admin/AllSellersRequest" exact component = {AllSellers}/>
+    <Route path = "/Admin/Customers" exact component = {CustomerList}/>
+    <Route path = "/Admin/Admins" exact component = {AllAdmins}/>
+    <Route path = "/Admin/AddAdmin" exact component = {AddNewAdmin}/>
+    <Route path = "/Admin/Items" exact component = {AView_all_the_items}/>
+    <Route path = "/Admin/Packages/:id" exact component = {SinglePackage_AdminView}/>
+    <Route path = "/Admin/Reports" exact component = {AdminReport}/>
+    <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
+    <Route path = "/Admin/viewSellerProfile/:id" exact component = {SellerView}/>
+    <Route path = "/Admin/Packages" exact component = {AdminAllPackages}/>
+    {/* <Route path = "/Admin/Reviews" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Payment" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}
+    {/* <Route path = "/Admin/Delivery" exact component = {AView_all_the_items}/> */}
 
     
-    
-    {/* Admin */}
-    {/* <Route path = "/admin/login" exact component = {AdminLogin}/> */}
+
+    <Route path = "/Admin" component = {Footer_customer}/>
     
 
     </div>

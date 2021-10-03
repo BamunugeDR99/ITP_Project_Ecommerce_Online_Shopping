@@ -88,6 +88,8 @@ return(
     <div className ="container">
 
 <br /><br />
+<button style = {{float: "right"}}type="button" class="btn btn-success"onClick = {() => {props.history.push("/Admin/AddAdmin")}}>create an admin</button><br/><br/>
+
             <input
                 class="form-control"
                 type="text"
@@ -102,8 +104,8 @@ return(
 
             <div className="d-flex justify-content-center mt-3">
 
-                <table class="table table-bordered table-dark" style={{ width: '80rem' }}>
-                    <thead>
+                <table class="table table-bordered" style={{ width: '80rem' }}>
+                    <thead className = "thead-dark">
                         <tr>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
@@ -141,7 +143,7 @@ return(
 
             </div>
 
-
+            <br/><br/>
     </div>
 )
 

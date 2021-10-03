@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,radix } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export default function All_the_items_customer(props) {
   const [items, setItems] = useState([]);
   const [ratings, setRatings] = useState([]);
-  const [wishlist, setWishList] = useState();
+ // const [wishlist, setWishList] = useState();
   let itemID = "";
   let averageRating = "";
   let itemWithRatings = {
@@ -66,19 +66,19 @@ export default function All_the_items_customer(props) {
       average = 0;
 
       for (let j = 0; j < ratings.length; j++) {
-        if (items[i]._id == ratings[j].itemid) {
+        if (items[i]._id === ratings[j].itemid) {
           totalNoRatings++;
         }
 
-        if (items[i]._id == ratings[j].itemid) {
-          starCount += parseInt(ratings[j].noofstars);
+        if (items[i]._id === ratings[j].itemid) {
+          starCount += parseInt(ratings[j].noofstars,radix);
         }
       }
 
       totalstarforRatingCount = totalNoRatings * 5;
-      average = parseInt((starCount / totalstarforRatingCount) * 5);
+      average = parseInt((starCount / totalstarforRatingCount) * 5,radix);
       console.log(average);
-      if (id == 1) {
+      if (id === 1) {
         displayStarRating(i, average);
       }
       itemWithRatings = {
@@ -118,18 +118,18 @@ export default function All_the_items_customer(props) {
     );
 
     setItems(result);
-    if (result.length != 0) {
+    if (result.length !== 0) {
       document.getElementById("itemsTxt").innerHTML = "";
-    } else if (result.length == 0) {
+    } else if (result.length === 0) {
       document.getElementById("itemsTxt").innerHTML = "No Result Found!";
     }
 
-    if (result != null) {
+    if (result !== null) {
       // setLoad(false);
       //document.getElementById("txt2").innerHTML = "";
     }
 
-    if (result.length == 0) {
+    if (result.length === 0) {
       //alert("d");
       // setLoad(true);
       //document.getElementById("txt2").innerHTML = "No Result Found!";
@@ -186,7 +186,7 @@ export default function All_the_items_customer(props) {
         );
         setItems(afterFilterItems);
 
-        if (afterFilterItems.length == 0) {
+        if (afterFilterItems.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })
@@ -199,19 +199,19 @@ export default function All_the_items_customer(props) {
     document.getElementById("itemsTxt").innerHTML = "";
     let price2;
     let price1;
-    if (btnid == 1) {
+    if (btnid === 1) {
       price1 = parseFloat(0);
       price2 = parseFloat(10000);
-    } else if (btnid == 2) {
+    } else if (btnid === 2) {
       price1 = parseFloat(10000);
       price2 = parseFloat(20000);
-    } else if (btnid == 3) {
+    } else if (btnid === 3) {
       price1 = parseFloat(20000);
       price2 = parseFloat(30000);
-    } else if (btnid == 4) {
+    } else if (btnid === 4) {
       price1 = parseFloat(30000);
       price2 = parseFloat(40000);
-    } else if (btnid == 5) {
+    } else if (btnid === 5) {
       price2 = parseFloat(40001);
     }
 
@@ -220,7 +220,7 @@ export default function All_the_items_customer(props) {
       .then((res) => {
         let item = res.data;
         let afterFilterItems = [];
-        if (btnid == 5) {
+        if (btnid === 5) {
           afterFilterItems = item.filter(
             (item) => parseFloat(item.Price) >= price2
           );
@@ -233,7 +233,7 @@ export default function All_the_items_customer(props) {
           setItems(afterFilterItems);
         }
 
-        if (afterFilterItems.length == 0) {
+        if (afterFilterItems.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })
@@ -244,7 +244,7 @@ export default function All_the_items_customer(props) {
 
   function displayStatus() {
     for (let i = 0; i < items.length; i++) {
-      if (items[i].ItemAvailabilityStatus == true) {
+      if (items[i].ItemAvailabilityStatus === true) {
         document.getElementById(i + "x").checked = true;
         document.getElementById(i).innerHTML = "Item Available";
         document.getElementById(i).style.color = "#A4DE02";
@@ -262,7 +262,7 @@ export default function All_the_items_customer(props) {
       .get("http://localhost:8070/items/get/" + id)
       .then((res) => {
         console.log(res.data);
-        if (res.data.ItemAvailabilityStatus == false) {
+        if (res.data.ItemAvailabilityStatus === false) {
           Swal.fire({
             icon: "warning",
             title: "Oops...",
@@ -296,7 +296,7 @@ export default function All_the_items_customer(props) {
               }
 
            
-if(falgs == 0){
+if(falgs === 0){
               axios
                 .put(
                   "http://localhost:8070/ShoppingCart/updateSItem/" +
@@ -319,7 +319,7 @@ if(falgs == 0){
                     text: "Please try again!",
                   });
                 });
-              }else if(falgs == 1){
+              }else if(falgs === 1){
                 Swal.fire("Item Already in Your Shopping Cart.");
               }    
             })
@@ -353,7 +353,7 @@ if(falgs == 0){
         // console.log(CustomerIDs)
         let falgs = 0;
         for (let i = 0; i < newItems.length; i++) {
-          if (newItems[i] == itemId) {
+          if (newItems[i] === itemId) {
             falgs = 1;
           }
         }
@@ -364,7 +364,7 @@ if(falgs == 0){
           Items: newItems,
         };
         console.log(newWishList);
-        if (falgs == 0) {
+        if (falgs === 0) {
           axios
             .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
             .then(() => {
@@ -383,7 +383,7 @@ if(falgs == 0){
             .catch((err) => {
               alert(err);
             });
-        } else if (falgs == 1) {
+        } else if (falgs === 1) {
 
           Swal.fire("Item Already in Your Wishlist.");
         }
@@ -400,7 +400,7 @@ if(falgs == 0){
     //let itemsWithRatings = calculateStarRatingdd(0);
     console.log(itemsWithRatings);
     for (let i = 0; i < itemsWithRatings.length; i++) {
-      if (itemsWithRatings[i].averageRating == btnId) {
+      if (itemsWithRatings[i].averageRating === btnId) {
         filterdItemsWithRatings.push(itemsWithRatings[i].itemID);
       }
     }
@@ -416,7 +416,7 @@ if(falgs == 0){
         let afterFilterItemss = [];
         for (let i = 0; i < filterdItemsWithRatings.length; i++) {
           for (let j = 0; j < item.length; j++) {
-            if (filterdItemsWithRatings[i] == item[j]._id) {
+            if (filterdItemsWithRatings[i] === item[j]._id) {
               afterFilterItemss.push(item[j]);
             }
           }
@@ -425,7 +425,7 @@ if(falgs == 0){
         setItems(afterFilterItemss);
         console.log(afterFilterItemss);
 
-        if (afterFilterItemss.length == 0) {
+        if (afterFilterItemss.length === 0) {
           document.getElementById("itemsTxt").innerHTML = "No Result Found!";
         }
       })

@@ -60,7 +60,7 @@ export default function SellermMsg(props){
 		for (let i = 0; i < contactsels.length; i++) {
 		  j = 0;
 		  for (j = 0; j < customers.length; j++) {
-			if (contactsels[i].customerid == customers[j]._id) {
+			if (contactsels[i].customerid === customers[j]._id) {
 			  contactselWithCustomer = {
 				customerName: customers[j].firstName,
 				customerImage: customers[j].userImage,
@@ -83,7 +83,7 @@ export default function SellermMsg(props){
     axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
     {
         // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id != id);
+        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id !== id);
         setContactsel(afterDeleteContactsel);
     }).catch((err) =>{
         alert(err);
@@ -111,30 +111,22 @@ export default function SellermMsg(props){
 		 return (
 		   
 			 <div class="col-3" style={{ paddingBottom:'30px'}}>
-			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "320px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
-				   <img src=
-				   {"/Images/"+reviewss.customerImage[0]} 
+				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
 				   style={{ width: "65%", alignItems: "center" }}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
-				   </center>
 				   
 				   
-
-				   <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
-					 <span id ='review'>{reviewss.Stars}/5</span><br/>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star"></span><span> </span> 
-				   </div>
+				   
 				   <p style={{ textAlign: "center", fontSize: "16px"}}>
 					 {reviewss.Contactsel}
 				   </p><br/>
+				  
 					<button onClick = {()=> deletee(contactsel._id)} className="btn btn-danger" type="button">Remove</button>
+					</center>
 				 </div>
 			   </div>
 			 </div>

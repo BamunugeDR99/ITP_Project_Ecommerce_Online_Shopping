@@ -1,5 +1,5 @@
 import React from "react";
- import back from "./../images/back2.jpg"
+//  import back from "./../images/back2.jpg"
  import '../Css/InitialPage.css'
 
 
@@ -8,6 +8,11 @@ export default function InitialPage(props) {
     function customerLogin(){
         props.history.push("/CustomerLogin");
     }
+
+    function AdminLogin(){
+        props.history.push("/AdminLogin");
+    }
+    
     return (
         <div className = "IP">
             
@@ -21,6 +26,7 @@ export default function InitialPage(props) {
                 <div class="SigninButtons">
                     <br/><br/>
                     <button type="button" class="btn btn-primary mb-2 btn-lg btn-grad" onClick = {() => customerLogin()}>Get started</button> <br />
+                    <button type="button" class="btn btn-primary mb-2 btn-lg btn-grad" onClick = {() => AdminLogin()}>Staff ?</button>
                 </div>
             </div>
 

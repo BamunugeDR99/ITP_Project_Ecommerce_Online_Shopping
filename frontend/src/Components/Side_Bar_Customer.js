@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
+import React from "react";
 import { Link } from "react-router-dom";
 import '../Js/sidebar_script.js'
 // import '../Css/Side_bar_styles.css';
