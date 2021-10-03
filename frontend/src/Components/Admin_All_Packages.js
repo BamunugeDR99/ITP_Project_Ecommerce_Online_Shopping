@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 export default function AdminAllPackages(props) {
 
     const [packages, setPackages] = useState([]);
-   
+   let SellerID;
 
     useEffect(() => {
 
@@ -15,8 +15,9 @@ export default function AdminAllPackages(props) {
 
                 console.log(res.data);
                 //let seller = localStorage.getItem("SellerID");
-                let seller = "613a2af6b31f783accd94445"
-                setPackages(res.data.filter((item) => item.seller === seller));
+                SellerID = props.match.params.id;
+
+                setPackages(res.data.filter((item) => item.SellerID === "613a2af6b31f783accd94445"));
 
 
 
@@ -80,9 +81,8 @@ export default function AdminAllPackages(props) {
             .then((res) => {
 
 
-
-                let seller = "613a2af6b31f783accd94445";
-                let filteredData = res.data.filter((item) => item.seller === seller)
+                SellerID = props.match.params.id;
+                let filteredData = res.data.filter((item) => item.seller === SellerID)
 
                 filterContent(filteredData, userSearch);
 

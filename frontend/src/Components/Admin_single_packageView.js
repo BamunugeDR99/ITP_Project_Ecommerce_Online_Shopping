@@ -72,7 +72,7 @@ export default function SinglePackage_AdminView(props) {
 
           
 
-                    <img class="card-img-top" src={"/Images/" + packageS.image} alt="Card image cap" height="500px" />
+                    {/* <img class="card-img-top" src={"/Images/" + packageS.image} alt="Card image cap" height="500px" /> */}
 
   
 
