@@ -139,8 +139,6 @@ function App() {
     <Route path = "/SellerLogin" exact component = {SellerLogin}/>
     <Route path = "/SellerRegistration" exact component = {SellerRegistration}/>
     <Route path = "/SellerForgotPassword" exact component = {SellerForget}/>
-
-    
       {/* Customer Route */}
       <Route path = "/Customer" component = {MainHeader}/>
       <Route path = "/Customer"  component = {Side_bar_Customer}/>
@@ -157,13 +155,8 @@ function App() {
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
       <Route path = "/Customer/Payhis" exact component = {PaymentHistory}/>
       {/* <Route path = "/Customer/Payhis" exact component = {}/> */}
-
       <Route path = "/Customer/confrimPayment" exact component = {ConfirmPayment}/>
-
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
-    
-
-
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
         {/* id  */}
@@ -176,7 +169,6 @@ function App() {
       <Route path = "/Customer/Update/:id" exact component = {UpdateProfile}/>
       <Route path = "/Customer/MyShoppingCart" exact component = {ShoppingCart}/>
       <Route path = "/Customer" component = {Footer_customer}/>
-
 
       {/* Seller Route */}
       {/* header */}
@@ -191,11 +183,9 @@ function App() {
       <Route path = "/Seller/itemDetails" exact component = {SellerReviews}/>
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
-      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
-      
+      <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/> 
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
-
       <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
       <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
       <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
