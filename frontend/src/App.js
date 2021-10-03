@@ -60,9 +60,11 @@ import './Css/customerList.css'
 import './Css/userprofile.css';
 import './Css/style.css';
 import './Css/stylelogin.css';
+import './Css/CustomerDetails.css';
 import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
 import ForgotP from './Components/ForgotP';
+import CustomerDetails from './Components/CustomerDetails'
 
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
