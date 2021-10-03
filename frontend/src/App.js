@@ -137,6 +137,10 @@ import AllAdmins from './Components/AllAdmins';
 import AddNewAdmin from './Components/AddNewAdmin';
 import AllRequests from './Components/AllSellers';
 import CustomerMsg from './Components/CustomerMsg';
+
+import HomeTest from './Components/HomeTest';
+import TestHome from './Components/TestHome';
+
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -237,7 +241,8 @@ function App() {
     {/* <Route path = "/Admin/Orders" exact component = {AView_all_the_items}/> */}
     {/* <Route path = "/Admin/Delivery" exact component = {AView_all_the_items}/> */}
 
-    
+    <Route path = "/Customer/HomeTest/:id" component = {HomeTest}/>
+    <Route path = "/Customer/TestHome" component = {TestHome}/>
 
     <Route path = "/Admin" component = {Footer_customer}/>
     
