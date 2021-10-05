@@ -3,17 +3,17 @@ import axios from "axios";
 
 import "../Css/sellerview.css";
 
-export default function SellerView(props) {
+export default function RequestView(props) {
 
-  const [orgSeller,setorgSellers] = useState([]);
+  const [seller,setsellers] = useState([]);
  
   let objectID = "";
   useEffect(() =>{
-      function getorgSellers(){
+      function getsellers(){
         objectID = props.match.params.id;
-          axios.get("http://localhost:8070/orgSeller/get/" + objectID).then((res) =>
+          axios.get("http://localhost:8070/seller/get/" + objectID).then((res) =>
           {
-              setorgSellers(res.data);
+              setsellers(res.data);
 
               
               
@@ -22,18 +22,18 @@ export default function SellerView(props) {
           })
       }
      
-      getorgSellers();
+      getsellers();
 
     }, );
 
     function deleteSeller(id) {
         axios
-          .delete("http://localhost:8070/orgSeller/delete/" + id)
+          .delete("http://localhost:8070/seller/delete/" + id)
           .then((res) => {
             document.getElementById("txt").innerHTML =
               "Seller Deleted Successfully!";
-            const afterDeleteSeller = orgSeller.filter((orgSeller) => orgSeller._id !== id);
-            setorgSellers(afterDeleteSeller);
+            const afterDeleteSeller = seller.filter((seller) => seller._id !== id);
+            setsellers(afterDeleteSeller);
           })
           .catch((err) => {
             alert(err);
