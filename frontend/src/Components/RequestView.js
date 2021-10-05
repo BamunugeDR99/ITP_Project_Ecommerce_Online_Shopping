@@ -6,6 +6,15 @@ import "../Css/sellerview.css";
 export default function RequestView(props) {
 
   const [seller,setsellers] = useState([]);
+  const [data, setData] = useState();
+  let username = "";
+  let password = "";
+  let email = "";
+  let emailContent = {
+    email,
+    username,
+    password,
+  };
  
   let objectID = "";
   useEffect(() =>{
@@ -15,10 +24,9 @@ export default function RequestView(props) {
           {
               setsellers(res.data);
 
-              
-              
           }).catch((err) =>{
               alert(err);
+
           })
       }
      
@@ -40,13 +48,127 @@ export default function RequestView(props) {
           });
       }
 
+    
+  async function confirmRequest(id) {
+    //e.preventDefault();
+    // let flag = 0;
+    axios
+      .get("http://localhost:8070/seller/get/" + id)
+      .then((res) => {
+        //setData(res.data);
+        //console.log(res.data.ownername)
+        password = passwordGenerator(25);
+        console.log(password);
+        // if same usename came
+        //  while(flag == 0){
+        username = usernameGenerator(res.data.companyname);
+        // axios
+        //   .get("http://localhost:8070/orgseller/getUsername/" + username)
+        //   .then((res) => {
+        //     console.log(res.data);
+
+        //    // document.getElementById("txt").innerHTML =
+        //         //"Seller Accepted Successfully!";
+        //     // what if
+        //   })
+        //   .catch((err) => {
+        //     alert(err);
+        //   });
+        let ownername = res.data.ownername;
+        let mobile = res.data.mobile;
+        let companyname = res.data.companyname;
+        let address = res.data.address;
+        let year = res.data.year;
+        let email = res.data.email;
+        let description = res.data.description;
+        let logo = res.data.logo;
+
+        const newSeller = {
+          ownername,
+          mobile,
+          companyname,
+          address,
+          year,
+          email,
+          description,
+          logo,
+          username,
+          password,
+        };
+
+        console.log(newSeller);
+
+        emailContent = {
+          email: res.data.email,
+          username,
+          password,
+        };
+
+
+        axios
+        .post("http://localhost:8070/orgseller/add", newSeller)
+        .then(() => {
+            alert("Added");
+          // emailjs
+          //   .send(
+          //     "service_amyey5b", //your service id
+          //     "template_fy5ukg1", // template id
+          //     emailContent,
+          //     "user_yX9pt2mdVNlUhiI2lw7tv" // user access
+          //   )
+          //   .then(
+          //     (result) => {
+          //       console.log(result.text);
+          //       alert("send successfully");
+  
+          //       // document.getElementById("verifyBtn").disabled = false;
+          //     },
+          //     (error) => {
+          //       console.log(error.text);
+          //     }
+          //   );
+          // document.getElementById("txt").innerHTML = "Student Added Successfully!";
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
+   
+  }
+  
+  function usernameGenerator(companyName) {
+    var result = companyName;
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < 5; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  function passwordGenerator(length) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
   return (
 
     <div className="sellerview">
     
     <div>
 
-      <h2 style={{color:"black",textAlign : "center"}}>SELLER DETAILS - {orgSeller.companyname}</h2><br/>
+      <h2 style={{color:"black",textAlign : "center"}}>REQUEST DETAILS - {seller.companyname}</h2><br/>
 
       <div class="container">
         <div class="main-body">
@@ -59,7 +181,7 @@ export default function RequestView(props) {
               <div class="card"><br></br>
                 <div class="card-body">
                 <img
-                       src = {'/Images/'+orgSeller.logo}
+                       src = {'/Images/'+seller.logo}
                       alt="Admin"
                       class="rounded-circle p-1 bg-black"
                       width="175"
@@ -72,7 +194,7 @@ export default function RequestView(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.ownername} readOnly
+                        placeholder={seller.ownername} readOnly
                       />
                     </div>
                     <div class="col"><div class="d-flex justify-content-start">
@@ -80,7 +202,7 @@ export default function RequestView(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.companyname} readOnly
+                        placeholder={seller.companyname} readOnly
                       />
                     </div>
                   </div>
@@ -92,7 +214,7 @@ export default function RequestView(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.mobile} readOnly
+                        placeholder={seller.mobile} readOnly
                       />
                     </div>
                     <div class="col"><div class="d-flex justify-content-start">
@@ -100,7 +222,7 @@ export default function RequestView(props) {
                       <input
                         type="text"
                         class="form-control"
-                        placeholder={orgSeller.email} readOnly
+                        placeholder={seller.email} readOnly
                       />
                     </div>
                   </div>
@@ -115,7 +237,7 @@ export default function RequestView(props) {
                               class="form-control"
                               id="exampleFormControlTextarea1"
                               rows="10"
-                              placeholder={orgSeller.description} readOnly
+                              placeholder={seller.description} readOnly
                             ></textarea>
                           </div>
                         </div>
@@ -124,7 +246,7 @@ export default function RequestView(props) {
                           <input
                             type="text"
                             class="form-control"
-                            placeholder={orgSeller.year} readOnly
+                            placeholder={seller.year} readOnly
                           />
                           <br />
                           <div className="row">
@@ -134,19 +256,19 @@ export default function RequestView(props) {
                                 class="form-control"
                                 id="exampleFormControlTextarea1"
                                 rows="6"
-                                placeholder={orgSeller.address} readOnly
+                                placeholder={seller.address} readOnly
                               ></textarea>
                             </div>
                           </div>
                         </div><br/><br/>
 						<div className = "container">
 						<div class="float-center">
-            <button type="button" class="btn btn-primary">VIEW ITEMS</button><span> </span>
-            <button type="button" class="btn btn-primary">VIEW PACKAGES</button><span> </span>
-						<button type="button"  onClick={() => deleteSeller(orgSeller._id)} class="btn btn-danger">DELETE SELLER</button>
+            
+            <button type="button" class="btn btn-primary" onClick={() => confirmRequest(seller._id)}>ACCEPT</button><span> </span>
+						<button type="button"  onClick={() => deleteSeller(seller._id)} class="btn btn-danger">DECLINE</button>
 							<span> </span>
 							</div>
-              <p id = {orgSeller._id} class="card-text">
+              <p id = {seller._id} class="card-text">
                                 <br/><br/><br/>
                             </p>
 						</div>

@@ -147,7 +147,7 @@ export default function SellerView(props) {
 							<span> </span>
 							</div>
               <p id = {orgSeller._id} class="card-text">
-                                <br/><br/><br/>
+                               
                             </p>
 						</div>
                       </div>
