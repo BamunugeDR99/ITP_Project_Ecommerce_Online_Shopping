@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 import "../Css/contact.css";
-import go from "../images/bg13.jpg";
+import go from "../images/bg118.jpg";
 
 
 export default function ContactSeller(props){
