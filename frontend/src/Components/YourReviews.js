@@ -178,11 +178,11 @@ export default function YourReviews(props) {
   function filterContent(data, userSearch) {
     let result = data.filter(
       (post) =>
-        post.Item_name.includes(userSearch) 
+        post.Item_name.toLowerCase().includes(userSearch) 
         
-        // || 
-        // post.Brand.toLowerCase().includes(userSearch) ||
-        // post.Model.toLowerCase().includes(userSearch)
+        || 
+        post.Brand.toLowerCase().includes(userSearch) ||
+        post.Model.toLowerCase().includes(userSearch)
     );
     console.log(userSearch)
     
