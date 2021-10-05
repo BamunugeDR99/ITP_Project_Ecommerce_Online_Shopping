@@ -286,7 +286,7 @@ function App() {
 
         {/* Admin Route*/}
 
-        <Route path="/CustomerMsg" component={CustomerMsg} />
+        {/* <Route path="/CustomerMsg" component={CustomerMsg} /> */}
 
         <Route path="/Admin" component={AdminHeader} />
         <Route path="/Admin" component={SideBarAdmin} />

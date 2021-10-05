@@ -48,7 +48,7 @@ const [adminLastName, setAdminLastName] = useState("");
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <Link class="nav-link" to="/Seller/Home">Home<span class="sr-only">(current)</span></Link>
+        <Link class="nav-link" to="/Admin/Home">Home<span class="sr-only">(current)</span></Link>
       </li>
       {/* <li class="nav-item">
         <Link class="nav-link" to="/Seller/Home">My Items</Link>
