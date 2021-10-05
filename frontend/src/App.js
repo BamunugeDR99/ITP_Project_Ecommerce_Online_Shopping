@@ -144,6 +144,7 @@ import SellerView from "./Components/SellerView";
 import RegSellers from "./Components/RegSellers";
 import ItemsForSpecificSeller from "./Components/ItemsForSpecificSeller";
 import AllItemsFiltered from "./Components/AllItemsFiltered";
+import RequestView from "./Components/RequestView";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -313,6 +314,11 @@ function App() {
           path="/Admin/viewSellerProfile/:id"
           exact
           component={SellerView}
+        />
+             <Route
+          path="/Admin/RequestSellerProfile/:id"
+          exact
+          component={RequestView}
         />
         <Route
           path="/Admin/sellerItems/:id"

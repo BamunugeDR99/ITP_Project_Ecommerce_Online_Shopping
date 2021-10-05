@@ -150,11 +150,14 @@ export default function SellerView(props) {
                           </div>
                         </div><br/><br/>
 						<div className = "container">
+          
 						<div class="float-center">
+              
             <button type="button" class="btn btn-primary"  onClick={() => moreItems(orgSeller._id)} >VIEW ITEMS</button><span> </span>
             <button type="button" class="btn btn-primary" onClick = {() =>  morePackages(orgSeller._id)}>VIEW PACKAGES</button><span> </span>
 						<button type="button"  onClick={() => deleteSeller(orgSeller._id)} class="btn btn-danger">DELETE SELLER</button>
 							<span> </span>
+       
 							</div>
               <p id = {orgSeller._id} class="card-text">
                                

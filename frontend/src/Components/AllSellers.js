@@ -28,7 +28,7 @@ export default function AllRequests(props) {
 
   function showmore(id){
     console.log(id);
-    props.history.push("/admin/req/sellers/view/" + id);
+    props.history.push("/Admin/RequestSellerProfile/" + id);
 };
 
 function handleSearch(e){
