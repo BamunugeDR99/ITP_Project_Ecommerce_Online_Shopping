@@ -143,6 +143,7 @@ import SinglePackage_AdminView from "./Components/Admin_single_packageView";
 import SellerView from "./Components/SellerView";
 import RegSellers from "./Components/RegSellers";
 import ItemsForSpecificSeller from "./Components/ItemsForSpecificSeller";
+import AllItemsFiltered from "./Components/AllItemsFiltered";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -170,6 +171,8 @@ function App() {
           exact
           component={All_the_items_customer}
         />
+
+        <Route path="/Customer/AllItemsFilterBy/:id" exact component = {AllItemsFiltered}/>
         <Route
           path="/Customer/DiscountedItems"
           exact
