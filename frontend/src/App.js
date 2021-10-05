@@ -3,6 +3,7 @@ import "./Css/slide.css";
 import "./Css/Side_bar_styles.css";
 import "./Js/sidebar_script.js";
 import "./Css/toogle.css";
+import "./Css/AdminDashBoard.css";
 // import './Css/InitialPage.css';
 // import React from 'react';
 import React, { Component } from "react";
