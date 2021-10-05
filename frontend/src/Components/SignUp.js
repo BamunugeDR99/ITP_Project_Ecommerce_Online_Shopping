@@ -19,6 +19,7 @@ function SignUp(props) {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         setImgData(reader.result);
+        document.getElementById("UserPro").hidden = false;
       });
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -475,7 +476,7 @@ function SignUp(props) {
             
             <div className="ImagePreview">
             
-            <img src={imgData} id="UserPro" alt="user image" />
+            <img src={imgData} id="UserPro" alt="user image" hidden/>
             
             </div>
             <br/>
