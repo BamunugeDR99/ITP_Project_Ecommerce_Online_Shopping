@@ -213,7 +213,7 @@ function App() {
       <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
       <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
       <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
-      <Route path = "/Seller" component = {Footer_customer}/>
+      {/* <Route path = "/Seller" component = {Footer_customer}/> */}
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>
       <Route path = "/Seller/sellerPassword" exact component = {SellerPassword}/>
       <Route path = "/Seller" component = {Footer_customer}/>

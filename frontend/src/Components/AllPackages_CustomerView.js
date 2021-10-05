@@ -143,12 +143,17 @@ export default function AllPackages(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
+          console.log("Else Part Running");
+          console.log(CustomerID);
+
           // http://localhost:8070/ShoppingCart/getOneCart/:id
           axios
             .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
-              let cartID = res.data._id;
+
               console.log(res.data);
+              let cartID = res.data._id;
+             
               let packages = res.data.PackageIDs;
               let newwItems = res.data.ItemIDs;
 
