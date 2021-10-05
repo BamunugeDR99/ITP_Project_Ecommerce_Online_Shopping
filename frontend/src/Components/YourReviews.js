@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import p2 from "../images/p3.jpg";
 
 
-
 export default function YourReviews(props) {
 
   // const [review,setReview] = useState([]);
@@ -14,6 +13,7 @@ export default function YourReviews(props) {
   const [itemss, setItemss] = useState([]);
   const [description,setDescription] = useState("");
   const[ratings,setRatings]=useState([]);
+  const[r,setR]=useState([]);
   // const [updateReviewId,setupdateReviewId] = useState("");
   let reviews = [];
   let review_id = "";
@@ -55,6 +55,7 @@ export default function YourReviews(props) {
 
           );
           console.log(filter)
+          setR(filter)
           reviews = filter;
           console.log(reviews)
           axios
@@ -75,47 +76,16 @@ export default function YourReviews(props) {
         });
     }
 
-    function createReview(reviews, items) {
-      let j = 0;
-      for (let i = 0; i < reviews.length; i++) {
-        j = 0;
+   
+    
+ 
 
-        console.log(reviews[i]);
-        for (j = 0; j < items.length; j++) {
-          //console.log(reviews[i]);
-        
+ 
 
-          if (reviews[i].itemid === items[j]._id) {
 
-           //console.log(reviews[i]);
-          
-            reviewWithItem = {
-              review_id  : reviews[i]._id,
-              itemName: items[j].Item_name,
-              itemImage: items[j].Images[0],
-              itemDescription: items[j].Description,
-              itemModel: items[j].Model,
-              itemBrand: items[j].Brand,
-              Review: reviews[i].description,
-              Stars: reviews[i].noofstars,
-              Date: reviews[i].date,
-            };
 
-            reviewWithItems.push(reviewWithItem);
-            //console.log(reviewWithItem.review_id)
-          }
-        }
-      }
-      console.log(reviewWithItems)
-      setabc(reviewWithItems);
+    
 
-      if(reviewWithItems.length==0){
-        document.getElementById("errortext").innerHTML="No Reviews yet!"
-        document.getElementById("error").innerHTML='<br><br><br><br><br><br><br><br><br><br>'
-      }
-      
-      
-    }
     function displayRating(){
 
       axios
@@ -146,13 +116,17 @@ export default function YourReviews(props) {
   }, []);
 
   useEffect(()=>{
+
+    if(r!=null){
     calculateStarRating()
+    }
+
   })
 
   function calculateStarRating(){
 
     abc.map((item,index)=>{
-        console.log(item.Stars)
+      
         displayStarRating(index,item.Stars);
     })
       // displayStarRating(i,average);
@@ -161,12 +135,13 @@ export default function YourReviews(props) {
   }
 
   function displayStarRating(id,totalAverage){
-
+    console.log("9999999999")
+    console.log(totalAverage)
     let txt = "";
 
       if(isNaN(totalAverage)){
 
-        txt = "No Ratings yet!";
+        // txt = "No Ratings yet!";
 
         document.getElementById(id +'stars').innerHTML = txt;
 
@@ -187,53 +162,92 @@ export default function YourReviews(props) {
         txt += '<span class="fa fa-star"></span>';
 
       }
+      if(isNaN(totalAverage)){
 
-      document.getElementById(id +'stars').innerHTML = txt +'  ';
-
+      
+      // document.getElementById(id +'stars').innerHTML = txt +'  ';
+      }
+      else{
+        document.getElementById(id +'stars').innerHTML = txt +'  ';
+      }
      }
 
   }
 
-  // function calculateStarRating(re) {
-  //   let totalNoRatings = 0;
-  //   let totalstarforRatingCount = 0;
-  //   let starCount = 0;
-  //   let average = 0;
 
-  //   console.log(re);
+  function filterContent(data, userSearch) {
+    let result = data.filter(
+      (post) =>
+        post.Item_name.includes(userSearch) 
+        
+        // || 
+        // post.Brand.toLowerCase().includes(userSearch) ||
+        // post.Model.toLowerCase().includes(userSearch)
+    );
+    console.log(userSearch)
+    
+    let x= result;
+    // setItemss(result);
+    console.log("4444444444444444444444444444444444")
 
-  //   for (let j = 0; j < reviews.length; j++) {
-  //     // if(items._id == ratings[j].itemid){
-  //     totalNoRatings++;
-  //     // console.log("s")
-  //     starCount += parseInt(reviews[j].noofstars);
-  //     // }
-  //   }
+    console.log(x)
 
-  //   // totalstarforRatingCount = totalNoRatings * 5;
-  //   // average = parseInt((starCount / totalstarforRatingCount) * 5);
-  //   // console.log(average);
-  //   // displayStarRating(average);
-  // }
+    // axios
+    // .get("http://localhost:8070/review/get")
+    // .then((res) => {
+    //  r = res.data.filter(
+    //     (customerrev) => customerrev.customerid ===
+    //     //  "6144a5d888cbe1257c8a8880"
+    //     objectId
 
-  // function displayStarRating(totalAverage) {
-  //   let txt = "";
-  //   if (isNaN(totalAverage)) {
-  //     txt = "No Ratings yet!";
-  //     document.getElementById("stars").innerHTML = txt;
-  //     // document.getElementById('stars').style.color = "#FF0000";
-  //   } else {
-  //     for (let j = 0; j < totalAverage; j++) {
-  //       txt += '<span class="fa fa-star checked"></span>';
-  //     }
-  //     for (let j = 0; j < 5 - totalAverage; j++) {
-  //       txt += '<span class="fa fa-star"></span>';
-  //     }
+    //   );
+    // })
+    console.log("***********")
+    console.log(r)
+    createReview(r, x)
+    // console.log(result)
+    // console.log("5555555555555555555555555")
+    
+    // console.log(data)
+    if (result.length != 0) {
+      document.getElementById("itemsTxt").innerHTML = "";
+    } else if (result.length == 0) {
+      document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+    }
 
-  //     document.getElementById("stars").innerHTML =
-  //       txt + "  " + totalAverage + ".0 / 5.0";
-  //   }
-  // }
+    // if (result != null) {
+    //   // setLoad(false);
+    //   //document.getElementById("txt2").innerHTML = "";
+    // }
+
+    // if (result.length == 0) {
+    //   //alert("d");
+    //   // setLoad(true);
+    //   //document.getElementById("txt2").innerHTML = "No Result Found!";
+    // }
+  
+  }
+
+     // search
+ function handleSearch(e) {
+  let userSearch = e;
+  //document.getElementsByTagName("CircleLoader").loading = '{true}';
+  document.getElementById("itemsTxt").innerHTML = "";
+
+  axios
+    .get("http://localhost:8070/items/getItems")
+    .then((res) => {
+      // console.log(res.data);
+      
+      if(userSearch!=null){
+        filterContent(res.data, userSearch);
+      }
+      
+    })
+    .catch((err) => {
+      alert(err);
+    });
+}
 
 
   function deletee(id,index) {
@@ -309,50 +323,53 @@ export default function YourReviews(props) {
   
   }
 
-  function filterContent(data, userSearch) {
-    let result = data.filter(
-      (post) =>
-        post.Item_name.toLowerCase().includes(userSearch) ||
-        post.Brand.toLowerCase().includes(userSearch) ||
-        post.Model.toLowerCase().includes(userSearch)
-    );
 
-    setItemss(result);
-    if (result.length != 0) {
-      document.getElementById("itemsTxt").innerHTML = "";
-    } else if (result.length == 0) {
-      document.getElementById("itemsTxt").innerHTML = "No Result Found!";
-    }
+  function createReview(reviews, items) {
+    let j = 0;
+    console.log(items)
+    console.log(reviews)
+    for (let i = 0; i < reviews.length; i++) {
+      j = 0;
+      
+      console.log(reviews[i]);
+      for (j = 0; j < items.length; j++) {
+        //console.log(reviews[i]);
+      
 
-    if (result != null) {
-      // setLoad(false);
-      //document.getElementById("txt2").innerHTML = "";
-    }
+        if (reviews[i].itemid === items[j]._id) {
 
-    if (result.length == 0) {
-      //alert("d");
-      // setLoad(true);
-      //document.getElementById("txt2").innerHTML = "No Result Found!";
+         //console.log(reviews[i]);
+        
+          reviewWithItem = {
+            review_id  : reviews[i]._id,
+            itemName: items[j].Item_name,
+            itemImage: items[j].Images[0],
+            itemDescription: items[j].Description,
+            itemModel: items[j].Model,
+            itemBrand: items[j].Brand,
+            Review: reviews[i].description,
+            Stars: reviews[i].noofstars,
+            Date: reviews[i].date,
+          };
+
+          reviewWithItems.push(reviewWithItem);
+          //console.log(reviewWithItem.review_id)
+        }
+      }
     }
+    // console.log(reviewWithItems)
+    setabc(reviewWithItems);
+
+    // if(reviewWithItems.length==0){
+    //   // document.getElementById("errortext").innerHTML="No Reviews yet!"
+    //   // document.getElementById("error").innerHTML='<br><br><br><br><br><br><br><br><br><br>'
+    // }
+    
+    
   }
- // search
- function handleSearch(e) {
-  let userSearch = e;
-  //document.getElementsByTagName("CircleLoader").loading = '{true}';
-  document.getElementById("itemsTxt").innerHTML = "";
 
-  axios
-    .get("http://localhost:8070/items/getItems")
-    .then((res) => {
-      console.log(res.data);
-      filterContent(res.data, userSearch);
-    })
-    .catch((err) => {
-      alert(err);
-    });
-}
+
  
-
 
 
   return (
