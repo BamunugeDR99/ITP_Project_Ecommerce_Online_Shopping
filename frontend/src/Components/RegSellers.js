@@ -92,7 +92,7 @@ function requests(){
         </div>
       
         <br/><br/>
-      <table class="table table-hover table-dark"style={{ width: "92%"}}>
+      <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>
           <tr>
             <th scope="col">COMPANY NAME</th>
@@ -109,9 +109,9 @@ function requests(){
             <tbody style={{ textAlign: "center"}}>
               <tr>
                 <th>{orgSeller.companyname}</th>
-                <td>{orgSeller.ownername}</td>
-                <td>{orgSeller.year}</td>
-                <td>{orgSeller.email}</td>
+                <th>{orgSeller.ownername}</th>
+                <th>{orgSeller.year}</th>
+                <th>{orgSeller.email}</th>
                 
                 <td >
                   <button
