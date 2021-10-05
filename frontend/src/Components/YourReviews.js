@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import p2 from "../images/p3.jpg";
 
 
-
 export default function YourReviews(props) {
 
   // const [review,setReview] = useState([]);
