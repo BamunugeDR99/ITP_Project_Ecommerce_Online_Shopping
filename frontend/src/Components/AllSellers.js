@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import emailjs from "emailjs-com";
+
 //import {ClipLoader} from "react-spinners";
 
 export default function AllRequests(props) {
