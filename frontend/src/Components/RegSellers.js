@@ -53,7 +53,7 @@ function filterorgSellers(data, orgSellerSearch){
 
     let result = data.filter((post) =>
 
-      post.companyname.toLowerCase().includes(orgSellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(orgSellerSearch.toLowerCase())
+      post.companyname.toLowerCase().includes(orgSellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(orgSellerSearch.toLowerCase()) || post.year.toLowerCase().includes(orgSellerSearch.toLowerCase()) || post.email.toLowerCase().includes(orgSellerSearch.toLowerCase())
       
 
     );
@@ -84,9 +84,9 @@ function requests(){
       <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
       <h1>Registered Sellers</h1>
       
-      <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
-      
-        <input type="search"  class="form-control rounded" placeholder="Search by company name or owner name...." aria-label="Search"
+      <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
+        
+        <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"
           aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
