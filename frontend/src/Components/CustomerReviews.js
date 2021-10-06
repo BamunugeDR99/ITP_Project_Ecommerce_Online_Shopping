@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
 
 import a1 from "../images/avatar1.png";
 
 export default function CustomerReviews(props) {
 
-  
+  let history = useHistory();
+
+  const[rating,setRating]=useState([]);
 
   let reviews = [];
   let customers = [];
@@ -21,20 +23,37 @@ export default function CustomerReviews(props) {
     Review,
     Stars,
   };
+  let itemID = "";
+  let averageRating = "";
+  let itemWithRatings = {
+    itemID,
+    averageRating,
+  };
+  let itemsWithRatings = [];
+  
+  let objectId = "";
 
+  const [items,setItems] = useState([]);
+  const [ratings, setRatings] = useState([]);
   let reviewWithCustomers = [];
 
   useEffect(() => {
     function getReview() {
+      objectId = localStorage.getItem("ItemID");
       axios
         .get("http://localhost:8070/review/get")
         .then((res) => {
           //setReview(res.data);
+
+          const ItemId = props.match.params.id;
           const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === "6120b61011f8374ae1fa904f"
+            (itemrev) => itemrev.itemid === ItemId
+    
+            // ItemID
+           
           );
           reviews = filter;
-
+          console.log(reviews)
           axios
             .get("http://localhost:8070/Customer/getAll")
             .then((res) => {
@@ -55,7 +74,7 @@ export default function CustomerReviews(props) {
       for (let i = 0; i < reviews.length; i++) {
         j = 0;
         for (j = 0; j < customers.length; j++) {
-          if (reviews[i].customerid == customers[j]._id) {
+          if (reviews[i].customerid === customers[j]._id) {
             reviewWithCustomer = {
               customerName: customers[j].firstName,
               customerImage: customers[j].userImage,
@@ -70,21 +89,105 @@ export default function CustomerReviews(props) {
 
       setabc(reviewWithCustomers);
     }
+    
+    function displayRating(){
 
+      axios
+
+      .get("http://localhost:8070/review/get")
+
+      .then((res) => {
+
+        setRating(res.data);
+
+        //console.log(ratings[0].itemid)
+
+        console.log(res.data);
+
+      })
+
+      .catch((err) => {
+
+        alert(err);
+
+      });
+
+    }
+    displayRating();
+    
     getReview();
+
+    
   }, []);
 
+  
 
 
- 
+  useEffect(()=>{
+    calculateStarRating()
+  })
 
+  useEffect(()=>{
+    calculateStarRating()
+  })
+
+  function calculateStarRating(){
+
+    abc.map((item,index)=>{
+        console.log(item.Stars)
+        displayStarRating(index,item.Stars);
+    })
+      // displayStarRating(i,average);
+    // }
+
+  }
+
+  function displayStarRating(id,totalAverage){
+
+    let txt = "";
+
+      if(isNaN(totalAverage)){
+
+        txt = "No Ratings yet!";
+
+        document.getElementById(id +'stars').innerHTML = txt;
+
+        document.getElementById(id +'stars').style.color = "#FF0000";
+
+      }else{
+
+      
+
+      for(let j = 0; j < totalAverage; j++){
+
+        txt += '<span class="fa fa-star checked"></span>';
+
+      }
+
+      for(let j = 0; j < (5 - totalAverage); j++){
+
+        txt += '<span class="fa fa-star"></span>';
+
+      }
+
+      document.getElementById(id +'stars').innerHTML = txt +'  ';
+
+     }
+
+  }
+  
   return (
-    <div style={{ padding: "20px 15px 10px 50px" }}>
-        <div className="container">
-          <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
+    <div style={{ padding: "20px 15px 10px 50px", backgroundColor:'#F9F9F9'}}>
+         
+        
+          <div class="row" style={{ width: "100%", alignItems: "center", borderRadius: "10px",backgroundColor:'#F9F9F9' }} >
+            <div>
+            <button type="button"style={{fontSize:'14px', borderRadius:'15px'}} class="btn btn-info" onClick={() => history.goBack()} ><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+          </div>
+          <div className="container" style={{backgroundColor:'#F9F9F9', width:'95%'}}>
             <br />
-            <h1 style={{ textAlign: "center", color: "black" }}>
-              {" "}
+            <h1 style={{ textAlign: "center", color: "black" ,textShadow:'3px 3px #CECECE '}}>
+             
               Customer Reviews
             </h1>
             <h5 style={{ textAlign: "center", color: "black" }}>
@@ -92,31 +195,35 @@ export default function CustomerReviews(props) {
             </h5>
 
             <div>
-            
-              {abc.map((reviewss) => {
+               <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+               {/* <h2 id="stars"></h2> */}
+              {abc.map((reviewss,index) => {
                 return (
-                  <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+                 
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
-                      <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+                      <div class="Regular shadow" style={{width: "70%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white', padding:'10px 10px 10px 10px'}}>
                         <div class="card-body">
                           <center>
-                          <img src={a1}
-                          // {"/Images/"+reviewss.customerImage[0]} 
-                          style={{ width: "65%", alignItems: "center" }}/>
-                          <br/>
+                          <img alt={a1} src={"/Images/"+reviewss.customerImage  }
+                          style={{ width: "65%", height:'80%', maxHeight:'100px',alignItems: "center", borderRadius:400/2 }}/>
+                          <br/><br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
-                          </center>
                           
                           
+                          <div id = {index +'stars'} class="card-text">
 
-                          <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
-                            <span id ='review'>{reviewss.Stars}/5</span><br/>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span><span> </span> 
-                          </div>
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star checked"></span>
+
+                                    <span class="fa fa-star"></span><span> </span> 
+
+                                    </div>
+                                    </center>
                           <p style={{ textAlign: "center", fontSize: "16px"}}>
                             {reviewss.Review}
                           </p>
@@ -124,11 +231,11 @@ export default function CustomerReviews(props) {
                       </div>
                     </div>
 
-                  </div>
+                  
               
                 );
               })}
-              
+              </div>
             </div>
             
           </div>

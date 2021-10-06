@@ -22,8 +22,8 @@ export default function RegSellers(props) {
   }, []);
 
   function showmore(id){
-    console.log(id);
-    props.history.push("/admin/reg/sellers/view/" + id);
+   // console.log(id);
+    props.history.push("/Admin/viewSellerProfile/" + id);
 };
 
 
@@ -74,18 +74,23 @@ function filterorgSellers(data, orgSellerSearch){
     
 }
 
+function requests(){
+  props.history.push("/Admin/AllSellersRequest");
+}
 
   return (
     <div className="container">
-      <h1>Registered Sellers</h1><br/>
+      <br/><br/>
+      <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
+      <h1>Registered Sellers</h1>
       
-      <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
-        
-        <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"
+      <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
+      
+        <input type="search"  class="form-control rounded" placeholder="Search by company name or owner name...." aria-label="Search"
           aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
-        
+      
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>

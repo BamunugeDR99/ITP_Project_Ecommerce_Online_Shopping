@@ -7,7 +7,6 @@
 	
 }
 
-
 .CustomerList #li{
 	
 	
@@ -42,7 +41,7 @@
   }
 
   .CustomerList #iconS {
-     position: absolute;;
+     position: absolute;
     color: #000000;
 	bottom: 5px;
     right: 20px;
@@ -52,6 +51,8 @@
 .CustomerList .tablex{
 	width: 100% !important;
 	border-collapse: collapse;
+	
+	
 }
 
 .CustomerList .tablex td,.tablex th{

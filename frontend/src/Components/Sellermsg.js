@@ -28,12 +28,14 @@ export default function SellermMsg(props){
   
 	useEffect(() => {
 	  function getContactsel() {
+
+		const objectID = localStorage.getItem("SellerID")
 		axios
 		  .get("http://localhost:8070/contactsel/get")
 		  .then((res) => {
 			contactsels=(res.data);
 			const filter = res.data.filter(
-			  (selmsg) => selmsg.sellerid === "613b33772b517a0f50634c8e"
+			  (selmsg) => selmsg.sellerid === objectID
 			);
 			contactsels = filter;
 			console.log(contactsels);
@@ -58,7 +60,7 @@ export default function SellermMsg(props){
 		for (let i = 0; i < contactsels.length; i++) {
 		  j = 0;
 		  for (j = 0; j < customers.length; j++) {
-			if (contactsels[i].customerid == customers[j]._id) {
+			if (contactsels[i].customerid === customers[j]._id) {
 			  contactselWithCustomer = {
 				customerName: customers[j].firstName,
 				customerImage: customers[j].userImage,
@@ -81,7 +83,7 @@ export default function SellermMsg(props){
     axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
     {
         // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id != id);
+        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id !== id);
         setContactsel(afterDeleteContactsel);
     }).catch((err) =>{
         alert(err);
@@ -104,43 +106,36 @@ export default function SellermMsg(props){
 	 </h5>
 
 	 <div>
-	 
+	 <div className="row" style={{margin: "50px 20px 20px 30px",}}>
 	   {abc.map((reviewss) => {
 		 return (
-		   <div className="row" style={{margin: "50px 20px 20px 30px",}}>
+		   
 			 <div class="col-3" style={{ paddingBottom:'30px'}}>
-			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "320px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
-				   <img src={a1}
-				   // {"/Images/"+reviewss.customerImage[0]} 
+				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
 				   style={{ width: "65%", alignItems: "center" }}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
-				   </center>
 				   
 				   
-
-				   <div id = 'stars'class="card-text" style={{ textAlign: "center", padding:'0px 0px 10px 0px' }}>
-					 <span id ='review'>{reviewss.Stars}/5</span><br/>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star checked"></span>
-					 <span class="fa fa-star"></span><span> </span> 
-				   </div>
+				   
 				   <p style={{ textAlign: "center", fontSize: "16px"}}>
 					 {reviewss.Contactsel}
 				   </p><br/>
+				  
 					<button onClick = {()=> deletee(contactsel._id)} className="btn btn-danger" type="button">Remove</button>
+					</center>
 				 </div>
 			   </div>
 			 </div>
 
-		   </div>
+		   
 	   
 		 );
 	   })}
+	   </div>
 	   
 	 </div>
 	 
@@ -153,47 +148,4 @@ export default function SellermMsg(props){
 }
 
 
-
-{/* <section className="rev">
-	<div className="container-xl">
-		<div className="table-responsive">
-			<div className="table-wrapper">
-				<div className="table-title">
-							<h2><center><b>Customer Messages</b></center></h2>
-				</div>
-				<table className="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>Customer Name</th>
-							<th>Customer Photo</th>
-							<th>Customer Email</th>
-							<th>Message</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					{abc.map((reviewss) => {
-						return(
-
-					<tbody>
-						<tr>
-							<td>{reviewss.customerName}</td>
-							<td>
-								<img src={"/Images/" +reviewss.customerImage.Images[0]} className="img"/>
-							</td>
-							<td>{reviewss.Email}</td>
-							<td>{reviewss.Contactsel}</td>
-							<td>
-							<button onClick = {()=> deletee(contactsel._id)} className="button2" type="button">Remove</button>
-							</td>
-						</tr>
-					</tbody>
-
-					 )
-					})}	
-
-				</table>
-			</div>
-		</div>        
-	</div>
-</section> */}
 

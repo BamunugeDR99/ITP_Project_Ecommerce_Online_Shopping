@@ -79,6 +79,8 @@ app.use("/Admin", adminRouter);
 
 
 
+const OrdersRouter = require("./routes/OrdersRoute.js");
+app.use("/Orders", OrdersRouter);
 
 
 const connection = mongoose.connection;

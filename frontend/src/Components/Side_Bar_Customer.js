@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
+import React from "react";
 import { Link } from "react-router-dom";
 import '../Js/sidebar_script.js'
 // import '../Css/Side_bar_styles.css';
@@ -46,12 +44,12 @@ export default function Side_bar_Customer(props) {
                 <i className="bx bx-credit-card nav_icon"></i>{" "}
                 <span className="nav_name">MY WALLET</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Customer/paymentHistory" className="nav_link">
                 {" "}
                 <i className="bx bx-history nav_icon"></i>{" "}
                 <span className="nav_name">PURCHASE HISTORY</span>{" "}
               </Link>{" "}
-              <Link to="#" className="nav_link">
+              <Link to="/Customer/MyShoppingCart" className="nav_link">
                 {" "}
                 <i className="bx bx-cart nav_icon"></i>{" "}
                 <span className="nav_name">SHOPPING CART</span>{" "}
