@@ -293,8 +293,7 @@ export default function UpdateProfile(props){
 		Swal.fire(
 			'Success',
 			'Your Profile has been successfully updated',
-			'success'
-			
+			'success'	
 		  )
 		props.history.push("/Customer/MyProfile");
 		window.location.reload();
