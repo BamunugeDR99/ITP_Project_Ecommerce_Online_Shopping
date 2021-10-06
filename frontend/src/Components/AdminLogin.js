@@ -112,7 +112,9 @@ export default function AdminLogin(props){
 
                     <div className="col">
                 
-                        <Link to="">Forgot Password?</Link>
+                        <Link to="">Forgot Password?</Link><br></br>
+                        <Link to="/">Initial Page</Link>
+
                     </div>
                  
                 </form>

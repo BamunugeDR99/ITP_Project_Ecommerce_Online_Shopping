@@ -31,7 +31,7 @@ export default function SideBarAdmin(props) {
               <i className="bx bx-grid-alt nav_icon"></i>{" "}
               <span className="nav_name" >ITEMS</span>{" "}
             </Link>
-            <Link to="/addItem" className="nav_link">
+            <Link to="/Admin/SelReport" className="nav_link">
               {" "}
               <i className="bx bx-user nav_icon"></i>{" "}
               <span className="nav_name" >REVIEWS</span>{" "}

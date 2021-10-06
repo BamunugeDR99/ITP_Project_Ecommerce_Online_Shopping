@@ -19,7 +19,7 @@ router.route("/addItems").post((req, res) => {
   const Category = req.body.Category;
   const ItemAvailabilityStatus = req.body.ItemAvailabilityStatus;
   const DiscountStatus = req.body.DiscountStatus;
-  const FinalPrice = req.body.FinalPrice;
+  const FinalPrice = req.body.Price;
   const DiscountPrecentage = req.body.DiscountPrecentage;
   const SellerID = req.body.SellerID;
 
@@ -133,7 +133,7 @@ router.route("/update/:id").put(async (req, res) => {
     Category,
     ItemAvailabilityStatus,
     DiscountStatus,
-    FinalPrice,
+    FinalPrice : Price,
     DiscountPrecentage,
     SellerID
   };

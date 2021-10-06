@@ -19,8 +19,8 @@ export default function InitialPage(props) {
             <div class="hero-image" >
                 <div class="hero-text">
                  <br/><br/>   {/* <img src={back}/> */}
-                    <h1 style={{ fontSize: '100px', fontFamily:"Arial"}}>Tech Scope</h1>
-                    <h3 style={{ fontSize: '40px'}}>See what's selling best !</h3>
+                    {/* <h1 style={{ fontSize: '100px', fontFamily:"Arial"}}>Tech Scope</h1>
+                    <h3 style={{ fontSize: '40px'}}>See what's selling best !</h3> */}
 
                 </div>
                 <div class="SigninButtons">

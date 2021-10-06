@@ -74,21 +74,25 @@ function filterorgSellers(data, orgSellerSearch){
     
 }
 
+function requests(){
+  props.history.push("/Admin/AllSellersRequest");
+}
 
   return (
     <div className="container">
       <br/><br/>
+      <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
       <h1>Registered Sellers</h1>
       
       <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
-        
+      
         <input type="search"  class="form-control rounded" placeholder="Search by company name or owner name...." aria-label="Search"
           aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
-        
+      
         <br/><br/>
-      <table class="table table-hover table-dark"style={{ width: "92%"}}>
+      <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>
           <tr>
             <th scope="col">COMPANY NAME</th>
@@ -105,9 +109,9 @@ function filterorgSellers(data, orgSellerSearch){
             <tbody style={{ textAlign: "center"}}>
               <tr>
                 <th>{orgSeller.companyname}</th>
-                <td>{orgSeller.ownername}</td>
-                <td>{orgSeller.year}</td>
-                <td>{orgSeller.email}</td>
+                <th>{orgSeller.ownername}</th>
+                <th>{orgSeller.year}</th>
+                <th>{orgSeller.email}</th>
                 
                 <td >
                   <button
