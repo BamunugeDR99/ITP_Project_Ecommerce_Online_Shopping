@@ -12,7 +12,7 @@ router.route("/addOrder").post((req,res)=>{
         OrderID,
         SellerID,
         CustomerID,
-        Quantity,
+        OQuantity,
         TransitTime,
         Items 
 
@@ -24,7 +24,7 @@ router.route("/addOrder").post((req,res)=>{
         OrderID,
         SellerID,
         CustomerID,
-        Quantity,
+        OQuantity,
         TransitTime,
         Items 
 
@@ -55,7 +55,7 @@ router.route("/updateOrder/:id").put(async (req, res) => {
         OrderID,
         SellerID,
         CustomerID,
-        Quantity,
+        OQuantity,
         TransitTime,
         Items 
 
@@ -67,7 +67,7 @@ router.route("/updateOrder/:id").put(async (req, res) => {
         OrderID,
         SellerID,
         CustomerID,
-        Quantity,
+        OQuantity,
         TransitTime,
         Items 
 
