@@ -145,6 +145,8 @@ import SinglePackage_AdminView from './Components/Admin_single_packageView';
 import SellerView from './Components/SellerView';
 import RegSellers from './Components/RegSellers';
 import ItemsForSpecificSeller from './Components/ItemsForSpecificSeller';
+import CustomerOrders from './Components/CustomerOrders';
+//import SellerOrders from './Components/CustomerOrders';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -179,7 +181,7 @@ function App() {
       <Route path = "/Customer/WriteReview/:id" exact component = {WriteReview}/>
 
       <Route path = "/Customer/PaycardID" exact component = {PaymentHistoryCard}/>
-
+      <Route path = "/Customer/Orders" exact component = {CustomerOrders}/>
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
         {/* id  */}
@@ -212,6 +214,7 @@ function App() {
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
       <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
+     
       <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
       {/* <Route path = "/Seller" component = {Footer_customer}/> */}
       <Route path = "/Update/:id" exact component = {SellerUpdate}/>

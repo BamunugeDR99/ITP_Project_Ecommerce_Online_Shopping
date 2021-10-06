@@ -22,7 +22,7 @@ const OrderSchema = new Schema({
         required: true 
     },
 
-    Quantity : {
+    OQuantity : {
         type:String,
         required: true 
     },

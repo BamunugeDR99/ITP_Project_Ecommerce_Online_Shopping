@@ -85,6 +85,7 @@ export default function AdminAllPackages(props) {
                 let filteredData = res.data.filter((item) => item.seller === SellerID)
 
                 filterContent(filteredData, userSearch);
+        
 
             })
             .catch((err) => {
