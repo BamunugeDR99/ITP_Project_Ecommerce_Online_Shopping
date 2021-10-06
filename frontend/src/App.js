@@ -265,6 +265,7 @@ function App() {
         />
         <Route path="/Seller/MyPackages" exact component={AllPackages} />
         <Route path="/Seller/MyProfile" exact component={SellerProfile} />
+        <Route path="/Seller/Test2" exact component={Test2} />
         <Route path="/Seller/ItemReviews/:id" exact component={SellerReview} />
         <Route
           path="/Seller/updateProfile/:id"
