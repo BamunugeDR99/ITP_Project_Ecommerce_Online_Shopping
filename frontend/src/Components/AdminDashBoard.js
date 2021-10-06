@@ -184,7 +184,7 @@ export default function AdminDashBoard(props) {
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "#ffffff", backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d8896b 74%)"}}>
+    <div class="card" style={{backgroundColor: "rgb(207,205,66)", background: "linear-gradient(90deg, rgba(207,205,66,1) 3%, rgba(255,255,255,1) 100%)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/purchase-order.png"  style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
       <h3>Orders</h3>
@@ -194,7 +194,7 @@ export default function AdminDashBoard(props) {
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "#fffffc", backgroundImage: "linear-gradient(315deg, #fffffc 0%, #beb7a4 74%)"}}>
+    <div class="card" style={{backgroundColor: "rgb(182,182,179)", background: "linear-gradient(90deg, rgba(182,182,179,1) 3%, rgba(255,255,255,1) 100%)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/fine-print.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
       <h3>Reports</h3>
