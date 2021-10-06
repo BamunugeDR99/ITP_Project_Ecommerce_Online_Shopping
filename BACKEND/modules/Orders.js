@@ -30,7 +30,8 @@ const OrderSchema = new Schema({
 
     TransitTime : {
         type:Date,
-        required: true 
+        required: true,
+        default:new Date() 
     },
 
 
@@ -87,6 +88,9 @@ const OrderSchema = new Schema({
         DiscountPrecentage : String,
 
         }]
+
+
+
 
     
 

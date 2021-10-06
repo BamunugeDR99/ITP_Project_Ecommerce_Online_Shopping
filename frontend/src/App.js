@@ -194,6 +194,7 @@ function App() {
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
         <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
+        <Route path="/Customer/Orders" exact component={CustomerOrders} />
         <Route
           path="/Customer/editCard/:id"
           exact
@@ -267,6 +268,7 @@ function App() {
         <Route path="/Seller/MyProfile" exact component={SellerProfile} />
         <Route path="/Seller/Test2" exact component={Test2} />
         <Route path="/Seller/ItemReviews/:id" exact component={SellerReview} />
+        <Route path="/Seller/Orders" exact component={SellerOrders} />
         <Route
           path="/Seller/updateProfile/:id"
           exact
