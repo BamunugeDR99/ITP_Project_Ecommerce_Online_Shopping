@@ -85,6 +85,7 @@ function SignUp(props) {
 
     if(firstName.length === 0){
 
+      
       Swal.fire('First Name is required')
        flag1 = 0;
     
