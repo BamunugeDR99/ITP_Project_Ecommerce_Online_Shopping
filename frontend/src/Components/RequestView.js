@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import emailjs from "emailjs-com";
 import "../Css/sellerview.css";
+import AllItemsFiltered from "./AllItemsFiltered";
 
 export default function RequestView(props) {
 
@@ -39,10 +40,7 @@ export default function RequestView(props) {
         axios
           .delete("http://localhost:8070/seller/delete/" + id)
           .then((res) => {
-            document.getElementById("txt").innerHTML =
-              "Seller Deleted Successfully!";
-            const afterDeleteSeller = seller.filter((seller) => seller._id !== id);
-            setsellers(afterDeleteSeller);
+            
           })
           .catch((err) => {
             alert(err);
@@ -109,25 +107,44 @@ export default function RequestView(props) {
         axios
         .post("http://localhost:8070/orgseller/add", newSeller)
         .then(() => {
-            alert("Added");
-          // emailjs
-          //   .send(
-          //     "service_amyey5b", //your service id
-          //     "template_fy5ukg1", // template id
-          //     emailContent,
-          //     "user_yX9pt2mdVNlUhiI2lw7tv" // user access
-          //   )
-          //   .then(
-          //     (result) => {
-          //       console.log(result.text);
-          //       alert("send successfully");
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Request accepted successfully!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
+          
+          emailjs
+            .send(
+              "service_amyey5b", //your service id
+              "template_fy5ukg1", // template id
+              emailContent,
+              "user_yX9pt2mdVNlUhiI2lw7tv" // user access
+            )
+            .then(
+              (result) => {
+                console.log(result.text);
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Email has been sent successfully!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+                objectID = props.match.params.id;
+                deleteSeller(objectID);
+
+                
+          props.history.push("/Admin/AllSellersRequest");
   
-          //       // document.getElementById("verifyBtn").disabled = false;
-          //     },
-          //     (error) => {
-          //       console.log(error.text);
-          //     }
-          //   );
+                // document.getElementById("verifyBtn").disabled = false;
+              },
+              (error) => {
+                console.log(error.text);
+              }
+            );
          
         })
         .catch((err) => {
@@ -162,6 +179,28 @@ export default function RequestView(props) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+  }
+
+
+  function declineSeller(id){
+
+    Swal.fire({
+      title: 'Do you want to Decline the Request ?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('warning', '', 'Declined')
+        deleteSeller(id);
+        props.history.push("/Admin/AllSellersRequest");
+        
+      } else if (result.isDenied) {
+        Swal.fire('Cancelled!', '', 'info')
+      }
+    })
   }
 
   return (
@@ -267,7 +306,7 @@ export default function RequestView(props) {
 						<div class="float-center">
             
             <button type="button" class="btn btn-primary" onClick={() => confirmRequest(seller._id)}>ACCEPT</button><span> </span>
-						<button type="button"  onClick={() => deleteSeller(seller._id)} class="btn btn-danger">DECLINE</button>
+						<button type="button"  onClick={() => declineSeller(seller._id)} class="btn btn-danger">DECLINE</button>
 							<span> </span>
 							</div>
               <p id = {seller._id} class="card-text">
