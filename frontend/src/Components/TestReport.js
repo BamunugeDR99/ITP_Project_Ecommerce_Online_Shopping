@@ -13,9 +13,9 @@ export default function TestReport(props) {
     //   alert("a")
     let objarr = [];
     let obj = {
-      name : "sonal",
+      name : "Dulan",
       age : "20",
-      address : "athurugiriya",
+      address : "Homagama",
       phone : "074663",
     };
     objarr.push(obj);

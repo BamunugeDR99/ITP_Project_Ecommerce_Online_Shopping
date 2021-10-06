@@ -11,11 +11,12 @@ router.route("/add").post((req, res) => {
   const age = parseInt(req.body.age);
   //const age = req.body.age;
   const gender = req.body.gender;
-
+  
   const newStudent = new Student({
     name,
     age,
     gender,
+    
   });
 
   newStudent
@@ -26,6 +27,7 @@ router.route("/add").post((req, res) => {
           name: newStudent.name,
           gender: newStudent.gender,
           age: newStudent.age,
+          date : newStudent.date
         },
       });
     })

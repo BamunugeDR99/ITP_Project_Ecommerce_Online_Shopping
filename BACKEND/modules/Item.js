@@ -100,6 +100,12 @@ const ItemSchema = new Schema({
     SellerID : {
         type : String,
         required : false,
+    },
+
+    AddedDate : {
+        type : Date,
+        required: true,
+        default : new Date()
     }
 
 
