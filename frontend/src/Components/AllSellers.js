@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import emailjs from "emailjs-com";
+
 //import {ClipLoader} from "react-spinners";
 
 export default function AllRequests(props) {
@@ -56,7 +56,7 @@ function filtersellers(data, sellerSearch){
 
     let result = data.filter((post) =>
 
-      post.companyname.toLowerCase().includes(sellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(sellerSearch.toLowerCase())
+      post.companyname.toLowerCase().includes(sellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(sellerSearch.toLowerCase()) || post.year.toLowerCase().includes(sellerSearch.toLowerCase()) || post.email.toLowerCase().includes(sellerSearch.toLowerCase())
       
 
     );
@@ -79,10 +79,11 @@ function filtersellers(data, sellerSearch){
 
   return (
     <div className="container">
-      <h1>Seller Requests</h1>
-      <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
+      <h1>Seller Requests</h1><br/>
+
+      <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
         
-        <input type="search"  class="form-control rounded" placeholder="Search by company name or owner name...." aria-label="Search"
+        <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"
           aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
