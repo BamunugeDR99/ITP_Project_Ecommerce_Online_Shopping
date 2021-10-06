@@ -3,7 +3,6 @@ module.exports = (objarr) => {
   
 
     return `
-      
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -24,11 +23,14 @@ module.exports = (objarr) => {
          .header2{
             font-family: Comic Sans MS, Comic Sans, cursive;
             margin-top: -20px;
-             font-size: 20px;
+            font-size: 20px;
             
          }
     
-     
+         .mainFooter{
+            text-align: right;
+         }
+         
     
         </style>
     </head>
@@ -41,10 +43,14 @@ module.exports = (objarr) => {
       </header>
     <body>
      
-    
+    <!-- your code -->
          
      
     </body>
+    <footer>
+        <hr>
+        <h4 class = "mainFooter">2021 &copy;TechScope Ltd.</h4>
+    </footer>
     </html>
       `;
   };
