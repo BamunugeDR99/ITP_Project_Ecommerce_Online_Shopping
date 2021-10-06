@@ -140,6 +140,7 @@ import CustomerMsg from './Components/CustomerMsg';
 
 import HomeTest from './Components/HomeTest';
 import TestHome from './Components/TestHome';
+import Test2 from './Components/Test2';
 
 function App() {
   // ReactSession.setStoreType("localStorage");
@@ -206,6 +207,8 @@ function App() {
       <Route path = "/Seller/CreatePackage" exact component = {CreatePackage1}/>
       <Route path = "/Seller/CreatePackageForm" exact component = {CreatePackage2}/>
       <Route path = "/Seller/UpdatePackage/:id" exact component = {UpdatePackages}/>
+
+      <Route path = "/Seller/Test2" component = {Test2}/>
       
       <Route path = "/Seller/UpdateItem/:id" exact component = {Update_Items}/>
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
@@ -218,7 +221,7 @@ function App() {
       <Route path = "/Seller/sellerPassword" exact component = {SellerPassword}/>
       <Route path = "/Seller" component = {Footer_customer}/>
     
-    
+      
     {/* Admin Route*/}
 
     <Route path = "/CustomerMsg" component = {CustomerMsg}/>
@@ -230,6 +233,9 @@ function App() {
     <Route path = "/Admin/Home" exact component = {AdminDashBoard}/>
     <Route path = "/Admin/Sellers" exact component = {AllRequests}/>
     <Route path = "/Admin/AllSellersRequest" exact component = {AllSellers}/>
+
+    
+
     <Route path = "/Admin/Customers" exact component = {CustomerList}/>
     <Route path = "/Admin/Admins" exact component = {AllAdmins}/>
     <Route path = "/Admin/AddAdmin" exact component = {AddNewAdmin}/>
@@ -246,6 +252,7 @@ function App() {
 
     <Route path = "/Admin" component = {Footer_customer}/>
     
+   
 
     </div>
   </Router>
