@@ -53,6 +53,12 @@ const OrgSellerSchema = new Schema (
             type: String,
             required: true
         },
+
+        date : {
+            type: Date,
+            required: true,
+            default: new Date()
+        }
     }
 )
 
