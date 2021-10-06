@@ -11,6 +11,21 @@ export default function UpdateProfile(props){
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [NpasswordShown, setNPasswordShown] = useState(false);
 	const [CNpasswordShown, setCNPasswordShown] = useState(false);
+
+	const [picture, setPicture] = useState("");
+	const [imgData, setImgData] = useState("");
+	const onChangePicture = e => {
+	  if (e.target.files[0]) {
+		console.log("picture: ", e.target.files);
+		setPicture(e.target.files[0]);
+		const reader = new FileReader();
+		reader.addEventListener("load", () => {
+		  setImgData(reader.result);
+		});
+		reader.readAsDataURL(e.target.files[0]);
+	  }
+	};
+  
 	
 
 	// Password toggle handler
@@ -318,25 +333,44 @@ export default function UpdateProfile(props){
 	  {
 		//   alert("Customer Deleted Successfully!");
 
-		Swal.fire({
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+			  confirmButton: 'btn btn-success',
+			  cancelButton: 'btn btn-danger'
+			},
+			buttonsStyling: false
+		  })
+		  
+		  swalWithBootstrapButtons.fire({
 			title: 'Are you sure?',
-			text: "You won't be able to revert this account!",
+			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete it!'
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonText: 'No, cancel!',
+			reverseButtons: true
 		  }).then((result) => {
 			if (result.isConfirmed) {
-			  Swal.fire(
+
+			  swalWithBootstrapButtons.fire(
 				'Deleted!',
-				'Your Profile Has Been Successfully Deleted!',
+				'Your file has been deleted.',
 				'success'
-				
 			  )
 			  props.history.push("/CustomerRegistration");
+			} else if (
+			  /* Read more about handling dismissals below */
+			  result.dismiss === Swal.DismissReason.cancel
+			) {
+			  swalWithBootstrapButtons.fire(
+				'Cancelled',
+				'Your imaginary file is safe :)',
+				'error'
+			  )
 			}
 		  })
+
+		 
 		 
 		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
 		  //setCustomer(afterDeleteCustomer);
