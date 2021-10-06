@@ -300,6 +300,7 @@ function App() {
         <Route path="/Admin/Sellers" exact component={RegSellers} />
         <Route path="/Admin/AllSellersRequest" exact component={AllSellers} />
         <Route path="/Admin/Customers" exact component={CustomerList} />
+        <Route path="/Admin/Customers/Details/:id" exact component={CustomerDetails} />
         <Route path="/Admin/Admins" exact component={AllAdmins} />
         <Route path="/Admin/AddAdmin" exact component={AddNewAdmin} />
         <Route path="/Admin/Items" exact component={AView_all_the_items} />
