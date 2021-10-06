@@ -82,6 +82,8 @@ app.use("/Admin", adminRouter);
 const OrdersRouter = require("./routes/OrdersRoute.js");
 app.use("/Orders", OrdersRouter);
 
+const PackageOrdersRouter = require("./routes/PackageOrderRoute.js");
+app.use("/PackageOrders", PackageOrdersRouter );
 
 const connection = mongoose.connection;
 connection.once("open", () => {
