@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/studentReport");
 let Student = require("../modules/Student");
 
 //Insert
@@ -98,41 +100,7 @@ router.route("/get/:id").get(async (req, res) => {
     });
 });
 
-// router.route("/getG/:id").get(async (req,res) =>{
-//     let userID = req.params.id;
-//     const user = await Student.findOne({name : userID}).then((studentsss) =>{
-//         // res.status(200).send({status:"User fetched"});
-//         res.json(studentsss);
-//     }).catch((err) =>{
-//         console.log(err.message);
-//         res.status(500).send({status : "Error with get user", error : err.message});
-//     })
-// })
 
-// router.post("/login", (req, res) => {
-//   const { name, age } = req.body;
-//   // simple validation
-//   if (!name || !age) {
-//     return res.status(400).json({ msg: "please enter all the fields" });
-//   }
-
-//   // check for existing user
-
-//   Student.findOne({ name }).then((studentsss) => {
-//     if (!studentsss)
-//       return res.status(400).json({ msg: "user does not exists" });
-
-//     if (!(password == studentsss.password)) {
-//       return res.json({ msg: "Invalid credentials entered" });
-//     }
-//     res.json({
-//       studentsss: {
-//         name: studentsss.name,
-//         age: studentsss.age,
-//         gender: studentsss.gender,
-//       },
-//     });
-//   });
 
 
     
@@ -152,6 +120,34 @@ router.post("/getByName", (req, res) => {
     });
   });
   
+
+
+
+
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+  pdf.create(pdfTemplate(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+    if(err){
+      res.send(Promise.reject());
+    }
+
+    res.send(Promise.resolve());
+  });
+});
+
+// get PDF
+router.get('/fetch-pdf',(req,res)=>{
+  res.sendFile(`${__dirname}/result.pdf`)
+            // absolute directory
+})
+
+
+
+
+
+
+
 
 
 module.exports = router;
