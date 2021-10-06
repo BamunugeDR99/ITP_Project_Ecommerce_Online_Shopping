@@ -66,6 +66,8 @@ import UpdateProfile from './Components/UpdateProfile';
 import './Css/update.css';
 import ForgotP from './Components/ForgotP';
 import CustomerDetails from './Components/CustomerDetails'
+import test1 from './Components/test1';
+
 
 //import ForgotP from './Components/ForgotP';
 // import './css/forgotp.css';
@@ -182,6 +184,11 @@ function App() {
 
       <Route path = "/Customer/ItemDetails/:id" exact component = {ItemView}/> 
       <Route path = "/Customer/ItemReviews/:id" exact component = {CustomerReviews}/> 
+
+
+      <Route path = "/Customer/test1" exact component = {test1}/> 
+
+
         {/* id  */}
       {/* // from my item incomplete */}
       <Route path = "/Customer/paymentHistory" exact component = {PaymentHistory}/>
