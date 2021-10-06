@@ -134,7 +134,7 @@ export default function AdminDashBoard(props) {
   <div class="column">
     <div class="card"  style={{backgroundColor:" rgb(255,173,110)", background: "linear-gradient(90deg, rgba(255,173,110,1) 3%, rgba(255,255,255,1) 100%)"}}>
     
-    <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
+    <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"80px"}}/>
       <h3>Total Sellers</h3>
       <p><b>{sellerCount}</b></p>
      

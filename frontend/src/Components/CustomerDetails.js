@@ -39,7 +39,7 @@ function UserProfile(props){
 
   function Back(){
 
-    props.history.push("/Customer/CustomerList");
+    props.history.push("/Admin/Customers");
   }
 
     return(

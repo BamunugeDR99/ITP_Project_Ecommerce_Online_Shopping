@@ -124,52 +124,55 @@ export default function ShoppingCart(props) {
 
 
 
-    function getItemss(allItems, items) {
-
-      let j = 0;
-
-      for (let i = 0; i < items.length; i++) {
-
-        j = 0;
-
-        for (j = 0; j < allItems.length; j++) {
-
-          if (items[i] === allItems[j]._id) {
-
-
-            ItemDetails = {
-
-              ItemID : allItems[j]._id,
-              Name: allItems[j].Item_name,
-              Brand: allItems[j].Brand,
-              Model: allItems[j].Model,
-              Specification: allItems[j].Specification,
-              //Color = allItems[i].Color_family[1],
-              SKU: allItems[j].Stock_keeping_unit,
-              fPrice: allItems[j].FinalPrice,
-              itemImage : allItems[j].Images[1]
-
-            };
-
-
-           // console.log(allItemsTotal);
-           setAllItemsTotal(Number(allItemsTotal) + Number(allItems[j].FinalPrice));
-            allItemsTotal = (Number(allItemsTotal) + Number(allItems[j].FinalPrice))
-            AllItemsArr.push(ItemDetails);
-
-          }
-        }
-      }
-
-      setgItems(AllItemsArr);
-
-    }
-
     getCart();
 
 
 
   }, [])
+
+
+  
+
+  function getItemss(allItems, items) {
+
+    let j = 0;
+
+    for (let i = 0; i < items.length; i++) {
+
+      j = 0;
+
+      for (j = 0; j < allItems.length; j++) {
+
+        if (items[i] === allItems[j]._id) {
+
+
+          ItemDetails = {
+
+            ItemID : allItems[j]._id,
+            Name: allItems[j].Item_name,
+            Brand: allItems[j].Brand,
+            Model: allItems[j].Model,
+            Specification: allItems[j].Specification,
+            //Color = allItems[i].Color_family[1],
+            SKU: allItems[j].Stock_keeping_unit,
+            fPrice: allItems[j].FinalPrice,
+            itemImage : allItems[j].Images[1]
+
+          };
+
+
+         // console.log(allItemsTotal);
+         setAllItemsTotal(Number(allItemsTotal) + Number(allItems[j].FinalPrice));
+          allItemsTotal = (Number(allItemsTotal) + Number(allItems[j].FinalPrice))
+          AllItemsArr.push(ItemDetails);
+
+        }
+      }
+    }
+
+    setgItems(AllItemsArr);
+
+  }
 
 
   function getPackagess(allPackages, packages) {
@@ -401,38 +404,51 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 
 
+//Remove Items From the Cart
 
   function removeItems(id, index){
 
     console.log(index);
 
-     console.log(id);
+     console.log(`Item ID : ${id}`);
     let Citems = [];
 
-    const customerID = "6144a56b88cbe1257c8a887b";
+    const customerID = localStorage.getItem("CustomerID");
+    console.log(customerID);
       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
 
         console.log(res.data);
         Citems = res.data.ItemIDs;
-        console.log(Citems);
-
-        // Citems.map((pack) => {
-
-        //     console.log(pack);
-
-        // })
-        // const remainingItems = Citems.filter((pack) =>{
+        console.log(`Item IDs : ${Citems}`);
 
 
-        //   pack === id 
-        //    // pack.includes(id);
-    
-        // });
-    
+        const remainingItems = Citems.filter(
+          (pack) => pack !== id
+      );
 
-       // let newARRR = Citems.splice(index, 1);
-        //console.log(newARRR);
-        console.log(Citems.splice((index+1), 1));
+
+      console.log(`Remaining Items : ${remainingItems}`);
+
+        //Loop to set items
+
+
+
+        axios.get("http://localhost:8070/items/getItems").then((res) => {
+
+          console.log(res.data);
+          Allitems = res.data;
+
+          getItemss(Allitems, remainingItems);
+
+        }).catch((err) => {
+
+
+        })
+
+  
+
+
+
 
 
   }).catch((err) =>{
@@ -702,10 +718,10 @@ return (
                     Temporary Amount
                     <input type = "text" id = 'GrandTotal' value ={GrandTotal} readOnly/>
                   </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                  {/* <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                     Discount
                     <span>LKR 2333.00</span>
-                  </li>
+                  </li> */}
                   <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                     <div>
                       <strong>The Total Amount of</strong>
@@ -713,7 +729,7 @@ return (
                         <p class="mb-0">(including VAT)</p>
                       </strong>
                     </div>
-                    <span><strong>LKR 50000.00</strong></span>
+                    <span><strong>{GrandTotal + (100  )}</strong></span>
                   </li>
                 </ul>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 import "../Css/sellerview.css";
 
@@ -27,17 +28,40 @@ export default function SellerView(props) {
     }, );
 
     function deleteSeller(id) {
-        axios
+
+      Swal.fire({
+        title: 'Do you want to delete this Account ?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: `No`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          axios
           .delete("http://localhost:8070/orgSeller/delete/" + id)
           .then((res) => {
-            document.getElementById("txt").innerHTML =
-              "Seller Deleted Successfully!";
-            const afterDeleteSeller = orgSeller.filter((orgSeller) => orgSeller._id !== id);
-            setorgSellers(afterDeleteSeller);
+            Swal.fire('Saved!', '', 'success')
+            props.history.push("/Admin/Sellers");
           })
           .catch((err) => {
             alert(err);
           });
+         
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+      
+      }
+
+
+      function moreItems(id){
+        props.history.push("/Admin/sellerItems/"+ id);
+      }
+
+      function morePackages(id){
+        props.history.push("/Admin/packages/"+ id);
       }
 
   return (
@@ -45,6 +69,7 @@ export default function SellerView(props) {
     <div className="sellerview">
     
     <div>
+      <br/>
 
       <h2 style={{color:"black",textAlign : "center"}}>SELLER DETAILS - {orgSeller.companyname}</h2><br/>
 
@@ -140,14 +165,17 @@ export default function SellerView(props) {
                           </div>
                         </div><br/><br/>
 						<div className = "container">
+          
 						<div class="float-center">
-            <button type="button" class="btn btn-primary">VIEW ITEMS</button><span> </span>
-            <button type="button" class="btn btn-primary">VIEW PACKAGES</button><span> </span>
+              
+            <button type="button" class="btn btn-primary"  onClick={() => moreItems(orgSeller._id)} >VIEW ITEMS</button><span> </span>
+            <button type="button" class="btn btn-primary" onClick = {() =>  morePackages(orgSeller._id)}>VIEW PACKAGES</button><span> </span>
 						<button type="button"  onClick={() => deleteSeller(orgSeller._id)} class="btn btn-danger">DELETE SELLER</button>
 							<span> </span>
+       
 							</div>
               <p id = {orgSeller._id} class="card-text">
-                                <br/><br/><br/>
+                               
                             </p>
 						</div>
                       </div>

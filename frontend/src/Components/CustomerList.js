@@ -89,7 +89,7 @@ export default function CustomerList(props){
   function showMore(id){
 
     console.log(id);
-    props.history.push("/Customer/CustomerDetails/" + id);
+    props.history.push("/Admin/Customers/Details/" + id);
   }
 
 

@@ -23,7 +23,7 @@ export default function Home_Customer(props) {
 
         <div class="card shadow-lg p-3 mb-5 bg-white rounded" style = {{width : "300px", marginRight : "15px"}}>
             <img src = {'/Images/homepic4.jpg'} class="card-img-top" alt="..."/><br/>
-            <Link  onClick = {() => {props.history.push("/Customer/AllItemsFilterBy/Tablet")}}>
+            <Link  onClick = {() => {props.history.push("/Customer/AllItemsFilterBy/Tablet / iPad / iPod")}}>
                 <h4 style = {{textAlign : "center"}}>Tablet / iPad / iPod</h4>
             </Link>
         </div>
@@ -38,7 +38,7 @@ export default function Home_Customer(props) {
         <div class="card shadow-lg p-3 mb-5 bg-white rounded" style = {{width : "300px", marginRight : "10px"}}>
             <img src = {'/Images/homepic6.jpg'}   class="card-img-top" alt="..."/><br/>
             <Link onClick = {() => {props.history.push("/Customer/AllItemsFilterBy/Other")}}>
-                <h4 style = {{textAlign : "center"}}>Others</h4>
+                <h4 style = {{textAlign : "center"}}>Laptops</h4>
             </Link>
         </div>
 
