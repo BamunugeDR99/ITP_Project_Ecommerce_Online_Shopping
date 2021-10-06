@@ -5,15 +5,32 @@ import Swal from 'sweetalert2';
 import img1 from "./../images/kl.jpg";
 import { Link } from "react-router-dom";
 
+
 function SignUp(props) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [CpasswordShown, setCPasswordShown] = useState(false);
+
+  const [picture, setPicture] = useState("");
+  const [imgData, setImgData] = useState("");
+  const onChangePicture = e => {
+    if (e.target.files[0]) {
+      console.log("picture: ", e.target.files);
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+        document.getElementById("UserPro").hidden = false;
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
   // Password toggle handler
   const togglePassword = () => {
     // When the handler is invoked
     // inverse the boolean state of passwordShown
-    setPasswordShown(!passwordShown);
+  setPasswordShown(!passwordShown);
+
   };
 
   const toggleCPassword = () => {
@@ -37,6 +54,7 @@ function SignUp(props) {
   // let [userImage ,setUserImage] = useState("");
   
   let userImage = "";
+
   let image2 = "";
   let image3 = "";
   let [errorMsg, setErrorMsg] = useState("");
@@ -101,11 +119,6 @@ function SignUp(props) {
     flag1 = 0;
     Swal.fire('Phone Number must be 10 digit number')
     
-    
-  } else if (phoneNumber.charAt(0) != 0) {
-    flag1 = 0;
-    Swal.fire('Phone Number must start with 0')
-   
   }  else if(dob.length === 0){
 
     Swal.fire('Birthday is required')
@@ -141,7 +154,7 @@ function SignUp(props) {
   Swal.fire('Password must contain at least one lowercase letter, one uppercase letter, one numeric digit') 
  
 
-} else if (password != confirmPassword) {
+} else if (password !== confirmPassword) {
   flag1 = 0;
   Swal.fire('Password Mismatch')
 
@@ -162,6 +175,9 @@ function SignUp(props) {
 }
   
 }
+
+//image Preview
+
 
 
 
@@ -204,8 +220,7 @@ function SignUp(props) {
       validate()
       
       
-
-    if(flag1 == 1){
+     if(flag1 === 1){
 
       const newCustomer = {
     	firstName,
@@ -454,14 +469,24 @@ function SignUp(props) {
                 type="file"
                 className="form-control-file"
                 id="user_image"
+                onChange={onChangePicture}
               />
             </div>
+
+            
+            <div className="ImagePreview">
+            
+            <img src={imgData} id="UserPro" alt="user image" hidden/>
+            
+            </div>
+            <br/>
 
             <div className="form-group form-check">
               <input type="checkbox" className="form-check-input" id="TermsC" 
               
               
-              />
+            />
+             
              
               <label className="form-check-label" htmlFor="exampleCheck1">
                 I Accept the Terms of Use & Privacy Policy.

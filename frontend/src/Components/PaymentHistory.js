@@ -33,6 +33,11 @@ export default function PaymentHistory(props){
     
 
 
+    function gotoShowMore(Orderid){
+
+        console.log(Orderid);
+         props.history.push("/Customer/purchaseHistoryExtended/" + Orderid)
+    }
 
 
     return(
@@ -74,7 +79,7 @@ export default function PaymentHistory(props){
                         {/* <th>{payhistory.PacakgeID}</th> */}
                         {/* <th>{payhistory.ItemList}</th> */}
                         
-                        <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}}>Show More</button></td>
+                        <td><button  class="read-more-btn btn-primary"style = {{marginRight : "10px"}} onClick={()=>gotoShowMore(payhistory._id)}>Show More</button></td>
                         </tr>
                        
                        

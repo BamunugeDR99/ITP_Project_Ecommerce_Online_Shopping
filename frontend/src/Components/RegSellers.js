@@ -1,46 +1,43 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import emailjs from "emailjs-com";
-//import {ClipLoader} from "react-spinners";
 
-export default function AllRequests(props) {
-  const [sellers, setsellers] = useState([]);
-  const [loads, setLoad] = useState(false);
-
+export default function RegSellers(props) {
+  const [orgSellers, setorgSellers] = useState([]);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    function getsellers() {
+    function getorgSellers() {
       axios
-        .get("http://localhost:8070/seller/get")
+        .get("http://localhost:8070/orgSeller/get")
         .then((res) => {
-          setsellers(res.data);
+          setorgSellers(res.data);
           console.log(res.data);
-          // hello
         })
         .catch((err) => {
           alert(err);
         });
     }
 
-    getsellers();
+    getorgSellers();
   }, []);
 
-
   function showmore(id){
-    console.log(id);
-    props.history.push("/Admin/RequestSellerProfile/" + id);
+   // console.log(id);
+    props.history.push("/Admin/viewSellerProfile/" + id);
 };
+
+
 
 function handleSearch(e){
 
-  let sellerSearch = e;
-  console.log(sellerSearch);
+  let orgSellerSearch = e;
+  console.log(orgSellerSearch);
 
   axios
-      .get("http://localhost:8070/seller/get")
+      .get("http://localhost:8070/orgSeller/get")
       .then((res) =>{
 
-        filtersellers(res.data, sellerSearch);
+        filterorgSellers(res.data, orgSellerSearch);
         console.log(res.data);
       })
       .catch((err)=> {
@@ -52,17 +49,17 @@ function handleSearch(e){
 
 //Search
 
-function filtersellers(data, sellerSearch){
+function filterorgSellers(data, orgSellerSearch){
 
     let result = data.filter((post) =>
 
-      post.companyname.toLowerCase().includes(sellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(sellerSearch.toLowerCase())
+      post.companyname.toLowerCase().includes(orgSellerSearch.toLowerCase()) || post.ownername.toLowerCase().includes(orgSellerSearch.toLowerCase())
       
 
     );
 
     console.log(result);
-    setsellers(result);
+    setorgSellers(result);
 
     if(result != null){
 
@@ -77,16 +74,23 @@ function filtersellers(data, sellerSearch){
     
 }
 
+function requests(){
+  props.history.push("/Admin/AllSellersRequest");
+}
+
   return (
     <div className="container">
-      <h1>Seller Requests</h1>
+      <br/><br/>
+      <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
+      <h1>Registered Sellers</h1>
+      
       <div class="input-group" id = "SellSerch"  style={{width: "950px"}}>
-        
+      
         <input type="search"  class="form-control rounded" placeholder="Search by company name or owner name...." aria-label="Search"
           aria-describedby="search-addon" onChange = {(e)=> handleSearch(e.target.value)}/>
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
-        
+      
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>
@@ -95,34 +99,34 @@ function filtersellers(data, sellerSearch){
             <th scope="col">OWNER'S NAME</th>
             <th scope="col">YEAR</th>
             <th scope="col">EMAIL ADDRESS</th>
-            <th scope="col">VIEW REQUEST INFOMATION</th>
+            <th scope="col" style={{ textAlign: "center"}}>VIEW SELLER INFOMATION</th>
           </tr>
         </thead>
-        {sellers.map((seller, index) => {
+        {orgSellers.map((orgSeller, index) => {
           return (
             // <div>
 
             <tbody style={{ textAlign: "center"}}>
               <tr>
-                <th>{seller.companyname}</th>
-                <th>{seller.ownername}</th>
-                <th>{seller.year}</th>
-                <th>{seller.email}</th>
-                <td>
+                <th>{orgSeller.companyname}</th>
+                <th>{orgSeller.ownername}</th>
+                <th>{orgSeller.year}</th>
+                <th>{orgSeller.email}</th>
+                
+                <td >
                   <button
-                    class="btn btn-primary"
-                    onClick = {()=>showmore(seller._id)}
-                    
-                  >
+                    onClick = {()=>showmore(orgSeller._id)}
+                    class="btn btn-primary">
                     SHOW MORE
                   </button>
                 </td>
               </tr>
             </tbody>
+            // </div>
           );
         })}
 
-
+        {/* </div> */}
       </table>
     </div>
   );

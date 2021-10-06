@@ -30,7 +30,7 @@ export default function CustomerLogin(props) {
 
   useEffect(() => {
     function RememberMe() {
-      if (localStorage.getItem("rememberMe") == "true") {
+      if (localStorage.getItem("rememberMe") === "true") {
         setUsername(localStorage.getItem("username"));
       }else{
           setUsername("");

@@ -5,9 +5,8 @@ let orgSeller = require("../modules/orgseller");
 const { createSecretKey } = require("crypto");
 
 
-//Insert -->
 router.route("/add").post((req,res)=>{
-    // http://localhost:8070/orgSeller/add
+    // http://localhost:8070/orgseller/add
 
     const ownername = req.body.ownername;
     const mobile = req.body.mobile;
@@ -35,7 +34,14 @@ router.route("/add").post((req,res)=>{
 
     neworgSeller.save().then(()=>{
        
-        res.json("New Seller Added Successfully!");
+        // res.json("New Seller Added Successfully!");
+        res.json({
+            neworgSeller: {
+              username: neworgSeller.username,
+              password: neworgSeller.password,
+            },
+          });
+
                       
               
               
@@ -46,10 +52,9 @@ router.route("/add").post((req,res)=>{
     })
 });
 
-//Retrieve -->
-// route("/") this can use for fetching all the data from the DB 
+
 router.route("/get").get((req, res) => {
-    //http://localhost:8070/orgSeller/get
+   
 
     orgSeller.find().then((sellers) => {
         res.json(sellers);
@@ -60,12 +65,13 @@ router.route("/get").get((req, res) => {
 
 })    
 
-//Update --> 
 router.route("/update/:id").put(async (req,res) =>{
-    //http://localhost:8070/orgSeller/update/
+   
 
-    let userID = req.params.id;  //params = parameter
-    const{  ownername, 
+    let userID = req.params.id;  
+    const{  
+
+            ownername, 
             mobile,
             companyname,
             address,
@@ -74,9 +80,10 @@ router.route("/update/:id").put(async (req,res) =>{
             description,
             logo,
             username,
-            password} = req.body;
+            password } = req.body;
 
     const updateseller = {
+
         ownername, 
         mobile,
         companyname,
@@ -96,7 +103,7 @@ router.route("/update/:id").put(async (req,res) =>{
         })
     });
 
-//Delete --> 
+
 router.route("/delete/:id").delete(async (req,res) =>{
     //http://localhost:8070/orgSeller/delete
 
@@ -111,9 +118,9 @@ router.route("/delete/:id").delete(async (req,res) =>{
         })
     });
 
-//Fetch data of a specific single user (get one orgSeller details) -->
+
 router.route("/get/:id").get(async (req,res) =>{
-    //http://localhost:8070/orgSeller/get/
+    
 
     let userID = req.params.id;
 
@@ -126,8 +133,6 @@ router.route("/get/:id").get(async (req,res) =>{
         console.log(err.message);
     })
 })    
-
-
 
 router.route("/getUsername/:username").get(async (req,res) =>{
     let username = req.params.username;
