@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import '../Js/sidebar_script.js'
+import "../Js/sidebar_script.js";
 // import '../Css/Side_bar_styles.css';
-
 
 export default function Side_bar_Customer(props) {
 
-  function Logout(){
+ // let flag = 0;
+  // useEffect(() => {
+  //   function Reload() {
+    
+  //     window.onload = function() {
+  //       if(!window.location.hash) {
+  //           window.location = window.location + '#loaded';
+  //           window.location.reload();
+  //       }
+  //   }
+  // }
+  //   Reload();
+    
+  // }, []);
+
+  
+
+
+  function Logout() {
     localStorage.removeItem("CustomerID");
     props.history.push("/CustomerLogin");
   }
-  
+
   return (
-    <div className = "Apple">
+    <div className="Apple">
       <header className="header" id="header">
         <div className="header_toggle">
           {" "}
@@ -23,18 +40,15 @@ export default function Side_bar_Customer(props) {
       <div className="l-navbar" id="nav-bar">
         <nav className="nav">
           <div>
-          
             <div className="nav_list">
-            <Link to="/Customer/Home" className="nav_link active">
+              <Link to="/Customer/Home" className="nav_link active">
                 <i className="bx bx-home nav_icon"></i>{" "}
                 <span className="nav_name">HOME</span>{" "}
-              </Link>
-              {" "}
+              </Link>{" "}
               <Link to="/Customer/MyProfile" className="nav_link ">
                 <i className="bx bx-user nav_icon"></i>{" "}
                 <span className="nav_name">MY PROFILE</span>{" "}
-              </Link>
-              {" "}
+              </Link>{" "}
               <Link to="/Customer/Mywishlist" className="nav_link ">
                 <i className="bx bx-store nav_icon"></i>{" "}
                 <span className="nav_name">MY WISHLIST</span>{" "}
@@ -64,8 +78,6 @@ export default function Side_bar_Customer(props) {
                 <i className="bx bx-message nav_icon"></i>{" "}
                 <span className="nav_name">CONTACT US</span>{" "}
               </Link>
-              
-            
             </div>
           </div>{" "}
           <Link onClick={() => Logout()} className="nav_link">
