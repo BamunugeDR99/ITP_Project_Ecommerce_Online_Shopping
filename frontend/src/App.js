@@ -146,7 +146,7 @@ import SellerView from './Components/SellerView';
 import RegSellers from './Components/RegSellers';
 import ItemsForSpecificSeller from './Components/ItemsForSpecificSeller';
 import CustomerOrders from './Components/CustomerOrders';
-//import SellerOrders from './Components/CustomerOrders';
+import SellerOrders from './Components/SellerOrders';
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -214,6 +214,7 @@ function App() {
       <Route path = "/Seller/AddItem" exact component = {Add_items}/>
       <Route path = "/Seller/AddDiscount/:id" exact component = {AddDiscount}/>
       <Route path = "/Seller/UpdateDiscount/:id" exact component = {UpdateDiscount}/>
+      <Route path = "/Seller/Orders" exact component = {SellerOrders}/>
      
       <Route path = "/Seller/Contact" exact component = {Sellermsg}/>
       {/* <Route path = "/Seller" component = {Footer_customer}/> */}
