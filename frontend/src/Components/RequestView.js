@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
+import emailjs from "emailjs-com";
 import "../Css/sellerview.css";
 
 export default function RequestView(props) {
@@ -127,7 +128,7 @@ export default function RequestView(props) {
           //       console.log(error.text);
           //     }
           //   );
-          // document.getElementById("txt").innerHTML = "Student Added Successfully!";
+         
         })
         .catch((err) => {
           alert(err);
@@ -141,6 +142,7 @@ export default function RequestView(props) {
   }
   
   function usernameGenerator(companyName) {
+    companyName = companyName.replace(/ +/g, '');
     var result = companyName;
     var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

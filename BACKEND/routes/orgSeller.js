@@ -34,7 +34,14 @@ router.route("/add").post((req,res)=>{
 
     neworgSeller.save().then(()=>{
        
-        res.json("New Seller Added Successfully!");
+        // res.json("New Seller Added Successfully!");
+        res.json({
+            neworgSeller: {
+              username: neworgSeller.username,
+              password: neworgSeller.password,
+            },
+          });
+
                       
               
               
