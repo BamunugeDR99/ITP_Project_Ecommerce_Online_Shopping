@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
-import iphone from "./../images/Ip.png"
+import iphone from "./../images/Ip.png";
+import Swal from "sweetalert2";
 export default function ShoppingCart(props) {
 
 
@@ -424,23 +425,45 @@ GrandTotal = allItemsTotal + allPackagesTotal;
         Citems = res.data.ItemIDs;
         console.log(`Item IDs : ${Citems}`);
 
+        let CartID = res.data._id;
+
+        let PackageIDs = res.data.PackageIDs;
+
 
         const remainingItems = Citems.filter(
           (pack) => pack !== id
       );
 
 
-      console.log(`Remaining Items : ${remainingItems}`);
+      
+      let ItemIDs = remainingItems;
+      
+      console.log(`Cart ID : ${CartID}` );
+      // console.log("Item IDs " );
+      // console.log(ItemIDs );
+      // console.log("Package IDs " );
+      // console.log(PackageIDs);
+      // console.log("Customer ID " );
+      // console.log(customerID);
 
+      const updatedCart = {
+
+        customerID,
+          ItemIDs,
+          PackageIDs
+
+      }
+
+      console.log(updatedCart);
       //Update the Items Array
-      // axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerID, remainingItems).then((res)=>{
+      axios.put("http://localhost:8070/ShoppingCart/updateSItem/" + CartID, updatedCart ).then((res)=>{
 
-      //     alert("Ain Kla");
+        Swal.fire("Success", "Item Removed From The Cart", "success");
 
-      // }).catch((err)=> {
+      }).catch((err)=> {
 
-      //   console.log(err);
-      // })
+        console.log(err);
+      })
 
         //Loop to set items
 
@@ -458,7 +481,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
           getItemss(Allitems, remainingItems);
           document.getElementById("GrandTotal").value = GrandTotal;
           document.getElementById("GrandTotal2").value = GrandTotal + 100;
-
         }).catch((err) => {
 
 
@@ -466,6 +488,96 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
   
 
+       
+
+
+
+  }).catch((err) =>{
+
+    console.log(err);
+
+
+  })
+
+
+
+  }
+
+
+  //Remove Packages
+  function removePackages(id, index, price){
+
+    console.log(index);
+
+    console.log(`Price : ${price}`);
+     console.log(`Package ID : ${id}`);
+    let Citems = [];
+
+    const customerID = localStorage.getItem("CustomerID");
+    console.log(customerID);
+      axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
+
+        console.log(res.data);
+        Citems = res.data.PackageIDs;
+        console.log(`Package IDs : ${Citems}`);
+
+        let CartID = res.data._id;
+
+        let ItemIDs = res.data.ItemIDs;
+
+
+        const remainingItems = Citems.filter(
+          (pack) => pack !== id
+      );
+
+
+      
+      let PackageIDs = remainingItems;
+      
+      console.log(`Cart ID : ${CartID}` );
+      // console.log("Item IDs " );
+      // console.log(ItemIDs );
+      // console.log("Package IDs " );
+      // console.log(PackageIDs);
+      // console.log("Customer ID " );
+      // console.log(customerID);
+
+      const updatedCart = {
+
+        customerID,
+          ItemIDs,
+          PackageIDs
+
+      }
+
+      console.log(updatedCart);
+      //Update the Items Array
+      axios.put("http://localhost:8070/ShoppingCart/updateSItem/" + CartID, updatedCart ).then((res)=>{
+
+        Swal.fire("Success", "Package Removed From The Cart", "success");
+
+      }).catch((err)=> {
+
+        console.log(err);
+      })
+
+        axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
+
+          //console.log(res.data);
+          Allpackages = res.data;
+
+          
+          GrandTotal =  document.getElementById("GrandTotal").value  - price;
+          console.log(GrandTotal);
+
+          getPackagess(Allpackages, remainingItems);
+
+          document.getElementById("GrandTotal").value = GrandTotal;
+          document.getElementById("GrandTotal2").value = GrandTotal + 100;
+
+        }).catch((err) => {
+          alert(err.message);
+        })
 
 
 
@@ -480,6 +592,16 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 
   }
+
+
+
+
+
+
+
+
+
+
 
   function checkOut(){
 
@@ -553,9 +675,10 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                       </div>
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger" ><i
-                            class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                            <button onClick={()=> removeItems(item.ItemID, index, document.getElementById(index + "ItemPrice").value)}></button>
+                          {/* <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"  ><i
+                            class="fas fa-trash-alt mr-1"></i> Remove item </a> */}
+                            <button type="button" class="card-link-secondary small text-uppercase mr-3 link-danger" onClick={()=> removeItems(item.ItemID, index, document.getElementById(index + "ItemPrice").value) }><i
+                            class="fas fa-trash-alt mr-1"></i>Remove item</button>
                         </div>
                         <p class="mb-0" >{item.fPrice}</p>
 
@@ -632,8 +755,12 @@ return (
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
-          class="fas fa-trash-alt mr-1"></i> Remove item </a>
+        {/* <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger"><i
+          class="fas fa-trash-alt mr-1"></i> Remove item </a> */}
+
+<button type="button" class="card-link-secondary small text-uppercase mr-3 link-danger" onClick={()=> removePackages(item.packageID, index, document.getElementById(index + "PackagePrice").value) }><i
+                            class="fas fa-trash-alt mr-1"></i>Remove item</button>
+
       </div>
       {/* <p class="mb-0"><span><strong ><h3>LKR <span id = "summary">{item.price}</span> </h3></strong></span></p> */}
 
@@ -735,7 +862,7 @@ return (
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Temporary Amount
-                    <input type = "text" id = 'GrandTotal' value ={GrandTotal} readOnly/>
+                    <input type = "text" id = 'GrandTotal' value ={parseFloat(GrandTotal).toFixed(2)} readOnly/>
                   </li>
                   {/* <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                     Discount
@@ -748,7 +875,7 @@ return (
                         <p class="mb-0">(including VAT)</p>
                       </strong>
                     </div>
-                    <span id = 'GrandTotal2' value ={GrandTotal}><strong></strong></span>
+                    <input type = "text" id = 'GrandTotal2' value ={parseFloat(GrandTotal + 100).toFixed(2)} readOnly/>
                   </li>
                 </ul>
 
