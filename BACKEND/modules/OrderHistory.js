@@ -12,7 +12,8 @@ const OrderHistorySchema = new Schema({
 
     TransTime : {
         type : Date,
-        required : true
+        required : true,
+        default: new Date()
     },
 
     PacakgeID : [{

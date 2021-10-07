@@ -71,7 +71,7 @@ export default function CustomerPackageOrders(props) {
                 FilteredOrders = res.data.filter((order) => order.CustomerID == CustomerID);
 
                 console.log("Filtered Orders")
-
+                console.log(FilteredOrders);
 
                 //  setOrders(FilteredOrders);
 
@@ -172,6 +172,7 @@ export default function CustomerPackageOrders(props) {
     }
 
 
+    console.log(Orders);
 
     return (
 

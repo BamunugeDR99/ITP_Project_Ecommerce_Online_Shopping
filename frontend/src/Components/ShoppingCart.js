@@ -34,6 +34,7 @@ export default function ShoppingCart(props) {
   let SKU = "";
   let fPrice = "";
   let itemImage = "";
+  let itemSeller = "";
 
   let ItemDetails = {
 
@@ -45,7 +46,8 @@ export default function ShoppingCart(props) {
     //Color,
     SKU,
     fPrice,
-    itemImage
+    itemImage,
+    itemSeller
   };
 
   let packageID = "";
@@ -54,6 +56,7 @@ export default function ShoppingCart(props) {
   let content = [];
   let price = [];
   let packageImage = "";
+  let packageSeller = "";
 
 
   let PackageDetails = {
@@ -63,7 +66,8 @@ export default function ShoppingCart(props) {
     description,
     content,
     price,
-    packageImage
+    packageImage,
+    packageSeller
 
 
   }
@@ -157,7 +161,8 @@ export default function ShoppingCart(props) {
             //Color = allItems[i].Color_family[1],
             SKU: allItems[j].Stock_keeping_unit,
             fPrice: allItems[j].FinalPrice,
-            itemImage : allItems[j].Images[1]
+            itemImage : allItems[j].Images[1],
+            itemSeller:allItems[j].SellerID
 
           };
 
@@ -196,7 +201,8 @@ export default function ShoppingCart(props) {
             description: allPackages[j].description,
             content: allPackages[j].content,
             price: allPackages[j].price,
-            packageImage:allPackages[j].image
+            packageImage:allPackages[j].image,
+            packageSeller:allPackages[j].seller
 
           };
 
@@ -605,8 +611,113 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
   function checkOut(){
 
-    localStorage.setItem("totalPrice",GrandTotal);
-    props.history.push("/Customer/SelectPayment");
+    localStorage.setItem("totalPrice",document.getElementById("GrandTotal2").value);
+
+    const customerID = localStorage.getItem("CustomerID");
+
+    let ItemIDArr = [];
+    let PackageIDArr=[];
+
+    let Items = [];
+    let Packages = [];
+
+
+  let packageID = "";
+  let packageQuantity = "";
+  let packageSeller = ""
+
+  let PackageDetails = {
+
+    packageID,
+    packageQuantity,
+    packageSeller
+
+  }
+
+
+  let ItemID = "";
+  let ItemQuantity = "";
+  let ItemSeller = ""
+
+
+  let ItemDetails = {
+
+    ItemID,
+    ItemQuantity,
+    ItemSeller
+
+  }
+
+
+    axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
+
+      ItemIDArr = res.data.ItemIDs;
+      PackageIDArr= res.data.PackageIDs;
+
+      for(let i =0 ; i < ItemIDArr.length ; i++ ){
+
+        // console.log(document.getElementById(i +'ItemID').value);
+        // console.log(document.getElementById(i +'quantity').value);
+
+        ItemDetails = {
+
+          ItemID:document.getElementById(i +'ItemID').value,
+          ItemQuantity:document.getElementById(i +'quantity').value,
+          ItemSeller: document.getElementById(i +'ItemSeller').value
+        }
+
+        Items.push(ItemDetails);
+
+        //console.log(ItemDetails);
+    
+        
+      }
+
+      for(let i =0 ; i < PackageIDArr.length; i++ ){
+
+
+        // console.log(document.getElementById(i +'PackageID').value);
+        // console.log(document.getElementById(i +'Packagequantity').value);
+
+
+        PackageDetails = {
+
+          packageID:document.getElementById(i +'PackageID').value,
+          packageQuantity:document.getElementById(i +'Packagequantity').value,
+          packageSeller:document.getElementById(i +'PackageSeller').value
+
+        }
+
+        Packages.push(PackageDetails)
+
+        //console.log(PackageDetails);
+    
+        
+      }
+
+      console.log(Items);
+      console.log(Packages);
+
+      localStorage.setItem("Items", JSON.stringify(Items));
+      localStorage.setItem("Packages", JSON.stringify(Packages));
+
+      props.history.push("/Customer/SelectPayment");
+
+    }).catch((err) => {
+
+
+
+    })
+
+
+
+
+
+
+    //props.history.push("/Customer/SelectPayment");
+
+
+
 
   }
 
@@ -684,6 +795,9 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
                         <input type = "text" id = {index +'ItemPrice'} value ={item.fPrice} readOnly/>
                         <input type = "text" id = {index + "SinglePrice"} value ={item.fPrice} hidden></input>
+                        <input type = "text" id = {index + "ItemID"} value ={item.ItemID} hidden></input>
+                        <input type = "text" id = {index + "ItemSeller"} value ={item.itemSeller} hidden></input>
+
 
 
                       </div>
@@ -767,6 +881,9 @@ return (
       <p class="mb-0" >{item.price}</p>
       <input type = "text" id = {index +'PackagePrice'} value ={item.price} readOnly/>
       <input type = "text" id = {index + "SinglePackagePrice"} value ={item.price} hidden></input>
+      <input type = "text" id = {index + "PackageID"} value ={item.packageID} hidden></input>
+      <input type = "text" id = {index + "PackageSeller"} value ={item.packageSeller} hidden></input>
+
 
     </div>
   </div>
