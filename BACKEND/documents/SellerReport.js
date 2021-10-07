@@ -1,12 +1,28 @@
+const JSJoda = require('js-joda');
+const LocalDate = JSJoda.LocalDate;
+
 module.exports = (result) => {
 
   let tabledata = "";
   let totalSeller = result.pop();
   let newNoSellers = result.length;
-  let today = new Date();
+  let today = new Date().toISOString().slice(0, 10);
+
+  function getNumberOfDays(start, end) {
+
+    const start_date = new LocalDate.parse(start);
+    const end_date = new LocalDate.parse(end);
+
+    return JSJoda.ChronoUnit.DAYS.between(start_date, end_date);
+    
+}
+
+let percentage = (newNoSellers / totalSeller) * 100;
 
   for (let i = 0; i < result.length; i++) {
     let dates = result[i].acceptedDate.substr(0,10);
+
+    let days = getNumberOfDays(dates,today);
 
     tabledata += "<tr>" + "<td>"+dates+"</td>" + "<td>" + result[i].companyname+"</td>"+
     "<td>"+ result[i].ownername+"</td>" +
@@ -14,9 +30,10 @@ module.exports = (result) => {
       "<td>"+result[i].email+"</td>" +
       "<td>"+result[i].mobile+"</td>" +
       "<td>"+ result[i].username+"</td>" +
-      "<td>06</td>" +
+      "<td>"+ days +"</td>" +
       "</tr>";
   }
+
 
   return `
     <html lang="en">
@@ -108,7 +125,7 @@ module.exports = (result) => {
         <th>EMAIL</th>
         <th>CONTACT NUMBER</th>
         <th>USERNAME</th>
-        <th>ACTIVE TIME PERIOD</th>
+        <th>ACTIVE TIME PERIOD(Days)</th>
     </tr>
     </thead>
     <tbody>
@@ -117,10 +134,11 @@ module.exports = (result) => {
     </table>
     <br/>
     <h3 class = "caltext" >Total number of sellers accepted on this month : ${newNoSellers}</h3>
-    
+    <h3 class = "caltext" >Total number of sellers in TechScope : ${totalSeller}</h3>
+    <h3 class = "caltext" >Percentage of acceptence for this month  : ${percentage}%</h3>
     <h3 class = "caltext" >Maximum number of sellers were accepted on : </h3>
          
-     
+    
     </body>
     <footer>
         <hr>

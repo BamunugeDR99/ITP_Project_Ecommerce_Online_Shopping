@@ -121,7 +121,7 @@ export default function SellerLogin(props){
                            
                             <div className="col">
                                 {/* incomplete */}
-									<p className ="fp"> <Link to="/">Forgot Password?</Link></p>
+									<p className ="fp"> <Link to="/SellerForgotPassword">Forgot Password?</Link></p>
 								</div>
 						
                             <button type="submit" class="btn btn-primary" style={{marginLeft:"65px", marginTop:"20px", width:"280px", height:"45px"}}>Sign in</button> <br/><br/>

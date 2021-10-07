@@ -30,7 +30,12 @@ export default function SellerRegistration(props) {
 
     const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (isNaN(yearValue)) {
+    if(ownername){
+      flag1 = 0;
+
+      Swal.fire("Owner's Name is required!");
+
+    } else if (isNaN(yearValue)) {
       flag1 = 0;
 
       Swal.fire("Enter only numeric value to Established Year!");
@@ -316,7 +321,7 @@ export default function SellerRegistration(props) {
             {" "}
             <br />
             <br />
-            <b>Already have an account ? </b>
+            <b style={{marginLeft:"50px"}}>Already have an account ? </b>
             <Link to="/SellerLogin">Sign in!</Link>
           </div>
         </form>
