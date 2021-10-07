@@ -154,8 +154,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Route path = "/" exact component = {TestReport}/>
-        {/* <Route path="/" exact component={InitialPage} /> */}
+        {/* <Route path = "/" exact component = {TestReport}/> */}
+        <Route path="/" exact component={InitialPage} />
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
         <Route path="/CustomerForgotPassword" exact component={ForgotP} />
