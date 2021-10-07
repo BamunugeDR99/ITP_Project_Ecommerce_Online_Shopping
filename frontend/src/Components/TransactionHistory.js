@@ -6,9 +6,10 @@ export default function PaymentHistory(props){
     const [payhistory,setpayhistory] = useState([]);
     const [loads,setLoad] = useState(false);
     const [data, setData] = useState();
-   
+    const [count, setcount]= useState();
+   const[total, setTotal] = useState();
 
-   let TotalPrice;
+   let TotalPrice = 0;
 
 
     useEffect(() =>{
@@ -17,20 +18,48 @@ export default function PaymentHistory(props){
             {
                 setpayhistory(res.data);
                 console.log(res.data);
-                
+               
+                    
+        
                 })
             .catch((err) =>{
                 alert(err);
             });
         }
+
+        function calculateTotal(){
+            axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
+            {
+                setpayhistory(res.data);
+                console.log(res.data);
+                setcount(res.data.length);
+                total = res.data.Amount;
+                    
+                for (let i  = 0; i < count; i++){
+
+                 TotalPrice  += total[i];
+            }
+
+             setTotal(TotalPrice);
+
+                })
+            .catch((err) =>{
+                alert(err);
+            });
+        }
+
        
         getpayhistory();
+        calculateTotal();
+       
        
     }, 
     []
     
     
     );
+
+   
     
 
 
@@ -58,13 +87,16 @@ export default function PaymentHistory(props){
 
     }
 
+
+
+
     return(
 
         <div className = "container">
             <br/>
            <center> <h1>Transaction History</h1></center>
             <h1 id = "txt"></h1>
-            <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
+            
             <table class="table table-hover table">
                     <thead>
                         <tr>
@@ -72,7 +104,7 @@ export default function PaymentHistory(props){
                         <th scope="col">Payment Type</th>
                         <th scope="col">Recipt No</th>
                         <th scope="col">Customer Name</th>
-                        <th scope="col">Items</th>   
+                        {/* <th scope="col">Items</th>    */}
                         <th scope="col">Total</th>
                         {/* <th scope="col">Package ID</th> */}
                         {/* <th scope="col">Item List</th> */}
@@ -92,7 +124,7 @@ export default function PaymentHistory(props){
                         <th>{ payhistory.PaymentType}</th>
                         <th>{ payhistory.RecieptNo}</th>
                         <th>{  }</th>
-                        <th>{  payhistory.ItemList}</th>
+                        {/* <th>{  payhistory.ItemList}</th> */}
                         <th>{payhistory.Amount}</th>
                         
                         
@@ -116,7 +148,7 @@ export default function PaymentHistory(props){
                     <thead>
                         <tr>
                         <th scope="col">highest Purchases Amount </th>
-                        <th scope="col">Total Purchases</th>
+                        <th scope="col">Total Price: {TotalPrice}</th>
                         
                         </tr>
                         <tr>
@@ -126,7 +158,7 @@ export default function PaymentHistory(props){
                         </tr>
                         <tr>
                         <th scope="col">Total Purchase Items</th>
-                        <th scope="col"></th>
+                        <th scope="col"><button type="button" class="btn btn-primary" onClick = {() => generateReport()}>Genarate Report</button></th>
                         
                         </tr>
                     </thead>
