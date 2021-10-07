@@ -39,6 +39,7 @@ export default function ItemView(props) {
   let itemDiscount = "";
   let itemFinalprice = "";
   let itemDispercentage = "";
+  let itemsel_id="";
 
   let Review = "";
   let [abc, setabc] = useState([]);
@@ -60,6 +61,7 @@ export default function ItemView(props) {
     itemDiscount,
     itemFinalprice,
     itemDispercentage,
+    itemsel_id,
     Review,
   };
 
@@ -335,76 +337,76 @@ export default function ItemView(props) {
 
 
 
-  function CheckReview(id) {
-    // let CustomerID = localStorage.getItem("CustomerID");
-    const objectId = props.match.params.id;
-      axios
-        .get("http://localhost:8070/review/get")
-        .then((res) => {
-          // setReview(res.data);
-          const filter = res.data.filter(
-            (itemrev) => itemrev.itemid === objectId
-          );
-          reviews = filter;
-          console.log(reviews);
+//   function CheckReview(id) {
+//     // let CustomerID = localStorage.getItem("CustomerID");
+//     const objectId = props.match.params.id;
+//       axios
+//         .get("http://localhost:8070/review/get")
+//         .then((res) => {
+//           // setReview(res.data);
+//           const filter = res.data.filter(
+//             (itemrev) => itemrev.itemid === objectId
+//           );
+//           reviews = filter;
+//           console.log(reviews);
        
-          let CustomerID = localStorage.getItem("CustomerID");
+//           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
-          axios
-            .get("http://localhost:8070/item/getAll")
-            .then((res) => {
-              setItemss(res.data);
-              console.log(res.data);
-              // reviews.itemid = item._id;
-              // let cartID = res.data._id;
-              // console.log(res.data);
-              // let packages = res.data.PackageIDs;
-              // let newwItems = res.data.ItemIDs;
+//           // http://localhost:8070/ShoppingCart/getOneCart/:id
+//           axios
+//             .get("http://localhost:8070/item/getAll")
+//             .then((res) => {
+//               setItemss(res.data);
+//               console.log(res.data);
+//               // reviews.itemid = item._id;
+//               // let cartID = res.data._id;
+//               // console.log(res.data);
+//               // let packages = res.data.PackageIDs;
+//               // let newwItems = res.data.ItemIDs;
 
-              let falgs = 0;
-              // for (let i = 0; i < newwItems.length; i++) {
-                if (reviews.itemid = itemss._id) {
-                  falgs = 1;
-                }
-              // }
-              // newwItems.push(id);
-              // console.log(newwItems);
+//               let falgs = 0;
+//               // for (let i = 0; i < newwItems.length; i++) {
+//                 if (reviews.itemid = itemss._id) {
+//                   falgs = 1;
+//                 }
+//               // }
+//               // newwItems.push(id);
+//               // console.log(newwItems);
 
-              // const updatedCart = {
-              //   customerID: CustomerID,
-              //   PackageIDs: packages,
-              //   ItemIDs: newwItems,
-              // };
+//               // const updatedCart = {
+//               //   customerID: CustomerID,
+//               //   PackageIDs: packages,
+//               //   ItemIDs: newwItems,
+//               // };
 
-              if (falgs === 0) {
+//               if (falgs === 0) {
 
-                // writeReview(id)
+//                 // writeReview(id)
 
-                //  function writeReview(id) {
-                //   props.history.push("/Customer/WriteReview/" + id);
-                //  }
+//                 //  function writeReview(id) {
+//                 //   props.history.push("/Customer/WriteReview/" + id);
+//                 //  }
               
 
                   
-              } else if (falgs === 1) {
-                Swal.fire("You have already review this item!");
+//               } else if (falgs === 1) {
+//                 Swal.fire("You have already review this item!");
 
                 
-              }
-            })
-            .catch((err) => {
-              alert(err);
-            });
+//               }
+//             })
+//             .catch((err) => {
+//               alert(err);
+//             });
         
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }
+//       })
+//       .catch((err) => {
+//         alert(err);
+//       });
+//   }
 
 
-// });
+// // });
 
 
 
@@ -419,6 +421,13 @@ export default function ItemView(props) {
     props.history.push("/Customer/WriteReview/" + id);
 
   }
+
+  // function showseller(id) {
+  //   props.history.push("/Customer/ContactSeller/" + SellerID);
+
+  // }
+
+  
   return (
     <div style={{ padding: "20px 15px 10px 50px" }}>
       <div>
@@ -427,24 +436,20 @@ export default function ItemView(props) {
             <img
               style={{ width: "90%", paddingRight: "20px" }}
               src={"/Images/" + items.Images}
-              alt={p2}
             />
             <div>
               <img
                 style={{ width: "25%", padding: "10px" }}
                 src={"/Images/" + items.Images}
-                alt={p2}
               />
               <img
                 style={{ width: "25%", padding: "10px" }}
                 src={"/Images/" + items.Images}
-                alt={p2}
               />
               <img
                 style={{ width: "25%", padding: "10px" }}
                 // src={p2}
                 src={"/Images/" + items.Images}
-                alt={p2}
               />
             </div>
           </div>
@@ -495,11 +500,9 @@ export default function ItemView(props) {
             <br />
             <div>
               <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                <Link to="/Customer/contactseller" className="nav-link">
-                  <button
-                    type="button"
-                    class="btn btn-outline-info"
-                    style={{ borderRadius: "25px" }}
+                <Link to={`/Customer/contactseller/${items.SellerID}`} className="nav-link">
+                  <button type="button" class="btn btn-outline-info" style={{ borderRadius: "25px" }} 
+                  // onClick={() => showseller(items.SellerID)}
                   >
                     <i class="fas fa-comments"></i> Contact Seller
                   </button>
@@ -509,11 +512,7 @@ export default function ItemView(props) {
             <div>
               <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                 <Link to="/Customer/contactus" className="nav-link">
-                  <button
-                    type="button"
-                    class="btn btn-outline-info"
-                    style={{ borderRadius: "25px" }}
-                  >
+                  <button type="button" class="btn btn-outline-info" style={{ borderRadius: "25px" }}>
                     <i class="fas fa-comment-alt"></i> Contact Admin
                   </button>
                 </Link>

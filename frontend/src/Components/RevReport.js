@@ -116,7 +116,7 @@ function generateReport(){
   console.log(items);
 
   for(let i = 0; i < abc.length;i++){
-    result.push(abc[0]);
+    result.push(abc[i]);
   }
 
   result.push(items);
@@ -136,6 +136,7 @@ function generateReport(){
     saveAs(pdfBlob, "ReviewAndRatingReport.pdf");
                       //your file name 
   });
+  console.log(result)
 
 }
 
@@ -150,13 +151,13 @@ function generateReport(){
 	   Review Report
 	 </h2>
      <br/>
-     <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
-     <table class="table" style={{width:'90%'
-    //  width:'90%',tableLayout: 'fixed', fontSize:'16px', textAlign:'center',border:'1px',borderColor:'grey',
-    //   fontFamily: 'sans-serif',boxSizing: 'border-box',
-    //     borderCollapse: 'collapse',
-    //     border: '1px solid #bdc3c7',
-    //     boxShadow: '2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2)'
+     <button type="button" class="btn btn-primary" style={{width:'15%', marginLeft:'900px'}} onClick = {() => generateReport()}>Generate Report</button>
+     <br/><br/>
+     <table class="table" style={{width:'90%', alignItems:'center'
+    ,tableLayout: 'fixed', fontSize:'16px', textAlign:'center',border:'1px',borderColor:'grey',
+      boxSizing: 'border-box',
+        border: '1px solid #bdc3c7',
+        boxShadow: '2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2)'
         }}>
             
             <thead  class="thead-dark"

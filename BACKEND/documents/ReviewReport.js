@@ -1,8 +1,27 @@
 module.exports = (result) => {
     let itemdetails = result.pop();
   let tableData = "";
+
+//   let a = result[i].Ratings;
+//   if (a=5){
+    
+//   }
+let totalNoRatings = 0;
+let totalNoReviews = 0;
+let average = 0;
+let starCount = 0;
+let a=0;
+let b=0;
+let c=0;
+let d=0;
+let e=0;
+let f=0;
+let rate=0;
+
+
   for (let i = 0; i < result.length; i++) {
       let dates = result[i].Date.substr(0,10);
+        let rate =  parseInt(result[i].Ratings);
     tableData +=
       '<tr><td data-label="Customer Name">' +
       result[i].customerName +
@@ -16,7 +35,29 @@ module.exports = (result) => {
       '<td data-label="Date">' +
       dates +
       '</td></tr>';
+      rate =  parseInt(result[i].Ratings);
+      totalNoRatings++;
+      totalNoReviews++;
+      starCount=starCount + parseInt(result[i].Ratings);
+
+
+    
+        if(parseInt(result[i].Ratings)==5){
+            a++;
+        }else if(parseInt(result[i].Ratings)==4){
+            b++;
+        }else if(parseInt(result[i].Ratings)==3){
+            c++;
+        }else if(parseInt(result[i].Ratings)==2){
+            d++;
+        }else if(parseInt(result[i].Ratings)==1){
+            e++;
+        }else{
+                f++;
+            }
+    
   }
+  average=starCount/totalNoRatings;
 
   return `
     <html lang="en">
@@ -151,44 +192,44 @@ module.exports = (result) => {
 
         <span style="font-size:130%;color:black; font-style:bold">Ratings of the item</span>
         <br>
-        <span style="font-size:120%;color:black;">12&nbsp</span>
+        <span style="font-size:120%;color:black;">${a}&nbsp</span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <br>
-        <span style="font-size:120%;color:black;">19&nbsp </span>
+        <span style="font-size:120%;color:black;">${b}&nbsp </span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <br>
-        <span style="font-size:120%;color:black;">15&nbsp </span>
+        <span style="font-size:120%;color:black;">${c}&nbsp </span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <br>
-        <span style="font-size:120%;color:black;">03&nbsp </span>
+        <span style="font-size:120%;color:black;">${d}&nbsp </span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
         <br>
-        <span style="font-size:120%;color:black;">04&nbsp </span>
+        <span style="font-size:120%;color:black;">${e}&nbsp </span>
         <span style="font-size:200%;color:yellow;" class="fa fa-star checked"></span>
     
     </div>
     
     <div style="width: 200px; float:left; height:250px; background:white; margin-left:10px; margin-top:50px">
         <div class="square">
-            <span> 22 Reviews</span>
+            <span>${totalNoReviews} Reviews</span>
         </div>
         <br>
         <div class="square">
-            <span> 30 Ratings</span>
+            <span>${starCount}&nbspRatings</span>
         </div>
         <br>
         <div class="square">
-            <span> 3.5 Average Ratings</span>
+            <span> ${average}&nbspAverage Ratings</span>
         </div>
     </div>  
 

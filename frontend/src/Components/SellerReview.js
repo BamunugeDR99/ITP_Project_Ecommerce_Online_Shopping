@@ -359,7 +359,6 @@ function report(id) {
                                     <span>Brand</span><br/>
                                     <span>Model</span><br/>
                                     <span>Availability</span><br/>
-                                    <span>Specification</span><br/>
                                     <span>Warrenty</span>
                                 </div> 
                                 <div className="col-1">
@@ -367,14 +366,12 @@ function report(id) {
                                     <span> : </span><br/>
                                     <span> :</span><br/>
                                     <span> :  </span><br/>
-                                    <span> : </span><br/>
                                     <span> :  </span>
                                 </div> 
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
                                     <span>{ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
-                                    <span>{items.Specification} </span><br/>
                                     <span>{ipsumText.toString(items.Warrenty) } </span>
                                 </div>
                                 <div className="col-2">
@@ -406,9 +403,9 @@ function report(id) {
         </div> 
            
             <div className="row">
-                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
+                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 5px'}}>Ratings and reviews of item name</span>
                
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
+                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 10px'}}>
                     
 
                     <div id = 'stars'class="card-text">
@@ -418,11 +415,14 @@ function report(id) {
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span><br/>
                       <span class="fa fa-star"></span>
+
+                      
                     </div>
 
                   </span>
-
-                  <button  onClick = {()=> report(items._id)}  type="button"style={{fontSize:'14px'}} class="btn btn-danger">Generate A Report</button>
+                <br/>
+                <br/>
+                  <button  onClick = {()=> report(items._id)}  type="button"style={{fontSize:'14px', width:'30%', marginLeft:'10px', marginRight:'20px'}} class="btn btn-primary">Generate A Report</button>
             </div>
 
         </div>

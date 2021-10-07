@@ -45,9 +45,9 @@ export default function SellerLogin(props){
           }).catch((err) =>{
 
             //alert(err);
-          console.log(err.response.data);
-          alert(err.response.data.error);
-          seterrormsg(err.response.data.error);
+        //   console.log(err.response.data);
+        //   alert(err.response.data.error);
+        //   seterrormsg(err.response.data.error);
         
 
         })

@@ -204,7 +204,7 @@ function App() {
           exact
           component={EditCardDetails}
         />
-        <Route path="/Customer/ContactSeller" exact component={ContactSeller} />
+        <Route path="/Customer/ContactSeller/:id" exact component={ContactSeller} />
         <Route path="/Customer/MyWallet" exact component={ViewCardDetails} />
         <Route
           path="/Customer/confrimPayment"
