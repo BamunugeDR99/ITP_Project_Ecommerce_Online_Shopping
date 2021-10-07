@@ -1,14 +1,30 @@
+const JSJoda = require('js-joda');
+const LocalDate = JSJoda.LocalDate;
+
 module.exports = (result) => {
   let tableData;
   let totalCustomers = result.pop();
   let newNoCustomers = result.length;
-  let today = new Date().toISOString().slice(0, 10);
+  let date1 = new Date().toISOString().slice(0, 10);
 
+  function getNumberOfDays(start, end) {
 
+    const start_date = new LocalDate.parse(start);
+    const end_date = new LocalDate.parse(end);
+
+    return JSJoda.ChronoUnit.DAYS.between(start_date, end_date);
+    
+}
+
+  let percentage = (newNoCustomers / totalCustomers) * 100 ;
+
+   
   for (let i = 0; i < result.length; i++) {
 
     let dates = result[i].newlyAddeddate.substr(0,10);
-  
+    
+    let days = getNumberOfDays(dates,date1);
+
 
     tableData +=
       '<tr> <td data-label="Added">' +
@@ -35,7 +51,7 @@ module.exports = (result) => {
       result[i].address +
       "</td>" +
       ' <td data-label="Active Time Period">' +
-      Difference_In_Days +
+       days +
       "</td>" +
       "</tr>";
   }
@@ -121,7 +137,7 @@ module.exports = (result) => {
       <th>Gender</th>
       <th>Phone</th>
       <th>Address</th>
-      <th>Active Time Period</th>
+      <th>Active Time Period(days)</th>
  
         </tr>
  
@@ -136,7 +152,7 @@ module.exports = (result) => {
    
    <h3>Total New Customers: ${newNoCustomers}</h3>
    <h3>Maximum Number of Customers Added Month: January </h3>
-   <h3>Percentage: ${totalCustomers}</h3>
+   <h3>Percentage: ${percentage} %</h3>
      
          
      
