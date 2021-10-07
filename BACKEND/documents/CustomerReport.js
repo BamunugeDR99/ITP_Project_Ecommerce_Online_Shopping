@@ -1,16 +1,17 @@
 module.exports = (result) => {
   let tableData;
-    let totalCustomers = result.pop();
+  let totalCustomers = result.pop();
   let newNoCustomers = result.length;
-  let today = new Date();
+  let today = new Date().toISOString().slice(0, 10);
 
 
   for (let i = 0; i < result.length; i++) {
-    let dates = result[i].newlyAddeddate.substr(0,10);
 
+    let dates = result[i].newlyAddeddate.substr(0,10);
+  
 
     tableData +=
-      '<tr> <td data-label="added">' +
+      '<tr> <td data-label="Added">' +
       dates +
       '</td><td data-label="First Name">' +
       result[i].firstName +
@@ -32,6 +33,9 @@ module.exports = (result) => {
       "</td>" +
       ' <td data-label="Address">' +
       result[i].address +
+      "</td>" +
+      ' <td data-label="Active Time Period">' +
+      Difference_In_Days +
       "</td>" +
       "</tr>";
   }
@@ -78,7 +82,7 @@ module.exports = (result) => {
           padding:12px 15px;
           border:none;
           text-align: center;
-          font-size:10px;
+          font-size:9px;
         }
         
         .table th{
@@ -101,30 +105,39 @@ module.exports = (result) => {
             <h3 class = "header2">See what's selling best</h3>
         </div>
       </header>
-    <body>
-	<table class="table">
-     <thead class="thead-dark">
-     	<tr>
-		 <th>Added</th>
-     	 <th>First Name</th>
-		 <th>Last Name</th>
-		 <th>Username</th>
-		 <th>Email</th>
-     	 <th>Gender</th>
-         <th>Phone</th>
-		 <th>Address</th>
-     	</tr>
-     </thead>
-     <tbody>
-     ${tableData}
-		 </tbody>  
-  </table>
-  <br>
-  
-  <h3>Total New Customers: ${newNoCustomers}</h3>
-  <h3>Active Time Period: 2 Days</h3>
-  <h3>Maximum Number of Customers Added Month: January </h3>
-  <h3>Percentage: ${totalCustomers}</h3>
+     <body>
+
+      <h1>Monthly Customers Report</h1>
+      <table class="table">
+      <thead>
+      
+      <tr>
+ 
+      <th>Added</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Active Time Period</th>
+ 
+        </tr>
+ 
+      </thead>
+ 
+      <tbody>
+      ${tableData}
+      </tbody> 
+       
+   </table>
+   <br/>
+   
+   <h3>Total New Customers: ${newNoCustomers}</h3>
+   <h3>Maximum Number of Customers Added Month: January </h3>
+   <h3>Percentage: ${totalCustomers}</h3>
+     
          
      
     </body>

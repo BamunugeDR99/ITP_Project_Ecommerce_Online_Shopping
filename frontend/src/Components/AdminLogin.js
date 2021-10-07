@@ -41,7 +41,7 @@ export default function AdminLogin(props){
 
          // console.log(err.response.data);
           //alert(err.response.data);
-          seterrormsg(err.response.data);
+          seterrormsg(err.response.data.error);
         
 
         })

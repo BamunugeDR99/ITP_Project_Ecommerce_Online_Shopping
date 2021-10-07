@@ -123,7 +123,7 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundColor:"#8e0e00", background: "-webkit-linear-gradient(to right, #8e0e00, #1f1c18)", background: "linear-gradient(to right, #8e0e00, #1f1c18)"}}>
+    <div class="card" style={{backgroundImage: "linear-gradient( 107deg,  rgba(2,108,223,1) 27.4%, rgba(0,255,255,1) 92.7% )"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/group.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
       <h3 style={{color:"white"}}>Total Customers</h3>
@@ -132,7 +132,7 @@ export default function AdminDashBoard(props) {
   </div>
 
   <div class="column">
-    <div class="card"  style={{backgroundColor:"#c31432", background: "-webkit-linear-gradient(to right, #c31432, #240b36)",background: "linear-gradient(to right, #c31432, #240b36)"}}>
+    <div class="card"  style={{backgroundImage: "linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)"}}>
     
     <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"80px"}}/>
       <h3  style={{color:"white"}}>Total Sellers</h3>
@@ -142,7 +142,7 @@ export default function AdminDashBoard(props) {
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(255,235,76)", background: "linear-gradient(90deg, rgba(255,235,76,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{backgroundImage: " linear-gradient( 45.8deg,  rgba(175,104,254,1) 9.3%, rgba(101,223,255,1) 75.1% )"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/multiple-smartphones.png" style={{width:"120px", height:"120px", marginLeft:"60px"}}/>
       <h3>Total Items</h3>
@@ -166,7 +166,7 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(255,98,98)", background: "linear-gradient(90deg, rgba(255,98,98,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{backgroundImage: "radial-gradient( circle farthest-corner at 50.4% 50.5%,  rgba(251,32,86,1) 0%, rgba(135,2,35,1) 90% )"}}>
     <img src="https://img.icons8.com/fluency/300/000000/administrator-male.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
       <h3>Total Admins</h3>
       <p><b>{adminCount}</b></p>

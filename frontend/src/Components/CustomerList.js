@@ -11,12 +11,13 @@ export default function CustomerList(props) {
   let result;
   let totalCustomers;
 
+
   useEffect(() => {
     function getCustomers() {
       axios.get("http://localhost:8070/Customer/getAll").then((res) => {
         setCustomers(res.data);
         console.log(res.data);
-        
+
 
       }).catch((err) => {
         alert(err);
@@ -99,6 +100,7 @@ export default function CustomerList(props) {
     axios.get("http://localhost:8070/Customer/getAll").then((res) => {
 
 
+
     
       result = res.data.filter(
         (post) => String(post.newlyAddeddate.substr(5, 2)) === month
@@ -122,6 +124,7 @@ function generateReport(){
   axios.get("http://localhost:8070/Customer/getAll").then((res) => {
 
     totalCustomers = res.data.length;
+   
 
     result = res.data.filter(
       (post) => String(post.newlyAddeddate.substr(5, 2)) === month
@@ -129,8 +132,8 @@ function generateReport(){
 
     );
   //  console.log(result[0].newlyAddeddate.substr(0,10));
-    //console.log(result)
-   result.push(totalCustomers);
+  setCustomers(result)
+  result.push(totalCustomers);
    // console.log(result);
     axios
   .post("http://localhost:8070/Customer/create-pdf", result)
@@ -147,7 +150,9 @@ function generateReport(){
   });
 
     console.log(result);
-     setCustomers(result)
+    
+   
+    
 
   }).catch((err) => {
     alert(err);
@@ -164,6 +169,8 @@ function generateReport(){
         <p>Customers</p>
         <button type="button" class="btn btn-primary" onClick={() => filterbyMonth()}>Primary</button>
         <button type="button" class="btn btn-primary" onClick={() => generateReport()}>PDF</button>
+
+       
       </div>
 
       <hr id="li" />
