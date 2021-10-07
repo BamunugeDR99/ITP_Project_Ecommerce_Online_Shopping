@@ -53,19 +53,23 @@ module.exports = (result) => {
             width: 85%;
           }
           .caltext {
-            padding-left : 110px;
+            padding-left : 50px;
           }
           
           th {
             border: 1px solid #000000;
             text-align: center;
-            padding: 20px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            font-size : 10px;
             background-color: #ffffff;
           }
           td {
             border: 1px solid #000000;
             text-align: center;
-            padding: 15px;
+            font-size : 8px;
+            padding-bottom: 10px;
+            padding-top: 10px;
           }
           
           tr:nth-child(even) {
@@ -88,9 +92,10 @@ module.exports = (result) => {
       </header>
     <body>
      
-    <h1 align="center">SELLERS REPORT</h1>
-    <h1 align="center">NEWLY ADDED SELLERS FOR THE GIVEN MONTH</h1>
-    <h2 align="left">MONTH : </h2>
+    <br></br>
+    <h1 align="center"><u>SELLERS REPORT</u></h1>
+    <h3 align="center">NEWLY ACCEPTED SELLERS FOR THE GIVEN MONTH</h3>
+    <h3 class = "caltext" align="left">MONTH : </h3>
     <br></br>
     
     <table align="center">
@@ -99,21 +104,21 @@ module.exports = (result) => {
         <th>DATE</th>
         <th>COMPANY NAME</th>
         <th>OWNER NAME</th>
-      <th>YEAR</th>
+        <th>YEAR</th>
         <th>EMAIL</th>
-      <th>CONTACT NUMBER</th>
+        <th>CONTACT NUMBER</th>
         <th>USERNAME</th>
-      <th>ACTIVE TIME PERIOD</th>
-      </tr>
-     </thead>
-     <tbody>
+        <th>ACTIVE TIME PERIOD</th>
+    </tr>
+    </thead>
+    <tbody>
       ${tabledata}
     </tbody>
     </table>
     <br/>
-    <h3>Total number of sellers accepted on this month : ${newNoSellers}</h3>
+    <h3 class = "caltext" >Total number of sellers accepted on this month : ${newNoSellers}</h3>
     
-    <h3>Maximum number of sellers were accepted on : </h3>
+    <h3 class = "caltext" >Maximum number of sellers were accepted on : </h3>
          
      
     </body>
