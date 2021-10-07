@@ -123,20 +123,20 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundColor:"rgb(36,37,255)", background: "linear-gradient(90deg, rgba(36,37,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{backgroundColor:"#8e0e00", background: "-webkit-linear-gradient(to right, #8e0e00, #1f1c18)", background: "linear-gradient(to right, #8e0e00, #1f1c18)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/group.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Customers</h3>
-      <p><b>{customerCount}</b></p>
+      <h3 style={{color:"white"}}>Total Customers</h3>
+      <p  style={{color:"white"}}><b>{customerCount}</b></p>
     </div>
   </div>
 
   <div class="column">
-    <div class="card"  style={{backgroundColor:" rgb(255,173,110)", background: "linear-gradient(90deg, rgba(255,173,110,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card"  style={{backgroundColor:"#c31432", background: "-webkit-linear-gradient(to right, #c31432, #240b36)",background: "linear-gradient(to right, #c31432, #240b36)"}}>
     
     <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"80px"}}/>
-      <h3>Total Sellers</h3>
-      <p><b>{sellerCount}</b></p>
+      <h3  style={{color:"white"}}>Total Sellers</h3>
+      <p  style={{color:"white"}}><b>{sellerCount}</b></p>
      
     </div>
   </div>
