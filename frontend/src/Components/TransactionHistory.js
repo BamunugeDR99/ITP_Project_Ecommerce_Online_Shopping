@@ -109,7 +109,6 @@ export default function PaymentHistory(props){
 
         })}
 
-        Total=Total+Amount;
 
         {/* </div> */}
         </table>
