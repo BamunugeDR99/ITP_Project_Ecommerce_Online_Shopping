@@ -1,8 +1,24 @@
-module.exports = (objarr) => {
+module.exports = (result) => {
+    let itemdetails = result.pop();
+  let tableData = "";
+  for (let i = 0; i < result.length; i++) {
+      let dates = result[i].Date.substr(0,10);
+    tableData +=
+      '<tr><td data-label="Customer Name">' +
+      result[i].customerName +
+      '</td>' +
+      '<td data-label="Review">' +
+      result[i].Review +
+      '</td>' +
+      '<td data-label="Ratings">' +
+      result[i].Ratings +
+      '</td>' +
+      '<td data-label="Date">' +
+      dates +
+      '</td></tr>';
+  }
 
-  
-
-    return `
+  return `
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -101,59 +117,33 @@ module.exports = (objarr) => {
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                    <td data-label="Customer Name">Naveen</td>
-                <td data-label="Review">Super</td>
-                    <td data-label="Ratings">3.5</td>
-                    <td data-label="Date">10/10/2021</td>
-                    
-            </tr>
+      
 
-            <tr>
-            <td data-label="Customer Name">Naveen</td>
-        <td data-label="Review">Super</td>
-            <td data-label="Ratings">3.5</td>
-            <td data-label="Date">10/10/2021</td>
-            
-    </tr>
+         ${tableData}
 
-    <tr>
-    <td data-label="Customer Name">Naveen</td>
-<td data-label="Review">Super</td>
-    <td data-label="Ratings">3.5</td>
-    <td data-label="Date">10/10/2021</td>
-    
-</tr>
 
-<tr>
-<td data-label="Customer Name">Naveen</td>
-<td data-label="Review">Super</td>
-<td data-label="Ratings">3.5</td>
-<td data-label="Date">10/10/2021</td>
-
-</tr>
             </tbody>  
         </table>
 
     <div style="width: 230px; float:left; font-size:14px; padding-left:20px; padding-top:20px; height:180px; background:#C3D8EE ;border-radius:15px; margin-left:50px; margin-top:50px">
         <div>
-            <span style="font-size:18px;color:black;">Item Name &nbsp:&nbsp iPhone X</span>
+            <span style="font-size:18px;color:black;">Item Name &nbsp:&nbsp ${itemdetails.Item_name}</span>
         </div>
         <br>
         <div>
-            <span style="font-size:18px;color:black;">Item Brand &nbsp:&nbsp Apple</span>
+            <span style="font-size:18px;color:black;">Item Brand &nbsp:&nbsp ${itemdetails.Brand}</span>
         </div>
         <br>
         <div>
-            <span style="font-size:18px;color:black;">Item Model &nbsp:&nbsp EACX</span>
+            <span style="font-size:18px;color:black;">Item Model &nbsp:&nbsp ${itemdetails.Model}</span>
         </div>
         <br>
         <div>
-            <span style="font-size:18px;color:black;">Item Quantity &nbsp:&nbsp 4</span>
+            <span style="font-size:18px;color:black;">Item Quantity &nbsp:&nbsp ${itemdetails.Quantity}</span>
         </div>
         <br>
         <div>
-            <span style="font-size:18px;color:black;">Item Price &nbsp:&nbsp 4</span>
+            <span style="font-size:18px;color:black;">Item Price &nbsp:&nbsp ${itemdetails.Price}</span>
         </div>
     </div> 
 
@@ -214,5 +204,4 @@ module.exports = (objarr) => {
     </footer>
     </html>
       `;
-  };
-  
+};

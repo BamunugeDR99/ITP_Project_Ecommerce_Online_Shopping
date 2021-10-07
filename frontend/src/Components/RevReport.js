@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import { saveAs } from "file-saver";
 
 
 // import g1 from "../images/avatar1.png";
@@ -25,6 +26,7 @@ export default function RevReport(props){
       Date
 	};
   
+ 
 	let reviewWithCustomers = [];
   
 	useEffect(() => {
@@ -95,6 +97,7 @@ export default function RevReport(props){
                 setItems(res.data);
                 console.log(res.data);
                 console.log(items);
+
         
                 
             }).catch((err) =>{
@@ -107,7 +110,34 @@ export default function RevReport(props){
 
     }, []);
 
+function generateReport(){
+  let result = [];
+  console.log(abc);
+  console.log(items);
 
+  for(let i = 0; i < abc.length;i++){
+    result.push(abc[0]);
+  }
+
+  result.push(items);
+  console.log(result);
+
+
+  axios
+  .post("http://localhost:8070/review/create-pdf", result)
+  .then(() =>
+    axios.get("http://localhost:8070/review/fetch-pdf", {
+      responseType: "blob",
+      // A BLOB is a binary large object that can hold a variable amount of data. important
+    })
+  )
+  .then((res) => {
+    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+    saveAs(pdfBlob, "ReviewAndRatingReport.pdf");
+                      //your file name 
+  });
+
+}
 
  return(
 
@@ -120,7 +150,7 @@ export default function RevReport(props){
 	   Review Report
 	 </h2>
      <br/>
-
+     <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
      <table class="table" style={{width:'90%'
     //  width:'90%',tableLayout: 'fixed', fontSize:'16px', textAlign:'center',border:'1px',borderColor:'grey',
     //   fontFamily: 'sans-serif',boxSizing: 'border-box',
