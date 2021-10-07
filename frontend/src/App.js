@@ -4,6 +4,7 @@ import "./Css/Side_bar_styles.css";
 import "./Js/sidebar_script.js";
 import "./Css/toogle.css";
 import "./Css/AdminDashBoard.css";
+
 // import './Css/InitialPage.css';
 // import React from 'react';
 import React, { Component } from "react";
@@ -145,6 +146,7 @@ import RegSellers from "./Components/RegSellers";
 import ItemsForSpecificSeller from "./Components/ItemsForSpecificSeller";
 import AllItemsFiltered from "./Components/AllItemsFiltered";
 import RequestView from "./Components/RequestView";
+import TestReport from "./Components/TestReport";
 import CustomerOrders from "./Components/CustomerOrders";
 import SellerOrders from "./Components/SellerOrders";
 import CustomerPackageOrders from "./Components/CustomerPackageOrders";
@@ -155,6 +157,7 @@ function App() {
   return (
     <Router>
       <div>
+        {/* <Route path = "/" exact component = {TestReport}/> */}
         <Route path="/" exact component={InitialPage} />
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
@@ -167,7 +170,8 @@ function App() {
         />
         <Route path="/SellerForgotPassword" exact component={SellerForget} />
         <Route path="/AdminLogin" exact component={AdminLogin} />
-
+        {/* Sample route for Report */}
+      
         {/* Customer Route */}
         <Route path="/Customer" component={MainHeader} />
         <Route path="/Customer" component={Side_bar_Customer} />

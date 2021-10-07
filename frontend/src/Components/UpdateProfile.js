@@ -11,6 +11,22 @@ export default function UpdateProfile(props){
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [NpasswordShown, setNPasswordShown] = useState(false);
 	const [CNpasswordShown, setCNPasswordShown] = useState(false);
+
+	const [picture, setPicture] = useState("");
+	const [imgData, setImgData] = useState("");
+	const onChangePicture = e => {
+	  if (e.target.files[0]) {
+		console.log("picture: ", e.target.files);
+		setPicture(e.target.files[0]);
+		const reader = new FileReader();
+		reader.addEventListener("load", () => {
+		  setImgData(reader.result);
+		  document.getElementById("UserPro").hidden = false;
+		});
+		reader.readAsDataURL(e.target.files[0]);
+	  }
+	};
+  
 	
 
 	// Password toggle handler
@@ -59,7 +75,7 @@ export default function UpdateProfile(props){
 
 	let image2 = "";
 	let image3 = "";
-
+	let chpsw = "";
 
 	
 
@@ -107,6 +123,8 @@ export default function UpdateProfile(props){
 				dob = res.data.dob;
 				setCurrentImage(res.data.userImage);
 				setPassword(res.data.password);
+				// chpsw = res.data.password;
+				console.log(res.data.password)
 				
 	
 			}).catch((err) =>{
@@ -119,7 +137,7 @@ export default function UpdateProfile(props){
 
 	}, []);
 
-
+	
 
 	function validate(){
 
@@ -214,6 +232,7 @@ export default function UpdateProfile(props){
 
 			const isMatch = bcrypt.compareSync(psw, password);
 
+
 			if(!isMatch){
 				flag = 0;
 				Swal.fire('Invalid Current Password!')
@@ -282,71 +301,118 @@ export default function UpdateProfile(props){
 
 		console.log(updatecus);
 
-		objectID = props.match.params.id;
-		axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
-		
+		Swal.fire({
+			title: 'Do you want to save the changes?',
+			showDenyButton: true,
+			showCancelButton: true,
+			confirmButtonText: 'Save',
+			denyButtonText: `Don't save`,
+		  }).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
 
-		//alert("Customer Updated Successfully!");
-
-
-
-		Swal.fire(
-			'Success',
-			'Your Profile has been successfully updated',
-			'success'
-			
-		  )
-		props.history.push("/Customer/MyProfile");
-		window.location.reload();
-
-		 
-		  
+				objectID = props.match.params.id;
+				axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
+					
+				    Swal.fire('Your Profie Has Been Successfully Updated!', '', 'success')
+					props.history.push("/Customer/MyProfile");
+					window.location.reload();
 		
 			
-		}).catch((err) =>{
+		  }).catch((err) =>{
 
 			alert(err)
 		  })
+			 
+			} else if (result.isDenied) {
+			  Swal.fire('Changes are not saved', '', 'info')
+			  props.history.push("/Customer/MyProfile");
+			}
+		  })
+
+		
 		}
 
 			}
 	
 	
-	function deleteCustomer(id){
+	    function deleteCustomer(id){
 
-		objectID = props.match.params.id;
-	  axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
-	  {
-		//   alert("Customer Deleted Successfully!");
-
-		Swal.fire({
+		
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+			  confirmButton: 'btn btn-success',
+			  cancelButton: 'btn btn-danger'
+			},
+			buttonsStyling: false
+		  })
+		  
+		  swalWithBootstrapButtons.fire({
 			title: 'Are you sure?',
-			text: "You won't be able to revert this account!",
+			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete it!'
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonText: 'No, cancel!',
+			reverseButtons: true
 		  }).then((result) => {
 			if (result.isConfirmed) {
-			  Swal.fire(
-				'Deleted!',
-				'Your Profile Has Been Successfully Deleted!',
-				'success'
+
+
+
+				const { value: dpassword} = Swal.fire({
+					title: 'Enter your password',
+					input: 'password',
+					inputLabel: 'Password',
+					inputPlaceholder: 'Enter your password',
+					inputAttributes: {
+					  autocapitalize: 'off',
+					  autocorrect: 'off'
+					}
+				  })
+				  if(dpassword){
+
+				  	console.log("gg");
+				  }	  
+				//   const Match = bcrypt.compareSync(dpassword);
+				 
+				//   if (!Match) {
+					
+				//     Swal.fire('Invalid Current Password!')
+
+				//   }else{
+
+				// objectID = props.match.params.id;
+				// axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
+				// {
 				
+		  
+				//   swalWithBootstrapButtons.fire(
+				// 	'Deleted!',
+				// 	'Your Profile Has Been Successfully Deleted!',
+				// 	'success'
+				//   )
+				//   props.history.push("/CustomerRegistration");
+				   
+				// 	//const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
+				// 	//setCustomer(afterDeleteCustomer);
+				// }).catch((err) =>{
+				// 	alert(err);
+				// })
+
+			// }
+		  
+			} else if (
+			  /* Read more about handling dismissals below */
+			  result.dismiss === Swal.DismissReason.cancel
+			) {
+			  swalWithBootstrapButtons.fire(
+				'Cancelled',
+				'Your Profile is Safe :)',
+				'error'
 			  )
-			  props.history.push("/CustomerRegistration");
 			}
 		  })
-		 
-		  //const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
-		  //setCustomer(afterDeleteCustomer);
-	  }).catch((err) =>{
-		  alert(err);
-	  })
-
-
-
 	
   }
 
@@ -496,9 +562,15 @@ export default function UpdateProfile(props){
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="UserI" id="CusI"><b>User Image</b></label>
-									<input type="file" class="form-control" id="user_image"/>
+									<input type="file" class="form-control" id="user_image"  onChange={onChangePicture}/>
 								</div>
 							</div>
+							<div className="ImagePreview">
+            
+							<img src={imgData} id="UserPro" alt="user image" hidden/>
+							
+							</div>
+							
 
 						</div>
 

@@ -10,7 +10,7 @@ import v3 from "../images/paypal2.png";
 
 export default function ItemView(props) {
   const [items, setItems] = useState([]);
-  // let [itemss,setItemss] = useState([]);
+  let [itemss,setItemss] = useState([]);
   const [ratings, setRatings] = useState([]);
 
   let [allitems, setAllitems] = useState([]);
@@ -330,12 +330,94 @@ export default function ItemView(props) {
       });
   }
 
+
+// useEffect(() => {
+
+
+
+  function CheckReview(id) {
+    // let CustomerID = localStorage.getItem("CustomerID");
+    const objectId = props.match.params.id;
+      axios
+        .get("http://localhost:8070/review/get")
+        .then((res) => {
+          // setReview(res.data);
+          const filter = res.data.filter(
+            (itemrev) => itemrev.itemid === objectId
+          );
+          reviews = filter;
+          console.log(reviews);
+       
+          let CustomerID = localStorage.getItem("CustomerID");
+
+          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          axios
+            .get("http://localhost:8070/item/getAll")
+            .then((res) => {
+              setItemss(res.data);
+              console.log(res.data);
+              // reviews.itemid = item._id;
+              // let cartID = res.data._id;
+              // console.log(res.data);
+              // let packages = res.data.PackageIDs;
+              // let newwItems = res.data.ItemIDs;
+
+              let falgs = 0;
+              // for (let i = 0; i < newwItems.length; i++) {
+                if (reviews.itemid = itemss._id) {
+                  falgs = 1;
+                }
+              // }
+              // newwItems.push(id);
+              // console.log(newwItems);
+
+              // const updatedCart = {
+              //   customerID: CustomerID,
+              //   PackageIDs: packages,
+              //   ItemIDs: newwItems,
+              // };
+
+              if (falgs === 0) {
+
+                // writeReview(id)
+
+                //  function writeReview(id) {
+                //   props.history.push("/Customer/WriteReview/" + id);
+                //  }
+              
+
+                  
+              } else if (falgs === 1) {
+                Swal.fire("You have already review this item!");
+
+                
+              }
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+
+// });
+
+
+
+
   function viewReview(id) {
     props.history.push("/Customer/ItemReviews/" + id);
+
+    
   }
 
   function writeReview(id) {
     props.history.push("/Customer/WriteReview/" + id);
+
   }
   return (
     <div style={{ padding: "20px 15px 10px 50px" }}>
@@ -360,6 +442,7 @@ export default function ItemView(props) {
               />
               <img
                 style={{ width: "25%", padding: "10px" }}
+                // src={p2}
                 src={"/Images/" + items.Images}
                 alt={p2}
               />
