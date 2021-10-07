@@ -136,7 +136,7 @@ let percentage = (newNoSellers / totalSeller) * 100;
     <h3 class = "caltext" >Total number of sellers accepted on this month : ${newNoSellers}</h3>
     <h3 class = "caltext" >Total number of sellers in TechScope : ${totalSeller}</h3>
     <h3 class = "caltext" >Percentage of acceptence for this month  : ${percentage}%</h3>
-    <h3 class = "caltext" >Maximum number of sellers were accepted on : </h3>
+
          
     
     </body>

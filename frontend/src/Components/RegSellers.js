@@ -81,8 +81,7 @@ function requests(){
 
 
 function generateReport(){
-  let month = "08";
-
+  let month = document.getElementById("month").value;
 
   axios.get("http://localhost:8070/orgSeller/get").then((res) => {
 
@@ -119,6 +118,29 @@ function generateReport(){
   })
 
 }
+
+function MonthChange() {
+ let month = document.getElementById("month").value;
+
+
+
+  axios.get("http://localhost:8070/orgSeller/get").then((res) => {
+
+    totalSellers = res.data.length;
+
+    result = res.data.filter(
+      (post) => String(post.acceptedDate.substr(5, 2)) === month
+
+
+    );
+  
+  setorgSellers(result)    
+
+  }).catch((err) => {
+    alert(err);
+  })
+}
+
   return (
     <div className="container">
       <br/><br/>
@@ -133,7 +155,22 @@ function generateReport(){
         </div>
       
         <br/>
-        <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>Generate PDF</button>
+        <select id="month" onChange = {() => {MonthChange()}}>
+    <option value="01">January</option>
+    <option value="02">February</option>
+    <option value="03">March</option>
+    <option value="04">April</option>
+    <option value="05">May</option>
+    <option value="06">June</option>
+    <option value="07">July</option>
+    <option value="08">August</option>
+    <option value="09">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+</select>
+<br/><br/>
+        <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>GENERATE REPORT</button>
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>
