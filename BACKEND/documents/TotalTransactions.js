@@ -1,5 +1,10 @@
 module.exports = (result) => {
   let tableData;
+  let Total=0;
+  let avg=0;
+  let min=0;
+  let max=0;
+  let count=0;
   for (let i = 0; i < result.length; i++) {
     let dates = result[i].TransTime.substr(0, 10);
 
@@ -19,7 +24,23 @@ module.exports = (result) => {
       result[i].Amount +
       "</td>" +
       "</tr>";
+
+      if(parseFloat(result[i].Amount)>max)
+          {max=parseFloat(result[i].Amount)}
+      else
+          {max=max}
+
+      min=parseFloat(result[i].Amount);
+       if(parseFloat(result[i].Amount)<min)
+          {min=parseFloat(result[i].Amount)}
+      else
+          {min=min}
+
+      count++;
+      Total =Total+ parseFloat(result[i].Amount);
   }
+
+  Avg=Total/count;
 
   return `
   <html lang="en">
@@ -109,12 +130,16 @@ tr:nth-child(even) {
 
             <table class="center" stylr="background-color:">
             <tr>
-              <th >highest Purchases Amount</th>
-            <th >Total Purchases</th>
+              <th >highest Purchases Amount: Rs.${max}.00</th>
+            <th >Total Purchases : Rs.${Total}.00</th>
             </tr>
             <tr>
-              <th >Lowest Purchases Amount</th>
-            <th >Avarage Amount</th>
+              <th >Lowest Purchases Amount : Rs.${min}.00</th>
+            <th >Avarage Amount : Rs.${Avg}.00</th>
+            </tr>
+            <tr>
+              <th >Total Transactions : ${count}</th>
+            
             </tr>
 
 
