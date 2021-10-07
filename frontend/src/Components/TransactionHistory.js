@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
- 
+import { saveAs } from "file-saver";
 
 export default function PaymentHistory(props){
     const [payhistory,setpayhistory] = useState([]);
@@ -40,6 +40,23 @@ export default function PaymentHistory(props){
          props.history.push("/Customer/purchaseHistoryExtended/" + Orderid)
     }
 
+    function generateReport(){
+        let result = payhistory;
+        axios
+        .post("http://localhost:8070/orderhistory/create-pdf",result )
+        .then(() =>
+          axios.get("http://localhost:8070/orderhistory/fetch-pdf", {
+            responseType: "blob",
+            // A BLOB is a binary large object that can hold a variable amount of data. important
+          })
+        )
+        .then((res) => {
+          const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+          saveAs(pdfBlob, "TransactionReport.pdf");
+                            //your file name 
+        });
+
+    }
 
     return(
 
@@ -47,6 +64,7 @@ export default function PaymentHistory(props){
             <br/>
            <center> <h1>Transaction History</h1></center>
             <h1 id = "txt"></h1>
+            <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
             <table class="table table-hover table">
                     <thead>
                         <tr>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const pdf = require('html-pdf');
 const pdfTemplate = require("../documents/studentReport");
-const pdftem = require("../documents/TechScopeTemplate");
+const pdftem = require("../documents/TotalTransactions");
 let OrderHistory = require("../modules/OrderHistory");
 
 //Insert

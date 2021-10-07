@@ -156,7 +156,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Route path = "/" exact component = {TestReport}/>
+        {/* <Route path = "/" exact component = {TestReport}/> */}
+        <Route path="/"  exact component={TransactionHistory}/>
         {/* <Route path="/" exact component={InitialPage} /> */}
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
@@ -234,13 +235,13 @@ function App() {
           exact
           component={CustomerReviews}
         />
-        <Route
+        {/* <Route
           path="/Customer/paymentHistory"
           exact
           component={PaymentHistory}
-        />
+        /> */}
 
-      <Route path="/Customer/TransHist"  exact component={TransactionHistory}
+      <Route path="/Customer/paymentHistory"  exact component={TransactionHistory}
         />
         <Route
           path="/Customer/SelectPayment"

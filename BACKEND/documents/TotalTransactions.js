@@ -1,31 +1,25 @@
 module.exports = (result) => {
-
+  let tableData;
   for (let i = 0; i < result.length; i++) {
+    let dates = result[i].TransTime.substr(0, 10);
 
     tableData +=
-      '<tr> <td data-label="Transaction Time">' +
-      result[i].TransTime +
-      '</td><td data-label="Payment Method">' +
+      '<tr><td>' +
+      dates +
+      '</td><td>' +
       result[i].PaymentType +
       "</td>" +
-      '<td data-label="Recipt Number">' +
+      '<td>' +
       result[i].RecieptNo +
       "</td>" +
-      '<td data-label="Customer name">' +
-      Deeghayua  +
+      '<td>' +
+      "Deeghayua" +
       "</td>" +
-      '<td data-label="Items">' +
-      result[i].ItemList +
-      "</td>" +
-      '<td data-label="Total">' +
-      total +
+      '<td>' +
+      result[i].Amount +
       "</td>" +
       "</tr>";
   }
-
-
-
-  
 
   return `
   <html lang="en">
@@ -90,19 +84,17 @@ tr:nth-child(even) {
     </header>
   <body>
    
-  <!-- your code -->
               <center><h2 >Transaction History</h2>
             </center>
             
             <table class="center">
-            <thead class="thead-dark">
+            <thead>
 
             <tr>
               <th Style="width:10%">Transaction Time</th>
               <th Style="width:10%">Payment Method</th>
             <th Style="width:10%">Recipt Number</th>
             <th Style="width:20%">Customer name</th>
-              <th Style="width:20%">Items</th>
             <th Style="width:20%">Total</th>
             </tr>
 
