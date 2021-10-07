@@ -60,7 +60,7 @@ const customerSchema = new Schema({
         required: true
     },
 
-    date: {
+    newlyAddeddate: {
         type: Date,
         required: true,
         default: new Date()

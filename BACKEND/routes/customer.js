@@ -1,6 +1,9 @@
 const router = require("express").Router();
 let Customer = require("../modules/Customer");
 const bcrypt = require('bcryptjs');
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/CustomerReport");
+// const pdftem = require("../documents/TechScopeTemplate");
 
 
 //Customer SignUp
@@ -194,6 +197,25 @@ router.route("/getEmail/:email").get(async (req,res) =>{
         res.status(500).send({status : "Error with get user", error : err.message});
     })
 })
+
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfTemplate(req.body),{}).toFile('./routes/customerReport.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/customerReport.pdf`)
+
+ // absolute directory
+  })
 
 
 
