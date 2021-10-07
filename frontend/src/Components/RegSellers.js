@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { saveAs } from "file-saver";
 export default function RegSellers(props) {
   const [orgSellers, setorgSellers] = useState([]);
   const [load, setLoad] = useState(false);
-
+let totalSellers;
+let result;
   useEffect(() => {
     function getorgSellers() {
       axios
@@ -78,12 +79,52 @@ function requests(){
   props.history.push("/Admin/AllSellersRequest");
 }
 
+
+function generateReport(){
+  let month = "08";
+
+
+  axios.get("http://localhost:8070/orgSeller/get").then((res) => {
+
+    totalSellers = res.data.length;
+
+    result = res.data.filter(
+      (post) => String(post.acceptedDate.substr(5, 2)) === month
+
+
+    );
+  //  console.log(result[0].newlyAddeddate.substr(0,10));
+  setorgSellers(result)
+  result.push(totalSellers);
+   // console.log(result);
+    axios
+  .post("http://localhost:8070/orgSeller/create-pdf", result)
+  .then(() =>
+    axios.get("http://localhost:8070/orgSeller/fetch-pdf", {
+      responseType: "blob",
+      // A BLOB is a binary large object that can hold a variable amount of data. important
+    })
+  )
+  .then((res) => {
+    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+    saveAs(pdfBlob, "SellerMonthlyReport.pdf");
+                      //your file name 
+  });
+
+    console.log(result);
+    
+
+  }).catch((err) => {
+    alert(err);
+  })
+
+}
   return (
     <div className="container">
       <br/><br/>
       <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
       <h1>Registered Sellers</h1>
-      
+      <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
       <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
         
         <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"

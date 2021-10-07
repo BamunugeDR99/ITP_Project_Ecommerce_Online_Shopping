@@ -1,8 +1,24 @@
-module.exports = (objarr) => {
+module.exports = (result) => {
 
-  
+  let tabledata = "";
+  let totalSeller = result.pop();
+  let newNoSellers = result.length;
+  let today = new Date();
 
-    return `
+  for (let i = 0; i < result.length; i++) {
+    let dates = result[i].acceptedDate.substr(0,10);
+
+    tabledata += "<tr>" + "<td>"+dates+"</td>" + "<td>" + result[i].companyname+"</td>"+
+    "<td>"+ result[i].ownername+"</td>" +
+      "<td>"+ result[i].year+"</td>" +
+      "<td>"+result[i].email+"</td>" +
+      "<td>"+result[i].mobile+"</td>" +
+      "<td>"+ result[i].username+"</td>" +
+      "<td>06</td>" +
+      "</tr>";
+  }
+
+  return `
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -78,7 +94,8 @@ module.exports = (objarr) => {
     <br></br>
     
     <table align="center">
-      <tr>
+    <thead>  
+    <tr>
         <th>DATE</th>
         <th>COMPANY NAME</th>
         <th>OWNER NAME</th>
@@ -88,91 +105,13 @@ module.exports = (objarr) => {
         <th>USERNAME</th>
       <th>ACTIVE TIME PERIOD</th>
       </tr>
-      
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr><tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-      <tr>
-        <td>06/09/2021</td>
-        <td>Dialcom</td>
-        <td>Dasun Silva</td>
-      <td>2014</td>
-        <td>dds123@gmail.com</td>
-      <td>0772113227</td>
-      <td>Ddsil12</td>
-      <td>06</td>
-      </tr>
-    
-    
+     </thead>
+     <tbody>
+      ${tabledata}
+    </tbody>
     </table>
     <br/>
-    <h3>Total number of sellers accepted on this month : </h3>
+    <h3>Total number of sellers accepted on this month : ${newNoSellers}</h3>
     
     <h3>Maximum number of sellers were accepted on : </h3>
          
@@ -184,5 +123,4 @@ module.exports = (objarr) => {
     </footer>
     </html>
       `;
-  };
-  
+};
