@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 //Decide what content should be displayed when the component is rendered
 
 import axios from "axios";
-import g1 from "../images/p1.png";
 
-export default function SellerOrders(props) {
+
+export default function SellerPackageOrders(props) {
 
     const [Orders, setOrders] = useState([]);
     let CustomerIDs = [];
-    let OrderIDs = [];
     let [FilteredOrders, setFilteredOrders] = useState([]);
     let [AllCustomers, setAllCustomers] = useState([]);
 
@@ -25,7 +24,8 @@ export default function SellerOrders(props) {
     const CustomerID = "";
     const OQuantity = "";
     const TransitTime = "";
-    const Items = [];
+    const Packages = [];
+
 
 
 
@@ -39,8 +39,7 @@ export default function SellerOrders(props) {
         CustomerID,
         OQuantity,
         TransitTime,
-        Items
-
+        Packages
 
     }
 
@@ -67,7 +66,7 @@ export default function SellerOrders(props) {
             const SellerID = "613a2b0fb31f783accd94447";
 
 
-            axios.get("http://localhost:8070/Orders/getOrders").then((res) => {
+            axios.get("http://localhost:8070/PackageOrders/getOrders").then((res) => {
 
                 console.log(res.data);
 
@@ -76,14 +75,19 @@ export default function SellerOrders(props) {
                 console.log("Filtered Orders")
 
 
+                //  setOrders(FilteredOrders);
 
+                // for(let i = 0; i < FilteredOrders.length; i++ ){
+
+                //     SellerIDs.push(FilteredOrders[i].SellerID);                        )
+                // }
+
+
+                // console.log(SellerIDs);
 
                 for (let i = 0; i < FilteredOrders.length; i++) {
 
                     CustomerIDs.push(FilteredOrders[i].CustomerID);
-                    OrderIDs.push(FilteredOrders[i].OrderID);
-                    console.log(FilteredOrders[i].OrderID);
-                    console.log(OrderIDs);
                 }
 
 
@@ -154,7 +158,7 @@ export default function SellerOrders(props) {
                         CustomerID: AllOrders[i].CustomerID,
                         OQuantity: AllOrders[i].OQuantity,
                         TransitTime: AllOrders[i].TransitTime,
-                        Items: AllOrders[i].Items
+                        Packages: AllOrders[i].Packages
 
                     };
 
@@ -166,18 +170,7 @@ export default function SellerOrders(props) {
             }
         }
 
-
         setOrders(OrderArr);
-
-
-       
-
-
-
-
-
-
-
 
     }
 
@@ -192,49 +185,57 @@ export default function SellerOrders(props) {
                 return (
 
                     <div>
-           
 
-                    <div className="container" style={{ marginTop: '20px' }}> 
-        
-                        <div className="row shadow p-3 mb-5 bg-white rounded" style={{ width: '90%', padding: '20px 0px 20px 0px', margin: '0px 0px 20px 2px', backgroundColor: 'white', borderRadius: '10px', border: 'red' }}>
-        
-                            <div className="col">
-                                <img style={{ width: '50%', borderRadius: '10px' }} src={"/Images/" + order.Items[0].Images[0]} />
-                                <br />
-                                <span>{order.Items[0].Item_name}</span>
+
+                        <div className="container" style={{ marginTop: '20px' }}>
+
+                            <div className="row shadow p-3 mb-5 bg-white rounded" style={{ width: '90%', padding: '20px 0px 20px 0px', margin: '0px 0px 20px 2px', backgroundColor: 'white', borderRadius: '10px', border: 'red' }}>
+
+                                <div className="col">
+                                    <img style={{ width: '50%', borderRadius: '10px' }} src={"/Images/" + order.Packages[0].image} />
+                                    <br />
+                                    <span>{order.Packages[0].packageName}</span>
+                                </div>
+
+                                <div className="col">
+                                    <br />
+                                    {`Order ID : ${order.OrderID}`}
+                                    <br />
+                                    <br />
+                                    {`Customer Name : ${order.CustomerFName} ${order.CustomerLName}`}
+                                    <br />
+                                    <br />
+                                    {`Date : ${order.TransitTime}`}
+                                    <br />
+                                </div>
+
+                                <div className="col">
+                                    <br />
+                                    <span >Content   &emsp;&emsp;:&emsp; {order.Packages[0].content.map((pack) => {
+
+                                        return (
+                                            <div>
+
+                                                <p>{pack.Item_name}</p>
+                                            </div>
+                                        )
+
+                                    })} </span>
+                                     <br />
+                                    <span >{`Item name : ${order.Packages[0].packageName}`}</span>
+                                    <br />
+                                    <br />
+                                    <span >{`Quantity : ${order.OQuantity}`}</span>
+                                    <br />
+                                    <br />
+                                    <span >{`Price : ${parseFloat(order.Packages[0].price * order.OQuantity).toFixed(2)}`}</span>
+                                </div>
+
                             </div>
-        
-                            <div className="col">
-                                <br />
-                                 {`Order ID : ${order.OrderID}`}
-                                 <br />
-                                 <br />
-                                 {`Customer Name : ${order.CustomerFName} ${order.CustomerLName}`}
-                                <br />
-                                <br />
-                                {`Date : ${order.TransitTime}`}
-                                <br />
-                            </div>
-        
-                            <div className="col">
-                                <br />
-                                <span>{`Category : ${order.Items[0].Category}`}</span>
-                                <br />
-                                <br />
-                                <span>{`Item name : ${order.Items[0].Item_name}`}</span>
-                                <br />
-                                <br />
-                                <span>{`Quantity : ${order.OQuantity}`}</span>
-                                <br />
-                                <br />
-                                <span>{`Price : ${parseFloat(order.Items[0].FinalPrice * order.OQuantity).toFixed(2)}`}</span>
-                            </div>
-        
+
                         </div>
-        
+
                     </div>
-        
-                </div>
                 )
 
             })
@@ -246,5 +247,5 @@ export default function SellerOrders(props) {
 
 
 
-   
+
 }
