@@ -149,13 +149,14 @@ import RequestView from "./Components/RequestView";
 import TestReport from "./Components/TestReport";
 import CustomerOrders from "./Components/CustomerOrders";
 import SellerOrders from "./Components/SellerOrders";
+import RevReport from "./Components/RevReport";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
     <Router>
       <div>
-        {/* <Route path = "/" exact component = {TestReport}/> */}
-        <Route path="/" exact component={InitialPage} />
+        <Route path = "/" exact component = {TestReport}/>
+        {/* <Route path="/" exact component={InitialPage} /> */}
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
         <Route path="/CustomerForgotPassword" exact component={ForgotP} />
@@ -297,6 +298,7 @@ function App() {
           component={UpdateDiscount}
         />
         <Route path="/Seller/Contact" exact component={Sellermsg} />
+        <Route path="/Seller/Report/:id" exact component={RevReport} />
         <Route path="/Seller/Update/:id" exact component={SellerUpdate} />
         <Route path="/Seller/sellerPassword" exact component={SellerPassword} />
         <Route path="/Seller" component={Footer_customer} />

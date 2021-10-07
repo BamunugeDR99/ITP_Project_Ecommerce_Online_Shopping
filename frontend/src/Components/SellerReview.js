@@ -302,6 +302,12 @@ function updatee(id){
 
 }
 
+function report(id) {
+  props.history.push("/Seller/Report/" + id);
+ console.log(id)
+}
+
+
 
 
 
@@ -415,6 +421,8 @@ function updatee(id){
                     </div>
 
                   </span>
+
+                  <button  onClick = {()=> report(items._id)}  type="button"style={{fontSize:'14px'}} class="btn btn-danger">Generate A Report</button>
             </div>
 
         </div>
@@ -456,6 +464,7 @@ function updatee(id){
                                 <span class="fa fa-star"></span><span> </span> 
 
                                 </div>
+                                
                         </div>
                         
                     </div>    
