@@ -53,7 +53,7 @@ module.exports = (objarr) => {
           }
           
           tr:nth-child(even) {
-            background-color: #bfbfbf;
+            background-color: #80ccff;
           }
           
           tr:nth-child(odd) {
@@ -72,106 +72,109 @@ module.exports = (objarr) => {
       </header>
     <body>
      
+    <h1 align="center">SELLERS REPORT</h1>
+    <h1 align="center">NEWLY ADDED SELLERS FOR THE GIVEN MONTH</h1>
+    <h2 align="left">MONTH : </h2>
     <br></br>
-<table align="center">
-  <tr>
-    <th>DATE</th>
-    <th>COMPANY NAME</th>
-    <th>OWNER NAME</th>
-	<th>YEAR</th>
-    <th>EMAIL</th>
-	<th>CONTACT NUMBER</th>
-    <th>USERNAME</th>
-	<th>MOST ACTIVE DAYS</th>
-  </tr>
-  
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr><tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-  <tr>
-    <td>06/09/2021</td>
-    <td>Dialcom</td>
-    <td>Dasun Silva</td>
-	<td>2014</td>
-    <td>dds123@gmail.com</td>
-	<td>0772113227</td>
-	<td>Ddsil12</td>
-	<td>06</td>
-  </tr>
-
-
-</table>
-<br/>
-<h3 class = "caltext">Total number of sellers accepted on this month : </h3>
-
-<h3 class = "caltext">Maximum number of sellers were accepted on : </h3>
-<br/>
+    
+    <table align="center">
+      <tr>
+        <th>DATE</th>
+        <th>COMPANY NAME</th>
+        <th>OWNER NAME</th>
+      <th>YEAR</th>
+        <th>EMAIL</th>
+      <th>CONTACT NUMBER</th>
+        <th>USERNAME</th>
+      <th>ACTIVE TIME PERIOD</th>
+      </tr>
+      
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr><tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+      <tr>
+        <td>06/09/2021</td>
+        <td>Dialcom</td>
+        <td>Dasun Silva</td>
+      <td>2014</td>
+        <td>dds123@gmail.com</td>
+      <td>0772113227</td>
+      <td>Ddsil12</td>
+      <td>06</td>
+      </tr>
+    
+    
+    </table>
+    <br/>
+    <h3>Total number of sellers accepted on this month : </h3>
+    
+    <h3>Maximum number of sellers were accepted on : </h3>
          
      
     </body>
