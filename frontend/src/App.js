@@ -152,6 +152,7 @@ import SellerOrders from "./Components/SellerOrders";
 import CustomerPackageOrders from "./Components/CustomerPackageOrders";
 import SellerPackageOrders from "./Components/SellerPackageOrders";
 import TestOrderMerge from "./Components/TestOrderMerge";
+import ItemMonthlySales from "./Components/ItemMonthlySales";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -290,6 +291,11 @@ function App() {
           exact
           component={CreatePackage2}
         />
+
+
+        <Route path = "/Seller/ItemMonthlySales" exact component = {ItemMonthlySales}/>
+
+
         <Route
           path="/Seller/UpdatePackage/:id"
           exact

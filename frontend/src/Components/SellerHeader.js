@@ -63,6 +63,10 @@ const [logo,setLogo] = useState("");
         <Link class="nav-link" to ="/Seller/MyPackages">My Promotional Packages</Link>
       </li>
  
+      <li class="nav-item">
+        <Link class="nav-link" to ="/Seller/Orders">My Orders</Link>
+      </li>
+      
     </ul>
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}

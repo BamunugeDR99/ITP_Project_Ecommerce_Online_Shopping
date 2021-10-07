@@ -1,5 +1,8 @@
 const router = require("express").Router();
 let Item = require("../modules/Item");
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/ItemMonthlyReport");
+const pdftem = require("../documents/TechScopeTemplate");
 
 //Insert
 router.route("/addItems").post((req, res) => {
@@ -218,7 +221,23 @@ router.route("/updateDiscount/:id").put(async (req, res) => {
   })
 
 
+// post PDF
 
+router.post('/create-pdf',(req,res) => {
+  pdf.create(pdfTemplate(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+    if(err){
+      res.send(Promise.reject());
+    }
+
+    res.send(Promise.resolve());
+  });
+});
+
+// get PDF
+router.get('/fetch-pdf',(req,res)=>{
+  res.sendFile(`${__dirname}/result.pdf`)
+            // absolute directory
+})
 
 
 module.exports = router;
