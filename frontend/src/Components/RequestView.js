@@ -206,7 +206,7 @@ export default function RequestView(props) {
   return (
 
     <div className="sellerview">
-    
+    <br/>
     <div>
 
       <h2 style={{color:"black",textAlign : "center"}}>REQUEST DETAILS - {seller.companyname}</h2><br/>

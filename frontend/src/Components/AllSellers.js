@@ -78,7 +78,7 @@ function filtersellers(data, sellerSearch){
 }
 
   return (
-    <div className="container">
+    <div className="container"><br/><br/>
       <h1>Seller Requests</h1><br/>
 
       <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>

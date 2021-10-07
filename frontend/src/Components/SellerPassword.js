@@ -260,6 +260,10 @@ export default function SellerPassword(props) {
 
 
                                   <button type="button" class="btn btn-primary btn-block" style={{ textAlign: "center", width: "350px", marginLeft: "50px", height: "45px" }} onClick={() => ChangePassword(orgSeller._id)}>Change</button>
+                                  <button type="button" class="btn btn-dark btn-block" style={{ textAlign: "center", width: "350px", marginLeft: "50px", height: "45px" }}
+                                  onClick = {()=> {
+                        props.history.push("/Seller/MyProfile");
+                    }}>BACK</button>
                                   <span> </span>
                                 </div>
                               </form>

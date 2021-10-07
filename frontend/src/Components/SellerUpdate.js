@@ -165,7 +165,8 @@ export default function SellerUpdate(props) {
       <br />
       <br />
       {/* <br/><br/><br/><br/> */}
-      <h2 style={{color:"black", marginLeft:"130px", marginBottom:"30px"}}>Edit Profile</h2>
+
+      <h2 style={{color:"black",textAlign : "center"}}>EDIT PROFILE</h2><br/>
       {/* <h1 id = "txt"></h1> */}
 
 
@@ -292,7 +293,9 @@ export default function SellerUpdate(props) {
                         </div>
 						<div className = "container">
 						<div class="float-right">
-            
+            <button class="btn btn-dark" onClick = {()=> {
+                        props.history.push("/Seller/MyProfile");
+                    }}>BACK</button> <span/><span/>
 						<button type="submit" class="btn btn-primary">UPDATE</button>
 						</div>
                         </div>
