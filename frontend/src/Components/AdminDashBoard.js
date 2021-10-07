@@ -132,7 +132,7 @@ export default function AdminDashBoard(props) {
   </div>
 
   <div class="column">
-    <div class="card"  style={{backgroundImage: "linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)"}}>
+    <div class="card"  style={{backgroundImage:"linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)"}}>
     
     <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"80px"}}/>
       <h3  style={{color:"white"}}>Total Sellers</h3>
@@ -142,21 +142,21 @@ export default function AdminDashBoard(props) {
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundImage: " linear-gradient( 45.8deg,  rgba(175,104,254,1) 9.3%, rgba(101,223,255,1) 75.1% )"}}>
+    <div class="card" style={{backgroundImage: "linear-gradient(180deg, #2af598 0%, #009efd 100%)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/multiple-smartphones.png" style={{width:"120px", height:"120px", marginLeft:"60px"}}/>
-      <h3>Total Items</h3>
-      <p><b>{itemCount}</b></p>
+      <h3 style={{color:"white"}}>Total Items</h3>
+      <p style={{color:"white"}}><b>{itemCount}</b></p>
      
     </div>
   </div>
   
   <div class="column">
-    <div class="card"  style={{backgroundColor:" rgb(255,103,200)", background: "linear-gradient(90deg, rgba(255,103,200,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card"  style={{backgroundImage: "linear-gradient(to top, #e8198b 0%, #c7eafd 100%)"}}>
      
     <img src="https://img.icons8.com/fluency/300/000000/package.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Packages</h3>
-      <p><b>{packageCount}</b></p>
+      <h3 style={{color:"white"}}>Total Packages</h3>
+      <p style={{color:"white"}}><b>{packageCount}</b></p>
      
     </div>
   </div>
@@ -166,19 +166,19 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundImage: "radial-gradient( circle farthest-corner at 50.4% 50.5%,  rgba(251,32,86,1) 0%, rgba(135,2,35,1) 90% )"}}>
+    <div class="card" style={{backgroundImage: "linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)"}}>
     <img src="https://img.icons8.com/fluency/300/000000/administrator-male.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Admins</h3>
-      <p><b>{adminCount}</b></p>
+      <h3 style={{color:"white"}}>Total Admins</h3>
+      <p style={{color:"white"}}><b>{adminCount}</b></p>
      
     </div>
   </div>
 
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(180,68,91)", background: "linear-gradient(90deg, rgba(180,68,91,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{backgroundImage: "linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)"}}>
     <img src="https://img.icons8.com/fluency/300/000000/invite.png"  style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Seller Requests</h3>
-      <p><b>{sellerRequesCount}</b></p>
+      <h3 style={{color:"white"}}>Seller Requests</h3>
+      <p style={{color:"white"}}><b>{sellerRequesCount}</b></p>
       
     </div>
   </div>
@@ -187,8 +187,8 @@ export default function AdminDashBoard(props) {
     <div class="card" style={{backgroundColor: "rgb(207,205,66)", background: "linear-gradient(90deg, rgba(207,205,66,1) 3%, rgba(255,255,255,1) 100%)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/purchase-order.png"  style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Orders</h3>
-      <p>Some text</p>
+      <h3 style={{color:"white"}}>Orders</h3>
+      <p style={{color:"white"}}>Some text</p>
      
     </div>
   </div>
@@ -197,8 +197,8 @@ export default function AdminDashBoard(props) {
     <div class="card" style={{backgroundColor: "rgb(182,182,179)", background: "linear-gradient(90deg, rgba(182,182,179,1) 3%, rgba(255,255,255,1) 100%)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/fine-print.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Reports</h3>
-      <p>Some text</p>
+      <h3 style={{color:"white"}}>Reports</h3>
+      <p style={{color:"white"}}>Some text</p>
      
     </div>
   </div>

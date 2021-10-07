@@ -66,7 +66,7 @@ export default function CustomerList(props) {
 
     let result = data.filter((post) =>
 
-      post.firstName.toLowerCase().includes(customerSearch.toLowerCase()) || post.lastName.toLowerCase().includes(customerSearch.toLowerCase())
+      post.firstName.toLowerCase().includes(customerSearch.toLowerCase()) || post.lastName.toLowerCase().includes(customerSearch.toLowerCase()) || post.username.toLowerCase().includes(customerSearch.toLowerCase())
 
 
     );
@@ -93,32 +93,32 @@ export default function CustomerList(props) {
     props.history.push("/Admin/Customers/Details/" + id);
   }
 
-  function filterbyMonth() {
-    let month = "05";
+  // function filterbyMonth() {
+  //   let month = "05";
 
 
-    axios.get("http://localhost:8070/Customer/getAll").then((res) => {
+  //   axios.get("http://localhost:8070/Customer/getAll").then((res) => {
 
 
 
     
-      result = res.data.filter(
-        (post) => String(post.newlyAddeddate.substr(5, 2)) === month
+  //     result = res.data.filter(
+  //       (post) => String(post.newlyAddeddate.substr(5, 2)) === month
 
 
-      );
+  //     );
 
-      console.log(result);
-       setCustomers(result)
+  //     console.log(result);
+  //      setCustomers(result)
 
-    }).catch((err) => {
-      alert(err);
-    })
+  //   }).catch((err) => {
+  //     alert(err);
+  //   })
 
-  }
+  // }
 
 function generateReport(){
-  let month = "05";
+  let month = document.getElementById("month").value;
 
 
   axios.get("http://localhost:8070/Customer/getAll").then((res) => {
@@ -134,7 +134,7 @@ function generateReport(){
   //  console.log(result[0].newlyAddeddate.substr(0,10));
   setCustomers(result)
   result.push(totalCustomers);
-   // console.log(result);
+   console.log(result);
     axios
   .post("http://localhost:8070/Customer/create-pdf", result)
   .then(() =>
@@ -162,14 +162,66 @@ function generateReport(){
 
 
 }
+
+function monthChange(){
+
+ let month = document.getElementById("month").value;
+  axios.get("http://localhost:8070/Customer/getAll").then((res) => {
+
+    totalCustomers = res.data.length;
+   
+
+    result = res.data.filter(
+      (post) => String(post.newlyAddeddate.substr(5, 2)) === month
+
+
+    );
+  //  console.log(result[0].newlyAddeddate.substr(0,10));
+  setCustomers(result)
+  //result.push(totalCustomers);
+   //console.log(result);
+
+
+    //console.log(result);
+    
+   
+    
+
+  }).catch((err) => {
+    alert(err);
+  })
+
+
+
+
+}
+
+
+
+
   return (
     <div class="CustomerList">
       <div class="cus">
 
-        <p>Customers</p>
-        <button type="button" class="btn btn-primary" onClick={() => filterbyMonth()}>Primary</button>
-        <button type="button" class="btn btn-primary" onClick={() => generateReport()}>PDF</button>
+      <button type="button"style={{float:"right",backgroundColor:"rgb(34,139,34)"}} class="btn btn-primary" onClick={() => generateReport()}>Generate Report</button>
+      <select id="month" style={{width:"150px", fontSize:"20px"}} onChange = {()=> {monthChange()}}>
 
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+      </select>
+       
+
+        <p>Customers</p>
        
       </div>
 
@@ -177,7 +229,7 @@ function generateReport(){
 
       <div class="input-group" id="CusSerch">
 
-        <input type="search" class="form-control rounded" placeholder="Search by first name or last name...." aria-label="Search"
+        <input type="search" class="form-control rounded" placeholder="Search by first name or last name or username...." aria-label="Search"
           aria-describedby="search-addon" onChange={(e) => handleSearch(e.target.value)} />
         <i class="bi bi-search" id="iconS"></i>
       </div>
@@ -199,7 +251,8 @@ function generateReport(){
           <thead class="theadD">
             <tr>
               <th>User Image</th>
-              <th>Cutomer Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Username</th>
               <th>Email</th>
               <th>Action</th>
@@ -220,7 +273,8 @@ function generateReport(){
                   <td data-label="UserImage">
                     <img src={"/Images/" + customer.userImage} alt="userImage" width="110px" height="110px" className="rounded-circle" />
                   </td>
-                  <td data-label="Cutomer Name">{customer.firstName} {customer.lastName}</td>
+                  <td data-label="Cutomer First Name">{customer.firstName}</td>
+                  <td data-label="Cutomer Last Name">{customer.lastName}</td>
                   <td data-label="Customer Username">{customer.username}</td>
                   <td data-label="Customer Email">{customer.email}</td>
 

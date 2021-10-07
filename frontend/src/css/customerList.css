@@ -57,18 +57,18 @@
 
 .CustomerList .tablex td,.tablex th{
   padding:12px 15px;
-  border:1px solid #ddd;
+  border-bottom:1px solid rgb(204, 204, 204);
   text-align: center;
   font-size:16px;
 }
 
 .CustomerList .tablex th{
-	background-color: rgb(58, 58, 58);
+	background-color: rgb(27, 27, 27);
 	color:#ffffff;
 }
 
 .CustomerList .tablex tbody tr:nth-child(even){
-	background-color: #f5f5f5;
+	background-color: #cfcece;
 }
 
 
