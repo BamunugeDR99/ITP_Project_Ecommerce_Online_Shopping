@@ -1,11 +1,42 @@
-module.exports = (content) => {
+module.exports = (result) => {
+  let tableData;
+    let totalCustomers = result.pop();
+  let newNoCustomers = result.length;
+  let today = new Date();
 
-//     let tableData;
-//   for(let i = 0 ; i < content.length; i++){
-//         tableData += '<tr>'
-//  +   }
 
-    return `
+  for (let i = 0; i < result.length; i++) {
+    let dates = result[i].newlyAddeddate.substr(0,10);
+
+
+    tableData +=
+      '<tr> <td data-label="added">' +
+      dates +
+      '</td><td data-label="First Name">' +
+      result[i].firstName +
+      "</td>" +
+      '<td data-label="Last Name">' +
+      result[i].lastName +
+      "</td>" +
+      '<td data-label="Username">' +
+      result[i].username +
+      "</td>" +
+      '<td data-label="Email">' +
+      result[i].email +
+      "</td>" +
+      '<td data-label="Geder">' +
+      result[i].gender +
+      "</td>" +
+      '<td data-label="Phone">' +
+      result[i].phoneNumber +
+      "</td>" +
+      ' <td data-label="Address">' +
+      result[i].address +
+      "</td>" +
+      "</tr>";
+  }
+
+  return `
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -71,9 +102,6 @@ module.exports = (content) => {
         </div>
       </header>
     <body>
-     
-    <!-- your code -->
-
 	<table class="table">
      <thead class="thead-dark">
      	<tr>
@@ -88,28 +116,15 @@ module.exports = (content) => {
      	</tr>
      </thead>
      <tbody>
-     	  <tr>
-			  <td data-label="added">25/10/2021</td>
-     	  	  <td data-label="First Name">Naveen</td>
-			   <td data-label="Last Name">Anushka</td>
-     	  	  <td data-label="Username">NaveenAnushka19</td>
-     	  	  <td data-label="Email">naveenanushka99@gmail.com</td>
-			  <td data-label="Geder">Male</td>
-			  <td data-label="Phone">0765521456</td>
-			  <td data-label="Address">No,65/A,Galle Road,Kalutara North</td>
-     	  	  
-     	  </tr>
-
-     
-
+     ${tableData}
 		 </tbody>  
   </table>
   <br>
   
-  <h3>Total New Customers: 10</h3>
+  <h3>Total New Customers: ${newNoCustomers}</h3>
   <h3>Active Time Period: 2 Days</h3>
   <h3>Maximum Number of Customers Added Month: January </h3>
-  <h3>Percentage: 20%</h3>
+  <h3>Percentage: ${totalCustomers}</h3>
          
      
     </body>
@@ -119,5 +134,4 @@ module.exports = (content) => {
     </footer>
     </html>
       `;
-  };
-  
+};

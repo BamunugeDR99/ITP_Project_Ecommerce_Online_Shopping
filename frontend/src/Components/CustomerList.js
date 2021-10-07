@@ -9,13 +9,14 @@ export default function CustomerList(props) {
   const [load, setLoad] = useState(false);
 
   let result;
+  let totalCustomers;
 
   useEffect(() => {
     function getCustomers() {
       axios.get("http://localhost:8070/Customer/getAll").then((res) => {
         setCustomers(res.data);
         console.log(res.data);
-
+        
 
       }).catch((err) => {
         alert(err);
@@ -98,7 +99,7 @@ export default function CustomerList(props) {
     axios.get("http://localhost:8070/Customer/getAll").then((res) => {
 
 
-
+    
       result = res.data.filter(
         (post) => String(post.newlyAddeddate.substr(5, 2)) === month
 
@@ -115,11 +116,24 @@ export default function CustomerList(props) {
   }
 
 function generateReport(){
-  let content = [];
-  content.push(result);
+  let month = "05";
 
-  axios
-  .post("http://localhost:8070/Customer/create-pdf", content)
+
+  axios.get("http://localhost:8070/Customer/getAll").then((res) => {
+
+    totalCustomers = res.data.length;
+
+    result = res.data.filter(
+      (post) => String(post.newlyAddeddate.substr(5, 2)) === month
+
+
+    );
+  //  console.log(result[0].newlyAddeddate.substr(0,10));
+    //console.log(result)
+   result.push(totalCustomers);
+   // console.log(result);
+    axios
+  .post("http://localhost:8070/Customer/create-pdf", result)
   .then(() =>
     axios.get("http://localhost:8070/Customer/fetch-pdf", {
       responseType: "blob",
@@ -131,6 +145,15 @@ function generateReport(){
     saveAs(pdfBlob, "CustomerMonthlyReport.pdf");
                       //your file name 
   });
+
+    console.log(result);
+     setCustomers(result)
+
+  }).catch((err) => {
+    alert(err);
+  })
+
+  
 
 
 }
