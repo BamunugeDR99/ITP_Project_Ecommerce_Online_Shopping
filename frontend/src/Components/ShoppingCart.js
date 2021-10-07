@@ -275,7 +275,7 @@ export default function ShoppingCart(props) {
 
 
     document.getElementById("GrandTotal").value = newTotal;
-
+    document.getElementById("GrandTotal2").value = newTotal + 100;
 
   }
 
@@ -314,7 +314,7 @@ export default function ShoppingCart(props) {
   
 
     document.getElementById("GrandTotal").value = newTotal;
-
+    document.getElementById("GrandTotal2").value = newTotal + 100;
 
     }
   
@@ -356,6 +356,7 @@ export default function ShoppingCart(props) {
       
    
        document.getElementById("GrandTotal").value = newTotal;
+       document.getElementById("GrandTotal2").value = newTotal + 100;
    
 
 
@@ -395,6 +396,7 @@ export default function ShoppingCart(props) {
     
  
      document.getElementById("GrandTotal").value = newTotal;
+     document.getElementById("GrandTotal2").value = newTotal + 100;
  
     }
 
@@ -406,10 +408,11 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 //Remove Items From the Cart
 
-  function removeItems(id, index){
+  function removeItems(id, index, price){
 
     console.log(index);
 
+    console.log(`Price : ${price}`);
      console.log(`Item ID : ${id}`);
     let Citems = [];
 
@@ -429,6 +432,16 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
       console.log(`Remaining Items : ${remainingItems}`);
 
+      //Update the Items Array
+      // axios.put("http://localhost:8070/ShoppingCart/updateCartItems/" + customerID, remainingItems).then((res)=>{
+
+      //     alert("Ain Kla");
+
+      // }).catch((err)=> {
+
+      //   console.log(err);
+      // })
+
         //Loop to set items
 
 
@@ -438,7 +451,13 @@ GrandTotal = allItemsTotal + allPackagesTotal;
           console.log(res.data);
           Allitems = res.data;
 
+          GrandTotal = GrandTotal - price;
+          console.log(GrandTotal);
+         
+
           getItemss(Allitems, remainingItems);
+          document.getElementById("GrandTotal").value = GrandTotal;
+          document.getElementById("GrandTotal2").value = GrandTotal + 100;
 
         }).catch((err) => {
 
@@ -536,7 +555,7 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                         <div>
                           <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3 link-danger" ><i
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                            <button onClick={()=> removeItems(item.ItemID, index)}></button>
+                            <button onClick={()=> removeItems(item.ItemID, index, document.getElementById(index + "ItemPrice").value)}></button>
                         </div>
                         <p class="mb-0" >{item.fPrice}</p>
 
@@ -729,7 +748,7 @@ return (
                         <p class="mb-0">(including VAT)</p>
                       </strong>
                     </div>
-                    <span><strong>{GrandTotal + (100  )}</strong></span>
+                    <span id = 'GrandTotal2' value ={GrandTotal}><strong></strong></span>
                   </li>
                 </ul>
 
