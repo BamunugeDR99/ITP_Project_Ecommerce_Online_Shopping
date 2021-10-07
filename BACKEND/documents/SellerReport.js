@@ -6,7 +6,13 @@ module.exports = (result) => {
   let tabledata = "";
   let totalSeller = result.pop();
   let newNoSellers = result.length;
-  let today = new Date().toISOString().slice(0, 10);
+  // let today = new Date().toISOString().slice(0, 10);
+
+  let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let today = now.getFullYear() + "-" + (month) + "-" + (day);
+
 
   function getNumberOfDays(start, end) {
 
@@ -18,6 +24,7 @@ module.exports = (result) => {
 }
 
 let percentage = (newNoSellers / totalSeller) * 100;
+let per = percentage.toFixed(2);
 
   for (let i = 0; i < result.length; i++) {
     let dates = result[i].acceptedDate.substr(0,10);
@@ -113,6 +120,7 @@ let percentage = (newNoSellers / totalSeller) * 100;
     <h1 align="center"><u>SELLERS REPORT</u></h1>
     <h3 align="center">NEWLY ACCEPTED SELLERS FOR THE GIVEN MONTH</h3>
     <h3 class = "caltext" align="left">MONTH : </h3>
+    <h3 class = "caltext" align="left">DATE : ${today}</h3>
     <br/>
     
     <table align="center">
@@ -135,7 +143,7 @@ let percentage = (newNoSellers / totalSeller) * 100;
     <br/>
     <h3 class = "caltext" >Total number of sellers accepted on this month : ${newNoSellers}</h3>
     <h3 class = "caltext" >Total number of sellers in TechScope : ${totalSeller}</h3>
-    <h3 class = "caltext" >Percentage of acceptence for this month  : ${percentage}%</h3>
+    <h3 class = "caltext" >Percentage of acceptence for this month  : ${per}%</h3>
 
          
     
