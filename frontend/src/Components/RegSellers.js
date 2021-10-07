@@ -124,7 +124,7 @@ function generateReport(){
       <br/><br/>
       <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
       <h1>Registered Sellers</h1>
-      <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>PDF</button>
+      <br/>
       <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
         
         <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"
@@ -132,6 +132,8 @@ function generateReport(){
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
       
+        <br/>
+        <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>Generate PDF</button>
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>

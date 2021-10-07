@@ -50,10 +50,10 @@ module.exports = (result) => {
          table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 85%;
+            width: 99%;
           }
           .caltext {
-            padding-left : 50px;
+            padding-left : 5px;
           }
           
           th {
@@ -61,13 +61,13 @@ module.exports = (result) => {
             text-align: center;
             padding-bottom: 20px;
             padding-top: 20px;
-            font-size : 10px;
+            font-size : 12px;
             background-color: #ffffff;
           }
           td {
             border: 1px solid #000000;
             text-align: center;
-            font-size : 8px;
+            font-size : 15px;
             padding-bottom: 10px;
             padding-top: 10px;
           }
@@ -91,12 +91,12 @@ module.exports = (result) => {
         </div>
       </header>
     <body>
-     
-    <br></br>
+    <hr>
+    <br/>
     <h1 align="center"><u>SELLERS REPORT</u></h1>
     <h3 align="center">NEWLY ACCEPTED SELLERS FOR THE GIVEN MONTH</h3>
     <h3 class = "caltext" align="left">MONTH : </h3>
-    <br></br>
+    <br/>
     
     <table align="center">
     <thead>  
