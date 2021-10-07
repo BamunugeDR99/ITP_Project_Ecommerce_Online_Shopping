@@ -176,7 +176,7 @@ export default function AdminAllPackages(props) {
                     <thead className = "thead-dark">
                         <tr>
                             <th scope="col">Package Name</th>
-                            <th scope="col">Seller ID</th>
+                           
                             <th scope="col">Description</th>
                             <th scope="col">Price </th>
                             <th scope="col">Action</th>
@@ -193,7 +193,6 @@ export default function AdminAllPackages(props) {
                                 <tr>
 
                                     <td>{package1.packageName}</td>
-                                    <td>{package1.seller}</td>
                                     <td>{package1.description}</td>
                                     <td>{`Rs.${package1.price} .00`}</td>
                                     <td><button className="btn btn-danger" type="button" onClick={() => deletePackage(package1._id)} >Remove</button>
