@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, {useState,useEffect} from "react";
-
-//import {ClipLoader} from "react-spinners";
-
+ 
 
 export default function PaymentHistory(props){
     const [payhistory,setpayhistory] = useState([]);
     const [loads,setLoad] = useState(false);
     const [data, setData] = useState();
+   
+
+   
 
 
     useEffect(() =>{
@@ -44,7 +45,7 @@ export default function PaymentHistory(props){
 
         <div className = "container">
             <br/>
-           <center> <h1>Payment History</h1></center>
+           <center> <h1>Transaction History</h1></center>
             <h1 id = "txt"></h1>
             <table class="table table-hover table">
                     <thead>
@@ -69,18 +70,14 @@ export default function PaymentHistory(props){
                    
                     <tbody>
                         <tr>
+                        <th>{ payhistory.TransTime}</th>
+                        <th>{ payhistory.PaymentType}</th>
+                        <th>{ payhistory.RecieptNo}</th>
                         <th>{  }</th>
-                        <th>{  }</th>
-                        <th>{  }</th>
-                        <th>{  }</th>
-                        <th>{  }</th>
-                        <th>{  }</th>
+                        <th>{  payhistory.ItemList}</th>
+                        <th>{payhistory.Amount}</th>
                         
-                        {/* {payhistory.ItemList.map((Il)=>{
-                            return(
-                        <th>{Il}</th>
-                            )
-                        })} */}
+                        
                         {/* <th>{payhistory.PacakgeID}</th> */}
                         {/* <th>{payhistory.ItemList}</th> */}
                         
@@ -99,13 +96,18 @@ export default function PaymentHistory(props){
         <table class="table table-hover table">
                     <thead>
                         <tr>
-                        <th scope="col">highest Purchases Amount</th>
+                        <th scope="col">highest Purchases Amount </th>
                         <th scope="col">Total Purchases</th>
                         
                         </tr>
                         <tr>
                         <th scope="col">Lowest Purchases Amount</th>
                         <th scope="col">Avarage Amount</th>
+                        
+                        </tr>
+                        <tr>
+                        <th scope="col">Total Purchase Items</th>
+                        <th scope="col"></th>
                         
                         </tr>
                     </thead>

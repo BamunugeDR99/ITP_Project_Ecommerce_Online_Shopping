@@ -1,4 +1,29 @@
-module.exports = (objarr) => {
+module.exports = (result) => {
+
+  for (let i = 0; i < result.length; i++) {
+
+    tableData +=
+      '<tr> <td data-label="Transaction Time">' +
+      result[i].TransTime +
+      '</td><td data-label="Payment Method">' +
+      result[i].PaymentType +
+      "</td>" +
+      '<td data-label="Recipt Number">' +
+      result[i].RecieptNo +
+      "</td>" +
+      '<td data-label="Customer name">' +
+      Deeghayua  +
+      "</td>" +
+      '<td data-label="Items">' +
+      result[i].ItemList +
+      "</td>" +
+      '<td data-label="Total">' +
+      total +
+      "</td>" +
+      "</tr>";
+  }
+
+
 
   
 
@@ -66,103 +91,42 @@ tr:nth-child(even) {
   <body>
    
   <!-- your code -->
-  <center><h2 >Transaction History</h2>
-</center>
-  
-<table class="center">
-<tr>
-  <th >01.07.2021 - 31.07.2021</th>
+              <center><h2 >Transaction History</h2>
+            </center>
+            
+            <table class="center">
+            <thead class="thead-dark">
+
+            <tr>
+              <th Style="width:10%">Transaction Time</th>
+              <th Style="width:10%">Payment Method</th>
+            <th Style="width:10%">Recipt Number</th>
+            <th Style="width:20%">Customer name</th>
+              <th Style="width:20%">Items</th>
+            <th Style="width:20%">Total</th>
+            </tr>
+
+            </thead>
+            
+            <tbody>
+            ${tableData}
+
+            </tbody> 
+            </table>
 
 
-</tr>
-</table>
-<table class="center">
-
-<tr>
-  <th Style="width:10%">Transaction Time</th>
-  <th Style="width:10%">Payment Method</th>
-<th Style="width:10%">Recipt Number</th>
-<th Style="width:20%">Customer name</th>
-  <th Style="width:20%">Items</th>
-<th Style="width:20%">Total</th>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>10012</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Visa</td>
-<td>10014</td>
- <td>Dulan Bamunuge</td>
-  <td>Iphone 8,Iphone Adapter</td>
-<td>Rs.150000</td>
-</tr>
-<tr>
-  <td>01.08.2021</td>
-  <td>Master</td>
-<td>102335</td>
- <td>Deeghayu Alwis</td>
-  <td>Iphone 12,Iphone Charger</td>
-<td>Rs.250000</td>
-</tr>
-</table>
-<table class="center" stylr="background-color:">
-<tr>
-  <th >highest Purchases Amount</th>
-<th >Total Purchases</th>
-</tr>
-<tr>
-  <th >Lowest Purchases Amount</th>
-<th >Avarage Amount</th>
-</tr>
+            <table class="center" stylr="background-color:">
+            <tr>
+              <th >highest Purchases Amount</th>
+            <th >Total Purchases</th>
+            </tr>
+            <tr>
+              <th >Lowest Purchases Amount</th>
+            <th >Avarage Amount</th>
+            </tr>
 
 
-</table>
+            </table>
        
    
   </body>
