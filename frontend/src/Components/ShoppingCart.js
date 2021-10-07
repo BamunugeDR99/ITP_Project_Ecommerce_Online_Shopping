@@ -451,7 +451,7 @@ GrandTotal = allItemsTotal + allPackagesTotal;
           console.log(res.data);
           Allitems = res.data;
 
-          GrandTotal = GrandTotal - price;
+          GrandTotal =  document.getElementById("GrandTotal").value  - price;
           console.log(GrandTotal);
          
 
