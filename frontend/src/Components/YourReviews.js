@@ -188,7 +188,7 @@ export default function YourReviews(props) {
     
     let x= result;
     // setItemss(result);
-    console.log("4444444444444444444444444444444444")
+    
 
     console.log(x)
 
@@ -202,7 +202,7 @@ export default function YourReviews(props) {
 
     //   );
     // })
-    console.log("***********")
+   
     console.log(r)
     createReview(r, x)
     // console.log(result)

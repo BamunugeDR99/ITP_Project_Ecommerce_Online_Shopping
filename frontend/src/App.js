@@ -4,6 +4,7 @@ import "./Css/Side_bar_styles.css";
 import "./Js/sidebar_script.js";
 import "./Css/toogle.css";
 import "./Css/AdminDashBoard.css";
+
 // import './Css/InitialPage.css';
 // import React from 'react';
 import React, { Component } from "react";
@@ -145,11 +146,15 @@ import RegSellers from "./Components/RegSellers";
 import ItemsForSpecificSeller from "./Components/ItemsForSpecificSeller";
 import AllItemsFiltered from "./Components/AllItemsFiltered";
 import RequestView from "./Components/RequestView";
+import TestReport from "./Components/TestReport";
+import CustomerOrders from "./Components/CustomerOrders";
+import SellerOrders from "./Components/SellerOrders";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
     <Router>
       <div>
+        {/* <Route path = "/" exact component = {TestReport}/> */}
         <Route path="/" exact component={InitialPage} />
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
@@ -162,7 +167,8 @@ function App() {
         />
         <Route path="/SellerForgotPassword" exact component={SellerForget} />
         <Route path="/AdminLogin" exact component={AdminLogin} />
-
+        {/* Sample route for Report */}
+      
         {/* Customer Route */}
         <Route path="/Customer" component={MainHeader} />
         <Route path="/Customer" component={Side_bar_Customer} />
@@ -191,6 +197,7 @@ function App() {
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
         <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
+        <Route path="/Customer/Orders" exact component={CustomerOrders} />
         <Route
           path="/Customer/editCard/:id"
           exact
@@ -263,6 +270,7 @@ function App() {
         <Route path="/Seller/MyPackages" exact component={AllPackages} />
         <Route path="/Seller/MyProfile" exact component={SellerProfile} />
         <Route path="/Seller/ItemReviews/:id" exact component={SellerReview} />
+        <Route path="/Seller/Orders" exact component={SellerOrders} />
         <Route
           path="/Seller/updateProfile/:id"
           exact

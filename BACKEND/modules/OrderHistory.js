@@ -32,6 +32,12 @@ const OrderHistorySchema = new Schema({
     ItemList : [{
         type : String,
     }],
+
+    
+    CustomerID : {
+        type : String,
+        required : true
+    },
 })
 
 const OrderHistory = mongoose.model("OrderHistory",OrderHistorySchema);
