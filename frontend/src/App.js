@@ -149,6 +149,9 @@ import RequestView from "./Components/RequestView";
 import TestReport from "./Components/TestReport";
 import CustomerOrders from "./Components/CustomerOrders";
 import SellerOrders from "./Components/SellerOrders";
+import CustomerPackageOrders from "./Components/CustomerPackageOrders";
+import SellerPackageOrders from "./Components/SellerPackageOrders";
+import TestOrderMerge from "./Components/TestOrderMerge";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -198,6 +201,7 @@ function App() {
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
         <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
         <Route path="/Customer/Orders" exact component={CustomerOrders} />
+        <Route path="/Customer/PackageOrders" exact component={CustomerPackageOrders} />
         <Route
           path="/Customer/editCard/:id"
           exact
@@ -248,6 +252,7 @@ function App() {
           component={Customer_wishlist}
         />
         <Route path="/Customer/MyReviews" exact component={YourReviews} />
+        <Route path="/Customer/TestOrdersMerge" exact component={TestOrderMerge} />
         <Route path="/Customer/Update/:id" exact component={UpdateProfile} />
         <Route path="/Customer/MyShoppingCart" exact component={ShoppingCart} />
         <Route
@@ -271,6 +276,8 @@ function App() {
         <Route path="/Seller/MyProfile" exact component={SellerProfile} />
         <Route path="/Seller/ItemReviews/:id" exact component={SellerReview} />
         <Route path="/Seller/Orders" exact component={SellerOrders} />
+        <Route path="/Seller/PackageOrders" exact component={SellerPackageOrders} />
+      
         <Route
           path="/Seller/updateProfile/:id"
           exact

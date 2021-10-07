@@ -85,6 +85,10 @@ app.use("/Orders", OrdersRouter);
 const PackageOrdersRouter = require("./routes/PackageOrderRoute.js");
 app.use("/PackageOrders", PackageOrdersRouter );
 
+
+const CustomerOrdersRouter = require("./routes/CustomerOrdersRoute.js");
+app.use("/CustomerOrders", CustomerOrdersRouter );
+
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB Connection successful");
