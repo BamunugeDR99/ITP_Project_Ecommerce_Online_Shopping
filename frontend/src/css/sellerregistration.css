@@ -1,9 +1,12 @@
 @charset "uft-8";
-
+/* .sellerregistration {
+    background: linear-gradient(to bottom, #33ccff 0%, #ffffff 75%);
+    height: 100%;
+} */
 .sellerregistration .form-control{
     width  : 500px;
     padding-left: 10px;
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
 .sellerregistration p{
