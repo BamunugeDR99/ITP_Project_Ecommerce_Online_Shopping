@@ -123,40 +123,40 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundColor:"rgb(36,37,255)", background: "linear-gradient(90deg, rgba(36,37,255,1) 0%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{ background: "linear-gradient(to right, #493240, #f09)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/group.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Customers</h3>
-      <p><b>{customerCount}</b></p>
+      <h3 style={{color:"white"}}>Total Customers</h3>
+      <p  style={{color:"white"}}><b>{customerCount}</b></p>
     </div>
   </div>
 
   <div class="column">
-    <div class="card"  style={{backgroundColor:" rgb(255,173,110)", background: "linear-gradient(90deg, rgba(255,173,110,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card"  style={{background:"linear-gradient(to right, #a86008, #ffba56)"}}>
     
     <img src="https://img.icons8.com/fluency/300/000000/guest-male.png" style={{width:"120px", height:"120px", marginLeft:"80px"}}/>
-      <h3>Total Sellers</h3>
-      <p><b>{sellerCount}</b></p>
+      <h3  style={{color:"white"}}>Total Sellers</h3>
+      <p  style={{color:"white"}}><b>{sellerCount}</b></p>
      
     </div>
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(255,235,76)", background: "linear-gradient(90deg, rgba(255,235,76,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{background: "linear-gradient(to right, #0a504a, #38ef7d)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/multiple-smartphones.png" style={{width:"120px", height:"120px", marginLeft:"60px"}}/>
-      <h3>Total Items</h3>
-      <p><b>{itemCount}</b></p>
+      <h3 style={{color:"white"}}>Total Items</h3>
+      <p style={{color:"white"}}><b>{itemCount}</b></p>
      
     </div>
   </div>
   
   <div class="column">
-    <div class="card"  style={{backgroundColor:" rgb(255,103,200)", background: "linear-gradient(90deg, rgba(255,103,200,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card"  style={{background: "linear-gradient(to right, #373b44, #4286f4)"}}>
      
     <img src="https://img.icons8.com/fluency/300/000000/package.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Packages</h3>
-      <p><b>{packageCount}</b></p>
+      <h3 style={{color:"white"}}>Total Packages</h3>
+      <p style={{color:"white"}}><b>{packageCount}</b></p>
      
     </div>
   </div>
@@ -166,39 +166,39 @@ export default function AdminDashBoard(props) {
 
 <div class="row">
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(255,98,98)", background: "linear-gradient(90deg, rgba(255,98,98,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{background: "linear-gradient(45deg,#FF5370,#ff869a"}}>
     <img src="https://img.icons8.com/fluency/300/000000/administrator-male.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Total Admins</h3>
-      <p><b>{adminCount}</b></p>
+      <h3 style={{color:"white"}}>Total Admins</h3>
+      <p style={{color:"white"}}><b>{adminCount}</b></p>
      
     </div>
   </div>
 
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(180,68,91)", background: "linear-gradient(90deg, rgba(180,68,91,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{background: "linear-gradient(45deg,#2ed8b6,#59e0c5)"}}>
     <img src="https://img.icons8.com/fluency/300/000000/invite.png"  style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Seller Requests</h3>
-      <p><b>{sellerRequesCount}</b></p>
+      <h3 style={{color:"white"}}>Seller Requests</h3>
+      <p style={{color:"white"}}><b>{sellerRequesCount}</b></p>
       
     </div>
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(207,205,66)", background: "linear-gradient(90deg, rgba(207,205,66,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{background: "linear-gradient(45deg,#4099ff,#73b4ff)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/purchase-order.png"  style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Orders</h3>
-      <p>Some text</p>
+      <h3 style={{color:"white"}}>Orders</h3>
+      <p style={{color:"white"}}>Some text</p>
      
     </div>
   </div>
   
   <div class="column">
-    <div class="card" style={{backgroundColor: "rgb(182,182,179)", background: "linear-gradient(90deg, rgba(182,182,179,1) 3%, rgba(255,255,255,1) 100%)"}}>
+    <div class="card" style={{background: "linear-gradient(45deg,#FFB64D,#ffcb80)"}}>
       
     <img src="https://img.icons8.com/fluency/300/000000/fine-print.png" style={{width:"120px", height:"120px", marginLeft:"75px"}}/>
-      <h3>Reports</h3>
-      <p>Some text</p>
+      <h3 style={{color:"white"}}>Reports</h3>
+      <p style={{color:"white"}}>Some text</p>
      
     </div>
   </div>

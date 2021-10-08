@@ -262,6 +262,7 @@ function App() {
           component={PaymentHistoryCard}
         />
         <Route path="/Customer" component={Footer_customer} />
+       
 
         {/* Seller Route */}
         {/* header */}
@@ -325,6 +326,8 @@ function App() {
         <Route path="/Admin/Sellers" exact component={RegSellers} />
         <Route path="/Admin/AllSellersRequest" exact component={AllSellers} />
         <Route path="/Admin/Customers" exact component={CustomerList} />
+    
+
         <Route
           path="/Admin/Customers/Details/:id"
           exact
@@ -355,6 +358,8 @@ function App() {
           exact
           component={ItemsForSpecificSeller}
         />
+
+        
 
         <Route path="/Admin" component={Footer_customer} />
       </div>
