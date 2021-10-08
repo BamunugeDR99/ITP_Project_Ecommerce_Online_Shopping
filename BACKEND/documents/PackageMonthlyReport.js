@@ -91,16 +91,19 @@ grandTotal += '.00';
     <body>
     <hr>
     <br/>
-    <h1 align="center"><u>MONTHLY SALES REPORT</u></h1>
-    <h3 align="center">FOR ITEMS</h3>
+    <h1 align="center"><u>MONTHLY PACKAGE SALES REPORT</u></h1>
+    <h3 align="center">FOR PACKAGES</h3>
     
     
     
     
     <br/>
     <div >
-    <h4>Company Name : ${otherDetials.CompanyName} Owner Name : ${otherDetials.OwnerName}</h4>
-    <h4>Address : ${otherDetials.Address} Email : ${otherDetials.Email} Phone Number : ${otherDetials.pNo}</h4>
+    <h4>Company Name : ${otherDetials.CompanyName} 
+    Owner Name : ${otherDetials.OwnerName}</h4>
+    <h4>Address : ${otherDetials.Address} 
+    Email : ${otherDetials.Email} 
+    Phone Number : ${otherDetials.pNo}</h4>
     </div>
     <table align="center">
     <thead>
