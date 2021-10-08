@@ -155,21 +155,22 @@ function MonthChange() {
         </div>
       
         <br/>
-        <select id="month" onChange = {() => {MonthChange()}}>
-    <option value="01">January</option>
-    <option value="02">February</option>
-    <option value="03">March</option>
-    <option value="04">April</option>
-    <option value="05">May</option>
-    <option value="06">June</option>
-    <option value="07">July</option>
-    <option value="08">August</option>
-    <option value="09">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
-</select>
-<br/><br/>
+        <select id="month" onChange = {() => {MonthChange()}} style={{ width: "155px",  padding:"5px"}}>
+        <option value="00">Select a Month</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+        </select>
+        <br/><br/>
         <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>GENERATE REPORT</button>
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
