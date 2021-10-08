@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useState,useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -20,6 +20,14 @@ export default function ContactSeller(props){
     let [errorMsg,setErrorMsg] = useState("");
 	let flag1 = 0;
     let flag2 = 0;
+
+    let customerid;
+
+    let objectId;
+
+    useEffect((req, res) => {
+        const objectId = props.match.params.id;
+         } );
 
     function validEmail(){
 
@@ -64,15 +72,18 @@ export default function ContactSeller(props){
       e.preventDefault();
       validEmail();
       validName();
-      sellerid = localStorage.getItem("SellerID");
-        console.log(sellerid)
+      customerid  = localStorage.getItem("CustomerID");
+      const objectId = props.match.params.id;
+
+        console.log(objectId)
       if((flag1 == 1) && (flag2==1)){
           
       const newContactsel = {
         name,
         email,
         message,
-        sellerid 
+        sellerid:objectId, 
+        customerid
       }
   
      
@@ -92,7 +103,7 @@ export default function ContactSeller(props){
             
         });
         // props.history.push("/Customer/Home");
-        window.location.reload();
+        // window.location.reload();
         
       }).catch((err) =>{
         alert(err)

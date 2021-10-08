@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/studentReport");
+const pdftem = require("../documents/ReviewReport");
 let Review= require("../modules/Review");
 
 
@@ -226,7 +229,27 @@ router.route("/delete/:id").delete(async (req,res) =>{
             //             res.status(500).send({status: "Error with updating data", error:err.message});
             //         })
             //     });
+       
             
+            // post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdftem(req.body),{}).toFile('./routes/reviewreport.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/reviewreport.pdf`)
+              // absolute directory
+  })
+  
+  
 
 module.exports = router;
 

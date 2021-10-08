@@ -208,7 +208,7 @@ function App() {
           exact
           component={EditCardDetails}
         />
-        <Route path="/Customer/ContactSeller" exact component={ContactSeller} />
+        <Route path="/Customer/ContactSeller/:id" exact component={ContactSeller} />
         <Route path="/Customer/MyWallet" exact component={ViewCardDetails} />
         <Route
           path="/Customer/confrimPayment"
@@ -311,6 +311,7 @@ function App() {
           component={UpdateDiscount}
         />
         <Route path="/Seller/Contact" exact component={Sellermsg} />
+        <Route path="/Seller/Report/:id" exact component={RevReport} />
         <Route path="/Seller/Update/:id" exact component={SellerUpdate} />
         <Route path="/Seller/sellerPassword" exact component={SellerPassword} />
         <Route path="/Seller" component={Footer_customer} />
