@@ -3,7 +3,7 @@ import React, {useState,useEffect} from "react";
 
 
 //cm
-function UserProfile(props){
+function CustomerDetails(props){
 
   const [customer,setCustomer] = useState([]);
   let Dateofb;
@@ -114,4 +114,4 @@ function UserProfile(props){
 
 }
 
-export default UserProfile;
+export default CustomerDetails;

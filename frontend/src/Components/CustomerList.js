@@ -203,22 +203,24 @@ function monthChange(){
     <div class="CustomerList">
       <div class="cus">
 
-      <button type="button"style={{float:"right",backgroundColor:"rgb(34,139,34)"}} class="btn btn-primary" onClick={() => generateReport()}>Generate Report</button>
-      <select id="month" style={{width:"150px", fontSize:"20px"}} onChange = {()=> {monthChange()}}>
-
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
+      <select id="month" style={{width:"200px", fontSize:"20px"}} onChange = {()=> {monthChange()}}>
+      <option value="" disabled selected >Month</option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
       </select>
+
+      <button type="button"style={{float:"right",backgroundColor:"rgb(34,139,34)"}} class="btn btn-primary" onClick={() => generateReport()}>Generate Report</button>
+      
        
 
         <p>Customers</p>

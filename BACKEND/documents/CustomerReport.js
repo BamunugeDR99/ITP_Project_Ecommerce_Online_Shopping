@@ -5,7 +5,12 @@ module.exports = (result) => {
   let tableData;
   let totalCustomers = result.pop();
   let newNoCustomers = result.length;
-  let date1 = new Date().toISOString().slice(0, 10);
+  // let date1 = new Date().toISOString().slice(0, 10);
+
+    let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let today = now.getFullYear() + "-" + (month) + "-" + (day);
 
   function getNumberOfDays(start, end) {
 
@@ -17,13 +22,14 @@ module.exports = (result) => {
 }
 
   let percentage = (newNoCustomers / totalCustomers) * 100 ;
+  let percentage2 = percentage.toFixed(2);
 
    
   for (let i = 0; i < result.length; i++) {
 
     let dates = result[i].newlyAddeddate.substr(0,10);
     
-    let days = getNumberOfDays(dates,date1);
+    let days = getNumberOfDays(dates,today);
 
 
     tableData +=
@@ -125,8 +131,8 @@ module.exports = (result) => {
 
       <h1>Monthly Customers Report</h1>
       <table class="table">
+
       <thead>
-      
       <tr>
  
       <th>Added</th>
@@ -140,19 +146,21 @@ module.exports = (result) => {
       <th>Active Time Period(days)</th>
  
         </tr>
+     
  
       </thead>
  
       <tbody>
       ${tableData}
       </tbody> 
+     
        
    </table>
    <br/>
    
    <h3>Total New Customers: ${newNoCustomers}</h3>
    <h3>Maximum Number of Customers Added Month: January </h3>
-   <h3>Percentage: ${percentage} %</h3>
+   <h3>Percentage: ${percentage2} %</h3>
      
          
      
