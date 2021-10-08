@@ -123,7 +123,6 @@ let per = percentage.toFixed(2);
     <h1 align="center"><u>SELLERS REPORT</u></h1>
     <h3 align="center">NEWLY ACCEPTED SELLERS FOR THE GIVEN MONTH</h3>
     <h3 class = "caltext2" align="right">DATE : ${today}</h3>
-    <h3 class = "caltext" align="left">MONTH : </h3>
     
     <br/>
     
