@@ -210,12 +210,13 @@ export default function ConfirmPayment(props){
             // console.log(PacakgeID);
             // console.log(ItemList);
 
-
-
+            localStorage.removeItem("Packages");
+            localStorage.removeItem("Items");
+            localStorage.removeItem("totalPrice");
         }
 
 
-        
+        //Adding to OrderHistory
         newOrderHistory = {
             RecieptNo : AutoOrderID,
             PacakgeID :PacakgeID,
@@ -238,7 +239,9 @@ export default function ConfirmPayment(props){
           console.log(newOrderHistory);
 
 
-          
+        
+         
+        
        
 
       

@@ -701,7 +701,51 @@ GrandTotal = allItemsTotal + allPackagesTotal;
       localStorage.setItem("Items", JSON.stringify(Items));
       localStorage.setItem("Packages", JSON.stringify(Packages));
 
-      props.history.push("/Customer/SelectPayment");
+
+       //Clear Cart
+       let customerID = localStorage.getItem("CustomerID");
+       let ItemIDs = [];
+       let PackageIDs = [];
+     
+
+       const updatedCart = {
+
+           customerID,
+           ItemIDs,
+           PackageIDs
+ 
+       }
+       console.log(updatedCart);
+
+       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res)=> {
+
+         let CartID = res.data._id;
+
+         
+         axios.put("http://localhost:8070/ShoppingCart/updateSItem/" + CartID, updatedCart ).then((res)=>{
+ 
+             Swal.fire("Success", "Please Proceed to Checkout", "success");
+
+            
+           }).catch((err)=> {
+     
+             console.log(err);
+           })
+
+
+
+       }).catch((err)=> {
+
+         console.log(err);
+       })
+ 
+
+
+
+
+
+
+        props.history.push("/Customer/SelectPayment");
 
     }).catch((err) => {
 
