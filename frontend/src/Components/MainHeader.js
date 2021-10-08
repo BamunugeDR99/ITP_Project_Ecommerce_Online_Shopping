@@ -63,6 +63,10 @@ const [userImage,setUserImage] = useState("");
         <Link class="nav-link" to="/Customer/Packages">Promotional Packages</Link>
       </li>
  
+      <li class="nav-item">
+        <Link class="nav-link" to="/Customer/MyOrders">My Orders</Link>
+      </li>
+     
     </ul>
     <form class="form-inline my-2 my-lg-0">
      {/*Custoemr Profile picture */}

@@ -303,8 +303,8 @@ function updatee(id){
 }
 
 function report(id) {
-  props.history.push("/Seller/Report/" + id);
- console.log(id)
+  props.history.push("/Seller/ItemRatings/" + id);
+ //console.log(id)
 }
 
 

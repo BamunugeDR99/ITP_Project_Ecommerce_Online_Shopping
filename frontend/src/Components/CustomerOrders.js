@@ -61,7 +61,7 @@ export default function CustomerOrders(props) {
 
 
 
-            const CustomerID = "61547689d8939819e488efa9";
+            const CustomerID = localStorage.getItem("CustomerID");
 
 
             axios.get("http://localhost:8070/Orders/getOrders").then((res) => {
@@ -171,11 +171,21 @@ export default function CustomerOrders(props) {
 
     }
 
+function goToPackages(){
 
+}
+
+function goToDisItems(){
+
+}
 
     return (
 
         <div>
+            <br/>
+               <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Item Orders</button>
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Package Orders</button><br/><br/>
+
 
             {Orders.map((order) => {
 
