@@ -43,11 +43,7 @@ export default function Side_bar(props) {
                 <i className="bx bx-user nav_icon"></i>{" "}
                 <span className="nav_name">MY PROFILE</span>{" "}
               </Link>
-              {" "}
-              <Link to="/allItems" className="nav_link">
-                <i className="bx bx-store nav_icon"></i>{" "}
-                <span className="nav_name">MY SHOP </span>{" "}
-              </Link>
+             
               <Link to="/Seller/AddItem" className="nav_link">
                 {" "}
                 <i className="bx bx-plus nav_icon"></i>{" "}

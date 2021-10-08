@@ -789,11 +789,11 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 
                   return (
-                    <div>
+                    <div className="shadow p-3 mb-5 bg-white rounded">
                       
                       <div class="row mb-4 border-primary">
-                  <div class="col-md-5 col-lg-3 col-xl-3">
-                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                  {/* <div class="col-md-5 col-lg-3 col-xl-3"> */}
+                    {/* <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
                         src={iphone} alt="Sample" />
                       <a href="#!">
@@ -804,8 +804,8 @@ GrandTotal = allItemsTotal + allPackagesTotal;
                           <div class="mask rgba-black-slight"></div>
                         </div>
                       </a>
-                    </div>
-                  </div>
+                    </div> */}
+                  {/* </div> */}
                   <div class="col-md-7 col-lg-9 col-xl-9">
                     <div>
                       <div class="d-flex justify-content-between">
