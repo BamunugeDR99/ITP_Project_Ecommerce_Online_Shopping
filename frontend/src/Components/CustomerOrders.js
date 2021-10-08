@@ -172,19 +172,19 @@ export default function CustomerOrders(props) {
     }
 
 function goToPackages(){
-
+        props.history.push("/Customer/MyPackageOrders");
 }
 
 function goToDisItems(){
-
+    props.history.push("/Customer/MyOrders");
 }
 
     return (
 
         <div>
             <br/>
-               <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Item Orders</button>
-            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Package Orders</button><br/><br/>
+               <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Package Orders</button>
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Item Orders</button><br/><br/>
 
 
             {Orders.map((order) => {

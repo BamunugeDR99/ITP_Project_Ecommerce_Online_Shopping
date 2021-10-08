@@ -191,10 +191,14 @@ export default function CustomerLogin(props) {
                     <p>
                       {" "}
                       If You Are A Seller Use This Link To Login!{" "}
-                      <Link to="/SellerLogin">LogIn</Link>
+                      <Link to="/SellerLogin">LogIn</Link><br/>
+                      <Link to="/">Initial ? </Link>
+
                     </p>
                   </div>
+              
                 </div>
+                
               </div>
             </div>
           </div>

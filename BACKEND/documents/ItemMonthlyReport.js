@@ -2,6 +2,14 @@ module.exports = (result) => {
     let otherDetials = result.pop();
     //let SellerDetails = result.pop();
     let grandTotal = 0;
+    let now = new Date();
+
+    let day = ("0" + now.getDate()).slice(-2);
+
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    let today = now.getFullYear() + "-" + (month) + "-" + (day);
+   
     let tableData = "";
     for(let i = 0; i < result.length; i++){
 
@@ -96,8 +104,9 @@ grandTotal += '.00';
   
       <br/>
       <div style = "float : right">
-      <h4>Company Name : ${otherDetials.CompanyName} Owner Name : ${otherDetials.OwnerName}</h4>
-      <h4>Address : ${otherDetials.Address} Email : ${otherDetials.Email} Phone Number : ${otherDetials.pNo}</h4>
+      <h4>Report Generated Date : ${today}</h4>
+      <h4>Company Name : ${otherDetials.CompanyName} </h4> <h4>Owner Name : ${otherDetials.OwnerName}</h4>
+      <h4>Address : ${otherDetials.Address} Email : ${otherDetials.Email}</h4><h4> Phone Number : ${otherDetials.pNo}</h4>
       </div>
       <table align="center">
       <thead>  
@@ -121,8 +130,8 @@ grandTotal += '.00';
       </table>
       <br/>
   
-      <h4 class = "caltext" >Total Orders : ${otherDetials.TotalOrders} Total Items : ${otherDetials.TotalItems} Total Stock Sold  : ${otherDetials.TotalStockSold}</h4>
-      <h4 class = "caltext" >Total Income : LKR ${otherDetials.TotalIncome} Total Outgoings : LKR ${otherDetials.TotalOutgoings} Total Profit : LKR ${otherDetials.TotalProfit}</h4>
+      <h4 class = "caltext" >Total Orders : ${otherDetials.TotalOrders} Total Items : ${otherDetials.TotalItems} </h4><h4>Total Stock Sold  : ${otherDetials.TotalStockSold}</h4>
+      <h4 class = "caltext" >Total Income : LKR ${otherDetials.TotalIncome} Total Outgoings : LKR ${otherDetials.TotalOutgoings} </h4><h4>Total Profit : LKR ${otherDetials.TotalProfit}</h4>
       <h4 style = "float : right" class = "caltext" >GRAND TOTAL : LKR ${grandTotal}</h4>     
       
       <br/><br/><br/><br/>

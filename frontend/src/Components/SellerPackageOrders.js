@@ -63,7 +63,7 @@ export default function SellerPackageOrders(props) {
 
 
 
-            const SellerID = "613a2b0fb31f783accd94447";
+            const SellerID = localStorage.getItem("SellerID");
 
 
             axios.get("http://localhost:8070/PackageOrders/getOrders").then((res) => {
@@ -174,12 +174,43 @@ export default function SellerPackageOrders(props) {
 
     }
 
-
+    function goToItemOrders() {
+        props.history.push("/Seller/Orders");
+        }
+      
+        function goToPackageOrder() {
+          props.history.push("/Seller/PackageOrders");
+        }
+      
+        function goTOpackageSales(){
+          //props.history.push("/Seller/ItemMonthlySales");
+        }
 
     return (
 
         <div>
-
+               <br />
+      <br />
+      <button type="button" class="btn btn-secondary" onClick={() => {goTOpackageSales()}}>monthly sales on packages</button>
+      <button
+        type="button"
+        class="btn btn-primary "
+        style={{ float: "right" }}
+        id="GPackageBtn2"
+        onClick={goToItemOrders}
+      >
+        Item Orders
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary "
+        style={{ float: "right" }}
+        id="GDisItemsBtn2"
+        onClick={goToPackageOrder}
+      >
+        Package Orders
+      </button>
+<br/><br/>
             {Orders.map((order) => {
 
                 return (
