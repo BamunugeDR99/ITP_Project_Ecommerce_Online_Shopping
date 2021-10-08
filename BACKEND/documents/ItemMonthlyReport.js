@@ -103,7 +103,7 @@ grandTotal += '.00';
       
   
       <br/>
-      <div style = "float : right">
+      <div>
       <h4>Report Generated Date : ${today}</h4>
       <h4>Company Name : ${otherDetials.CompanyName} </h4> <h4>Owner Name : ${otherDetials.OwnerName}</h4>
       <h4>Address : ${otherDetials.Address} Email : ${otherDetials.Email}</h4><h4> Phone Number : ${otherDetials.pNo}</h4>

@@ -22,7 +22,7 @@ export default function PaymentHistory(props){
    let CustomerFName = "";
    let Total = "";
   
- 
+    let result = [];
    let TransactionDetails = {
  
     
@@ -158,14 +158,44 @@ export default function PaymentHistory(props){
       }
 
 
-    function gotoShowMore(Orderid){
 
-        console.log(Orderid);
-         props.history.push("/Customer/purchaseHistoryExtended/" + Orderid)
-    }
 
-    function generateReport(){
-        let result = payhistory;
+      function getItemsssss(allCustomers, CustomerIDs, AllOrderH) {
+
+        let j = 0;
+    
+        for (let i = 0; i < CustomerIDs.length; i++) {
+    
+          j = 0;
+    
+          for (j = 0; j < allCustomers.length; j++) {
+    
+            if ( CustomerIDs[i] === allCustomers[j]._id) {
+    
+    
+      
+
+                TransactionDetails = {
+
+                Transactiontime : AllOrderH[i].TransTime.substr(0, 10),
+                 PaymentType : AllOrderH[i].PaymentType,
+                 ReceiptNo : AllOrderH[i].RecieptNo,
+                 CustomerFName : allCustomers[j].firstName,
+                 CustomerLName : allCustomers[j].lastName,
+                 Total: AllOrderH[i].Amount
+             
+               }
+    
+               console.log(TransactionDetails);
+               result.push(TransactionDetails);
+           
+            }
+          }
+
+
+        }
+
+
         axios
         .post("http://localhost:8070/orderhistory/create-pdf",result )
         .then(() =>
@@ -180,6 +210,68 @@ export default function PaymentHistory(props){
                             //your file name 
         });
 
+
+
+    
+        //setpayhistory(AllItemsArr);
+
+        //console.log(AllItemsArr);
+      }
+
+
+    function gotoShowMore(Orderid){
+
+        console.log(Orderid);
+         props.history.push("/Customer/purchaseHistoryExtended/" + Orderid)
+    }
+
+
+
+
+
+
+    function generateReport(){
+        let result = payhistory;
+
+
+        axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
+        {
+            let AllOrderH = res.data;
+            let CustomerIDs = [];
+            let AllCustomers = [];
+      
+            for(let i = 0 ; i < AllOrderH.length ; i++){
+
+
+                CustomerIDs.push(AllOrderH[i].CustomerID)
+
+            }
+
+
+            axios
+        .get("http://localhost:8070/Customer/getAll").then((res) => {
+
+            AllCustomers = res.data;
+
+            console.log("=============Function Parameters============");
+            // console.log(AllCustomers);
+            // console.log(CustomerIDs);
+            // console.log(AllOrderH);
+            getItemsssss(AllCustomers,CustomerIDs,AllOrderH);
+
+        })
+                
+    
+            })
+        .catch((err) =>{
+            alert(err);
+        });
+
+
+
+
+
+       
     }
 
 

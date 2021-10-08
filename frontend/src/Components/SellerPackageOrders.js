@@ -183,7 +183,8 @@ export default function SellerPackageOrders(props) {
         }
       
         function goTOpackageSales(){
-          //props.history.push("/Seller/ItemMonthlySales");
+          props.history.push("/Seller/PackageMonthlySales");
+          
         }
 
     return (

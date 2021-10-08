@@ -262,12 +262,12 @@ function App() {
           exact
           component={CustomerPackageOrders}
         />
-
+{/* 
         <Route
           path="/Customer/paymentHistory"
           exact
           component={TransactionHistory}
-        />
+        /> */}
         <Route
           path="/Customer/SelectPayment"
           excat
@@ -313,6 +313,8 @@ function App() {
           exact
           component={SellerPackageOrders}
         />
+
+        <Route path = "/Seller/PackageMonthlySales" exact component = {PackageMonthlySales}/>
 
         <Route
           path="/Seller/updateProfile/:id"

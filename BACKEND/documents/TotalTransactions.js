@@ -6,7 +6,7 @@ module.exports = (result) => {
   let max=0;
   let count=0;
   for (let i = 0; i < result.length; i++) {
-    let dates = result[i].TransTime.substr(0, 10);
+    let dates = result[i].Transactiontime;
 
     tableData +=
       '<tr><td>' +
@@ -15,13 +15,13 @@ module.exports = (result) => {
       result[i].PaymentType +
       "</td>" +
       '<td>' +
-      result[i].RecieptNo +
+      result[i].ReceiptNo +
       "</td>" +
       '<td>' +
       "Deeghayua" +
       "</td>" +
       '<td>' +
-      result[i].Amount +
+      result[i].Total +
       "</td>" +
       "</tr>";
 
