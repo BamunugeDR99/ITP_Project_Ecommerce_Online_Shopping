@@ -264,6 +264,8 @@ export default function ForgotP(props) {
   </div>
   <br/>
   
+
+  
   <button type="submit" class="btn btn-success" onClick = {() => {
     props.history.push("/CustomerLogin");
   }} style={{backgroundColor:"blue", width:"300px",marginLeft:"420px"}}>Back to Login</button>
