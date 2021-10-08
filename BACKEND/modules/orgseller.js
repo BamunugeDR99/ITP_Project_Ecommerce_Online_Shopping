@@ -54,7 +54,7 @@ const OrgSellerSchema = new Schema (
             required: true
         },
 
-        date : {
+        acceptedDate : {
             type: Date,
             required: true,
             default: new Date()

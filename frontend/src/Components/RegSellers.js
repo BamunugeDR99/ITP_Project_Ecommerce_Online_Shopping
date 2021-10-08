@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { saveAs } from "file-saver";
 export default function RegSellers(props) {
   const [orgSellers, setorgSellers] = useState([]);
   const [load, setLoad] = useState(false);
-
+let totalSellers;
+let result;
   useEffect(() => {
     function getorgSellers() {
       axios
@@ -78,12 +79,74 @@ function requests(){
   props.history.push("/Admin/AllSellersRequest");
 }
 
+
+function generateReport(){
+  let month = document.getElementById("month").value;
+
+  axios.get("http://localhost:8070/orgSeller/get").then((res) => {
+
+    totalSellers = res.data.length;
+
+    result = res.data.filter(
+      (post) => String(post.acceptedDate.substr(5, 2)) === month
+
+
+    );
+  //  console.log(result[0].newlyAddeddate.substr(0,10));
+  setorgSellers(result)
+  result.push(totalSellers);
+   // console.log(result);
+    axios
+  .post("http://localhost:8070/orgSeller/create-pdf", result)
+  .then(() =>
+    axios.get("http://localhost:8070/orgSeller/fetch-pdf", {
+      responseType: "blob",
+      // A BLOB is a binary large object that can hold a variable amount of data. important
+    })
+  )
+  .then((res) => {
+    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+    saveAs(pdfBlob, "SellerMonthlyReport.pdf");
+                      //your file name 
+  });
+
+    console.log(result);
+    
+
+  }).catch((err) => {
+    alert(err);
+  })
+
+}
+
+function MonthChange() {
+ let month = document.getElementById("month").value;
+
+
+
+  axios.get("http://localhost:8070/orgSeller/get").then((res) => {
+
+    totalSellers = res.data.length;
+
+    result = res.data.filter(
+      (post) => String(post.acceptedDate.substr(5, 2)) === month
+
+
+    );
+  
+  setorgSellers(result)    
+
+  }).catch((err) => {
+    alert(err);
+  })
+}
+
   return (
     <div className="container">
       <br/><br/>
       <button type="button" style = {{float : "right"}} class="btn btn-warning" onClick = {()=>requests()}>Seller requests</button>
       <h1>Registered Sellers</h1>
-      
+      <br/>
       <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>
         
         <input type="search"  class="form-control rounded" placeholder="Search by any keyword..." aria-label="Search"
@@ -91,6 +154,23 @@ function requests(){
         <i class="bi bi-search" id="iconS" style={{ position:"absolute",  color:"#000000", bottom:"5px",  right:"20px"}}></i>
         </div>
       
+        <br/>
+        <select id="month" onChange = {() => {MonthChange()}}>
+    <option value="01">January</option>
+    <option value="02">February</option>
+    <option value="03">March</option>
+    <option value="04">April</option>
+    <option value="05">May</option>
+    <option value="06">June</option>
+    <option value="07">July</option>
+    <option value="08">August</option>
+    <option value="09">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+</select>
+<br/><br/>
+        <button type="button" class="btn btn-primary" onClick = {() => generateReport()}>GENERATE REPORT</button>
         <br/><br/>
       <table class="table table-hover" style={{ width: "92%"}}>
         <thead style={{ textAlign: "center"}}>

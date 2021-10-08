@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const pdf = require('html-pdf');
 let orgSeller = require("../modules/orgseller");
 const { createSecretKey } = require("crypto");
+const pdfsell = require("../documents/SellerReport");
 
 
 router.route("/add").post((req,res)=>{
@@ -208,5 +210,23 @@ router.route("/ChangePwd/:id").put(async (req,res) =>{
     });
 
 
+
+    // post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfsell(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/result.pdf`)
+              // absolute directory
+  })
 
 module.exports = router;

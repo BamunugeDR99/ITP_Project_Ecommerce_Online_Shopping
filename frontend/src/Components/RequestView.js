@@ -193,7 +193,7 @@ export default function RequestView(props) {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire('warning', '', 'Declined')
+        Swal.fire('Saved!', '', 'success')
         deleteSeller(id);
         props.history.push("/Admin/AllSellersRequest");
         
@@ -206,7 +206,7 @@ export default function RequestView(props) {
   return (
 
     <div className="sellerview">
-    
+    <br/>
     <div>
 
       <h2 style={{color:"black",textAlign : "center"}}>REQUEST DETAILS - {seller.companyname}</h2><br/>
