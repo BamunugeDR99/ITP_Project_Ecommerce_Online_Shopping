@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 //Decide what content should be displayed when the component is rendered
 
 import axios from "axios"; //To get the data from the DB
+import '../Css/AllItems.css';
 
 export default function CustomerOrders(props) {
     const [Orders, setOrders] = useState([]);
@@ -173,18 +174,20 @@ export default function CustomerOrders(props) {
 
 function goToPackages(){
 
+    props.history.push("/Customer/MyPackageOrders");
+   
 }
 
 function goToDisItems(){
-
+    props.history.push("/Customer/MyOrders");
 }
 
     return (
 
         <div>
             <br/>
-               <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Item Orders</button>
-            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Package Orders</button><br/><br/>
+               <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn" onClick={goToPackages}>Package Orders</button>
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn" onClick={goToDisItems}>Item Orders</button><br/><br/>
 
 
             {Orders.map((order) => {

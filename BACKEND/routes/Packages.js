@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/PackageMonthlyReport");
 
 //import DiscountedItem model
 let Package = require("../modules/Package");
@@ -163,6 +165,23 @@ router.route("/deletePackage/:id").delete(async (req, res) => {
 
 
 
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfTemplate(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/result.pdf`)
+              // absolute directory
+  })
 
 
 
