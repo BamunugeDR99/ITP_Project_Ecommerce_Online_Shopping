@@ -174,7 +174,7 @@ export default function CreatePackage1(props) {
         else if(packName.length === 0){
 
             //setPnameVal("Cannot create a Package without a Name!!")
-            alert("Ba")
+            swal.fire("Alert", "Cannot Create a Package Without a Name", "warning");
 
         }
 

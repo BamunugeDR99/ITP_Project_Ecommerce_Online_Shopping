@@ -7,18 +7,63 @@ export default function PaymentHistory(props){
     const [loads,setLoad] = useState(false);
     const [data, setData] = useState();
     const [count, setcount]= useState();
-   const[total, setTotal] = useState();
+    const[total, setTotal] = useState();
+    let Allitems = [];
+    let AllItemsArr = [];
+
+
 
    let TotalPrice = 0;
+
+   let Transactiontime = "";
+   let PaymentType = "";
+   let ReceiptNo = "";
+   let CustomerLName = "";
+   let CustomerFName = "";
+   let Total = "";
+  
+ 
+   let TransactionDetails = {
+ 
+    
+    Transactiontime,
+     PaymentType,
+     ReceiptNo,
+     CustomerLName,
+     CustomerFName,
+     Total
+ 
+   }
 
 
     useEffect(() =>{
         function getpayhistory(){
             axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
             {
-                setpayhistory(res.data);
-                console.log(res.data);
-               
+                let AllOrderH = res.data;
+                let CustomerIDs = [];
+                let AllCustomers = [];
+          
+                for(let i = 0 ; i < AllOrderH.length ; i++){
+
+
+                    CustomerIDs.push(AllOrderH[i].CustomerID)
+
+                }
+
+
+                axios
+            .get("http://localhost:8070/Customer/getAll").then((res) => {
+
+                AllCustomers = res.data;
+
+                console.log("=============Function Parameters============");
+                // console.log(AllCustomers);
+                // console.log(CustomerIDs);
+                // console.log(AllOrderH);
+                getItemss(AllCustomers,CustomerIDs,AllOrderH);
+
+            })
                     
         
                 })
@@ -60,7 +105,57 @@ export default function PaymentHistory(props){
     );
 
    
+    function getItemss(allCustomers, CustomerIDs, AllOrderH) {
+
+        let j = 0;
     
+        for (let i = 0; i < CustomerIDs.length; i++) {
+    
+          j = 0;
+    
+          for (j = 0; j < allCustomers.length; j++) {
+    
+            if ( CustomerIDs[i] === allCustomers[j]._id) {
+    
+    
+            //   ItemDetails = {
+    
+            //     ItemID : allItems[j]._id,
+            //     Name: allItems[j].Item_name,
+            //     Brand: allItems[j].Brand,
+            //     Model: allItems[j].Model,
+            //     Specification: allItems[j].Specification,
+            //     //Color = allItems[i].Color_family[1],
+            //     SKU: allItems[j].Stock_keeping_unit,
+            //     fPrice: allItems[j].FinalPrice,
+            //     itemImage : allItems[j].Images[1],
+            //     itemSeller:allItems[j].SellerID
+    
+            //   };
+
+                TransactionDetails = {
+ 
+    
+                Transactiontime : AllOrderH[i].TransTime.substr(0, 10),
+                 PaymentType : AllOrderH[i].PaymentType,
+                 ReceiptNo : AllOrderH[i].RecieptNo,
+                 CustomerFName : allCustomers[j].firstName,
+                 CustomerLName : allCustomers[j].lastName,
+                 Total: AllOrderH[i].Amount
+             
+               }
+    
+               console.log(TransactionDetails);
+               AllItemsArr.push(TransactionDetails);
+           
+            }
+          }
+        }
+    
+        setpayhistory(AllItemsArr);
+
+        console.log(AllItemsArr);
+      }
 
 
     function gotoShowMore(Orderid){
@@ -120,12 +215,12 @@ export default function PaymentHistory(props){
                    
                     <tbody>
                         <tr>
-                        <th>{ payhistory.TransTime}</th>
-                        <th>{ payhistory.PaymentType}</th>
-                        <th>{ payhistory.RecieptNo}</th>
-                        <th>{  }</th>
+                        <th>{payhistory.Transactiontime }</th>
+                        <th>{payhistory.PaymentType}</th>
+                        <th>{payhistory.ReceiptNo}</th>
+                        <th>{payhistory.CustomerFName} {payhistory.CustomerLName}</th>
                         {/* <th>{  payhistory.ItemList}</th> */}
-                        <th>{payhistory.Amount}</th>
+                        <th>{payhistory.Total}</th>
                         
                         
                         {/* <th>{payhistory.PacakgeID}</th> */}

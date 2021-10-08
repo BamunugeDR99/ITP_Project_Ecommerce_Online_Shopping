@@ -155,6 +155,7 @@ import TestOrderMerge from "./Components/TestOrderMerge";
 import ItemMonthlySales from "./Components/ItemMonthlySales";
 import TransactionHistory from "./Components/TransactionHistory";
 import RevReport from "./Components/RevReport";
+import PackageMonthlySales from "./Components/PackageMonthlySales";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -319,6 +320,8 @@ function App() {
           component={SellerUpdate}
         />
         <Route path="/Seller/itemDetails" exact component={SellerReviews} />
+
+        <Route path="/Seller/TestpackageReport" exact component={PackageMonthlySales} />
         <Route path="/Seller/CreatePackage" exact component={CreatePackage1} />
         <Route
           path="/Seller/CreatePackageForm"

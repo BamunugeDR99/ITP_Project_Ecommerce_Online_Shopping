@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 //Decide what content should be displayed when the component is rendered
 
 import axios from "axios"; //To get the data from the DB
+import '../Css/AllItems.css';
 
 export default function CustomerOrders(props) {
     const [Orders, setOrders] = useState([]);
