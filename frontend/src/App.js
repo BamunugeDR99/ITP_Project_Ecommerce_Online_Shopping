@@ -152,6 +152,7 @@ import SellerOrders from "./Components/SellerOrders";
 
 
 import DtestCard from "./Components/DtestCard";
+import './Css/DtestCard.css';
 
 
 function App() {

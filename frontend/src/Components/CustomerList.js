@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
+import Swal from 'sweetalert2'
+
 
 export default function CustomerList(props) {
 
@@ -33,7 +35,26 @@ export default function CustomerList(props) {
 
   function deleteCus(id) {
     axios.delete("http://localhost:8070/Customer/delete/" + id).then((res) => {
-      alert("Customer Deleted Successfully!");
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1200,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Successfully Deleted'
+      })
+
+
+      //alert("Customer Deleted Successfully!");
       const afterDeleteCustomer = customer.filter(customer => customer._id !== id);
       setCustomers(afterDeleteCustomer);
     }).catch((err) => {
@@ -219,7 +240,7 @@ function monthChange(){
       <option value="12">December</option>
       </select>
 
-      <button type="button"style={{float:"right",backgroundColor:"rgb(34,139,34)"}} class="btn btn-primary" onClick={() => generateReport()}>Generate Report</button>
+      <button type="button"style={{float:"right",backgroundColor:"rgb(34,139,34)", marginTop:"30px"}} class="btn btn-primary" onClick={() => generateReport()}>Generate Report</button>
       
        
 

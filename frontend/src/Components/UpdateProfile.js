@@ -358,49 +358,25 @@ export default function UpdateProfile(props){
 		  }).then((result) => {
 			if (result.isConfirmed) {
 
-
-
-				const { value: dpassword} = Swal.fire({
-					title: 'Enter your password',
-					input: 'password',
-					inputLabel: 'Password',
-					inputPlaceholder: 'Enter your password',
-					inputAttributes: {
-					  autocapitalize: 'off',
-					  autocorrect: 'off'
-					}
-				  })
-				  if(dpassword){
-
-				  	console.log("gg");
-				  }	  
-				//   const Match = bcrypt.compareSync(dpassword);
-				 
-				//   if (!Match) {
-					
-				//     Swal.fire('Invalid Current Password!')
-
-				//   }else{
-
-				// objectID = props.match.params.id;
-				// axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
-				// {
+				objectID = props.match.params.id;
+				axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
+				{
 				
 		  
-				//   swalWithBootstrapButtons.fire(
-				// 	'Deleted!',
-				// 	'Your Profile Has Been Successfully Deleted!',
-				// 	'success'
-				//   )
-				//   props.history.push("/CustomerRegistration");
+				  swalWithBootstrapButtons.fire(
+					'Deleted!',
+					'Your Profile Has Been Successfully Deleted!',
+					'success'
+				  )
+				  props.history.push("/CustomerRegistration");
 				   
-				// 	//const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
-				// 	//setCustomer(afterDeleteCustomer);
-				// }).catch((err) =>{
-				// 	alert(err);
-				// })
+					//const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
+					//setCustomer(afterDeleteCustomer);
+				}).catch((err) =>{
+					alert(err);
+				})
 
-			// }
+			
 		  
 			} else if (
 			  /* Read more about handling dismissals below */
