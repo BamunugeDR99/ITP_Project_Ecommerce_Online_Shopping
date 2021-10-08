@@ -107,7 +107,7 @@ module.exports = (result) => {
           padding:12px 15px;
           border:none;
           text-align: center;
-          font-size:9px;
+          font-size:8px;
         }
         
         .table th{
