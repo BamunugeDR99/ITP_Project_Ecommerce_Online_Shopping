@@ -34,7 +34,9 @@ module.exports = (result) => {
 
 
     tableData +=
-      '<tr> <td data-label="Added">' +
+      '<tr> <td data-label="No">' +
+       (i+1) +
+      '</td> <td data-label="Added">' +
       dates +
       '</td><td data-label="First Name">' +
       result[i].firstName +
@@ -138,7 +140,8 @@ module.exports = (result) => {
 
       <thead>
       <tr>
- 
+        
+      <th>No</th>
       <th>Added</th>
       <th>First Name</th>
       <th>Last Name</th>
