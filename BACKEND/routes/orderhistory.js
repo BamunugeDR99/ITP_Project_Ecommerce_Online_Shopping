@@ -1,4 +1,7 @@
 const router = require("express").Router();
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/studentReport");
+const pdftem = require("../documents/TotalTransactions");
 let OrderHistory = require("../modules/OrderHistory");
 
 //Insert
@@ -131,6 +134,26 @@ router.route("/get/:id").get(async (req, res) => {
 //     });
 //   });
 // });
+
+
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+  pdf.create(pdftem(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+    if(err){
+      res.send(Promise.reject());
+    }
+
+    res.send(Promise.resolve());
+  });
+});
+
+// get PDF
+router.get('/fetch-pdf',(req,res)=>{
+  res.sendFile(`${__dirname}/result.pdf`)
+            // absolute directory
+})
+
 
 
 module.exports = router;

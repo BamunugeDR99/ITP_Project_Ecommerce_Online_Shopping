@@ -159,7 +159,8 @@ function App() {
     <Router>
       <div>
         {/* <Route path = "/" exact component = {TestReport}/> */}
-        <Route path="/" exact component={InitialPage} />
+        <Route path="/"  exact component={TransactionHistory}/>
+        {/* <Route path="/" exact component={InitialPage} /> */}
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
         <Route path="/CustomerForgotPassword" exact component={ForgotP} />
@@ -198,6 +199,7 @@ function App() {
           exact
           component={AllPackages_CustomerView}
         />
+
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
         <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
@@ -236,10 +238,13 @@ function App() {
           exact
           component={CustomerReviews}
         />
-        <Route
+        {/* <Route
           path="/Customer/paymentHistory"
           exact
           component={PaymentHistory}
+        /> */}
+
+      <Route path="/Customer/paymentHistory"  exact component={TransactionHistory}
         />
         <Route
           path="/Customer/SelectPayment"
