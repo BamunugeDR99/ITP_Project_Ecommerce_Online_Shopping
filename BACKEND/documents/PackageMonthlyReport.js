@@ -99,11 +99,11 @@ grandTotal += '.00';
     
     <br/>
     <div >
-    <h4>Company Name : ${otherDetials.CompanyName} 
-    Owner Name : ${otherDetials.OwnerName}</h4>
-    <h4>Address : ${otherDetials.Address} 
-    Email : ${otherDetials.Email} 
-    Phone Number : ${otherDetials.pNo}</h4>
+    <h4>Company Name : ${otherDetials.CompanyName} </h4>
+    <h4> Owner Name : ${otherDetials.OwnerName}</h4>
+    <h4>Address : ${otherDetials.Address} </h4>
+    <h4>Email : ${otherDetials.Email} </h4>
+    <h4>Phone Number : ${otherDetials.pNo}</h4>
     </div>
     <table align="center">
     <thead>
@@ -128,8 +128,8 @@ grandTotal += '.00';
     
     
     
-    <h4 class = "caltext" >Total Orders : ${otherDetials.TotalOrders} Total Items : ${otherDetials.TotalItems} </h4>
-    <h4 class = "caltext" >Total Income : LKR ${otherDetials.TotalIncome} Total Outgoings : LKR ${otherDetials.TotalOutgoings} Total Profit : LKR ${otherDetials.TotalProfit}</h4>
+    <h4 class = "caltext" >Total Orders : ${otherDetials.TotalOrders} </h4> <h4>Total Items : ${otherDetials.TotalItems} </h4>
+    <h4 class = "caltext" >Total Income : LKR ${otherDetials.TotalIncome}</h4> <h4> Total Outgoings : LKR ${otherDetials.TotalOutgoings} Total Profit : LKR ${otherDetials.TotalProfit}</h4>
     <h4 style = "float : right" class = "caltext" >GRAND TOTAL : LKR ${grandTotal}</h4>     
     
     

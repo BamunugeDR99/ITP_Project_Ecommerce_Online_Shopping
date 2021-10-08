@@ -41,6 +41,7 @@ export default function ConfirmPayment(props){
                 timer: 1500
               })
     
+              Test();
               props.history.push("/Customer/Home");
 
         }else{
@@ -210,9 +211,7 @@ export default function ConfirmPayment(props){
             // console.log(PacakgeID);
             // console.log(ItemList);
 
-            localStorage.removeItem("Packages");
-            localStorage.removeItem("Items");
-            localStorage.removeItem("totalPrice");
+       
         }
 
 
@@ -239,6 +238,11 @@ export default function ConfirmPayment(props){
           console.log(newOrderHistory);
 
 
+          localStorage.removeItem("Packages");
+          localStorage.removeItem("Items");
+          localStorage.removeItem("totalPrice");
+
+            // Swal.fire("Success", "Your Order Has Been Placed Successfully!", "success");
         
          
         
@@ -328,7 +332,7 @@ export default function ConfirmPayment(props){
                             <h2 class=""><span class="text-md font-weight-bold mr-2">LKR </span>
                             <span class="text-danger">{totalPrice}.00</span></h2>
                         </div> <button type="button" class="btn btn-red text-center mt-4" onClick={() => pay()}>PAY</button>
-                        <button type="button" class="btn btn-red text-center mt-4" onClick={() => Test()}>Test</button>
+                        {/* <button type="button" class="btn btn-red text-center mt-4" onClick={() => Test()}>Test</button> */}
                     </div>
                 </div>
             </div>
