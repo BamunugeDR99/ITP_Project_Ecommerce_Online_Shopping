@@ -211,9 +211,7 @@ export default function ConfirmPayment(props){
             // console.log(PacakgeID);
             // console.log(ItemList);
 
-            localStorage.removeItem("Packages");
-            localStorage.removeItem("Items");
-            localStorage.removeItem("totalPrice");
+       
         }
 
 
@@ -238,6 +236,11 @@ export default function ConfirmPayment(props){
 
           console.log("Order History Object");
           console.log(newOrderHistory);
+
+
+          localStorage.removeItem("Packages");
+          localStorage.removeItem("Items");
+          localStorage.removeItem("totalPrice");
 
             // Swal.fire("Success", "Your Order Has Been Placed Successfully!", "success");
         
