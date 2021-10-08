@@ -13,7 +13,6 @@ router.route("/addOrder").post((req,res)=>{
         SellerID,
         CustomerID,
         OQuantity,
-        TransitTime,
         Items 
 
     } = req.body;
@@ -25,7 +24,6 @@ router.route("/addOrder").post((req,res)=>{
         SellerID,
         CustomerID,
         OQuantity,
-        TransitTime,
         Items 
 
 
@@ -56,7 +54,6 @@ router.route("/updateOrder/:id").put(async (req, res) => {
         SellerID,
         CustomerID,
         OQuantity,
-        TransitTime,
         Items 
 
     } = req.body;
@@ -68,7 +65,6 @@ router.route("/updateOrder/:id").put(async (req, res) => {
         SellerID,
         CustomerID,
         OQuantity,
-        TransitTime,
         Items 
 
 
