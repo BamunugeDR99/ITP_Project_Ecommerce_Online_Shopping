@@ -47,7 +47,7 @@ export default function SellerReviews(props){
       Stars,
     };
     // let content;
-  
+  let ItemImage = [];
     let reviewWithCustomers = [];
   
     useEffect(() => {
@@ -67,6 +67,7 @@ export default function SellerReviews(props){
                 console.log(itemss);
                 console.log('abc');
         
+                ItemImage = res.data.Images;
                 
             }).catch((err) =>{
                 alert(err);
@@ -324,16 +325,16 @@ function report(id) {
 
                     <div className="col-4">
                       <img style={{width:'100%'}}
-                       src={"/Images/" + items.Images}/>
+                       src={"/images/" + ItemImage[0]}/>
                        <div>
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+items.Images}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+items.Images}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+items.Images}
                           />
                       </div>
                     </div>
