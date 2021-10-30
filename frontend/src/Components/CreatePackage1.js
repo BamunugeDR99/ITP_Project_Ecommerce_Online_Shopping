@@ -212,7 +212,7 @@ export default function CreatePackage1(props) {
 
                                     onChange={(e) => {
 
-                                        e.preventDefault;
+                                        e.preventDefault();
                                         // setPname(e.target.value);
 
                                         // if(e.target.value.length === 0){
