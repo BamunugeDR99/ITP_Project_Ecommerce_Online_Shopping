@@ -31,7 +31,7 @@ export default function PackageMonthlySales(props) {
       }
       console.log(date);
       axios
-        .get("http://localhost:8070/PackageOrders/getOrders")
+        .get("https://tech-scope-online.herokuapp.com/PackageOrders/getOrders")
         .then((res) => {
           SellersOrders = res.data.filter(
             (order) => order.SellerID == SellerID
@@ -85,7 +85,7 @@ export default function PackageMonthlySales(props) {
 
 
 
-    axios.get("http://localhost:8070/orgSeller/get/" + SellerID).then((res) =>
+    axios.get("https://tech-scope-online.herokuapp.com/orgSeller/get/" + SellerID).then((res) =>
     {
 
        setSeller(res.data);
@@ -118,7 +118,7 @@ export default function PackageMonthlySales(props) {
     console.log(document.getElementById("month").value);
     let date = document.getElementById("month").value;
     axios
-      .get("http://localhost:8070/PackageOrders/getOrders")
+      .get("https://tech-scope-online.herokuapp.com/PackageOrders/getOrders")
       .then((res) => {
         SellersOrders = res.data.filter((order) => order.SellerID == SellerID);
         console.log(SellersOrders);
@@ -138,7 +138,7 @@ export default function PackageMonthlySales(props) {
   function generateReport(){
     let date = document.getElementById("month").value;
     axios
-    .get("http://localhost:8070/PackageOrders/getOrders")
+    .get("https://tech-scope-online.herokuapp.com/PackageOrders/getOrders")
     .then((res) => {
       SellersOrders = res.data.filter((order) => order.SellerID == SellerID);
       console.log(SellersOrders);
@@ -229,9 +229,9 @@ export default function PackageMonthlySales(props) {
      
       
       axios
-      .post("http://localhost:8070/Packages/create-pdf", result)
+      .post("https://tech-scope-online.herokuapp.com/Packages/create-pdf", result)
       .then(() =>
-        axios.get("http://localhost:8070/Packages/fetch-pdf", {
+        axios.get("https://tech-scope-online.herokuapp.com/Packages/fetch-pdf", {
           responseType: "blob",
           // A BLOB is a binary large object that can hold a variable amount of data. important
         })

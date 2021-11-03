@@ -106,7 +106,7 @@ export default function UpdateProfile(props){
 		function getCustomer(){
 
 			objectID = props.match.params.id;
-			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+			axios.get("https://tech-scope-online.herokuapp.com/Customer/get/"+ objectID).then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -312,7 +312,7 @@ export default function UpdateProfile(props){
 			if (result.isConfirmed) {
 
 				objectID = props.match.params.id;
-				axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
+				axios.put("https://tech-scope-online.herokuapp.com/Customer/update/"+ objectID, updatecus).then(()=>{
 					
 				    Swal.fire('Your Profie Has Been Successfully Updated!', '', 'success')
 					props.history.push("/Customer/MyProfile");
@@ -359,7 +359,7 @@ export default function UpdateProfile(props){
 			if (result.isConfirmed) {
 
 				objectID = props.match.params.id;
-				axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
+				axios.delete("https://tech-scope-online.herokuapp.com/Customer/delete/"+ objectID).then((res) =>
 				{
 				
 		  

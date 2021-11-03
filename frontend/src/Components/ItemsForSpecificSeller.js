@@ -9,7 +9,7 @@ let SellerID;
 
         SellerID = props.match.params.id;
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
 
 
@@ -49,7 +49,7 @@ let SellerID;
     // document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
@@ -64,7 +64,7 @@ let SellerID;
 
   function deletee(id) {
     axios
-      .delete("http://localhost:8070/items/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
       .then((res) => {
         //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
         const afterDeleteItems = items.filter((items) => items._id !== id);

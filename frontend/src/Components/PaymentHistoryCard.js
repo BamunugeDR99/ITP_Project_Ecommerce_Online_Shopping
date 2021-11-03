@@ -67,7 +67,7 @@ function getOrder(){
 
   const OrderId = props.match.params.id;
 
-  axios.get("http://localhost:8070/orderhistory/get/" + OrderId).then((res) =>
+  axios.get("https://tech-scope-online.herokuapp.com/orderhistory/get/" + OrderId).then((res) =>
   {
       // setpayhistory(res.data);
       setOrderDetails(res.data);
@@ -84,7 +84,7 @@ function getOrder(){
 
 
       
-      axios.get("http://localhost:8070/items/getItems").then((res) => {
+      axios.get("https://tech-scope-online.herokuapp.com/items/getItems").then((res) => {
 
         console.log(res.data);
         Allitems = res.data;
@@ -99,7 +99,7 @@ function getOrder(){
       })
 
 
-      axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
+      axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackages").then((res) => {
 
         //console.log(res.data);
         Allpackages = res.data;

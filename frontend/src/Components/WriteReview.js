@@ -31,7 +31,7 @@ export default function WriteReview(props) {
     const objectId = props.match.params.id;
     function getItems() {
       axios
-        .get("http://localhost:8070/items/get/" + objectId)
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + objectId)
         .then((res) => {
           setItems(res.data);
           console.log(res.data);
@@ -57,7 +57,7 @@ export default function WriteReview(props) {
       itemid: ItemId,
     };
     axios
-      .post("http://localhost:8070/review/add", newReview)
+      .post("https://tech-scope-online.herokuapp.com/review/add", newReview)
       .then(() => {
         setDescription(" ");
         Swal.fire("All Done!", "Review Submitted", "success");

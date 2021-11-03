@@ -56,7 +56,7 @@ export default function SellerReviews(props){
 
           const objectId = props.match.params.id;
             axios
-            .get("http://localhost:8070/items/get/"+ objectId)
+            .get("https://tech-scope-online.herokuapp.com/items/get/"+ objectId)
             .then((res) =>
             {
                 setItems(res.data);
@@ -83,7 +83,7 @@ export default function SellerReviews(props){
       function getReview() {
         const objectId = props.match.params.id;
         axios
-          .get("http://localhost:8070/review/get")
+          .get("https://tech-scope-online.herokuapp.com/review/get")
           .then((res) => {
             //setReview(res.data);
             const filter = res.data.filter(
@@ -92,7 +92,7 @@ export default function SellerReviews(props){
             reviews = filter;
             // 6120b61011f8374ae1fa904f
             axios
-              .get("http://localhost:8070/Customer/getAll")
+              .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
               .then((res) => {
                 customers = res.data;
                 createReview(reviews, customers);
@@ -134,7 +134,7 @@ export default function SellerReviews(props){
       //Rating
       function displayRating(){
         axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -287,7 +287,7 @@ function updatee(id){
           reviewstatus : true,
           sellerid: items.SellerID
         }
-        axios.put("http://localhost:8070/review/updateRev/" +id,newItem).then((res)=>{
+        axios.put("https://tech-scope-online.herokuapp.com/review/updateRev/" +id,newItem).then((res)=>{
           setReportreason(" ");
           console.log(result.value)
           // alert("success");

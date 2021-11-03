@@ -53,7 +53,7 @@ export default function CustomerLogin(props) {
     localStorage.setItem("username", rememberMe ? username : "");
 
     axios
-      .post("http://localhost:8070/Customer/loginCustomer", loginCredentials)
+      .post("https://tech-scope-online.herokuapp.com/Customer/loginCustomer", loginCredentials)
       .then((res) => {
         // setCustomer(res.data.customerLogin);
         localStorage.setItem("CustomerID", res.data.customerLogin._id);

@@ -23,7 +23,7 @@ export default function Customer_wishlist(props) {
       //change url
       objectID = localStorage.getItem("CustomerID");
       axios
-        .post("http://localhost:8070/wishlist/getByCustomerID/" + objectID)
+        .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + objectID)
         .then((res) => {
           // console.log(res.data);
 
@@ -32,7 +32,7 @@ export default function Customer_wishlist(props) {
           console.log(wishlist.Items);
 
           axios
-            .get("http://localhost:8070/items/getItems")
+            .get("https://tech-scope-online.herokuapp.com/items/getItems")
             .then((res) => {
               let result2 = res.data;
 
@@ -51,7 +51,7 @@ export default function Customer_wishlist(props) {
 
     function displayRating() {
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -132,7 +132,7 @@ export default function Customer_wishlist(props) {
     let Items = [];
     let ItemID = "";
     axios
-      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + customerID)
       .then((res) => {
         console.log(res.data.wishlistss.Items);
         ItemID = res.data.wishlistss._id;
@@ -154,7 +154,7 @@ export default function Customer_wishlist(props) {
         console.log(newWishList);
         if (falgs == 0) {
           axios
-            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + ItemID, newWishList)
             .then(() => {
               //alert("Student Updated");
               // document.getElementById("itemsTxt").innerHTML =
@@ -182,7 +182,7 @@ export default function Customer_wishlist(props) {
 
   function remove(id) {
     axios
-      .delete("http://localhost:8070/wishlist/update/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/wishlist/update/" + id)
       .then((res) => {
 
         

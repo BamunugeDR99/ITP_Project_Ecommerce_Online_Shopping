@@ -27,7 +27,7 @@ export default function CreatePackage1(props) {
             //call a backend URL using axios
             sessionStorage.clear();
 
-            axios.get("http://localhost:8070/items/getItems").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/items/getItems").then((res) => {
 
                 let seller = localStorage.getItem("SellerID");
 
@@ -49,7 +49,7 @@ export default function CreatePackage1(props) {
 
         function displayRating(){
             axios
-            .get("http://localhost:8070/review/get")
+            .get("https://tech-scope-online.herokuapp.com/review/get")
             .then((res) => {
               setRatings(res.data);
               //console.log(ratings[0].itemid)

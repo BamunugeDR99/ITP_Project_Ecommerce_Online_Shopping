@@ -27,7 +27,7 @@ export default function SellerUpdate(props) {
       const objectId = props.match.params.id;
       console.log(objectId);
       axios
-        .get("http://localhost:8070/orgSeller/get/" + objectId)
+        .get("https://tech-scope-online.herokuapp.com/orgSeller/get/" + objectId)
         .then((res) => {
           setData(res.data);
           console.log(res.data);
@@ -104,7 +104,7 @@ export default function SellerUpdate(props) {
 
     if (flag1 === 1) {
       axios
-        .put("http://localhost:8070/orgSeller/update/" + objectId, data)
+        .put("https://tech-scope-online.herokuapp.com/orgSeller/update/" + objectId, data)
         .then(() => {
           //  alert("Seller Updated Successfully!");
           Swal.fire(

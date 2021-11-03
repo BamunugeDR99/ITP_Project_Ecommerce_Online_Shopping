@@ -7,7 +7,7 @@ export default function AView_all_the_items(props) {
   useEffect(() => {
     function getItems() {
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
           setItems(res.data);
           console.log(res.data);
@@ -45,7 +45,7 @@ export default function AView_all_the_items(props) {
     // document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
@@ -58,7 +58,7 @@ export default function AView_all_the_items(props) {
 
   function deletee(id) {
     axios
-      .delete("http://localhost:8070/items/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
       .then((res) => {
         //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
         const afterDeleteItems = items.filter((items) => items._id !== id);

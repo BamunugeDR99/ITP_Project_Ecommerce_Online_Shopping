@@ -18,7 +18,7 @@ export default function EditCardDetails(props) {
         function getpaymentdetails() {
 
             const cardid = props.match.params.id
-            axios.get("http://localhost:8070/paymentdetails/getItem/" + cardid).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/getItem/" + cardid).then((res) => {
                 setpaymentdetails(res.data);
                 console.log(res.data);
                 if (res.data.cardtype = "VISA") {
@@ -96,7 +96,7 @@ export default function EditCardDetails(props) {
         }
 
         console.log(updateCard);
-        axios.put("http://localhost:8070/paymentdetails/update/" + id, updateCard).then(() => {
+        axios.put("https://tech-scope-online.herokuapp.com/paymentdetails/update/" + id, updateCard).then(() => {
 
 
             

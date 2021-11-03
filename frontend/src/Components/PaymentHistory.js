@@ -11,7 +11,7 @@ export default function PaymentHistory(props) {
   useEffect(() => {
     function getpayhistory() {
       axios
-        .get("http://localhost:8070/orderhistory/getItems")
+        .get("https://tech-scope-online.herokuapp.com/orderhistory/getItems")
         .then((res) => {
           setpayhistory(res.data);
           console.log(res.data);
@@ -34,7 +34,7 @@ export default function PaymentHistory(props) {
     console.log(purchaseHistorySearch);
 
     axios
-      .get("http://localhost:8070/orderhistory/getItems")
+      .get("https://tech-scope-online.herokuapp.com/orderhistory/getItems")
       .then((res) => {
         filterpurchaseHistory(res.data, purchaseHistorySearch);
         console.log(res.data);

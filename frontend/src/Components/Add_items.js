@@ -109,7 +109,7 @@ export default function Add_items(props) {
 
     //if(flag == 1){
     axios
-      .post("http://localhost:8070/items/addItems", newItem)
+      .post("https://tech-scope-online.herokuapp.com/items/addItems", newItem)
       .then(() => {
         //custome message to the user
         // document.getElementById("Submitstatus").innerHTML =
@@ -320,7 +320,7 @@ export default function Add_items(props) {
                     onChange={(e) => {
                       setSKU(e.target.value);
                       axios
-                        .get("http://localhost:8070/items/getItems")
+                        .get("https://tech-scope-online.herokuapp.com/items/getItems")
                         .then((res) => {
                           let items = res.data;
                           for (let i = 0; i < items.length; i++) {

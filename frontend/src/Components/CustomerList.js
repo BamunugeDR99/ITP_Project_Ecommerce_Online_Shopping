@@ -14,7 +14,7 @@ export default function CustomerList(props) {
   useEffect(() => {
     function getCustomers() {
       axios
-        .get("http://localhost:8070/Customer/getAll")
+        .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
         .then((res) => {
           setCustomers(res.data);
           console.log(res.data);
@@ -29,7 +29,7 @@ export default function CustomerList(props) {
 
   function deleteCus(id) {
     axios
-      .delete("http://localhost:8070/Customer/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/Customer/delete/" + id)
       .then((res) => {
         const Toast = Swal.mixin({
           toast: true,
@@ -64,7 +64,7 @@ export default function CustomerList(props) {
     console.log(customerSearch);
 
     axios
-      .get("http://localhost:8070/Customer/getAll")
+      .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
       .then((res) => {
         filterCustomer(res.data, customerSearch);
         console.log(res.data);
@@ -97,7 +97,7 @@ export default function CustomerList(props) {
   // function filterbyMonth() {
   //   let month = "05";
 
-  //   axios.get("http://localhost:8070/Customer/getAll").then((res) => {
+  //   axios.get("https://tech-scope-online.herokuapp.com/Customer/getAll").then((res) => {
 
   //     result = res.data.filter(
   //       (post) => String(post.newlyAddeddate.substr(5, 2)) === month
@@ -117,7 +117,7 @@ export default function CustomerList(props) {
     let month = document.getElementById("month").value;
 
     axios
-      .get("http://localhost:8070/Customer/getAll")
+      .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
       .then((res) => {
         totalCustomers = res.data.length;
         result = res.data.filter(
@@ -128,9 +128,9 @@ export default function CustomerList(props) {
         result.push(totalCustomers);
         console.log(result);
         axios
-          .post("http://localhost:8070/Customer/create-pdf", result)
+          .post("https://tech-scope-online.herokuapp.com/Customer/create-pdf", result)
           .then(() =>
-            axios.get("http://localhost:8070/Customer/fetch-pdf", {
+            axios.get("https://tech-scope-online.herokuapp.com/Customer/fetch-pdf", {
               responseType: "blob",
             })
           )
@@ -147,7 +147,7 @@ export default function CustomerList(props) {
   function monthChange() {
     let month = document.getElementById("month").value;
     axios
-      .get("http://localhost:8070/Customer/getAll")
+      .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
       .then((res) => {
         totalCustomers = res.data.length;
 

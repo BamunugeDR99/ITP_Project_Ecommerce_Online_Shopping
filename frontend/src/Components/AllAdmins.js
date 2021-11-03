@@ -9,7 +9,7 @@ useEffect(()=> {
 
     function getAdmins(){
 
-        axios.get("http://localhost:8070/Admin/getAllAdmins").then((res) => {
+        axios.get("https://tech-scope-online.herokuapp.com/Admin/getAllAdmins").then((res) => {
 
             
           console.log(res.data);
@@ -71,7 +71,7 @@ function handleSearch(e) {
 
 
     axios
-        .get("http://localhost:8070/Admin/getAllAdmins")
+        .get("https://tech-scope-online.herokuapp.com/Admin/getAllAdmins")
         .then((res) => {
 
 

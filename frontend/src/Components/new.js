@@ -9,7 +9,7 @@ export default function PaymentHistory(props){
     
     useEffect(() =>{
         function getpayhistory(){
-            axios.get("http://localhost:8070/payhistory/get").then((res) =>
+            axios.get("https://tech-scope-online.herokuapp.com/payhistory/get").then((res) =>
             {
                 setpayhistory(res.data);
                 console.log(res.data);

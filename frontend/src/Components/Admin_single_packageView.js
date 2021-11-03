@@ -16,7 +16,7 @@ export default function SinglePackage_AdminView(props) {
       // console.log(packageId);
 
       axios
-        .get("http://localhost:8070/Packages/getPackage/" + packageId)
+        .get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + packageId)
         .then((res) => {
           console.log(res.data);
           setPackage(res.data);

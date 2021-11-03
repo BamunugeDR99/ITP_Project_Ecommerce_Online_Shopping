@@ -44,7 +44,7 @@ export default function YourReviews(props) {
       objectId = localStorage.getItem("CustomerID");
       console.log(objectId);
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           const filter = res.data.filter(
             (customerrev) =>
@@ -57,7 +57,7 @@ export default function YourReviews(props) {
           reviews = filter;
           console.log(reviews);
           axios
-            .get("http://localhost:8070/items/getItems")
+            .get("https://tech-scope-online.herokuapp.com/items/getItems")
             .then((res) => {
               items = res.data;
               createReview(reviews, items);
@@ -77,7 +77,7 @@ export default function YourReviews(props) {
     function displayRating() {
       axios
 
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
 
         .then((res) => {
           setRatings(res.data);
@@ -154,7 +154,7 @@ export default function YourReviews(props) {
     document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         // console.log(res.data);
 
@@ -169,7 +169,7 @@ export default function YourReviews(props) {
 
   function deletee(id, index) {
     axios
-      .delete("http://localhost:8070/review/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/review/delete/" + id)
       .then((res) => {
         let afterDelete = abc.splice(index, 1);
         setabc(afterDelete);
@@ -215,7 +215,7 @@ export default function YourReviews(props) {
           description: result.value,
         };
         axios
-          .put("http://localhost:8070/review/updateReview/" + id, newItem)
+          .put("https://tech-scope-online.herokuapp.com/review/updateReview/" + id, newItem)
           .then((res) => {
             setDescription(" ");
             console.log(result.value);

@@ -29,7 +29,7 @@ export default function AddNewAdmin(props) {
     console.log(newAdmin);
 
     axios
-      .post("http://localhost:8070/Admin/addAdmin", newAdmin)
+      .post("https://tech-scope-online.herokuapp.com/Admin/addAdmin", newAdmin)
       .then(() => {
         //alert("Student Added");
         Swal.fire({

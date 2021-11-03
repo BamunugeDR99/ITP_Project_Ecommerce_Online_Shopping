@@ -22,7 +22,7 @@ export default function RequestView(props) {
     function getsellers() {
       objectID = props.match.params.id;
       axios
-        .get("http://localhost:8070/seller/get/" + objectID)
+        .get("https://tech-scope-online.herokuapp.com/seller/get/" + objectID)
         .then((res) => {
           setsellers(res.data);
         })
@@ -36,7 +36,7 @@ export default function RequestView(props) {
 
   function deleteSeller(id) {
     axios
-      .delete("http://localhost:8070/seller/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/seller/delete/" + id)
       .then((res) => {})
       .catch((err) => {
         alert(err);
@@ -45,7 +45,7 @@ export default function RequestView(props) {
 
   async function confirmRequest(id) {
     axios
-      .get("http://localhost:8070/seller/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/seller/get/" + id)
       .then((res) => {
         password = passwordGenerator(25);
         username = usernameGenerator(res.data.companyname);
@@ -75,7 +75,7 @@ export default function RequestView(props) {
           password,
         };
         axios
-          .post("http://localhost:8070/orgseller/add", newSeller)
+          .post("https://tech-scope-online.herokuapp.com/orgseller/add", newSeller)
           .then(() => {
             Swal.fire({
               position: "center",

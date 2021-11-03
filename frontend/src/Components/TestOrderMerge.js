@@ -19,7 +19,7 @@ export default function TestOrderMerge(props){
         const CustomerID = "61547689d8939819e488efa9";
 
 
-            axios.get("http://localhost:8070/Orders/getOrders").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/Orders/getOrders").then((res) => {
 
                 console.log(res.data);
 
@@ -29,7 +29,7 @@ export default function TestOrderMerge(props){
                 console.log(FilteredOrderFragments);
 
 
-                axios.get("http://localhost:8070/customerOrders/getCusOrder").then((res) => {
+                axios.get("https://tech-scope-online.herokuapp.com/customerOrders/getCusOrder").then((res) => {
 
                     console.log(res.data);
                     FilteredCusOrders = res.data.filter((order) => order.CustomerID == CustomerID);

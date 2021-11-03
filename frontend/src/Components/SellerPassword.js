@@ -44,7 +44,7 @@ export default function SellerPassword(props) {
     function getorgSellers() {
       // const orgSellerid = "613a2b0fb31f783accd94447";
       objectID = localStorage.getItem("SellerID");
-      axios.get("http://localhost:8070/orgSeller/get/" + objectID).then((res) => {
+      axios.get("https://tech-scope-online.herokuapp.com/orgSeller/get/" + objectID).then((res) => {
         setorgSellers(res.data);
         console.log(res.data);
         setPassword(res.data.password);
@@ -148,7 +148,7 @@ export default function SellerPassword(props) {
         console.log(changepsw);
 
         //	objectID = props.match.params.id;
-        axios.put("http://localhost:8070/orgSeller/ChangePwd/" + objectID, changepsw).then(() => {
+        axios.put("https://tech-scope-online.herokuapp.com/orgSeller/ChangePwd/" + objectID, changepsw).then(() => {
 
 
           alert("Password Updated Successfully!");

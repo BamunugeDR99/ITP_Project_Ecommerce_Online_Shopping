@@ -71,7 +71,7 @@ export default function ShoppingCart(props) {
       console.log(customerID);
 
       axios
-        .get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID)
+        .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + customerID)
         .then((res) => {
           console.log(res.data);
 
@@ -81,7 +81,7 @@ export default function ShoppingCart(props) {
           CartPackages = res.data.PackageIDs;
 
           axios
-            .get("http://localhost:8070/items/getItems")
+            .get("https://tech-scope-online.herokuapp.com/items/getItems")
             .then((res) => {
               console.log(res.data);
               Allitems = res.data;
@@ -91,7 +91,7 @@ export default function ShoppingCart(props) {
             .catch((err) => {});
 
           axios
-            .get("http://localhost:8070/Packages/getPackages")
+            .get("https://tech-scope-online.herokuapp.com/Packages/getPackages")
             .then((res) => {
               //console.log(res.data);
               Allpackages = res.data;
@@ -288,7 +288,7 @@ export default function ShoppingCart(props) {
     let Citems = [];
     const customerID = localStorage.getItem("CustomerID");
     axios
-      .get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID)
+      .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + customerID)
       .then((res) => {
         Citems = res.data.ItemIDs;
         let CartID = res.data._id;
@@ -302,7 +302,7 @@ export default function ShoppingCart(props) {
         };
         axios
           .put(
-            "http://localhost:8070/ShoppingCart/updateSItem/" + CartID,
+            "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + CartID,
             updatedCart
           )
           .then((res) => {
@@ -312,7 +312,7 @@ export default function ShoppingCart(props) {
             console.log(err);
           });
         axios
-          .get("http://localhost:8070/items/getItems")
+          .get("https://tech-scope-online.herokuapp.com/items/getItems")
           .then((res) => {
             Allitems = res.data;
             GrandTotal = document.getElementById("GrandTotal").value - price;
@@ -338,7 +338,7 @@ export default function ShoppingCart(props) {
     const customerID = localStorage.getItem("CustomerID");
     console.log(customerID);
     axios
-      .get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID)
+      .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + customerID)
       .then((res) => {
         console.log(res.data);
         Citems = res.data.PackageIDs;
@@ -370,7 +370,7 @@ export default function ShoppingCart(props) {
         //Update the Items Array
         axios
           .put(
-            "http://localhost:8070/ShoppingCart/updateSItem/" + CartID,
+            "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + CartID,
             updatedCart
           )
           .then((res) => {
@@ -381,7 +381,7 @@ export default function ShoppingCart(props) {
           });
 
         axios
-          .get("http://localhost:8070/Packages/getPackages")
+          .get("https://tech-scope-online.herokuapp.com/Packages/getPackages")
           .then((res) => {
             //console.log(res.data);
             Allpackages = res.data;
@@ -438,7 +438,7 @@ export default function ShoppingCart(props) {
     };
 
     axios
-      .get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID)
+      .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + customerID)
       .then((res) => {
         ItemIDArr = res.data.ItemIDs;
         PackageIDArr = res.data.PackageIDs;
@@ -493,13 +493,13 @@ export default function ShoppingCart(props) {
         console.log(updatedCart);
 
         axios
-          .get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID)
+          .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + customerID)
           .then((res) => {
             let CartID = res.data._id;
 
             axios
               .put(
-                "http://localhost:8070/ShoppingCart/updateSItem/" + CartID,
+                "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + CartID,
                 updatedCart
               )
               .then((res) => {

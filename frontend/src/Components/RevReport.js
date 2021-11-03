@@ -35,7 +35,7 @@ export default function RevReport(props){
 		const objectID = props.match.params.id;
         console.log(objectID)
 		axios
-		  .get("http://localhost:8070/review/get")
+		  .get("https://tech-scope-online.herokuapp.com/review/get")
 		  .then((res) => {
 			reviews=(res.data);
 			const filter = res.data.filter(
@@ -45,7 +45,7 @@ export default function RevReport(props){
             console.log(res.data);
 			console.log(reviews);
 			axios
-			  .get("http://localhost:8070/Customer/getAll")
+			  .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
 			  .then((res) => {
 				customers = res.data;
 				createReview(reviews, customers);
@@ -91,7 +91,7 @@ export default function RevReport(props){
 
           const objectId = props.match.params.id;
             axios
-            .get("http://localhost:8070/items/get/"+ objectId)
+            .get("https://tech-scope-online.herokuapp.com/items/get/"+ objectId)
             .then((res) =>
             {
                 setItems(res.data);
@@ -124,9 +124,9 @@ function generateReport(){
 
 
   axios
-  .post("http://localhost:8070/review/create-pdf", result)
+  .post("https://tech-scope-online.herokuapp.com/review/create-pdf", result)
   .then(() =>
-    axios.get("http://localhost:8070/review/fetch-pdf", {
+    axios.get("https://tech-scope-online.herokuapp.com/review/fetch-pdf", {
       responseType: "blob",
       // A BLOB is a binary large object that can hold a variable amount of data. important
     })

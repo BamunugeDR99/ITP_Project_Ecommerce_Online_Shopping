@@ -16,7 +16,7 @@ export default function Seller_items(props) {
   useEffect(() => {
     async function getItems() {
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
           let result = res.data.filter((post) => post.SellerID === objectID);
           setItems(result);
@@ -29,7 +29,7 @@ export default function Seller_items(props) {
 
     function displayRating() {
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -142,7 +142,7 @@ export default function Seller_items(props) {
     document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
@@ -180,7 +180,7 @@ export default function Seller_items(props) {
             "Your item has been deleted.",
             "success",
             axios
-              .delete("http://localhost:8070/items/delete/" + id)
+              .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
               .then((res) => {
                 //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
                 const afterDeleteItems = items.filter(
@@ -212,7 +212,7 @@ export default function Seller_items(props) {
   function filterByCategory(categoryType) {
     document.getElementById("itemsTxt").innerHTML = "";
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         // console.log(res.data);
@@ -254,7 +254,7 @@ export default function Seller_items(props) {
     }
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         let item = res.data.filter((post) => post.SellerID === objectID);
 
@@ -299,11 +299,11 @@ export default function Seller_items(props) {
   function statusChange(id, index) {
     if (document.getElementById(index + "x").checked === false) {
       axios
-        .get("http://localhost:8070/items/get/" + id)
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
         .then((res) => {
           res.data.ItemAvailabilityStatus = false;
           axios
-            .put("http://localhost:8070/items/update/" + id, res.data)
+            .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
             .then(() => {
               document.getElementById(index).innerHTML = "Item Out of stock";
               document.getElementById(index).style.color = "#FF0000";
@@ -317,11 +317,11 @@ export default function Seller_items(props) {
         });
     } else if (document.getElementById(index + "x").checked === true) {
       axios
-        .get("http://localhost:8070/items/get/" + id)
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
         .then((res) => {
           res.data.ItemAvailabilityStatus = true;
           axios
-            .put("http://localhost:8070/items/update/" + id, res.data)
+            .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
             .then(() => {
               document.getElementById(index).innerHTML = "Item Available";
               document.getElementById(index).style.color = "#A4DE02";
@@ -349,7 +349,7 @@ export default function Seller_items(props) {
     console.log(filterdItemsWithRatings);
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         let result = res.data.filter((post) => post.SellerID === objectID);
         let item = result;
@@ -378,7 +378,7 @@ export default function Seller_items(props) {
 
   function clearFilter() {
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         let result = res.data.filter((post) => post.SellerID === objectID);
         setItems(result);

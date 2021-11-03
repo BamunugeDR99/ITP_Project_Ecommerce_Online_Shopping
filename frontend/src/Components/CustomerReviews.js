@@ -41,7 +41,7 @@ export default function CustomerReviews(props) {
     function getReview() {
       objectId = localStorage.getItem("ItemID");
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           //setReview(res.data);
 
@@ -55,7 +55,7 @@ export default function CustomerReviews(props) {
           reviews = filter;
           console.log(reviews)
           axios
-            .get("http://localhost:8070/Customer/getAll")
+            .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
             .then((res) => {
               customers = res.data;
               createReview(reviews, customers);
@@ -94,7 +94,7 @@ export default function CustomerReviews(props) {
 
       axios
 
-      .get("http://localhost:8070/review/get")
+      .get("https://tech-scope-online.herokuapp.com/review/get")
 
       .then((res) => {
 

@@ -14,7 +14,7 @@ export default function ViewCardDetails(props) {
       let ownerID = localStorage.getItem("CustomerID");
       console.log(ownerID);
       axios
-        .get("http://localhost:8070/paymentdetails/get")
+        .get("https://tech-scope-online.herokuapp.com/paymentdetails/get")
         .then((res) => {
           setpaymentdetails(
             res.data.filter((item) => item.ownerID === ownerID)
@@ -39,7 +39,7 @@ export default function ViewCardDetails(props) {
 
     axios
 
-      .delete("http://localhost:8070/paymentdetails/delete/" + CardId)
+      .delete("https://tech-scope-online.herokuapp.com/paymentdetails/delete/" + CardId)
 
       .then((res) => {
         const remainingCards = paymentdetails.filter((pack) => pack._id != ID);

@@ -9,7 +9,7 @@ export default function RegSellers(props) {
   useEffect(() => {
     function getorgSellers() {
       axios
-        .get("http://localhost:8070/orgSeller/get")
+        .get("https://tech-scope-online.herokuapp.com/orgSeller/get")
         .then((res) => {
           setorgSellers(res.data);
           console.log(res.data);
@@ -32,7 +32,7 @@ export default function RegSellers(props) {
     console.log(orgSellerSearch);
 
     axios
-      .get("http://localhost:8070/orgSeller/get")
+      .get("https://tech-scope-online.herokuapp.com/orgSeller/get")
       .then((res) => {
         filterorgSellers(res.data, orgSellerSearch);
         console.log(res.data);
@@ -75,7 +75,7 @@ export default function RegSellers(props) {
     let month = document.getElementById("month").value;
 
     axios
-      .get("http://localhost:8070/orgSeller/get")
+      .get("https://tech-scope-online.herokuapp.com/orgSeller/get")
       .then((res) => {
         totalSellers = res.data.length;
 
@@ -87,9 +87,9 @@ export default function RegSellers(props) {
         result.push(totalSellers);
         // console.log(result);
         axios
-          .post("http://localhost:8070/orgSeller/create-pdf", result)
+          .post("https://tech-scope-online.herokuapp.com/orgSeller/create-pdf", result)
           .then(() =>
-            axios.get("http://localhost:8070/orgSeller/fetch-pdf", {
+            axios.get("https://tech-scope-online.herokuapp.com/orgSeller/fetch-pdf", {
               responseType: "blob",
               // A BLOB is a binary large object that can hold a variable amount of data. important
             })
@@ -110,7 +110,7 @@ export default function RegSellers(props) {
     let month = document.getElementById("month").value;
 
     axios
-      .get("http://localhost:8070/orgSeller/get")
+      .get("https://tech-scope-online.herokuapp.com/orgSeller/get")
       .then((res) => {
         totalSellers = res.data.length;
 

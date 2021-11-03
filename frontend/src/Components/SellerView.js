@@ -12,7 +12,7 @@ export default function SellerView(props) {
   useEffect(() =>{
       function getorgSellers(){
         objectID = props.match.params.id;
-          axios.get("http://localhost:8070/orgSeller/get/" + objectID).then((res) =>
+          axios.get("https://tech-scope-online.herokuapp.com/orgSeller/get/" + objectID).then((res) =>
           {
               setorgSellers(res.data);
 
@@ -39,7 +39,7 @@ export default function SellerView(props) {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios
-          .delete("http://localhost:8070/orgSeller/delete/" + id)
+          .delete("https://tech-scope-online.herokuapp.com/orgSeller/delete/" + id)
           .then((res) => {
             Swal.fire('Saved!', '', 'success')
             props.history.push("/Admin/Sellers");

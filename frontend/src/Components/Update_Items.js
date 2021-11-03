@@ -38,7 +38,7 @@ let slideImages = [];
       const objectId = props.match.params.id;
 
       axios
-        .get("http://localhost:8070/items/get/" + objectId)
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + objectId)
         .then((res) => {
           setData(res.data);
           setImages(res.data.Images);
@@ -201,7 +201,7 @@ let slideImages = [];
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-        .delete("http://localhost:8070/items/delete/" + objectId)
+        .delete("https://tech-scope-online.herokuapp.com/items/delete/" + objectId)
         .then((res) => {
          
           // const afterDeleteStudent = students.filter(student=>student._id != id);
@@ -246,7 +246,7 @@ let slideImages = [];
   // console.log(data.Category);
     console.log(data);
     axios
-      .put("http://localhost:8070/items/update/" + objectId, data)
+      .put("https://tech-scope-online.herokuapp.com/items/update/" + objectId, data)
       .then(() => {
 
         Swal.fire({

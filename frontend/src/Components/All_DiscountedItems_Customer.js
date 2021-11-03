@@ -20,7 +20,7 @@ export default function AllDiscountedItems(props) {
     function getItems() {
       //call a backend URL using axios
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
           console.log(res.data);
           setItems(res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus === true));
@@ -35,7 +35,7 @@ export default function AllDiscountedItems(props) {
 
     function displayRating() {
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -159,7 +159,7 @@ export default function AllDiscountedItems(props) {
     console.log(userSearch);
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
 
         let filteredData = res.data.filter((item) => item.DiscountStatus === true && item.ItemAvailabilityStatus === true)
@@ -193,7 +193,7 @@ export default function AllDiscountedItems(props) {
     // let Items = [];
     let ItemID = "";
     axios
-      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + customerID)
       .then((res) => {
         console.log(res.data.wishlistss.Items);
         ItemID = res.data.wishlistss._id;
@@ -215,7 +215,7 @@ export default function AllDiscountedItems(props) {
         console.log(newWishList);
         if (falgs === 0) {
           axios
-            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + ItemID, newWishList)
             .then(() => {
               //alert("Student Updated");
               // document.getElementById("itemsTxt").innerHTML =
@@ -250,7 +250,7 @@ export default function AllDiscountedItems(props) {
     /// complete this
     console.log(id);
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -262,9 +262,9 @@ export default function AllDiscountedItems(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -290,7 +290,7 @@ export default function AllDiscountedItems(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" +
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" +
                     cartID,
                     updatedCart
                   )

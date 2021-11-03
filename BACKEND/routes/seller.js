@@ -6,7 +6,7 @@ let seller = require("../modules/seller");
 
 //Insert -->
 router.route("/add").post(async(req,res)=>{
-    // http://localhost:8070/seller/add
+    // https://tech-scope-online.herokuapp.com/seller/add
 
     const ownername = req.body.ownername;
     const mobile = req.body.mobile;
@@ -66,7 +66,7 @@ router.route("/add").post(async(req,res)=>{
 //Retrieve -->
 // route("/") this can use for fetching all the data from the DB 
 router.route("/get").get((req, res) => {
-    //http://localhost:8070/seller/get
+    //https://tech-scope-online.herokuapp.com/seller/get
 
     seller.find().then((sellers) => {
         res.json(sellers);
@@ -79,7 +79,7 @@ router.route("/get").get((req, res) => {
 
 //Update --> 
 router.route("/update/:id").put(async (req,res) =>{
-    //http://localhost:8070/seller/update/
+    //https://tech-scope-online.herokuapp.com/seller/update/
 
     let userID = req.params.id;  //params = parameter
     const{  ownername, 
@@ -111,7 +111,7 @@ router.route("/update/:id").put(async (req,res) =>{
 
 //Delete --> 
 router.route("/delete/:id").delete(async (req,res) =>{
-    //http://localhost:8070/seller/delete
+    //https://tech-scope-online.herokuapp.com/seller/delete
 
     let userID = req.params.id;
 
@@ -126,7 +126,7 @@ router.route("/delete/:id").delete(async (req,res) =>{
 
 //Fetch data of a specific single user (get one seller details) -->
 router.route("/get/:id").get(async (req,res) =>{
-    //http://localhost:8070/seller/get/
+    //https://tech-scope-online.herokuapp.com/seller/get/
 
     let userID = req.params.id;
 

@@ -10,7 +10,7 @@ let Package = require("../modules/Package");
 //Create routes for the CRUD
 
 //Insert
-//URL-->http://localhost:8070/Packages/addPackage--> will execute addDiscount route
+//URL-->https://tech-scope-online.herokuapp.com/Packages/addPackage--> will execute addDiscount route
 router.route("/addPackage").post((req, res) => {
 
     //Create const variables for variables in the model
@@ -146,7 +146,7 @@ router.route("/deletePackage/:id").delete(async (req, res) => {
 
 
 
-  //URL-->http://localhost:8070/Packages/getPackage/5f346790adf679
+  //URL-->https://tech-scope-online.herokuapp.com/Packages/getPackage/5f346790adf679
   router.route("/getPackage/:id").get(async (req, res) => {
 
     let packageID = req.params.id;

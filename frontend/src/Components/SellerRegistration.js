@@ -121,7 +121,7 @@ export default function SellerRegistration(props) {
     console.log(newseller);
     if (flag1 == 1) {
       axios
-        .post("http://localhost:8070/seller/add", newseller)
+        .post("https://tech-scope-online.herokuapp.com/seller/add", newseller)
         .then(() => {
           Swal.fire(
             "Success!",
