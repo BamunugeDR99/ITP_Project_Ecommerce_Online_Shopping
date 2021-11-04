@@ -57,7 +57,7 @@ export default function SellerPassword(props) {
     }
 
     getorgSellers();
-  });
+  },[]);
 
   function changePswd() {
     let psw = document.getElementById("current_password").value;
@@ -98,9 +98,14 @@ export default function SellerPassword(props) {
     }
   }
 
-  function update(id) {
-    console.log(id);
-    props.history.push("/update/" + id);
+ 
+
+  function checkCurrentPassword(){
+      const currentPWD = document.getElementById("current_password").value;
+      if(currentPWD == password){
+        return true;
+      }
+      
   }
 
   function ChangePassword() {
@@ -108,13 +113,14 @@ export default function SellerPassword(props) {
     // e.preventDefault();
 
     changePswd();
+    
 
-    if (flag === 1) {
+    if (flag === 1 && checkCurrentPassword()) {
       const changepsw = {
         password: newwPassword,
       };
 
-      console.log(changepsw);
+      objectID = localStorage.getItem("SellerID");
 
       Swal.fire({
         title: "Do you want to save the changes?",
@@ -128,8 +134,7 @@ export default function SellerPassword(props) {
           //	objectID = props.match.params.id;
           axios
             .put(
-              "https://tech-scope-online.herokuapp.com/orgSeller/ChangePwd/" +
-                objectID,
+              "https://tech-scope-online.herokuapp.com/orgSeller/ChangePwd/" + objectID,
               changepsw
             )
             .then(() => {
@@ -143,6 +148,8 @@ export default function SellerPassword(props) {
           Swal.fire("Changes are not saved", "", "info");
         }
       });
+    }else if(!checkCurrentPassword()){
+      Swal.fire("Invalid Credentials!");
     }
   }
 
