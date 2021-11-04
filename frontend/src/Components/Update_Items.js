@@ -245,7 +245,10 @@ let slideImages = [];
    //console.log(data.Color_family);
   // console.log(data.Category);
     console.log(data);
-    axios
+    if(checkValidations()){
+        Swal.fire("Please Enter Valid Details!")
+    }else{
+      axios
       .put("https://tech-scope-online.herokuapp.com/items/update/" + objectId, data)
       .then(() => {
 
@@ -264,6 +267,8 @@ let slideImages = [];
         alert(err);
    
       });
+    }
+    
   }
 
   function handle(e) {
@@ -322,7 +327,50 @@ let slideImages = [];
     document.getElementById("GG").innerHTML = name;
 
   }
+  const [picture, setPicture] = useState("");
+  const [imgData, setImgData] = useState("");
+  const [imgData2, setImgData2] = useState("");
+  const [imgData3, setImgData3] = useState("");
 
+  // Important
+  const onChangePicture = (e) => {
+    for (let i = 0; i < 3; i++) {
+      if (e.target.files[i]) {
+        console.log("picture: ", e.target.files);
+        setPicture(e.target.files[i]);
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          if (i == 0) {
+            setImgData(reader.result);
+            document.getElementById("ItemImage1").hidden = false;
+            document.getElementById("mainImageHeader").hidden = false;
+          } else if (i == 1) {
+            setImgData2(reader.result);
+            document.getElementById("ItemImage2").hidden = false;
+          } else if (i == 2) {
+            setImgData3(reader.result);
+            document.getElementById("ItemImage3").hidden = false;
+          }
+        });
+        reader.readAsDataURL(e.target.files[i]);
+      }
+    }
+  };
+  function checkValidations() {
+    let checkQuantity = document.getElementById("Quantity").value;
+    let checkPrice = document.getElementById("Price").value;
+
+   
+    if (checkQuantity <= 0 || checkQuantity > 200) {
+      console.log("q");
+      return true;
+    }
+    if (checkPrice <= 0 || checkPrice > 1000000) {
+      console.log("p");
+      return true;
+    }
+   
+  }
   return (
     
     <div>
@@ -620,7 +668,7 @@ let slideImages = [];
                       id="customFile"
                       multiple
 
-                      onChange = {() => displayImage()}
+                      onChange={onChangePicture}
                     />
                     <label class="custom-file-label" for="customFile">
                       Choose file
@@ -642,7 +690,32 @@ let slideImages = [];
                 </div>
               </div>
          
-              <center>
+              <center> <div className="ImagePreview">
+                  <img
+                    src={imgData}
+                    id="ItemImage1"
+                    alt="user image"
+                    hidden
+                    style={{ width: "150px" }}
+                  />
+                  <h6 id="mainImageHeader" hidden>
+                    Main Image
+                  </h6>
+                  <img
+                    src={imgData2}
+                    id="ItemImage2"
+                    alt="user image"
+                    hidden
+                    style={{ width: "150px" }}
+                  />
+                  <img
+                    src={imgData3}
+                    id="ItemImage3"
+                    alt="user image"
+                    hidden
+                    style={{ width: "150px" }}
+                  />
+                </div>
                 <center><div id = "GG"></div></center>
               <button
                   type = "button"

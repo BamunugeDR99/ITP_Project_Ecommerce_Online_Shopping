@@ -114,7 +114,7 @@ export default function Add_items(props) {
     };
     console.log(newItem); // remove after checking
   
-    if (checkVlidations()) {
+    if (checkValidations()) {
       Swal.fire("Please Enter Valid Details!");
     } else {
        axios
@@ -193,7 +193,7 @@ export default function Add_items(props) {
     }
   };
 
-  function checkVlidations() {
+  function checkValidations() {
     let checkQuantity = document.getElementById("quantity").value;
     let checkModel = document.getElementById("model").value;
     let checkPrice = document.getElementById("price").value;
