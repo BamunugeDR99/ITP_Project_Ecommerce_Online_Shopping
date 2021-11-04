@@ -230,9 +230,7 @@ let slideImages = [];
   }
 
   function sendData(e) {
-    //  still didn't created it yet.....
-    // const objectId = props.match.params.id;
-    //console.log(objectId);
+   
     const objectId = props.match.params.id;
 
     e.preventDefault();
@@ -245,9 +243,7 @@ let slideImages = [];
    //console.log(data.Color_family);
   // console.log(data.Category);
     console.log(data);
-    if(checkValidations()){
-        Swal.fire("Please Enter Valid Details!")
-    }else{
+  
       axios
       .put("https://tech-scope-online.herokuapp.com/items/update/" + objectId, data)
       .then(() => {
@@ -267,7 +263,7 @@ let slideImages = [];
         alert(err);
    
       });
-    }
+    
     
   }
 
@@ -281,20 +277,24 @@ let slideImages = [];
         setErrorMsg("Quantity cannot be more than 100");
         setSuccMsg("")
         flag = 0;
+        setButtonStatus(true);
       }else if(e.target.value <= 0){
         setErrorMsg("Quantity cannot be Zero or less");
         setSuccMsg("")
         flag = 0;
+        setButtonStatus(true);
       }else if((e.target.value).length == 0){
 
       }else if((e.target.value) > 0 && (e.target.value) < 200){
       
           setSuccMsg("All Set!")
           setErrorMsg("");
-          flag = 1
+          flag = 1;
+          setButtonStatus(false);
         }else{
         setErrorMsg("");
         flag = 1;
+        setButtonStatus(false);
       }
       
     } 
@@ -303,16 +303,19 @@ let slideImages = [];
       if(e.target.value > 1000000){
         setError2Msg("Price cannot exceed 1 Million");
         flag = 0;
+        setButtonStatus(true);
       }else if(e.target.value <= 0){
         setError2Msg("Price cannot be Zero or less");
         flag = 0;
+        setButtonStatus(true);
       }else{
         setError2Msg("");
         flag = 1;
+        setButtonStatus(false);
       }
     }
   }
-
+  let [buttonStatus,setButtonStatus] = useState(false);
   function gotoAddDiscount(id){
 
     props.history.push("/Seller/AddDiscount/" + id);
@@ -356,21 +359,7 @@ let slideImages = [];
       }
     }
   };
-  function checkValidations() {
-    let checkQuantity = document.getElementById("Quantity").value;
-    let checkPrice = document.getElementById("Price").value;
 
-   
-    if (checkQuantity <= 0 || checkQuantity > 200) {
-      console.log("q");
-      return true;
-    }
-    if (checkPrice <= 0 || checkPrice > 1000000) {
-      console.log("p");
-      return true;
-    }
-   
-  }
   return (
     
     <div>
@@ -726,6 +715,7 @@ let slideImages = [];
                   ADD DISCOUNT
                 </button><span> </span>
                 <button
+                disabled = {buttonStatus}
                   type="submit"
                   class="btn btn-success"
                   style={{ marginright: "20px" }}
