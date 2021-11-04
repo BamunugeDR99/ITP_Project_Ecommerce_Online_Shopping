@@ -125,54 +125,74 @@ export default function Customer_wishlist(props) {
     }
   }
 
-  function addToWishlist(itemId) {
-    // already added check
-    let customerID = localStorage.getItem("CustomerID");
-    let newItems = []; /// Change this later
-    let Items = [];
-    let ItemID = "";
+  function addToCart(id) {
+    /// complete this
     axios
-      .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + customerID)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
-        console.log(res.data.wishlistss.Items);
-        ItemID = res.data.wishlistss._id;
-        newItems = res.data.wishlistss.Items;
-        //let CustomerIDs = res.data.wishlistss.CustomerID;
-        // console.log(CustomerIDs)
-        let falgs = 0;
-        for (let i = 0; i < newItems.length; i++) {
-          if (newItems[i] == itemId) {
-            falgs = 1;
-          }
-        }
-        newItems.push(itemId);
-        console.log(newItems);
-        let newWishList = {
-          CustomerID: customerID,
-          Items: newItems,
-        };
-        console.log(newWishList);
-        if (falgs == 0) {
-          axios
-            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + ItemID, newWishList)
-            .then(() => {
-              //alert("Student Updated");
-              // document.getElementById("itemsTxt").innerHTML =
-              //"Item added to your Wishlist!";
+        console.log(res.data);
+        if (res.data.ItemAvailabilityStatus === false) {
+          Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Item is not available Right now!",
+          });
+        } else {
+          let CustomerID = localStorage.getItem("CustomerID");
 
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Your Item has been added to your wishlist!",
-                showConfirmButton: false,
-                timer: 1500,
-              });
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
+          axios
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
+            .then((res) => {
+              let cartID = res.data._id;
+              console.log(res.data);
+              let packages = res.data.PackageIDs;
+              let newwItems = res.data.ItemIDs;
+
+              let falgs = 0;
+              for (let i = 0; i < newwItems.length; i++) {
+                if (newwItems[i] == id) {
+                  falgs = 1;
+                }
+              }
+              newwItems.push(id);
+              console.log(newwItems);
+
+              const updatedCart = {
+                customerID: CustomerID,
+                PackageIDs: packages,
+                ItemIDs: newwItems,
+              };
+
+              if (falgs === 0) {
+                axios
+                  .put(
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
+                    updatedCart
+                  )
+                  .then((res) => {
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Item added to cart Successfully!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((err) => {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Please try again!",
+                    });
+                  });
+              } else if (falgs === 1) {
+                Swal.fire("Item Already in Your Shopping Cart.");
+              }
             })
             .catch((err) => {
               alert(err);
             });
-        } else if (falgs == 1) {
-          Swal.fire("Item Already in Your Wishlist.");
         }
       })
       .catch((err) => {
@@ -180,9 +200,66 @@ export default function Customer_wishlist(props) {
       });
   }
 
+
+  // function addToWishlist(itemId) {
+  //   // already added check
+  //   let customerID = localStorage.getItem("CustomerID");
+  //   let newItems = []; /// Change this later
+  //   let Items = [];
+  //   let ItemID = "";
+  //   axios
+  //     .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + customerID)
+  //     .then((res) => {
+  //       console.log(res.data.wishlistss.Items);
+  //       ItemID = res.data.wishlistss._id;
+  //       newItems = res.data.wishlistss.Items;
+  //       //let CustomerIDs = res.data.wishlistss.CustomerID;
+  //       // console.log(CustomerIDs)
+  //       let falgs = 0;
+  //       for (let i = 0; i < newItems.length; i++) {
+  //         if (newItems[i] == itemId) {
+  //           falgs = 1;
+  //         }
+  //       }
+  //       newItems.push(itemId);
+  //       console.log(newItems);
+  //       let newWishList = {
+  //         CustomerID: customerID,
+  //         Items: newItems,
+  //       };
+  //       console.log(newWishList);
+  //       if (falgs == 0) {
+  //         axios
+  //           .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + ItemID, newWishList)
+  //           .then(() => {
+  //             //alert("Student Updated");
+  //             // document.getElementById("itemsTxt").innerHTML =
+  //             //"Item added to your Wishlist!";
+
+  //             Swal.fire({
+  //               position: "center",
+  //               icon: "success",
+  //               title: "Your Item has been added to your wishlist!",
+  //               showConfirmButton: false,
+  //               timer: 1500,
+  //             });
+  //           })
+  //           .catch((err) => {
+  //             alert(err);
+  //           });
+  //       } else if (falgs == 1) {
+  //         Swal.fire("Item Already in Your Wishlist.");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
+  // }
+
   function remove(id) {
+   
     axios
-      .delete("https://tech-scope-online.herokuapp.com/wishlist/update/" + id)
+      .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + id,)
       .then((res) => {
 
         
@@ -215,18 +292,18 @@ export default function Customer_wishlist(props) {
                 <div class="row no-gutters">
                   <div class="col-sm-5" style={{ background: "#ffffff" }}>
                     <img
-                      src={"/Images/iphone-x-.jpg"}
+                       src={"/Images/" + itemss.Images[0]}
                       class="card-img-top h-100"
-                      style={{ width: "250px" }}
+                      style={{ width: "220px" }}
                       alt="..."
                     />
                   </div>
                   <div class="col-sm-7">
                     <div class="card-body">
-                      <h5 class="card-title">
+                      <h5 class="card-title"><b>
                         {itemss.Brand} {itemss.Item_name}
-                      </h5>
-                      <h5 class="card-title">{itemss.Specification}</h5>
+                      </b></h5>
+                      <h6 class="card-title" style = {{fontSize : "12px"}}>{itemss.Specification}</h6>
                       <p class="card-text">
                         <b>LKR {itemss.Price}</b>
                       </p>
@@ -241,7 +318,7 @@ export default function Customer_wishlist(props) {
                       <span> </span>
                       <button
                         class="btn btn-success"
-                        onClick={() => addToWishlist(itemss._id)}
+                        onClick={() => addToCart(itemss._id)}
                       >
                         Add to cart
                       </button>{" "}
