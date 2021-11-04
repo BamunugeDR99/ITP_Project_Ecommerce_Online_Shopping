@@ -157,6 +157,7 @@ import TransactionHistory from "./Components/TransactionHistory";
 import RevReport from "./Components/RevReport";
 import PackageMonthlySales from "./Components/PackageMonthlySales";
 import TestAddACard from "./Components/TestAddACard";
+import GoogleSignInTest from "./Components/GoogleSignInTest";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -187,7 +188,7 @@ function App() {
           exact
           component={All_the_items_customer}
         />
-
+{/* <Route path = "/Customer/Google" component = {GoogleSignInTest}/> */}
         <Route
           path="/Customer/AllItemsFilterBy/:id"
           exact
