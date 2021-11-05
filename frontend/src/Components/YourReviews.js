@@ -116,62 +116,38 @@ export default function YourReviews(props) {
   }, []);
 
   useEffect(()=>{
-
     if(r!=null){
     calculateStarRating()
     }
-
   })
-
   function calculateStarRating(){
-
     abc.map((item,index)=>{
-      
         displayStarRating(index,item.Stars);
     })
-      // displayStarRating(i,average);
-    // }
-
   }
 
   function displayStarRating(id,totalAverage){
-    console.log("9999999999")
     console.log(totalAverage)
     let txt = "";
 
       if(isNaN(totalAverage)){
-
-        // txt = "No Ratings yet!";
-
         document.getElementById(id +'stars').innerHTML = txt;
-
         document.getElementById(id +'stars').style.color = "#FF0000";
 
       }else{
 
-      
-
       for(let j = 0; j < totalAverage; j++){
-
         txt += '<span class="fa fa-star checked"></span>';
-
       }
-
       for(let j = 0; j < (5 - totalAverage); j++){
-
         txt += '<span class="fa fa-star"></span>';
-
       }
       if(isNaN(totalAverage)){
-
-      
-      // document.getElementById(id +'stars').innerHTML = txt +'  ';
       }
       else{
         document.getElementById(id +'stars').innerHTML = txt +'  ';
       }
      }
-
   }
 
 
@@ -357,7 +333,7 @@ export default function YourReviews(props) {
         }
       }
     }
-    // console.log(reviewWithItems)
+    // console.log(itemImage)
     setabc(reviewWithItems);
 
     // if(reviewWithItems.length==0){
@@ -408,13 +384,13 @@ export default function YourReviews(props) {
                     <div className="row">
                     
                           <div className="col-4">
-                           <img alt={p2} style={{width:'100%'}} src={"/Images/"+re.itemImage}/>
+                           <img style={{width:'100%'}} src={"/Images/"+re.itemImage}/>
                           </div>
 
                         <div className="col">
                             <div className="col" style={{fontSize:'20px'}}>
                                   <span><b>{re.itemName}</b>&emsp; - &emsp;{re.itemModel}</span><br/>
-                                  <span style={{fontSize:'18px'}}>{re.itemDescription}</span>
+                                  {/* <span style={{fontSize:'18px'}}>{re.itemDescription}</span> */}
 
 
                                   <div id = {index +'stars'} class="card-text">

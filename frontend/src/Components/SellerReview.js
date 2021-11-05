@@ -29,7 +29,7 @@ export default function SellerReviews(props){
 
     
     // let reportreason = " ";
-    
+    let [k,setK]=useState([]);
 
     let reviews = [];
     let review_id = "";
@@ -68,6 +68,9 @@ export default function SellerReviews(props){
                 console.log('abc');
         
                 ItemImage = res.data.Images;
+
+                setK(res.data.Images)
+              console.log(k)
                 
             }).catch((err) =>{
                 alert(err);
@@ -321,20 +324,19 @@ function report(id) {
        
             <div className="row">
                 
-                
-
+            
                     <div className="col-4">
                       <img style={{width:'100%'}}
-                       src={"/images/" + ItemImage[0]}/>
+                       src={"/images/" + k[0]}/>
                        <div>
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                       </div>
                     </div>

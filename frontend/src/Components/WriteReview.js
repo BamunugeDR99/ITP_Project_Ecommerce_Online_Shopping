@@ -10,6 +10,9 @@ import Swal from "sweetalert2";
 import "../Css/writereview.css";
 
 import go from "../images/p2.jpg";
+import g1 from "../images/iphone-x-.jpg";
+// import g1 from "..public/Images/iphone-x-.jpg";
+// import g1 from "./../Images/iphone-x-.jpg";
 
 
 export default function WriteReview(props){
@@ -29,6 +32,8 @@ export default function WriteReview(props){
     // let reportreason  = "";
     let count = 0;
 
+    let [k,setK]=useState([]);
+
     useEffect(() => {
       const objectId = props.match.params.id;
       function getItems() {
@@ -38,12 +43,14 @@ export default function WriteReview(props){
               setItems(res.data);
               console.log(res.data);
               // setItems(items);
+
+              setItems(res.data);
+              setK(res.data.Images)
+              console.log(res.data.Images);
               })
               .catch((err) => {
                 alert(err);
-              });
-          
-          
+              });    
       }
     getItems();
     }, []);
@@ -52,73 +59,46 @@ export default function WriteReview(props){
     function sendData(e){
 
       e.preventDefault();
-
       getNoOfStars();
-
       const cusId = localStorage.getItem("CustomerID")
       const ItemId = props.match.params.id;
-
-      console.log(ItemId);
-      console.log(cusId);
-  
       const newReview = {
         description,
         date : Date(),
         noofstars : count, 
         customerid : cusId,
         itemid : ItemId,
-        //sellerid,
-      }
-  
-     
-      console.log(newReview);
-
+      }  
       axios.post("http://localhost:8070/review/add",newReview).then(()=>{
-
         setDescription(" ");
-        // setDate(" ");
-        // setNoofstars(" ");
-        // props.history.push("/Home");
-        // document.getElementById("txt").innerHTML = "Message Sended Successfully!";
         Swal.fire(
           'All Done!',
           'Review Submitted',
           'success'
         )
         props.history.push("/Customer/Home");
-
       }).catch((err) =>{
         alert(err)
       })
     }
-
- 
-// const ratingChanged = (newRating) => {
-//   console.log(newRating);
-// };
-
-
-function  getNoOfStars(){
-
-  if(document.getElementById(1).checked){
-    count = 1;
-  } 
-  if(document.getElementById(2).checked){
-    count = 2;
-  }
-  if(document.getElementById(3).checked){
-    count = 3;
-  }
-  if(document.getElementById(4).checked){
-    count = 4;
-  }
-  if(document.getElementById(5).checked){
-    count = 5;
-  }
-
-  
-  console.log(count);
-}
+    function  getNoOfStars(){
+      if(document.getElementById(1).checked){
+        count = 1;
+      } 
+      if(document.getElementById(2).checked){
+        count = 2;
+      }
+      if(document.getElementById(3).checked){
+        count = 3;
+      }
+      if(document.getElementById(4).checked){
+        count = 4;
+      }
+      if(document.getElementById(5).checked){
+        count = 5;
+      }
+      console.log(count);
+    }
  
 
 
@@ -160,8 +140,8 @@ function  getNoOfStars(){
           </div>
           <div className="row"  style={{padding:'0px 0px 20px 40px'}}>
             <div className="col-4">
-                      <img alt={go} style={{width:'70%'}}
-                       src={"/Images/" + items.Images}/>
+                      <img style={{width:'70%'}}
+                       src={"/Images/" + k[0]}/>
                        <div>
                           {/* <img style={{width:'30%',  padding:'10px'}} src=
                           {"/Images/"+items.Images}
