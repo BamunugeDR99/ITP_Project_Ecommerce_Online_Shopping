@@ -31,7 +31,7 @@ export default function ItemMonthlySales(props) {
       }
       console.log(date);
       axios
-        .get("http://localhost:8070/Orders/getOrders")
+        .get("https://tech-scope-online.herokuapp.com/Orders/getOrders")
         .then((res) => {
           SellersOrders = res.data.filter(
             (order) => order.SellerID == SellerID
@@ -86,7 +86,7 @@ export default function ItemMonthlySales(props) {
 
 
 
-    axios.get("http://localhost:8070/orgSeller/get/" + SellerID).then((res) =>
+    axios.get("https://tech-scope-online.herokuapp.com/orgSeller/get/" + SellerID).then((res) =>
     {
 
        setSeller(res.data);
@@ -119,7 +119,7 @@ export default function ItemMonthlySales(props) {
     console.log(document.getElementById("month").value);
     let date = document.getElementById("month").value;
     axios
-      .get("http://localhost:8070/Orders/getOrders")
+      .get("https://tech-scope-online.herokuapp.com/Orders/getOrders")
       .then((res) => {
         SellersOrders = res.data.filter((order) => order.SellerID == SellerID);
         console.log(SellersOrders);
@@ -139,7 +139,7 @@ export default function ItemMonthlySales(props) {
   function generateReport(){
     let date = document.getElementById("month").value;
     axios
-    .get("http://localhost:8070/Orders/getOrders")
+    .get("https://tech-scope-online.herokuapp.com/Orders/getOrders")
     .then((res) => {
       SellersOrders = res.data.filter((order) => order.SellerID == SellerID);
       console.log(SellersOrders);
@@ -231,9 +231,9 @@ export default function ItemMonthlySales(props) {
      
       
       axios
-      .post("http://localhost:8070/items/create-pdf", result)
+      .post("https://tech-scope-online.herokuapp.com/items/create-pdf", result)
       .then(() =>
-        axios.get("http://localhost:8070/items/fetch-pdf", {
+        axios.get("https://tech-scope-online.herokuapp.com/items/fetch-pdf", {
           responseType: "blob",
           // A BLOB is a binary large object that can hold a variable amount of data. important
         })

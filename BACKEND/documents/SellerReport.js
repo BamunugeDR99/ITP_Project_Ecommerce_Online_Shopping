@@ -6,7 +6,6 @@ module.exports = (result) => {
   let tabledata = "";
   let totalSeller = result.pop();
   let newNoSellers = result.length;
-  // let today = new Date().toISOString().slice(0, 10);
 
   let now = new Date();
     let day = ("0" + now.getDate()).slice(-2);
@@ -79,6 +78,10 @@ let per = percentage.toFixed(2);
           .caltext {
             padding-left : 5px;
           }
+
+          .caltext2 {
+            padding-right : 10px;
+          }
           
           th {
             border: 1px solid #000000;
@@ -119,8 +122,8 @@ let per = percentage.toFixed(2);
     <br/>
     <h1 align="center"><u>SELLERS REPORT</u></h1>
     <h3 align="center">NEWLY ACCEPTED SELLERS FOR THE GIVEN MONTH</h3>
-    <h3 class = "caltext" align="left">MONTH : </h3>
-    <h3 class = "caltext" align="left">DATE : ${today}</h3>
+    <h3 class = "caltext2" align="right">DATE : ${today}</h3>
+    
     <br/>
     
     <table align="center">
@@ -133,7 +136,7 @@ let per = percentage.toFixed(2);
         <th>EMAIL</th>
         <th>CONTACT NUMBER</th>
         <th>USERNAME</th>
-        <th>ACTIVE TIME PERIOD(Days)</th>
+        <th>ACTIVE DAYS</th>
     </tr>
     </thead>
     <tbody>

@@ -30,7 +30,7 @@ export default function AdminLogin(props){
             password,
           }
 
-          axios.post("http://localhost:8070/Admin/loginAdmin", loginCredentials).then((res)=>{
+          axios.post("https://tech-scope-online.herokuapp.com/Admin/loginAdmin", loginCredentials).then((res)=>{
 
           
           localStorage.setItem("AdminID",res.data.adminLogin._id);

@@ -6,7 +6,7 @@ export default function DtestCard(props) {
 
     return(
 
-        <div className="CuseDetails">
+        <div className="PkgDetails">
 
         <div class="page-content page-container" id="page-content">
             <div class="padding">
@@ -15,6 +15,7 @@ export default function DtestCard(props) {
                         <div class="card user-card-full ">
                             <div class="row m-l-0 m-r-0">
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
+                                    <div className = "image"><img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80" style={{width:"250px", marginLeft:"20px", height:"330px", marginTop:"4px"}}/></div>
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25"> </div>
                                         <h5 class="f-w-600"> </h5>
@@ -52,7 +53,8 @@ export default function DtestCard(props) {
                                            
                                             
                                         </div>
-                                        <button className="btnCancel" style={{marginLeft:"40px", marginBottom:"10px"}}><b>Go Back</b></button>
+                                        <button className="btnCancel"><b>Go Back</b></button>
+                                        <br/>
                                     </div>
                                 </div>
                             </div>

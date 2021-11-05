@@ -2,7 +2,8 @@ const JSJoda = require('js-joda');
 const LocalDate = JSJoda.LocalDate;
 
 module.exports = (result) => {
-  let tableData;
+ 
+  let tableData = "";
   let totalCustomers = result.pop();
   let newNoCustomers = result.length;
   // let date1 = new Date().toISOString().slice(0, 10);
@@ -33,7 +34,9 @@ module.exports = (result) => {
 
 
     tableData +=
-      '<tr> <td data-label="Added">' +
+      '<tr> <td data-label="No">' +
+       (i+1) +
+      '</td> <td data-label="Added">' +
       dates +
       '</td><td data-label="First Name">' +
       result[i].firstName +
@@ -104,7 +107,7 @@ module.exports = (result) => {
           padding:12px 15px;
           border:none;
           text-align: center;
-          font-size:9px;
+          font-size:8px;
         }
         
         .table th{
@@ -129,12 +132,16 @@ module.exports = (result) => {
       </header>
      <body>
 
-      <h1>Monthly Customers Report</h1>
+      <h1 style = "text-decoration: underline;"><center>Customers Monthly  Report</center></h1>
+      <h2><center>Customers Registered In This Month</center></h2>
+      <h3>Report generated date: ${today}</h3>
+     
       <table class="table">
 
       <thead>
       <tr>
- 
+        
+      <th>No</th>
       <th>Added</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -159,8 +166,8 @@ module.exports = (result) => {
    <br/>
    
    <h3>Total New Customers: ${newNoCustomers}</h3>
-   <h3>Maximum Number of Customers Added Month: January </h3>
-   <h3>Percentage: ${percentage2} %</h3>
+   <h3>Total Number of Customers: ${totalCustomers} </h3>
+   <h3>Registerd customer percentage for this month: ${percentage2} %</h3>
      
          
      

@@ -21,7 +21,7 @@ function AddDiscount(props) {
         async function getOne() {
             try {
                 const ItemId = props.match.params.id;
-                const result = await (await (axios.get("http://localhost:8070/items/get/" + ItemId))).data;
+                const result = await (await (axios.get("https://tech-scope-online.herokuapp.com/items/get/" + ItemId))).data;
                 console.log(result);
                 console.log(result.Images[0]);
                 setImage(result.Images[0]);
@@ -75,7 +75,7 @@ function AddDiscount(props) {
             console.log(itemID);
 
             //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-            axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+            axios.put("https://tech-scope-online.herokuapp.com/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
 
                 // alert("! Added Discount to the Item");
 

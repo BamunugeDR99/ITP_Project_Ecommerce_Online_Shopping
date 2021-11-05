@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
 
 
@@ -16,16 +16,42 @@ export default function AddpaymentMethod(props){
 	let [carddate, setcarddate] = useState("");
 	let [cardcvv, setcardcvv] = useState("");
 	let cardtype = "";
+	let flag = 0;
+
+	function vaidate(){
+
+		if(cardowner.length === 0){
+			flag = 0;
+			Swal.fire('Owner Name is required')
+		}else if(cardnumber.length === 0){
+
+			flag = 0;
+			Swal.fire('Card Number is required')
+
+		}else if(carddate.length === 0){
+			flag = 0;
+			Swal.fire('Expiaration Date is required')
+		
+		}else if(cardcvv.length === 0){
+			flag = 0;
+			Swal.fire('Card Cvv is required')
+
+		}else{
+			flag = 1;
+		}
+	}
 
 	function sendData(e){
 
 	  e.preventDefault();
 	  cardtypeCheck();
+	  vaidate();
 
 	  let ownerID = localStorage.getItem("CustomerID");
 	  console.log(ownerID);
 
 	//	setcardtype("visa");
+	if(flag === 1){
 	  const newpaymentdetails = {
 		cardtype,
 		cardowner,
@@ -38,10 +64,10 @@ export default function AddpaymentMethod(props){
 
 	  console.log(newpaymentdetails);
 
-	  axios.post("http://localhost:8070/paymentdetails/add",newpaymentdetails).then(()=>{
+	  axios.post("https://tech-scope-online.herokuapp.com/paymentdetails/add",newpaymentdetails).then(()=>{
 
 		
-		swal.fire("Success", "New Payment Method Added Successfully", "success");
+		Swal.fire("Success", "New Payment Method Added Successfully", "success");
 		props.history.push("/Customer/MyWallet");
 		// document.getElementById("txt").innerHTML = "Card added Successfully!";
 	
@@ -49,7 +75,9 @@ export default function AddpaymentMethod(props){
 		alert(err)
 	  }) 
 	}
-  
+}
+
+
 	function cardtypeCheck() {
 
 		if (document.getElementById("visa").checked) {
@@ -108,7 +136,7 @@ return(
                     <div class="card-body" style={{height: "300px"}} >
 					<div class="form-group">
 							 <label for="numeric" class="control-label">CARD HOLDER NAME</label>
-							  <input type="text" class="input-lg form-control" required 
+							  <input type="text" class="input-lg form-control"  
 							  		onChange= {
 										(e)=>{
 											setcardowner(e.target.value);
@@ -117,7 +145,7 @@ return(
 							  </div>
 						<div class="form-group"> 
 						<label for="cc-number" class="control-label">CARD NUMBER</label>
-						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="1234 •••• •••• 7890" required pattern="[0-9]{16}"
+						 <input id="cc-number" type="text" class="input-lg form-control cc-number" placeholder="1234 •••• •••• 7890"  pattern="[0-9]{16}"
 									onChange= {
 										(e)=>{
 											setcardnumber(e.target.value);
@@ -128,7 +156,7 @@ return(
                             <div class="col-md-6">
                                 <div class="form-group">
 									 <label for="cc-exp" class="control-label">CARD EXPIRY</label> 
-									 <input id="cc-exp" type="text" class="input-lg form-control cc-exp" placeholder="M M / Y Y" required 
+									 <input id="cc-exp" type="text" class="input-lg form-control cc-exp" placeholder="M M / Y Y"  
 									onChange= {
 										(e)=>{
 											setcarddate(e.target.value);
@@ -140,7 +168,7 @@ return(
                             <div class="col-md-6">
                                 <div class="form-group">
 									 <label for="cc-cvc" class="control-label">CARD CVC</label> 
-									 <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" placeholder="•••" required pattern="[0-9]{3}"
+									 <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" placeholder="•••"  pattern="[0-9]{3}"
 									 onChange= {
 										(e)=>{
 										setcardcvv(e.target.value);

@@ -30,7 +30,7 @@ export default function CustomerMsg(props){
 	useEffect(() => {
 	  function getContact() {
 		axios
-		  .get("http://localhost:8070/contact/get")
+		  .get("https://tech-scope-online.herokuapp.com/contact/get")
 		  .then((res) => {
 			contacts=(res.data);
 			// const filter = res.data.filter(
@@ -39,7 +39,7 @@ export default function CustomerMsg(props){
 			// contacts = filter;
 			console.log(contacts);
 			axios
-			  .get("http://localhost:8070/Customer/getAll")
+			  .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
 			  .then((res) => {
 				customers = res.data;
 				createContact(contacts, customers);
@@ -87,7 +87,7 @@ export default function CustomerMsg(props){
 
       setabc(afterDeleteContact);
 
-    axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
+    axios.delete("https://tech-scope-online.herokuapp.com/contact/delete/" + id).then((res) =>
     {
         
         
@@ -151,7 +151,7 @@ export default function CustomerMsg(props){
 
 //   useEffect(() =>{
 //     function getContact(){
-//         axios.get("http://localhost:8070/contact/get").then((res) =>
+//         axios.get("https://tech-scope-online.herokuapp.com/contact/get").then((res) =>
 //         {
 //             setContact(res.data);
 //             console.log(res.data);
@@ -165,7 +165,7 @@ export default function CustomerMsg(props){
 //     getContact();
 
 // 	function getCustomer(){
-//         axios.get("http://localhost:8070/Customer/get").then((res) =>
+//         axios.get("https://tech-scope-online.herokuapp.com/Customer/get").then((res) =>
 //         {
 //             setCustomer(res.data);
 //             console.log(res.data);
@@ -181,7 +181,7 @@ export default function CustomerMsg(props){
 // }, []);
 
 // function deletee(id){
-//     axios.delete("http://localhost:8070/contact/delete/" + id).then((res) =>
+//     axios.delete("https://tech-scope-online.herokuapp.com/contact/delete/" + id).then((res) =>
 //     {
 //         // document.getElementById("txt").innerHTML = "Message Deleted!";
 //         const afterDeleteContact = contact.filter(contact=>contact._id != id);

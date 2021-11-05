@@ -35,7 +35,7 @@ export default function SellermMsg(props){
 		const objectID = localStorage.getItem("SellerID")
 		console.log(objectID)
 		axios
-		  .get("http://localhost:8070/contactsel/get" )
+		  .get("https://tech-scope-online.herokuapp.com/contactsel/get" )
 		  .then((res) => {
 			// contactsels=(res.data);
 			const filter = res.data.filter(
@@ -48,7 +48,7 @@ export default function SellermMsg(props){
 			console.log(contactsels);
 			console.log(res.data);
 			axios
-			  .get("http://localhost:8070/Customer/getAll")
+			  .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
 			  .then((res) => {
 				customers = res.data;
 				createContactsel(contactsels, customers);
@@ -91,7 +91,7 @@ export default function SellermMsg(props){
 	}, []);
 
 // 	function deletee(id){
-//     axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
+//     axios.delete("https://tech-scope-online.herokuapp.com/contactsel/delete/" + id).then((res) =>
 //     {
 //         // document.getElementById("txt").innerHTML = "Message Deleted!";
 //         const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id !== id);
@@ -109,7 +109,7 @@ function deletee(id){
 
       setabc(afterDeleteSeller);
       
-    axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
+    axios.delete("https://tech-scope-online.herokuapp.com/contactsel/delete/" + id).then((res) =>
     {
       
 		Swal.fire(

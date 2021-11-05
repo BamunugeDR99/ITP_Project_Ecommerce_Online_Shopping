@@ -8,7 +8,7 @@ export default function AllCustomers(){
   
   useEffect(() =>{
       function getCustomers(){
-          axios.get("http://localhost:8070/Customer/getAll").then((res) =>
+          axios.get("https://tech-scope-online.herokuapp.com/Customer/getAll").then((res) =>
           {
               setCustomers(res.data);
               console.log(res.data);
@@ -25,7 +25,7 @@ export default function AllCustomers(){
   }, []);
   
   function deleteCus(id){
-    axios.delete("http://localhost:8070/Customer/delete/" + id).then((res) =>
+    axios.delete("https://tech-scope-online.herokuapp.com/Customer/delete/" + id).then((res) =>
     {
         alert("Customer Deleted Successfully!");
         const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);

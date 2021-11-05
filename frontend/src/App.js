@@ -155,6 +155,9 @@ import TestOrderMerge from "./Components/TestOrderMerge";
 import ItemMonthlySales from "./Components/ItemMonthlySales";
 import TransactionHistory from "./Components/TransactionHistory";
 import RevReport from "./Components/RevReport";
+import PackageMonthlySales from "./Components/PackageMonthlySales";
+import TestAddACard from "./Components/TestAddACard";
+import GoogleSignInTest from "./Components/GoogleSignInTest";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -185,7 +188,7 @@ function App() {
           exact
           component={All_the_items_customer}
         />
-
+{/* <Route path = "/Customer/Google" component = {GoogleSignInTest}/> */}
         <Route
           path="/Customer/AllItemsFilterBy/:id"
           exact
@@ -204,7 +207,9 @@ function App() {
 
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
-        <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
+        {/* <Route path="/Customer/addCard" exact component={AddpaymentMethod} /> */}
+        <Route path="/Customer/addCard" exact component={TestAddACard} />
+
         <Route path="/Customer/Orders" exact component={CustomerOrders} />
         <Route
           path="/Customer/PackageOrders"
@@ -261,12 +266,12 @@ function App() {
           exact
           component={CustomerPackageOrders}
         />
-
+{/* 
         <Route
           path="/Customer/paymentHistory"
           exact
           component={TransactionHistory}
-        />
+        /> */}
         <Route
           path="/Customer/SelectPayment"
           excat
@@ -313,12 +318,16 @@ function App() {
           component={SellerPackageOrders}
         />
 
+        <Route path = "/Seller/PackageMonthlySales" exact component = {PackageMonthlySales}/>
+
         <Route
           path="/Seller/updateProfile/:id"
           exact
           component={SellerUpdate}
         />
         <Route path="/Seller/itemDetails" exact component={SellerReviews} />
+
+        <Route path="/Seller/TestpackageReport" exact component={PackageMonthlySales} />
         <Route path="/Seller/CreatePackage" exact component={CreatePackage1} />
         <Route
           path="/Seller/CreatePackageForm"

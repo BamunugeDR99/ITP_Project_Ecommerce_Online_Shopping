@@ -39,10 +39,10 @@ export default function SellerOrders(props) {
     function getOrders() {
       const gg = "";
 
-      const SellerID = "613a2b0fb31f783accd94447"; /// change this
+      const SellerID = localStorage.getItem("SellerID"); /// change this
 
       axios
-        .get("http://localhost:8070/Orders/getOrders")
+        .get("https://tech-scope-online.herokuapp.com/Orders/getOrders")
         .then((res) => {
           console.log(res.data);
 
@@ -60,7 +60,7 @@ export default function SellerOrders(props) {
           }
 
           axios
-            .get("http://localhost:8070/Customer/getAll")
+            .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
             .then((res) => {
               console.log(FilteredOrders);
               console.log(CustomerIDs);
@@ -110,15 +110,22 @@ export default function SellerOrders(props) {
   }
 
   function goToItemOrders() {
-    props.history.push("/Seller/ItemMonthlySales");
+  props.history.push("/Seller/Orders");
   }
 
-  function goToPackageOrder() {}
+  function goToPackageOrder() {
+    props.history.push("/Seller/PackageOrders");
+  }
+
+  function goTOItemsSales(){
+    props.history.push("/Seller/ItemMonthlySales");
+  }
 
   return (
     <div>
       <br />
       <br />
+      <button type="button" class="btn btn-secondary" onClick={() => {goTOItemsSales()}}>monthly sales on items</button>
       <button
         type="button"
         class="btn btn-primary "

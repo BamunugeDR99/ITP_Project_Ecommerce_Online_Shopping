@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";  //useEffect is used to get 
 //Decide what content should be displayed when the component is rendered
 
 import axios from "axios"; //To get the data from the DB
+import '../Css/AllItems.css';
 
 export default function CustomerPackageOrders(props) {
     const [Orders, setOrders] = useState([]);
@@ -61,10 +62,10 @@ export default function CustomerPackageOrders(props) {
 
 
 
-            const CustomerID = "61547689d8939819e488efa9";
+            const CustomerID = localStorage.getItem("CustomerID");
 
 
-            axios.get("http://localhost:8070/PackageOrders/getOrders").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/PackageOrders/getOrders").then((res) => {
 
                 console.log(res.data);
 
@@ -92,7 +93,7 @@ export default function CustomerPackageOrders(props) {
 
 
 
-                axios.get("http://localhost:8070/orgseller/get").then((res) => {
+                axios.get("https://tech-scope-online.herokuapp.com/orgseller/get").then((res) => {
 
                     console.log(FilteredOrders);
                     console.log(SellerIDs);
@@ -174,10 +175,20 @@ export default function CustomerPackageOrders(props) {
 
     console.log(Orders);
 
+    function goToPackages(){
+        props.history.push("/Customer/MyPackageOrders");
+}
+
+function goToDisItems(){
+    props.history.push("/Customer/MyOrders");
+}
+
     return (
 
         <div>
-
+<br/>
+<button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GPackageBtn2" onClick={goToPackages}>Package Orders</button>
+            <button type="button" class="btn btn-primary " style={{ float: 'right' }} id="GDisItemsBtn2" onClick={goToDisItems}>Item Orders</button><br/><br/>
             {Orders.map((order) => {
 
                 return (

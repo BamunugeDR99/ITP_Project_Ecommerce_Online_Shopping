@@ -18,7 +18,7 @@ export default function EditCardDetails(props) {
         function getpaymentdetails() {
 
             const cardid = props.match.params.id
-            axios.get("http://localhost:8070/paymentdetails/getItem/" + cardid).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/getItem/" + cardid).then((res) => {
                 setpaymentdetails(res.data);
                 console.log(res.data);
                 if (res.data.cardtype = "VISA") {
@@ -96,7 +96,7 @@ export default function EditCardDetails(props) {
         }
 
         console.log(updateCard);
-        axios.put("http://localhost:8070/paymentdetails/update/" + id, updateCard).then(() => {
+        axios.put("https://tech-scope-online.herokuapp.com/paymentdetails/update/" + id, updateCard).then(() => {
 
 
             
@@ -115,7 +115,7 @@ export default function EditCardDetails(props) {
     return (
 
         <div>
-
+            <br/>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
             <div class="AddPaymentMethod">
                 <div class="padding">
@@ -158,6 +158,9 @@ export default function EditCardDetails(props) {
                                                             onChange={
                                                                 (e) => {
                                                                     setcarddate(e.target.value);
+                                                                    if(e.target.value > 3){
+                                                                        e.target.value += "/"
+                                                                    }
                                                                 }
                                                             } />
 
@@ -166,7 +169,7 @@ export default function EditCardDetails(props) {
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="cc-cvc" class="control-label">CARD CVC</label>
-                                                        <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" readOnly Value={paymentdetails.cardcvv}
+                                                        <input id="cc-cvc" type="text" class="input-lg form-control cc-cvc" readOnly Value= "***"
                                                         />
                                                     </div>
                                                 </div>

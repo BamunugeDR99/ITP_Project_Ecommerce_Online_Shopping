@@ -63,7 +63,7 @@ export default function ContactAdmin(props){
      
       console.log(newContact);
 
-      axios.post("http://localhost:8070/contact/add",newContact).then(()=>{
+      axios.post("https://tech-scope-online.herokuapp.com/contact/add",newContact).then(()=>{
 
         setName(" ");
         setEmail(" ");

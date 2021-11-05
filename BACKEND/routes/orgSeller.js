@@ -8,7 +8,7 @@ const pdfsell = require("../documents/SellerReport");
 
 
 router.route("/add").post((req,res)=>{
-    // http://localhost:8070/orgseller/add
+    // https://tech-scope-online.herokuapp.com/orgseller/add
 
     const ownername = req.body.ownername;
     const mobile = req.body.mobile;
@@ -107,7 +107,7 @@ router.route("/update/:id").put(async (req,res) =>{
 
 
 router.route("/delete/:id").delete(async (req,res) =>{
-    //http://localhost:8070/orgSeller/delete
+    //https://tech-scope-online.herokuapp.com/orgSeller/delete
 
     let userID = req.params.id;
 
@@ -192,7 +192,7 @@ router.post('/loginSeller', async(req,res) => {
 
 //Update --> 
 router.route("/ChangePwd/:id").put(async (req,res) =>{
-    //http://localhost:8070/orgSeller/update/
+    //https://tech-scope-online.herokuapp.com/orgSeller/update/
 
     let userID = req.params.id;  //params = parameter
     const{password} = req.body;

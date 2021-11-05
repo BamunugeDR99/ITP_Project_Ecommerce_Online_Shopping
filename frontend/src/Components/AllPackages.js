@@ -26,7 +26,7 @@ export default function AllPackages(props) {
         function getPackages() {
 
             //call a backend URL using axios
-            axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackages").then((res) => {
 
                 console.log(res.data);
                 let seller = localStorage.getItem("SellerID");
@@ -91,7 +91,7 @@ export default function AllPackages(props) {
         if(document.getElementById(index+'x').checked === false){
     
           axios
-          .get("http://localhost:8070/Packages/getPackage/" + id)
+          .get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + id)
           .then((res) => {
             
             
@@ -99,7 +99,7 @@ export default function AllPackages(props) {
               res.data.packageAvailability = false;
               console.log(res.data);
           axios
-          .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
+          .put("https://tech-scope-online.herokuapp.com/Packages/updatePackages/" + id, res.data)
           .then(() => {
             
           document.getElementById(index).innerHTML = "Item Out of stock";
@@ -121,7 +121,7 @@ export default function AllPackages(props) {
         }else if(document.getElementById(index+'x').checked === true){
     
           axios
-          .get("http://localhost:8070/Packages/getPackage/" + id)
+          .get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + id)
           .then((res) => {
             
             
@@ -129,7 +129,7 @@ export default function AllPackages(props) {
               res.data.packageAvailability = true;
               console.log(res.data);
           axios
-          .put("http://localhost:8070/Packages/updatePackages/" + id, res.data)
+          .put("https://tech-scope-online.herokuapp.com/Packages/updatePackages/" + id, res.data)
           .then(() => {
             
           document.getElementById(index).innerHTML = "Item Available";
@@ -216,7 +216,7 @@ export default function AllPackages(props) {
 
 
         axios
-            .get("http://localhost:8070/Packages/getPackages")
+            .get("https://tech-scope-online.herokuapp.com/Packages/getPackages")
             .then((res) => {
 
 

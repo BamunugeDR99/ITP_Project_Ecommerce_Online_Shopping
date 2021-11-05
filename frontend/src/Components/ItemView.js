@@ -71,7 +71,7 @@ export default function ItemView(props) {
     function getReview() {
       const objectId = props.match.params.id;
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           // setReview(res.data);
           const filter = res.data.filter(
@@ -80,7 +80,7 @@ export default function ItemView(props) {
           reviews = filter;
           console.log(reviews);
           axios
-            .get("http://localhost:8070/items/get/" + objectId)
+            .get("https://tech-scope-online.herokuapp.com/items/get/" + objectId)
             .then((res) => {
               // ICategory= res.data.Category;
               // console.log(ICategory);
@@ -199,7 +199,7 @@ export default function ItemView(props) {
   function addToCart(id) {
     /// complete this
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -211,9 +211,9 @@ export default function ItemView(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -238,7 +238,7 @@ export default function ItemView(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" + cartID,
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
                     updatedCart
                   )
                   .then((res) => {
@@ -273,7 +273,7 @@ export default function ItemView(props) {
 
   function buyNow(id) {
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -285,9 +285,9 @@ export default function ItemView(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -312,7 +312,7 @@ export default function ItemView(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" + cartID,
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
                     updatedCart
                   )
                   .then((res) => {
@@ -376,7 +376,7 @@ export default function ItemView(props) {
 //     // let CustomerID = localStorage.getItem("CustomerID");
 //     const objectId = props.match.params.id;
 //       axios
-//         .get("http://localhost:8070/review/get")
+//         .get("https://tech-scope-online.herokuapp.com/review/get")
 //         .then((res) => {
 //           // setReview(res.data);
 //           const filter = res.data.filter(
@@ -387,9 +387,9 @@ export default function ItemView(props) {
        
 //           let CustomerID = localStorage.getItem("CustomerID");
 
-//           // http://localhost:8070/ShoppingCart/getOneCart/:id
+//           // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
 //           axios
-//             .get("http://localhost:8070/item/getAll")
+//             .get("https://tech-scope-online.herokuapp.com/item/getAll")
 //             .then((res) => {
 //               setItemss(res.data);
 //               console.log(res.data);

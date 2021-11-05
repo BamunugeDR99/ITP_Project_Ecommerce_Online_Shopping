@@ -13,7 +13,7 @@ const [adminLastName, setAdminLastName] = useState("");
 
 			objectID = localStorage.getItem("AdminID");
 
-			axios.get("http://localhost:8070/Admin/getAdmin/"+ objectID).then((res) =>
+			axios.get("https://tech-scope-online.herokuapp.com/Admin/getAdmin/"+ objectID).then((res) =>
 			{
 				
 				setAdminFirstName(res.data.firstName);

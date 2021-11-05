@@ -89,7 +89,7 @@ export default function ContactSeller(props){
      
       console.log(newContactsel);
 
-      axios.post("http://localhost:8070/contactsel/add",newContactsel).then(()=>{
+      axios.post("https://tech-scope-online.herokuapp.com/contactsel/add",newContactsel).then(()=>{
 
         setName(" ");
         setEmail(" ");

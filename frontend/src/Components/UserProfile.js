@@ -14,7 +14,7 @@ function UserProfile(props){
   useEffect(() =>{
       function getCustomer(){
         const objectID = localStorage.getItem("CustomerID") 
-          axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+          axios.get("https://tech-scope-online.herokuapp.com/Customer/get/"+ objectID).then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);

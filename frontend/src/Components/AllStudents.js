@@ -9,7 +9,7 @@ export default function AllStudents(props) {
   useEffect(() => {
     function getStudents() {
       axios
-        .get("http://localhost:8070/student/getStudents")
+        .get("https://tech-scope-online.herokuapp.com/student/getStudents")
         .then((res) => {
           setStudents(res.data);
           // console.log(res);
@@ -33,7 +33,7 @@ export default function AllStudents(props) {
 
   function deletee(id) {
     axios
-      .delete("http://localhost:8070/student/delete/" + id) 
+      .delete("https://tech-scope-online.herokuapp.com/student/delete/" + id) 
       .then((res) => {
         document.getElementById("txt").innerHTML =
           "Student Deleted Successfully!";
@@ -77,7 +77,7 @@ export default function AllStudents(props) {
     //document.getElementsByTagName("CircleLoader").loading = '{true}';
 
     axios
-      .get("http://localhost:8070/student/getStudents")
+      .get("https://tech-scope-online.herokuapp.com/student/getStudents")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);

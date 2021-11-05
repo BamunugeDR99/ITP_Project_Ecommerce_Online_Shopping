@@ -33,34 +33,44 @@ export default function SellerRegistration(props) {
 
     if(ownername.length === 0){
       flag1 = 0;
-
       Swal.fire("Owner's Name is required!");
 
     }else if(phoneNumber.length === 0){
       flag1 = 0;
-
       Swal.fire("Phone Number is required!");
+
+    } else if (isNaN(phoneNumber)) {
+      flag1 = 0;
+      Swal.fire("Enter only numeric value to Contact Number!");
+         
+    } else if (phoneNumber.charAt(0) != 0) {
+      flag1 = 0;
+      Swal.fire("Contact Number must start with 0!");
+   
+    } else if (phoneNumber.length < 10) {
+      flag1 = 0;
+      Swal.fire("Contact Number must be 10 digit! Your Number is less than 10!");
+   
+    } else if (phoneNumber.length > 10) {
+      flag1 = 0;
+      Swal.fire("Contact Number must be 10 digit! Your Number is greater than 10!");
     
     }else if(companyname.length === 0){
       flag1 = 0;
-
       Swal.fire("Company Name is required!");
     
      }else if(address.length === 0){
       flag1 = 0;
-
-      Swal.fire("Address is required!");
+      Swal.fire("Physical Address is required!");
      
     }else if(yearValue.length === 0){
       flag1 = 0;
-
       Swal.fire("Established Year is required!");
      
-    
     }else if (isNaN(yearValue)) {
       flag1 = 0;
-
       Swal.fire("Enter only numeric value to Established Year!");
+
     } else if (yearValue.length < 4) {
       flag1 = 0;
       Swal.fire("Established Year must be 4 digit! Entered value is less than 4!!");
@@ -68,25 +78,6 @@ export default function SellerRegistration(props) {
     } else if (yearValue.length > 4) {
       flag1 = 0;
       Swal.fire("Established Year must be 4 digit! Entered value is greater than 4!!");
-   
-    } else if (isNaN(phoneNumber)) {
-      flag1 = 0;
-      Swal.fire("Enter only numeric value to Contact Number!");
-   
-    } else if (phoneNumber.length < 10) {
-      flag1 = 0;
-      Swal.fire(
-        "Contact Number must be 10 digit! Your Number is less than 10!"
-      );
-   
-    } else if (phoneNumber.length > 10) {
-      flag1 = 0;
-      Swal.fire(
-        "Contact Number must be 10 digit! Your Number is greater than 10!"
-      );
-    } else if (phoneNumber.charAt(0) != 0) {
-      flag1 = 0;
-      Swal.fire("Contact Number must start with 0!");
    
     }else if (description.length === 0){
       flag1 = 0;
@@ -130,7 +121,7 @@ export default function SellerRegistration(props) {
     console.log(newseller);
     if (flag1 == 1) {
       axios
-        .post("http://localhost:8070/seller/add", newseller)
+        .post("https://tech-scope-online.herokuapp.com/seller/add", newseller)
         .then(() => {
           Swal.fire(
             "Success!",

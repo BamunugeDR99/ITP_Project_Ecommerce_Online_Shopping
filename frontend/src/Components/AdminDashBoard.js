@@ -13,7 +13,7 @@ export default function AdminDashBoard(props) {
 
   useEffect(() =>{
     function getCustomers(){
-        axios.get("http://localhost:8070/Customer/getAll").then((res) =>
+        axios.get("https://tech-scope-online.herokuapp.com/Customer/getAll").then((res) =>
         {
            
             console.log(res.data);
@@ -27,7 +27,7 @@ export default function AdminDashBoard(props) {
 
     function getSellers(){
 
-      axios.get("http://localhost:8070/orgseller/get").then((res) =>
+      axios.get("https://tech-scope-online.herokuapp.com/orgseller/get").then((res) =>
       {
          
           console.log(res.data);
@@ -41,7 +41,7 @@ export default function AdminDashBoard(props) {
 
     function getItems(){
 
-      axios.get("http://localhost:8070/items/getItems").then((res) =>
+      axios.get("https://tech-scope-online.herokuapp.com/items/getItems").then((res) =>
       {
          
           console.log(res.data);
@@ -57,7 +57,7 @@ export default function AdminDashBoard(props) {
 
     function getPackages(){
 
-      axios.get("http://localhost:8070/Packages/getPackages").then((res) =>
+      axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackages").then((res) =>
       {
          
           console.log(res.data);
@@ -73,7 +73,7 @@ export default function AdminDashBoard(props) {
 
     function getAdmins(){
 
-      axios.get("http://localhost:8070/Admin/getAllAdmins").then((res) =>
+      axios.get("https://tech-scope-online.herokuapp.com/Admin/getAllAdmins").then((res) =>
       {
          
           console.log(res.data);
@@ -90,7 +90,7 @@ export default function AdminDashBoard(props) {
     
     function getSellerRequests(){
 
-      axios.get("http://localhost:8070/seller/get").then((res) =>
+      axios.get("https://tech-scope-online.herokuapp.com/seller/get").then((res) =>
       {
          
           console.log(res.data);

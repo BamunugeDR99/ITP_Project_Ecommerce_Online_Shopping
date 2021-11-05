@@ -26,7 +26,7 @@ export default function AllPackages(props) {
     function getPackages() {
 
       //call a backend URL using axios
-      axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
+      axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackages").then((res) => {
 
         console.log(res.data);
         setPackages(res.data.filter((item) => item.packageAvailability === true));
@@ -95,7 +95,7 @@ export default function AllPackages(props) {
 
 
     axios
-      .get("http://localhost:8070/Packages/getPackages")
+      .get("https://tech-scope-online.herokuapp.com/Packages/getPackages")
       .then((res) => {
 
         let filteredData = res.data.filter((item) => item.packageAvailability === true)
@@ -131,7 +131,7 @@ export default function AllPackages(props) {
     /// complete this
     console.log(id);
     axios
-      .get("http://localhost:8070/Packages/getPackage/" + id)
+      .get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.packageAvailability === false) {
@@ -146,9 +146,9 @@ export default function AllPackages(props) {
           console.log("Else Part Running");
           console.log(CustomerID);
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
 
               console.log(res.data);
@@ -176,7 +176,7 @@ export default function AllPackages(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" +
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" +
                     cartID,
                     updatedCart
                   )

@@ -1,12 +1,12 @@
 module.exports = (result) => {
-  let tableData;
+  let tableData ="";
   let Total=0;
-  let avg=0;
+  let Avg=0;
   let min=0;
   let max=0;
   let count=0;
   for (let i = 0; i < result.length; i++) {
-    let dates = result[i].TransTime.substr(0, 10);
+    let dates = result[i].Transactiontime;
 
     tableData +=
       '<tr><td>' +
@@ -15,32 +15,42 @@ module.exports = (result) => {
       result[i].PaymentType +
       "</td>" +
       '<td>' +
-      result[i].RecieptNo +
+      result[i].ReceiptNo +
       "</td>" +
       '<td>' +
       "Deeghayua" +
       "</td>" +
       '<td>' +
-      result[i].Amount +
+      result[i].Total +
       "</td>" +
       "</tr>";
 
       if(parseFloat(result[i].Amount)>max)
-          {max=parseFloat(result[i].Amount)}
+          {max=parseFloat(result[i].Amount).toFixed(2)}
       else
           {max=max}
 
-      min=parseFloat(result[i].Amount);
-       if(parseFloat(result[i].Amount)<min)
-          {min=parseFloat(result[i].Amount)}
+      min=parseFloat(result[i].Amount).toFixed(2);
+       if(parseFloat(result[i].Amount).toFixed(2) <min)
+          {min=parseFloat(result[i].Amount).toFixed(2)}
       else
           {min=min}
 
       count++;
       Total =Total+ parseFloat(result[i].Amount);
+
+      
   }
 
-  Avg=Total/count;
+// let min2 = min.toFixed(2);
+
+  let Tot = Total.toFixed(2);
+
+      Avg=Total/count;
+
+     let Avg2 = Avg.toFixed(2);
+
+  
 
   return `
   <html lang="en">
@@ -130,12 +140,12 @@ tr:nth-child(even) {
 
             <table class="center" stylr="background-color:">
             <tr>
-              <th >highest Purchases Amount: Rs.${max}.00</th>
-            <th >Total Purchases : Rs.${Total}.00</th>
+              <th >highest Purchases Amount: Rs.${max}</th>
+            <th >Total Purchases : Rs.${Tot}</th>
             </tr>
             <tr>
-              <th >Lowest Purchases Amount : Rs.${min}.00</th>
-            <th >Avarage Amount : Rs.${Avg}.00</th>
+              <th >Lowest Purchases Amount : Rs.${min}</th>
+            <th >Avarage Amount : Rs.${Avg2}</th>
             </tr>
             <tr>
               <th >Total Transactions : ${count}</th>

@@ -9,7 +9,7 @@ export default function AllStudents(props){
     
     useEffect(() =>{
         function getStudents(){
-            axios.get("http://localhost:8070/student/getStudents").then((res) =>
+            axios.get("https://tech-scope-online.herokuapp.com/student/getStudents").then((res) =>
             {
                 setpaymentdetails(res.data);
                 console.log(res.data);

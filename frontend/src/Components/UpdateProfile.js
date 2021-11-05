@@ -106,7 +106,7 @@ export default function UpdateProfile(props){
 		function getCustomer(){
 
 			objectID = props.match.params.id;
-			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+			axios.get("https://tech-scope-online.herokuapp.com/Customer/get/"+ objectID).then((res) =>
 			{
 				setCustomer(res.data);
 				console.log(res.data);
@@ -312,7 +312,7 @@ export default function UpdateProfile(props){
 			if (result.isConfirmed) {
 
 				objectID = props.match.params.id;
-				axios.put("http://localhost:8070/Customer/update/"+ objectID, updatecus).then(()=>{
+				axios.put("https://tech-scope-online.herokuapp.com/Customer/update/"+ objectID, updatecus).then(()=>{
 					
 				    Swal.fire('Your Profie Has Been Successfully Updated!', '', 'success')
 					props.history.push("/Customer/MyProfile");
@@ -358,49 +358,25 @@ export default function UpdateProfile(props){
 		  }).then((result) => {
 			if (result.isConfirmed) {
 
-
-
-				const { value: dpassword} = Swal.fire({
-					title: 'Enter your password',
-					input: 'password',
-					inputLabel: 'Password',
-					inputPlaceholder: 'Enter your password',
-					inputAttributes: {
-					  autocapitalize: 'off',
-					  autocorrect: 'off'
-					}
-				  })
-				  if(dpassword){
-
-				  	console.log("gg");
-				  }	  
-				//   const Match = bcrypt.compareSync(dpassword);
-				 
-				//   if (!Match) {
-					
-				//     Swal.fire('Invalid Current Password!')
-
-				//   }else{
-
-				// objectID = props.match.params.id;
-				// axios.delete("http://localhost:8070/Customer/delete/"+ objectID).then((res) =>
-				// {
+				objectID = props.match.params.id;
+				axios.delete("https://tech-scope-online.herokuapp.com/Customer/delete/"+ objectID).then((res) =>
+				{
 				
 		  
-				//   swalWithBootstrapButtons.fire(
-				// 	'Deleted!',
-				// 	'Your Profile Has Been Successfully Deleted!',
-				// 	'success'
-				//   )
-				//   props.history.push("/CustomerRegistration");
+				  swalWithBootstrapButtons.fire(
+					'Deleted!',
+					'Your Profile Has Been Successfully Deleted!',
+					'success'
+				  )
+				  props.history.push("/CustomerRegistration");
 				   
-				// 	//const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
-				// 	//setCustomer(afterDeleteCustomer);
-				// }).catch((err) =>{
-				// 	alert(err);
-				// })
+					//const afterDeleteCustomer = customer.filter(customer=>customer._id !== id);
+					//setCustomer(afterDeleteCustomer);
+				}).catch((err) =>{
+					alert(err);
+				})
 
-			// }
+			
 		  
 			} else if (
 			  /* Read more about handling dismissals below */
