@@ -316,7 +316,7 @@ function report(id) {
 
 
  return(    
- <div className="rev" style={{padding:'20px 15px 10px 50px'}}>    
+ <div style={{padding:'20px 15px 10px 30px'}}>    
     <div className="row" >
         <div className="col-6" style={{alignItems:'center'}}>
         
@@ -329,13 +329,13 @@ function report(id) {
                       <img style={{width:'100%'}}
                        src={"/images/" + k[0]}/>
                        <div>
-                          <img style={{width:'30%',  padding:'10px'}} src=
+                          <img style={{width:'33%',  padding:'10px'}} src=
                           {"/images/"+ k[1]}
                           />
-                          <img style={{width:'30%',  padding:'10px'}} src=
+                          <img style={{width:'33%',  padding:'10px'}} src=
                           {"/images/"+ k[0]}
                           />
-                          <img style={{width:'30%',  padding:'10px'}} src=
+                          <img style={{width:'33%',  padding:'10px'}} src=
                           {"/images/"+ k[2]}
                           />
                       </div>
@@ -349,7 +349,6 @@ function report(id) {
                     <br/>
                     <span style={{fontSize: '18px',textalign: 'left',fontstyle: 'strong'}}>Rs. {items.Price}.00/=</span>
                 </div>
-                
                 	
             </div>
             <br/>
@@ -364,8 +363,7 @@ function report(id) {
                                     <span>Availability</span><br/>
                                     <span>Warrenty</span>
                                 </div> 
-                                <div className="col-1">
-                                    
+                                <div className="col-1">                                  
                                     <span> : </span><br/>
                                     <span> :</span><br/>
                                     <span> :  </span><br/>
@@ -377,16 +375,14 @@ function report(id) {
                                     <span>{ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
                                     <span>{ipsumText.toString(items.Warrenty) } </span>
                                 </div>
-                                <div className="col-2">
-                                    
+                                <div className="col-2">                                 
                                     <span> Quantity</span><br/>
                                     <span> WHT </span><br/>
                                     <span> Category</span><br/>
                                     <span> Stock unit</span><br/>
                                     <span> Other_colors</span><br/>
                                 </div> 
-                                <div className="col-1">
-                                    
+                                <div className="col-1">     
                                     <span> : </span><br/>
                                     <span> : </span><br/>
                                     <span> : </span><br/>
@@ -406,11 +402,10 @@ function report(id) {
         </div> 
            
             <div className="row">
-                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 5px'}}>Ratings and reviews of item name</span>
+                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 5px'}}>Customer ratings</span>
                
                 <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 10px'}}>
                     
-
                     <div id = 'stars'class="card-text">
                       <br/><span id ='review'>4.0 / 5.0</span><br/>
                       <span class="fa fa-star checked"></span>
@@ -418,15 +413,14 @@ function report(id) {
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span><br/>
                       <span class="fa fa-star"></span>
-
                       
                     </div>
-
                   </span>
                 <br/>
                 <br/>
                   <button  onClick = {()=> report(items._id)}  type="button"style={{fontSize:'14px', width:'30%', marginLeft:'10px', marginRight:'20px'}} class="btn btn-primary">Generate A Report</button>
             </div>
+            <br/>
 
         </div>
         <div className="col">
@@ -443,13 +437,12 @@ function report(id) {
 
 
               
-                <div className="row" style={{width:'90%', padding:'10px 0px 10px 20px',margin:'0px 0px 20px 2px', backgroundColor:'white', boxShadow:'2px 2px 2px 2px #dcdcdc', borderRadius:'10px',border:'red'}}>
-                    <div className="row">
+                <div className="row Regular shadow" style={{width:'90%', padding:'10px 0px 10px 20px',margin:'10px 0px 20px 10px', backgroundColor:'white', borderRadius:'10px',border:'red'}}>
+                    <div className="row ">
                         <div className="col-2">
                             
                                 <img style={{width:'100%', borderRadius:'30px'}} src=
-                                {"/Images/" + reviewss.customerImage}
-                                />
+                                {"/Images/" + reviewss.customerImage}/>
                         </div>
 
                         <div className="col">
@@ -457,13 +450,9 @@ function report(id) {
                             <div id = {index +'stars'} class="card-text">
 
                                 <span class="fa fa-star checked"></span>
-
                                 <span class="fa fa-star checked"></span>
-
                                 <span class="fa fa-star checked"></span>
-
                                 <span class="fa fa-star checked"></span>
-
                                 <span class="fa fa-star"></span><span> </span> 
 
                                 </div>
@@ -479,7 +468,7 @@ function report(id) {
                         </div>
                         <div className="col-3" style={{backgroundColor:'white'}}>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal" data-target="#exampleModalCenter">  
-                                <button  onClick = {()=> updatee(reviewss.review_id)}  type="button"style={{fontSize:'14px'}} class="btn btn-danger">Report</button>
+                                <button  onClick = {()=> updatee(reviewss.review_id)} type="button"style={{fontSize:'12px'}} class="btn btn-danger">Report</button>
                             </a>
                         </div>
                     </div>
