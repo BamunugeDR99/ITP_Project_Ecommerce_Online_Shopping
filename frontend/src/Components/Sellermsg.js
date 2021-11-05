@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import "../Css/msg.css";
+import Swal from "sweetalert2";
 // import g1 from "../images/avatar1.png";
 
 
@@ -111,7 +112,10 @@ function deletee(id){
     axios.delete("https://tech-scope-online.herokuapp.com/contactsel/delete/" + id).then((res) =>
     {
       
-      alert("Message Deleted!");
+		Swal.fire(
+		'Customer Message Deleted!',
+		 'success'
+		)
     }).catch((err) =>{
         alert(err);
     })
@@ -141,7 +145,7 @@ function deletee(id){
 				 <div class="card-body">
 				   <center>
 				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
-				   style={{ width: "65%", alignItems: "center" }}/>
+				   style={{ width: "65%", alignItems: "center" , borderRadius:'25px'}}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
 				   

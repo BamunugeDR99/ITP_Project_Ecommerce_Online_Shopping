@@ -10,6 +10,9 @@ import Swal from "sweetalert2";
 import "../Css/writereview.css";
 
 import go from "../images/p2.jpg";
+import g1 from "../images/iphone-x-.jpg";
+// import g1 from "..public/Images/iphone-x-.jpg";
+// import g1 from "./../Images/iphone-x-.jpg";
 
 export default function WriteReview(props) {
   let history = useHistory();

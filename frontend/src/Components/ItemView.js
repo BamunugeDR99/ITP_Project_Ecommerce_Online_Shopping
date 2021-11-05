@@ -16,8 +16,8 @@ export default function ItemView(props) {
   let [allitems, setAllitems] = useState([]);
   // let [filtereditems,setFiltereditems] = useState([]);
 
-  // let [ICategory, setICategory]= useState("");
-
+  // let [ICategory, setICategory]= useState("")
+  let [k,setK]=useState([]);
   var ipsumText = true;
 
   let reviews = [];
@@ -89,6 +89,18 @@ export default function ItemView(props) {
               //   console.log(items);
               createReview(reviews, items);
               calculateStarRating(reviews);
+              console.log(items)
+
+
+              setK(res.data.Images)
+              console.log(k)
+              console.log(k[0])
+              const str = 'The quick, brown fox jumps over, the lazy dog.'
+              const words = str.split(',')
+             console.log(words)
+            //  console.log(items.Images)
+
+
             })
             .catch((err) => {
               alert(err);
@@ -124,12 +136,15 @@ export default function ItemView(props) {
               itemFinalprice: items[j].FinalPrice,
               itemDispercentage: items[j].DiscountPrecentage,
               Review: reviews[i].noofstars,
+              
             };
-
+            
             reviewWithItems.push(reviewWithItem);
           }
         }
       }
+   
+
       console.log(reviewWithItems);
       setabc(reviewWithItems);
     }
@@ -137,6 +152,8 @@ export default function ItemView(props) {
     getReview();
     // filtercatogory();
   }, []);
+
+  console.log(itemCategory)
 
   function calculateStarRating(re) {
     let totalNoRatings = 0;
@@ -333,6 +350,24 @@ export default function ItemView(props) {
   }
 
 
+
+
+
+
+//   const answer_array = answer.split(',');
+
+//   const updatedAnswersCount = update(this.state.answersCount, {
+//     [answer]: {$apply: (currentValue) => currentValue + 1},
+//    });
+
+//    let updatedAnswersCount = null;
+
+// answer_array.forEach((key) => {
+//  updatedAnswersCount = update(this.state.answersCount, {
+//   [answer]: {$apply: (currentValue) => currentValue + 1},
+//  });
+// }
+
 // useEffect(() => {
 
 
@@ -408,7 +443,7 @@ export default function ItemView(props) {
 
 // // });
 
-
+const str = 'The quick brown fox jumps over the lazy dog.';
 
 
   function viewReview(id) {
@@ -435,21 +470,23 @@ export default function ItemView(props) {
           <div className="col-3">
             <img
               style={{ width: "90%", paddingRight: "20px" }}
-              src={"/Images/" + items.Images}
+              src={"/Images/"+k[0]}
             />
+     
             <div>
               <img
                 style={{ width: "25%", padding: "10px" }}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
+              {console.log(k)}
               <img
                 style={{ width: "25%", padding: "10px" }}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
               <img
                 style={{ width: "25%", padding: "10px" }}
                 // src={p2}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
             </div>
           </div>
