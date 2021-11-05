@@ -475,18 +475,18 @@ const str = 'The quick brown fox jumps over the lazy dog.';
      
             <div>
               <img
-                style={{ width: "25%", padding: "10px" }}
-                src={"/Images/" + k[0]}
+                style={{ width: "30%", padding: "10px" }}
+                src={"/Images/" + k[1]}
               />
               {console.log(k)}
               <img
-                style={{ width: "25%", padding: "10px" }}
+                style={{ width: "30%", padding: "10px" }}
                 src={"/Images/" + k[0]}
               />
               <img
-                style={{ width: "25%", padding: "10px" }}
+                style={{ width: "30%", padding: "10px" }}
                 // src={p2}
-                src={"/Images/" + k[0]}
+                src={"/Images/" + k[2]}
               />
             </div>
           </div>
