@@ -23,7 +23,7 @@ function UpdateDiscount(props) {
 
             const objectId = props.match.params.id; 
             console.log(objectId);
-            axios.get("http://localhost:8070/items/get/" + objectId).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/items/get/" + objectId).then((res) => {
 
                 console.log(res.data);
                 setItem(res.data);
@@ -83,7 +83,7 @@ function UpdateDiscount(props) {
             console.log(itemID);
     
             //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-            axios.put("http://localhost:8070/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
+            axios.put("https://tech-scope-online.herokuapp.com/items/updateDiscount/" + itemID, newDiscountedItem).then(() => {
     
                 //alert("Discount Updated");
     
@@ -172,7 +172,7 @@ function UpdateDiscount(props) {
                 console.log(itemID);
         
                 //Use axios to send the newDiscountedItem to the backend //.post() -->1st para --> Backend URL
-                axios.put("http://localhost:8070/items/updateDiscount/" + itemID, revokedDiscountedItem).then(() => {
+                axios.put("https://tech-scope-online.herokuapp.com/items/updateDiscount/" + itemID, revokedDiscountedItem).then(() => {
         
                     //alert(" Discount Revoked");
         

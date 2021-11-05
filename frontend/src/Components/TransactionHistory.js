@@ -38,7 +38,7 @@ export default function PaymentHistory(props){
 
     useEffect(() =>{
         function getpayhistory(){
-            axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
+            axios.get("https://tech-scope-online.herokuapp.com/orderhistory/getItems").then((res) =>
             {
                 let AllOrderH = res.data;
                 let CustomerIDs = [];
@@ -53,7 +53,7 @@ export default function PaymentHistory(props){
 
 
                 axios
-            .get("http://localhost:8070/Customer/getAll").then((res) => {
+            .get("https://tech-scope-online.herokuapp.com/Customer/getAll").then((res) => {
 
                 AllCustomers = res.data;
 
@@ -73,7 +73,7 @@ export default function PaymentHistory(props){
         }
 
         // function calculateTotal(){
-        //     axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
+        //     axios.get("https://tech-scope-online.herokuapp.com/orderhistory/getItems").then((res) =>
         //     {
         //         setpayhistory(res.data);
         //         console.log(res.data);
@@ -197,9 +197,9 @@ export default function PaymentHistory(props){
 
 
         axios
-        .post("http://localhost:8070/orderhistory/create-pdf",result )
+        .post("https://tech-scope-online.herokuapp.com/orderhistory/create-pdf",result )
         .then(() =>
-          axios.get("http://localhost:8070/orderhistory/fetch-pdf", {
+          axios.get("https://tech-scope-online.herokuapp.com/orderhistory/fetch-pdf", {
             responseType: "blob",
             // A BLOB is a binary large object that can hold a variable amount of data. important
           })
@@ -234,7 +234,7 @@ export default function PaymentHistory(props){
         let result = payhistory;
 
 
-        axios.get("http://localhost:8070/orderhistory/getItems").then((res) =>
+        axios.get("https://tech-scope-online.herokuapp.com/orderhistory/getItems").then((res) =>
         {
             let AllOrderH = res.data;
             let CustomerIDs = [];
@@ -249,7 +249,7 @@ export default function PaymentHistory(props){
 
 
             axios
-        .get("http://localhost:8070/Customer/getAll").then((res) => {
+        .get("https://tech-scope-online.herokuapp.com/Customer/getAll").then((res) => {
 
             AllCustomers = res.data;
 

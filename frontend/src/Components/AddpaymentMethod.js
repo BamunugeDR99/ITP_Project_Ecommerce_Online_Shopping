@@ -64,7 +64,7 @@ export default function AddpaymentMethod(props){
 
 	  console.log(newpaymentdetails);
 
-	  axios.post("http://localhost:8070/paymentdetails/add",newpaymentdetails).then(()=>{
+	  axios.post("https://tech-scope-online.herokuapp.com/paymentdetails/add",newpaymentdetails).then(()=>{
 
 		
 		Swal.fire("Success", "New Payment Method Added Successfully", "success");

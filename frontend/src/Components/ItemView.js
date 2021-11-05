@@ -16,8 +16,8 @@ export default function ItemView(props) {
   let [allitems, setAllitems] = useState([]);
   // let [filtereditems,setFiltereditems] = useState([]);
 
-  // let [ICategory, setICategory]= useState("");
-
+  // let [ICategory, setICategory]= useState("")
+  let [k,setK]=useState([]);
   var ipsumText = true;
 
   let reviews = [];
@@ -71,7 +71,7 @@ export default function ItemView(props) {
     function getReview() {
       const objectId = props.match.params.id;
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           // setReview(res.data);
           const filter = res.data.filter(
@@ -80,7 +80,7 @@ export default function ItemView(props) {
           reviews = filter;
           console.log(reviews);
           axios
-            .get("http://localhost:8070/items/get/" + objectId)
+            .get("https://tech-scope-online.herokuapp.com/items/get/" + objectId)
             .then((res) => {
               // ICategory= res.data.Category;
               // console.log(ICategory);
@@ -89,6 +89,18 @@ export default function ItemView(props) {
               //   console.log(items);
               createReview(reviews, items);
               calculateStarRating(reviews);
+              console.log(items)
+
+
+              setK(res.data.Images)
+              console.log(k)
+              console.log(k[0])
+              const str = 'The quick, brown fox jumps over, the lazy dog.'
+              const words = str.split(',')
+             console.log(words)
+            //  console.log(items.Images)
+
+
             })
             .catch((err) => {
               alert(err);
@@ -124,12 +136,15 @@ export default function ItemView(props) {
               itemFinalprice: items[j].FinalPrice,
               itemDispercentage: items[j].DiscountPrecentage,
               Review: reviews[i].noofstars,
+              
             };
-
+            
             reviewWithItems.push(reviewWithItem);
           }
         }
       }
+   
+
       console.log(reviewWithItems);
       setabc(reviewWithItems);
     }
@@ -137,6 +152,8 @@ export default function ItemView(props) {
     getReview();
     // filtercatogory();
   }, []);
+
+  console.log(itemCategory)
 
   function calculateStarRating(re) {
     let totalNoRatings = 0;
@@ -182,7 +199,7 @@ export default function ItemView(props) {
   function addToCart(id) {
     /// complete this
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -194,9 +211,9 @@ export default function ItemView(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -221,7 +238,7 @@ export default function ItemView(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" + cartID,
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
                     updatedCart
                   )
                   .then((res) => {
@@ -256,7 +273,7 @@ export default function ItemView(props) {
 
   function buyNow(id) {
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -268,9 +285,9 @@ export default function ItemView(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -295,7 +312,7 @@ export default function ItemView(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" + cartID,
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
                     updatedCart
                   )
                   .then((res) => {
@@ -333,6 +350,24 @@ export default function ItemView(props) {
   }
 
 
+
+
+
+
+//   const answer_array = answer.split(',');
+
+//   const updatedAnswersCount = update(this.state.answersCount, {
+//     [answer]: {$apply: (currentValue) => currentValue + 1},
+//    });
+
+//    let updatedAnswersCount = null;
+
+// answer_array.forEach((key) => {
+//  updatedAnswersCount = update(this.state.answersCount, {
+//   [answer]: {$apply: (currentValue) => currentValue + 1},
+//  });
+// }
+
 // useEffect(() => {
 
 
@@ -341,7 +376,7 @@ export default function ItemView(props) {
 //     // let CustomerID = localStorage.getItem("CustomerID");
 //     const objectId = props.match.params.id;
 //       axios
-//         .get("http://localhost:8070/review/get")
+//         .get("https://tech-scope-online.herokuapp.com/review/get")
 //         .then((res) => {
 //           // setReview(res.data);
 //           const filter = res.data.filter(
@@ -352,9 +387,9 @@ export default function ItemView(props) {
        
 //           let CustomerID = localStorage.getItem("CustomerID");
 
-//           // http://localhost:8070/ShoppingCart/getOneCart/:id
+//           // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
 //           axios
-//             .get("http://localhost:8070/item/getAll")
+//             .get("https://tech-scope-online.herokuapp.com/item/getAll")
 //             .then((res) => {
 //               setItemss(res.data);
 //               console.log(res.data);
@@ -408,7 +443,7 @@ export default function ItemView(props) {
 
 // // });
 
-
+const str = 'The quick brown fox jumps over the lazy dog.';
 
 
   function viewReview(id) {
@@ -435,21 +470,23 @@ export default function ItemView(props) {
           <div className="col-3">
             <img
               style={{ width: "90%", paddingRight: "20px" }}
-              src={"/Images/" + items.Images}
+              src={"/Images/"+k[0]}
             />
+     
             <div>
               <img
                 style={{ width: "25%", padding: "10px" }}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
+              {console.log(k)}
               <img
                 style={{ width: "25%", padding: "10px" }}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
               <img
                 style={{ width: "25%", padding: "10px" }}
                 // src={p2}
-                src={"/Images/" + items.Images}
+                src={"/Images/" + k[0]}
               />
             </div>
           </div>

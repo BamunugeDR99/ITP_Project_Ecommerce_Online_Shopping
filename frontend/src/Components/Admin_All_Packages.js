@@ -11,7 +11,7 @@ export default function AdminAllPackages(props) {
 
         function getPackages() {
 
-            axios.get("http://localhost:8070/Packages/getPackages").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackages").then((res) => {
 
                 console.log(res.data);
                 //let seller = localStorage.getItem("SellerID");
@@ -77,7 +77,7 @@ export default function AdminAllPackages(props) {
 
 
         axios
-            .get("http://localhost:8070/Packages/getPackages")
+            .get("https://tech-scope-online.herokuapp.com/Packages/getPackages")
             .then((res) => {
 
 
@@ -123,7 +123,7 @@ export default function AdminAllPackages(props) {
 
 
                 axios
-                    .delete("http://localhost:8070/Packages/deletePackage/" + packageId)
+                    .delete("https://tech-scope-online.herokuapp.com/Packages/deletePackage/" + packageId)
                     .then((res) => {
 
                         //alert("Package Deleted");

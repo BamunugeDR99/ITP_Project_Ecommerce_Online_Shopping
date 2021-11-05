@@ -156,6 +156,8 @@ import ItemMonthlySales from "./Components/ItemMonthlySales";
 import TransactionHistory from "./Components/TransactionHistory";
 import RevReport from "./Components/RevReport";
 import PackageMonthlySales from "./Components/PackageMonthlySales";
+import TestAddACard from "./Components/TestAddACard";
+import GoogleSignInTest from "./Components/GoogleSignInTest";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -186,7 +188,7 @@ function App() {
           exact
           component={All_the_items_customer}
         />
-
+{/* <Route path = "/Customer/Google" component = {GoogleSignInTest}/> */}
         <Route
           path="/Customer/AllItemsFilterBy/:id"
           exact
@@ -205,7 +207,9 @@ function App() {
 
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
-        <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
+        {/* <Route path="/Customer/addCard" exact component={AddpaymentMethod} /> */}
+        <Route path="/Customer/addCard" exact component={TestAddACard} />
+
         <Route path="/Customer/Orders" exact component={CustomerOrders} />
         <Route
           path="/Customer/PackageOrders"

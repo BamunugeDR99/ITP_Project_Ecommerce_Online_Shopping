@@ -12,7 +12,7 @@ const [userImage,setUserImage] = useState("");
 		function getCustomer(){
 
 			objectID = localStorage.getItem("CustomerID");
-			axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+			axios.get("https://tech-scope-online.herokuapp.com/Customer/get/"+ objectID).then((res) =>
 			{
 				
         setUsername(res.data.username);

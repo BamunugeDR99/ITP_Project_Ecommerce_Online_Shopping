@@ -12,7 +12,7 @@ const [logo,setLogo] = useState("");
 		function getCustomer(){
 
 			objectID = localStorage.getItem("SellerID");
-			axios.get("http://localhost:8070/orgseller/get/"+ objectID).then((res) =>
+			axios.get("https://tech-scope-online.herokuapp.com/orgseller/get/"+ objectID).then((res) =>
 			{
 				
         setCompanyName(res.data.companyname);

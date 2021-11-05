@@ -9,7 +9,7 @@ export default function AdminViewHistory(props){
     
     useEffect(() =>{
         function getadminhis(){
-            axios.get("http://localhost:8070/paymentdetails/get").then((res) =>
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/get").then((res) =>
             {
                 setadminhis(res.data);
                 console.log(res.data);

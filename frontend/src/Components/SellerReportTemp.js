@@ -11,7 +11,7 @@ export default function SellerProfile(props) {
   useEffect(() =>{
       function getorgSellers(){
         objectID = localStorage.getItem("SellerID");
-          axios.get("http://localhost:8070/orgSeller/get/"+objectID).then((res) =>
+          axios.get("https://tech-scope-online.herokuapp.com/orgSeller/get/"+objectID).then((res) =>
           {
               setorgSellers(res.data);
              // console.log(res.data);

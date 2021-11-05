@@ -43,7 +43,7 @@ export default function ForgotP(props) {
   function sendEmail(e) {
     e.preventDefault();
 
-    axios.get("http://localhost:8070/Customer/getEmail/"+email).then((res) =>
+    axios.get("https://tech-scope-online.herokuapp.com/Customer/getEmail/"+email).then((res) =>
     {
       setCustomer(res.data);
       console.log(res.data);
@@ -153,7 +153,7 @@ export default function ForgotP(props) {
           userImage : customer.userImage
         }
 
-        axios.put("http://localhost:8070/Customer/update/"+ customer._id, customer2).then(()=>{
+        axios.put("https://tech-scope-online.herokuapp.com/Customer/update/"+ customer._id, customer2).then(()=>{
 		
 
 		// alert("Customer Updated Successfully!");

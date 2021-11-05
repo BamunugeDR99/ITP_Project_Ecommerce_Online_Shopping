@@ -12,7 +12,7 @@ export default function ConfirmPayment(props){
         function getpaymentdetails() {
 
             const cardid = props.match.params.id;
-            axios.get("http://localhost:8070/paymentdetails/getItem/" + cardid).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/getItem/" + cardid).then((res) => {
                 setpaymentdetails(res.data);
                 console.log(res.data);
               
@@ -134,7 +134,7 @@ export default function ConfirmPayment(props){
 
             ItemList.push(SessionItems[i].ItemID);
 
-            axios.get("http://localhost:8070/items/get/" + SessionItems[i].ItemID).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/items/get/" + SessionItems[i].ItemID).then((res) => {
 
                 let OneItem = res.data;
                 let OneItemArr = [];
@@ -152,7 +152,7 @@ export default function ConfirmPayment(props){
 
                 };
 
-                axios.post("http://localhost:8070/Orders/addOrder", newOrder).then((res) => {
+                axios.post("https://tech-scope-online.herokuapp.com/Orders/addOrder", newOrder).then((res) => {
 
 
                 }).catch((err) => {
@@ -170,7 +170,7 @@ export default function ConfirmPayment(props){
 
             PacakgeID.push(SessionPackages[i].packageID);
 
-            axios.get("http://localhost:8070/Packages/getPackage/" + SessionPackages[i].packageID).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + SessionPackages[i].packageID).then((res) => {
 
                 let Onepackage = res.data;
                 let OnepackageArr = [];
@@ -189,7 +189,7 @@ export default function ConfirmPayment(props){
             
                 }
 
-                axios.post("http://localhost:8070/PackageOrders/addOrder", PackageOrder).then((res) => {
+                axios.post("https://tech-scope-online.herokuapp.com/PackageOrders/addOrder", PackageOrder).then((res) => {
 
 
                 }).catch((err) => {
@@ -226,7 +226,7 @@ export default function ConfirmPayment(props){
            
           }
 
-          axios.post("http://localhost:8070/orderhistory/addItems",newOrderHistory).then((res) => {
+          axios.post("https://tech-scope-online.herokuapp.com/orderhistory/addItems",newOrderHistory).then((res) => {
 
 
                 }).catch((err) => {

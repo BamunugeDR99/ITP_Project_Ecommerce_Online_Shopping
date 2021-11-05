@@ -26,7 +26,7 @@ export default function AllDiscountedItems(props) {
 
             
             //call a backend URL using axios
-            axios.get("http://localhost:8070/items/getItems").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/items/getItems").then((res) => {
 
                 console.log(res.data);
                 setItems(res.data.filter((item) => item.DiscountStatus === true && item.SellerID === seller));
@@ -48,7 +48,7 @@ export default function AllDiscountedItems(props) {
 
         function displayRating(){
             axios
-            .get("http://localhost:8070/review/get")
+            .get("https://tech-scope-online.herokuapp.com/review/get")
             .then((res) => {
               setRatings(res.data);
               //console.log(ratings[0].itemid)
@@ -158,7 +158,7 @@ export default function AllDiscountedItems(props) {
         if(document.getElementById(index+'x').checked === false){
     
           axios
-          .get("http://localhost:8070/items/get/" + id)
+          .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
           .then((res) => {
             
             
@@ -166,7 +166,7 @@ export default function AllDiscountedItems(props) {
               res.data.ItemAvailabilityStatus = false;
               console.log(res.data);
           axios
-          .put("http://localhost:8070/items/update/" + id, res.data)
+          .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
           .then(() => {
             
           document.getElementById(index).innerHTML = "Item Out of stock";
@@ -188,7 +188,7 @@ export default function AllDiscountedItems(props) {
         }else if(document.getElementById(index+'x').checked === true){
     
           axios
-          .get("http://localhost:8070/items/get/" + id)
+          .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
           .then((res) => {
             
             
@@ -196,7 +196,7 @@ export default function AllDiscountedItems(props) {
               res.data.ItemAvailabilityStatus = true;
               console.log(res.data);
           axios
-          .put("http://localhost:8070/items/update/" + id, res.data)
+          .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
           .then(() => {
             
           document.getElementById(index).innerHTML = "Item Available";
@@ -265,7 +265,7 @@ export default function AllDiscountedItems(props) {
 
 
         axios
-            .get("http://localhost:8070/items/getItems")
+            .get("https://tech-scope-online.herokuapp.com/items/getItems")
             .then((res) => {
 
               let seller = localStorage.getItem("SellerID");

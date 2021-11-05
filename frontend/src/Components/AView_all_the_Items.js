@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function AView_all_the_items(props) {
   const [items, setItems] = useState([]);
@@ -7,7 +8,7 @@ export default function AView_all_the_items(props) {
   useEffect(() => {
     function getItems() {
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
           setItems(res.data);
           console.log(res.data);
@@ -45,7 +46,7 @@ export default function AView_all_the_items(props) {
     // document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
@@ -57,16 +58,36 @@ export default function AView_all_the_items(props) {
   }
 
   function deletee(id) {
-    axios
-      .delete("http://localhost:8070/items/delete/" + id)
-      .then((res) => {
-        //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
-        const afterDeleteItems = items.filter((items) => items._id !== id);
-        setItems(afterDeleteItems);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
+        .then((res) => {
+          //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
+          const afterDeleteItems = items.filter((items) => items._id !== id);
+          setItems(afterDeleteItems);
+          Swal.fire(
+            'Deleted!',
+            'Item has been deleted.',
+            'success'
+          )
+        })
+        .catch((err) => {
+          alert(err);
+        });
+       
+      }
+    })
+  
   }
 
   function viewMore(id) {

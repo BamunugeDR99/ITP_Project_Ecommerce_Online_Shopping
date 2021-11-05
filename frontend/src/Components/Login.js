@@ -23,7 +23,7 @@ export default function Login(props) {
     // console.log(name + " "+ age);
 
     axios
-      .post("http://localhost:8070/student/login", loginCredentials)
+      .post("https://tech-scope-online.herokuapp.com/student/login", loginCredentials)
       .then((res) => {
         //alert("Student Updated");
 

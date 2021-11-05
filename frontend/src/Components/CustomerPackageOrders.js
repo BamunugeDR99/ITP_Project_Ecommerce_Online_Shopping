@@ -65,7 +65,7 @@ export default function CustomerPackageOrders(props) {
             const CustomerID = localStorage.getItem("CustomerID");
 
 
-            axios.get("http://localhost:8070/PackageOrders/getOrders").then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/PackageOrders/getOrders").then((res) => {
 
                 console.log(res.data);
 
@@ -93,7 +93,7 @@ export default function CustomerPackageOrders(props) {
 
 
 
-                axios.get("http://localhost:8070/orgseller/get").then((res) => {
+                axios.get("https://tech-scope-online.herokuapp.com/orgseller/get").then((res) => {
 
                     console.log(FilteredOrders);
                     console.log(SellerIDs);
