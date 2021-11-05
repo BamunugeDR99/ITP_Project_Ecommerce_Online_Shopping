@@ -224,7 +224,7 @@ export default function Customer_wishlist(props) {
         console.log(wishlistID);
 
           axios
-      .put("http://localhost:8070/wishlist/update/" + wishlistID,newWishList)
+      .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + wishlistID,newWishList)
       .then((res) => {
 
         
