@@ -102,7 +102,7 @@ function UpdateDiscount(props) {
        
     }
 
-
+// calculate discount function
 
     
     function CalcDiscount(e){
