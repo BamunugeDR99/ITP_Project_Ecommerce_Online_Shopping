@@ -7,6 +7,7 @@ import '../Css/AllItems.css';
 
 ;
 
+// Export default function
 
 
 export default function AllDiscountedItems(props) {
