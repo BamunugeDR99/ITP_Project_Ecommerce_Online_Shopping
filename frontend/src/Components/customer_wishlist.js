@@ -222,19 +222,38 @@ export default function Customer_wishlist(props) {
        }
        console.log(newWishList);
         console.log(wishlistID);
-
-          axios
-      .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + wishlistID,newWishList)
-      .then((res) => {
-
         
-        const afterDeletewishlist = items.filter((a) => a._id != id);
-
-        setItems(afterDeletewishlist);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + wishlistID,newWishList)
+            .then((res) => {
+      
+              
+              const afterDeletewishlist = items.filter((a) => a._id != id);
+      
+              setItems(afterDeletewishlist);
+              Swal.fire(
+                'Deleted!',
+                'Your Wishlist Item has been Removed.',
+                'success'
+              )
+            })
+            .catch((err) => {
+              alert(err);
+            });
+           
+          }
+        })
+    
       })
       .catch((err) => {
         alert(err);
