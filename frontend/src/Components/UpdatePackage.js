@@ -43,7 +43,7 @@ export default function UpdatePackages(props) {
             // const packageId = props.match.params.id; 
             // console.log(packageId);
 
-            axios.get("http://localhost:8070/Packages/getPackage/" + packageId).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + packageId).then((res) => {
 
                 console.log(res.data);
                 setPackage(res.data);
@@ -109,7 +109,7 @@ export default function UpdatePackages(props) {
                          console.log(packageId);
     
                     axios
-                        .delete("http://localhost:8070/Packages/deletePackage/" + packageId)
+                        .delete("https://tech-scope-online.herokuapp.com/Packages/deletePackage/" + packageId)
                         .then((res) => {
     
                           
@@ -221,7 +221,7 @@ export default function UpdatePackages(props) {
             console.log(updatedPackage);
 
 
-            axios.put("http://localhost:8070/Packages/updatePackages/" + packageId, updatedPackage).then(() => {
+            axios.put("https://tech-scope-online.herokuapp.com/Packages/updatePackages/" + packageId, updatedPackage).then(() => {
 
                 //alert("Package Updated");
                 swal.fire("Success", "Package Updated Successfully", "success");

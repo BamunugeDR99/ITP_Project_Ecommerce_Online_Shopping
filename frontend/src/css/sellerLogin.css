@@ -90,3 +90,9 @@
       .sellerlogin .myLeftContent .myInputs:focus {
         outline: none;
       } 
+
+      .sellerlogin  #errmsg{
+
+        color:red;
+        
+      }

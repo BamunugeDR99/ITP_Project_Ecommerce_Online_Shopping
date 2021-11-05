@@ -106,7 +106,7 @@ export default function CreatePackage2(props) {
 
             console.log(newPackage);
 
-            axios.post("http://localhost:8070/Packages/addPackage", newPackage).then(() => {
+            axios.post("https://tech-scope-online.herokuapp.com/Packages/addPackage", newPackage).then(() => {
     
     
                 swal.fire("Success", "Package Added Successfully", "success");

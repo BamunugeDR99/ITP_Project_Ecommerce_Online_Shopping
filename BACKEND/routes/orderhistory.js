@@ -1,23 +1,25 @@
 const router = require("express").Router();
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/studentReport");
+const pdftem = require("../documents/TotalTransactions");
 let OrderHistory = require("../modules/OrderHistory");
 
 //Insert
 router.route("/addItems").post((req, res) => {
 
   const RecieptNo = req.body.RecieptNo;
-  const TransTime = req.body.TransTime;
   const PacakgeID = req.body.PacakgeID;
   const PaymentType = req.body.PaymentType;
   const ItemList = req.body.ItemList;
   const Amount = req.body.Amount;
-
+  const CustomerID = req.body.CustomerID;
 
   const newOrderHistory = new OrderHistory({
     RecieptNo,
-    TransTime,
     PacakgeID,
     PaymentType,
     ItemList,
+    CustomerID,
     Amount
    
   });
@@ -28,10 +30,10 @@ router.route("/addItems").post((req, res) => {
       res.json({
         newOrderHistory: {
             RecieptNo: newOrderHistory.RecieptNo,
-            TransTime: newOrderHistory.TransTime,
             PacakgeID: newOrderHistory.PacakgeID,
             PaymentType: newOrderHistory.PaymentType,
             ItemList: newOrderHistory.ItemList,
+            CustomerID:newOrderHistory.CustomerID,
             Amount: newOrderHistory.Amount,
 
 
@@ -132,6 +134,26 @@ router.route("/get/:id").get(async (req, res) => {
 //     });
 //   });
 // });
+
+
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+  pdf.create(pdftem(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+    if(err){
+      res.send(Promise.reject());
+    }
+
+    res.send(Promise.resolve());
+  });
+});
+
+// get PDF
+router.get('/fetch-pdf',(req,res)=>{
+  res.sendFile(`${__dirname}/result.pdf`)
+            // absolute directory
+})
+
 
 
 module.exports = router;

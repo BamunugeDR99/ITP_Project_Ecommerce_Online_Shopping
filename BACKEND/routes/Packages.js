@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/PackageMonthlyReport");
 
 //import DiscountedItem model
 let Package = require("../modules/Package");
@@ -8,7 +10,7 @@ let Package = require("../modules/Package");
 //Create routes for the CRUD
 
 //Insert
-//URL-->http://localhost:8070/Packages/addPackage--> will execute addDiscount route
+//URL-->https://tech-scope-online.herokuapp.com/Packages/addPackage--> will execute addDiscount route
 router.route("/addPackage").post((req, res) => {
 
     //Create const variables for variables in the model
@@ -144,7 +146,7 @@ router.route("/deletePackage/:id").delete(async (req, res) => {
 
 
 
-  //URL-->http://localhost:8070/Packages/getPackage/5f346790adf679
+  //URL-->https://tech-scope-online.herokuapp.com/Packages/getPackage/5f346790adf679
   router.route("/getPackage/:id").get(async (req, res) => {
 
     let packageID = req.params.id;
@@ -163,6 +165,23 @@ router.route("/deletePackage/:id").delete(async (req, res) => {
 
 
 
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfTemplate(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/result.pdf`)
+              // absolute directory
+  })
 
 
 

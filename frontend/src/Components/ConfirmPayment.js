@@ -12,7 +12,7 @@ export default function ConfirmPayment(props){
         function getpaymentdetails() {
 
             const cardid = props.match.params.id;
-            axios.get("http://localhost:8070/paymentdetails/getItem/" + cardid).then((res) => {
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/getItem/" + cardid).then((res) => {
                 setpaymentdetails(res.data);
                 console.log(res.data);
               
@@ -41,6 +41,7 @@ export default function ConfirmPayment(props){
                 timer: 1500
               })
     
+              Test();
               props.history.push("/Customer/Home");
 
         }else{
@@ -53,6 +54,234 @@ export default function ConfirmPayment(props){
         }
        
     }
+
+
+
+
+
+    function Test(){
+
+        let AutoOrderID = OrderIDGenerator(5);
+
+        console.log("GG");
+        let SessionItems = JSON.parse(localStorage.getItem("Items"));
+        let SessionPackages = JSON.parse(localStorage.getItem("Packages"));
+
+        console.log(SessionItems);
+        console.log(SessionPackages);
+
+         //Order History Variables
+         let PacakgeID = [];
+         let ItemList = [];
+         let RecieptNo = "";
+         let PaymentType = ""
+         let Amount = " "
+
+           
+        //Orders & PackageOrders Common Variables
+        let OrderID = "";
+        let SellerID = "";
+        let CustomerID = "";
+        let OQuantity = "";
+
+        //Orders Specific
+        let Items = [];
+
+        //PackageOrders Specific
+        let Packages = [];
+
+
+
+        //Orders Item
+        let newOrder ={
+
+            OrderID,
+            SellerID,
+            CustomerID,
+            OQuantity,
+            Items 
+    
+    
+        }
+
+        //PackageOrders Item
+        let PackageOrder = {
+
+            OrderID,
+            SellerID,
+            CustomerID,
+            OQuantity,
+            Packages
+    
+    
+        }
+
+        //OrderHistories Item
+        let newOrderHistory = {
+            RecieptNo,
+            PacakgeID,
+            PaymentType,
+            ItemList,
+            Amount,
+            CustomerID
+           
+          };
+       
+
+
+
+        for(let i = 0 ; i < SessionItems.length; i++){
+
+            ItemList.push(SessionItems[i].ItemID);
+
+            axios.get("https://tech-scope-online.herokuapp.com/items/get/" + SessionItems[i].ItemID).then((res) => {
+
+                let OneItem = res.data;
+                let OneItemArr = [];
+               
+                OneItemArr.push(OneItem)
+                // console.log(OneItem);
+
+                newOrder = {
+
+                    OrderID : AutoOrderID,
+                    SellerID: SessionItems[i].ItemSeller ,
+                    CustomerID : localStorage.getItem("CustomerID"),
+                    OQuantity : SessionItems[i].ItemQuantity,
+                    Items:OneItemArr
+
+                };
+
+                axios.post("https://tech-scope-online.herokuapp.com/Orders/addOrder", newOrder).then((res) => {
+
+
+                }).catch((err) => {
+
+                    console.log(err);
+                })
+
+                console.log("Item Order");
+                console.log(newOrder);
+
+            })
+        }
+
+        for(let i = 0 ; i < SessionPackages.length; i++){
+
+            PacakgeID.push(SessionPackages[i].packageID);
+
+            axios.get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + SessionPackages[i].packageID).then((res) => {
+
+                let Onepackage = res.data;
+                let OnepackageArr = [];
+                OnepackageArr.push(Onepackage);
+
+                console.log(OnepackageArr);
+
+                PackageOrder = {
+
+                    OrderID :  AutoOrderID,
+                    SellerID: SessionPackages[i].packageSeller,
+                    CustomerID :localStorage.getItem("CustomerID") ,
+                    OQuantity : SessionPackages[i].packageQuantity,
+                    Packages :  OnepackageArr
+            
+            
+                }
+
+                axios.post("https://tech-scope-online.herokuapp.com/PackageOrders/addOrder", PackageOrder).then((res) => {
+
+
+                }).catch((err) => {
+
+                    console.log(err);
+                })
+
+                console.log("package Order");
+                console.log(PackageOrder);
+
+
+
+            }).catch((err)=> {
+
+
+            })
+
+
+            // console.log(PacakgeID);
+            // console.log(ItemList);
+
+       
+        }
+
+
+        //Adding to OrderHistory
+        newOrderHistory = {
+            RecieptNo : AutoOrderID,
+            PacakgeID :PacakgeID,
+            PaymentType : paymentdetails.cardtype,
+            ItemList : ItemList,
+            Amount:localStorage.getItem("totalPrice"),
+            CustomerID : localStorage.getItem("CustomerID"),
+           
+          }
+
+          axios.post("https://tech-scope-online.herokuapp.com/orderhistory/addItems",newOrderHistory).then((res) => {
+
+
+                }).catch((err) => {
+
+                    console.log(err);
+                })
+
+          console.log("Order History Object");
+          console.log(newOrderHistory);
+
+
+          localStorage.removeItem("Packages");
+          localStorage.removeItem("Items");
+          localStorage.removeItem("totalPrice");
+
+            // Swal.fire("Success", "Your Order Has Been Placed Successfully!", "success");
+        
+         
+        
+       
+
+      
+        
+        
+    }
+
+
+
+    function OrderIDGenerator(length) {
+
+        var result = "";
+    
+        var characters =
+    
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+        var charactersLength = characters.length;
+    
+        for (var i = 0; i < length; i++) {
+    
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    
+        }
+    
+        return result;
+    
+      }
+
+
+
+
+
+
+
+
 
     return(
         <div class="ConfirmPay">
@@ -103,6 +332,7 @@ export default function ConfirmPayment(props){
                             <h2 class=""><span class="text-md font-weight-bold mr-2">LKR </span>
                             <span class="text-danger">{totalPrice}.00</span></h2>
                         </div> <button type="button" class="btn btn-red text-center mt-4" onClick={() => pay()}>PAY</button>
+                        {/* <button type="button" class="btn btn-red text-center mt-4" onClick={() => Test()}>Test</button> */}
                     </div>
                 </div>
             </div>

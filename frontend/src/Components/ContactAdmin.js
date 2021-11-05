@@ -23,40 +23,24 @@ export default function ContactAdmin(props){
     let flag2 = 0;
 
     function validEmail(){
-
 		const email = document.getElementById("email").value;
-
 		const EmailAdd = /^\w+([-]?\w+)*@\w+([\.-]?\w+)*(\w{2,3})+$/
-
 		 if(email.match(EmailAdd)){
-
 			flag1 = 1;
-
-		 }else{
-			
+		 }else{		
 			flag1 = 0;
 			alert("You have entered an invalid email address!");
-
-		 }
-		
+		 }	
 	}
     function validName(){
-
 		const name = document.getElementById("name").value;
-
 		const NameAdd = /^[a-zA-Z]+$/
-
 		 if(name.match(NameAdd)){
-
 			flag2 = 1;
-
-		 }else{
-			
-			flag2 = 0;
+		 }else{	
+    		flag2 = 0;
 			alert("Invalid name!");
-
-		 }
-		
+		 }	
 	}
 
 
@@ -79,7 +63,7 @@ export default function ContactAdmin(props){
      
       console.log(newContact);
 
-      axios.post("http://localhost:8070/contact/add",newContact).then(()=>{
+      axios.post("https://tech-scope-online.herokuapp.com/contact/add",newContact).then(()=>{
 
         setName(" ");
         setEmail(" ");

@@ -1,6 +1,9 @@
 const router = require("express").Router();
 let Customer = require("../modules/Customer");
 const bcrypt = require('bcryptjs');
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/CustomerReport");
+// const pdftem = require("../documents/TechScopeTemplate");
 
 
 //Customer SignUp
@@ -195,52 +198,30 @@ router.route("/getEmail/:email").get(async (req,res) =>{
     })
 })
 
+// post PDF
+
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfTemplate(req.body),{}).toFile('./routes/customerReport.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/customerReport.pdf`)
+
+ // absolute directory
+  })
 
 
 
 
-/*router.post('/login', (req,res) => {
-    const {name,age} = req.body;
-    // simple validation 
-    if(!name || !age){
-        return res.status(400).json({msg : 'please enter all the fields'});
-    }
 
-    // check for existing user
 
-    Student.findOne({name}).then(studentsss =>{
-        if(!studentsss) return res.status(400).json({msg : 'user does not exists'});
-
-        if(!(age ==studentsss.age)){
-            return res.status(400).json({msg : 'invalid credentials'}); 
-        }
-        // const newStudent = new Student({
-        //     name,age,gender
-        // });
-
-        res.json({studentsss:{
-            name : studentsss.name,
-            age : studentsss.age,
-            gender : studentsss.gender
-        }})
-
-        // jwt.sign(
-
-        //     {id : studentsss.name},
-        //     config.get('jwtSecret'),
-        //     {expiresIn : 3600},
-        //     (err,token) => {
-        //         if(err) throw err;
-        //               res.json({token, studentsss:{
-        //                   name : studentsss.name,
-        //                   gender : studentsss.gender,
-        //                   age : studentsss.age
-        //               }})
-        //             }
-        // )
-    })
-
-})*/
 
 
 module.exports = router;

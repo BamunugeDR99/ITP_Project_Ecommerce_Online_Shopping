@@ -34,7 +34,7 @@ export default function AdminReport(props) {
 
 
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           reviews = res.data;
           // const filter = res.data.filter(
@@ -49,7 +49,7 @@ export default function AdminReport(props) {
           // reviews = filter;
           console.log(reviews);
           axios
-            .get("http://localhost:8070/orgseller/get")
+            .get("https://tech-scope-online.herokuapp.com/orgseller/get")
             .then((res) => {
               sellers = res.data;
               createReview(filter_review, sellers);
@@ -77,7 +77,7 @@ export default function AdminReport(props) {
 
       setabc(afterDeleteReview);
       
-    axios.delete("http://localhost:8070/review/delete/" + id).then((res) =>
+    axios.delete("https://tech-scope-online.herokuapp.com/review/delete/" + id).then((res) =>
     {
       
       alert("Review Deleted!");

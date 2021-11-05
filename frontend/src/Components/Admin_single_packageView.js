@@ -16,7 +16,7 @@ export default function SinglePackage_AdminView(props) {
       // console.log(packageId);
 
       axios
-        .get("http://localhost:8070/Packages/getPackage/" + packageId)
+        .get("https://tech-scope-online.herokuapp.com/Packages/getPackage/" + packageId)
         .then((res) => {
           console.log(res.data);
           setPackage(res.data);
@@ -45,7 +45,7 @@ export default function SinglePackage_AdminView(props) {
   return (
     <div className="container d-flex justify-content-center mt-3 mb-5">
       <div class="card " style={{ width: "30rem" }}>
-        {/* <img class="card-img-top" src={"/Images/" + packageS.image} alt="Card image cap" height="500px" /> */}
+        <img class="card-img-top" src={"/Images/" + packageS.image} alt="Card image cap" height="500px" />
 
         <div class="card-body">
           <h5 class="card-title">Package Details</h5>

@@ -32,9 +32,9 @@ export default function TestReport(props) {
 
     console.log(objarr);
     axios
-      .post("http://localhost:8070/student/create-pdf", objarr)
+      .post("https://tech-scope-online.herokuapp.com/student/create-pdf", objarr)
       .then(() =>
-        axios.get("http://localhost:8070/student/fetch-pdf", {
+        axios.get("https://tech-scope-online.herokuapp.com/student/fetch-pdf", {
           responseType: "blob",
           // A BLOB is a binary large object that can hold a variable amount of data. important
         })

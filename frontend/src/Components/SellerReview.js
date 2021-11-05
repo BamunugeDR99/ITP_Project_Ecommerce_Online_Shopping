@@ -29,7 +29,7 @@ export default function SellerReviews(props){
 
     
     // let reportreason = " ";
-    
+    let [k,setK]=useState([]);
 
     let reviews = [];
     let review_id = "";
@@ -47,7 +47,7 @@ export default function SellerReviews(props){
       Stars,
     };
     // let content;
-  
+  let ItemImage = [];
     let reviewWithCustomers = [];
   
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function SellerReviews(props){
 
           const objectId = props.match.params.id;
             axios
-            .get("http://localhost:8070/items/get/"+ objectId)
+            .get("https://tech-scope-online.herokuapp.com/items/get/"+ objectId)
             .then((res) =>
             {
                 setItems(res.data);
@@ -67,6 +67,10 @@ export default function SellerReviews(props){
                 console.log(itemss);
                 console.log('abc');
         
+                ItemImage = res.data.Images;
+
+                setK(res.data.Images)
+              console.log(k)
                 
             }).catch((err) =>{
                 alert(err);
@@ -82,7 +86,7 @@ export default function SellerReviews(props){
       function getReview() {
         const objectId = props.match.params.id;
         axios
-          .get("http://localhost:8070/review/get")
+          .get("https://tech-scope-online.herokuapp.com/review/get")
           .then((res) => {
             //setReview(res.data);
             const filter = res.data.filter(
@@ -91,7 +95,7 @@ export default function SellerReviews(props){
             reviews = filter;
             // 6120b61011f8374ae1fa904f
             axios
-              .get("http://localhost:8070/Customer/getAll")
+              .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
               .then((res) => {
                 customers = res.data;
                 createReview(reviews, customers);
@@ -133,7 +137,7 @@ export default function SellerReviews(props){
       //Rating
       function displayRating(){
         axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -286,7 +290,7 @@ function updatee(id){
           reviewstatus : true,
           sellerid: items.SellerID
         }
-        axios.put("http://localhost:8070/review/updateRev/" +id,newItem).then((res)=>{
+        axios.put("https://tech-scope-online.herokuapp.com/review/updateRev/" +id,newItem).then((res)=>{
           setReportreason(" ");
           console.log(result.value)
           // alert("success");
@@ -302,6 +306,12 @@ function updatee(id){
 
 }
 
+function report(id) {
+  props.history.push("/Seller/ItemRatings/" + id);
+ //console.log(id)
+}
+
+
 
 
 
@@ -314,20 +324,19 @@ function updatee(id){
        
             <div className="row">
                 
-                
-
+            
                     <div className="col-4">
                       <img style={{width:'100%'}}
-                       src={"/Images/" + items.Images}/>
+                       src={"/images/" + k[0]}/>
                        <div>
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/Images/"+items.Images}
+                          {"/images/"+ k[0]}
                           />
                       </div>
                     </div>
@@ -353,7 +362,6 @@ function updatee(id){
                                     <span>Brand</span><br/>
                                     <span>Model</span><br/>
                                     <span>Availability</span><br/>
-                                    <span>Specification</span><br/>
                                     <span>Warrenty</span>
                                 </div> 
                                 <div className="col-1">
@@ -361,14 +369,12 @@ function updatee(id){
                                     <span> : </span><br/>
                                     <span> :</span><br/>
                                     <span> :  </span><br/>
-                                    <span> : </span><br/>
                                     <span> :  </span>
                                 </div> 
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
                                     <span>{ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
-                                    <span>{items.Specification} </span><br/>
                                     <span>{ipsumText.toString(items.Warrenty) } </span>
                                 </div>
                                 <div className="col-2">
@@ -400,9 +406,9 @@ function updatee(id){
         </div> 
            
             <div className="row">
-                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 30px'}}>Ratings and reviews of item name</span>
+                <span style={{fontSize:'20px', fontstyle:'strong',padding:'20px 0px 20px 5px'}}>Ratings and reviews of item name</span>
                
-                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 70px'}}>
+                <span style={{fontSize:'26px', fontStyle:'strong',padding:'0px 0px 0px 10px'}}>
                     
 
                     <div id = 'stars'class="card-text">
@@ -412,9 +418,14 @@ function updatee(id){
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span><br/>
                       <span class="fa fa-star"></span>
+
+                      
                     </div>
 
                   </span>
+                <br/>
+                <br/>
+                  <button  onClick = {()=> report(items._id)}  type="button"style={{fontSize:'14px', width:'30%', marginLeft:'10px', marginRight:'20px'}} class="btn btn-primary">Generate A Report</button>
             </div>
 
         </div>
@@ -456,6 +467,7 @@ function updatee(id){
                                 <span class="fa fa-star"></span><span> </span> 
 
                                 </div>
+                                
                         </div>
                         
                     </div>    

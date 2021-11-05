@@ -26,7 +26,7 @@ export default function AllItemsFiltered(props) {
       console.log(objectId);
 
       axios
-        .get("http://localhost:8070/items/getItems")
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
           if (objectId == "Apple" || objectId == "Samsung" || objectId == "Google" || objectId == "Google" || objectId == "Sony") {
             
@@ -61,7 +61,7 @@ export default function AllItemsFiltered(props) {
 
     function displayRating() {
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -174,7 +174,7 @@ export default function AllItemsFiltered(props) {
     document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
@@ -187,7 +187,7 @@ export default function AllItemsFiltered(props) {
 
   function deletee(id) {
     axios
-      .delete("http://localhost:8070/items/delete/" + id)
+      .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
       .then((res) => {
         //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
         const afterDeleteItems = items.filter((items) => items._id != id);
@@ -205,7 +205,7 @@ export default function AllItemsFiltered(props) {
   function filterByCategory(categoryType) {
     document.getElementById("itemsTxt").innerHTML = "";
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         // console.log(res.data);
@@ -247,7 +247,7 @@ export default function AllItemsFiltered(props) {
     }
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         let item = res.data;
         let afterFilterItems = [];
@@ -290,7 +290,7 @@ export default function AllItemsFiltered(props) {
   function addToCart(id) {
     /// complete this
     axios
-      .get("http://localhost:8070/items/get/" + id)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
         console.log(res.data);
         if (res.data.ItemAvailabilityStatus === false) {
@@ -302,9 +302,9 @@ export default function AllItemsFiltered(props) {
         } else {
           let CustomerID = localStorage.getItem("CustomerID");
 
-          // http://localhost:8070/ShoppingCart/getOneCart/:id
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
           axios
-            .get("http://localhost:8070/ShoppingCart/getOneCart/" + CustomerID)
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
             .then((res) => {
               let cartID = res.data._id;
               console.log(res.data);
@@ -329,7 +329,7 @@ export default function AllItemsFiltered(props) {
               if (falgs === 0) {
                 axios
                   .put(
-                    "http://localhost:8070/ShoppingCart/updateSItem/" + cartID,
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
                     updatedCart
                   )
                   .then((res) => {
@@ -369,7 +369,7 @@ export default function AllItemsFiltered(props) {
     let Items = [];
     let ItemID = "";
     axios
-      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + customerID)
       .then((res) => {
         console.log(res.data.wishlistss.Items);
         ItemID = res.data.wishlistss._id;
@@ -391,7 +391,7 @@ export default function AllItemsFiltered(props) {
         console.log(newWishList);
         if (falgs === 0) {
           axios
-            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
+            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + ItemID, newWishList)
             .then(() => {
               //alert("Student Updated");
               // document.getElementById("itemsTxt").innerHTML =
@@ -432,7 +432,7 @@ export default function AllItemsFiltered(props) {
     console.log(filterdItemsWithRatings);
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         let item = res.data;
         // console.log(item[2]._id);
@@ -460,7 +460,7 @@ export default function AllItemsFiltered(props) {
 
   function clearFilter() {
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         setItems(res.data);
         if (res.data.length === 0) {

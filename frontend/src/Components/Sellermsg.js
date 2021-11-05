@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import "../Css/msg.css";
+import Swal from "sweetalert2";
 // import g1 from "../images/avatar1.png";
 
 
@@ -10,6 +11,7 @@ export default function SellermMsg(props){
 	const [contactsel,setContactsel] = useState([]);
 
 	let contactsels = [];
+	let contactsel_id="";
 	// let emails = [];
 	let customers = [];
 	let customerName = "";
@@ -18,6 +20,7 @@ export default function SellermMsg(props){
 	let Email = "";
 	let [abc, setabc] = useState([]);
 	let contactselWithCustomer = {
+	  contactsel_id,
 	  customerName,
 	  customerImage,
 	  Contactsel,
@@ -30,17 +33,22 @@ export default function SellermMsg(props){
 	  function getContactsel() {
 
 		const objectID = localStorage.getItem("SellerID")
+		console.log(objectID)
 		axios
-		  .get("http://localhost:8070/contactsel/get")
+		  .get("https://tech-scope-online.herokuapp.com/contactsel/get" )
 		  .then((res) => {
-			contactsels=(res.data);
+			// contactsels=(res.data);
 			const filter = res.data.filter(
-			  (selmsg) => selmsg.sellerid === objectID
+			  (selmsg) => selmsg.sellerid == 
+			  "613a2b0fb31f783accd94447"
+			//   objectID
 			);
+			
 			contactsels = filter;
 			console.log(contactsels);
+			console.log(res.data);
 			axios
-			  .get("http://localhost:8070/Customer/getAll")
+			  .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
 			  .then((res) => {
 				customers = res.data;
 				createContactsel(contactsels, customers);
@@ -64,6 +72,7 @@ export default function SellermMsg(props){
 			  contactselWithCustomer = {
 				customerName: customers[j].firstName,
 				customerImage: customers[j].userImage,
+				contactsel_id: contactsels[i]._id,
 				Contactsel: contactsels[i].message,
 				Email: contactsels[i].email,
 			  };
@@ -74,17 +83,39 @@ export default function SellermMsg(props){
 		}
   
 		setabc(contactselWithCustomers);
+		let a = contactselWithCustomers
+		console.log(a)
 	  }
   
 	  getContactsel();
 	}, []);
 
-	function deletee(id){
-    axios.delete("http://localhost:8070/contactsel/delete/" + id).then((res) =>
+// 	function deletee(id){
+//     axios.delete("https://tech-scope-online.herokuapp.com/contactsel/delete/" + id).then((res) =>
+//     {
+//         // document.getElementById("txt").innerHTML = "Message Deleted!";
+//         const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id !== id);
+//         setContactsel(afterDeleteContactsel);
+//     }).catch((err) =>{
+//         alert(err);
+//     })
+// }
+
+function deletee(id){
+    console.log(id)
+    const afterDeleteSeller = abc.filter(contactsel=>contactsel.contactsel_id != id);
+
+    console.log(afterDeleteSeller);
+
+      setabc(afterDeleteSeller);
+      
+    axios.delete("https://tech-scope-online.herokuapp.com/contactsel/delete/" + id).then((res) =>
     {
-        // document.getElementById("txt").innerHTML = "Message Deleted!";
-        const afterDeleteContactsel = contactsel.filter(contactsel=>contactsel._id !== id);
-        setContactsel(afterDeleteContactsel);
+      
+		Swal.fire(
+		'Customer Message Deleted!',
+		 'success'
+		)
     }).catch((err) =>{
         alert(err);
     })
@@ -101,21 +132,20 @@ export default function SellermMsg(props){
 	   {" "}
 	   Customer Messages
 	 </h1>
-	 <h5 style={{ textAlign: "center", color: "black" }}>
-	   what our customers say about us
-	 </h5>
 
 	 <div>
 	 <div className="row" style={{margin: "50px 20px 20px 30px",}}>
 	   {abc.map((reviewss) => {
 		 return (
 		   
+		   
 			 <div class="col-3" style={{ paddingBottom:'30px'}}>
+				
 			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "320px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
 				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
-				   style={{ width: "65%", alignItems: "center" }}/>
+				   style={{ width: "65%", alignItems: "center" , borderRadius:'25px'}}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
 				   
@@ -125,7 +155,7 @@ export default function SellermMsg(props){
 					 {reviewss.Contactsel}
 				   </p><br/>
 				  
-					<button onClick = {()=> deletee(contactsel._id)} className="btn btn-danger" type="button">Remove</button>
+					<button onClick = {()=> deletee(reviewss.contactsel_id)} className="btn btn-danger" type="button">Remove</button>
 					</center>
 				 </div>
 			   </div>

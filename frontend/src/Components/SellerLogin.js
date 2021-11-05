@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 import "../Css/sellerLogin.css";
 
@@ -29,7 +30,7 @@ export default function SellerLogin(props){
             password,
           }
 
-          axios.post("http://localhost:8070/orgSeller/loginSeller", loginCredentials).then((res)=>{
+          axios.post("https://tech-scope-online.herokuapp.com/orgSeller/loginSeller", loginCredentials).then((res)=>{
 
            // setCustomer(res.data.customerLogin);
         //   localStorage.setItem('sellerID', res.data.loginTest._id);
@@ -44,13 +45,25 @@ export default function SellerLogin(props){
 
           }).catch((err) =>{
 
-            //alert(err);
+           
           console.log(err.response.data);
-          alert(err.response.data.error);
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please Check Your Username & Password!',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+
           seterrormsg(err.response.data.error);
         
 
-        })
+        });
     }
 
 
@@ -70,7 +83,7 @@ export default function SellerLogin(props){
                         <form className="myForm" onSubmit = {loginUser}>
                              
 							<div class="form-group">
-                                <h2>{errormsg}</h2>
+                                <h6 id="errmsg">{errormsg}</h6>
 							
                                 <label htmlFor="username" style={{color:"black"}}>
                                     <b>Username</b>
@@ -108,7 +121,7 @@ export default function SellerLogin(props){
                            
                             <div className="col">
                                 {/* incomplete */}
-									<p className ="fp"> <Link to="/">Forgot Password?</Link></p>
+									<p className ="fp"> <Link to="/SellerForgotPassword">Forgot Password?</Link></p>
 								</div>
 						
                             <button type="submit" class="btn btn-primary" style={{marginLeft:"65px", marginTop:"20px", width:"280px", height:"45px"}}>Sign in</button> <br/><br/>

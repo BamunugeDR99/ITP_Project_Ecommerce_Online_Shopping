@@ -23,7 +23,7 @@ export default function Customer_wishlist(props) {
       //change url
       objectID = localStorage.getItem("CustomerID");
       axios
-        .post("http://localhost:8070/wishlist/getByCustomerID/" + objectID)
+        .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + objectID)
         .then((res) => {
           // console.log(res.data);
 
@@ -32,7 +32,7 @@ export default function Customer_wishlist(props) {
           console.log(wishlist.Items);
 
           axios
-            .get("http://localhost:8070/items/getItems")
+            .get("https://tech-scope-online.herokuapp.com/items/getItems")
             .then((res) => {
               let result2 = res.data;
 
@@ -51,7 +51,7 @@ export default function Customer_wishlist(props) {
 
     function displayRating() {
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           setRatings(res.data);
           //console.log(ratings[0].itemid)
@@ -125,54 +125,74 @@ export default function Customer_wishlist(props) {
     }
   }
 
-  function addToWishlist(itemId) {
-    // already added check
-    let customerID = localStorage.getItem("CustomerID");
-    let newItems = []; /// Change this later
-    let Items = [];
-    let ItemID = "";
+  function addToCart(id) {
+    /// complete this
     axios
-      .post("http://localhost:8070/wishlist/getByCustomerID/" + customerID)
+      .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
       .then((res) => {
-        console.log(res.data.wishlistss.Items);
-        ItemID = res.data.wishlistss._id;
-        newItems = res.data.wishlistss.Items;
-        //let CustomerIDs = res.data.wishlistss.CustomerID;
-        // console.log(CustomerIDs)
-        let falgs = 0;
-        for (let i = 0; i < newItems.length; i++) {
-          if (newItems[i] == itemId) {
-            falgs = 1;
-          }
-        }
-        newItems.push(itemId);
-        console.log(newItems);
-        let newWishList = {
-          CustomerID: customerID,
-          Items: newItems,
-        };
-        console.log(newWishList);
-        if (falgs == 0) {
-          axios
-            .put("http://localhost:8070/wishlist/update/" + ItemID, newWishList)
-            .then(() => {
-              //alert("Student Updated");
-              // document.getElementById("itemsTxt").innerHTML =
-              //"Item added to your Wishlist!";
+        console.log(res.data);
+        if (res.data.ItemAvailabilityStatus === false) {
+          Swal.fire({
+            icon: "warning",
+            title: "Oops...",
+            text: "Item is not available Right now!",
+          });
+        } else {
+          let CustomerID = localStorage.getItem("CustomerID");
 
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Your Item has been added to your wishlist!",
-                showConfirmButton: false,
-                timer: 1500,
-              });
+          // https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/:id
+          axios
+            .get("https://tech-scope-online.herokuapp.com/ShoppingCart/getOneCart/" + CustomerID)
+            .then((res) => {
+              let cartID = res.data._id;
+              console.log(res.data);
+              let packages = res.data.PackageIDs;
+              let newwItems = res.data.ItemIDs;
+
+              let falgs = 0;
+              for (let i = 0; i < newwItems.length; i++) {
+                if (newwItems[i] == id) {
+                  falgs = 1;
+                }
+              }
+              newwItems.push(id);
+              console.log(newwItems);
+
+              const updatedCart = {
+                customerID: CustomerID,
+                PackageIDs: packages,
+                ItemIDs: newwItems,
+              };
+
+              if (falgs === 0) {
+                axios
+                  .put(
+                    "https://tech-scope-online.herokuapp.com/ShoppingCart/updateSItem/" + cartID,
+                    updatedCart
+                  )
+                  .then((res) => {
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Item added to cart Successfully!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((err) => {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Please try again!",
+                    });
+                  });
+              } else if (falgs === 1) {
+                Swal.fire("Item Already in Your Shopping Cart.");
+              }
             })
             .catch((err) => {
               alert(err);
             });
-        } else if (falgs == 1) {
-          Swal.fire("Item Already in Your Wishlist.");
         }
       })
       .catch((err) => {
@@ -181,18 +201,66 @@ export default function Customer_wishlist(props) {
   }
 
   function remove(id) {
+
+    let CustobjectID = localStorage.getItem("CustomerID");
+    let wishlistID = "";
     axios
-      .delete("http://localhost:8070/wishlist/update/" + id)
+      .post("https://tech-scope-online.herokuapp.com/wishlist/getByCustomerID/" + CustobjectID)
       .then((res) => {
+        // console.log(res.data);
 
+        wishlistID = res.data.wishlistss._id;
+        let newItemssss  = items.filter((a) => a._id != id);
+        let newWishLists = [];
+        for(let i = 0; i < newItemssss.length; i++){
+          newWishLists.push(newItemssss[i]._id);
         
-        const afterDeletewishlist = items.filter((a) => a._id != id);
-
-        setItems(afterDeletewishlist);
+        }
+       let newWishList = {
+         CustomerID : localStorage.getItem("CustomerID"),
+        Items : newWishLists
+       }
+       console.log(newWishList);
+        console.log(wishlistID);
+        
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+            .put("https://tech-scope-online.herokuapp.com/wishlist/update/" + wishlistID,newWishList)
+            .then((res) => {
+      
+              
+              const afterDeletewishlist = items.filter((a) => a._id != id);
+      
+              setItems(afterDeletewishlist);
+              Swal.fire(
+                'Deleted!',
+                'Your Wishlist Item has been Removed.',
+                'success'
+              )
+            })
+            .catch((err) => {
+              alert(err);
+            });
+           
+          }
+        })
+    
       })
       .catch((err) => {
         alert(err);
       });
+  
+
+  
   }
   function more(num) {
     if (document.getElementById(num).hidden == true) {
@@ -215,18 +283,18 @@ export default function Customer_wishlist(props) {
                 <div class="row no-gutters">
                   <div class="col-sm-5" style={{ background: "#ffffff" }}>
                     <img
-                      src={"/Images/iphone-x-.jpg"}
+                       src={"/Images/" + itemss.Images[0]}
                       class="card-img-top h-100"
-                      style={{ width: "250px" }}
+                      style={{ width: "220px" }}
                       alt="..."
                     />
                   </div>
                   <div class="col-sm-7">
                     <div class="card-body">
-                      <h5 class="card-title">
+                      <h5 class="card-title"><b>
                         {itemss.Brand} {itemss.Item_name}
-                      </h5>
-                      <h5 class="card-title">{itemss.Specification}</h5>
+                      </b></h5>
+                      <h6 class="card-title" style = {{fontSize : "12px"}}>{itemss.Specification}</h6>
                       <p class="card-text">
                         <b>LKR {itemss.Price}</b>
                       </p>
@@ -241,7 +309,7 @@ export default function Customer_wishlist(props) {
                       <span> </span>
                       <button
                         class="btn btn-success"
-                        onClick={() => addToWishlist(itemss._id)}
+                        onClick={() => addToCart(itemss._id)}
                       >
                         Add to cart
                       </button>{" "}

@@ -14,7 +14,7 @@ export default function UpdateStudent(props) {
       const objectId = props.match.params.id;
       console.log(objectId);
       axios
-        .get("http://localhost:8070/student/get/" + objectId)
+        .get("https://tech-scope-online.herokuapp.com/student/get/" + objectId)
         .then((res) => {
           //setStudents(res.data);
           setData(res.data);
@@ -49,7 +49,7 @@ export default function UpdateStudent(props) {
     //console.log(newStudent);
     //document.write("newStudent");
     axios
-      .put("http://localhost:8070/student/update/" + objectId, data)
+      .put("https://tech-scope-online.herokuapp.com/student/update/" + objectId, data)
       .then(() => {
         //alert("Student Updated");
         document.getElementById("txt").innerHTML =

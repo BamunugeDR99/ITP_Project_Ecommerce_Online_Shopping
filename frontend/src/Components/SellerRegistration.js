@@ -20,50 +20,78 @@ export default function SellerRegistration(props) {
   let [errorMsg, setErrorMsg] = useState("");
   let flag1 = 0;
 
-  //validate year
+  //validate
 
   function validatereg() {
     const yearValue = document.getElementById("year").value;
     const phoneNumber = document.getElementById("mobile").value;
     const email = document.getElementById("email").value;
     const checkbox = document.getElementById("policy");
+    
 
     const EmailAdd = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (isNaN(yearValue)) {
+    if(ownername.length === 0){
       flag1 = 0;
+      Swal.fire("Owner's Name is required!");
 
-      Swal.fire("Enter only numeric value to Established Year!");
-    } else if (yearValue.length < 4) {
+    }else if(phoneNumber.length === 0){
       flag1 = 0;
-      Swal.fire(
-        "Established Year must be 4 digit! Entered value is less than 4!!"
-      );
-    } else if (yearValue.length > 4) {
-      flag1 = 0;
-      Swal.fire(
-        "Established Year must be 4 digit! Entered value is greater than 4!!"
-      );
+      Swal.fire("Phone Number is required!");
+
     } else if (isNaN(phoneNumber)) {
       flag1 = 0;
       Swal.fire("Enter only numeric value to Contact Number!");
-    } else if (phoneNumber.length < 10) {
-      flag1 = 0;
-      Swal.fire(
-        "Contact Number must be 10 digit! Your Number is less than 10!"
-      );
-    } else if (phoneNumber.length > 10) {
-      flag1 = 0;
-      Swal.fire(
-        "Contact Number must be 10 digit! Your Number is greater than 10!"
-      );
+         
     } else if (phoneNumber.charAt(0) != 0) {
       flag1 = 0;
       Swal.fire("Contact Number must start with 0!");
-    } else if (!email.match(EmailAdd)) {
+   
+    } else if (phoneNumber.length < 10) {
+      flag1 = 0;
+      Swal.fire("Contact Number must be 10 digit! Your Number is less than 10!");
+   
+    } else if (phoneNumber.length > 10) {
+      flag1 = 0;
+      Swal.fire("Contact Number must be 10 digit! Your Number is greater than 10!");
+    
+    }else if(companyname.length === 0){
+      flag1 = 0;
+      Swal.fire("Company Name is required!");
+    
+     }else if(address.length === 0){
+      flag1 = 0;
+      Swal.fire("Physical Address is required!");
+     
+    }else if(yearValue.length === 0){
+      flag1 = 0;
+      Swal.fire("Established Year is required!");
+     
+    }else if (isNaN(yearValue)) {
+      flag1 = 0;
+      Swal.fire("Enter only numeric value to Established Year!");
+
+    } else if (yearValue.length < 4) {
+      flag1 = 0;
+      Swal.fire("Established Year must be 4 digit! Entered value is less than 4!!");
+   
+    } else if (yearValue.length > 4) {
+      flag1 = 0;
+      Swal.fire("Established Year must be 4 digit! Entered value is greater than 4!!");
+   
+    }else if (description.length === 0){
+      flag1 = 0;
+      Swal.fire("Description is required!"); 
+
+    }else if(email.length === 0){
+      flag1 = 0;
+      Swal.fire("Email is required!"); 
+      
+    }else if (!email.match(EmailAdd)) {
       flag1 = 0;
       Swal.fire("You have entered an invalid email address!");
-    } else if (!checkbox.checked) {
+   
+    }else if (!checkbox.checked) {
       flag1 = 0;
       Swal.fire("You Should Agree To Our Terms & Conditions!!");
     } else {
@@ -93,7 +121,7 @@ export default function SellerRegistration(props) {
     console.log(newseller);
     if (flag1 == 1) {
       axios
-        .post("http://localhost:8070/seller/add", newseller)
+        .post("https://tech-scope-online.herokuapp.com/seller/add", newseller)
         .then(() => {
           Swal.fire(
             "Success!",
@@ -143,7 +171,7 @@ export default function SellerRegistration(props) {
                     id="ownername"
                     class="form-control"
                     placeholder="Owner's Name"
-                    required
+                   
                     onChange={(e) => {
                       setownername(e.target.value);
                     }}
@@ -156,7 +184,7 @@ export default function SellerRegistration(props) {
                     id="mobile"
                     class="form-control"
                     placeholder="Contact Number"
-                    required
+                  
                     onChange={(e) => {
                       setmobile(e.target.value);
                     }}
@@ -173,7 +201,7 @@ export default function SellerRegistration(props) {
                     id="companyname"
                     class="form-control"
                     placeholder="Company Name"
-                    required
+                   
                     onChange={(e) => {
                       setcompanyname(e.target.value);
                     }}
@@ -186,7 +214,7 @@ export default function SellerRegistration(props) {
                     id="address"
                     class="form-control"
                     placeholder="Physical Address"
-                    required
+               
                     onChange={(e) => {
                       setaddress(e.target.value);
                     }}
@@ -204,7 +232,7 @@ export default function SellerRegistration(props) {
                     id="year"
                     class="form-control"
                     placeholder="Established Year"
-                    required
+                
                     onChange={(e) => {
                       setyear(e.target.value);
                     }}
@@ -217,7 +245,7 @@ export default function SellerRegistration(props) {
                     id="email"
                     class="form-control"
                     placeholder="Email Address"
-                    required
+                 
                     onChange={(e) => {
                       setemail(e.target.value);
                     }}
@@ -236,7 +264,7 @@ export default function SellerRegistration(props) {
                       id="description"
                       rows="5"
                       placeholder="Description"
-                      required
+                   
                       onChange={(e) => {
                         setdescription(e.target.value);
                       }}
@@ -257,7 +285,7 @@ export default function SellerRegistration(props) {
                           class="form-control-file"
                           placeholder="Allowed types: png/jpg/jpeg"
                           accept="image/*"
-                          required
+                         
                         />
                       </div>
                     </div>
@@ -316,7 +344,7 @@ export default function SellerRegistration(props) {
             {" "}
             <br />
             <br />
-            <b>Already have an account ? </b>
+            <b style={{marginLeft:"50px"}}>Already have an account ? </b>
             <Link to="/SellerLogin">Sign in!</Link>
           </div>
         </form>

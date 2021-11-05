@@ -3,7 +3,7 @@ import React, {useState,useEffect} from "react";
 
 
 //cm
-function UserProfile(props){
+function CustomerDetails(props){
 
   const [customer,setCustomer] = useState([]);
   let Dateofb;
@@ -14,7 +14,7 @@ function UserProfile(props){
   useEffect(() =>{
       function getCustomer(){
         objectID = props.match.params.id;
-          axios.get("http://localhost:8070/Customer/get/"+ objectID).then((res) =>
+          axios.get("https://tech-scope-online.herokuapp.com/Customer/get/"+ objectID).then((res) =>
           {
             console.log(res.data);
               setCustomer(res.data);
@@ -114,4 +114,4 @@ function UserProfile(props){
 
 }
 
-export default UserProfile;
+export default CustomerDetails;

@@ -153,12 +153,18 @@ import CustomerPackageOrders from "./Components/CustomerPackageOrders";
 import SellerPackageOrders from "./Components/SellerPackageOrders";
 import TestOrderMerge from "./Components/TestOrderMerge";
 import ItemMonthlySales from "./Components/ItemMonthlySales";
+import TransactionHistory from "./Components/TransactionHistory";
+import RevReport from "./Components/RevReport";
+import PackageMonthlySales from "./Components/PackageMonthlySales";
+import TestAddACard from "./Components/TestAddACard";
+import GoogleSignInTest from "./Components/GoogleSignInTest";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
     <Router>
       <div>
         {/* <Route path = "/" exact component = {TestReport}/> */}
+
         <Route path="/" exact component={InitialPage} />
         <Route path="/CustomerLogin" exact component={CustomerLogin} />
         <Route path="/CustomerRegistration" exact component={SignUp} />
@@ -172,7 +178,7 @@ function App() {
         <Route path="/SellerForgotPassword" exact component={SellerForget} />
         <Route path="/AdminLogin" exact component={AdminLogin} />
         {/* Sample route for Report */}
-      
+
         {/* Customer Route */}
         <Route path="/Customer" component={MainHeader} />
         <Route path="/Customer" component={Side_bar_Customer} />
@@ -182,7 +188,7 @@ function App() {
           exact
           component={All_the_items_customer}
         />
-
+{/* <Route path = "/Customer/Google" component = {GoogleSignInTest}/> */}
         <Route
           path="/Customer/AllItemsFilterBy/:id"
           exact
@@ -198,17 +204,28 @@ function App() {
           exact
           component={AllPackages_CustomerView}
         />
+
         <Route path="/Customer/MyProfile" exact component={UserProfile} />
         <Route path="/Customer/ContactUs" exact component={ContactAdmin} />
-        <Route path="/Customer/addCard" exact component={AddpaymentMethod} />
+        {/* <Route path="/Customer/addCard" exact component={AddpaymentMethod} /> */}
+        <Route path="/Customer/addCard" exact component={TestAddACard} />
+
         <Route path="/Customer/Orders" exact component={CustomerOrders} />
-        <Route path="/Customer/PackageOrders" exact component={CustomerPackageOrders} />
+        <Route
+          path="/Customer/PackageOrders"
+          exact
+          component={CustomerPackageOrders}
+        />
         <Route
           path="/Customer/editCard/:id"
           exact
           component={EditCardDetails}
         />
-        <Route path="/Customer/ContactSeller" exact component={ContactSeller} />
+        <Route
+          path="/Customer/ContactSeller/:id"
+          exact
+          component={ContactSeller}
+        />
         <Route path="/Customer/MyWallet" exact component={ViewCardDetails} />
         <Route
           path="/Customer/confrimPayment"
@@ -241,6 +258,20 @@ function App() {
           exact
           component={PaymentHistory}
         />
+
+        <Route path="/Customer/MyOrders" exact component={CustomerOrders} />
+
+        <Route
+          path="/Customer/MyPackageOrders"
+          exact
+          component={CustomerPackageOrders}
+        />
+{/* 
+        <Route
+          path="/Customer/paymentHistory"
+          exact
+          component={TransactionHistory}
+        /> */}
         <Route
           path="/Customer/SelectPayment"
           excat
@@ -253,7 +284,11 @@ function App() {
           component={Customer_wishlist}
         />
         <Route path="/Customer/MyReviews" exact component={YourReviews} />
-        <Route path="/Customer/TestOrdersMerge" exact component={TestOrderMerge} />
+        <Route
+          path="/Customer/TestOrdersMerge"
+          exact
+          component={TestOrderMerge}
+        />
         <Route path="/Customer/Update/:id" exact component={UpdateProfile} />
         <Route path="/Customer/MyShoppingCart" exact component={ShoppingCart} />
         <Route
@@ -277,14 +312,22 @@ function App() {
         <Route path="/Seller/MyProfile" exact component={SellerProfile} />
         <Route path="/Seller/ItemReviews/:id" exact component={SellerReview} />
         <Route path="/Seller/Orders" exact component={SellerOrders} />
-        <Route path="/Seller/PackageOrders" exact component={SellerPackageOrders} />
-      
+        <Route
+          path="/Seller/PackageOrders"
+          exact
+          component={SellerPackageOrders}
+        />
+
+        <Route path = "/Seller/PackageMonthlySales" exact component = {PackageMonthlySales}/>
+
         <Route
           path="/Seller/updateProfile/:id"
           exact
           component={SellerUpdate}
         />
         <Route path="/Seller/itemDetails" exact component={SellerReviews} />
+
+        <Route path="/Seller/TestpackageReport" exact component={PackageMonthlySales} />
         <Route path="/Seller/CreatePackage" exact component={CreatePackage1} />
         <Route
           path="/Seller/CreatePackageForm"
@@ -292,9 +335,12 @@ function App() {
           component={CreatePackage2}
         />
 
-
-        <Route path = "/Seller/ItemMonthlySales" exact component = {ItemMonthlySales}/>
-
+        <Route path="/Seller/ItemRatings/:id" exact component={RevReport} />
+        <Route
+          path="/Seller/ItemMonthlySales"
+          exact
+          component={ItemMonthlySales}
+        />
 
         <Route
           path="/Seller/UpdatePackage/:id"
@@ -310,6 +356,7 @@ function App() {
           component={UpdateDiscount}
         />
         <Route path="/Seller/Contact" exact component={Sellermsg} />
+        <Route path="/Seller/Report/:id" exact component={RevReport} />
         <Route path="/Seller/Update/:id" exact component={SellerUpdate} />
         <Route path="/Seller/sellerPassword" exact component={SellerPassword} />
         <Route path="/Seller" component={Footer_customer} />
@@ -325,6 +372,7 @@ function App() {
         <Route path="/Admin/Sellers" exact component={RegSellers} />
         <Route path="/Admin/AllSellersRequest" exact component={AllSellers} />
         <Route path="/Admin/Customers" exact component={CustomerList} />
+
         <Route
           path="/Admin/Customers/Details/:id"
           exact
@@ -350,11 +398,30 @@ function App() {
           exact
           component={RequestView}
         />
+
+        <Route
+          path="/Admin/Transactions"
+          exact
+          component={TransactionHistory}
+        />
         <Route
           path="/Admin/sellerItems/:id"
           exact
           component={ItemsForSpecificSeller}
         />
+
+
+
+        {/* <Route
+          path="/Admin/packages/:id" exact component= {AdminAllPackages}/>
+    
+
+    <Route
+          path="/Admin/Packagesss/:id"
+          exact
+          component={SinglePackage_AdminView}
+        /> */}
+
 
         <Route path="/Admin" component={Footer_customer} />
       </div>

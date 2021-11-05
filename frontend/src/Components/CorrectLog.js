@@ -18,7 +18,7 @@ export default function LoginSeller(){
             password,
           }
 
-          axios.post("http://localhost:8070/orgSeller/loginSeller", loginCredentials).then((res)=>{
+          axios.post("https://tech-scope-online.herokuapp.com/orgSeller/loginSeller", loginCredentials).then((res)=>{
 
            // setCustomer(res.data.customerLogin);
         //   localStorage.setItem('sellerID', res.data.loginTest._id);

@@ -41,7 +41,7 @@ export default function CustomerReviews(props) {
     function getReview() {
       objectId = localStorage.getItem("ItemID");
       axios
-        .get("http://localhost:8070/review/get")
+        .get("https://tech-scope-online.herokuapp.com/review/get")
         .then((res) => {
           //setReview(res.data);
 
@@ -55,7 +55,7 @@ export default function CustomerReviews(props) {
           reviews = filter;
           console.log(reviews)
           axios
-            .get("http://localhost:8070/Customer/getAll")
+            .get("https://tech-scope-online.herokuapp.com/Customer/getAll")
             .then((res) => {
               customers = res.data;
               createReview(reviews, customers);
@@ -94,7 +94,7 @@ export default function CustomerReviews(props) {
 
       axios
 
-      .get("http://localhost:8070/review/get")
+      .get("https://tech-scope-online.herokuapp.com/review/get")
 
       .then((res) => {
 
@@ -204,7 +204,7 @@ export default function CustomerReviews(props) {
                       <div class="Regular shadow" style={{width: "70%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white', padding:'10px 10px 10px 10px'}}>
                         <div class="card-body">
                           <center>
-                          <img alt={a1} src={"/Images/"+reviewss.customerImage  }
+                          <img src={"/Images/"+reviewss.customerImage }
                           style={{ width: "65%", height:'80%', maxHeight:'100px',alignItems: "center", borderRadius:400/2 }}/>
                           <br/><br/>
                           <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
@@ -224,7 +224,7 @@ export default function CustomerReviews(props) {
 
                                     </div>
                                     </center>
-                          <p style={{ textAlign: "center", fontSize: "16px"}}>
+                          <p style={{ textAlign: "center", fontSize: "14px"}}>
                             {reviewss.Review}
                           </p>
                         </div>

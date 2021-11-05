@@ -4,6 +4,7 @@ const config = require("config");
 const pdf = require('html-pdf');
 const pdfTemplate = require("../documents/studentReport");
 const pdftem = require("../documents/TechScopeTemplate");
+const custtem = require("../documents/CustomerReport");
 let Student = require("../modules/Student");
 
 //Insert
@@ -130,7 +131,7 @@ router.post("/getByName", (req, res) => {
 // post PDF
 
 router.post('/create-pdf',(req,res) => {
-  pdf.create(pdftem(req.body),{}).toFile('./routes/result.pdf',(err) =>{
+  pdf.create(custtem(req.body),{}).toFile('./routes/result.pdf',(err) =>{
     if(err){
       res.send(Promise.reject());
     }

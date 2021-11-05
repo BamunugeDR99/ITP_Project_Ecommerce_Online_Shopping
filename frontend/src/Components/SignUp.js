@@ -241,7 +241,7 @@ function SignUp(props) {
       console.log(newCustomer);
       //document.write("newStudent");
 
-      axios.post("http://localhost:8070/Customer/add", newCustomer).then(()=>{
+      axios.post("https://tech-scope-online.herokuapp.com/Customer/add", newCustomer).then(()=>{
     	//alert("Student Added");
     	setFirstName(" ");
     	setLastName(" ");

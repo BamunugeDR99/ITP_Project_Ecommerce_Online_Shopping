@@ -53,7 +53,7 @@ export default function CustomerLogin(props) {
     localStorage.setItem("username", rememberMe ? username : "");
 
     axios
-      .post("http://localhost:8070/Customer/loginCustomer", loginCredentials)
+      .post("https://tech-scope-online.herokuapp.com/Customer/loginCustomer", loginCredentials)
       .then((res) => {
         // setCustomer(res.data.customerLogin);
         localStorage.setItem("CustomerID", res.data.customerLogin._id);
@@ -191,10 +191,14 @@ export default function CustomerLogin(props) {
                     <p>
                       {" "}
                       If You Are A Seller Use This Link To Login!{" "}
-                      <Link to="/SellerLogin">LogIn</Link>
+                      <Link to="/SellerLogin">LogIn</Link><br/>
+                      <Link to="/">Initial ? </Link>
+
                     </p>
                   </div>
+              
                 </div>
+                
               </div>
             </div>
           </div>

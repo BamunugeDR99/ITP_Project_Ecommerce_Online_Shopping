@@ -24,7 +24,7 @@ export default function AddStudent(props) {
     console.log(newStudent);
     //document.write("newStudent");
     axios
-      .post("http://localhost:8070/student/add", newStudent)
+      .post("https://tech-scope-online.herokuapp.com/student/add", newStudent)
       .then(() => {
         //alert("Student Added");
        

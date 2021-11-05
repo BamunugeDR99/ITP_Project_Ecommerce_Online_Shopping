@@ -1,6 +1,6 @@
-import React, { useState, useEffect,radix } from "react";
+import React, { useState, useEffect, radix } from "react";
 import axios from "axios";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 export default function Seller_items(props) {
   const [items, setItems] = useState([]);
   const [ratings, setRatings] = useState([]);
@@ -8,21 +8,17 @@ export default function Seller_items(props) {
   let averageRating = "";
   let itemWithRatings = {
     itemID,
-    averageRating
+    averageRating,
   };
   let itemsWithRatings = [];
   let objectID = localStorage.getItem("SellerID");
 
   useEffect(() => {
     async function getItems() {
-       axios
-        .get("http://localhost:8070/items/getItems")
+      axios
+        .get("https://tech-scope-online.herokuapp.com/items/getItems")
         .then((res) => {
-          
-          let result = res.data.filter(
-                          (post) =>
-                            post.SellerID === objectID            
-                        );
+          let result = res.data.filter((post) => post.SellerID === objectID);
           setItems(result);
           console.log(res.data);
         })
@@ -31,98 +27,86 @@ export default function Seller_items(props) {
         });
     }
 
-     function displayRating(){
+    function displayRating() {
       axios
-      .get("http://localhost:8070/review/get")
-      .then((res) => {
-        setRatings(res.data);
-        //console.log(ratings[0].itemid)
-        console.log(res.data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+        .get("https://tech-scope-online.herokuapp.com/review/get")
+        .then((res) => {
+          setRatings(res.data);
+          //console.log(ratings[0].itemid)
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
-  displayRating();
-   getItems();
-  
-
+    displayRating();
+    getItems();
   }, []);
 
   useEffect(() => {
     displayStatus();
     calculateStarRating(1);
-    
-  })
+  });
 
-  useEffect(() =>{
+  useEffect(() => {
     //displayStarRating();
-  })
+  });
 
-function calculateStarRating(id){
-  let totalNoRatings = 0;
-  let totalstarforRatingCount = 0;
-  let starCount = 0;
-  let average = 0; 
+  function calculateStarRating(id) {
+    let totalNoRatings = 0;
+    let totalstarforRatingCount = 0;
+    let starCount = 0;
+    let average = 0;
 
- 
-  for(let i = 0; i < items.length; i++){
-    
-    totalNoRatings = 0;
-    totalstarforRatingCount = 0;
-    starCount = 0;
-    average = 0;
-  
-    for(let j = 0; j < ratings.length; j++){
-        if(items[i]._id === ratings[j].itemid){
+    for (let i = 0; i < items.length; i++) {
+      totalNoRatings = 0;
+      totalstarforRatingCount = 0;
+      starCount = 0;
+      average = 0;
+
+      for (let j = 0; j < ratings.length; j++) {
+        if (items[i]._id === ratings[j].itemid) {
           totalNoRatings++;
         }
 
-        if(items[i]._id === ratings[j].itemid){
-          starCount += parseInt(ratings[j].noofstars,radix);  
+        if (items[i]._id === ratings[j].itemid) {
+          starCount += parseInt(ratings[j].noofstars, radix);
         }
+      }
 
+      totalstarforRatingCount = totalNoRatings * 5;
+      average = parseInt((starCount / totalstarforRatingCount) * 5, radix);
+      console.log(average);
+      if (id === 1) {
+        displayStarRating(i, average);
+      }
+      itemWithRatings = {
+        itemID: items[i]._id,
+        averageRating: average,
+      };
+      itemsWithRatings.push(itemWithRatings);
+      console.log(itemsWithRatings);
     }
-
-    totalstarforRatingCount = totalNoRatings * 5;
-    average = parseInt((starCount / totalstarforRatingCount) * 5,radix);
-    console.log(average);
-    if(id === 1){
-    displayStarRating(i,average);
-    }
-    itemWithRatings = {
-      itemID : items[i]._id,
-      averageRating :average
-    }
-    itemsWithRatings.push(itemWithRatings);
-    console.log(itemsWithRatings);
-
-
   }
 
-}
-
-
-function displayStarRating(id,totalAverage){
-  let txt = "";
-    if(isNaN(totalAverage)){
+  function displayStarRating(id, totalAverage) {
+    let txt = "";
+    if (isNaN(totalAverage)) {
       txt = "No Ratings yet!";
-      document.getElementById(id +'stars').innerHTML = txt;
+      document.getElementById(id + "stars").innerHTML = txt;
       //document.getElementById(id +'stars').style.color = "#FF0000";
-    }else{
-    
-    for(let j = 0; j < totalAverage; j++){
-      txt += '<span class="fa fa-star checked"></span>';
-    }
-    for(let j = 0; j < (5 - totalAverage); j++){
-      txt += '<span class="fa fa-star"></span>';
-    }
-   
+    } else {
+      for (let j = 0; j < totalAverage; j++) {
+        txt += '<span class="fa fa-star checked"></span>';
+      }
+      for (let j = 0; j < 5 - totalAverage; j++) {
+        txt += '<span class="fa fa-star"></span>';
+      }
 
-    document.getElementById(id +'stars').innerHTML = txt +'  '+ totalAverage + '.0 / 5.0';
-   }
-}
-
+      document.getElementById(id + "stars").innerHTML =
+        txt + "  " + totalAverage + ".0 / 5.0";
+    }
+  }
 
   function filterContent(data, userSearch) {
     let result = data.filter(
@@ -158,14 +142,11 @@ function displayStarRating(id,totalAverage){
     document.getElementById("itemsTxt").innerHTML = "";
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         //console.log(res.data);
-        let results = res.data.filter(
-          (post) =>
-          post.SellerID === objectID           
-        );
+        let results = res.data.filter((post) => post.SellerID === objectID);
         filterContent(results, userSearch);
       })
       .catch((err) => {
@@ -174,57 +155,54 @@ function displayStarRating(id,totalAverage){
   }
 
   function deletee(id) {
-
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
-      buttonsStyling: true
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
+      buttonsStyling: true,
+    });
 
-          'Deleted!',
-          'Your item has been deleted.',
-          'success',
-    axios
-    .delete("http://localhost:8070/items/delete/" + id)
-    .then((res) => {
-      //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
-      const afterDeleteItems = items.filter((items) => items._id !== id);
-      setItems(afterDeleteItems);
-    })
-    .catch((err) => {
-      alert(err);
-    })
-
-         
-        )
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your item is safe :)',
-          'error'
-        )
-      }
-    })
-
-
-
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted!",
+            "Your item has been deleted.",
+            "success",
+            axios
+              .delete("https://tech-scope-online.herokuapp.com/items/delete/" + id)
+              .then((res) => {
+                //document.getElementById("txt").innerHTML = "Item Deleted Successfully!";
+                const afterDeleteItems = items.filter(
+                  (items) => items._id !== id
+                );
+                setItems(afterDeleteItems);
+              })
+              .catch((err) => {
+                alert(err);
+              })
+          );
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Your item is safe :)",
+            "error"
+          );
+        }
+      });
   }
 
   function update(id) {
@@ -234,14 +212,11 @@ function displayStarRating(id,totalAverage){
   function filterByCategory(categoryType) {
     document.getElementById("itemsTxt").innerHTML = "";
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
         //setStudents(res.data);
         // console.log(res.data);
-        let item = res.data.filter(
-          (post) =>
-            post.SellerID === objectID            
-        );
+        let item = res.data.filter((post) => post.SellerID === objectID);
         // filterContentForCatrgory(res.data,categoryType);
         //let item = res.data;
         const afterFilterItems = item.filter(
@@ -279,17 +254,14 @@ function displayStarRating(id,totalAverage){
     }
 
     axios
-      .get("http://localhost:8070/items/getItems")
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
       .then((res) => {
-        let item = res.data.filter(
-          (post) =>
-            post.SellerID === objectID            
-        );
+        let item = res.data.filter((post) => post.SellerID === objectID);
 
-       // let item = res.data;
+        // let item = res.data;
         let afterFilterItems = [];
         if (btnid === 5) {
-           afterFilterItems = item.filter(
+          afterFilterItems = item.filter(
             (item) => parseFloat(item.Price) >= price2
           );
           setItems(afterFilterItems);
@@ -310,177 +282,136 @@ function displayStarRating(id,totalAverage){
       });
   }
 
-  function displayStatus(){
-    for(let i = 0; i < items.length; i++){
-
-      if(items[i].ItemAvailabilityStatus === true){
-        document.getElementById(i+'x').checked = true;
+  function displayStatus() {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].ItemAvailabilityStatus === true) {
+        document.getElementById(i + "x").checked = true;
         document.getElementById(i).innerHTML = "Item Available";
         document.getElementById(i).style.color = "#A4DE02";
-
-      }else if(items[i].ItemAvailabilityStatus === false){
-        document.getElementById(i+'x').checked = false;
+      } else if (items[i].ItemAvailabilityStatus === false) {
+        document.getElementById(i + "x").checked = false;
         document.getElementById(i).innerHTML = "Item Out of Stock";
         document.getElementById(i).style.color = "#FF0000";
       }
     }
-      
   }
 
-  function statusChange(id,index){
-
-    console.log(id);
-    console.log(index);
-
-    if(document.getElementById(index+'x').checked === false){
-
+  function statusChange(id, index) {
+    if (document.getElementById(index + "x").checked === false) {
       axios
-      .get("http://localhost:8070/items/get/" + id)
-      .then((res) => {
-        
-        
-          //let data = res.data;
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
+        .then((res) => {
           res.data.ItemAvailabilityStatus = false;
-          console.log(res.data);
+          axios
+            .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
+            .then(() => {
+              document.getElementById(index).innerHTML = "Item Out of stock";
+              document.getElementById(index).style.color = "#FF0000";
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else if (document.getElementById(index + "x").checked === true) {
       axios
-      .put("http://localhost:8070/items/update/" + id, res.data)
-      .then(() => {
-        
-      document.getElementById(index).innerHTML = "Item Out of stock";
-      document.getElementById(index).style.color = "#FF0000";
-  
-  
-      })
-      .catch((err) => {
-        alert(err);
-       
-      });
-  
-  
-        
-      })
-      .catch((err) => {
-        alert(err);
-      });
-    }else if(document.getElementById(index+'x').checked === true){
-
-      axios
-      .get("http://localhost:8070/items/get/" + id)
-      .then((res) => {
-        
-        
-          //let data = res.data;
+        .get("https://tech-scope-online.herokuapp.com/items/get/" + id)
+        .then((res) => {
           res.data.ItemAvailabilityStatus = true;
-          console.log(res.data);
-      axios
-      .put("http://localhost:8070/items/update/" + id, res.data)
-      .then(() => {
-        
-      document.getElementById(index).innerHTML = "Item Available";
-      document.getElementById(index).style.color = "#A4DE02";
-  
-  
-      })
-      .catch((err) => {
-        alert(err);
-       
-      });
-  
-  
-        
-      })
-      .catch((err) => {
-        alert(err);
-      });
-
+          axios
+            .put("https://tech-scope-online.herokuapp.com/items/update/" + id, res.data)
+            .then(() => {
+              document.getElementById(index).innerHTML = "Item Available";
+              document.getElementById(index).style.color = "#A4DE02";
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
-  
   }
 
-  function filterByRatings(btnId){
-
-   
-    
-    let filterdItemsWithRatings = []; 
+  function filterByRatings(btnId) {
+    let filterdItemsWithRatings = [];
     //let itemsWithRatings = calculateStarRatingdd(0);
     console.log(itemsWithRatings);
-      for(let i = 0; i < itemsWithRatings.length; i++){
-        if(itemsWithRatings[i].averageRating === btnId){
-            filterdItemsWithRatings.push(itemsWithRatings[i].itemID);
-        } 
+    for (let i = 0; i < itemsWithRatings.length; i++) {
+      if (itemsWithRatings[i].averageRating === btnId) {
+        filterdItemsWithRatings.push(itemsWithRatings[i].itemID);
       }
+    }
 
     console.log(filterdItemsWithRatings);
 
-
     axios
-    .get("http://localhost:8070/items/getItems")
-    .then((res) => {
-      
-      let result = res.data.filter(
-        (post) =>
-        post.SellerID === objectID             
-      );
-      let item = result;
-      // console.log(item[2]._id);
-      // console.log(filterdItemsWithRatings);
-      let afterFilterItemss = [];
-      for(let i  = 0; i < filterdItemsWithRatings.length; i++ ){
-        for(let j = 0; j < item.length; j++){
-          if(filterdItemsWithRatings[i] === item[j]._id){
-            afterFilterItemss.push(item[j]);
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
+      .then((res) => {
+        let result = res.data.filter((post) => post.SellerID === objectID);
+        let item = result;
+        // console.log(item[2]._id);
+        // console.log(filterdItemsWithRatings);
+        let afterFilterItemss = [];
+        for (let i = 0; i < filterdItemsWithRatings.length; i++) {
+          for (let j = 0; j < item.length; j++) {
+            if (filterdItemsWithRatings[i] === item[j]._id) {
+              afterFilterItemss.push(item[j]);
+            }
           }
         }
-      
-      }
-     
-      setItems(afterFilterItemss);
-      console.log(afterFilterItemss);
 
-      if (afterFilterItemss.length === 0) {
-        document.getElementById("itemsTxt").innerHTML = "No Result Found!";
-      }
-    })
-    .catch((err) => {
-      alert(err);
-    });
-  }
+        setItems(afterFilterItemss);
+        console.log(afterFilterItemss);
 
-  function clearFilter(){
-    
-    axios
-      .get("http://localhost:8070/items/getItems")
-      .then((res) => {
-        let result = res.data.filter(
-          (post) =>
-          post.SellerID === objectID             
-        );
-       setItems(result);
-       if(res.data.length === 0){
-        document.getElementById("itemsTxt").innerHTML = "No Result Found!";
-      }else{
-        document.getElementById("itemsTxt").innerHTML = "";
-      }
+        if (afterFilterItemss.length === 0) {
+          document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+        }
       })
       .catch((err) => {
         alert(err);
       });
-
-     
   }
 
+  function clearFilter() {
+    axios
+      .get("https://tech-scope-online.herokuapp.com/items/getItems")
+      .then((res) => {
+        let result = res.data.filter((post) => post.SellerID === objectID);
+        setItems(result);
+        if (res.data.length === 0) {
+          document.getElementById("itemsTxt").innerHTML = "No Result Found!";
+        } else {
+          document.getElementById("itemsTxt").innerHTML = "";
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 
-
-function showwMore(id){
-  //alert("a");
-   props.history.push("/Seller/ItemReviews/"+ id);
-}
-    return (
+  function showwMore(id) {
+    //alert("a");
+    props.history.push("/Seller/ItemReviews/" + id);
+  }
+  return (
     <div>
-      <div >
-       <br/>
-        <div class = "float-right"><button type="button" class="btn btn-danger" onClick={() => clearFilter()}>Clear Filter</button></div>
-        <br/><br/>
+      <div>
+        <br />
+        <div class="float-right">
+          <button
+            type="button"
+            class="btn btn-danger"
+            onClick={() => clearFilter()}
+          >
+            Clear Filter
+          </button>
+        </div>
+        <br />
+        <br />
         <div class="input-group mb-3">
           <input
             type="text"
@@ -490,11 +421,10 @@ function showwMore(id){
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
           />
-          <div class="input-group-append">
-          </div><br/>
-
+          <div class="input-group-append"></div>
+          <br />
         </div>
-        
+
         <br />
 
         <div class="row">
@@ -668,7 +598,7 @@ function showwMore(id){
         </div>
 
         <br />
-        
+
         <h1
           id="itemsTxt"
           style={{ textAlign: "center", color: "#FF0000" }}
@@ -689,12 +619,14 @@ function showwMore(id){
                       <h5 class="card-title">
                         {items.Brand} {items.Item_name}
                       </h5>
-                      <div id = {index +'stars'} class="card-text">
+                      <div id={index + "stars"} class="card-text">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span><span> </span> <span id = {index +'review'}>4.0 / 5.0</span>
+                        <span class="fa fa-star"></span>
+                        <span> </span>{" "}
+                        <span id={index + "review"}>4.0 / 5.0</span>
                       </div>
                       <p class="card-text">LKR {items.Price}</p>
                       <button
@@ -710,23 +642,32 @@ function showwMore(id){
                       >
                         Delete
                       </button>
-                      <span> </span> <br/><br/>
-                      <button class="btn btn-success" onClick = {() => showwMore(items._id)}>Show more</button>
+                      <span> </span> <br />
+                      <br />
+                      <button
+                        class="btn btn-success"
+                        onClick={() => showwMore(items._id)}
+                      >
+                        Show more
+                      </button>
                     </center>
                     <br />
                     <center>
                       <h6>Item Availability Status</h6>
                       <label class="switch">
-                        <input type="checkbox" id ={index + "x"}  onChange = {() => statusChange(items._id,index)}/>
+                        <input
+                          type="checkbox"
+                          id={index + "x"}
+                          onChange={() => statusChange(items._id, index)}
+                        />
                         <span class="slider round"></span>
                       </label>
-                      <h6 id ={index}></h6>
+                      <h6 id={index}></h6>
                     </center>
                   </div>
                 </div>
-                <br/>
+                <br />
               </div>
-              
             );
           })}
         </div>

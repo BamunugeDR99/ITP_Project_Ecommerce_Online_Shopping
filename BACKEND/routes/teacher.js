@@ -6,7 +6,7 @@ let Teacher = require("../modules/Teacher");
 
 //Insert
 router.route("/add").post((req, res) => {
-  // http://localhost:8070/teacher/
+  // https://tech-scope-online.herokuapp.com/teacher/
 
   const teacherName = req.body.teacherName;
   const Occupation = req.body.Occupation;

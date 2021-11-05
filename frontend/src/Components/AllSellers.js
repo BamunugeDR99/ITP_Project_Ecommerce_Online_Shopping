@@ -11,7 +11,7 @@ export default function AllRequests(props) {
   useEffect(() => {
     function getsellers() {
       axios
-        .get("http://localhost:8070/seller/get")
+        .get("https://tech-scope-online.herokuapp.com/seller/get")
         .then((res) => {
           setsellers(res.data);
           console.log(res.data);
@@ -37,7 +37,7 @@ function handleSearch(e){
   console.log(sellerSearch);
 
   axios
-      .get("http://localhost:8070/seller/get")
+      .get("https://tech-scope-online.herokuapp.com/seller/get")
       .then((res) =>{
 
         filtersellers(res.data, sellerSearch);
@@ -78,7 +78,7 @@ function filtersellers(data, sellerSearch){
 }
 
   return (
-    <div className="container">
+    <div className="container"><br/><br/>
       <h1>Seller Requests</h1><br/>
 
       <div class="input-group" id = "SellSerch"  style={{width: "1200px"}}>

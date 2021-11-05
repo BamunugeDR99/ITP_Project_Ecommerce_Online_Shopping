@@ -13,7 +13,7 @@ export default function SelectPaymentMethod(props){
     useEffect(() =>{
         const objectID = localStorage.getItem("CustomerID");
         function getpaymentdetails(){
-            axios.get("http://localhost:8070/paymentdetails/get").then((res) =>
+            axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/get").then((res) =>
             {
                
 
