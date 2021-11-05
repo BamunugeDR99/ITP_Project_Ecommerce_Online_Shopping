@@ -99,7 +99,7 @@ export default function ItemView(props) {
               const words = str.split(',')
              console.log(words)
             //  console.log(items.Images)
-
+//revirw
 
             })
             .catch((err) => {
