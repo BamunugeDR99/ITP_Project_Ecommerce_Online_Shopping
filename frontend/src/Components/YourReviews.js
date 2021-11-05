@@ -184,7 +184,6 @@ export default function YourReviews(props) {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload();
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           }
         });
@@ -270,7 +269,7 @@ export default function YourReviews(props) {
       <div
         className="container"
         style={{
-          padding: "20px 15px 10px 50px",
+          padding: "20px 0px 10px 0px",
           width: "70%",
           backgroundColor: "#F7F7F7 ",
         }}
@@ -304,7 +303,7 @@ export default function YourReviews(props) {
                 <b>Your Reviews</b>
               </center>
             </h1>
-            <hr style={{ width: "90%" }} />
+            <hr style={{ width: "97%" }} />
             <br />
             <h2
               id="errortext"
@@ -318,7 +317,7 @@ export default function YourReviews(props) {
               <div
                 className="row"
                 style={{
-                  width: "95%",
+                  width: "100%",
                   padding: "20px 0px 20px 0px",
                   margin: "0px 0px 30px 2px",
                   backgroundColor: "white",
@@ -329,32 +328,26 @@ export default function YourReviews(props) {
               >
                 <div className="row">
                   <div className="col-4">
-                    <img
-                      alt={p2}
-                      style={{ width: "100%" }}
-                      src={"/Images/" + re.itemImage}
-                    />
+                    <img alt={p2} style={{ width: "80%",
+                     padding:"10px 0px 0px 20px" 
+                     }} src={"/Images/" + re.itemImage}/>
                   </div>
 
                   <div className="col">
                     <div className="col" style={{ fontSize: "20px" }}>
-                      <span>
+                      <span style={{ fontSize: "20px" }}>
                         <b>{re.itemName}</b>&emsp; - &emsp;{re.itemModel}
                       </span>
                       <br />
-                      <span style={{ fontSize: "18px" }}>
+                      {/* <span style={{ fontSize: "18px" }}>
                         {re.itemDescription}
-                      </span>
+                      </span> */}
 
                       <div id={index + "stars"} class="card-text">
                         <span class="fa fa-star checked"></span>
-
                         <span class="fa fa-star checked"></span>
-
                         <span class="fa fa-star checked"></span>
-
                         <span class="fa fa-star checked"></span>
-
                         <span class="fa fa-star"></span>
                         <span> </span>
                       </div>
@@ -369,7 +362,7 @@ export default function YourReviews(props) {
                       }}
                     >
                       <div className="col">
-                        <p>{re.Review}</p>
+                        <p style={{ fontSize: "16px" }}>{re.Review}</p>
                       </div>
                     </div>
 
@@ -377,7 +370,7 @@ export default function YourReviews(props) {
                       className="row"
                       style={{
                         width: "100%",
-                        padding: "30px 0px 0px 10px",
+                        padding: "30px 0px 10px 10px",
                         backgroundColor: "white",
                         fontSize: "24px",
                       }}

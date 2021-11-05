@@ -145,7 +145,7 @@ function deletee(id){
 				 <div class="card-body">
 				   <center>
 				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
-				   style={{ width: "65%", alignItems: "center" , borderRadius:'25px'}}/>
+				   style={{ width: "65%", alignItems: "center" , borderRadius:400/2}}/>
 				   <br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
 				   
@@ -155,7 +155,7 @@ function deletee(id){
 					 {reviewss.Contactsel}
 				   </p><br/>
 				  
-					<button onClick = {()=> deletee(reviewss.contactsel_id)} className="btn btn-danger" type="button">Remove</button>
+					<button onClick = {()=> deletee(reviewss.contactsel_id)} style={{position:'absolute', bottom:'0',alignItems:'center', margin:'0px 0px 20px 0px'}} className="btn btn-danger" type="button">Remove</button>
 					</center>
 				 </div>
 			   </div>

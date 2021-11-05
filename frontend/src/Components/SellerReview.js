@@ -330,13 +330,13 @@ function report(id) {
                        src={"/images/" + k[0]}/>
                        <div>
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/images/"+ k[0]}
+                          {"/images/"+ k[1]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
                           {"/images/"+ k[0]}
                           />
                           <img style={{width:'30%',  padding:'10px'}} src=
-                          {"/images/"+ k[0]}
+                          {"/images/"+ k[2]}
                           />
                       </div>
                     </div>

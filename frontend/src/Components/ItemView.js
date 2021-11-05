@@ -464,7 +464,7 @@ const str = 'The quick brown fox jumps over the lazy dog.';
 
   
   return (
-    <div style={{ padding: "20px 15px 10px 50px" }}>
+    <div style={{ padding: "20px 15px 10px 20px" }}>
       <div>
         <div className="row">
           <div className="col-3">
@@ -491,14 +491,14 @@ const str = 'The quick brown fox jumps over the lazy dog.';
             </div>
           </div>
 
-          <div className="col" style={{padding:'10px'}}>
+          <div className="col" style={{padding:'10px 50px 10px 10px'}}>
             <span style={{ fontSize: "22px" }}>
               <b>{items.Item_name} </b>
             </span>
             <br />
-            <span style={{ fontSize: "19px" }}>{items.Description}</span>
+            <span style={{ fontSize: "16px", textAlign: 'justify' ,padding:'30px 10px 10px 10px' }}>{items.Description}</span>
             <br />
-            <span style={{ fontSize: "16px" ,padding:'10px 10px 10px 10px'}}>{items.Specification}</span>
+            <span style={{ fontSize: "14px" ,padding:'10px 30px 10px 10px'}}>{items.Specification}</span>
             <br />
             <br />
             {/* <span style={{fontSize:'18px'}}>Rs. {items.Price}.00/=</span><br/> */}
@@ -531,7 +531,7 @@ const str = 'The quick brown fox jumps over the lazy dog.';
               </button>
             </div>
           </div>
-          <div className="col">
+          <div className="col-4">
             <span class="title2">For Inquiries and Complaints</span>
             <br />
             <br />
@@ -624,6 +624,7 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                 {/* <span>{items.Specification} </span> */}
                 {/* <br /> */}
                 <span>{ipsumText.toString(items.Warrenty)}</span>
+                
               </div>
               <div className="col-2">
                 <span> Quantity</span>

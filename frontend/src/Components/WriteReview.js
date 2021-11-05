@@ -22,6 +22,7 @@ export default function WriteReview(props) {
   // const [noofstars,setNoofstars] = useState("");
 
   const [items, setItems] = useState([]);
+  let [k,setK]=useState([]);
 
   let customerid = ""; ///local Storage
   let itemid = ""; // url
@@ -38,6 +39,8 @@ export default function WriteReview(props) {
         .then((res) => {
           setItems(res.data);
           console.log(res.data);
+
+          setK(res.data.Images)
           // setItems(items);
         })
         .catch((err) => {
@@ -156,7 +159,7 @@ export default function WriteReview(props) {
                   <img
                     alt={go}
                     style={{ width: "70%" }}
-                    src={"/Images/" + items.Images}
+                    src={"/Images/" + k[0]}
                   />
                   <div>
                     {/* <img style={{width:'30%',  padding:'10px'}} src=
