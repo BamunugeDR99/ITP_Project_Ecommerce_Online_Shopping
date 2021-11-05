@@ -136,7 +136,7 @@ export default function SellerPackageOrders(props) {
 
 
     function setFinalOrder(AllOrders, SellerIDs, AllSellers) {
-
+        
         let j = 0;
 
         for (let i = 0; i < SellerIDs.length; i++) {

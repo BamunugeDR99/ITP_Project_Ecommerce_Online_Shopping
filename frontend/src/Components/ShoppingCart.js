@@ -414,25 +414,16 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 
 //Remove Items From the Cart
-
   function removeItems(id, index, price){
 
-    console.log(index);
-
-    console.log(`Price : ${price}`);
-     console.log(`Item ID : ${id}`);
     let Citems = [];
 
     const customerID = localStorage.getItem("CustomerID");
     console.log(customerID);
       axios.get("http://localhost:8070/ShoppingCart/getOneCart/" + customerID).then((res) => {
 
-        console.log(res.data);
         Citems = res.data.ItemIDs;
-        console.log(`Item IDs : ${Citems}`);
-
         let CartID = res.data._id;
-
         let PackageIDs = res.data.PackageIDs;
 
 
@@ -440,17 +431,10 @@ GrandTotal = allItemsTotal + allPackagesTotal;
           (pack) => pack !== id
       );
 
-
       
       let ItemIDs = remainingItems;
       
       console.log(`Cart ID : ${CartID}` );
-      // console.log("Item IDs " );
-      // console.log(ItemIDs );
-      // console.log("Package IDs " );
-      // console.log(PackageIDs);
-      // console.log("Customer ID " );
-      // console.log(customerID);
 
       const updatedCart = {
 
@@ -460,7 +444,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
       }
 
-      console.log(updatedCart);
       //Update the Items Array
       axios.put("http://localhost:8070/ShoppingCart/updateSItem/" + CartID, updatedCart ).then((res)=>{
 
@@ -472,16 +455,11 @@ GrandTotal = allItemsTotal + allPackagesTotal;
       })
 
         //Loop to set items
-
-
-
         axios.get("http://localhost:8070/items/getItems").then((res) => {
 
-          console.log(res.data);
           Allitems = res.data;
 
           GrandTotal =  document.getElementById("GrandTotal").value  - price;
-          console.log(GrandTotal);
          
 
           getItemss(Allitems, remainingItems);
@@ -492,21 +470,11 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
         })
 
-  
-
-       
-
-
-
   }).catch((err) =>{
 
     console.log(err);
 
-
   })
-
-
-
   }
 
 
@@ -612,7 +580,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
   function checkOut(){
 
     localStorage.setItem("totalPrice",document.getElementById("GrandTotal2").value);
-
     const customerID = localStorage.getItem("CustomerID");
 
     let ItemIDArr = [];
@@ -656,9 +623,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
       for(let i =0 ; i < ItemIDArr.length ; i++ ){
 
-        // console.log(document.getElementById(i +'ItemID').value);
-        // console.log(document.getElementById(i +'quantity').value);
-
         ItemDetails = {
 
           ItemID:document.getElementById(i +'ItemID').value,
@@ -668,17 +632,9 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
         Items.push(ItemDetails);
 
-        //console.log(ItemDetails);
-    
-        
       }
 
       for(let i =0 ; i < PackageIDArr.length; i++ ){
-
-
-        // console.log(document.getElementById(i +'PackageID').value);
-        // console.log(document.getElementById(i +'Packagequantity').value);
-
 
         PackageDetails = {
 
@@ -690,9 +646,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
         Packages.push(PackageDetails)
 
-        //console.log(PackageDetails);
-    
-        
       }
 
       console.log(Items);
@@ -707,7 +660,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
        let ItemIDs = [];
        let PackageIDs = [];
      
-
        const updatedCart = {
 
            customerID,
@@ -738,12 +690,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
          console.log(err);
        })
- 
-
-
-
-
-
 
         props.history.push("/Customer/SelectPayment");
 
@@ -752,16 +698,6 @@ GrandTotal = allItemsTotal + allPackagesTotal;
 
 
     })
-
-
-
-
-
-
-    //props.history.push("/Customer/SelectPayment");
-
-
-
 
   }
 
