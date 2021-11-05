@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../Css/AddDiscount.css';
 
-import iphone from "./../images/Ip.png"
+
 import swal from "sweetalert2";
 
 
@@ -13,7 +13,7 @@ function UpdateDiscount(props) {
     let [DiscountPrecentage, setDiscount] = useState("");
     let [FinalPrice, setFinalPrice] = useState("");
     
-    let image = "";
+    let [image, setImageE] = useState("");
     const [disalert, setAlert] = useState("");
 
 
@@ -28,7 +28,7 @@ function UpdateDiscount(props) {
                 console.log(res.data);
                 setItem(res.data);
                 console.log(res.data.Images);
-                image = res.data.Images[0];
+                setImageE(res.data.Images[0]);
                 console.log(image);
                 setFinalPrice(res.data.FinalPrice);
                 setDiscount(res.data.DiscountPrecentage);
@@ -229,7 +229,7 @@ function UpdateDiscount(props) {
                     <div className="row">
                         <div className="col-md-3 border-right">
                             {/* <p>{item.Images[0]}</p> */}
-                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src= {iphone} width="250px" height="250px" alt="gg"/><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50">ItemId : {item._id}</span><span> </span></div>
+                            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="img-rounded mt-5" src={"/Images/" + image} width="250px" height="250px" alt="gg"/><span className="font-weight-bold">{item.Item_name}</span><span className="text-black-50"> </span></div>
                         </div>
                         <div className="col-md-5 border-right">
                             <div className="p-3 py-5">
