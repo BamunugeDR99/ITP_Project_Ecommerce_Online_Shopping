@@ -59,6 +59,7 @@ const OrgSellerSchema = new Schema (
             required: true,
             default: new Date()
         }
+        
     }
 )
 
