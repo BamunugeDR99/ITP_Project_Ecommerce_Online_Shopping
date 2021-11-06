@@ -252,6 +252,10 @@ function SignUp(props) {
     	setPassword(" ");
     	setConfirmPassword(" ");
 
+      //*************************************************Create Cart & WishList
+
+
+
       Swal.fire({
 
         icon: 'success',
@@ -413,7 +417,7 @@ function SignUp(props) {
               {/* <samall id = "untxtMsg" style={{color:"red"}}>{usernameErr}</samall>  */}
             </div>
 
-            <div className="form-group">
+            <div className="form-group ">
               <input
                 type={passwordShown ? "text" : "password"}
                 className="form-control"

@@ -18,6 +18,12 @@ export default function ShoppingCart(props) {
   let [allPackagesTotal, setAllPackagesTotal] = useState(0);
   let [GrandTotal, setGrandTotal] = useState(0);
 
+
+  //Image Variables
+  let [image, setImageE] = useState("");
+
+  let [Pimage, setPImageE] = useState("");
+
   let ItemID = "";
   let Name = "";
   let Brand = "";
@@ -139,7 +145,9 @@ export default function ShoppingCart(props) {
       }
     }
 
+    //console.log(AllItemsArr[0].itemImage);
     setgItems(AllItemsArr);
+    // setImageE(AllItemsArr[0].itemImage);
   }
 
   function getPackagess(allPackages, packages) {
@@ -171,6 +179,7 @@ export default function ShoppingCart(props) {
     }
 
     setgPackages(AllPackagesArr);
+    // setPImageE(AllPackagesArr[0].packageImage);
   }
 
   // console.log(gItems);
@@ -542,20 +551,20 @@ export default function ShoppingCart(props) {
                   return (
                     <div className="shadow p-3 mb-5 bg-white rounded">
                       <div class="row mb-4 border-primary">
-                        {/* <div class="col-md-5 col-lg-3 col-xl-3"> */}
-                        {/* <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                        <div class="col-md-5 col-lg-3 col-xl-3">
+                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                       <img class="img-fluid w-100"
-                        src={iphone} alt="Sample" />
+                        src={"/Images/" + item.itemImage} alt="Sample" />
                       <a href="#!">
                         <div class="mask">
                           <img class="img-fluid w-100"
-                          src={iphone} alt="Sample"
+                         src={"/Images/" + item.itemImage}  alt="Sample"
                             />
                           <div class="mask rgba-black-slight"></div>
                         </div>
                       </a>
-                    </div> */}
-                        {/* </div> */}
+                    </div>
+                        </div>
                         <div class="col-md-7 col-lg-9 col-xl-9">
                           <div>
                             <div class="d-flex justify-content-between">
@@ -668,20 +677,20 @@ export default function ShoppingCart(props) {
 
                 {gPackages.map((item, index) => {
                   return (
-                    <div>
+                    <div class="shadow p-3 mb-5 bg-white rounded">
                       <div class="row mb-4">
                         <div class="col-md-5 col-lg-3 col-xl-3">
                           <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                             <img
                               class="img-fluid w-100"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                              src={"/Images/" + item.packageImage}
                               alt="Sample"
                             />
                             <a href="#!">
                               <div class="mask">
                                 <img
                                   class="img-fluid w-100"
-                                  src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+                                  src={"/Images/" + item.packageImage}
                                   alt="gg"
                                 />
                                 <div class="mask rgba-black-slight"></div>
