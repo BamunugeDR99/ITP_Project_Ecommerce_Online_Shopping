@@ -158,12 +158,12 @@ import RevReport from "./Components/RevReport";
 import PackageMonthlySales from "./Components/PackageMonthlySales";
 import TestAddACard from "./Components/TestAddACard";
 import GoogleSignInTest from "./Components/GoogleSignInTest";
+import DateTest from "./Components/DateTest";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
     <Router>
       <div>
-        {/* <Route path = "/" exact component = {TestReport}/> */}
 
         <Route path="/" exact component={InitialPage} />
         <Route path="/CustomerLogin" exact component={CustomerLogin} />

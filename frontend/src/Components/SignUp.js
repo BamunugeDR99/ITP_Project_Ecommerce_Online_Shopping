@@ -279,7 +279,7 @@ function SignUp(props) {
       })
     	}
   }
-
+ 
   return (
     <div className="CustomerSignup">
       <div className="wrapper">
@@ -367,7 +367,8 @@ function SignUp(props) {
                 className="form-control"
                 id="birthday"
                 placeholder="Date of Birth"
-
+                max = {new Date().toISOString().split("T")[0]}
+             
 
                 
               />
