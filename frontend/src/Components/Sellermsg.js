@@ -124,9 +124,9 @@ function deletee(id){
  return(
 
 
- <div style={{ padding: "20px 15px 10px 50px" }}>
+ <div style={{ padding: "20px 15px 10px 0px" }}>
  <div className="container">
-   <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
+   <div style={{ width: "100%", alignItems: "center", borderRadius: "10px" }} >
 	 <br />
 	 <h1 style={{ textAlign: "center", color: "black" }}>
 	   {" "}
@@ -139,14 +139,14 @@ function deletee(id){
 		 return (
 		   
 		   
-			 <div class="col-3" style={{ paddingBottom:'30px'}}>
+			 <div class="col-3 " style={{ paddingBottom:'30px'}}>
 				
-			   <div class="card" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "320px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
+			   <div class="card Regular shadow" style={{width: "90%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "320px",boxShadow:'2px 2px 2px 2px #dcdcdc'}}>
 				 <div class="card-body">
 				   <center>
 				   <img alt="image" src={"/Images/"+reviewss.customerImage} 
-				   style={{ width: "65%", alignItems: "center" , borderRadius:'25px'}}/>
-				   <br/>
+				   style={{alignItems: "center" , width: 100, height: 100, borderRadius: 400/ 2}}/>
+				   <br/><br/>
 				   <span style={{fontSize:'20px', color: "#191919", textAlign: "center" }}>{reviewss.customerName}</span>
 				   
 				   
@@ -155,7 +155,7 @@ function deletee(id){
 					 {reviewss.Contactsel}
 				   </p><br/>
 				  
-					<button onClick = {()=> deletee(reviewss.contactsel_id)} className="btn btn-danger" type="button">Remove</button>
+					<button onClick = {()=> deletee(reviewss.contactsel_id)} style={{position:'absolute', bottom:'0',alignItems:'center', margin:'0px 0px 18px 40px', padding:'10px 13px'}} className="btn btn-danger" type="button"><i class="far fa-trash-alt" style={{fontSize:'15px'}}></i></button>
 					</center>
 				 </div>
 			   </div>

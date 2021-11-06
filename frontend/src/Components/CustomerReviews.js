@@ -201,7 +201,7 @@ export default function CustomerReviews(props) {
                 return (
                  
                     <div class="col-3" style={{ paddingBottom:'30px'}}>
-                      <div class="Regular shadow" style={{width: "70%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white', padding:'10px 10px 10px 10px'}}>
+                      <div class="Regular shadow" style={{width: "80%",margin: "0px",borderRadius: "15px",marginTop: "30px",height: "290px",boxShadow:'2px 2px 2px 2px #dcdcdc', backgroundColor:'white', padding:'10px 10px 10px 10px'}}>
                         <div class="card-body">
                           <center>
                           <img src={"/Images/"+reviewss.customerImage }
