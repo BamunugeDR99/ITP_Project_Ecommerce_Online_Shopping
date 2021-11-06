@@ -58,6 +58,11 @@ const OrgSellerSchema = new Schema (
             type: Date,
             required: true,
             default: new Date()
+        },
+        requestDelete : {
+            type: Boolean,
+            required: false,
+            default: false
         }
     }
 )

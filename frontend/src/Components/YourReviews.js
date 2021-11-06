@@ -224,7 +224,7 @@ export default function YourReviews(props) {
             console.log(err);
           });
         Swal.fire("Good job!", "Your update saved!", "success");
-        window.location.reload();
+        
       }
     });
   }

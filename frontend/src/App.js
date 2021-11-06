@@ -158,6 +158,7 @@ import RevReport from "./Components/RevReport";
 import PackageMonthlySales from "./Components/PackageMonthlySales";
 import TestAddACard from "./Components/TestAddACard";
 import GoogleSignInTest from "./Components/GoogleSignInTest";
+import RequestDelete from "./Components/RequestDelete";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -409,6 +410,7 @@ function App() {
           exact
           component={ItemsForSpecificSeller}
         />
+        <Route path="/Admin/RequestDelete" exact component={RequestDelete} />
 
 
 

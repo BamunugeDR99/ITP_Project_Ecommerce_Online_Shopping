@@ -352,15 +352,15 @@ function report(id) {
                 	
             </div>
             <br/>
-            <div className="row" style={{padding:'0px 20px 0px 10px'}}>
-                <div className="row" style={{lineHeight:'25px', borderRadius:'15px',padding:'10px 0px 20px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
+            <div className="row" style={{padding:'0px 10px 0px 10px'}}>
+                <div className="row" style={{lineHeight:'25px',lineHeight: "32px", borderRadius:'15px',padding:'10px 0px 30px 10px', width:'90%',  boxShadow: '0 0 5pt 0.5pt #dcdcdc'}}>
                             <span style={{alignItems:"center", fontSize:'20px', padding:'10px 10px 20px 10px'}}><b>Item Description</b></span>   
                                
                                 <div className="col-2">
                                     
                                     <span>Brand</span><br/>
                                     <span>Model</span><br/>
-                                    <span>Availability</span><br/>
+                                    <span>Status</span><br/>
                                     <span>Warrenty</span>
                                 </div> 
                                 <div className="col-1">                                  
@@ -372,14 +372,29 @@ function report(id) {
                                 <div className="col">    
                                     <span>{items.Brand} </span><br/>
                                     <span>{items.Model} </span><br/>
-                                    <span>{ipsumText.toString(items.ItemAvailabilityStatus) }</span><br/>
-                                    <span>{ipsumText.toString(items.Warrenty) } </span>
+                                    <span>
+                                    {(() => {
+                                      if (items.ItemAvailabilityStatus == true){
+                                        return (
+                                            <span>Available</span>
+                                        )}
+                                      return <span>Not Available</span>
+                                      })()}
+                                    </span><br/>
+                                    <span>
+                                    {(() => {
+                                      if (items.Warrenty == true){
+                                        return (
+                                            <span>Available</span>
+                                        )}
+                                      return <span>Not Available</span>
+                                      })()}
+                                      </span>
                                 </div>
                                 <div className="col-2">                                 
                                     <span> Quantity</span><br/>
-                                    <span> WHT </span><br/>
                                     <span> Category</span><br/>
-                                    <span> Stock unit</span><br/>
+                                    <span> Discount</span><br/>
                                     <span> Other_colors</span><br/>
                                 </div> 
                                 <div className="col-1">     
@@ -387,14 +402,29 @@ function report(id) {
                                     <span> : </span><br/>
                                     <span> : </span><br/>
                                     <span> : </span><br/>
-                                    <span> : </span><br/>
                                 </div> 
                                 <div className="col-3">    
                                     <span>{items.Quantity}</span><br/>
-                                    <span>{items.WHT}</span><br/>
                                     <span>{items.Category}</span><br/>
-                                    <span>{ipsumText.toString(items.Unit) }</span><br/>
-                                    <span>{ipsumText.toString(items.Colors) }</span><br/>
+                                    <span>
+                                    {(() => {
+                                      if (items.DiscountStatus == true){
+                                        return (
+                                            <span>Available</span>
+                                        )}
+                                      return <span>Not Available</span>
+                                      })()}
+                                      </span><br/>
+
+                                    <span>
+                                    {(() => {
+                                      if (items.Other_colors == true){
+                                        return (
+                                            <span>Available</span>
+                                        )}
+                                      return <span>Not Available</span>
+                                      })()}
+                                      </span><br/>
                                 </div>
                                 
                             </div> 

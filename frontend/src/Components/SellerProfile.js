@@ -7,7 +7,10 @@ import "../Css/sellerprofile.css";
 export default function SellerProfile(props) {
 
   const [orgSeller,setorgSellers] = useState([]);
+  const [requestDelete, setRequestDelete] = useState("");
+
   let objectID = "";
+  let orgSellerid = "";
   useEffect(() =>{
       function getorgSellers(){
         objectID = localStorage.getItem("SellerID");
@@ -31,12 +34,28 @@ export default function SellerProfile(props) {
       props.history.push("/Seller/updateProfile/" + id);
   };
 
-  function deleteSeller() {
-    Swal.fire(
-      'Success!',
-      'Request Sent!',
-      'success'
-    )
+  function deleteSeller(id) {
+    console.log(id);
+    
+    let neworgSeller = {
+      requestDelete: true,    
+    };
+    console.log(neworgSeller)
+    axios
+    .put("http://localhost:8070/orgseller/reqDel/" + id, neworgSeller)
+    .then(() => {
+      // setRequestDelete(" ");
+      Swal.fire(
+        'Success!',
+        'Request Sent!',
+        'success'
+      )
+      // console.log()
+      // props.history.push("/Seller/Home");
+    })
+    .catch((err) => {
+      alert(err);
+    });
   }
   return (
 
@@ -86,7 +105,7 @@ export default function SellerProfile(props) {
              
                 
                     <div class="mt-3">
-                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller()}>
+                      <button class="btn btn-danger btn-block button-shape" onClick={() => deleteSeller(orgSeller._id)}>
                         REQUEST DELETE
                       </button>
                     </div>
