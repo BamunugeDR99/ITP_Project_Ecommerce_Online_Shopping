@@ -381,15 +381,15 @@ export default function AllDiscountedItems(props) {
             {items.map((item, index) => {
               return (
                 <div className="col-sm-4">
-                  <div className="card" style={{ width: "18rem" }}>
+                  <div className="card" style={{ width: "20rem" }}>
                     <div className="container-fluid" style={{ padding: "0px" }}>
 
                       <img
                         className="img-responsive center-block header1"
                         src={"/Images/" + item.Images[0]}
-                        width="286px"
-                        height="250px"
-                        alt = "gg"
+                        width="300px"
+                        height="290px"
+                        alt = "Discounted Item Img"
                       />
                       <div className="innertag" id="disPercentage">
                         <label className="innertag" id="disPercentage">
@@ -439,13 +439,15 @@ export default function AllDiscountedItems(props) {
                       </button>
                       <span> </span> 
                       <br />
+                      {/* Center a button inside the div tag */}
+                      <div className="text-center">
                       <button
-                        class="btn btn-success" style={{marginTop : '10px'}}
+                        class="btn btn-success " style={{marginTop : '10px'}}
                         onClick={() => RedirectedReviews(item._id)}
                       >
                         Show more
                       </button>
-
+                      </div>
 
 
 
