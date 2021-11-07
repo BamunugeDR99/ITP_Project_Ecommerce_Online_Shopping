@@ -489,7 +489,7 @@ export default function UpdateProfile(props){
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="DOB" id="CusDOB"><b>Date of Birth</b></label>
-									<input type="date" class="form-control"  id="birthday" placeholder = "Date of Birth" defaultValue = {birth}/>
+									<input type="date" class="form-control"  id="birthday" placeholder = "Date of Birth" defaultValue = {birth} max = {new Date().toISOString().split("T")[0]}/>
 								</div>
 							</div>
 
