@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+
 
 import "../Css/ConfirmPayment.css"; //css linked
 
@@ -10,6 +11,7 @@ export default function ConfirmPayment(props){
     let totalPrice = localStorage.getItem("totalPrice");
     useEffect(() => {
         function getpaymentdetails() {
+            
 
             const cardid = props.match.params.id;
             axios.get("https://tech-scope-online.herokuapp.com/paymentdetails/getItem/" + cardid).then((res) => {
@@ -17,7 +19,6 @@ export default function ConfirmPayment(props){
                 console.log(res.data);
               
                        
-
 
             }).catch((err) => {
                 alert(err);
@@ -332,6 +333,7 @@ export default function ConfirmPayment(props){
                             <h2 class=""><span class="text-md font-weight-bold mr-2">LKR </span>
                             <span class="text-danger">{totalPrice}.00</span></h2>
                         </div> <button type="button" class="btn btn-red text-center mt-4" onClick={() => pay()}>PAY</button>
+                        <br/>
                         {/* <button type="button" class="btn btn-red text-center mt-4" onClick={() => Test()}>Test</button> */}
                     </div>
                 </div>
