@@ -41,21 +41,34 @@ export default function SellerProfile(props) {
       requestDelete: true,    
     };
     console.log(neworgSeller)
-    axios
-    .put("http://localhost:8070/orgseller/reqDel/" + id, neworgSeller)
-    .then(() => {
-      // setRequestDelete(" ");
-      Swal.fire(
-        'Success!',
-        'Request Sent!',
-        'success'
-      )
-      // console.log()
-      // props.history.push("/Seller/Home");
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, send a request!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .put("http://localhost:8070/orgseller/reqDel/" + id, neworgSeller)
+        .then(() => {
+          Swal.fire(
+            'Deleted!',
+            'Your request has been sent.',
+            'success'
+          )
+       
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      
+      }
     })
-    .catch((err) => {
-      alert(err);
-    });
+  
   }
   return (
 

@@ -131,11 +131,21 @@ export default function RegSellers(props) {
       <br />
       <button
         type="button"
-        style={{ float: "right" }}
+        style={{ float: "right" , marginLeft : "10px"}}
         class="btn btn-warning"
         onClick={() => requests()}
       >
+        
         Seller requests
+      </button>
+      <button
+        type="button"
+        style={{ float: "right" }}
+        class="btn btn-danger"
+        onClick={() => {props.history.push("/Admin/DeleteRequest")}}
+      >
+        
+        Delete requests
       </button>
       <h1>Registered Sellers</h1>
       <br />

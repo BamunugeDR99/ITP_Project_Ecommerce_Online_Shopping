@@ -159,6 +159,7 @@ import PackageMonthlySales from "./Components/PackageMonthlySales";
 import TestAddACard from "./Components/TestAddACard";
 import GoogleSignInTest from "./Components/GoogleSignInTest";
 import DateTest from "./Components/DateTest";
+import RequestDelete from "./Components/RequestDelete";
 function App() {
   // ReactSession.setStoreType("localStorage");
   return (
@@ -372,6 +373,7 @@ function App() {
         <Route path="/Admin/Sellers" exact component={RegSellers} />
         <Route path="/Admin/AllSellersRequest" exact component={AllSellers} />
         <Route path="/Admin/Customers" exact component={CustomerList} />
+        <Route path="/Admin/DeleteRequest" exact component={RequestDelete} />
 
         <Route
           path="/Admin/Customers/Details/:id"

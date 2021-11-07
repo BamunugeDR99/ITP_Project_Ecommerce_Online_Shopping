@@ -42,28 +42,32 @@ export default function RequestDelete(props) {
 //     axios.delete("https://tech-scope-online.herokuapp.com/orgseller/delete/" + id)
 //   }
   function accept(id, index) {
-    axios.delete("https://tech-scope-online.herokuapp.com/orgseller/delete/" + id)
-      .then((res) => {
-        let afterDelete = abc.splice(index, 1);
-        setabc(afterDelete);
+   
 
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("https://tech-scope-online.herokuapp.com/orgseller/delete/" + id)
+        .then((res) => {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          let afterDelete = abc.splice(index, 1);
+          setorgSellers(afterDelete);
+        })
+        .catch((err) => {
+          alert(err);
         });
-      })
-      .catch((err) => {
-        alert(err);
-      });
+      
+        
+      }
+    });
+  
   }
 
   function decline(id) {
@@ -79,6 +83,11 @@ export default function RequestDelete(props) {
     .put("http://localhost:8070/orgseller/reqDel/" + id, neworgSeller)
     .then(() => {
       // setRequestDelete(" ");
+      let afterDecline = abc.filter(
+        (selreq) =>
+          selreq._id !== id
+      );
+      setorgSellers(afterDecline);
       Swal.fire(
         'Request Declined!',       
       )
