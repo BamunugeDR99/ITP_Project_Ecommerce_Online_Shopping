@@ -1,6 +1,8 @@
 const router = require("express").Router();
 let ItemWishList = require("../modules/ItemWishList");
 
+
+
 //Insert
 router.route("/addItems").post((req, res) => {
 
@@ -19,7 +21,6 @@ router.route("/addItems").post((req, res) => {
     .then(() => {
       res.json({
         newWishlistItem: {
-          _id: newWishlistItem._id,
           CustomerID: newWishlistItem.CustomerID,
           Items: newWishlistItem.Items,
   

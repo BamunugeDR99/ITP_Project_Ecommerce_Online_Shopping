@@ -213,6 +213,7 @@ function SignUp(props) {
 
   function sendData(e) {
     // alert("d0");
+    let customerID = "";
     e.preventDefault();
       genderSelect();
       images();
@@ -241,7 +242,7 @@ function SignUp(props) {
       console.log(newCustomer);
       //document.write("newStudent");
 
-      axios.post("https://tech-scope-online.herokuapp.com/Customer/add", newCustomer).then(()=>{
+      axios.post("https://tech-scope-online.herokuapp.com/Customer/add", newCustomer).then((res)=>{
     	//alert("Student Added");
     	setFirstName(" ");
     	setLastName(" ");
@@ -254,8 +255,7 @@ function SignUp(props) {
 
       //*************************************************Create Cart & WishList
 
-
-
+     
       Swal.fire({
 
         icon: 'success',
@@ -267,14 +267,63 @@ function SignUp(props) {
         hideClass: {
           popup: 'animate__animated animate__fadeOutUp'
         } 
+      });
+
+  
+      // get customer details
+      axios
+      .get("https://tech-scope-online.herokuapp.com/Customer/getEmail/"+email)
+      .then((res) => {
+        //customerID = res.data._id;
+        const wishlist = {
+          CustomerID : res.data._id,
+          Items : []
+        }
+        const cart = {
+          customerID : res.data._id,
+          ItemIDs : [],
+          PackageIDs : []
+        }
+        // create wishlist for the customer
+        axios
+        .post("http://localhost:8070/wishlist/addItems",wishlist)
+        .then((res) => {
+        
+               // create cart for the customer
+
+      axios
+      .post("http://localhost:8070/ShoppingCart/createrCart",cart)
+      .then((res) => {
+     
+ 
+        
       })
+      .catch((err) => {
+        alert(err);
+      });
+   
+          
+        })
+        .catch((err) => {
+          alert(err);
+        });
+
+
+        
+      })
+      .catch((err) => {
+        alert(err);
+      });
+   
+    
+
       props.history.push("/CustomerLogin");
      
     }).catch((err) =>{
 
-    	console.log(err.response.data);
+    	//console.log(err.response.data);
       Swal.fire('Email or Username Already Exists')
-    	setErrorMsg(err.response.data.error);
+    //	setErrorMsg(err.response.data.error);
 
       })
     	}
