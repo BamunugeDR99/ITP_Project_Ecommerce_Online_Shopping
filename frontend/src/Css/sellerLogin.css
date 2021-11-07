@@ -1,0 +1,98 @@
+.sellerlogin .login,
+.sellerlogin .image {
+    height: 550px;
+    
+}
+
+.sellerlogin .bg-image {
+    /* background-image: url('https://res.cloudinary.com/dxfq3iotg/image/upload/v1561631318/img-123.jpg'); */
+    background-image: url('../images/abcd.jpg');
+    background-size: cover;
+    background-position: center center
+}
+
+.sellerlogin {
+   
+    max-width: 950px;
+    height: 550px;
+    margin-left:110px;
+    padding:0;
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    
+
+}
+
+
+.sellerlogin .text-block{
+	
+	border: 2px solid #0057d1 ;
+	height:45px;
+	width:300px;
+	border-radius:5px;
+	text-transform: uppercase;
+	font-size: 18px; 
+	text-align:center;
+	font-weight:bold;
+	color:white;
+	padding-top:8px;
+	margin-top:40px;
+	margin-left:45px;
+	background-color:#000C66;
+	  box-shadow: 5px 2px 15px 3px #0057d1 ;
+	
+}
+
+
+.sellerlogin .myRightContent {
+    position: relative;
+    height: 100%;
+    padding: 25px;
+    justify-content: center;
+  
+}    
+
+
+.sellerlogin .myLeftContent {
+    position: relative;
+    width: 420px !important;
+    height: 550px;
+    margin-left: 0px !important;
+    
+  }
+
+  .sellerlogin .form-group #eyerr {
+    position: absolute;
+    margin-top: 14px;
+    right: 50px;
+    cursor: pointer ; }
+  
+    .sellerlogin .myLeftContent .fas {
+        position: relative;
+        color: #0057d1;
+        top: 0px;
+        left: 36px;
+      } 
+
+
+      .sellerlogin .myLeftContent .myInputs {
+        width: 380px;
+        border-radius: 15px;
+        padding: 12px;
+        padding-left: 50px;
+        border: none;
+        -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+        -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+      }
+
+      .sellerlogin .myLeftContent .myInputs:focus {
+        outline: none;
+      } 
+
+      .sellerlogin  #errmsg{
+
+        color:red;
+        
+      }
