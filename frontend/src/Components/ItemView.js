@@ -8,6 +8,8 @@ import v1 from "../images/visa2.png";
 import v2 from "../images/master2.png";
 import v3 from "../images/paypal2.png";
 
+// import {Text} from 'react-native';
+
 export default function ItemView(props) {
   const [items, setItems] = useState([]);
   let [itemss,setItemss] = useState([]);
@@ -462,6 +464,14 @@ const str = 'The quick brown fox jumps over the lazy dog.';
 
   // }
 
+  // let [availabilityStatus,setAvailabilityStatus]=useState([]);
+  // if(ipsumText.toString(items.Warrenty)==true){
+  //   <Text>Available</Text>
+  // }
+  // else{
+  //   <Text>Not Available</Text>
+  // }
+
   
   return (
     <div style={{ padding: "20px 15px 10px 20px" }}>
@@ -569,8 +579,8 @@ const str = 'The quick brown fox jumps over the lazy dog.';
         </div>
         <br />
         <br />
-        <div className="row" style={{ padding: "0px 40px 10px 10px" }}>
-          <div className="col">
+        <div className="row" style={{ padding: "0px 10px 10px 10px" }}>
+          <div className="col-8">
             <div
               className="row"
               style={{
@@ -597,7 +607,7 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                 <br />
                 <span>Model</span>
                 <br />
-                <span>Availability</span>
+                <span>Status</span>
                 <br />
                 {/* <span>Specification</span> */}
                 {/* <br /> */}
@@ -614,28 +624,45 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                 {/* <br /> */}
                 <span> : </span>
               </div>
+              &ensp;
               <div className="col">
                 <span>{items.Brand} </span>
                 <br />
                 <span>{items.Model} </span>
                 <br />
-                <span>{ipsumText.toString(items.ItemAvailabilityStatus)} </span>
+                <span>
+                {(() => {
+                  if (items.ItemAvailabilityStatus == true){
+                    return (
+                        <span>Available</span>
+                    )}
+                  return <span>Not Available</span>
+                  })()}
+                  </span>
                 <br />
                 {/* <span>{items.Specification} </span> */}
                 {/* <br /> */}
-                <span>{ipsumText.toString(items.Warrenty)}</span>
+                <span>
+                {(() => {
+                  if (items.Warrenty == true){
+                    return (
+                        <span>Available</span>
+                    )}
+                  return <span>Not Available</span>
+                  })()}
+                </span>
                 
               </div>
               <div className="col-2">
                 <span> Quantity</span>
                 <br />
-                <span> WHT </span>
+                <span>Other Colors </span>
                 <br />
-                <span> Stock unit</span>
+                <span> Discount</span>
                 <br />
                 <span> Category</span>
                 <br />
-                <span> Other_colors</span>
+                <span> WHT</span>
                 <br />
               </div>
               <div className="col-1">
@@ -650,21 +677,29 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                 <span> : </span>
                 <br />
               </div>
-              <div className="col-3">
+              <div className="col-4">
                 <span>{items.Quantity}</span>
                 <br />
-                <span>{items.WHT}</span>
+                <span>{items.Other_colors}</span>
                 <br />
-                <span>{ipsumText.toString(items.Unit)}</span>
+                <span>
+                {(() => {
+                  if (items.DiscountStatus == true){
+                    return (
+                        <span>Available</span>
+                    )}
+                  return <span>Not Available</span>
+                  })()}
+                  </span>
                 <br />
                 <span>{items.Category}</span>
                 <br />
-                <span>{ipsumText.toString(items.Colors)}</span>
+                <span>{items.WHT}</span>
                 <br />
               </div>
             </div>
           </div>
-          <div className="col-5">
+          <div className="col-3">
             <div className="row">
               <div className="col">
                 <span style={{ alignItems: "center", fontSize: "20px" }}>
@@ -673,10 +708,10 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                 <br />
                 <br />
                 <div className="row">
-                  <div className="col">
+                  <div className="row">
                     {/* <span style={{fontSize:'22px', fontStyle:'strong', textAlign:'center'}}>&emsp;&emsp;{items.Review}/5</span><br/> */}
                     <span>
-                      <div id="stars" class="card-text">
+                      <div id="stars" class="card-text" style={{fontSize:'20px'}}>
                         <br />
                         <span id="review">4.0 / 5.0</span>
                         <br />
@@ -689,7 +724,8 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                       </div>
                     </span>
                   </div>
-                  <div className="col-7">
+                  <div className="row">
+                  <div className="col">
                     <div>
                       <br />
                       <a
@@ -707,6 +743,8 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                         </button>
                       </a>
                     </div>
+                    </div>
+                    <div className="col">
                     <div>
                       <br />
                       <a
@@ -723,6 +761,7 @@ const str = 'The quick brown fox jumps over the lazy dog.';
                           Write a Review
                         </button>
                       </a>
+                    </div>
                     </div>
                   </div>
                 </div>

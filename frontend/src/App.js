@@ -409,6 +409,7 @@ function App() {
           exact
           component={ItemsForSpecificSeller}
         />
+        <Route path="/Admin/RequestDelete" exact component={RequestDelete} />
 
 
 

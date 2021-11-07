@@ -32,6 +32,7 @@ router.route("/add").post((req,res)=>{
         logo,
         username,
         password,
+        requestDelete
     })
 
     neworgSeller.save().then(()=>{
@@ -238,5 +239,36 @@ router.post('/create-pdf',(req,res) => {
     res.sendFile(`${__dirname}/result.pdf`)
               // absolute directory
   })
+
+
+  router.route("/reqDel/:id").put(async (req, res) => {
+    let orgSellerID = req.params.id;
+    const{
+        requestDelete,
+         } = req.body;
+  
+    const neworgSeller  = {
+        requestDelete,
+    }
+  
+    const update = await orgSeller.updateOne(
+  
+      {_id : orgSellerID},
+      {$set : {requestDelete :requestDelete}},
+  
+  
+    ).then(() => {
+  
+      res.status(200).send({ status: "Request sent" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .send({ status: "Error with sending request", error: err.message });
+    });
+  
+  
+    })
 
 module.exports = router;
