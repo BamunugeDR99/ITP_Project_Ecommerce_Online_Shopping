@@ -286,13 +286,13 @@ function SignUp(props) {
         }
         // create wishlist for the customer
         axios
-        .post("http://localhost:8070/wishlist/addItems",wishlist)
+        .post("https://tech-scope-online.herokuapp.com/wishlist/addItems",wishlist)
         .then((res) => {
         
                // create cart for the customer
 
       axios
-      .post("http://localhost:8070/ShoppingCart/createrCart",cart)
+      .post("https://tech-scope-online.herokuapp.com/ShoppingCart/createrCart",cart)
       .then((res) => {
      
  
