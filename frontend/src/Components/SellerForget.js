@@ -43,7 +43,7 @@ export default function ForgotP(props) {
   function sendEmail(e) {
     e.preventDefault();
     // https://tech-scope-online.herokuapp.com/orgSeller/getByEmail/
-    axios.get("http://localhost:8070/orgSeller/getByEmail/"+email).then((res) =>
+    axios.get("https://tech-scope-online.herokuapp.com/orgSeller/getByEmail/"+email).then((res) =>
     {
       setSeller(res.data);
       console.log(res.data);
