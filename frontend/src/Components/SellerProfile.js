@@ -53,7 +53,7 @@ export default function SellerProfile(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-        .put("http://localhost:8070/orgseller/reqDel/" + id, neworgSeller)
+        .put("https://tech-scope-online.herokuapp.com/orgseller/reqDel/" + id, neworgSeller)
         .then(() => {
           Swal.fire(
             'Deleted!',
