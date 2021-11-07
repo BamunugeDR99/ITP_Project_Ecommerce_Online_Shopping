@@ -145,6 +145,16 @@ router.route("/getUsername/:username").get(async (req,res) =>{
     })
 })
 
+
+router.route("/getByEmail/:email").get(async (req,res) =>{
+    let email = req.params.email;
+    const user = await orgSeller.findOne({email : email}).then((orgSeller)=>{
+        res.json(orgSeller);
+    }).catch((err) =>{
+        res.status(500).send({status : "Error", error : err.message});
+    })
+})
+
 router.post('/loginSeller', async(req,res) => {
 
     try{

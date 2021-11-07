@@ -30,7 +30,7 @@ export default function ForgotP(props) {
   const [confirmPassword, setConfirmPassword] = useState();
   const [email, setEmail] = useState();
   const [enteredCode, setCode] = useState();
-  const [customer,setCustomer] = useState();
+  const [seller,setSeller] = useState();
   const [verification, setVarification] = useState(0);
   let Code = "";
   const [codeCheck,setCodeCheck] = useState();
@@ -42,10 +42,10 @@ export default function ForgotP(props) {
 
   function sendEmail(e) {
     e.preventDefault();
-
-    axios.get("https://tech-scope-online.herokuapp.com/Customer/getEmail/"+email).then((res) =>
+    // https://tech-scope-online.herokuapp.com/orgSeller/getByEmail/
+    axios.get("http://localhost:8070/orgSeller/getByEmail/"+email).then((res) =>
     {
-      setCustomer(res.data);
+      setSeller(res.data);
       console.log(res.data);
       if(res.data != null){
         flag = 1;
@@ -54,7 +54,7 @@ export default function ForgotP(props) {
       }
 
       if(flag === 1){
-        Code = makeid(20);
+        Code = makeid(5);
         setCodeCheck(Code);
         emailContent = {
           email,
@@ -139,21 +139,20 @@ export default function ForgotP(props) {
 
       if(newPassword === ConfirmnewPassword){
          
-        let customer2 = {
-          firstName: customer.firstName,
-          lastName:  customer.lastName,
-          email:  customer.email,
-          phoneNumber:  customer.phoneNumber,
-          dob:  customer.dob,
-          gender:  customer.gender,
-          address:  customer.address,
-          username: customer.username,
-          password: bcrypt.hashSync(newPassword, bcrypt.genSaltSync(12)),
-          // confirmPassword,
-          userImage : customer.userImage
+        let seller2 = {
+          ownername:  seller.ownername,
+          mobile:  seller.mobile,
+          companyname:  seller.companyname,
+          address:  seller.address,
+          year:  seller.year,
+          email:  seller.email,
+          description: seller.description,
+          logo: seller.logo,
+          username : seller.username,
+          password : newPassword
         }
 
-        axios.put("https://tech-scope-online.herokuapp.com/Customer/update/"+ customer._id, customer2).then(()=>{
+        axios.put("https://tech-scope-online.herokuapp.com/orgSeller/update/"+ seller._id, seller2).then(()=>{
 		
 
 		// alert("Customer Updated Successfully!");
@@ -163,7 +162,7 @@ export default function ForgotP(props) {
       'Successfully Changed the Password!',
       'success'
     )
-    props.history.push("/CustomerLogin");
+    props.history.push("/SellerLogin");
 		
 				
 		}).catch((err) =>{
@@ -176,12 +175,12 @@ export default function ForgotP(props) {
         //sweetlert
         //bcrypt
 
-        alert("password mismatch!");
+        Swal.fire("Password mismatch!");
       }
 
 
     }else{
-
+      Swal.fire("Code verification unsuccessfull");
     }
   }
   // add email validation
@@ -210,7 +209,7 @@ export default function ForgotP(props) {
         (e)=>{
           setCode(e.target.value);
         } }/>
-    <small id="emailHelp" class="form-text text-muted">This is a 20 digit System generated code</small>
+    <small id="emailHelp" class="form-text text-muted">This is a 5 digit System generated code</small>
   </div>
   <button type="button" id = "verifyBtn" class="btn btn-success" onClick = {()=> verifyCode()}>Verify Code</button>
     <br/><br/>
@@ -267,7 +266,7 @@ export default function ForgotP(props) {
 
   
   <button type="submit" class="btn btn-success" onClick = {() => {
-    props.history.push("/CustomerLogin");
+    props.history.push("/SellerLogin");
   }} style={{backgroundColor:"blue", width:"300px",marginLeft:"420px"}}>Back to Login</button>
   <br/>  <br/>
 </div>
