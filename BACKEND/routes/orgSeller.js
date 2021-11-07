@@ -32,6 +32,7 @@ router.route("/add").post((req,res)=>{
         logo,
         username,
         password,
+        requestDelete
     })
 
     neworgSeller.save().then(()=>{
