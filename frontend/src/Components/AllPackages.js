@@ -324,8 +324,9 @@ export default function AllPackages(props) {
 
 
                                             </div>
+                                            <div className="text-center">
                                             <a href="#" className="btn btn-primary" onClick={() => goToupdate(item._id)}>Edit Package</a>
-
+                                                </div>
                                         </div>
                                     </div>
                                     <br></br>

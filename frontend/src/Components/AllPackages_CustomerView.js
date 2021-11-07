@@ -279,8 +279,9 @@ export default function AllPackages(props) {
 
 
                       </div>
+                      <div className="text-center">
                       <a href="#" className="btn btn-success" onClick={() => addToCart(item._id)}>Add to Cart</a>
-
+                        </div>
                     </div>
                   </div>
                   <br></br>
