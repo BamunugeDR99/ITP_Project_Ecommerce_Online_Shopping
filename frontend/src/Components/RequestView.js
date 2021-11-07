@@ -84,6 +84,7 @@ export default function RequestView(props) {
               showConfirmButton: false,
               timer: 1500,
             });
+            //sending email
             emailjs
               .send(
                 "service_amyey5b", //your service id
