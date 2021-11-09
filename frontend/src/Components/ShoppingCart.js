@@ -522,13 +522,13 @@ export default function ShoppingCart(props) {
             console.log(err);
           });
 
-      props.history.push("/Customer/SelectPayment");
+   //   props.history.push("/Customer/SelectPayment");
       })
       .catch((err) => {
         console.log(err)
       });
 
-   // props.history.push("/Customer/SelectPayment");
+   props.history.push("/Customer/SelectPayment");
   }
 
   return (

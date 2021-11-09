@@ -80,7 +80,7 @@ export default function RequestDelete(props) {
     };
     console.log(neworgSeller)
     axios
-    .put("https://tech-scope-online.herokuapp.com//orgseller/reqDel/" + id, neworgSeller)
+    .put("https://tech-scope-online.herokuapp.com/orgseller/reqDel/" + id, neworgSeller)
     .then(() => {
       // setRequestDelete(" ");
       let afterDecline = abc.filter(
