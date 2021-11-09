@@ -130,7 +130,7 @@ export default function ShoppingCart(props) {
             //Color = allItems[i].Color_family[1],
             SKU: allItems[j].Stock_keeping_unit,
             fPrice: allItems[j].FinalPrice,
-            itemImage: allItems[j].Images[1],
+            itemImage: allItems[j].Images[0],
             itemSeller: allItems[j].SellerID,
           };
 
@@ -574,7 +574,7 @@ export default function ShoppingCart(props) {
                                 <h5>{item.Name}</h5>
                                 <p class="mb-3 text-muted text-uppercase small">{`Brand : ${item.Brand}`}</p>
                                 <p class="mb-3 text-muted text-uppercase small">{`Model :  ${item.Model}`}</p>
-                                <p class="mb-3 text-muted text-uppercase small">{`Specifications : ${item.Specification}`}</p>
+                                {/* <p class="mb-3 text-muted text-uppercase small">{`Specifications : ${item.Specification}`}</p> */}
                                 <p class="mb-2 text-muted text-uppercase small">
                                   Color: selected color
                                 </p>
@@ -627,7 +627,7 @@ export default function ShoppingCart(props) {
                             class="fas fa-trash-alt mr-1"></i> Remove item </a> */}
                                 <button
                                   type="button"
-                                  class="card-link-secondary small text-uppercase mr-3 link-danger"
+                                  class="btn btn-danger card-link-secondary small text-uppercase mr-3 link-danger"
                                   onClick={() =>
                                     removeItems(
                                       item.ItemID,
