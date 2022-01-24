@@ -1,0 +1,64 @@
+body {
+    background: white;
+}
+
+.OffersnPacks2 .form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.OffersnPacks2 .profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.OffersnPacks2 .profile-button:hover {
+    background: #682773
+}
+
+.OffersnPacks2 .profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.OffersnPacks2 .profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.OffersnPacks2 .back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.OffersnPacks2 .labels {
+    font-size: 11px;
+    text-align: left !important;
+}
+
+.OffersnPacks2 .add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.OffersnPacks2 .labels{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left !important;
+}
+
+.OffersnPacks2 .label1{
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.OffersnPacks2 .cont{
+
+    background-color: rgb(233, 220, 220) !important;
+}
+

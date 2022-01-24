@@ -16,6 +16,12 @@ const studentSchema = new Schema({
     gender : {
         type : String,
         required : true
+    },
+
+    date : {
+        type : Date,
+        required: true,
+        default : new Date()
     }
 
 })

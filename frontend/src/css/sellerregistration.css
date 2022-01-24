@@ -1,0 +1,26 @@
+
+/* .sellerregistration {
+    background: linear-gradient(to bottom, #33ccff 0%, #ffffff 75%);
+    height: 100%;
+} */
+.sellerregistration .form-control{
+    width  : 500px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sellerregistration p{
+    padding-right: 300px;
+    text-align: right;
+}
+
+.sellerregistration .container-size{
+    width : 500px;
+}
+
+.sellerregistration #sellerReq{
+
+    margin-left:75px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

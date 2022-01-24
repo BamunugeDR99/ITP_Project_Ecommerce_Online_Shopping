@@ -1,0 +1,196 @@
+
+
+.CustomerLogin{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+.CustomerLogin  body {
+    background: #fbf3ff;
+  } 
+
+.CustomerLogin .container {
+    position: absolute;
+    max-width: 950px;
+    height: 550px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } 
+
+  /* .CustomerLogin  .myRightCtn #LoginI {
+    position: relative;
+    
+  } */
+
+.CustomerLogin .myRightCtn {
+    position: relative;
+   
+    background-image: url("./../images/abc.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    border-radius: 0px 25px 25px 0px;
+    height: 100%;
+    padding: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 12px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.CustomerLogin .myLeftCtn {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    padding-left: 50px;
+  }
+  
+
+.CustomerLogin .myLeftCtn header {
+    color: #0057d1;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+  }
+
+.CustomerLogin .row{
+  height: 100%;
+  } 
+ 
+.CustomerLogin .myCard {
+    position: relative;
+    background: #fff;
+    height: 100%;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+  } 
+
+
+.CustomerLogin .myRightCtn header {
+    color: #fff;
+    font-size: 42px;
+  }
+
+.CustomerLogin  .DontAcc {
+    position: relative;
+    margin-left: 20px;
+    margin-top: 114px;
+  } 
+  
+.CustomerLogin .acc{
+      
+      margin-left:47px;
+      
+  }
+  
+.CustomerLogin .fp{
+      
+      margin-left:45px;
+  }
+  
+.CustomerLogin .myLeftCtn .myInput {
+    width: 350px;
+    border-radius: 15px;
+    padding: 12px;
+    padding-left: 50px;
+    border: none;
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  }
+
+
+.CustomerLogin .myLeftCtn .myInput:focus {
+    outline: none;
+  } 
+
+.CustomerLogin .myForm {
+    position: relative;
+    margin-top: 50px;
+  } 
+
+.CustomerLogin .myLeftCtn .butt {
+    background: linear-gradient(45deg, #0057d1, #000000);
+    color: #fff;
+    width: 330px;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    margin-left:22px;
+    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  } 
+
+.CustomerLogin .myLeftCtn .butt:hover {
+    background: #0057d1;
+  }
+
+.CustomerLogin .myLeftCtn .butt:focus {
+    outline: none;
+  }
+
+.CustomerLogin .myLeftCtn .fas {
+    position: relative;
+    color: #0057d1;
+    top: 0px;
+    left: 36px;
+  } 
+
+.CustomerLogin .butt_out {
+    background: transparent;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    width: 120px;
+    border:  2px solid #0057d1;
+    border-radius: 15px;
+    padding: 12px;
+    margin-left:105px;
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  } 
+
+.CustomerLogin .butt_out:hover {
+      
+    background: #072c61;
+    border: 2px solid#eecbff;
+  } 
+
+.CustomerLogin .butt_out:focus {
+    outline: none;
+  }
+
+.CustomerLogin .remember{
+      
+    padding-left:10px;
+}
+  
+.CustomerLogin .form-group #eyer {
+  position: absolute;
+  margin-top: 14px;
+  right: 40px;
+  cursor: pointer ; }
+
+
+  .CustomerLogin   .changeSLogin{
+
+    padding-top:100px;
+    font-size: 16px;
+  }
+
+  .CustomerLogin  #CusLoginError{
+
+    color:red;
+    
+  }

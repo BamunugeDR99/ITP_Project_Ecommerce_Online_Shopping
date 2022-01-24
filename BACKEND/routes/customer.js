@@ -1,9 +1,13 @@
 const router = require("express").Router();
 let Customer = require("../modules/Customer");
+const bcrypt = require('bcryptjs');
+const pdf = require('html-pdf');
+const pdfTemplate = require("../documents/CustomerReport");
+// const pdftem = require("../documents/TechScopeTemplate");
 
 
-//Insert
-router.route("/add").post((req,res)=>{
+//Customer SignUp
+router.route("/add").post(async(req,res)=>{
 
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -14,8 +18,24 @@ router.route("/add").post((req,res)=>{
     const address = req.body.address;
     const username = req.body.username;
     const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
+    // const confirmPassword = req.body.confirmPassword;
     const userImage = req.body.userImage;
+
+ try{
+
+   const emailExist = await Customer.findOne({ email: email});
+
+   if(emailExist){
+
+     return res.status(422).json({ error: "Email Already Exist"});
+   }
+
+   const usernameExist = await Customer.findOne({ username: username});
+
+   if(usernameExist){
+
+    return res.status(422).json({ error: "Username Already Exist"});
+  }
 
     const newCustomer = new Customer({
         firstName,
@@ -27,22 +47,26 @@ router.route("/add").post((req,res)=>{
         address,
         username,
         password,
-        confirmPassword,
+        // confirmPassword,
         userImage
     })
 
-    newCustomer.save().then(()=>{
+   
 
-        res.json("Customer Added Successfully")
 
-    }).catch((err)=>{
+    await newCustomer.save();
+
+
+        res.status(201).json({ message: "Customer Added Successfully!"});
+
+    } catch(err){
 
         console.log(err);
-    })
+    }
 
 }); 
 
-//get one customers
+//Get one customer
 router.route("/get/:id").get(async (req,res) =>{
     let userID = req.params.id;
     const user = await Customer.findById(userID).then((cutomerss) =>{
@@ -54,7 +78,7 @@ router.route("/get/:id").get(async (req,res) =>{
     })
 });
 
-//get all customers
+//Get all customers
 router.route("/getAll").get((req ,res)=> {
     Customer.find().then((customer)=>{
         res.json(customer)
@@ -64,10 +88,15 @@ router.route("/getAll").get((req ,res)=> {
     })
 });
 
-// update 
+// Update CUstomer
 router.route("/update/:id").put(async (req,res) =>{
     let userID = req.params.id;
     const{firstName, lastName , email, phoneNumber,dob,  gender, address, username, password,  confirmPassword,  userImage} = req.body;
+
+    
+    try{
+
+        
 
     const updatedCustomer = {
         firstName,
@@ -79,20 +108,21 @@ router.route("/update/:id").put(async (req,res) =>{
         address,
         username,
         password,
-        confirmPassword,
+        // confirmPassword,
         userImage
     }
 
-    const update = await Customer.findByIdAndUpdate(userID, updatedCustomer).then(()=>{
-        res.status(200).send({status: "User updated"})
 
-        }).catch((err) => {
+    const update = await Customer.findByIdAndUpdate(userID, updatedCustomer);
+        res.status(200).send({status: "User Updated"})
+
+        }catch(err){
             console.log(err);
             res.status(500).send({status: "Error with updating data", error:err.message});
-        })
+        }
     });
 
-    // delete 
+    // Delete CUstomer
 router.route("/delete/:id").delete(async (req,res) =>{
     let userID = req.params.id;
 
@@ -107,120 +137,91 @@ router.route("/delete/:id").delete(async (req,res) =>{
     });
 
 
-// retrive
+//Login route
 
+router.post('/loginCustomer', async(req,res) => {
 
-/*// route("/") this can use for fetching all the data from the DB 
-router.route("/getStudents").get((reg,res)=> {
-    Student.find().then((students)=>{
-        res.json(students)
-        
-    }).catch((err) =>{
-        console.log(err)
-    })
-});
+    try{
+            const {username, password} = req.body;
 
-// update 
-router.route("/update/:id").put(async (req,res) =>{
-    let userID = req.params.id;
-    const{name,age,gender} = req.body;
+            // if(!username || !password){
 
-    const updateStudent = {
-        name,
-        age,
-        gender
+            //     return res.status(400).json({error: "Please filled the all data"})
+            // }
+
+            //check with database username
+
+            const customerLogin = await Customer.findOne({ username: username });
+
+            if(customerLogin){
+
+                const isMatch = await bcrypt.compare(password, customerLogin.password);
+            
+            if(!isMatch){   
+                
+                res.status(400).json({error: "Invalid Credientials"});
+
+            }else{
+
+                //res.json({message: "Customer Sign In Successfully"});
+                res.json({customerLogin: {
+                    _id : customerLogin._id,
+                }});
+
+            }
+        }else{
+
+            res.status(400).json({error: "Customer does not exists"});
+        }
+           
+            
+    
+
+    }catch(err){
+
+        console.log(err);
     }
 
-    const update = await Student.findByIdAndUpdate(userID,updateStudent).then(()=>{
-        res.status(200).send({status: "User updated"})
-        }).catch((err) => {
-            console.log(err);
-            res.status(500).send({status: "Error with updating data", error:err.message});
-        })
-    });
+
+});
 
 
-// delete 
-router.route("/delete/:id").delete(async (req,res) =>{
-    let userID = req.params.id;
 
-        await Student.findByIdAndDelete(userID)
-        .then(() => {
-            res.status(200).send({status : "User Deleted"});
-        }).catch((err) => {
-
-            console.log(err.message);
-            res.status(500).send({status : "Error with delete", error : err.message});
-        })
-    });
-
-// get one student details (Specific)
-router.route("/get/:id").get(async (req,res) =>{
-    let userID = req.params.id;
-    const user = await Student.findById(userID).then((studentsss) =>{
+router.route("/getEmail/:email").get(async (req,res) =>{
+    let email = req.params.email;
+    const user = await Customer.findOne({email : email}).then((customer) =>{
         // res.status(200).send({status:"User fetched"});
-        res.json(studentsss);
+        res.json(customer);
     }).catch((err) =>{
         console.log(err.message);
         res.status(500).send({status : "Error with get user", error : err.message});
     })
 })
 
+// post PDF
 
-// router.route("/getG/:id").get(async (req,res) =>{
-//     let userID = req.params.id;
-//     const user = await Student.findOne({name : userID}).then((studentsss) =>{
-//         // res.status(200).send({status:"User fetched"});
-//         res.json(studentsss);
-//     }).catch((err) =>{
-//         console.log(err.message);
-//         res.status(500).send({status : "Error with get user", error : err.message});
-//     })
-// })
+router.post('/create-pdf',(req,res) => {
+    pdf.create(pdfTemplate(req.body),{}).toFile('./routes/customerReport.pdf',(err) =>{
+      if(err){
+        res.send(Promise.reject());
+      }
+  
+      res.send(Promise.resolve());
+    });
+  });
+  
+  // get PDF
+  router.get('/fetch-pdf',(req,res)=>{
+    res.sendFile(`${__dirname}/customerReport.pdf`)
+
+ // absolute directory
+  })
 
 
-router.post('/login', (req,res) => {
-    const {name,age} = req.body;
-    // simple validation 
-    if(!name || !age){
-        return res.status(400).json({msg : 'please enter all the fields'});
-    }
 
-    // check for existing user
 
-    Student.findOne({name}).then(studentsss =>{
-        if(!studentsss) return res.status(400).json({msg : 'user does not exists'});
 
-        if(!(age ==studentsss.age)){
-            return res.status(400).json({msg : 'invalid credentials'}); 
-        }
-        // const newStudent = new Student({
-        //     name,age,gender
-        // });
 
-        res.json({studentsss:{
-            name : studentsss.name,
-            age : studentsss.age,
-            gender : studentsss.gender
-        }})
-
-        // jwt.sign(
-
-        //     {id : studentsss.name},
-        //     config.get('jwtSecret'),
-        //     {expiresIn : 3600},
-        //     (err,token) => {
-        //         if(err) throw err;
-        //               res.json({token, studentsss:{
-        //                   name : studentsss.name,
-        //                   gender : studentsss.gender,
-        //                   age : studentsss.age
-        //               }})
-        //             }
-        // )
-    })
-
-})*/
 
 
 module.exports = router;

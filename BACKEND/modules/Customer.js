@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Schema = mongoose.Schema;
 
@@ -49,18 +50,42 @@ const customerSchema = new Schema({
         required: true
     },
 
-    confirmPassword: {
-        type: String,
-        required: true
-    },
+    // confirmPassword: {
+    //     type: String,
+    //     required: true
+    // },
 
     userImage: {
         type: String,
         required: true
+    },
+
+    newlyAddeddate: {
+        type: Date,
+        required: true,
+        default: new Date()
+          
     }
 
 
 })
+
+//hashing password
+customerSchema.pre('save',async function (next) {
+
+    // console.log("hi")
+
+    if(this.isModified('password')){
+
+        var salt = bcrypt.genSaltSync(12);
+        this.password = bcrypt.hashSync(this.password, salt);
+        // this.confirmPassword = bcrypt.hashSync(this.confirmPassword, salt);
+    }
+
+    next();
+
+});
+
 
 const customer = mongoose.model("customer", customerSchema);
 

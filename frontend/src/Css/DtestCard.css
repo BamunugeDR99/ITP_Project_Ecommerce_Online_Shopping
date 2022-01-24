@@ -1,0 +1,150 @@
+.PkgDetails {
+    background-color: #f9f9fa;
+   
+
+}
+
+.PkgDetails .user-card-full {
+    overflow: hidden;
+   
+  
+    
+}
+
+.PkgDetails .card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: none;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width:780px;
+    height: 380px;
+    
+  
+   
+}
+
+.PkgDetails .m-r-0 {
+    margin-right: 0px
+}
+
+.PkgDetails .m-l-0 {
+    margin-left: 0px
+}
+
+.PkgDetails .user-card-full .user-profile {
+    border-radius: 5px 0 0 5px
+}
+/* 
+.PkgDetails .bg-c-lite-green {
+  
+    backgroundImage: url("paper.gif");
+} */
+
+.PkgDetails .user-profile {
+    padding: 20px 0; 
+   
+   
+}
+
+.PkgDetails .card-block {
+    padding: 1.25rem;
+    height: 380px;
+    
+}
+
+.PkgDetails .m-b-25 {
+    margin-bottom: 25px
+}
+
+.CuseDetails .img-radius {
+    border-radius: 5px
+}
+
+.PkgDetails #h6 {
+    font-size: 14px
+}
+
+.PkgDetails .card .card-block #p {
+    line-height: 25px
+}
+
+.PkgDetails .btnCancel {background-image: linear-gradient(to right, #0057d1 0%, #0f12da  51%, #0057d1  100%)}
+.PkgDetails .btnCancel {
+   
+   margin-left: 330px;
+   padding: 0;
+   width: 100px;
+   height:45px;
+   font-size: 18px;
+   text-align: center;
+   cursor: pointer;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   border: none;
+   margin-bottom: 10px;
+  
+ }
+
+ .PkgDetails .btnCancel:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+@media only screen and (min-width: 1400px) {
+    .PkgDetails   #p {
+        font-size: 14px
+    }
+}
+
+.PkgDetails .card-block {
+    padding: 1.25rem
+}
+
+.PkgDetails .b-b-default {
+    border-bottom: 1px solid #e0e0e0
+}
+
+.PkgDetailss .m-b-20 {
+    margin-bottom: 20px;
+}
+
+.PkgDetails.p-b-5 {
+    padding-bottom: 5px !important
+}
+
+.PkgDetails .card .card-block p {
+    line-height: 25px;
+}
+
+.PkgDetails .m-b-10 {
+    margin-bottom: 20px;
+    color: black !important;
+}
+
+.PkgDetails .text-muted {
+    color: #6d6c6c !important;
+    margin-bottom: 20px !important;
+}
+
+.PkgDetails .b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.PkgDetails .f-w-600 {
+    font-weight: 600;
+}
+
+
+.PkgDetails .m-t-40 {
+    margin-top: 20px;
+}
+
+ .PkgDetails.p-b-5 {
+    padding-bottom: 5px !important;
+}

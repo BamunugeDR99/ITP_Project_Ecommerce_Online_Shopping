@@ -1,20 +1,21 @@
-.Wraperrr{
+.CustomerPro .Wraperrr{
     
     font-family:Arial;
     text-align: left;
        
 }
-.mainb {
+.CustomerPro .mainb {
     padding-top: 40px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
     
 }
-.cardx {
-    box-shadow: 0 10px 25px 0 rgba(0,0,0,.1), 0 8px 20px 0 rgba(0,0,0,.06);
+.CustomerPro .cardx {
+
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-.cardx {
+.CustomerPro .cardx {
 
     position: relative;
     display: flex;
@@ -29,7 +30,7 @@
     
 }
 
-.cardb {
+.CustomerPro .cardb {
 
     flex: 1 1 auto;
     min-height: 1px;
@@ -37,57 +38,97 @@
     
 }
 
-.gutters-sm {
+.CustomerPro .gutters-sm {
     margin-right: -8px;
     margin-left: -8px;
 }
 
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
+.CustomerPro .gutters-sm>.col, .gutters-sm>[class*=col-] {
     padding-right: 8px;
     padding-left: 8px;
 }
-.mb-3, .my-3 {
+.CustomerPro  .mb-3, .my-3 {
     margin-bottom: 1rem!important;
 }
 
-.bg-gray-300 {
+.CustomerPro .bg-gray-300 {
     background-color: #e2e8f0;
 }
-.h-100 {
+
+.CustomerPro .h-100 {
     height: 100%!important;
 }
-.shadow-none {
+.CustomerPro .shadow-none {
     box-shadow: none!important;
 }
 
-.btnedit{
-	
-  border: 1px; 
-  width: 170px;
-  height: 50px;
-  margin: auto;
-  border-radius:10px;
-  margin-top: 3px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background: #0057d1;
-  font-size: 15px;
-  color: #fff;
-  margin-left: 0px;
-}
+.CustomerPro .btnedit {background-image: linear-gradient(to right, #0057d1 0%, #0f12da  51%, #0057d1  100%)}
+.CustomerPro .btnedit {
+   
 
-.details{
+    margin-top: 3px;
+   margin-left: 250px;
+   padding: 0;
+   width: 160px;
+   height: 50px;
+   font-size: 22px;
+   text-align: center;
+   cursor: pointer;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   border: none;
+   display: block;
+ }
+
+ .CustomerPro .btnedit:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+
+.CustomerPro .details{
 	
 	font-size:30px;
 	font-weight: bold;
 	text-align:center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    color: black;
 	
 }
 
-.row1{
+
+
+.CustomerPro .row1{
    display: flex;
     }
+
+
+.CustomerPro #CusfullN{
+
+    color:rgb(0, 0, 0) !important;
+
+}
+
+.CustomerPro #CususerN{
+
+    color:rgb(0, 0, 0) !important;
+
+}
+
+.CustomerPro #CusE{
+
+    color:rgb(0, 0, 0) !important;
+
+}
+
+.CustomerPro  #custextS{
+
+    color:rgb(87, 87, 87) !important;
+    font-size: 17px;
+}

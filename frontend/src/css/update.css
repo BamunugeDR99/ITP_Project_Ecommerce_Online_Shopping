@@ -1,77 +1,162 @@
-.wrapperr {
+
+.CusUpdatePro{
+  margin: 0;
+  padding-top: 40px;
+  color: #2e323c;
+  background: #ffffff;
+  position: relative;
+  height: 100%;
+}
+.CusUpdatePro .account-settings .user-profile {
+  margin: 0 0 1rem 0;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.CusUpdatePro .account-settings .user-profile .user-avatar #userproI{
+  margin: 0 0 1rem 0;
+}
+.CusUpdatePro .account-settings .user-profile .user-avatar #userproI {
+  width: 210px;
+  height: 210px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  margin-top: 30px;
+}
+.CusUpdatePro .account-settings .user-profile h5.user-name {
+  margin: 0 0 0.5rem 0;
+}
+.CusUpdatePro .account-settings .user-profile h6.user-email {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #9fa8b9;
+}
+
+.CusUpdatePro .form-control {
+  border: 1px solid #cfd1d8;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: .825rem;
+  background: #ffffff;
+  color: #2e323c;
+}
+
+.CusUpdatePro .card {
+  background: #ffffff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0;
+  margin-bottom: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+  /* //responsive */
+
+  .CusUpdatePro .form-group i {
+    position: absolute;
+    bottom: 18px;
+    right: 25px; }
+
+
+.CusUpdatePro  .form-group #eyerx1 {
+  position: absolute;
+  bottom: 284px;
+  right: 45px;
+  cursor: pointer ; } 
+
+.CusUpdatePro .form-group #lock1{
+  position: absolute;
+  bottom: 285px;
+  right: 25px; }
+
+ .CusUpdatePro  .form-group #eyerx2 {
+  position: absolute;
+  bottom: 204px;
+  right: 45px;
+  cursor: pointer ; }  
+    
+.CusUpdatePro .form-group #lock2{
+  position: absolute;
+  bottom: 205px;
+  right: 25px; }
+
+.CusUpdatePro  .form-group #eyerx3 {
+
+  position: absolute;
+  bottom: 124px;
+  right: 45px;
+  cursor: pointer ; }  
+      
+.CusUpdatePro .form-group #lock3{
+
+  position: absolute;
+  bottom: 125px;
+  right: 25px; }
+    
+  .CusUpdatePro .btnUpdate {
    
-    height:1300px !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-  
-    
-    }
-  
-  .innerr {
-    padding: 20px;
-    background: #fff;
-    width: 1280px;
-    height:1250px !important;
-    margin: auto;
-    display: flex;
-    margin-top: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-    .innerr .image-holder {
-      display: flex;
-      width: 50%; }
-    .innerr form {
-      width: 50%;
-      padding-top: 36px;
-      padding-left: 45px;
-      padding-right: 45px; }
-    .innerr h3 {
-      
-      text-transform: capitalize;
-      font-size: 30px;
-      font-family: "Poppins-SemiBold";
-      text-align: left;
-      margin-bottom: 28px; }
-      
-  
-  img {
-    max-width: 100%; }	
-    
-    
-  .btn{
-      
-    border: 1px; 
     width: 170px;
     height: 45px;
-    margin: auto;
-    border-radius:10px;
-    margin-top: 40px;
+    margin-top: 30px;
+    text-align: center;
+    margin-left: 160px;
+    background-color: #0057d1 ;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: #0057d1;
-    font-size: 15px;
-    color: #fff;
-  }
-  
-  
-    
-  .form-control{
-      
-      border-radius:5px; 
-      border: 1px solid black;
-      
-      
-  }
-  
-  
-  .form-group {
-    position: relative; }
-    .form-group i {
-      position: absolute;
-      bottom: 10px;
-      right: 15px; }
-      
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 10px;;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
 
-  
+.CusUpdatePro .btnUpdate:hover {
+ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+ .CusUpdatePro  .btnDelete {
+   
+   width: 170px;
+   height: 45px;
+   margin-top: 30px;
+   text-align: center;
+   background-color: #db131d ;
+   cursor: pointer;
+   border: none;
+   color: white;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 20px;
+   border-radius: 10px;;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   margin-left: 150px;
+  }
+
+  .CusUpdatePro .btnDelete:hover {
+
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    
+  }
+
+  .CusUpdatePro .ImagePreview #UserPro{
+	
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    width:150px;
+    height:150px;
+    border: 1px solid rgb(255, 255, 255);
+    margin-top:10px;  
+    background-size: cover;
+    background-repeat:no-repeat;
+    
+    
+  }

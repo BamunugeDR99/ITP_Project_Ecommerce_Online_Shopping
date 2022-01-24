@@ -1,0 +1,48 @@
+    
+    .test2 table {
+        width: 100%;
+        height: 50%;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .test2 tr {
+        transition: all .2s ease-in;
+        cursor: pointer;
+        border: honeydew;
+    }
+    .test2 tr:nth-child(odd){
+        background-color: rgb(218, 218, 218);
+    }
+    
+    .test2 th,
+    .test2 td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid rgb(248, 248, 248);
+    }
+    
+    .test2 #header {
+        background-color: #16a085;
+        color: rgb(255, 255, 255);
+    }
+    
+    .test2 h1 {
+        font-weight: 600;
+        text-align: center;
+        background-color: #16a085;
+        color: #fff;
+        padding: 10px 0px;
+    }
+    
+    .test2 tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    @media only screen and (max-width: 768px) {
+        table {
+            width: 90%;
+        }
+    }
