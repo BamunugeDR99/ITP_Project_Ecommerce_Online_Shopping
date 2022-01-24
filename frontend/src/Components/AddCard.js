@@ -12,6 +12,7 @@ export default function AddCard(props){
   
 	function sendData(e){
 
+		
 	  e.preventDefault();
   
 	  const newpaymentdetails = {
